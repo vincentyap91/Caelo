@@ -20,31 +20,28 @@ export default function TopGames() {
                 rightLink="See all"
             />
 
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-3 pt-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-2">
                 {games.map((game, idx) => (
                     <div
                         key={idx}
-                        className="group relative flex h-[180px] flex-col overflow-hidden rounded-xl border-b-4 border-[var(--color-brand-primary)] bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-card)] transition-transform hover:-translate-y-1"
+                        className="group relative flex flex-col overflow-hidden rounded-xl border-b-4 border-[var(--color-brand-primary)] bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-card)] transition-transform hover:-translate-y-1"
                     >
-                        {/* Top Image Box inside Gold Border */}
-                        <div className="w-full h-full p-1.5 pb-0">
-                            <div className="relative z-10 h-full w-full overflow-hidden rounded-t-[10px] border-2 border-[rgb(255_215_0_/_0.7)]">
+                        {/* Image Box - aspect-square scales with grid cell width */}
+                        <div className="relative w-full aspect-square overflow-hidden">
+                            <div
+                                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                                style={{ backgroundImage: `url("${game.imgUrl}")` }}
+                            />
 
-                                <div
-                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                    style={{ backgroundImage: `url("${game.imgUrl}")` }}
-                                ></div>
-
-                                {/* Provider Badge Tag */}
-                                <div className="absolute top-0 left-0 bg-white px-2 py-0.5 rounded-br-lg z-20 shadow-sm flex items-center justify-center">
-                                    <span className="text-[var(--color-brand-secondary)] font-black text-xs italic">{game.provider}</span>
-                                </div>
+                            {/* Provider Badge Tag */}
+                            <div className="absolute top-0 left-0 z-20 flex items-center justify-center rounded-br-lg bg-white px-2 py-0.5 shadow-sm">
+                                <span className="text-xs font-black italic text-[var(--color-brand-secondary)]">{game.provider}</span>
                             </div>
                         </div>
 
-                        {/* Bottom Title Bar (already has border-bottom set on parent) */}
-                        <div className="absolute bottom-0 z-30 w-full bg-[var(--color-brand-primary)] px-1 py-1.5 text-center">
-                            <span className="text-white text-xs font-bold block truncate">{game.name}</span>
+                        {/* Bottom Title Bar */}
+                        <div className="flex min-h-[40px] items-center justify-center bg-[var(--color-brand-primary)] px-2 py-2">
+                            <span className="block truncate text-center text-xs font-bold text-white">{game.name}</span>
                         </div>
                     </div>
                 ))}

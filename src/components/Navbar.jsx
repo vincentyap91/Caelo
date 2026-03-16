@@ -23,11 +23,11 @@ export default function Navbar({ onNavigate, activePage = 'home', onLoginClick, 
 
     const mainLinks = [
         'Home', 'Casino', 'Slots', 'Sports', 'E-Sports', 'Lottery',
-        'Fishing', 'Poker', 'Cockfight',
+        'Fishing', 'Poker',
         'Promotion', 'VIP', 'More'
     ];
-    const navTargets = { Home: 'home', Casino: 'live-casino', Slots: 'slots', Sports: 'sports', 'E-Sports': 'e-sports', Lottery: 'lottery', Fishing: 'fishing', Poker: 'poker' };
-    const navHrefs = { Home: '/', Casino: '/casino', Slots: '/slots', Sports: '/sports', 'E-Sports': '/e-sports', Lottery: '/lottery', Fishing: '/fishing', Poker: '/poker' };
+    const navTargets = { Home: 'home', Casino: 'live-casino', Slots: 'slots', Sports: 'sports', 'E-Sports': 'e-sports', Lottery: 'lottery', Fishing: 'fishing', Poker: 'poker', Promotion: 'promotion', VIP: 'vip' };
+    const navHrefs = { Home: '/', Casino: '/casino', Slots: '/slots', Sports: '/sports', 'E-Sports': '/e-sports', Lottery: '/lottery', Fishing: '/fishing', Poker: '/poker', Promotion: '/promotion', VIP: '/vip' };
     const accountCards = [
         { label: 'Account Details', icon: UserRound },
         { label: 'Verification', icon: ShieldCheck },
@@ -347,7 +347,9 @@ export default function Navbar({ onNavigate, activePage = 'home', onLoginClick, 
                     ${activePage === 'e-sports' && link === 'E-Sports' ? 'text-yellow-300' : ''}
                     ${activePage === 'lottery' && link === 'Lottery' ? 'text-yellow-300' : ''}
                     ${activePage === 'fishing' && link === 'Fishing' ? 'text-yellow-300' : ''}
-                    ${activePage === 'poker' && link === 'Poker' ? 'text-yellow-300' : ''}`}
+                    ${activePage === 'poker' && link === 'Poker' ? 'text-yellow-300' : ''}
+                    ${activePage === 'promotion' && link === 'Promotion' ? 'text-yellow-300' : ''}
+                    ${activePage === 'vip' && link === 'VIP' ? 'text-yellow-300' : ''}`}
                             >
                                 {link}
                                 {link === 'More' && <ChevronDown size={14} className="ml-0.5 group-hover:rotate-180 transition-transform" strokeWidth={3} />}

@@ -23,7 +23,7 @@ export default function HeroSection() {
 
             {/* Marquee row immediately under hero */}
             <div className="relative z-20 flex h-[35px] w-full items-center border-t border-[rgb(52_196_249)] border-b border-b-2 border-white bg-[var(--color-brand-primary)] shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
-                <div className="page-container flex items-center">
+                <div className="mx-auto flex w-full max-w-screen-2xl items-center px-4 md:px-8">
                     <div className="flex items-center justify-center shrink-0 pr-4 text-white">
                         <Volume2 size={16} fill="currentColor" strokeWidth={1} />
                     </div>

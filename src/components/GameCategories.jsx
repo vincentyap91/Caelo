@@ -25,7 +25,7 @@ export default function GameCategories() {
                 icon={<Crown size={22} fill="currentColor" className="text-[var(--color-brand-secondary)]" />}
             />
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 pt-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-6">
                 {categories.map((cat, idx) => (
                     <div
                         key={idx}
@@ -45,18 +45,15 @@ export default function GameCategories() {
                             </div>
                         </div>
 
-                        {/* Image Container */}
-                        <div className="w-full h-[220px] rounded-[10px] overflow-hidden relative">
+                        {/* Image Container - portrait aspect scales with grid cell width */}
+                        <div className="relative w-full aspect-[3/4] min-h-[160px] rounded-[10px] overflow-hidden">
                             <div
-                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
                                 style={{ backgroundImage: `url(${cat.bgUrl})` }}
-                            ></div>
-
-                            {/* Bottom inner glow/overlay */}
-                            {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div> */}
+                            />
 
                             {/* Center Icon */}
-                            <div className="absolute bottom-4 left-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-xl shadow-[0_0_15px_rgba(255,255,255,0.4)] border border-white/40">
+                            <div className="absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-lg md:text-xl shadow-[0_0_15px_rgba(255,255,255,0.4)] border border-white/40">
                                 {cat.icon}
                             </div>
                         </div>

@@ -15,6 +15,8 @@ import EsportsPage from './components/EsportsPage';
 import LotteryPage from './components/LotteryPage';
 import FishingPage from './components/FishingPage';
 import PokerPage from './components/PokerPage';
+import PromotionPage from './components/PromotionPage';
+import VipPage from './components/VipPage';
 import ProfilePage from './components/ProfilePage';
 import AccountLayout from './components/AccountLayout';
 import RegisterPage from './components/RegisterPage';
@@ -51,6 +53,12 @@ function resolvePageFromPath() {
   }
   if (pathname === '/poker') {
     return 'poker';
+  }
+  if (pathname === '/promotion' || pathname === '/promotions') {
+    return 'promotion';
+  }
+  if (pathname === '/vip') {
+    return 'vip';
   }
   if (pathname === '/register') {
     return 'register';
@@ -101,6 +109,8 @@ function App() {
       lottery: '/lottery',
       fishing: '/fishing',
       poker: '/poker',
+      promotion: '/promotion',
+      vip: '/vip',
       register: '/register',
       profile: '/profile',
       verification: '/verification',
@@ -137,6 +147,10 @@ function App() {
               ? 'bg-[var(--color-page-default)]'
             : page === 'poker'
               ? 'bg-[var(--color-page-default)]'
+            : page === 'promotion'
+              ? 'bg-[var(--color-page-default)]'
+            : page === 'vip'
+              ? 'bg-[var(--color-page-default)]'
             : page === 'profile' || page === 'verification' || page === 'favourites' || page === 'my-bets' || page === 'feedback' || page === 'help-center'
               ? 'bg-[var(--color-page-account)]'
               : 'bg-[var(--color-page-default)]'
@@ -165,7 +179,7 @@ function App() {
           <HeroSection />
 
           {/* Main Content Area */}
-          <div className="page-container flex flex-col gap-8 pb-10">
+          <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-4 pb-10 md:px-8">
             <FeaturesRow />
             <PlayersPromo />
             <GameCategories />
@@ -189,6 +203,10 @@ function App() {
         <FishingPage />
       ) : page === 'poker' ? (
         <PokerPage />
+      ) : page === 'promotion' ? (
+        <PromotionPage />
+      ) : page === 'vip' ? (
+        <VipPage />
       ) : page === 'profile' ? (
         <ProfilePage authUser={authUser} onLogout={() => setAuthUser(null)} onNavigate={handleNavigate} onLiveChatClick={() => setLiveChatOpen(true)} />
       ) : page === 'verification' ? (
