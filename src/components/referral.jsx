@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
-import { Copy, Check, Share2, Info, ChevronDown, ChevronRight, Gamepad2, Dices, Fish, Trophy, Ticket, Swords, CircleDollarSign, TrendingUp, Gift, Users, Zap } from 'lucide-react';
+import {
+    Copy,
+    Check,
+    Share2,
+    Info,
+    ChevronDown,
+    ChevronRight,
+    Gamepad2,
+    Dices,
+    Fish,
+    Trophy,
+    Ticket,
+    Swords,
+    CircleDollarSign,
+    TrendingUp,
+    Gift,
+    Users,
+    Zap,
+} from 'lucide-react';
 import affiliateBanner from '../assets/affiliate-banner.jpg';
+import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
+import { ReferralShare3dIcon, ReferralRegistered3dIcon, ReferralEarnings3dIcon } from './ReferralStep3dIcons';
 import { useReferralData } from '../context/ReferralDataContext';
 
 const affiliateTabs = ['Invite friends', 'My referrals', 'How it works'];
@@ -267,27 +287,41 @@ function GameCommissionRow({ item, isOpen, onToggle }) {
 function HowItWorksContent() {
     const [expandedGame, setExpandedGame] = useState(null);
     const steps = [
-        { num: '01', title: 'Share your Registration Link or Referral Code' },
-        { num: '02', title: 'Friends Registered Successfully' },
-        { num: '03', title: 'Earn Bonus from Your Downlines' },
+        { num: '01', title: 'Share your Registration Link or Referral Code', Illustration: ReferralShare3dIcon },
+        { num: '02', title: 'Friends Registered Successfully', Illustration: ReferralRegistered3dIcon },
+        { num: '03', title: 'Earn Bonus from Your Downlines', Illustration: ReferralEarnings3dIcon },
     ];
 
     return (
         <div className="space-y-6">
             <div className="surface-card rounded-2xl p-6 md:p-8">
                 <h3 className="text-center text-xl font-bold text-[var(--color-text-strong)] md:text-2xl">Invite Your Friends to Earn Passive Income</h3>
-                <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-                {steps.map((step) => (
-                    <div
-                        key={step.num}
-                        className="relative rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-5 shadow-[var(--shadow-subtle)]"
-                    >
-                        <span className="absolute left-4 top-4 rounded-md bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-cta-text)]">
-                            Step {step.num}
-                        </span>
-                        <p className="mt-10 text-center font-bold text-[var(--color-text-strong)]">{step.title}</p>
-                    </div>
-                ))}
+                <div className="mt-8 grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-3">
+                    {steps.map((step) => {
+                        const Illustration = step.Illustration;
+                        return (
+                            <div
+                                key={step.num}
+                                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[linear-gradient(180deg,var(--color-surface-base)_0%,var(--color-surface-subtle)_100%)] shadow-[var(--shadow-subtle)]"
+                            >
+                                <span className="absolute left-4 top-4 z-10 rounded-md bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-cta-text)] shadow-sm">
+                                    Step {step.num}
+                                </span>
+                                <div className="flex flex-1 flex-col items-center px-4 pb-7 pt-14 text-center md:px-5 md:pb-8">
+                                    {/* Icon container matches FeaturesRow “Outstanding Functions” */}
+                                    <div
+                                        className="mb-5 flex items-center justify-center rounded-full border border-[var(--color-brand-soft)] bg-[var(--color-surface-base)] p-2 shadow-sm transition-transform group-hover:scale-110"
+                                        aria-hidden
+                                    >
+                                        <Illustration className="h-[52px] w-[52px] shrink-0" />
+                                    </div>
+                                    <p className="max-w-[16rem] text-sm font-bold leading-snug text-[var(--color-text-strong)] md:max-w-none md:text-[0.95rem] md:leading-relaxed">
+                                        {step.title}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
@@ -353,18 +387,18 @@ export default function ReferralPage() {
             {/* Hero — Live Casino layout, no CTA / no provider logo */}
             <section className="w-full">
                 <div className="w-full mx-auto">
-                    <div className="relative overflow-hidden shadow-[var(--shadow-live-banner)]">
+                    <div className={PAGE_BANNER_WRAP}>
                         <img
                             src={affiliateBanner}
                             alt="Referral"
-                            className="block h-auto w-full bg-[rgb(221_232_248)]"
+                            className={PAGE_BANNER_IMG}
                         />
                         <div className="absolute inset-y-0 right-0 flex w-[56%] items-center justify-end pr-3 sm:w-[52%] sm:pr-4 md:w-[50%] md:justify-start md:pr-0">
-                            <div className="flex w-full max-w-[500px] flex-col items-center justify-center py-4 text-center md:block md:px-8 md:py-7 md:text-center">
-                                <h1 className="mt-1 text-lg font-black uppercase tracking-[0.03em] text-white sm:text-xl md:mt-5 md:text-3xl">
+                            <div className="flex w-full max-w-[500px] flex-col items-center justify-center px-2 py-2 text-center max-md:justify-center md:block md:px-8 md:py-7 md:text-center">
+                                <h1 className="text-base font-black uppercase tracking-[0.03em] text-white sm:text-xl md:mt-5 md:text-3xl">
                                     Referral
                                 </h1>
-                                <p className="hidden sm:flex mx-auto mt-2 max-w-[420px] text-xs font-semibold leading-[1.35] text-white sm:mt-3 sm:text-sm md:mt-4 md:text-base">
+                                <p className="mx-auto mt-1 hidden max-w-[420px] text-xs font-semibold leading-[1.35] text-white sm:flex sm:mt-3 sm:text-sm md:mt-4 md:text-base">
                                     Invite friends, earn rewards. Share your referral code and grow together.
                                 </p>
                             </div>

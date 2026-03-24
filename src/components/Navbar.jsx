@@ -14,15 +14,17 @@ import {
     ScrollText,
     Settings,
     ShieldCheck,
+    Trophy,
     UserCircle2,
     UserRound,
     Users,
-    Wallet
+    Wallet,
 } from 'lucide-react';
 import LiveCasinoMenu from './LiveCasinoMenu';
 import LanguageSwitcher from './LanguageSwitcher';
 import { supportOptions } from '../constants/supportOptions';
 import { settingsOptions } from '../constants/settingsOptions';
+import { REWARDS_NAV_ICONS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
 import { getVipStatus } from '../constants/vipStatus';
 import VipStatusPill from './VipStatusPill';
 
@@ -91,9 +93,9 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
         setOpenProfileSection((current) => (current === sectionKey ? null : sectionKey));
     };
 
-    const handleMobileNavigate = (targetPage) => {
+    const handleMobileNavigate = (targetPage, options) => {
         setMobileMenuOpen(false);
-        onNavigate?.(targetPage);
+        onNavigate?.(targetPage, options);
     };
 
     const handleMobileDownloadApp = () => {
@@ -333,6 +335,50 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                         <span className="text-xs font-bold leading-tight text-white">{label}</span>
                                                     </button>
                                                 ))}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
+                                        <button
+                                            type="button"
+                                            onClick={() => toggleProfileSection('rewards')}
+                                            className="flex w-full items-center justify-between"
+                                        >
+                                            <div className="flex items-center gap-3">
+                                                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[var(--color-nav-gold)] shadow-[var(--shadow-nav-pill)]">
+                                                    <Trophy size={14} />
+                                                </div>
+                                                <span className="text-lg font-bold text-white">Rewards</span>
+                                            </div>
+                                            <ChevronDown
+                                                size={16}
+                                                className={`text-white/80 transition-transform ${openProfileSection === 'rewards' ? 'rotate-180' : ''}`}
+                                            />
+                                        </button>
+
+                                        {openProfileSection === 'rewards' && (
+                                            <div className="mt-3 grid grid-cols-3 gap-3">
+                                                {REWARDS_PROGRAMS.map(({ id, label }) => {
+                                                    const NavIcon = REWARDS_NAV_ICONS[id] ?? Trophy;
+                                                    return (
+                                                        <button
+                                                            key={id}
+                                                            type="button"
+                                                            onClick={() => {
+                                                                setProfileMenuOpen(false);
+                                                                onNavigate?.('loyalty-rewards', { rewardsTab: id });
+                                                            }}
+                                                            className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                        >
+                                                            <NavIcon
+                                                                size={18}
+                                                                className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]"
+                                                            />
+                                                            <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                        </button>
+                                                    );
+                                                })}
                                             </div>
                                         )}
                                     </div>
@@ -666,6 +712,28 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                     <UserRound size={16} />
                                     Profile
                                 </button>
+                            </div>
+
+                            <div className="rounded-[22px] border border-white/10 bg-white/5 p-3">
+                                <p className="mb-2 text-[11px] font-black uppercase tracking-[0.18em] text-[var(--color-nav-text-accent)]">
+                                    Rewards
+                                </p>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {REWARDS_PROGRAMS.map(({ id, label }) => {
+                                        const NavIcon = REWARDS_NAV_ICONS[id] ?? Trophy;
+                                        return (
+                                            <button
+                                                key={id}
+                                                type="button"
+                                                onClick={() => handleMobileNavigate('loyalty-rewards', { rewardsTab: id })}
+                                                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-3 text-left text-xs font-bold text-white transition hover:bg-white/15"
+                                            >
+                                                <NavIcon size={15} className="shrink-0 text-[var(--color-nav-blue-icon)]" />
+                                                <span className="min-w-0 leading-tight">{label}</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-2">

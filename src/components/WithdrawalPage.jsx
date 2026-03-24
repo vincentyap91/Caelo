@@ -188,24 +188,14 @@ export default function WithdrawalPage({ onNavigate }) {
                 {/* Step 1: Choose method */}
                 {step === 1 && (
                     <div className="space-y-6 p-5 md:p-6">
-                        <div className="flex items-center justify-between gap-4">
-                            <div className="flex items-center gap-3">
-                                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
-                                    1
-                                </span>
-                                <div>
-                                    <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Withdrawal Method <span className="text-[var(--color-danger-main)]">*</span></h2>
-                                    <p className="text-sm text-[var(--color-text-muted)]">Select E-Wallet or Bank Transfer.</p>
-                                </div>
+                        <div className="flex items-center gap-3">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                                1
+                            </span>
+                            <div>
+                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Withdrawal Method <span className="text-[var(--color-danger-main)]">*</span></h2>
+                                <p className="text-sm text-[var(--color-text-muted)]">Select E-Wallet or Bank Transfer.</p>
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => onNavigate?.('help-center')}
-                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-600)] transition hover:text-[var(--color-accent-700)]"
-                            >
-                                <HelpCircle size={16} />
-                                How to withdraw ?
-                            </button>
                         </div>
 
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -245,26 +235,16 @@ export default function WithdrawalPage({ onNavigate }) {
                 {/* Step 2: Account info & Amount (combined) */}
                 {step === 2 && (
                     <div className="space-y-6 p-5 md:p-6">
-                        <div className="flex items-center justify-between gap-4">
-                            <div className="flex items-center gap-3">
-                                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
-                                    2
-                                </span>
-                                <div>
-                                    <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Account & Amount</h2>
-                                    <p className="text-sm text-[var(--color-text-muted)]">
-                                        {withdrawalMethod === 'ewallet' ? 'Select E-Wallet, enter phone number and amount.' : 'Enter your bank account details and amount.'}
-                                    </p>
-                                </div>
+                        <div className="flex items-center gap-3">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                                2
+                            </span>
+                            <div>
+                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Account & Amount</h2>
+                                <p className="text-sm text-[var(--color-text-muted)]">
+                                    {withdrawalMethod === 'ewallet' ? 'Select E-Wallet, enter phone number and amount.' : 'Enter your bank account details and amount.'}
+                                </p>
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => onNavigate?.('help-center')}
-                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-600)] transition hover:text-[var(--color-accent-700)]"
-                            >
-                                <HelpCircle size={16} />
-                                How to withdraw ?
-                            </button>
                         </div>
 
                         {withdrawalMethod === 'ewallet' ? (

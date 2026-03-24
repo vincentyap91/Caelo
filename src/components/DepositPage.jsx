@@ -297,24 +297,14 @@ export default function DepositPage({ onNavigate }) {
                             })}
                         </div>
                         <div className="space-y-6 p-5 md:p-6">
-                        <div className="flex items-center justify-between gap-4">
-                            <div className="flex items-center gap-3">
-                                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
-                                    1
-                                </span>
-                                <div>
-                                    <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Deposit Options <span className="text-[var(--color-danger-main)]">*</span></h2>
-                                    <p className="text-sm text-[var(--color-text-muted)]">Select your preferred deposit method.</p>
-                                </div>
+                        <div className="flex items-center gap-3">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                                1
+                            </span>
+                            <div>
+                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Deposit Options <span className="text-[var(--color-danger-main)]">*</span></h2>
+                                <p className="text-sm text-[var(--color-text-muted)]">Select your preferred deposit method.</p>
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => onNavigate?.('help-center')}
-                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-600)] transition hover:text-[var(--color-accent-700)]"
-                            >
-                                <HelpCircle size={16} />
-                                How to deposit ?
-                            </button>
                         </div>
 
                         {depositSpeedTab === 'normal' ? (

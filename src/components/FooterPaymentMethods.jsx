@@ -12,12 +12,14 @@ import BtcIcon from './footerPayments/BtcIcon';
 import LitecoinIcon from './footerPayments/LitecoinIcon';
 import EthereumIcon from './footerPayments/EthereumIcon';
 
-/** Dark branded chip so logos with white fills stay visible on light (or white) footer areas */
+/** Flat badge: dark backing keeps white logo artwork readable on the light footer without button-like depth */
 function PaymentMethodChip({ children, minWide = false }) {
     return (
         <span
-            className={`inline-flex items-center justify-center rounded-xl border border-white/25 bg-[linear-gradient(180deg,var(--color-brand-deep)_0%,rgb(10_45_88)_100%)] px-2.5 py-2 shadow-[0_2px_12px_rgba(0,50,95,0.28)] ring-1 ring-black/10 transition-[transform,box-shadow] hover:scale-[1.03] hover:shadow-[0_4px_16px_rgba(0,50,95,0.35)] sm:px-3 sm:py-2.5 ${
-                minWide ? 'min-h-[2.75rem] min-w-[4.5rem] sm:min-h-[3rem]' : ''
+            className={`inline-flex shrink-0 items-center justify-center rounded-lg border border-white/20 bg-[var(--color-brand-deep)] ${
+                minWide
+                    ? 'h-9 min-w-[3.75rem] px-2 py-0 sm:h-10 sm:min-w-[4.25rem] sm:px-2.5'
+                    : 'h-9 w-9 p-0 sm:h-10 sm:w-10'
             }`}
         >
             {children}

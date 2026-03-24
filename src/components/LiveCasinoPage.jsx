@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import liveCasinoBanner from '../assets/live-casino.jpg';
+import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 import wcasinoLogo from '../assets/wcasino-2x-min-202505280008599013-202506250016539240.png';
 import sagamingLogo from '../assets/sagaming2025_wh-202510270604321830.png';
 import playtechLogo from '../assets/playtech-202505140443475046-202506242335087315.svg';
@@ -134,11 +135,11 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu }) {
 
             <section className="w-full">
                 <div className="w-full mx-auto">
-                    <div className="relative overflow-hidden shadow-[var(--shadow-live-banner)]">
+                    <div className={PAGE_BANNER_WRAP}>
                         <img
                             src={liveCasinoBanner}
                             alt="Live Casino Banner"
-                            className="block h-auto w-full bg-[rgb(221_232_248)]"
+                            className={PAGE_BANNER_IMG}
                         />
                         <div
                             ref={playButtonAreaRef}

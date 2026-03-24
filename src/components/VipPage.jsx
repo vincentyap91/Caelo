@@ -9,6 +9,7 @@ import sapphireMedal from '../assets/sapphire.png';
 import diamondMedal from '../assets/diamond.png';
 import headsetImage from '../assets/headset.png';
 import vipBanner from '../assets/vip-banner.jpg';
+import { PAGE_BANNER_IMG_VIP, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 
 const vipTabs = ['Upgrade', 'Privileges', 'Referral'];
 
@@ -302,40 +303,6 @@ export default function VipPage() {
 
     return (
         <main className="w-full bg-[var(--color-page-default)] pb-14">
-            <section className="w-full">
-                <div className="w-full mx-auto">
-                    <div className="relative overflow-hidden shadow-[var(--shadow-live-banner)]">
-                        <img
-                            src={vipBanner}
-                            alt="VIP Banner"
-                            className="block h-auto w-full bg-[rgb(216_227_242)]"
-                        />
-                        <div className="absolute inset-y-0 right-0 flex w-full items-center justify-start md:w-[52%]">
-                            <div className="w-full max-w-[520px] px-4 py-4 text-center md:px-8 md:py-7">
-                                <h1
-                                    className="bg-gradient-to-br from-[#FFE082] via-[#FFC107] to-[#E6A800] bg-clip-text text-2xl font-black uppercase tracking-[0.12em] text-transparent md:text-3xl"
-                                    style={{
-                                        textShadow: '0 1px 0 rgba(255,255,255,0.5), 0 2px 6px rgba(0,0,0,0.3), 0 4px 16px rgba(230,168,0,0.25)',
-                                    }}
-                                >
-                                    VIP Programme
-                                </h1>
-                                <p className="mx-auto mt-4 max-w-[420px] text-base font-medium leading-[1.5] text-[rgb(15_23_42)] md:mt-5 md:text-base md:leading-[1.45]">
-                                    Unlock premium rewards, tailored bonuses, and priority support with every VIP tier.
-                                </p>
-                                <a
-                                    href="/register"
-                                    className="btn-theme-cta mt-4 inline-flex h-10 min-w-[170px] items-center justify-center rounded-[10px] px-7 text-sm font-black tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] md:mt-6 md:h-14 md:min-w-[240px] md:px-12 md:text-lg"
-                                    aria-label="Join VIP now"
-                                >
-                                    JOIN NOW
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section className="w-full border-y border-[rgb(219_226_240)] bg-[var(--color-surface-base-85)] backdrop-blur">
                 <div className="mx-auto flex h-12 w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
                     <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[rgb(102_112_134)]">
@@ -345,6 +312,41 @@ export default function VipPage() {
                         <span>Exclusive Benefits</span>
                         <span className="h-1 w-1 rounded-full bg-[rgb(153_166_190)]"></span>
                         <span>Priority Support</span>
+                    </div>
+                </div>
+            </section>
+
+            <section className="w-full">
+                <div className="w-full mx-auto">
+                    <div className={PAGE_BANNER_WRAP}>
+                        <img
+                            src={vipBanner}
+                            alt="VIP Banner"
+                            className={PAGE_BANNER_IMG_VIP}
+                        />
+                        {/* Mobile: same right-column layout as referral hero; md+: unchanged VIP strip */}
+                        <div className="absolute inset-y-0 right-0 flex w-[56%] items-center justify-end pr-3 sm:w-[52%] sm:pr-4 md:w-[52%] md:justify-start md:pr-0">
+                            <div className="flex w-full max-w-[500px] flex-col items-center justify-center px-2 py-2 text-center max-md:justify-center md:max-w-[520px] md:px-8 md:py-7">
+                                <h1
+                                    className="bg-gradient-to-br from-[#FFE082] via-[#FFC107] to-[#E6A800] bg-clip-text text-lg font-black uppercase tracking-[0.1em] text-transparent max-md:leading-tight md:text-3xl md:tracking-[0.12em]"
+                                    style={{
+                                        textShadow: '0 1px 0 rgba(255,255,255,0.5), 0 2px 6px rgba(0,0,0,0.3), 0 4px 16px rgba(230,168,0,0.25)',
+                                    }}
+                                >
+                                    VIP Programme
+                                </h1>
+                                <p className="mx-auto mt-2 hidden max-w-[420px] text-base font-medium leading-[1.5] text-[rgb(15_23_42)] max-md:leading-snug md:mt-5 md:block md:leading-[1.45]">
+                                    Unlock premium rewards, tailored bonuses, and priority support with every VIP tier.
+                                </p>
+                                <a
+                                    href="/register"
+                                    className="btn-theme-cta mt-2 inline-flex h-9 min-w-[150px] items-center justify-center rounded-[10px] px-5 text-xs font-black tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] md:mt-6 md:h-14 md:min-w-[240px] md:px-12 md:text-lg"
+                                    aria-label="Join VIP now"
+                                >
+                                    JOIN NOW
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown, Eye, EyeOff, Lock, Mail, Phone, Send, UserRound } from 'lucide-react';
 import promoImage from '../assets/register-banner.jpg';
+import promoImageMobile from '../assets/register-banner-mobile.jpg';
+import { PAGE_BANNER_IMG } from '../constants/pageBannerClasses';
 
 export default function RegisterPage({ onLoginClick }) {
     const [showPassword, setShowPassword] = useState(false);
@@ -10,9 +12,17 @@ export default function RegisterPage({ onLoginClick }) {
             <section className="page-container">
                 <div className="overflow-hidden rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] shadow-[var(--shadow-register-card)]">
                     <div className="grid lg:grid-cols-[1.05fr_1fr]">
-                        <article className="relative text-white">
-                            <div className="overflow-hidden rounded-l-xl">
-                                <img src={promoImage} alt="Member benefit" className="h-full w-full object-cover" />
+                        <article className="relative max-md:h-[150px] max-md:overflow-hidden text-white">
+                            <div className="h-full min-h-0 overflow-hidden rounded-t-2xl md:rounded-l-xl">
+                                <picture className="contents">
+                                    <source media="(max-width: 767px)" srcSet={promoImageMobile} />
+                                    <img
+                                        src={promoImage}
+                                        alt="Member benefit"
+                                        className={PAGE_BANNER_IMG}
+                                        decoding="async"
+                                    />
+                                </picture>
                             </div>
                         </article>
 

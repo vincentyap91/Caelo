@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import lotteryBanner from '../assets/lottery-banner.jpg';
+import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
@@ -96,17 +97,17 @@ export default function LotteryPage() {
 
             <section className="w-full">
                 <div className="w-full mx-auto">
-                    <div className="relative overflow-hidden shadow-[var(--shadow-live-banner)]">
+                    <div className={PAGE_BANNER_WRAP}>
                         <img
                             src={lotteryBanner}
                             alt="Lottery Banner"
-                            className="block h-full w-full bg-[rgb(221_232_248)] object-cover object-center"
+                            className={PAGE_BANNER_IMG}
                         />
                         <div className="absolute inset-y-0 left-0 w-[56%] bg-[linear-gradient(90deg,rgb(234_244_255_/_0.96)_0%,rgb(234_244_255_/_0.86)_45%,transparent_100%)] sm:w-[52%] md:w-[50%]" />
                         <div ref={playButtonAreaRef} className="absolute inset-0 flex items-center justify-start">
-                            <div className="w-[56%] pl-[8%] sm:w-[52%] sm:pl-[10%] md:w-[50%] md:pl-[18%]">
-                                <div className="w-full max-w-[420px] text-center">
-                                    <div className="flex justify-center">
+                            <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
+                                <div className="w-full max-w-[420px] text-center max-md:text-center">
+                                    <div className="flex justify-center max-md:justify-center">
                                         <img
                                             src={bannerProvider.src}
                                             alt={bannerProvider.name}
@@ -121,7 +122,7 @@ export default function LotteryPage() {
                                     </p>
                                     <a
                                         href="#"
-                                        className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-[12px] font-black tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-[13px] md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
+                                        className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-[12px] font-black tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] max-md:self-start sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-[13px] md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
                                         aria-label={`Play ${bannerProvider.name}`}
                                     >
                                         PLAY LOTTERY

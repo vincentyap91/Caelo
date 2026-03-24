@@ -33,12 +33,14 @@ import RebatePage from './components/RebatePage';
 import ReferralCommissionPage from './components/ReferralCommissionPage';
 import DepositPage from './components/DepositPage';
 import WithdrawalPage from './components/WithdrawalPage';
+import LoyaltyRewardsPage from './components/LoyaltyRewardsPage';
 import Footer from './components/Footer';
 import FloatingSocials from './components/FloatingSocials';
 import LoginModal from './components/LoginModal';
 import './index.css';
 import LiveChatModal from './components/LiveChatModal';
 import { ReferralDataProvider } from './context/ReferralDataContext';
+import { REWARDS_PROGRAM_IDS } from './constants/rewardsPrograms';
 
 function resolvePageFromPath() {
   const pathname = window.location.pathname.toLowerCase();
@@ -77,6 +79,9 @@ function resolvePageFromPath() {
   }
   if (pathname === '/profile' || pathname === '/account-details') {
     return 'profile';
+  }
+  if (pathname === '/loyalty-rewards' || pathname === '/loyalty') {
+    return 'loyalty-rewards';
   }
   if (pathname === '/verification') {
     return 'verification';
@@ -170,7 +175,15 @@ function App() {
     return () => window.clearTimeout(id);
   }, [page, scrollToDownloadAppSection]);
 
-    const handleNavigate = (targetPage) => {
+  useEffect(() => {
+    // Keep deep-link behavior for download section on home.
+    if (page === 'home' && window.location.hash === DOWNLOAD_APP_HASH) {
+      return;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [page]);
+
+    const handleNavigate = (targetPage, options) => {
       const settingsToProfile = { security: 'security', notifications: 'notifications' };
       const resolvedPage = settingsToProfile[targetPage] ?? targetPage;
     const pathByPage = {
@@ -190,6 +203,7 @@ function App() {
       verification: '/verification',
       favourites: '/favourites',
       'my-bets': '/my-bets',
+      'loyalty-rewards': '/loyalty-rewards',
       feedback: '/feedback',
       'help-center': '/help',
       security: '/security',
@@ -202,8 +216,26 @@ function App() {
     const nextPath = pathByPage[resolvedPage] ?? pathByPage[targetPage] ?? '/';
     setPage(resolvedPage);
 
-    if (window.location.pathname !== nextPath) {
-      window.history.pushState({}, '', nextPath);
+    const currentPath = window.location.pathname;
+    let fullUrl = nextPath;
+    if (resolvedPage === 'loyalty-rewards') {
+      let tab = 'daily-bonus';
+      if (options?.rewardsTab && REWARDS_PROGRAM_IDS.includes(options.rewardsTab)) {
+        tab = options.rewardsTab;
+      } else if (currentPath === '/loyalty-rewards' && window.location.hash) {
+        const fromHash = window.location.hash.slice(1);
+        if (REWARDS_PROGRAM_IDS.includes(fromHash)) tab = fromHash;
+      }
+      fullUrl = `/loyalty-rewards#${tab}`;
+    }
+
+    const currentFull = `${window.location.pathname}${window.location.hash}`;
+    if (currentFull !== fullUrl) {
+      window.history.pushState({}, '', fullUrl);
+      // pushState does not fire hashchange; rewards UI listens on hashchange for in-page tab switches
+      if (resolvedPage === 'loyalty-rewards') {
+        window.dispatchEvent(new Event('hashchange'));
+      }
     }
   };
 
@@ -232,7 +264,7 @@ function App() {
               ? 'bg-[var(--color-page-default)]'
             : page === 'referral'
               ? 'bg-[var(--color-page-default)]'
-            : page === 'profile' || page === 'verification' || page === 'favourites' || page === 'my-bets' || page === 'feedback' || page === 'help-center' || page === 'security' || page === 'notifications' || page === 'rebate' || page === 'referral-commission' || page === 'deposit' || page === 'withdrawal'
+            : page === 'profile' || page === 'verification' || page === 'favourites' || page === 'my-bets' || page === 'loyalty-rewards' || page === 'feedback' || page === 'help-center' || page === 'security' || page === 'notifications' || page === 'rebate' || page === 'referral-commission' || page === 'deposit' || page === 'withdrawal'
               ? 'bg-[var(--color-page-account)]'
               : 'bg-[var(--color-page-default)]'
     }`}>
@@ -269,7 +301,7 @@ function App() {
             <TopGames onNavigate={handleNavigate} />
             <VipTier />
             <AppDownload />
-            <Promos />
+            <Promos onNavigate={handleNavigate} />
           </div>
         </>
       ) : page === 'live-casino' ? (
@@ -294,6 +326,10 @@ function App() {
         <ReferralPage />
       ) : page === 'profile' ? (
         <ProfilePage authUser={authUser} onLogout={() => setAuthUser(null)} onNavigate={handleNavigate} onLiveChatClick={() => setLiveChatOpen(true)} />
+      ) : page === 'loyalty-rewards' ? (
+        <AccountLayout activePage="loyalty-rewards" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+          <LoyaltyRewardsPage />
+        </AccountLayout>
       ) : page === 'verification' ? (
         <AccountLayout activePage="verification" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
           <VerificationPage />

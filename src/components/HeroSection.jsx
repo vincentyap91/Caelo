@@ -1,23 +1,24 @@
 import React from 'react';
 import { Volume2 } from 'lucide-react';
 import homeBanner from '../assets/homebanner.jpg';
+import { PAGE_BANNER_IMG } from '../constants/pageBannerClasses';
 
 export default function HeroSection() {
     return (
         <div className="relative w-full overflow-hidden bg-[var(--color-brand-primary)]">
-            {/* Main Hero Container */}
-            <div className="w-full relative flex flex-col justify-end">
+            {/* Main Hero Container — mobile fixed height matches site-wide banners */}
+            <div className="relative flex w-full max-md:h-[150px] max-md:overflow-hidden flex-col justify-end">
                 <img
                     src={homeBanner}
                     alt="Hero Banner"
-                    className="w-full h-auto object-cover"
+                    className={PAGE_BANNER_IMG}
                 />
 
                 {/* Carousel indicator bar inside hero */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1 z-30">
-                    <div className="w-8 h-10 border-b-4 border-white"></div>
-                    <div className="w-8 h-10 border-b-4 border-white/40"></div>
-                    <div className="w-8 h-10 border-b-4 border-white/40"></div>
+                <div className="absolute bottom-2 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1 md:bottom-6">
+                    <div className="h-8 w-8 border-b-[3px] border-white md:h-10 md:w-8 md:border-b-4"></div>
+                    <div className="h-8 w-8 border-b-[3px] border-white/40 md:h-10 md:w-8 md:border-b-4"></div>
+                    <div className="h-8 w-8 border-b-[3px] border-white/40 md:h-10 md:w-8 md:border-b-4"></div>
                 </div>
             </div>
 

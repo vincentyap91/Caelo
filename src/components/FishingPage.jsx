@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import fishingBanner from '../assets/fishing-banner.jpg';
+import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
@@ -83,22 +84,19 @@ export default function FishingPage() {
 
             <section className="w-full">
                 <div className="w-full mx-auto">
-                    <div className="relative aspect-[67/15] overflow-hidden shadow-[var(--shadow-live-banner)]">
+                    <div className={PAGE_BANNER_WRAP_ASPECT}>
                         <img
                             src={fishingBanner}
                             alt="Fishing Banner"
-                            className="block h-full w-full bg-[rgb(221_232_248)] object-cover object-center"
+                            className={PAGE_BANNER_IMG_FILL}
                         />
-                        <div className="absolute inset-y-0 left-0 w-[50%] bg-[linear-gradient(90deg,rgb(234_244_255_/_0.96)_0%,rgb(234_244_255_/_0.86)_45%,transparent_100%)]" />
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-[50%] pl-[15%] sm:pl-[17%] md:pl-[18%]">
-                                <div className="w-full max-w-[420px] text-center">
+                        <div className="absolute inset-y-0 left-0 w-[56%] bg-[linear-gradient(90deg,rgb(234_244_255_/_0.96)_0%,rgb(234_244_255_/_0.86)_45%,transparent_100%)] sm:w-[52%] md:w-[50%]" />
+                        <div className="absolute inset-0 flex items-center justify-start">
+                            <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
+                                <div className="w-full max-w-[420px] text-center max-md:text-center">
                                     <h1 className="text-xl font-black uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
                                         Fishing
                                     </h1>
-                                    <p className="mx-auto mt-2 hidden max-w-[320px] text-xs font-semibold leading-[1.3] text-[rgb(42_53_72)] sm:hidden md:block md:mt-4 md:max-w-[420px] md:text-base md:leading-[1.35]">
-                                        Cast your line, land the big one.
-                                    </p>
                                 </div>
                             </div>
                         </div>

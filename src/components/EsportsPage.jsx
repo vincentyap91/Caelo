@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import esportsBanner from '../assets/esports.jpg';
+import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 import tfGamingLogo from '../assets/tf-gaming.webp';
 
 const providerLogos = [
@@ -79,11 +80,11 @@ export default function EsportsPage() {
 
             <section className="w-full">
                 <div className="mx-auto w-full">
-                    <div className="relative overflow-hidden shadow-[var(--shadow-live-banner)]">
+                    <div className={PAGE_BANNER_WRAP}>
                         <img
                             src={esportsBanner}
                             alt="E-Sports Banner"
-                            className="block h-full w-full bg-[rgb(221_232_248)] object-cover object-center"
+                            className={PAGE_BANNER_IMG}
                         />
                         <div
                             ref={playButtonAreaRef}
