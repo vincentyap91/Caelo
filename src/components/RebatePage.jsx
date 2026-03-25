@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Calendar, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
+import CalendarDateInput from './CalendarDateInput';
 import SecurityTabs from './security/SecurityTabs';
 
 function formatDateForInput(d) {
@@ -135,30 +136,16 @@ export default function RebatePage({ onNavigate }) {
                     <div className="space-y-6">
                         <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <label className="block">
-                                    <span className="mb-2 block text-sm font-semibold text-[var(--color-text-strong)]">Start Claim Date</span>
-                                    <div className="relative flex items-center">
-                                        <input
-                                            type="date"
-                                            value={historyStart}
-                                            onChange={(e) => setHistoryStart(e.target.value)}
-                                            className="date-input-single-icon h-11 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
-                                        />
-                                        <Calendar size={18} className="pointer-events-none absolute right-3 text-[var(--color-accent-600)]" />
-                                    </div>
-                                </label>
-                                <label className="block">
-                                    <span className="mb-2 block text-sm font-semibold text-[var(--color-text-strong)]">End Claim Date</span>
-                                    <div className="relative flex items-center">
-                                        <input
-                                            type="date"
-                                            value={historyEnd}
-                                            onChange={(e) => setHistoryEnd(e.target.value)}
-                                            className="date-input-single-icon h-11 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
-                                        />
-                                        <Calendar size={18} className="pointer-events-none absolute right-3 text-[var(--color-accent-600)]" />
-                                    </div>
-                                </label>
+                                <CalendarDateInput
+                                    label="Start Claim Date"
+                                    value={historyStart}
+                                    onChange={(e) => setHistoryStart(e.target.value)}
+                                />
+                                <CalendarDateInput
+                                    label="End Claim Date"
+                                    value={historyEnd}
+                                    onChange={(e) => setHistoryEnd(e.target.value)}
+                                />
                             </div>
                             <div className="mt-4 flex gap-2">
                                 {HISTORY_QUICK_RANGES.map(({ id, label }) => (

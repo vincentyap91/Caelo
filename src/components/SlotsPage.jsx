@@ -1,13 +1,17 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { Search, TrendingUp, TrendingDown } from 'lucide-react';
+import { Play, Search, TrendingUp, TrendingDown } from 'lucide-react';
 import slotsBanner from '../assets/slot-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
+import { MATCHED_SLOT_PROVIDERS } from '../constants/matchedSlotProviders';
+import PromotionStyleTabs from './PromotionStyleTabs';
+import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
 const slotProviders = [
     { name: 'Pragmatic Play', src: `${CDN}/pragmaticplay/pp-202505140448040730-202506200354029751.svg`, featured: true },
     { name: 'PlayTech Slots', src: `${CDN}/playtechslots/playtech-202505140443475046-202507230000384478-202508140011404228.svg`, featured: true },
+    /* AdvantPlay: strip-only asset (navbar mega-menu uses `matchedSlotProviders` — keep URLs independent). */
     { name: 'AdvantPlay', src: `${CDN}/advantplay1/advantplay-min-202507170638442926-202509040235032332-202509180625238829.png`, featured: true },
     { name: 'JiLi', src: `${CDN}/jili/jili-min-202506200742098986-202508110205447696-202508212322163049.png`, featured: true },
     { name: 'JDB', src: `${CDN}/jdb/jdbslot-min-202506200911451833-202506250030508552.png`, featured: true },
@@ -99,7 +103,7 @@ const liveBigWins = [
 
 const INITIAL_GAMES = 30; // 5 rows × 6 columns (lg)
 
-export default function SlotsPage() {
+export default function SlotsPage({ selectedProviderIdFromMenu }) {
     const [activeTab, setActiveTab] = useState('All Games');
     const [query, setQuery] = useState('');
     const [activeProvider, setActiveProvider] = useState(slotProviders[0].name);
@@ -108,6 +112,15 @@ export default function SlotsPage() {
     useEffect(() => {
         setGamesToShow(INITIAL_GAMES);
     }, [activeProvider, activeTab]);
+
+    useEffect(() => {
+        if (!selectedProviderIdFromMenu) return;
+        const match = MATCHED_SLOT_PROVIDERS.find((p) => p.id === selectedProviderIdFromMenu);
+        if (match) {
+            setActiveProvider(match.gameProvider);
+            setGamesToShow(INITIAL_GAMES);
+        }
+    }, [selectedProviderIdFromMenu]);
 
     const filteredGames = useMemo(() => {
         const text = query.trim().toLowerCase();
@@ -195,25 +208,12 @@ export default function SlotsPage() {
             <section className={`${pageContainerClass} mt-4 md:mt-6`}>
                 <div className="surface-panel rounded-2xl p-4 md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <div className="flex flex-wrap gap-2">
-                            {gameTabs.map((tab) => {
-                                const selected = activeTab === tab;
-                                return (
-                                    <button
-                                        key={tab}
-                                        type="button"
-                                        onClick={() => setActiveTab(tab)}
-                                        className={`rounded-full border px-3 py-1.5 text-xs font-bold tracking-wide transition ${
-                                            selected
-                                                ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-sm'
-                                                : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900'
-                                        }`}
-                                    >
-                                        {tab}
-                                    </button>
-                                );
-                            })}
-                        </div>
+                        <PromotionStyleTabs
+                            items={gameTabs}
+                            value={activeTab}
+                            onChange={setActiveTab}
+                            ariaLabel="Slot game filters"
+                        />
                         <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 shadow-sm lg:w-72">
                             <Search size={16} className="text-slate-500" />
                             <input
@@ -238,13 +238,12 @@ export default function SlotsPage() {
                         const arrowColor = isHighRtp ? 'text-green-600' : 'text-red-600';
 
                         return (
-                        <a
+                        <div
                             key={idx}
-                            href="#"
-                            className="surface-card group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-lg"
+                            className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-lg"
                         >
                             {(game.hot || game.new) && (
-                                <span className="absolute right-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
+                                <span className="absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
                                     {game.hot ? 'HOT' : 'NEW'}
                                 </span>
                             )}
@@ -253,6 +252,14 @@ export default function SlotsPage() {
                                     className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                                     style={{ backgroundImage: `url("${game.imgUrl}")` }}
                                 />
+                                <GameCardFavouriteButton
+                                    category="slots"
+                                    name={game.name}
+                                    provider={game.provider}
+                                    imgUrl={game.imgUrl}
+                                    navigatePage="slots"
+                                />
+                                <GameCardPlayBar href="#" showOnHover />
                             </div>
                             <div className="p-2 md:p-3">
                                 <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>
@@ -262,7 +269,7 @@ export default function SlotsPage() {
                                     <TrendIcon size={14} strokeWidth={2.5} className={arrowColor} />
                                 </span>
                             </div>
-                        </a>
+                        </div>
                         );
                     })}
                 </div>
@@ -292,16 +299,24 @@ export default function SlotsPage() {
                         {liveBigWins.map((win, idx) => {
                             const game = slotGames.find((g) => g.name === win.game) ?? slotGames[0];
                             return (
-                            <a
+                            <div
                                 key={idx}
-                                href="#"
-                                className="surface-card group flex min-w-0 flex-1 basis-[200px] items-center gap-4 rounded-2xl p-4 transition hover:-translate-y-0.5 hover:shadow-lg"
+                                className="surface-card group relative flex min-w-0 flex-1 basis-[200px] items-center gap-4 rounded-2xl p-4 transition hover:-translate-y-0.5 hover:shadow-lg"
                             >
-                                <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-slate-100">
                                     <img
                                         src={game.imgUrl}
                                         alt={win.game}
                                         className="h-full w-full object-cover"
+                                    />
+                                    <GameCardFavouriteButton
+                                        category="slots"
+                                        name={game.name}
+                                        provider={game.provider}
+                                        imgUrl={game.imgUrl}
+                                        navigatePage="slots"
+                                        size="sm"
+                                        className="!right-0.5 !top-0.5 scale-[0.85] sm:scale-90"
                                     />
                                 </div>
                                 <div className="min-w-0 flex-1">
@@ -311,8 +326,15 @@ export default function SlotsPage() {
                                     <p className="mt-0.5 text-xs text-slate-500">
                                         on {win.game} · {win.time}
                                     </p>
+                                    <a
+                                        href="#"
+                                        className="btn-theme-primary mt-2 inline-flex h-9 max-w-[180px] items-center justify-center gap-1.5 rounded-xl px-4 text-xs font-bold transition hover:scale-[1.02] active:scale-[0.98]"
+                                    >
+                                        <Play size={14} fill="currentColor" className="opacity-95" aria-hidden />
+                                        Play
+                                    </a>
                                 </div>
-                            </a>
+                            </div>
                             );
                         })}
                     </div>

@@ -1,8 +1,14 @@
 import React, { Suspense, useCallback, useEffect, useState } from 'react';
+import {
+  clearAuthSession,
+  isAuthSessionExpired,
+  loadAuthSession,
+  saveAuthSession,
+} from './utils/authSessionStorage';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import FeaturesRow from './components/FeaturesRow';
-import PlayersPromo from './components/PlayersPromo';
+import HomeLiveActivity from './components/HomeLiveActivity';
 import GameCategories from './components/GameCategories';
 import TopGames from './components/TopGames';
 import VipTier from './components/VipTier';
@@ -31,16 +37,20 @@ import SecurityPage from './components/SecurityPage';
 import NotificationsPage from './components/NotificationsPage';
 import RebatePage from './components/RebatePage';
 import ReferralCommissionPage from './components/ReferralCommissionPage';
+import HistoryRecordPage from './components/HistoryRecordPage';
 import DepositPage from './components/DepositPage';
 import WithdrawalPage from './components/WithdrawalPage';
-import LoyaltyRewardsPage from './components/LoyaltyRewardsPage';
+import RewardsPage from './components/RewardsPage';
 import Footer from './components/Footer';
 import FloatingSocials from './components/FloatingSocials';
 import LoginModal from './components/LoginModal';
 import './index.css';
 import LiveChatModal from './components/LiveChatModal';
 import { ReferralDataProvider } from './context/ReferralDataContext';
+import { FavouritesProvider } from './context/FavouritesContext';
+import { ActionNotificationsProvider } from './context/ActionNotificationsContext';
 import { REWARDS_PROGRAM_IDS } from './constants/rewardsPrograms';
+import { HISTORY_RECORD_PAGE_IDS } from './constants/historyRecordPages';
 
 function resolvePageFromPath() {
   const pathname = window.location.pathname.toLowerCase();
@@ -116,6 +126,10 @@ function resolvePageFromPath() {
   if (pathname === '/withdrawal') {
     return 'withdrawal';
   }
+  const historyRecordPage = HISTORY_RECORD_PAGE_IDS.find((id) => pathname === `/${id}`);
+  if (historyRecordPage) {
+    return historyRecordPage;
+  }
   // Legacy app-download URLs render homepage (URL normalized in useEffect)
   if (pathname === '/app-download' || pathname === '/download' || pathname === '/mobile') {
     return 'home';
@@ -132,8 +146,39 @@ function App() {
   const [page, setPage] = useState(resolvePageFromPath);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [liveChatOpen, setLiveChatOpen] = useState(false);
-  const [authUser, setAuthUser] = useState(null);
+  const [authUser, setAuthUser] = useState(() => loadAuthSession());
   const [selectedCasinoProviderIdFromMenu, setSelectedCasinoProviderIdFromMenu] = useState(null);
+  const [selectedSlotsProviderIdFromMenu, setSelectedSlotsProviderIdFromMenu] = useState(null);
+
+  const handleLogout = useCallback(() => {
+    setAuthUser(null);
+    clearAuthSession();
+  }, []);
+
+  const handleLogin = useCallback((userOrUsername) => {
+    const user =
+      typeof userOrUsername === 'object' && userOrUsername?.name
+        ? userOrUsername
+        : { name: userOrUsername || 'demo', balance: 'MYR 0.00', notifications: 1, vipLevel: 'Diamond' };
+    setAuthUser(user);
+    saveAuthSession(user);
+  }, []);
+
+  useEffect(() => {
+    if (!authUser) return undefined;
+    const checkExpiry = () => {
+      if (isAuthSessionExpired()) {
+        handleLogout();
+      }
+    };
+    const id = window.setInterval(checkExpiry, 60_000);
+    document.addEventListener('visibilitychange', checkExpiry);
+    return () => {
+      window.clearInterval(id);
+      document.removeEventListener('visibilitychange', checkExpiry);
+    };
+  }, [authUser, handleLogout]);
+
   useEffect(() => {
     const onPopState = () => setPage(resolvePageFromPath());
     window.addEventListener('popstate', onPopState);
@@ -212,6 +257,7 @@ function App() {
       'referral-commission': '/referral-commission',
       deposit: '/deposit',
       withdrawal: '/withdrawal',
+      ...Object.fromEntries(HISTORY_RECORD_PAGE_IDS.map((id) => [id, `/${id}`])),
     };
     const nextPath = pathByPage[resolvedPage] ?? pathByPage[targetPage] ?? '/';
     setPage(resolvedPage);
@@ -241,6 +287,8 @@ function App() {
 
   return (
     <ReferralDataProvider>
+    <FavouritesProvider>
+    <ActionNotificationsProvider>
     <div className={`relative min-h-screen w-full overflow-x-hidden font-sans ${
       page === 'home'
         ? 'bg-[var(--color-page-home)]'
@@ -264,7 +312,7 @@ function App() {
               ? 'bg-[var(--color-page-default)]'
             : page === 'referral'
               ? 'bg-[var(--color-page-default)]'
-            : page === 'profile' || page === 'verification' || page === 'favourites' || page === 'my-bets' || page === 'loyalty-rewards' || page === 'feedback' || page === 'help-center' || page === 'security' || page === 'notifications' || page === 'rebate' || page === 'referral-commission' || page === 'deposit' || page === 'withdrawal'
+            : page === 'profile' || page === 'verification' || page === 'favourites' || page === 'my-bets' || page === 'loyalty-rewards' || page === 'feedback' || page === 'help-center' || page === 'security' || page === 'notifications' || page === 'rebate' || page === 'referral-commission' || page === 'deposit' || page === 'withdrawal' || HISTORY_RECORD_PAGE_IDS.includes(page)
               ? 'bg-[var(--color-page-account)]'
               : 'bg-[var(--color-page-default)]'
     }`}>
@@ -277,12 +325,16 @@ function App() {
         onLoginClick={() => setLoginModalOpen(true)}
         onRegisterClick={() => handleNavigate('register')}
         authUser={authUser}
-        onLogout={() => setAuthUser(null)}
+        onLogout={handleLogout}
         onAccountDetailsClick={() => handleNavigate('profile')}
         onLiveChatClick={() => setLiveChatOpen(true)}
         onCasinoProviderSelect={(menuProvider) => {
           setSelectedCasinoProviderIdFromMenu(menuProvider?.id ?? null);
           handleNavigate('live-casino');
+        }}
+        onSlotsProviderSelect={(menuProvider) => {
+          setSelectedSlotsProviderIdFromMenu(menuProvider?.id ?? null);
+          handleNavigate('slots');
         }}
       />
 
@@ -296,10 +348,10 @@ function App() {
           {/* Main Content Area */}
           <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-4 pb-10 md:px-8">
             <FeaturesRow />
-            <PlayersPromo />
             <GameCategories onNavigate={handleNavigate} />
             <TopGames onNavigate={handleNavigate} />
             <VipTier />
+            <HomeLiveActivity />
             <AppDownload />
             <Promos onNavigate={handleNavigate} />
           </div>
@@ -307,7 +359,7 @@ function App() {
       ) : page === 'live-casino' ? (
         <LiveCasinoPage selectedProviderIdFromMenu={selectedCasinoProviderIdFromMenu} />
       ) : page === 'slots' ? (
-        <SlotsPage />
+        <SlotsPage selectedProviderIdFromMenu={selectedSlotsProviderIdFromMenu} />
       ) : page === 'sports' ? (
         <SportsPage />
       ) : page === 'e-sports' ? (
@@ -325,53 +377,57 @@ function App() {
       ) : page === 'referral' ? (
         <ReferralPage />
       ) : page === 'profile' ? (
-        <ProfilePage authUser={authUser} onLogout={() => setAuthUser(null)} onNavigate={handleNavigate} onLiveChatClick={() => setLiveChatOpen(true)} />
+        <ProfilePage authUser={authUser} onLogout={handleLogout} onNavigate={handleNavigate} onLiveChatClick={() => setLiveChatOpen(true)} />
       ) : page === 'loyalty-rewards' ? (
-        <AccountLayout activePage="loyalty-rewards" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
-          <LoyaltyRewardsPage />
+        <AccountLayout activePage="loyalty-rewards" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
+          <RewardsPage />
         </AccountLayout>
       ) : page === 'verification' ? (
-        <AccountLayout activePage="verification" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="verification" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <VerificationPage />
         </AccountLayout>
       ) : page === 'favourites' ? (
-        <AccountLayout activePage="favourites" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
-          <FavouritesPage />
+        <AccountLayout activePage="favourites" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
+          <FavouritesPage onNavigate={handleNavigate} />
         </AccountLayout>
       ) : page === 'my-bets' ? (
-        <AccountLayout activePage="my-bets" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="my-bets" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <MyBetsPage />
         </AccountLayout>
       ) : page === 'feedback' ? (
-        <AccountLayout activePage="feedback" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="feedback" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <FeedbackPage />
         </AccountLayout>
       ) : page === 'help-center' ? (
-        <AccountLayout activePage="help-center" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="help-center" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <HelpCenterPage />
         </AccountLayout>
       ) : page === 'security' ? (
-        <AccountLayout activePage="security" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="security" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <SecurityPage />
         </AccountLayout>
       ) : page === 'notifications' ? (
-        <AccountLayout activePage="notifications" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="notifications" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <NotificationsPage />
         </AccountLayout>
+      ) : HISTORY_RECORD_PAGE_IDS.includes(page) ? (
+        <AccountLayout activePage={page} authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
+          <HistoryRecordPage activePage={page} />
+        </AccountLayout>
       ) : page === 'rebate' ? (
-        <AccountLayout activePage="rebate" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="rebate" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <RebatePage onNavigate={handleNavigate} />
         </AccountLayout>
       ) : page === 'referral-commission' ? (
-        <AccountLayout activePage="referral-commission" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="referral-commission" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <ReferralCommissionPage onNavigate={handleNavigate} />
         </AccountLayout>
       ) : page === 'deposit' ? (
-        <AccountLayout activePage="deposit" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="deposit" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <DepositPage onNavigate={handleNavigate} />
         </AccountLayout>
       ) : page === 'withdrawal' ? (
-        <AccountLayout activePage="withdrawal" authUser={authUser} onNavigate={handleNavigate} onLogout={() => setAuthUser(null)} onLiveChatClick={() => setLiveChatOpen(true)}>
+        <AccountLayout activePage="withdrawal" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <WithdrawalPage onNavigate={handleNavigate} />
         </AccountLayout>
       ) : (
@@ -387,10 +443,7 @@ function App() {
         onClose={() => setLoginModalOpen(false)}
         logoText="LOGO"
         onLogin={(userOrUsername) => {
-          const user = typeof userOrUsername === 'object' && userOrUsername?.name
-            ? userOrUsername
-            : { name: userOrUsername || 'demo', balance: 'MYR 0.00', notifications: 1, vipLevel: 'Diamond' };
-          setAuthUser(user);
+          handleLogin(userOrUsername);
           setLoginModalOpen(false);
         }}
         onRegisterClick={() => {
@@ -405,6 +458,8 @@ function App() {
         authUser={authUser}
       />
     </div>
+    </ActionNotificationsProvider>
+    </FavouritesProvider>
     </ReferralDataProvider>
   );
 }

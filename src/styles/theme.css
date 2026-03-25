@@ -194,9 +194,52 @@
       transform: translateX(-100%);
     }
   }
+
+  --animate-home-big-wins-reveal: home-big-wins-reveal 0.45s ease-out both;
+  /** Slow infinite vertical loop: translate -50% (duplicate half must match height). */
+  --animate-home-marquee-vertical-y: home-marquee-vertical-y 40s linear infinite;
+
+  @keyframes home-big-wins-reveal {
+    from {
+      opacity: 0.35;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes home-marquee-vertical-y {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-50%);
+    }
+  }
 }
 
 @layer utilities {
+  .home-marquee-pausable:hover .animate-home-marquee-vertical-y,
+  .home-marquee-pausable:focus-within .animate-home-marquee-vertical-y,
+  .home-marquee-pausable:hover .animate-home-marquee-vertical-y-tx,
+  .home-marquee-pausable:focus-within .animate-home-marquee-vertical-y-tx {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-home-big-wins-reveal {
+      animation: none !important;
+    }
+
+    .animate-home-marquee-vertical-y {
+      animation: none !important;
+    }
+  }
+
   .glassmorphism {
     background-color: rgb(255 255 255 / 0.1);
     backdrop-filter: blur(12px);

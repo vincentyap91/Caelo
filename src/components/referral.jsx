@@ -22,6 +22,7 @@ import affiliateBanner from '../assets/affiliate-banner.jpg';
 import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 import { ReferralShare3dIcon, ReferralRegistered3dIcon, ReferralEarnings3dIcon } from './ReferralStep3dIcons';
 import { useReferralData } from '../context/ReferralDataContext';
+import DownlineReferralsPanel from './referral/DownlineReferralsPanel';
 
 const affiliateTabs = ['Invite friends', 'My referrals', 'How it works'];
 
@@ -244,18 +245,7 @@ function InviteFriendsContent({ onSwitchTab }) {
 }
 
 function MyReferralsContent() {
-    return (
-        <div className="surface-card rounded-2xl p-6 md:p-8">
-            <h3 className="text-lg font-bold text-[var(--color-text-strong)] md:text-xl">My Referrals</h3>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                Track your referred friends and earned rewards here. Referral history will appear once you start inviting.
-            </p>
-            <div className="mt-6 flex flex-col items-center justify-center rounded-xl border border-dashed border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] py-12">
-                <p className="text-sm font-medium text-[var(--color-text-muted)]">No referrals yet</p>
-                <p className="mt-1 text-xs text-[var(--color-text-soft)]">Share your code or link to get started</p>
-            </div>
-        </div>
-    );
+    return <DownlineReferralsPanel />;
 }
 
 function GameCommissionRow({ item, isOpen, onToggle }) {

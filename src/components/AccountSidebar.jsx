@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
     ChevronDown,
-    Headset,
     Heart,
+    History,
     LogOut,
     PencilLine,
-    ScrollText,
     Settings,
     ShieldCheck,
     UserCircle2,
@@ -17,7 +16,7 @@ import {
     Percent,
     Trophy,
 } from 'lucide-react';
-import { supportOptions } from '../constants/supportOptions';
+import { HISTORY_RECORD_NAV } from '../constants/historyRecordPages';
 import { settingsOptions } from '../constants/settingsOptions';
 import { REWARDS_NAV_ICONS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
 import VipStatusPill from './VipStatusPill';
@@ -26,7 +25,6 @@ const accountLinks = [
     { id: 'profile', label: 'Account Details', icon: UserRound },
     { id: 'verification', label: 'Verification', icon: ShieldCheck },
     { id: 'favourites', label: 'Favourites', icon: Heart },
-    { id: 'my-bets', label: 'My Bets', icon: ScrollText },
 ];
 
 const cashierLinks = [
@@ -40,16 +38,16 @@ const MENU_BY_PAGE = {
     profile: 'account',
     verification: 'account',
     favourites: 'account',
-    'my-bets': 'account',
     'loyalty-rewards': 'loyaltyRewards',
-    feedback: 'support',
-    'help-center': 'support',
+    feedback: 'settings',
+    'help-center': 'settings',
     security: 'settings',
     notifications: 'settings',
     rebate: 'cashier',
     'referral-commission': 'cashier',
     deposit: 'cashier',
     withdrawal: 'cashier',
+    ...Object.fromEntries(HISTORY_RECORD_NAV.map(({ id }) => [id, 'historyRecord'])),
 };
 
 function parseRewardsTabFromHash() {
@@ -72,7 +70,7 @@ export default function AccountSidebar({
         cashier: false,
         account: false,
         loyaltyRewards: false,
-        support: false,
+        historyRecord: false,
         settings: false,
     });
     const [rewardsNavTab, setRewardsNavTab] = useState(parseRewardsTabFromHash);
@@ -83,7 +81,7 @@ export default function AccountSidebar({
             cashier: activeMenuKey === 'cashier',
             account: activeMenuKey === 'account',
             loyaltyRewards: activeMenuKey === 'loyaltyRewards',
-            support: activeMenuKey === 'support',
+            historyRecord: activeMenuKey === 'historyRecord',
             settings: activeMenuKey === 'settings',
         });
     }, [activeMenuKey]);
@@ -112,7 +110,7 @@ export default function AccountSidebar({
                     cashier: false,
                     account: false,
                     loyaltyRewards: false,
-                    support: false,
+                    historyRecord: false,
                     settings: false,
                     [menuKey]: true,
                 }
@@ -120,7 +118,7 @@ export default function AccountSidebar({
                     cashier: false,
                     account: false,
                     loyaltyRewards: false,
-                    support: false,
+                    historyRecord: false,
                     settings: false,
                 };
         });
@@ -129,7 +127,7 @@ export default function AccountSidebar({
     const isMenuOpen = (menuKey) => menuKey === activeMenuKey || openMenus[menuKey];
 
     const handleNavClick = (pageId) => {
-        const pageMap = { profile: 'profile', verification: 'verification', favourites: 'favourites', 'my-bets': 'my-bets' };
+        const pageMap = { profile: 'profile', verification: 'verification', favourites: 'favourites' };
         onNavigate?.(pageMap[pageId] ?? pageId);
     };
 
@@ -302,32 +300,26 @@ export default function AccountSidebar({
                     <div className="rounded-[20px] border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] p-4">
                         <button
                             type="button"
-                            onClick={() => toggleMenu('support')}
+                            onClick={() => toggleMenu('historyRecord')}
                             className="flex w-full items-center justify-between gap-3 text-left"
                         >
                             <span className="flex items-center gap-3">
                                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)]">
-                                    <Headset size={18} />
+                                    <History size={18} />
                                 </span>
-                                <span className="text-lg font-bold text-[var(--color-text-strong)]">Support</span>
+                                <span className="text-lg font-bold text-[var(--color-text-strong)]">History Record</span>
                             </span>
-                            <ChevronDown size={18} className={`text-[var(--color-text-soft)] transition-transform ${isMenuOpen('support') ? 'rotate-180' : ''}`} />
+                            <ChevronDown size={18} className={`text-[var(--color-text-soft)] transition-transform ${isMenuOpen('historyRecord') ? 'rotate-180' : ''}`} />
                         </button>
-                        {isMenuOpen('support') && (
+                        {isMenuOpen('historyRecord') && (
                             <div className="mt-4 space-y-1 overflow-hidden rounded-xl bg-[var(--color-surface-base)] p-1">
-                                {supportOptions.map(({ label, icon: Icon }) => {
-                                    const isActive =
-                                        (activePage === 'feedback' && label === 'Share Feedback') ||
-                                        (activePage === 'help-center' && label === 'Help Center');
+                                {HISTORY_RECORD_NAV.map(({ id, label, icon: Icon }) => {
+                                    const isActive = activePage === id;
                                     return (
                                         <button
-                                            key={label}
+                                            key={id}
                                             type="button"
-                                            onClick={() => {
-                                                if (label === 'Live Chat') onLiveChatClick?.();
-                                                if (label === 'Share Feedback') onNavigate?.('feedback');
-                                                if (label === 'Help Center') onNavigate?.('help-center');
-                                            }}
+                                            onClick={() => onNavigate?.(id)}
                                             className={`group flex min-h-[48px] w-full items-center gap-3 rounded-xl border-l-4 px-4 py-3.5 text-left transition-all hover:scale-[1.02] ${
                                                 isActive
                                                     ? 'border-l-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)]'
@@ -359,20 +351,27 @@ export default function AccountSidebar({
                         </button>
                         {isMenuOpen('settings') && (
                             <div className="mt-4 space-y-1 overflow-hidden rounded-xl bg-[var(--color-surface-base)] p-1">
-                                {settingsOptions.map(({ id, label, icon: Icon }) => {
+                                {settingsOptions.map(({ id, label, icon: Icon, action }) => {
                                     const isActive = activePage === id;
+                                    const isLiveChat = action === 'liveChat';
                                     return (
                                         <button
                                             key={id}
                                             type="button"
-                                            onClick={() => onNavigate?.(id)}
+                                            onClick={() => {
+                                                if (isLiveChat) {
+                                                    onLiveChatClick?.();
+                                                    return;
+                                                }
+                                                onNavigate?.(id);
+                                            }}
                                             className={`group flex min-h-[48px] w-full items-center gap-3 rounded-xl border-l-4 px-4 py-3.5 text-left transition-all hover:scale-[1.02] ${
-                                                isActive
+                                                isActive && !isLiveChat
                                                     ? 'border-l-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)]'
                                                     : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:border-l-[var(--color-accent-500)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]'
                                             }`}
                                         >
-                                            <Icon size={18} className={`${isActive ? 'text-[var(--color-accent-600)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent-500)]'}`} />
+                                            <Icon size={18} className={`${isActive && !isLiveChat ? 'text-[var(--color-accent-600)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent-500)]'}`} />
                                             <span className="text-base font-normal">{label}</span>
                                         </button>
                                     );

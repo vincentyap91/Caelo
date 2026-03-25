@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AlertCircle, ArrowRight, Check, ChevronDown, HelpCircle } from 'lucide-react';
 import PaymentConfirmModal from './PaymentConfirmModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
+import { useActionNotifications } from '../context/ActionNotificationsContext';
 import eWalletImg from '../assets/e-wallet.png';
 import instantDepositImg from '../assets/instant-deposit.png';
 
@@ -46,6 +47,7 @@ const PRESET_AMOUNTS = [100, 200, 500, 1000, 2000, 5000];
 const PROCESSING_COUNTDOWN_SECONDS = 5 * 60;
 
 export default function WithdrawalPage({ onNavigate }) {
+    const { showTransactionNotification } = useActionNotifications();
     const [step, setStep] = useState(1);
     const [withdrawalMethod, setWithdrawalMethod] = useState('ewallet');
     const [selectedEwallet, setSelectedEwallet] = useState('');
@@ -90,6 +92,7 @@ export default function WithdrawalPage({ onNavigate }) {
     };
 
     const handleCloseConfirmModal = () => {
+        showTransactionNotification({ kind: 'withdrawal' });
         setConfirmModalOpen(false);
         setStep(1);
         setAmount('');

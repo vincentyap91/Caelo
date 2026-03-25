@@ -18,8 +18,5 @@ export const REWARDS_PROGRAMS = [
 
 export const REWARDS_PROGRAM_IDS = REWARDS_PROGRAMS.map((p) => p.id);
 
-export const REWARDS_SUB_TABS = [
-    { id: 'unclaimed', label: 'Unclaimed' },
-    { id: 'history', label: 'History' },
-    { id: 'benefits', label: 'Benefits' },
-];
+/** Spin / scratch / prize — for Rewards “Record” activity filter (excludes Daily Bonus). */
+export const REWARDS_ACTIVITY_RECORD_TYPES = REWARDS_PROGRAMS.filter((p) => p.id !== 'daily-bonus');

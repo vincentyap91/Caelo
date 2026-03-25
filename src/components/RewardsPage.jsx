@@ -1,11 +1,11 @@
 import React from 'react';
-import LoyaltyRewardsSection from './LoyaltyRewardsSection';
+import RewardsSection from './RewardsSection';
 
-export default function LoyaltyRewardsPage() {
+export default function RewardsPage() {
     return (
         <div className="page-container">
             <h1 className="page-title mb-8">Rewards</h1>
-            <LoyaltyRewardsSection embedInPage />
+            <RewardsSection embedInPage />
         </div>
     );
 }

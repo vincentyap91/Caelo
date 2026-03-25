@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
     Banknote,
-    CalendarDays,
     ChevronDown,
     Landmark,
     Mail,
@@ -11,9 +10,17 @@ import {
     UserCircle2,
 } from 'lucide-react';
 import AccountLayout from './AccountLayout';
+import CalendarDateInput from './CalendarDateInput';
 import ProfilePhotoModal from './ProfilePhotoModal';
 import VipStatusPill from './VipStatusPill';
 import { BANKS } from '../constants/banks';
+
+function formatDateForInput(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+}
 
 const PROFILE_PHOTO_STORAGE_KEY = 'riocity_profile_photo';
 
@@ -31,7 +38,7 @@ const personalFields = [
     { key: 'referralCode', label: 'Referral Code' },
     { key: 'referralLink', label: 'Referral Link' },
     { key: 'rank', label: 'Rank' },
-    { key: 'birthday', label: 'Birthday', placeholder: 'MM/DD/YYYY' },
+    { key: 'birthday', label: 'Birthday' },
     { key: 'gender', label: 'Gender' }
 ];
 
@@ -127,7 +134,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
         referralCode: 'Zy4REBcM',
         referralLink: 'https://riocity.com/register?code=Zy4REBcM',
         rank: vipLevel,
-        birthday: '08/01/2026',
+        birthday: '1990-08-01',
         gender: 'Male',
         email: 'demo@gmail.com',
         phone: '60 123456701',
@@ -176,6 +183,8 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
     const handleRemoveBankAccount = (id) => {
         setBankAccounts((prev) => prev.filter((a) => a.id !== id));
     };
+
+    const birthdayMax = formatDateForInput(new Date());
 
     const handleProfilePhotoSave = (dataUrl) => {
         setProfilePhotoUrl(dataUrl);
@@ -267,17 +276,36 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                             onToggleEdit={() => toggleEdit('personal')}
                         >
                             <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-                                {personalFields.map(({ key, label, placeholder }) => (
-                                    <Field
-                                        key={key}
-                                        label={label}
-                                        value={formValues[key]}
-                                        placeholder={placeholder}
-                                        editable={editing.personal}
-                                        onChange={updateField(key)}
-                                        icon={key === 'birthday' ? CalendarDays : undefined}
-                                    />
-                                ))}
+                                {personalFields.map(({ key, label, placeholder }) =>
+                                    key === 'birthday' ? (
+                                        <label key={key} className="block">
+                                            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">{label}</span>
+                                            <CalendarDateInput
+                                                label={null}
+                                                value={formValues.birthday}
+                                                onChange={updateField('birthday')}
+                                                disabled={!editing.personal}
+                                                max={birthdayMax}
+                                                min="1900-01-01"
+                                                className="w-full"
+                                                inputClassName={
+                                                    editing.personal
+                                                        ? 'h-12 border-[var(--color-accent-300)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-400)]'
+                                                        : 'h-12 cursor-not-allowed border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)]'
+                                                }
+                                            />
+                                        </label>
+                                    ) : (
+                                        <Field
+                                            key={key}
+                                            label={label}
+                                            value={formValues[key]}
+                                            placeholder={placeholder}
+                                            editable={editing.personal}
+                                            onChange={updateField(key)}
+                                        />
+                                    ),
+                                )}
                             </div>
                         </SectionCard>
 

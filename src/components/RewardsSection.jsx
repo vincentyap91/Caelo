@@ -1,39 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import {
-    Calendar,
+    ChevronDown,
     Clock,
     Coins,
+    History,
     Lock,
     Trophy,
     Wallet,
 } from 'lucide-react';
-import SecurityTabs from './security/SecurityTabs';
-import { REWARDS_PROGRAM_IDS, REWARDS_PROGRAMS, REWARDS_SUB_TABS } from '../constants/rewardsPrograms';
+import RewardsActivityRecordModal from './RewardsActivityRecordModal';
+import { REWARDS_ACTIVITY_RECORD_TYPES, REWARDS_PROGRAM_IDS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
 
-function formatDateForInput(d) {
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}-${m}-${day}`;
-}
+/** Demo main wallet balance (Spin / Voucher / Prize rewards area — hidden on Daily Bonus) */
+const REWARDS_WALLET_BALANCE = '201.00';
 
-const REWARDS_HISTORY_QUICK_RANGES = [
-    { id: 'today', label: 'Today' },
-    { id: '3days', label: 'In 3 days' },
-    { id: 'week', label: 'In a week' },
-    { id: 'month', label: 'In a month' },
+const REWARDS_RECORD_COLUMNS = [
+    { key: 'time', label: 'Time', align: 'left' },
+    { key: 'type', label: 'Type', align: 'left' },
+    { key: 'amount', label: 'Amount', align: 'right' },
 ];
 
-/** Demo reward history rows (replace with API). Dates: DD-MM-YYYY HH:mm:ss per product spec */
-const MOCK_REWARDS_HISTORY_ROWS = [
-    { id: '4548', campaign: 'Test1', createdAt: '09-02-2026 12:44:11', status: 'Expired', claimedAt: null, reward: null },
-    { id: '4547', campaign: 'Test1', createdAt: '09-02-2026 12:44:11', status: 'Expired', claimedAt: null, reward: null },
-    { id: '4481', campaign: 'Test1', createdAt: '04-02-2026 14:59:48', status: 'Expired', claimedAt: null, reward: null },
-    { id: '4480', campaign: 'Test1', createdAt: '04-02-2026 14:59:48', status: 'Expired', claimedAt: null, reward: null },
-];
-
-/** Demo main wallet balance shown on every Rewards programme */
-const REWARDS_WALLET_BALANCE = '200.00';
+const ACTIVITY_PROGRAM_IDS = new Set(REWARDS_ACTIVITY_RECORD_TYPES.map((p) => p.id));
 
 const DAILY_CHECKIN_DAYS = [
     { id: 'mon', label: 'Mon', reward: 'MYR 5', status: 'locked' },
@@ -152,222 +139,28 @@ function ScratchStyleRewardCard({
     );
 }
 
-function RewardsWalletBar({ balance }) {
+function RewardsWalletBar({ balance, onRecordClick }) {
     return (
-        <div className="surface-card flex flex-wrap items-center gap-4 rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
-            <div className="flex min-w-0 items-center gap-4">
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(145deg,rgb(250_204_21)_0%,rgb(234_179_8)_100%)] text-amber-950 shadow-sm">
+        <div className="surface-card flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-card)] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+            <div className="flex min-w-0 flex-1 items-center gap-4">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[var(--color-cta-text)] shadow-[var(--shadow-cta-soft)] ring-1 ring-[var(--color-cta-border)]/60">
                     <Wallet className="h-6 w-6" strokeWidth={2} />
                 </span>
                 <div className="min-w-0">
-                    <p className="text-sm font-semibold text-[var(--color-text-muted)]">Wallet balance</p>
-                    <p className="mt-1 text-xl font-bold text-[var(--color-accent-600)] md:text-2xl">{balance} MYR</p>
+                    <p className="text-sm font-semibold text-[var(--color-text-main)]">Wallet Balance:</p>
+                    <p className="mt-0.5 text-xl font-bold leading-tight text-[var(--color-accent-600)] md:text-2xl tabular-nums">{balance}</p>
                 </div>
             </div>
+            <button
+                type="button"
+                onClick={onRecordClick}
+                className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02] sm:min-w-[148px]"
+            >
+                <History size={18} strokeWidth={2.5} className="shrink-0 text-white" aria-hidden />
+                Record
+            </button>
         </div>
     );
-}
-
-function RewardsHistoryPanel() {
-    const today = new Date();
-    const [historyStart, setHistoryStart] = useState(() => formatDateForInput(today));
-    const [historyEnd, setHistoryEnd] = useState(() => formatDateForInput(new Date(today.getTime() + 86400000)));
-    const [historyQuickRange, setHistoryQuickRange] = useState('today');
-
-    const setHistoryRangeFromQuick = (id) => {
-        setHistoryQuickRange(id);
-        const end = new Date();
-        let start = new Date();
-        if (id === 'today') {
-            start = new Date(end);
-        } else if (id === '3days') {
-            start.setDate(start.getDate() - 2);
-        } else if (id === 'week') {
-            start.setDate(start.getDate() - 6);
-        } else if (id === 'month') {
-            start.setDate(start.getDate() - 29);
-        }
-        setHistoryStart(formatDateForInput(start));
-        setHistoryEnd(formatDateForInput(end));
-    };
-
-    return (
-        <div className="space-y-6">
-            <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <label className="block">
-                        <span className="mb-2 block text-sm font-semibold text-[var(--color-text-strong)]">Start date</span>
-                        <div className="relative flex items-center">
-                            <input
-                                type="date"
-                                value={historyStart}
-                                onChange={(e) => setHistoryStart(e.target.value)}
-                                className="date-input-single-icon h-11 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
-                            />
-                            <Calendar size={18} className="pointer-events-none absolute right-3 text-[var(--color-accent-600)]" />
-                        </div>
-                    </label>
-                    <label className="block">
-                        <span className="mb-2 block text-sm font-semibold text-[var(--color-text-strong)]">End date</span>
-                        <div className="relative flex items-center">
-                            <input
-                                type="date"
-                                value={historyEnd}
-                                onChange={(e) => setHistoryEnd(e.target.value)}
-                                className="date-input-single-icon h-11 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
-                            />
-                            <Calendar size={18} className="pointer-events-none absolute right-3 text-[var(--color-accent-600)]" />
-                        </div>
-                    </label>
-                </div>
-                <div className="mt-4 flex gap-2">
-                    {REWARDS_HISTORY_QUICK_RANGES.map(({ id, label }) => (
-                        <button
-                            key={id}
-                            type="button"
-                            onClick={() => setHistoryRangeFromQuick(id)}
-                            className={`min-w-0 flex-1 rounded-xl border px-3 py-2.5 text-sm font-semibold transition sm:px-4 ${
-                                historyQuickRange === id
-                                    ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]'
-                                    : 'border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
-                            }`}
-                        >
-                            {label}
-                        </button>
-                    ))}
-                </div>
-                <div className="mt-4">
-                    <button
-                        type="button"
-                        className="btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02]"
-                    >
-                        Submit
-                    </button>
-                </div>
-            </div>
-            <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
-                <div className="overflow-x-auto">
-                    <table className="w-full min-w-[720px] border-collapse text-sm">
-                        <thead>
-                            <tr className="divide-x divide-[var(--color-border-default)] border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
-                                <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider text-[var(--color-text-strong)] sm:px-4">
-                                    ID
-                                </th>
-                                <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider text-[var(--color-text-strong)] sm:px-4">
-                                    Campaign
-                                </th>
-                                <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider text-[var(--color-text-strong)] sm:px-4">
-                                    Created Date
-                                </th>
-                                <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider text-[var(--color-text-strong)] sm:px-4">
-                                    Status
-                                </th>
-                                <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider text-[var(--color-text-strong)] sm:px-4">
-                                    Claimed Date
-                                </th>
-                                <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider text-[var(--color-text-strong)] sm:px-4">
-                                    Reward
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {MOCK_REWARDS_HISTORY_ROWS.length === 0 ? (
-                                <tr>
-                                    <td colSpan={6} className="px-4 py-12 text-center text-sm font-medium text-[var(--color-text-muted)]">
-                                        No data found
-                                    </td>
-                                </tr>
-                            ) : (
-                                MOCK_REWARDS_HISTORY_ROWS.map((row) => (
-                                    <tr
-                                        key={row.id}
-                                        className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
-                                    >
-                                        <td className="px-3 py-3.5 text-center font-medium tabular-nums text-[var(--color-text-strong)] sm:px-4">
-                                            {row.id}
-                                        </td>
-                                        <td className="px-3 py-3.5 text-center font-medium text-[var(--color-text-strong)] sm:px-4">
-                                            {row.campaign}
-                                        </td>
-                                        <td className="px-3 py-3.5 text-center text-[var(--color-text-muted)] sm:px-4">
-                                            {row.createdAt}
-                                        </td>
-                                        <td
-                                            className={`px-3 py-3.5 text-center font-semibold sm:px-4 ${
-                                                row.status === 'Expired'
-                                                    ? 'text-[var(--color-danger-main)]'
-                                                    : 'text-[var(--color-text-strong)]'
-                                            }`}
-                                        >
-                                            {row.status}
-                                        </td>
-                                        <td className="px-3 py-3.5 text-center text-[var(--color-text-muted)] sm:px-4">
-                                            {row.claimedAt ?? '-'}
-                                        </td>
-                                        <td className="px-3 py-3.5 text-center text-[var(--color-text-muted)] sm:px-4">
-                                            {row.reward ?? '-'}
-                                        </td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function BenefitsList({ title, items }) {
-    return (
-        <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
-            <h3 className="text-base font-bold text-[var(--color-text-strong)]">{title}</h3>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-[var(--color-text-muted)]">
-                {items.map((t) => (
-                    <li key={t}>{t}</li>
-                ))}
-            </ul>
-        </div>
-    );
-}
-
-function RewardsBenefitsPanel({ programId }) {
-    const byProgram = {
-        'daily-bonus': {
-            title: 'Daily Bonus benefits',
-            items: [
-                'Stack consecutive check-ins for bigger MYR rewards on peak days.',
-                'All displayed values credit to your main wallet when claimed.',
-                'Promotional top-ups may run during holidays — watch announcements.',
-            ],
-        },
-        'spin-wheel': {
-            title: 'Spin Wheel benefits',
-            items: [
-                'Daily free spin with MYR outcomes.',
-                'Instant visibility of what you can claim to wallet.',
-                'Limited-time multipliers during campaigns.',
-            ],
-        },
-        'voucher-scratch': {
-            title: 'Voucher Scratch benefits',
-            items: [
-                'Multiple scratch themes with clear MYR face values.',
-                'Wallet credit after successful claim.',
-                'Stack with other Rewards programmes where allowed.',
-            ],
-        },
-        'prize-box': {
-            title: 'Prize Box benefits',
-            items: [
-                'Campaign tokens with clear MYR value and wallet credit path.',
-                'Record export for your account statements.',
-                'Combine with Daily Bonus and Spin wins where eligible.',
-            ],
-        },
-    };
-    const { title, items } = byProgram[programId] ?? byProgram['daily-bonus'];
-    return <BenefitsList title={title} items={items} />;
 }
 
 function DailyBonusPanel() {
@@ -579,16 +372,68 @@ function PrizeBoxPanel() {
     );
 }
 
-export default function LoyaltyRewardsSection({ embedInPage = false }) {
+export default function RewardsSection({ embedInPage = false }) {
     const activeProgram = useRewardsProgramFromHash();
-    const [rewardsViewTab, setRewardsViewTab] = useState('unclaimed');
+    const [recordModalOpen, setRecordModalOpen] = useState(false);
+    const [recordActivityType, setRecordActivityType] = useState('spin-wheel');
 
     const setProgramHash = (id) => {
         if (typeof window === 'undefined') return;
         window.location.hash = id;
     };
 
+    useEffect(() => {
+        if (activeProgram === 'daily-bonus') {
+            setRecordModalOpen(false);
+        }
+    }, [activeProgram]);
+
+    useEffect(() => {
+        if (recordModalOpen && ACTIVITY_PROGRAM_IDS.has(activeProgram)) {
+            setRecordActivityType(activeProgram);
+        }
+    }, [recordModalOpen, activeProgram]);
+
+    const openRecordModal = () => {
+        if (ACTIVITY_PROGRAM_IDS.has(activeProgram)) {
+            setRecordActivityType(activeProgram);
+        } else {
+            setRecordActivityType('spin-wheel');
+        }
+        setRecordModalOpen(true);
+    };
+
+    const showWalletBar = activeProgram !== 'daily-bonus';
+
+    const recordTypeLabel = REWARDS_ACTIVITY_RECORD_TYPES.find((t) => t.id === recordActivityType)?.label ?? '';
+
+    const recordTypeFilterSlot = (
+        <label className="block w-full">
+            <span className="mb-2 block text-sm font-semibold text-[var(--color-text-strong)]">Type</span>
+            <div className="relative">
+                <select
+                    value={recordActivityType}
+                    onChange={(e) => setRecordActivityType(e.target.value)}
+                    aria-label="Record type"
+                    className="h-11 w-full cursor-pointer appearance-none rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none transition focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                >
+                    {REWARDS_ACTIVITY_RECORD_TYPES.map(({ id, label }) => (
+                        <option key={id} value={id}>
+                            {label}
+                        </option>
+                    ))}
+                </select>
+                <ChevronDown
+                    size={18}
+                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-accent-600)]"
+                    aria-hidden
+                />
+            </div>
+        </label>
+    );
+
     return (
+        <>
         <section id="loyalty-rewards" className="surface-card rounded-2xl p-6 transition-all md:p-8">
             {!embedInPage && (
                 <div className="flex flex-wrap items-start justify-between gap-4">
@@ -636,26 +481,28 @@ export default function LoyaltyRewardsSection({ embedInPage = false }) {
                 </div>
             )}
 
-            <div className={`${embedInPage ? 'mt-0' : 'mt-6'} mb-6`}>
-                <RewardsWalletBar balance={REWARDS_WALLET_BALANCE} />
-            </div>
+            {showWalletBar && (
+                <div className={`${embedInPage ? 'mt-0' : 'mt-6'} mb-6`}>
+                    <RewardsWalletBar balance={REWARDS_WALLET_BALANCE} onRecordClick={openRecordModal} />
+                </div>
+            )}
 
-            <div className="mb-8">
-                <SecurityTabs activeTab={rewardsViewTab} onTabChange={setRewardsViewTab} tabs={REWARDS_SUB_TABS} />
-            </div>
-
-            <div className="space-y-6" role="tabpanel">
-                {rewardsViewTab === 'history' && <RewardsHistoryPanel />}
-                {rewardsViewTab === 'benefits' && <RewardsBenefitsPanel programId={activeProgram} />}
-                {rewardsViewTab === 'unclaimed' && (
-                    <>
-                        {activeProgram === 'daily-bonus' && <DailyBonusPanel />}
-                        {activeProgram === 'spin-wheel' && <SpinWheelPanel />}
-                        {activeProgram === 'voucher-scratch' && <VoucherScratchPanel />}
-                        {activeProgram === 'prize-box' && <PrizeBoxPanel />}
-                    </>
-                )}
+            <div className="space-y-6">
+                {activeProgram === 'daily-bonus' && <DailyBonusPanel />}
+                {activeProgram === 'spin-wheel' && <SpinWheelPanel />}
+                {activeProgram === 'voucher-scratch' && <VoucherScratchPanel />}
+                {activeProgram === 'prize-box' && <PrizeBoxPanel />}
             </div>
         </section>
+
+        <RewardsActivityRecordModal
+            open={recordModalOpen}
+            onClose={() => setRecordModalOpen(false)}
+            filterSlot={recordTypeFilterSlot}
+            columns={REWARDS_RECORD_COLUMNS}
+            recordContextKey={recordActivityType}
+            tableEmptyMessage={recordTypeLabel ? `No data found for ${recordTypeLabel}` : 'No data found'}
+        />
+        </>
     );
 }

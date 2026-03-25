@@ -6,6 +6,7 @@ import instantDepositImg from '../assets/instant-deposit.png';
 import CopyInputField from './security/CopyInputField';
 import PaymentConfirmModal from './PaymentConfirmModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
+import { useActionNotifications } from '../context/ActionNotificationsContext';
 
 const DEPOSIT_STEPS = [
     { id: 1, label: 'Choose Deposit Type' },
@@ -90,6 +91,7 @@ const MIN_AMOUNT_NORMAL = 50;
 const MAX_AMOUNT_NORMAL = 10000;
 
 export default function DepositPage({ onNavigate }) {
+    const { showTransactionNotification } = useActionNotifications();
     const [step, setStep] = useState(1);
     const [depositSpeedTab, setDepositSpeedTab] = useState('fast');
     const [depositOptionType, setDepositOptionType] = useState('instant');
@@ -167,6 +169,7 @@ export default function DepositPage({ onNavigate }) {
     };
 
     const handleCloseConfirmModal = () => {
+        showTransactionNotification({ kind: 'deposit' });
         setConfirmModalOpen(false);
         setStep(1);
         setAmount('');

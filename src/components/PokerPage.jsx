@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
+import PromotionStyleTabs from './PromotionStyleTabs';
+import { GameCardFavouriteButton } from './game/GameCardActions';
 import pokerBanner from '../assets/poker-banner.jpg';
 import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 import playtechLogo from '../assets/playtech-202505140443475046-202506242335087315.svg';
@@ -169,24 +171,13 @@ export default function PokerPage() {
                         </label>
                     </div>
 
-                    <div className="mt-4 flex flex-wrap gap-2">
-                        {providerTags.map((tag) => {
-                            const selected = activeTag === tag;
-                            return (
-                                <button
-                                    key={tag}
-                                    type="button"
-                                    onClick={() => setActiveTag(tag)}
-                                    className={`rounded-full border px-3 py-1.5 text-xs font-bold tracking-wide transition ${
-                                        selected
-                                            ? 'bg-[linear-gradient(180deg,#ffd86f_0%,#ffb038_100%)] text-[rgb(45_26_0)] border-[rgb(255_191_83)] shadow-[0_5px_10px_rgba(255,176,56,0.2)]'
-                                            : 'bg-[var(--color-surface-base)] text-[rgb(64_81_114)] border-[rgb(215_224_239)] hover:border-[rgb(184_198_226)] hover:text-[rgb(34_51_90)]'
-                                    }`}
-                                >
-                                    {tag}
-                                </button>
-                            );
-                        })}
+                    <div className="mt-4">
+                        <PromotionStyleTabs
+                            items={providerTags}
+                            value={activeTag}
+                            onChange={setActiveTag}
+                            ariaLabel="Poker categories"
+                        />
                     </div>
 
                     <p className="mt-3 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(106_117_144)] md:text-xs">
@@ -198,31 +189,43 @@ export default function PokerPage() {
             <section className="mx-auto mt-5 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-6">
                     {filteredProviders.map((provider, index) => (
-                        <button
+                        <div
                             key={provider.name}
-                            type="button"
-                            onClick={() => handleSelectProvider(provider)}
                             className={`group relative flex h-[86px] items-center justify-center rounded-3xl border bg-[var(--color-page-default)] px-3 shadow-[var(--shadow-live-provider)] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-live-provider-hover)] md:h-[104px] ${
                                 bannerProvider.name === provider.name
                                     ? 'border-[var(--color-brand-deep)] ring-2 ring-[rgb(31_93_168_/_0.25)]'
                                     : 'border-[rgb(209_216_229)] hover:border-[rgb(183_194_215)]'
                             }`}
-                            aria-label={`Show ${provider.name} in banner`}
                         >
+                            <button
+                                type="button"
+                                onClick={() => handleSelectProvider(provider)}
+                                className="absolute inset-0 z-0 rounded-3xl"
+                                aria-label={`Show ${provider.name} in banner`}
+                            />
                             {provider.featured && (
-                                <span className="absolute right-2 top-2 rounded-full bg-[var(--color-hot-main)] px-2.5 py-0.5 text-xs font-black tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">
+                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-[10px] font-black tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">
                                     HOT
                                 </span>
                             )}
-                            <div className="flex h-full w-full items-center justify-center pt-1">
+                            <GameCardFavouriteButton
+                                category="poker"
+                                name={provider.name}
+                                provider=""
+                                imgUrl={typeof provider.src === 'string' ? provider.src : ''}
+                                navigatePage="poker"
+                                size="sm"
+                                className="rounded-lg"
+                            />
+                            <div className="pointer-events-none relative z-10 flex h-full w-full items-center justify-center py-2">
                                 <img
                                     src={provider.src}
                                     alt={provider.name}
                                     loading={index < 12 ? 'eager' : 'lazy'}
-                                    className="max-h-[34px] max-w-full object-contain saturate-110 contrast-110 transition duration-300 group-hover:scale-105 md:max-h-[50px]"
+                                    className="max-h-[28px] max-w-full object-contain saturate-110 contrast-110 transition duration-300 group-hover:scale-105 md:max-h-[40px]"
                                 />
                             </div>
-                        </button>
+                        </div>
                     ))}
                 </div>
                 {filteredProviders.length === 0 && (

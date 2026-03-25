@@ -2,6 +2,8 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import fishingBanner from '../assets/fishing-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
+import PromotionStyleTabs from './PromotionStyleTabs';
+import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
@@ -132,25 +134,12 @@ export default function FishingPage() {
             <section className={`${pageContainerClass} mt-4 md:mt-6`}>
                 <div className="surface-panel rounded-2xl p-4 md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <div className="flex flex-wrap gap-2">
-                            {gameTabs.map((tab) => {
-                                const selected = activeTab === tab;
-                                return (
-                                    <button
-                                        key={tab}
-                                        type="button"
-                                        onClick={() => setActiveTab(tab)}
-                                        className={`rounded-full border px-3 py-1.5 text-xs font-bold tracking-wide transition ${
-                                            selected
-                                                ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-sm'
-                                                : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900'
-                                        }`}
-                                    >
-                                        {tab}
-                                    </button>
-                                );
-                            })}
-                        </div>
+                        <PromotionStyleTabs
+                            items={gameTabs}
+                            value={activeTab}
+                            onChange={setActiveTab}
+                            ariaLabel="Fishing game filters"
+                        />
                         <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 shadow-sm lg:w-72">
                             <Search size={16} className="text-slate-500" />
                             <input
@@ -167,13 +156,12 @@ export default function FishingPage() {
             <section className={`${pageContainerClass} mt-5 md:mt-6`}>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
                     {filteredGames.slice(0, gamesToShow).map((game, idx) => (
-                            <a
+                            <div
                                 key={idx}
-                                href="#"
-                                className="surface-card group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-lg"
+                                className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-lg"
                             >
                                 {(game.hot || game.new) && (
-                                    <span className="absolute right-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
+                                    <span className="absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
                                         {game.hot ? 'HOT' : 'NEW'}
                                     </span>
                                 )}
@@ -182,12 +170,20 @@ export default function FishingPage() {
                                         className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                                         style={{ backgroundImage: `url("${game.imgUrl}")` }}
                                     />
+                                    <GameCardFavouriteButton
+                                        category="fishing"
+                                        name={game.name}
+                                        provider={game.provider}
+                                        imgUrl={game.imgUrl}
+                                        navigatePage="fishing"
+                                    />
+                                    <GameCardPlayBar href="#" showOnHover />
                                 </div>
                                 <div className="p-2 md:p-3">
                                     <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>
                                     <p className="mt-1 text-xs text-slate-500">{game.provider}</p>
                                 </div>
-                            </a>
+                            </div>
                     ))}
                 </div>
                 {filteredGames.length === 0 && (

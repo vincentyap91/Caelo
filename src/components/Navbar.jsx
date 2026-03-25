@@ -8,6 +8,7 @@ import {
     Smartphone,
     X,
     Headset,
+    History,
     Heart,
     LogOut,
     Percent,
@@ -21,16 +22,21 @@ import {
     Wallet,
 } from 'lucide-react';
 import LiveCasinoMenu from './LiveCasinoMenu';
+import NavProviderDropdownPanel from './NavProviderDropdownPanel';
+import { slotProvidersForNavDropdown } from '../constants/matchedSlotProviders';
 import LanguageSwitcher from './LanguageSwitcher';
-import { supportOptions } from '../constants/supportOptions';
+import { HISTORY_RECORD_NAV } from '../constants/historyRecordPages';
 import { settingsOptions } from '../constants/settingsOptions';
 import { REWARDS_NAV_ICONS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
 import { getVipStatus } from '../constants/vipStatus';
 import VipStatusPill from './VipStatusPill';
 
-export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'home', onLoginClick, onRegisterClick, authUser, onLogout, onAccountDetailsClick, onLiveChatClick, onCasinoProviderSelect }) {
+const slotsNavDropdownProviders = slotProvidersForNavDropdown();
+
+export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'home', onLoginClick, onRegisterClick, authUser, onLogout, onAccountDetailsClick, onLiveChatClick, onCasinoProviderSelect, onSlotsProviderSelect }) {
     const vipLevel = authUser?.vipLevel || 'Diamond';
-    const [casinoMenuOpen, setCasinoMenuOpen] = useState(false);
+    /** `null` | `'casino'` | `'slots'` — shared mega-menu pattern */
+    const [navProviderDropdown, setNavProviderDropdown] = useState(null);
     const [profileMenuOpen, setProfileMenuOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [language, setLanguage] = useState('th-th');
@@ -45,11 +51,16 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
     const navTargets = { Home: 'home', Casino: 'live-casino', Slots: 'slots', Sports: 'sports', 'E-Sports': 'e-sports', Lottery: 'lottery', Fishing: 'fishing', Poker: 'poker', Promotion: 'promotion', Referral: 'referral', VIP: 'vip' };
     const navHrefs = { Home: '/', Casino: '/casino', Slots: '/slots', Sports: '/sports', 'E-Sports': '/e-sports', Lottery: '/lottery', Fishing: '/fishing', Poker: '/poker', Promotion: '/promotion', Referral: '/referral', VIP: '/vip' };
     const accountCards = [
-        { label: 'Account Details', icon: UserRound },
-        { label: 'Verification', icon: ShieldCheck },
-        { label: 'Favourites', icon: Heart },
-        { label: 'My Bets', icon: ScrollText }
+        { id: 'profile', label: 'Account Details', icon: UserRound },
+        { id: 'verification', label: 'Verification', icon: ShieldCheck },
+        { id: 'favourites', label: 'Favourites', icon: Heart },
     ];
+    const cashierPageById = {
+        deposit: 'deposit',
+        withdrawal: 'withdrawal',
+        'referral-commission': 'referral-commission',
+        rebate: 'rebate',
+    };
     const cashierItems = [
         { id: 'deposit', label: 'Deposit', icon: ArrowDownToLine },
         { id: 'withdrawal', label: 'Withdrawal', icon: ArrowUpFromLine },
@@ -106,7 +117,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
     return (
         <nav
             className="fixed top-0 left-0 right-0 w-full z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
-            onMouseLeave={() => setCasinoMenuOpen(false)}
+            onMouseLeave={() => setNavProviderDropdown(null)}
         >
             <div className="relative z-[300] flex md:hidden w-full items-center justify-between gap-2 border-b border-white/10 bg-[var(--color-nav-top)] px-3 py-2 text-white">
                 <button
@@ -233,8 +244,12 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                             </div>
                                             <button
                                                 type="button"
-                                                className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-[var(--color-nav-badge)] text-white shadow-[0_6px_12px_rgba(0,0,0,0.22)]"
-                                                aria-label="Edit profile"
+                                                onClick={() => {
+                                                    setProfileMenuOpen(false);
+                                                    onAccountDetailsClick?.();
+                                                }}
+                                                className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-[var(--color-nav-badge)] text-white shadow-[0_6px_12px_rgba(0,0,0,0.22)] transition hover:brightness-110"
+                                                aria-label="Account details"
                                             >
                                                 <ScrollText size={12} />
                                             </button>
@@ -276,17 +291,15 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                             />
                                         </button>
                                         {openProfileSection === 'cashier' && (
-                                            <div className="mt-3 grid grid-cols-3 gap-3">
+                                            <div className="mt-3 grid grid-cols-2 gap-3">
                                                 {cashierItems.map(({ id, label, icon: Icon }) => (
                                                     <button
                                                         key={id}
                                                         type="button"
                                                         onClick={() => {
                                                             setProfileMenuOpen(false);
-                                                            if (id === 'rebate') onNavigate?.('rebate');
-                                                            if (id === 'referral-commission') onNavigate?.('referral');
-                                                                if (id === 'deposit') onNavigate?.('deposit');
-                                                            if (id === 'withdrawal') onNavigate?.('withdrawal');
+                                                            const page = cashierPageById[id];
+                                                            if (page) onNavigate?.(page);
                                                         }}
                                                         className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                     >
@@ -317,16 +330,17 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         </button>
 
                                         {openProfileSection === 'account' && (
-                                            <div className="mt-3 grid grid-cols-3 gap-3">
-                                                {accountCards.map(({ label, icon: Icon }) => (
+                                            <div className="mt-3 grid grid-cols-2 gap-3">
+                                                {accountCards.map(({ id, label, icon: Icon }) => (
                                                     <button
-                                                        key={label}
+                                                        key={id}
                                                         type="button"
                                                         onClick={() => {
                                                             setProfileMenuOpen(false);
-
-                                                            if (label === 'Account Details') {
+                                                            if (id === 'profile') {
                                                                 onAccountDetailsClick?.();
+                                                            } else {
+                                                                onNavigate?.(id);
                                                             }
                                                         }}
                                                         className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
@@ -358,7 +372,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         </button>
 
                                         {openProfileSection === 'rewards' && (
-                                            <div className="mt-3 grid grid-cols-3 gap-3">
+                                            <div className="mt-3 grid grid-cols-2 gap-3">
                                                 {REWARDS_PROGRAMS.map(({ id, label }) => {
                                                     const NavIcon = REWARDS_NAV_ICONS[id] ?? Trophy;
                                                     return (
@@ -386,31 +400,29 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                     <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
                                         <button
                                             type="button"
-                                            onClick={() => toggleProfileSection('support')}
+                                            onClick={() => toggleProfileSection('historyRecord')}
                                             className="flex w-full items-center justify-between transition hover:opacity-90"
                                         >
                                             <div className="flex items-center gap-3">
                                                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[rgb(90_208_255)] shadow-[var(--shadow-nav-pill)]">
-                                                    <Headset size={14} />
+                                                    <History size={14} />
                                                 </div>
-                                                <span className="text-lg font-bold text-white">Support</span>
+                                                <span className="text-lg font-bold text-white">History Record</span>
                                             </div>
                                             <ChevronDown
                                                 size={16}
-                                                className={`text-white/80 transition-transform ${openProfileSection === 'support' ? 'rotate-180' : ''}`}
+                                                className={`text-white/80 transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-180' : ''}`}
                                             />
                                         </button>
-                                        {openProfileSection === 'support' && (
-                                            <div className="mt-3 grid grid-cols-3 gap-2">
-                                                {supportOptions.map(({ label, icon: Icon }) => (
+                                        {openProfileSection === 'historyRecord' && (
+                                            <div className="mt-3 grid grid-cols-2 gap-2">
+                                                {HISTORY_RECORD_NAV.map(({ id, label, icon: Icon }) => (
                                                     <button
-                                                        key={label}
+                                                        key={id}
                                                         type="button"
                                                         onClick={() => {
                                                             setProfileMenuOpen(false);
-                                                            if (label === 'Live Chat') onLiveChatClick?.();
-                                                            if (label === 'Share Feedback') onNavigate?.('feedback');
-                                                            if (label === 'Help Center') onNavigate?.('help-center');
+                                                            onNavigate?.(id);
                                                         }}
                                                         className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                     >
@@ -441,13 +453,17 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         </button>
                                         {openProfileSection === 'settings' && (
                                             <div className="mt-3 grid grid-cols-2 gap-2">
-                                                {settingsOptions.map(({ id, label, icon: Icon }) => (
+                                                {settingsOptions.map(({ id, label, icon: Icon, action }) => (
                                                     <button
                                                         key={id}
                                                         type="button"
                                                         onClick={() => {
-                                                            onNavigate?.(id);
                                                             setProfileMenuOpen(false);
+                                                            if (action === 'liveChat') {
+                                                                onLiveChatClick?.();
+                                                            } else {
+                                                                onNavigate?.(id);
+                                                            }
                                                         }}
                                                         className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                     >
@@ -526,11 +542,13 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                     key={idx}
                                     href={navHrefs[link] ?? '#'}
                                     onMouseEnter={() => {
-                                        if (link === 'Casino') setCasinoMenuOpen(true);
-                                        else setCasinoMenuOpen(false);
+                                        if (link === 'Casino') setNavProviderDropdown('casino');
+                                        else if (link === 'Slots') setNavProviderDropdown('slots');
+                                        else setNavProviderDropdown(null);
                                     }}
                                     onFocus={() => {
-                                        if (link === 'Casino') setCasinoMenuOpen(true);
+                                        if (link === 'Casino') setNavProviderDropdown('casino');
+                                        if (link === 'Slots') setNavProviderDropdown('slots');
                                     }}
                                     onClick={(event) => {
                                         const target = navTargets[link];
@@ -824,14 +842,23 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
             </aside>
 
             <LiveCasinoMenu
-                open={casinoMenuOpen}
+                open={navProviderDropdown === 'casino'}
                 onProviderClick={(provider) => {
                     onCasinoProviderSelect?.(provider);
-                    setCasinoMenuOpen(false);
+                    setNavProviderDropdown(null);
                 }}
             />
 
-            {casinoMenuOpen && (
+            <NavProviderDropdownPanel
+                open={navProviderDropdown === 'slots'}
+                providers={slotsNavDropdownProviders}
+                onProviderClick={(provider) => {
+                    onSlotsProviderSelect?.(provider);
+                    setNavProviderDropdown(null);
+                }}
+            />
+
+            {navProviderDropdown != null && (
                 <div className="fixed inset-x-0 bottom-0 top-[92px] z-[70] bg-[var(--color-nav-overlay)] backdrop-blur-[1px] pointer-events-none" />
             )}
         </nav>

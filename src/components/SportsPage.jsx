@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
+import { GameCardFavouriteButton } from './game/GameCardActions';
 import sportsBanner from '../assets/sports-banner.jpg';
 import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP_SPORTS } from '../constants/pageBannerClasses';
 
@@ -187,31 +188,43 @@ export default function SportsPage() {
             <section className="w-full max-w-screen-2xl mx-auto px-4 md:px-8 mt-5 md:mt-6">
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
                     {filteredProviders.map((provider, index) => (
-                        <button
+                        <div
                             key={provider.name}
-                            type="button"
-                            onClick={() => setBannerProvider(provider)}
                             className={`group relative flex h-[86px] items-center justify-center rounded-3xl border bg-[var(--color-page-default)] px-3 shadow-[var(--shadow-live-provider)] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-live-provider-hover)] md:h-[104px] ${
                                 bannerProvider.name === provider.name
                                     ? 'border-[var(--color-brand-deep)] ring-2 ring-[rgb(31_93_168_/_0.25)]'
                                     : 'border-[rgb(209_216_229)] hover:border-[rgb(183_194_215)]'
                             }`}
-                            aria-label={`Show ${provider.name} in banner`}
                         >
+                            <button
+                                type="button"
+                                onClick={() => setBannerProvider(provider)}
+                                className="absolute inset-0 z-0 rounded-3xl"
+                                aria-label={`Show ${provider.name} in banner`}
+                            />
                             {provider.featured && (
-                                <span className="absolute right-2 top-2 rounded-full bg-[var(--color-hot-main)] px-2.5 py-0.5 text-xs font-black tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">
+                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-[10px] font-black tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">
                                     HOT
                                 </span>
                             )}
-                            <div className="w-full h-full flex items-center justify-center pt-1">
+                            <GameCardFavouriteButton
+                                category="sports"
+                                name={provider.name}
+                                provider=""
+                                imgUrl={typeof provider.src === 'string' ? provider.src : ''}
+                                navigatePage="sports"
+                                size="sm"
+                                className="rounded-lg"
+                            />
+                            <div className="pointer-events-none relative z-10 flex h-full w-full items-center justify-center py-2">
                                 <img
                                     src={provider.src}
                                     alt={provider.name}
                                     loading={index < 12 ? 'eager' : 'lazy'}
-                                    className="max-w-full max-h-[34px] md:max-h-[50px] object-contain saturate-110 contrast-110 group-hover:scale-105 transition duration-300"
+                                    className="max-h-[28px] max-w-full object-contain saturate-110 contrast-110 transition duration-300 group-hover:scale-105 md:max-h-[40px]"
                                 />
                             </div>
-                        </button>
+                        </div>
                     ))}
                 </div>
                 {filteredProviders.length === 0 && (

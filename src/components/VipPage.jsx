@@ -10,6 +10,7 @@ import diamondMedal from '../assets/diamond.png';
 import headsetImage from '../assets/headset.png';
 import vipBanner from '../assets/vip-banner.jpg';
 import { PAGE_BANNER_IMG_VIP, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
+import PromotionStyleTabs from './PromotionStyleTabs';
 
 const vipTabs = ['Upgrade', 'Privileges', 'Referral'];
 
@@ -95,13 +96,6 @@ const referralBenefits = [
     'Referral campaigns may include cashback, limited seasonal prizes, and upgraded VIP access reviews.',
     'Customer service can assist with campaign eligibility and tracking for active referral requests.',
 ];
-
-const tabButtonClasses = (selected) =>
-    `inline-flex min-h-[44px] items-center justify-center rounded-xl border px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] transition-all md:text-sm ${
-        selected
-            ? 'border-[rgb(255_191_83)] bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[var(--color-cta-text)] shadow-[0_8px_18px_rgba(242,154,0,0.2)]'
-            : 'border-[var(--color-border-live)] bg-[var(--color-surface-base)] text-[rgb(64_81_114)] hover:border-[rgb(184_198_226)] hover:text-[rgb(34_51_90)]'
-    }`;
 
 function VipMedal({ src, alt, className = '' }) {
     if (!src) {
@@ -407,18 +401,13 @@ export default function VipPage() {
                     </div>
 
                     <div className="mt-5 border-t border-[rgb(219_228_243)] pt-5">
-                        <div className="flex flex-wrap gap-3">
-                        {vipTabs.map((tab) => (
-                            <button
-                                key={tab}
-                                type="button"
-                                onClick={() => setActiveTab(tab)}
-                                className={tabButtonClasses(activeTab === tab)}
-                            >
-                                {tab}
-                            </button>
-                        ))}
-                        </div>
+                        <PromotionStyleTabs
+                            items={vipTabs}
+                            value={activeTab}
+                            onChange={setActiveTab}
+                            gapClassName="gap-3"
+                            ariaLabel="VIP programme sections"
+                        />
                     </div>
 
                     <div className="mt-6">

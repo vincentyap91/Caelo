@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PromotionDetailModal from './PromotionDetailModal';
+import PromotionStyleTabs from './PromotionStyleTabs';
 import welcomeBonusImage from '../assets/promotion/welcome-bonus.jpg';
 import dailyReloadImage from '../assets/promotion/daily-unlimited-reload-bonus.jpg';
 import welcome500Image from '../assets/promotion/welcome-500-bonus.jpg';
@@ -239,27 +240,14 @@ export default function PromotionPage() {
             <div className="mx-auto w-full max-w-screen-2xl px-4 py-4 md:px-8 md:py-6">
                 <h1 className="page-title">Promotion</h1>
 
-                    <section className="mt-5 rounded-2xl border border-[rgb(228_234_243)] bg-[var(--color-surface-base)] p-4 shadow-[0_4px_16px_rgba(15,23,42,0.04)] md:p-5">
-                        <div className="flex flex-wrap gap-2.5">
-                            {promotionCategories.map((category) => {
-                                const selected = activeCategory === category;
-                                return (
-                                    <button
-                                        key={category}
-                                        type="button"
-                                        onClick={() => setActiveCategory(category)}
-                                        className={`rounded-xl px-4 py-2 text-xs font-bold tracking-wide transition-all duration-200 md:text-sm ${
-                                            selected
-                                                ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-[0_6px_12px_rgba(255,174,39,0.18)]'
-                                                : 'border border-[var(--color-border-default)] bg-white text-[var(--color-text-main)] hover:border-[var(--color-accent-200)] hover:text-[var(--color-text-strong)] hover:shadow-[0_2px_8px_rgba(15,23,42,0.04)]'
-                                        }`}
-                                    >
-                                        {category}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </section>
+                    <PromotionStyleTabs
+                        variant="panel"
+                        panelClassName="mt-5"
+                        items={promotionCategories}
+                        value={activeCategory}
+                        onChange={setActiveCategory}
+                        ariaLabel="Promotion categories"
+                    />
 
                     <section className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-6">
                         {visiblePromotions.map((promotion, index) => (
