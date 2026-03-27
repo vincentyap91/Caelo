@@ -19,8 +19,10 @@ import {
     Zap,
 } from 'lucide-react';
 import affiliateBanner from '../assets/affiliate-banner.jpg';
+import step1Image from '../assets/step1.jpg';
+import step2Image from '../assets/step2.jpg';
+import step3Image from '../assets/step3.jpg';
 import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
-import { ReferralShare3dIcon, ReferralRegistered3dIcon, ReferralEarnings3dIcon } from './ReferralStep3dIcons';
 import { useReferralData } from '../context/ReferralDataContext';
 import DownlineReferralsPanel from './referral/DownlineReferralsPanel';
 
@@ -277,9 +279,9 @@ function GameCommissionRow({ item, isOpen, onToggle }) {
 function HowItWorksContent() {
     const [expandedGame, setExpandedGame] = useState(null);
     const steps = [
-        { num: '01', title: 'Share your Registration Link or Referral Code', Illustration: ReferralShare3dIcon },
-        { num: '02', title: 'Friends Registered Successfully', Illustration: ReferralRegistered3dIcon },
-        { num: '03', title: 'Earn Bonus from Your Downlines', Illustration: ReferralEarnings3dIcon },
+        { num: '01', title: 'Share your Registration Link or Referral Code', image: step1Image },
+        { num: '02', title: 'Friends Registered Successfully', image: step2Image },
+        { num: '03', title: 'Earn Bonus from Your Downlines', image: step3Image },
     ];
 
     return (
@@ -287,31 +289,35 @@ function HowItWorksContent() {
             <div className="surface-card rounded-2xl p-6 md:p-8">
                 <h3 className="text-center text-xl font-bold text-[var(--color-text-strong)] md:text-2xl">Invite Your Friends to Earn Passive Income</h3>
                 <div className="mt-8 grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-3">
-                    {steps.map((step) => {
-                        const Illustration = step.Illustration;
-                        return (
+                    {steps.map((step) => (
                             <div
                                 key={step.num}
                                 className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[linear-gradient(180deg,var(--color-surface-base)_0%,var(--color-surface-subtle)_100%)] shadow-[var(--shadow-subtle)]"
                             >
-                                <span className="absolute left-4 top-4 z-10 rounded-md bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-cta-text)] shadow-sm">
+                                <span className="absolute left-4 top-4 z-10 rounded-md bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-[var(--color-cta-text)] shadow-sm">
                                     Step {step.num}
                                 </span>
                                 <div className="flex flex-1 flex-col items-center px-4 pb-7 pt-14 text-center md:px-5 md:pb-8">
-                                    {/* Icon container matches FeaturesRow “Outstanding Functions” */}
                                     <div
-                                        className="mb-5 flex items-center justify-center rounded-full border border-[var(--color-brand-soft)] bg-[var(--color-surface-base)] p-2 shadow-sm transition-transform group-hover:scale-110"
+                                        className="mb-5 flex w-full max-w-[280px] flex-1 items-center justify-center md:max-w-[300px]"
                                         aria-hidden
                                     >
-                                        <Illustration className="h-[52px] w-[52px] shrink-0" />
+                                        <div className="relative w-full overflow-hidden rounded-xl px-2 py-3 md:py-4">
+                                            <img
+                                                src={step.image}
+                                                alt=""
+                                                className="mx-auto h-auto max-h-[200px] w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.02] sm:max-h-[220px] md:max-h-[240px]"
+                                                loading="lazy"
+                                                draggable={false}
+                                            />
+                                        </div>
                                     </div>
                                     <p className="max-w-[16rem] text-sm font-bold leading-snug text-[var(--color-text-strong)] md:max-w-none md:text-[0.95rem] md:leading-relaxed">
                                         {step.title}
                                     </p>
                                 </div>
                             </div>
-                        );
-                    })}
+                        ))}
                 </div>
             </div>
 

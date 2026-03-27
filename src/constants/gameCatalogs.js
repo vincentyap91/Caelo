@@ -1,0 +1,93 @@
+/** Shared catalog data for listing pages + `/game/:slug` resolution. */
+
+export const SLOT_GAMES = [
+    // Pragmatic Play
+    { name: 'Zeus vs Hades - Gods of War', provider: 'Pragmatic Play', rtp: 96.62, imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs15godsofwar.png', hot: true },
+    { name: 'Zeus vs Hades - Gods of War 250', provider: 'Pragmatic Play', rtp: 96.5, imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs15zeushadseq.png', hot: true },
+    { name: 'Gates of Olympus Super Scatter', provider: 'Pragmatic Play', rtp: 96.71, imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs20olympgold.png', new: true },
+    { name: 'Gates of Olympus 1000', provider: 'Pragmatic Play', rtp: 96.52, imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs20olympx.png' },
+    { name: 'Sugar Rush', provider: 'Pragmatic Play', rtp: 96.52, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    { name: "Mummy's Jewels", provider: 'Pragmatic Play', rtp: 96.34, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    { name: 'Lions Megacas', provider: 'Pragmatic Play', rtp: 95.97, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    { name: 'Treasure Island', provider: 'Pragmatic Play', rtp: 96.22, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    { name: 'Knights', provider: 'Pragmatic Play', rtp: 95.88, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    { name: 'Cyber Heist', provider: 'Pragmatic Play', rtp: 96.41, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    { name: 'Hot Tuna', provider: 'Pragmatic Play', rtp: 95.76, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    { name: 'Chili Heat', provider: 'Pragmatic Play', rtp: 96.11, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    { name: 'Magic Eggs', provider: 'Pragmatic Play', rtp: 96.03, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
+    // PlayTech Slots
+    { name: 'Archer', provider: 'PlayTech Slots', rtp: 93.61, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_archer_pop.png', hot: true },
+    { name: 'Fire Blaze: Blue Wizard', provider: 'PlayTech Slots', rtp: 94.92, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_bwizard_pop.png', hot: true },
+    { name: 'Dolphin Reef', provider: 'PlayTech Slots', rtp: 93.56, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_dreef_pop.png', hot: true },
+    { name: 'Fire Blaze: Sky Queen', provider: 'PlayTech Slots', rtp: 91.58, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_squeen_pop.png', new: true },
+    { name: 'Great Blue Jackpot', provider: 'PlayTech Slots', rtp: 93.75, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/grbjp.png', hot: true },
+    { name: 'Great Blue', provider: 'PlayTech Slots', rtp: 93.10, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gblue_pop.png' },
+    { name: 'Long Long Long', provider: 'PlayTech Slots', rtp: 90.05, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/longlong.png' },
+    { name: 'Highway Kings', provider: 'PlayTech Slots', rtp: 76.41, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_highkings_pop.png' },
+    { name: "Fire Blaze: Pharaoh's Daughter", provider: 'PlayTech Slots', rtp: 75.62, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_scqueen_pop.png' },
+    { name: 'Fire Blaze: Eternal Lady', provider: 'PlayTech Slots', rtp: 92.45, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_elady_pop.png' },
+    { name: "Arowana's Luck", provider: 'PlayTech Slots', rtp: 91.05, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_aluck_pop.png' },
+    { name: 'Safari Heat', provider: 'PlayTech Slots', rtp: 91.16, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_safarih_pop.png' },
+    { name: 'Thai Paradise', provider: 'PlayTech Slots', rtp: 91.30, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/tpd2.png' },
+    { name: 'Dragon Spark', provider: 'PlayTech Slots', rtp: 94.34, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_dsparks_pop.png', hot: true },
+    { name: 'Fire Blaze: Jinns Moon', provider: 'PlayTech Slots', rtp: 92.09, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_jmoon_pop.png' },
+    { name: 'Fire Blaze: Pearls Pearls Pearls', provider: 'PlayTech Slots', rtp: 84.96, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_pppearls_pop.png' },
+    { name: "Fire Blaze: Tsai Shen's Gift", provider: 'PlayTech Slots', rtp: 94.91, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_tsgift_pop.png', hot: true },
+    { name: 'Fire Blaze: Red Wizard', provider: 'PlayTech Slots', rtp: 91.31, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_rwizard_pop.png' },
+    { name: 'Fire Blaze: Blue Wizard Megaways', provider: 'PlayTech Slots', rtp: 93.06, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_mgbwizard_pop.png' },
+    { name: 'Buffalo Blitz', provider: 'PlayTech Slots', rtp: 84.47, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_bblitz_pop.png' },
+    { name: "Captain's Treasure", provider: 'PlayTech Slots', rtp: 94.59, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_captres_pop.png', hot: true },
+    { name: 'Halloween Fortune 2', provider: 'PlayTech Slots', rtp: 93.01, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/hlf2.png' },
+    { name: 'Ice Cave', provider: 'PlayTech Slots', rtp: 93.84, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/ashicv.png' },
+    { name: 'Jungle Giants', provider: 'PlayTech Slots', rtp: 76.39, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/jnglg.png' },
+    { name: 'Legacy of the Wild', provider: 'PlayTech Slots', rtp: 91.28, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/legwld.png' },
+    { name: "Plenty O'Fortune", provider: 'PlayTech Slots', rtp: 82.92, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gtspor.png' },
+    { name: 'Solar Eclipse: Northern Winds', provider: 'PlayTech Slots', rtp: 94.92, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_nwinds_pop.png', hot: true },
+    { name: 'Tiger Claw', provider: 'PlayTech Slots', rtp: 78.99, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/tigc.png' },
+    { name: '81 Gold Cascade', provider: 'PlayTech Slots', rtp: 94.88, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_eigoldcd_pop.png', hot: true },
+    { name: 'Fire Tale', provider: 'PlayTech Slots', rtp: 81.11, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/pop_3ebc8b83_qsp.png' },
+    { name: 'Gold Trio Jackpot', provider: 'PlayTech Slots', rtp: 92.62, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gtdbonza_pop.png' },
+    { name: 'Gold Trio 10000', provider: 'PlayTech Slots', rtp: 92.02, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gtr10k_pop.png' },
+    { name: 'Gold Trio: Santa Surprise', provider: 'PlayTech Slots', rtp: 91.83, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gtsanta_pop.png' },
+    { name: 'Clover Flip', provider: 'PlayTech Slots', rtp: 92.03, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_cflip_pop.png' },
+    { name: 'Baa, Baa, Baa', provider: 'PlayTech Slots', rtp: 91.72, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_baba_pop.png' },
+];
+
+export const FISHING_GAMES = [
+    { name: 'Ocean King', provider: 'JiLi Fishing', rtp: 96.2, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_dreef_pop.png', hot: true },
+    { name: 'Fishing God', provider: 'JiLi Fishing', rtp: 95.8, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gblue_pop.png', hot: true },
+    { name: 'Golden Tidal', provider: 'JiLi Fishing', rtp: 96.1, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_bwizard_pop.png', new: true },
+    { name: 'Dragon Fortune', provider: 'JDB Fishing', rtp: 95.5, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_dsparks_pop.png', hot: true },
+    { name: 'Catch the Big One', provider: 'JDB Fishing', rtp: 96.0, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_archer_pop.png', hot: true },
+    { name: 'Deep Sea Riches', provider: 'JDB Fishing', rtp: 95.2, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/grbjp.png' },
+    { name: 'Pirate Waters', provider: 'DragoonSoft Fishing', rtp: 95.9, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_captres_pop.png', new: true },
+    { name: 'Coral Reef', provider: 'DragoonSoft Fishing', rtp: 95.4, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_nwinds_pop.png' },
+    { name: 'Mermaid Treasure', provider: 'Funky Games Fishing', rtp: 96.3, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_tsgift_pop.png', hot: true },
+    { name: 'Shark Attack', provider: 'Funky Games Fishing', rtp: 95.7, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_eigoldcd_pop.png' },
+    { name: 'Tropical Catch', provider: 'JiLi Fishing', rtp: 95.6, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_squeen_pop.png' },
+    { name: 'Bounty Hunter', provider: 'JDB Fishing', rtp: 96.0, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_aluck_pop.png', new: true },
+];
+
+/**
+ * Extra slot-style rows for home / marketing tiles — same shape as SLOT_GAMES for slug + detail resolution.
+ */
+export const EXTRA_GAME_DETAIL_ENTRIES = [
+    {
+        name: 'Nomikai Fever',
+        provider: 'Pragmatic Play',
+        rtp: 96.5,
+        imgUrl: 'https://gamifystaging.blob.core.windows.net/staging/common/8eb11693-ad04-40f3-b2f1-cd7989c7fcc6.png',
+        categoryLabel: 'Slots',
+        categoryPage: 'slots',
+        kind: 'slots',
+    },
+    {
+        name: "Dragon's Luck",
+        provider: 'Pragmatic Play',
+        rtp: 96.4,
+        imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png',
+        categoryLabel: 'Slots',
+        categoryPage: 'slots',
+        kind: 'slots',
+    },
+];

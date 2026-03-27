@@ -119,6 +119,20 @@ export default function DepositPage({ onNavigate }) {
     const [bankDropdownOpen, setBankDropdownOpen] = useState(false);
     const [bonusDropdownOpen, setBonusDropdownOpen] = useState(false);
 
+    useEffect(() => {
+        const syncBonusFromUrl = () => {
+            const params = new URLSearchParams(window.location.search);
+            const bonus = params.get('bonus');
+            if (bonus && BONUS_OPTIONS.some((b) => b.id === bonus)) {
+                setClaimBonus(true);
+                setSelectedBonus(bonus);
+            }
+        };
+        syncBonusFromUrl();
+        window.addEventListener('popstate', syncBonusFromUrl);
+        return () => window.removeEventListener('popstate', syncBonusFromUrl);
+    }, []);
+
     const amountNum = parseFloat(amount) || 0;
     const isNormal = depositSpeedTab === 'normal';
     const minAmount = isNormal ? MIN_AMOUNT_NORMAL : MIN_AMOUNT;

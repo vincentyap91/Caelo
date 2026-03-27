@@ -22,6 +22,7 @@ const EsportsPage = React.lazy(() => import('./components/EsportsPage'));
 const LotteryPage = React.lazy(() => import('./components/LotteryPage'));
 const FishingPage = React.lazy(() => import('./components/FishingPage'));
 const PokerPage = React.lazy(() => import('./components/PokerPage'));
+const GameDetailPage = React.lazy(() => import('./components/game-detail/GameDetailPage'));
 const PromotionPage = React.lazy(() => import('./components/PromotionPage'));
 const VipPage = React.lazy(() => import('./components/VipPage'));
 const ReferralPage = React.lazy(() => import('./components/referral'));
@@ -51,11 +52,15 @@ import { FavouritesProvider } from './context/FavouritesContext';
 import { ActionNotificationsProvider } from './context/ActionNotificationsContext';
 import { REWARDS_PROGRAM_IDS } from './constants/rewardsPrograms';
 import { HISTORY_RECORD_PAGE_IDS } from './constants/historyRecordPages';
+import { parseGameDetailSlugFromPathname } from './utils/gameDetailRoutes';
 
 function resolvePageFromPath() {
   const pathname = window.location.pathname.toLowerCase();
   if (pathname === '/casino' || pathname === '/live-casino') {
     return 'live-casino';
+  }
+  if (pathname === '/game' || pathname.startsWith('/game/')) {
+    return 'game-detail';
   }
   if (pathname === '/slots') {
     return 'slots';
@@ -144,6 +149,7 @@ const DOWNLOAD_APP_HASH = '#download-app';
 
 function App() {
   const [page, setPage] = useState(resolvePageFromPath);
+  const [routePath, setRoutePath] = useState(() => window.location.pathname);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [liveChatOpen, setLiveChatOpen] = useState(false);
   const [authUser, setAuthUser] = useState(() => loadAuthSession());
@@ -180,7 +186,10 @@ function App() {
   }, [authUser, handleLogout]);
 
   useEffect(() => {
-    const onPopState = () => setPage(resolvePageFromPath());
+    const onPopState = () => {
+      setPage(resolvePageFromPath());
+      setRoutePath(window.location.pathname);
+    };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
@@ -234,6 +243,7 @@ function App() {
     const pathByPage = {
       home: '/',
       'live-casino': '/casino',
+      'game-detail': '/game',
       slots: '/slots',
       sports: '/sports',
       'e-sports': '/e-sports',
@@ -264,6 +274,10 @@ function App() {
 
     const currentPath = window.location.pathname;
     let fullUrl = nextPath;
+    if (resolvedPage === 'game-detail') {
+      const slug = options?.gameSlug ?? options?.gameId;
+      fullUrl = slug ? `/game/${encodeURIComponent(String(slug))}` : '/game';
+    }
     if (resolvedPage === 'loyalty-rewards') {
       let tab = 'daily-bonus';
       if (options?.rewardsTab && REWARDS_PROGRAM_IDS.includes(options.rewardsTab)) {
@@ -274,8 +288,11 @@ function App() {
       }
       fullUrl = `/loyalty-rewards#${tab}`;
     }
+    if (resolvedPage === 'deposit' && options?.depositBonusId) {
+      fullUrl = `/deposit?bonus=${encodeURIComponent(String(options.depositBonusId))}`;
+    }
 
-    const currentFull = `${window.location.pathname}${window.location.hash}`;
+    const currentFull = `${window.location.pathname}${window.location.search}${window.location.hash}`;
     if (currentFull !== fullUrl) {
       window.history.pushState({}, '', fullUrl);
       // pushState does not fire hashchange; rewards UI listens on hashchange for in-page tab switches
@@ -283,6 +300,7 @@ function App() {
         window.dispatchEvent(new Event('hashchange'));
       }
     }
+    setRoutePath(window.location.pathname);
   };
 
   return (
@@ -294,7 +312,7 @@ function App() {
         ? 'bg-[var(--color-page-home)]'
         : page === 'register'
           ? 'bg-[var(--color-page-register)]'
-          : page === 'slots'
+          : page === 'slots' || page === 'game-detail'
             ? 'bg-[var(--color-page-default)]'
             : page === 'sports'
               ? 'bg-[var(--color-page-default)]'
@@ -357,21 +375,26 @@ function App() {
           </div>
         </>
       ) : page === 'live-casino' ? (
-        <LiveCasinoPage selectedProviderIdFromMenu={selectedCasinoProviderIdFromMenu} />
+        <LiveCasinoPage selectedProviderIdFromMenu={selectedCasinoProviderIdFromMenu} onNavigate={handleNavigate} />
+      ) : page === 'game-detail' ? (
+        <GameDetailPage
+          onNavigate={handleNavigate}
+          gameDetailSlug={parseGameDetailSlugFromPathname(routePath)}
+        />
       ) : page === 'slots' ? (
-        <SlotsPage selectedProviderIdFromMenu={selectedSlotsProviderIdFromMenu} />
+        <SlotsPage selectedProviderIdFromMenu={selectedSlotsProviderIdFromMenu} onNavigate={handleNavigate} />
       ) : page === 'sports' ? (
-        <SportsPage />
+        <SportsPage onNavigate={handleNavigate} />
       ) : page === 'e-sports' ? (
         <EsportsPage />
       ) : page === 'lottery' ? (
-        <LotteryPage />
+        <LotteryPage onNavigate={handleNavigate} />
       ) : page === 'fishing' ? (
-        <FishingPage />
+        <FishingPage onNavigate={handleNavigate} />
       ) : page === 'poker' ? (
-        <PokerPage />
+        <PokerPage onNavigate={handleNavigate} />
       ) : page === 'promotion' ? (
-        <PromotionPage />
+        <PromotionPage authUser={authUser} onNavigate={handleNavigate} />
       ) : page === 'vip' ? (
         <VipPage />
       ) : page === 'referral' ? (

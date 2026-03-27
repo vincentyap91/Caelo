@@ -5,6 +5,8 @@ import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/page
 import { MATCHED_SLOT_PROVIDERS } from '../constants/matchedSlotProviders';
 import PromotionStyleTabs from './PromotionStyleTabs';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
+import { SLOT_GAMES as slotGames } from '../constants/gameCatalogs';
+import { buildGameDetailSlug, navigateToGameDetail } from '../utils/gameDetailRoutes';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
@@ -38,59 +40,6 @@ const slotProviders = [
     { name: 'CC88', src: `${CDN}/cc88/cc88-202505140440359959-202506250007312379.svg`, featured: false },
 ];
 
-const slotGames = [
-    // Pragmatic Play
-    { name: 'Zeus vs Hades - Gods of War', provider: 'Pragmatic Play', rtp: 96.62, imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs15godsofwar.png', hot: true },
-    { name: 'Zeus vs Hades - Gods of War 250', provider: 'Pragmatic Play', rtp: 96.5, imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs15zeushadseq.png', hot: true },
-    { name: 'Gates of Olympus Super Scatter', provider: 'Pragmatic Play', rtp: 96.71, imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs20olympgold.png', new: true },
-    { name: 'Gates of Olympus 1000', provider: 'Pragmatic Play', rtp: 96.52, imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs20olympx.png' },
-    { name: 'Sugar Rush', provider: 'Pragmatic Play', rtp: 96.52, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    { name: "Mummy's Jewels", provider: 'Pragmatic Play', rtp: 96.34, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    { name: 'Lions Megacas', provider: 'Pragmatic Play', rtp: 95.97, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    { name: 'Treasure Island', provider: 'Pragmatic Play', rtp: 96.22, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    { name: 'Knights', provider: 'Pragmatic Play', rtp: 95.88, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    { name: 'Cyber Heist', provider: 'Pragmatic Play', rtp: 96.41, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    { name: 'Hot Tuna', provider: 'Pragmatic Play', rtp: 95.76, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    { name: 'Chili Heat', provider: 'Pragmatic Play', rtp: 96.11, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    { name: 'Magic Eggs', provider: 'Pragmatic Play', rtp: 96.03, imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png' },
-    // PlayTech Slots
-    { name: 'Archer', provider: 'PlayTech Slots', rtp: 93.61, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_archer_pop.png', hot: true },
-    { name: 'Fire Blaze: Blue Wizard', provider: 'PlayTech Slots', rtp: 94.92, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_bwizard_pop.png', hot: true },
-    { name: 'Dolphin Reef', provider: 'PlayTech Slots', rtp: 93.56, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_dreef_pop.png', hot: true },
-    { name: 'Fire Blaze: Sky Queen', provider: 'PlayTech Slots', rtp: 91.58, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_squeen_pop.png', new: true },
-    { name: 'Great Blue Jackpot', provider: 'PlayTech Slots', rtp: 93.75, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/grbjp.png', hot: true },
-    { name: 'Great Blue', provider: 'PlayTech Slots', rtp: 93.10, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gblue_pop.png' },
-    { name: 'Long Long Long', provider: 'PlayTech Slots', rtp: 90.05, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/longlong.png' },
-    { name: 'Highway Kings', provider: 'PlayTech Slots', rtp: 76.41, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_highkings_pop.png' },
-    { name: "Fire Blaze: Pharaoh's Daughter", provider: 'PlayTech Slots', rtp: 75.62, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_scqueen_pop.png' },
-    { name: 'Fire Blaze: Eternal Lady', provider: 'PlayTech Slots', rtp: 92.45, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_elady_pop.png' },
-    { name: "Arowana's Luck", provider: 'PlayTech Slots', rtp: 91.05, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_aluck_pop.png' },
-    { name: 'Safari Heat', provider: 'PlayTech Slots', rtp: 91.16, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_safarih_pop.png' },
-    { name: 'Thai Paradise', provider: 'PlayTech Slots', rtp: 91.30, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/tpd2.png' },
-    { name: 'Dragon Spark', provider: 'PlayTech Slots', rtp: 94.34, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_dsparks_pop.png', hot: true },
-    { name: 'Fire Blaze: Jinns Moon', provider: 'PlayTech Slots', rtp: 92.09, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_jmoon_pop.png' },
-    { name: 'Fire Blaze: Pearls Pearls Pearls', provider: 'PlayTech Slots', rtp: 84.96, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_pppearls_pop.png' },
-    { name: "Fire Blaze: Tsai Shen's Gift", provider: 'PlayTech Slots', rtp: 94.91, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_tsgift_pop.png', hot: true },
-    { name: 'Fire Blaze: Red Wizard', provider: 'PlayTech Slots', rtp: 91.31, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_rwizard_pop.png' },
-    { name: 'Fire Blaze: Blue Wizard Megaways', provider: 'PlayTech Slots', rtp: 93.06, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_mgbwizard_pop.png' },
-    { name: 'Buffalo Blitz', provider: 'PlayTech Slots', rtp: 84.47, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_bblitz_pop.png' },
-    { name: "Captain's Treasure", provider: 'PlayTech Slots', rtp: 94.59, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_captres_pop.png', hot: true },
-    { name: 'Halloween Fortune 2', provider: 'PlayTech Slots', rtp: 93.01, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/hlf2.png' },
-    { name: 'Ice Cave', provider: 'PlayTech Slots', rtp: 93.84, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/ashicv.png' },
-    { name: 'Jungle Giants', provider: 'PlayTech Slots', rtp: 76.39, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/jnglg.png' },
-    { name: 'Legacy of the Wild', provider: 'PlayTech Slots', rtp: 91.28, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/legwld.png' },
-    { name: "Plenty O'Fortune", provider: 'PlayTech Slots', rtp: 82.92, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gtspor.png' },
-    { name: 'Solar Eclipse: Northern Winds', provider: 'PlayTech Slots', rtp: 94.92, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_nwinds_pop.png', hot: true },
-    { name: 'Tiger Claw', provider: 'PlayTech Slots', rtp: 78.99, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/tigc.png' },
-    { name: '81 Gold Cascade', provider: 'PlayTech Slots', rtp: 94.88, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_eigoldcd_pop.png', hot: true },
-    { name: 'Fire Tale', provider: 'PlayTech Slots', rtp: 81.11, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/pop_3ebc8b83_qsp.png' },
-    { name: 'Gold Trio Jackpot', provider: 'PlayTech Slots', rtp: 92.62, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gtdbonza_pop.png' },
-    { name: 'Gold Trio 10000', provider: 'PlayTech Slots', rtp: 92.02, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gtr10k_pop.png' },
-    { name: 'Gold Trio: Santa Surprise', provider: 'PlayTech Slots', rtp: 91.83, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gtsanta_pop.png' },
-    { name: 'Clover Flip', provider: 'PlayTech Slots', rtp: 92.03, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_cflip_pop.png' },
-    { name: 'Baa, Baa, Baa', provider: 'PlayTech Slots', rtp: 91.72, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_baba_pop.png' },
-];
-
 const gameTabs = ['All Games', 'Hot Games', 'New Games', 'Highest RTP'];
 const pageContainerClass = 'mx-auto w-full max-w-screen-2xl px-4 md:px-8';
 const sectionTitleClass = 'text-xl font-extrabold tracking-tight text-slate-900 md:text-2xl';
@@ -103,7 +52,7 @@ const liveBigWins = [
 
 const INITIAL_GAMES = 30; // 5 rows × 6 columns (lg)
 
-export default function SlotsPage({ selectedProviderIdFromMenu }) {
+export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
     const [activeTab, setActiveTab] = useState('All Games');
     const [query, setQuery] = useState('');
     const [activeProvider, setActiveProvider] = useState(slotProviders[0].name);
@@ -240,16 +189,22 @@ export default function SlotsPage({ selectedProviderIdFromMenu }) {
                         return (
                         <div
                             key={idx}
-                            className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-lg"
+                            className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg"
                         >
+                            <button
+                                type="button"
+                                className="absolute inset-0 z-[5] md:hidden"
+                                onClick={() => navigateToGameDetail(onNavigate, game.name, game.provider)}
+                                aria-label={`Open ${game.name}`}
+                            />
                             {(game.hot || game.new) && (
-                                <span className="absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
+                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
                                     {game.hot ? 'HOT' : 'NEW'}
                                 </span>
                             )}
                             <div className="relative h-44 overflow-hidden sm:h-52 xl:h-56">
                                 <div
-                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 md:group-hover:scale-110"
                                     style={{ backgroundImage: `url("${game.imgUrl}")` }}
                                 />
                                 <GameCardFavouriteButton
@@ -259,7 +214,12 @@ export default function SlotsPage({ selectedProviderIdFromMenu }) {
                                     imgUrl={game.imgUrl}
                                     navigatePage="slots"
                                 />
-                                <GameCardPlayBar href="#" showOnHover />
+                                <GameCardPlayBar
+                                    showOnHover
+                                    gameName={game.name}
+                                    gameProvider={game.provider}
+                                    onNavigate={onNavigate}
+                                />
                             </div>
                             <div className="p-2 md:p-3">
                                 <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>
@@ -326,13 +286,18 @@ export default function SlotsPage({ selectedProviderIdFromMenu }) {
                                     <p className="mt-0.5 text-xs text-slate-500">
                                         on {win.game} · {win.time}
                                     </p>
-                                    <a
-                                        href="#"
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            onNavigate?.('game-detail', {
+                                                gameSlug: buildGameDetailSlug(game.name, game.provider),
+                                            })
+                                        }
                                         className="btn-theme-primary mt-2 inline-flex h-9 max-w-[180px] items-center justify-center gap-1.5 rounded-xl px-4 text-xs font-bold transition hover:scale-[1.02] active:scale-[0.98]"
                                     >
                                         <Play size={14} fill="currentColor" className="opacity-95" aria-hidden />
                                         Play
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             );

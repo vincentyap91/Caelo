@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
-import PromotionStyleTabs from './PromotionStyleTabs';
-import { GameCardFavouriteButton } from './game/GameCardActions';
+import LobbyProviderCard from './game/LobbyProviderCard';
+import { navigateToGameDetail } from '../utils/gameDetailRoutes';
 import pokerBanner from '../assets/poker-banner.jpg';
 import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 import playtechLogo from '../assets/playtech-202505140443475046-202506242335087315.svg';
@@ -16,10 +16,7 @@ const providerLogos = [
     { id: 'mt-poker', name: 'MT Poker', src: mtLogo, categories: ['Cash Games'], featured: false },
 ];
 
-const providerTags = ['All', 'Trending', 'Texas Holdem', 'Cash Games', 'Tournaments', 'Sit & Go', 'Holdem'];
-
-export default function PokerPage() {
-    const [activeTag, setActiveTag] = useState('All');
+export default function PokerPage({ onNavigate }) {
     const [query, setQuery] = useState('');
     const [bannerProvider, setBannerProvider] = useState(
         () => providerLogos.find((provider) => provider.id === 'playtech-poker') ?? providerLogos[0]
@@ -29,18 +26,9 @@ export default function PokerPage() {
 
     const filteredProviders = useMemo(() => {
         const text = query.trim().toLowerCase();
-
-        return providerLogos.filter((provider) => {
-            const tagMatch =
-                activeTag === 'All'
-                    ? true
-                    : activeTag === 'Trending'
-                        ? provider.featured
-                        : provider.categories.includes(activeTag);
-            const textMatch = text ? provider.name.toLowerCase().includes(text) : true;
-            return tagMatch && textMatch;
-        });
-    }, [activeTag, query]);
+        if (!text) return providerLogos;
+        return providerLogos.filter((provider) => provider.name.toLowerCase().includes(text));
+    }, [query]);
 
     const handleSelectProvider = (provider) => {
         setBannerProvider(provider);
@@ -66,13 +54,14 @@ export default function PokerPage() {
     }, []);
 
     const PlayButton = ({ className = '' }) => (
-        <a
-            href="#"
+        <button
+            type="button"
+            onClick={() => navigateToGameDetail(onNavigate, bannerProvider.name, 'Poker')}
             className={`btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-black tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base ${className}`}
             aria-label={`Play ${bannerProvider.name}`}
         >
             PLAY POKER
-        </a>
+        </button>
     );
 
     return (
@@ -137,13 +126,14 @@ export default function PokerPage() {
                                     <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-[1.35] text-[rgb(42_53_72)] md:block md:mt-4">
                                         Sharp plays, deep stacks, nonstop action.
                                     </p>
-                                    <a
-                                        href="#"
+                                    <button
+                                        type="button"
+                                        onClick={() => navigateToGameDetail(onNavigate, bannerProvider.name, 'Poker')}
                                         className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-[12px] font-black tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] max-md:self-start sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-[13px] md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
                                         aria-label={`Play ${bannerProvider.name}`}
                                     >
                                         PLAY POKER
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -171,16 +161,7 @@ export default function PokerPage() {
                         </label>
                     </div>
 
-                    <div className="mt-4">
-                        <PromotionStyleTabs
-                            items={providerTags}
-                            value={activeTag}
-                            onChange={setActiveTag}
-                            ariaLabel="Poker categories"
-                        />
-                    </div>
-
-                    <p className="mt-3 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(106_117_144)] md:text-xs">
+                    <p className="mt-4 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(106_117_144)] md:text-xs">
                         {filteredProviders.length} provider{filteredProviders.length === 1 ? '' : 's'} found
                     </p>
                 </div>
@@ -189,49 +170,23 @@ export default function PokerPage() {
             <section className="mx-auto mt-5 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-6">
                     {filteredProviders.map((provider, index) => (
-                        <div
+                        <LobbyProviderCard
                             key={provider.name}
-                            className={`group relative flex h-[86px] items-center justify-center rounded-3xl border bg-[var(--color-page-default)] px-3 shadow-[var(--shadow-live-provider)] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-live-provider-hover)] md:h-[104px] ${
-                                bannerProvider.name === provider.name
-                                    ? 'border-[var(--color-brand-deep)] ring-2 ring-[rgb(31_93_168_/_0.25)]'
-                                    : 'border-[rgb(209_216_229)] hover:border-[rgb(183_194_215)]'
-                            }`}
-                        >
-                            <button
-                                type="button"
-                                onClick={() => handleSelectProvider(provider)}
-                                className="absolute inset-0 z-0 rounded-3xl"
-                                aria-label={`Show ${provider.name} in banner`}
-                            />
-                            {provider.featured && (
-                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-[10px] font-black tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">
-                                    HOT
-                                </span>
-                            )}
-                            <GameCardFavouriteButton
-                                category="poker"
-                                name={provider.name}
-                                provider=""
-                                imgUrl={typeof provider.src === 'string' ? provider.src : ''}
-                                navigatePage="poker"
-                                size="sm"
-                                className="rounded-lg"
-                            />
-                            <div className="pointer-events-none relative z-10 flex h-full w-full items-center justify-center py-2">
-                                <img
-                                    src={provider.src}
-                                    alt={provider.name}
-                                    loading={index < 12 ? 'eager' : 'lazy'}
-                                    className="max-h-[28px] max-w-full object-contain saturate-110 contrast-110 transition duration-300 group-hover:scale-105 md:max-h-[40px]"
-                                />
-                            </div>
-                        </div>
+                            provider={provider}
+                            index={index}
+                            selected={bannerProvider.name === provider.name}
+                            onSelect={handleSelectProvider}
+                            gameProvider="Poker"
+                            favouriteCategory="poker"
+                            navigatePage="poker"
+                            onNavigate={onNavigate}
+                        />
                     ))}
                 </div>
                 {filteredProviders.length === 0 && (
                     <div className="mt-6 rounded-2xl border border-[rgb(220_228_242)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
                         <p className="text-base font-extrabold text-[rgb(43_58_87)]">No providers match your search.</p>
-                        <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword or switch filter.</p>
+                        <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword.</p>
                     </div>
                 )}
             </section>

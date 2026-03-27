@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PromotionDetailModal from './PromotionDetailModal';
+import PromotionCtaButton from './promotion/PromotionCtaButton';
 import PromotionStyleTabs from './PromotionStyleTabs';
 import welcomeBonusImage from '../assets/promotion/welcome-bonus.jpg';
 import dailyReloadImage from '../assets/promotion/daily-unlimited-reload-bonus.jpg';
@@ -14,6 +15,7 @@ const MOBILE_BATCH_SIZE = 6;
 const promotions = [
     {
         id: 'welcome-288',
+        claimDepositBonusId: 'w288',
         category: 'Casino',
         title: 'Welcome Bonus 288%',
         description: 'Kickstart your first deposit with a boosted welcome package made for casino players.',
@@ -35,6 +37,7 @@ const promotions = [
     },
     {
         id: 'welcome-500',
+        claimDepositBonusId: 'w100s',
         category: 'Slots',
         title: 'Welcome Bonus 500%',
         description: 'Spin into your first slot session with a high-value new member bonus and extra credits.',
@@ -56,6 +59,7 @@ const promotions = [
     },
     {
         id: 'daily-reload',
+        claimDepositBonusId: 'dr10s',
         category: 'Slots',
         title: 'Daily Unlimited Reload',
         description: 'Reload daily and keep the momentum going with extra value on every qualifying top up.',
@@ -77,6 +81,7 @@ const promotions = [
     },
     {
         id: 'free-spin-weekend',
+        claimDepositBonusId: 'w100f',
         category: 'Fishing',
         title: 'Free Spin Weekend',
         description: 'Unlock weekend rewards with bonus spins and more chances to land standout wins.',
@@ -98,6 +103,7 @@ const promotions = [
     },
     {
         id: 'sports-exclusive',
+        claimDepositBonusId: 'w100sp',
         category: 'Sports',
         title: 'Exclusive Sports Offer',
         description: 'Back the big fixtures with exclusive odds support and limited-time sports rewards.',
@@ -119,6 +125,7 @@ const promotions = [
     },
     {
         id: 'instant-cash-rebate',
+        claimDepositBonusId: 'w100rl',
         category: 'RNG',
         title: 'Instant Cash Rebate',
         description: 'Enjoy instant rebate returns across selected RNG games to keep every session moving.',
@@ -140,6 +147,7 @@ const promotions = [
     },
     {
         id: 'lottery-daily-pick',
+        claimDepositBonusId: 'w100rl',
         category: 'Lottery',
         title: 'Daily Pick Bonus',
         description: 'Get more value on eligible daily picks with a simple lottery-focused extra reward.',
@@ -161,6 +169,7 @@ const promotions = [
     },
     {
         id: 'special-member-deal',
+        claimDepositBonusId: 'w100s',
         category: 'Others',
         title: 'Special Member Deal',
         description: 'A flexible all-round promotion crafted for members looking for extra value beyond core games.',
@@ -182,7 +191,7 @@ const promotions = [
     },
 ];
 
-export default function PromotionPage() {
+export default function PromotionPage({ authUser, onNavigate }) {
     const [activeCategory, setActiveCategory] = useState('All');
     const [selectedPromotion, setSelectedPromotion] = useState(null);
     const [visibleCount, setVisibleCount] = useState(MOBILE_BATCH_SIZE);
@@ -283,12 +292,11 @@ export default function PromotionPage() {
                                         >
                                             More Info
                                         </button>
-                                        <button
-                                            type="button"
-                                            className="btn-theme-cta inline-flex h-10 min-w-[100px] flex-1 items-center justify-center rounded-xl px-5 text-sm font-black tracking-wide shadow-[0_6px_14px_rgba(242,154,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105"
-                                        >
-                                            Join Now
-                                        </button>
+                                        <PromotionCtaButton
+                                            authUser={authUser}
+                                            onNavigate={onNavigate}
+                                            promotion={promotion}
+                                        />
                                     </div>
                                 </div>
                             </article>

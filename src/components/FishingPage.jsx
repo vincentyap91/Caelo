@@ -4,6 +4,8 @@ import fishingBanner from '../assets/fishing-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
 import PromotionStyleTabs from './PromotionStyleTabs';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
+import { navigateToGameDetail } from '../utils/gameDetailRoutes';
+import { FISHING_GAMES as fishingGames } from '../constants/gameCatalogs';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
@@ -12,21 +14,6 @@ const fishingProviders = [
     { name: 'JDB Fishing', src: `${CDN}/jdbfishing/jdbf-202506200914179063-202506250031365113.png`, featured: true },
     { name: 'DragoonSoft Fishing', src: `${CDN}/dragoonsoftfishing/dragoonsoft-min-202507150246327347-202507210728004447-202507212313114465.png`, featured: false },
     { name: 'Funky Games Fishing', src: `${CDN}/funkygamesfishing/funky%20games-202505140444483770-202507210731202838-202507212316321214.svg`, featured: false },
-];
-
-const fishingGames = [
-    { name: 'Ocean King', provider: 'JiLi Fishing', rtp: 96.2, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_dreef_pop.png', hot: true },
-    { name: 'Fishing God', provider: 'JiLi Fishing', rtp: 95.8, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_gblue_pop.png', hot: true },
-    { name: 'Golden Tidal', provider: 'JiLi Fishing', rtp: 96.1, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_bwizard_pop.png', new: true },
-    { name: 'Dragon Fortune', provider: 'JDB Fishing', rtp: 95.5, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_dsparks_pop.png', hot: true },
-    { name: 'Catch the Big One', provider: 'JDB Fishing', rtp: 96.0, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_archer_pop.png', hot: true },
-    { name: 'Deep Sea Riches', provider: 'JDB Fishing', rtp: 95.2, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/grbjp.png' },
-    { name: 'Pirate Waters', provider: 'DragoonSoft Fishing', rtp: 95.9, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_captres_pop.png', new: true },
-    { name: 'Coral Reef', provider: 'DragoonSoft Fishing', rtp: 95.4, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_nwinds_pop.png' },
-    { name: 'Mermaid Treasure', provider: 'Funky Games Fishing', rtp: 96.3, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_tsgift_pop.png', hot: true },
-    { name: 'Shark Attack', provider: 'Funky Games Fishing', rtp: 95.7, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_eigoldcd_pop.png' },
-    { name: 'Tropical Catch', provider: 'JiLi Fishing', rtp: 95.6, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_squeen_pop.png' },
-    { name: 'Bounty Hunter', provider: 'JDB Fishing', rtp: 96.0, imgUrl: 'https://lb9.azureedge.net/media/playtech/slots/en/gpas_aluck_pop.png', new: true },
 ];
 
 const gameTabs = ['All Games', 'Hot Games', 'New Games'];
@@ -41,7 +28,7 @@ const liveBigWins = [
 
 const INITIAL_GAMES = 12;
 
-export default function FishingPage() {
+export default function FishingPage({ onNavigate }) {
     const [activeTab, setActiveTab] = useState('All Games');
     const [query, setQuery] = useState('');
     const [activeProvider, setActiveProvider] = useState(fishingProviders[0].name);
@@ -158,16 +145,22 @@ export default function FishingPage() {
                     {filteredGames.slice(0, gamesToShow).map((game, idx) => (
                             <div
                                 key={idx}
-                                className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-lg"
+                                className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg"
                             >
+                                <button
+                                    type="button"
+                                    className="absolute inset-0 z-[5] md:hidden"
+                                    onClick={() => navigateToGameDetail(onNavigate, game.name, game.provider)}
+                                    aria-label={`Open ${game.name}`}
+                                />
                                 {(game.hot || game.new) && (
-                                    <span className="absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
+                                    <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
                                         {game.hot ? 'HOT' : 'NEW'}
                                     </span>
                                 )}
                                 <div className="relative h-44 overflow-hidden sm:h-52 xl:h-56">
                                     <div
-                                        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                                        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 md:group-hover:scale-110"
                                         style={{ backgroundImage: `url("${game.imgUrl}")` }}
                                     />
                                     <GameCardFavouriteButton
@@ -177,7 +170,12 @@ export default function FishingPage() {
                                         imgUrl={game.imgUrl}
                                         navigatePage="fishing"
                                     />
-                                    <GameCardPlayBar href="#" showOnHover />
+                                    <GameCardPlayBar
+                                        showOnHover
+                                        gameName={game.name}
+                                        gameProvider={game.provider}
+                                        onNavigate={onNavigate}
+                                    />
                                 </div>
                                 <div className="p-2 md:p-3">
                                     <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>

@@ -107,7 +107,7 @@ function BottomNav({ activeTab, onChange }) {
             </button>
             <button type="button" onClick={() => onChange('messages')} className={`relative ${navBtn} ${activeTab === 'messages' ? active : inactive}`}>
                 <MessageCircle size={20} strokeWidth={2} />
-                <span className="absolute -right-1 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--color-danger-main)] px-1 text-[10px] font-bold text-white">
+                <span className="absolute right-4 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--color-danger-main)] px-1 text-[10px] font-bold text-white">
                     2
                 </span>
                 <span className="text-[13px]">Messages</span>

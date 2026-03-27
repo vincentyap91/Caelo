@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Gamepad2, Heart, Monitor, Trophy } from 'lucide-react';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
+import { navigateToGameDetail } from '../utils/gameDetailRoutes';
 import { isSlotsFavouritesSection } from '../utils/favouriteGames';
 import { useFavourites } from '../context/FavouritesContext';
 
@@ -51,7 +52,15 @@ function FavouriteTile({ item, onNavigate }) {
     /** Live casino / sports / etc. use square logos — contain + inset so nothing is clipped. */
     const isProviderLogo = !isSlotsFavouritesSection(item.category);
     return (
-        <div className="surface-card group relative flex flex-col overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)] transition hover:-translate-y-0.5 hover:shadow-lg">
+        <div className="surface-card group relative flex flex-col overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)] transition md:hover:-translate-y-0.5 md:hover:shadow-lg">
+            {(item.category === 'slots' || item.category === 'fishing') && (
+                <button
+                    type="button"
+                    className="absolute inset-0 z-[5] md:hidden"
+                    onClick={() => navigateToGameDetail(onNavigate, item.name, item.provider)}
+                    aria-label={`Open ${item.name}`}
+                />
+            )}
             <div
                 className={`relative h-40 overflow-hidden bg-[var(--color-surface-muted)] sm:h-44 ${
                     isProviderLogo ? 'flex items-center justify-center px-4 py-5 sm:px-5 sm:py-6' : ''
@@ -63,8 +72,8 @@ function FavouriteTile({ item, onNavigate }) {
                         alt=""
                         className={
                             isProviderLogo
-                                ? 'max-h-full max-w-full object-contain object-center transition duration-300 group-hover:brightness-105'
-                                : 'h-full w-full object-cover transition duration-500 group-hover:scale-105'
+                                ? 'max-h-full max-w-full object-contain object-center transition duration-300 md:group-hover:brightness-105'
+                                : 'h-full w-full object-cover transition duration-500 md:group-hover:scale-105'
                         }
                     />
                 ) : (
@@ -82,9 +91,9 @@ function FavouriteTile({ item, onNavigate }) {
                 {(item.category === 'slots' || item.category === 'fishing') && (
                     <GameCardPlayBar
                         showOnHover
-                        onPlayClick={() => {
-                            if (item.navigatePage) onNavigate?.(item.navigatePage);
-                        }}
+                        gameName={item.name}
+                        gameProvider={item.provider}
+                        onNavigate={onNavigate}
                     />
                 )}
             </div>

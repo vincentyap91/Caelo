@@ -13,23 +13,23 @@ function WinRow({ item }) {
                 <div className="relative h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden rounded-[var(--radius-control)] bg-[var(--color-surface-muted)] ring-1 ring-[var(--color-border-accent)] md:h-[5rem] md:w-[5rem]">
                     <img src={item.imgUrl} alt="" className="h-full w-full object-cover" loading="lazy" />
                 </div>
-                <div className="min-w-0 flex flex-1 flex-col">
-                    <span className="inline-flex w-fit max-w-full rounded-md bg-[var(--color-surface-muted)] px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-[var(--color-text-subtle)] ring-1 ring-[var(--color-border-default)]/80">
-                        {badge}
-                    </span>
-                    <p className="mt-2 line-clamp-2 text-sm font-extrabold leading-snug text-[var(--color-text-strong)] md:text-[15px]">
-                        {item.game}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold text-[var(--color-text-muted)]">{maskUsername(item.user)}</p>
-                    <div className="mt-2 flex flex-wrap items-end justify-between gap-2">
-                        <span className="text-lg font-black tabular-nums tracking-tight text-[var(--color-brand-secondary)] md:text-xl">
+                <div className="flex min-w-0 flex-1 items-center gap-3 md:gap-4">
+                    <div className="min-w-0 flex-1 flex flex-col">
+                        <span className="inline-flex w-fit max-w-full rounded-md bg-[var(--color-surface-muted)] px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-[var(--color-text-subtle)] ring-1 ring-[var(--color-border-default)]/80">
+                            {badge}
+                        </span>
+                        <p className="mt-2 line-clamp-2 text-sm font-extrabold leading-snug text-[var(--color-text-strong)] md:text-[15px]">
+                            {item.game}
+                        </p>
+                        <p className="mt-1 text-xs font-semibold text-[var(--color-text-muted)]">{maskUsername(item.user)}</p>
+                        <span className="mt-2 text-lg font-black tabular-nums tracking-tight text-[var(--color-brand-secondary)] md:text-xl">
                             {item.amount}
                         </span>
-                        <span className="flex items-center gap-1 text-[11px] font-semibold text-[var(--color-brand-secondary)]">
-                            <Clock size={12} className="shrink-0 opacity-80" aria-hidden />
-                            {item.timeAgo}
-                        </span>
                     </div>
+                    <span className="flex shrink-0 items-center gap-1 text-[11px] font-semibold text-[var(--color-brand-secondary)]">
+                        <Clock size={12} className="shrink-0 opacity-80" aria-hidden />
+                        {item.timeAgo}
+                    </span>
                 </div>
             </div>
         </li>

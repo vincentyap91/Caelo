@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
-import { GameCardFavouriteButton } from './game/GameCardActions';
+import LobbyProviderCard from './game/LobbyProviderCard';
+import { navigateToGameDetail } from '../utils/gameDetailRoutes';
 import lotteryBanner from '../assets/lottery-banner.jpg';
 import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 
@@ -16,7 +17,7 @@ const providerLogos = [
     },
 ];
 
-export default function LotteryPage() {
+export default function LotteryPage({ onNavigate }) {
     const [query, setQuery] = useState('');
     const [bannerProvider, setBannerProvider] = useState(
         () => providerLogos[0]
@@ -50,13 +51,14 @@ export default function LotteryPage() {
     }, []);
 
     const PlayButton = ({ className = '' }) => (
-        <a
-            href="#"
+        <button
+            type="button"
+            onClick={() => navigateToGameDetail(onNavigate, bannerProvider.name, 'Lottery')}
             className={`btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-black tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base ${className}`}
             aria-label={`Play ${bannerProvider.name}`}
         >
             PLAY LOTTERY
-        </a>
+        </button>
     );
 
     return (
@@ -121,13 +123,14 @@ export default function LotteryPage() {
                                     <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-[1.35] text-[rgb(42_53_72)] md:block md:mt-4">
                                         Pick your numbers, chase the jackpot.
                                     </p>
-                                    <a
-                                        href="#"
+                                    <button
+                                        type="button"
+                                        onClick={() => navigateToGameDetail(onNavigate, bannerProvider.name, 'Lottery')}
                                         className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-[12px] font-black tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] max-md:self-start sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-[13px] md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
                                         aria-label={`Play ${bannerProvider.name}`}
                                     >
                                         PLAY LOTTERY
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -163,43 +166,17 @@ export default function LotteryPage() {
             <section className="w-full max-w-screen-2xl mx-auto px-4 md:px-8 mt-5 md:mt-6">
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
                     {filteredProviders.map((provider, index) => (
-                        <div
+                        <LobbyProviderCard
                             key={provider.name}
-                            className={`group relative flex h-[86px] items-center justify-center rounded-3xl border bg-[var(--color-page-default)] px-3 shadow-[var(--shadow-live-provider)] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-live-provider-hover)] md:h-[104px] ${
-                                bannerProvider.name === provider.name
-                                    ? 'border-[var(--color-brand-deep)] ring-2 ring-[rgb(31_93_168_/_0.25)]'
-                                    : 'border-[rgb(209_216_229)] hover:border-[rgb(183_194_215)]'
-                            }`}
-                        >
-                            <button
-                                type="button"
-                                onClick={() => setBannerProvider(provider)}
-                                className="absolute inset-0 z-0 rounded-3xl"
-                                aria-label={`Show ${provider.name} in banner`}
-                            />
-                            {provider.featured && (
-                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-[10px] font-black tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">
-                                    HOT
-                                </span>
-                            )}
-                            <GameCardFavouriteButton
-                                category="lottery"
-                                name={provider.name}
-                                provider=""
-                                imgUrl={typeof provider.src === 'string' ? provider.src : ''}
-                                navigatePage="lottery"
-                                size="sm"
-                                className="rounded-lg"
-                            />
-                            <div className="pointer-events-none relative z-10 flex h-full w-full items-center justify-center py-2">
-                                <img
-                                    src={provider.src}
-                                    alt={provider.name}
-                                    loading={index < 12 ? 'eager' : 'lazy'}
-                                    className="max-h-[28px] max-w-full object-contain saturate-110 contrast-110 transition duration-300 group-hover:scale-105 md:max-h-[40px]"
-                                />
-                            </div>
-                        </div>
+                            provider={provider}
+                            index={index}
+                            selected={bannerProvider.name === provider.name}
+                            onSelect={setBannerProvider}
+                            gameProvider="Lottery"
+                            favouriteCategory="lottery"
+                            navigatePage="lottery"
+                            onNavigate={onNavigate}
+                        />
                     ))}
                 </div>
                 {filteredProviders.length === 0 && (
