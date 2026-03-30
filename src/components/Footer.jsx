@@ -1,9 +1,22 @@
 import React from 'react';
 import FooterPaymentMethods from './FooterPaymentMethods';
+import footerBeGambleAware from '../assets/footer/18_begambleaware.png';
+import footerBmmTestlabs from '../assets/footer/bmmtestlabs.png';
+import footerLogoGli from '../assets/footer/GLI-Logo-English.svg';
+import footerLogoITech from '../assets/footer/iTech-Logo.svg';
+import footerPagcor from '../assets/footer/PAGCORlogos.png';
+
+/** Order: testing / compliance marks, then jurisdiction, then responsible-gaming mark — all from `src/assets/footer` */
+const CERTIFICATION_LOGOS = [
+    { key: 'itech', src: footerLogoITech, alt: 'iTech Labs' },
+    { key: 'gli', src: footerLogoGli, alt: 'Gaming Laboratories International (GLI)' },
+    { key: 'bmm', src: footerBmmTestlabs, alt: 'BMM Testlabs' },
+    { key: 'pagcor', src: footerPagcor, alt: 'PAGCOR' },
+    { key: 'begambleaware', src: footerBeGambleAware, alt: 'BeGambleAware' },
+];
 
 export default function Footer() {
     const links = ['About Us', 'Live Chat', 'Referral', 'Terms & Conditions', 'Follow Us'];
-    const certs = ['Curacao', 'bmm', 'iTechLabs', 'Godaddy', 'GLI', 'Verify'];
 
     return (
         <footer className="relative flex w-full flex-col border-t border-[rgb(168_226_251)] bg-[linear-gradient(180deg,var(--gradient-footer-start)_0%,var(--gradient-footer-end)_100%)] pb-6 pt-12">
@@ -44,9 +57,25 @@ export default function Footer() {
 
                     <div className="flex flex-col items-center gap-3">
                         <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--color-brand-primary)]">Certificated by</h4>
-                        <div className="flex gap-4 items-center">
-                            {certs.map((c, i) => (
-                                <span key={i} className="text-sm font-black italic text-[var(--color-brand-secondary)] opacity-80 mix-blend-color-burn">{c}</span>
+                        <div
+                            className="flex max-w-full flex-wrap items-center justify-center gap-x-4 gap-y-3.5 px-1 sm:gap-x-5 sm:gap-y-4 md:gap-x-6"
+                            role="list"
+                            aria-label="Certification badges"
+                        >
+                            {CERTIFICATION_LOGOS.map(({ key, src, alt }) => (
+                                <div
+                                    key={key}
+                                    className="flex h-8 shrink-0 items-center justify-center sm:h-9 md:h-10"
+                                    role="listitem"
+                                >
+                                    <img
+                                        src={src}
+                                        alt={alt}
+                                        className="h-full w-auto max-w-[5.25rem] object-contain object-center opacity-90 sm:max-w-[6rem] md:max-w-[6.75rem]"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </div>
                             ))}
                         </div>
                     </div>
