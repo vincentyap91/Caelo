@@ -405,7 +405,7 @@ export default function VipPage() {
                             items={vipTabs}
                             value={activeTab}
                             onChange={setActiveTab}
-                            gapClassName="gap-3"
+                            gapClassName="!gap-3 sm:!gap-3"
                             ariaLabel="VIP programme sections"
                         />
                     </div>
