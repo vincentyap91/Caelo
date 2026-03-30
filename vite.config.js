@@ -1,16 +1,26 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import { viteSingleFile } from 'vite-plugin-singlefile'
 
-// https://vite.dev/config/
-// `base: './'` — relative asset URLs for static hosting.
-// `vite build --mode offline` — inlines JS/CSS into one HTML so `file://` works (browsers block ES modules on file URLs).
-export default defineConfig(({ mode }) => ({
-  base: './',
-  plugins: [
-    react(),
-    tailwindcss(),
-    ...(mode === 'offline' ? [viteSingleFile()] : []),
-  ],
-}))
+// https://v2.vitejs.dev/config/
+// `base: './'` keeps asset URLs relative for static hosting.
+// Offline mode emits one JS/CSS bundle first; `scripts/inline-dist.cjs` then inlines them
+// into `dist/index.html` so `file://` works without extra files.
+export default defineConfig(({ mode }) => {
+  const isOffline = mode === 'offline'
+
+  return {
+    base: './',
+    plugins: [react()],
+    build: isOffline
+      ? {
+          assetsInlineLimit: Number.MAX_SAFE_INTEGER,
+          cssCodeSplit: false,
+          rollupOptions: {
+            output: {
+              inlineDynamicImports: true,
+            },
+          },
+        }
+      : undefined,
+  }
+})
