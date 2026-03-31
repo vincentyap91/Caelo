@@ -17,6 +17,8 @@ export default function LobbyProviderCard({
     onNavigate,
     /** Override HOT visibility; default uses `provider.featured`. */
     showHotBadge,
+    /** When set, Play CTA runs this instead of navigating to game detail (e.g. launch modal). */
+    onPlayClick,
 }) {
     const hot = showHotBadge ?? Boolean(provider.featured);
     const imgUrl = typeof provider.src === 'string' ? provider.src : '';
@@ -41,6 +43,7 @@ export default function LobbyProviderCard({
                 gameName={provider.name}
                 gameProvider={gameProvider}
                 onNavigate={onNavigate}
+                onPlayClick={onPlayClick}
             />
             {hot && (
                 <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-[10px] font-black tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">

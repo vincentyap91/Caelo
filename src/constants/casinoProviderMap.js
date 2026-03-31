@@ -13,4 +13,5 @@ export const menuToPageProviderName = {
     'YB Live': 'YeeBet',
     'World Entertainment': 'WECasino',
     'MT Live': 'MT',
+    Ezugi: 'Ezugi',
 };

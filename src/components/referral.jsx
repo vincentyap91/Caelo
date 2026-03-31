@@ -89,15 +89,15 @@ function ReferralBenefitPromoCards() {
     ];
 
     return (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
             {promoCards.map((card) => (
                 <article
                     key={card.title}
-                    className={`relative overflow-hidden rounded-[var(--radius-panel-lg)] border border-[var(--color-border-brand)] ${card.surface} p-5 shadow-[var(--shadow-register-card)] before:pointer-events-none before:absolute before:inset-0 before:content-[''] md:p-6`}
+                    className={`relative overflow-hidden rounded-[var(--radius-panel-lg)] border border-[var(--color-border-brand)] ${card.surface} p-4 shadow-[var(--shadow-register-card)] before:pointer-events-none before:absolute before:inset-0 before:content-[''] md:p-5`}
                 >
                     <div className={`pointer-events-none absolute inset-0 ${card.glow}`} />
-                    <div className="relative flex min-h-[168px] items-center gap-4 md:min-h-[186px] md:gap-5">
-                        <div className="flex h-[86px] w-[86px] shrink-0 items-center justify-center md:h-[102px] md:w-[102px]">
+                    <div className="relative flex min-h-[130px] items-center gap-3 md:min-h-[144px] md:gap-4">
+                        <div className="flex h-[68px] w-[68px] shrink-0 items-center justify-center md:h-[80px] md:w-[80px]">
                             <img
                                 src={card.icon}
                                 alt=""
@@ -107,10 +107,10 @@ function ReferralBenefitPromoCards() {
                             />
                         </div>
                         <div className="max-w-[24rem]">
-                            <h3 className={`text-xl font-black leading-tight tracking-tight md:text-2xl ${card.accent}`}>
+                            <h3 className="text-base font-extrabold leading-tight tracking-[0.01em] text-[var(--color-text-strong)] md:text-[1.35rem]">
                                 {card.title}
                             </h3>
-                            <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-main)] md:text-base">
+                            <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-[0.95rem]">
                                 Invite friends to receive{' '}
                                 <span className="font-semibold text-[var(--color-text-strong)]">
                                     {card.description.replace('Invite friends to receive ', '')}
@@ -126,20 +126,20 @@ function ReferralBenefitPromoCards() {
 
 function ReferralGuestState({ onLoginClick }) {
     return (
-        <div className="space-y-5 md:space-y-6">
-            <section className="relative overflow-hidden rounded-[var(--radius-shell)] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] px-6 py-10 text-center shadow-[var(--shadow-register-card)] md:px-8 md:py-12">
+        <div className="space-y-4">
+            <section className="relative overflow-hidden rounded-[var(--radius-shell)] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] px-5 py-7 text-center shadow-[var(--shadow-register-card)] md:px-6 md:py-8">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgb(96_165_250_/_0.1),transparent_55%)]" />
-                <div className="relative mx-auto max-w-[860px]">
-                    <h2 className="text-xl font-black tracking-tight text-[rgb(18_63_128)] sm:text-2xl md:text-[var(--text-page-title-md)]">
+                <div className="relative mx-auto max-w-[720px]">
+                    <h2 className="text-lg font-extrabold tracking-[0.01em] text-[var(--color-text-strong)] sm:text-xl md:text-[1.65rem]">
                         Log In to View Your Unique Referral Info
                     </h2>
-                    <p className="mx-auto mt-4 max-w-[760px] text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-5 md:text-base">
+                    <p className="mx-auto mt-2.5 max-w-[620px] text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-3">
                         Access your personal referral code, invite link, QR code, and reward tracking after signing in.
                     </p>
                     <button
                         type="button"
                         onClick={onLoginClick}
-                        className="btn-theme-cta mt-7 inline-flex min-h-12 min-w-[220px] items-center justify-center rounded-xl px-8 py-3 text-base font-black tracking-wide shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105 md:min-h-[52px] md:px-10"
+                        className="btn-theme-cta mt-4 inline-flex min-h-11 min-w-[188px] items-center justify-center rounded-xl px-6 py-2.5 text-sm font-black tracking-wide shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105 md:min-h-11 md:px-8"
                     >
                         Login Now!
                     </button>

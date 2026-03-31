@@ -33,14 +33,15 @@ export function GameCardPlayBar({
     const handleClick = (e) => {
         e.stopPropagation();
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        if (onPlayClick) {
+            e.preventDefault();
+            onPlayClick(e);
+            return;
+        }
         if (onNavigate && resolvedSlug) {
             e.preventDefault();
             onNavigate('game-detail', { gameSlug: resolvedSlug });
             return;
-        }
-        if (onPlayClick) {
-            e.preventDefault();
-            onPlayClick(e);
         }
     };
 

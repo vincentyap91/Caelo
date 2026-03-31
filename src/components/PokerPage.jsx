@@ -53,10 +53,14 @@ export default function PokerPage({ onNavigate }) {
         return () => observer.disconnect();
     }, []);
 
+    const handlePlayPoker = () => {
+        navigateToGameDetail(onNavigate, bannerProvider.name, 'Poker');
+    };
+
     const PlayButton = ({ className = '' }) => (
         <button
             type="button"
-            onClick={() => navigateToGameDetail(onNavigate, bannerProvider.name, 'Poker')}
+            onClick={handlePlayPoker}
             className={`btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-black tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base ${className}`}
             aria-label={`Play ${bannerProvider.name}`}
         >
@@ -128,7 +132,7 @@ export default function PokerPage({ onNavigate }) {
                                     </p>
                                     <button
                                         type="button"
-                                        onClick={() => navigateToGameDetail(onNavigate, bannerProvider.name, 'Poker')}
+                                        onClick={handlePlayPoker}
                                         className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-[12px] font-black tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] max-md:self-start sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-[13px] md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
                                         aria-label={`Play ${bannerProvider.name}`}
                                     >

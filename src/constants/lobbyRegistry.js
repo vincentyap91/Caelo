@@ -16,6 +16,7 @@ import yeebetLogo from '../assets/yeebet-min-202506201536311077-2025062500331633
 import wecasinoLogo from '../assets/worldent-min-202507141449569526-202507170806057662.png';
 import mtLogo from '../assets/download-202506250034489694.png';
 import tfGamingLogo from '../assets/tf-gaming.webp';
+import { ezugiMenuTile } from './liveCasinoMenuTileAssets';
 import evolutionPokerLogo from '../assets/evolution-202505140444284259-202506242322200281.svg';
 import pragmaticPokerLogo from '../assets/pp-live-casino-202505140447187176-202506240700358930.svg';
 
@@ -38,6 +39,7 @@ export const LIVE_CASINO_LOBBIES = [
     { name: 'YeeBet', provider: 'Live Casino', imgUrl: yeebetLogo, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
     { name: 'WECasino', provider: 'Live Casino', imgUrl: wecasinoLogo, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
     { name: 'MT', provider: 'Live Casino', imgUrl: mtLogo, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
+    { name: 'Ezugi', provider: 'Live Casino', imgUrl: ezugiMenuTile, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
 ];
 
 /** @type {LobbyGame[]} */

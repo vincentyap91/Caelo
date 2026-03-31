@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 
 const FLAG_CDN = 'https://flagcdn.com/w40';
 const LANGUAGES = [
-    { code: 'en-us', label: 'English', flagCode: 'gb', short: 'GB' },
+    { code: 'en-us', label: 'English', flagCode: 'gb', short: 'EN' },
     { code: 'zh-cn', label: '简体中文', flagCode: 'cn', short: 'CN' },
     { code: 'zh-tw', label: '繁体中文', flagCode: 'tw', short: 'TW' },
     { code: 'th-th', label: 'ภาษาไทย', flagCode: 'th', short: 'TH' },

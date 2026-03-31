@@ -17,6 +17,7 @@ import Promos from './components/Promos';
 import LoadingPage from './components/LoadingPage';
 const LiveCasinoPage = React.lazy(() => import('./components/LiveCasinoPage'));
 const SlotsPage = React.lazy(() => import('./components/SlotsPage'));
+const AllGamesPage = React.lazy(() => import('./components/AllGamesPage'));
 const SportsPage = React.lazy(() => import('./components/SportsPage'));
 const EsportsPage = React.lazy(() => import('./components/EsportsPage'));
 const LotteryPage = React.lazy(() => import('./components/LotteryPage'));
@@ -65,6 +66,9 @@ function resolvePageFromPath() {
   }
   if (pathname === '/slots') {
     return 'slots';
+  }
+  if (pathname === '/all-games' || pathname === '/games') {
+    return 'all-games';
   }
   if (pathname === '/sports') {
     return 'sports';
@@ -350,6 +354,7 @@ function AppInner() {
       'live-casino': '/casino',
       'game-detail': '/game',
       slots: '/slots',
+      'all-games': '/all-games',
       sports: '/sports',
       'e-sports': '/e-sports',
       lottery: '/lottery',
@@ -487,12 +492,14 @@ function AppInner() {
           onNavigate={handleNavigate}
           gameDetailSlug={parseGameDetailSlugFromPathname(routePath)}
         />
+      ) : page === 'all-games' ? (
+        <AllGamesPage onNavigate={handleNavigate} />
       ) : page === 'slots' ? (
         <SlotsPage selectedProviderIdFromMenu={selectedSlotsProviderIdFromMenu} onNavigate={handleNavigate} />
       ) : page === 'sports' ? (
         <SportsPage onNavigate={handleNavigate} />
       ) : page === 'e-sports' ? (
-        <EsportsPage />
+        <EsportsPage onNavigate={handleNavigate} />
       ) : page === 'lottery' ? (
         <LotteryPage onNavigate={handleNavigate} />
       ) : page === 'fishing' ? (
