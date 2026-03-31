@@ -28,7 +28,10 @@ const lotteryProviders = [
         name: '93Connect',
         logo: ninetyThreeConnectLightmodeLogo,
         games: [
-            { name: '93Connect', imgUrl: 'https://pksoftcdn.azureedge.net/games/93Connect/LOBBY.png' },
+            {
+                name: '93Connect',
+                imgUrl: 'https://pksoftcdn.azureedge.net/games/93Connect/LOBBY.png',
+            },
             { name: 'KENO', imgUrl: 'https://pksoftcdn.azureedge.net/media/keno_gameicon_en_200x200-202410231423355657.png' },
             { name: 'COIN MINI', imgUrl: LOTTERY_GAME_FALLBACK_IMAGE },
             { name: 'DRAGON TIGER', imgUrl: 'https://pksoftcdn.azureedge.net/media/dragontiger_gameicon_200x200_en-202410231421552615.png' },
@@ -55,7 +58,19 @@ const lotteryProviders = [
     },
 ];
 
-function LotteryGameCard({ game, providerName, onNavigate }) {
+const NINETY_THREE_CONNECT_PROVIDER_ID = '93connect';
+
+function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
+    const src = game.imgUrl || LOTTERY_GAME_FALLBACK_IMAGE;
+    const is93Connect = providerId === NINETY_THREE_CONNECT_PROVIDER_ID;
+    /** 93Connect only: full-bleed cover (placeholders + wide lobby); use `imageFit: 'contain'` to letterbox. */
+    const use93ConnectFill = is93Connect && game.imageFit !== 'contain';
+
+    const onImgError = (event) => {
+        event.currentTarget.onerror = null;
+        event.currentTarget.src = LOTTERY_GAME_FALLBACK_IMAGE;
+    };
+
     return (
         <div className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg">
             <button
@@ -65,16 +80,14 @@ function LotteryGameCard({ game, providerName, onNavigate }) {
                 aria-label={`Open ${game.name}`}
             />
 
-            <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-t-2xl bg-[linear-gradient(180deg,rgb(13_33_71)_0%,rgb(10_28_63)_100%)] p-4 sm:h-52 sm:p-5 xl:h-56">
+            {use93ConnectFill ? (
+            <div className="relative h-44 overflow-hidden rounded-t-2xl bg-[linear-gradient(180deg,rgb(13_33_71)_0%,rgb(10_28_63)_100%)] sm:h-52 xl:h-56">
                 <img
-                    src={game.imgUrl || LOTTERY_GAME_FALLBACK_IMAGE}
+                    src={src}
                     alt={game.name}
                     loading="lazy"
-                    className="h-full w-full max-w-full rounded-[inherit] object-contain transition-transform duration-500 md:group-hover:scale-[1.03]"
-                    onError={(event) => {
-                        event.currentTarget.onerror = null;
-                        event.currentTarget.src = LOTTERY_GAME_FALLBACK_IMAGE;
-                    }}
+                    className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 md:group-hover:scale-[1.03]"
+                    onError={onImgError}
                 />
                 <GameCardFavouriteButton
                     category="lottery"
@@ -90,6 +103,30 @@ function LotteryGameCard({ game, providerName, onNavigate }) {
                     onNavigate={onNavigate}
                 />
             </div>
+            ) : (
+            <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-t-2xl bg-[linear-gradient(180deg,rgb(13_33_71)_0%,rgb(10_28_63)_100%)] p-4 sm:h-52 sm:p-5 xl:h-56">
+                <img
+                    src={src}
+                    alt={game.name}
+                    loading="lazy"
+                    className="h-full w-full max-w-full rounded-[inherit] object-contain transition-transform duration-500 md:group-hover:scale-[1.03]"
+                    onError={onImgError}
+                />
+                <GameCardFavouriteButton
+                    category="lottery"
+                    name={game.name}
+                    provider={providerName}
+                    imgUrl={game.imgUrl || LOTTERY_GAME_FALLBACK_IMAGE}
+                    navigatePage="lottery"
+                />
+                <GameCardPlayBar
+                    showOnHover
+                    gameName={game.name}
+                    gameProvider={providerName}
+                    onNavigate={onNavigate}
+                />
+            </div>
+            )}
 
             <div className="p-2 md:p-3">
                 <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>
@@ -213,6 +250,7 @@ export default function LotteryPage({ onNavigate }) {
                             key={`${activeProvider.id}-${game.name}`}
                             game={game}
                             providerName={activeProvider.name}
+                            providerId={activeProvider.id}
                             onNavigate={onNavigate}
                         />
                     ))}

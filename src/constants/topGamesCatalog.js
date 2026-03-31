@@ -35,6 +35,16 @@ export const TOP_GAMES = [
         },
         'lottery',
     ),
+    withPage(
+        {
+            name: '93Connect',
+            provider: 'Lottery',
+            imgUrl: 'https://pksoftcdn.azureedge.net/games/93Connect/LOBBY.png',
+            /** Wide lobby art — same as LotteryPage; overrides All Games `contain` for lottery tiles. */
+            imageFit: 'cover',
+        },
+        'lottery',
+    ),
 ].filter((entry) => entry?.name && entry?.provider && entry?.imgUrl);
 
 export const TOP_GAMES_DEFAULT_VISIBLE = 6;
