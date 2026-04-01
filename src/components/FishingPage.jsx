@@ -6,6 +6,7 @@ import PromotionStyleTabs from './PromotionStyleTabs';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
 import { FISHING_GAMES as fishingGames } from '../constants/gameCatalogs';
+import WalletRebateSummaryBar from './WalletRebateSummaryBar';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
@@ -91,6 +92,10 @@ export default function FishingPage({ onNavigate }) {
                         </div>
                     </div>
                 </div>
+            </section>
+
+            <section className={`${pageContainerClass} mt-4 md:mt-5`}>
+                <WalletRebateSummaryBar />
             </section>
 
             <section className={`${pageContainerClass} mt-4`}>

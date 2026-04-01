@@ -191,6 +191,7 @@ function AppInner() {
   });
   const [selectedCasinoProviderIdFromMenu, setSelectedCasinoProviderIdFromMenu] = useState(null);
   const [selectedSlotsProviderIdFromMenu, setSelectedSlotsProviderIdFromMenu] = useState(null);
+  const [pageNavigationState, setPageNavigationState] = useState(null);
   const lastActivityRef = useRef(Date.now());
 
   const redirectToPublicHome = useCallback(({ openLogin = false, replace = true } = {}) => {
@@ -290,6 +291,7 @@ function AppInner() {
         return;
       }
       setPage(nextPage);
+      setPageNavigationState(null);
       setRoutePath(window.location.pathname);
     };
     window.addEventListener('popstate', onPopState);
@@ -385,6 +387,7 @@ function AppInner() {
     }
     const nextPath = pathByPage[resolvedPage] ?? pathByPage[targetPage] ?? '/';
     setPage(resolvedPage);
+    setPageNavigationState(options ?? null);
 
     const currentPath = window.location.pathname;
     let fullUrl = nextPath;
@@ -479,7 +482,7 @@ function AppInner() {
             <FeaturesRow />
             <GameCategories onNavigate={handleNavigate} />
             <TopGames onNavigate={handleNavigate} />
-            <VipTier />
+            <VipTier onNavigate={handleNavigate} />
             <HomeLiveActivity />
             <AppDownload />
             <Promos onNavigate={handleNavigate} />
@@ -567,7 +570,7 @@ function AppInner() {
         </AccountLayout>
       ) : page === 'withdrawal' ? (
         <AccountLayout activePage="withdrawal" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
-          <WithdrawalPage onNavigate={handleNavigate} />
+          <WithdrawalPage onNavigate={handleNavigate} navigationState={pageNavigationState} />
         </AccountLayout>
       ) : (
         <RegisterPage

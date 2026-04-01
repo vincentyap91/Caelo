@@ -253,6 +253,7 @@
       transition: none;
     }
   }
+
 }
 
 @layer utilities {
@@ -374,6 +375,55 @@
       linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 18%, transparent 34%),
       linear-gradient(180deg, #0b3164 0%, #07254d 100%);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .profile-menu-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #5a8fcb #0a2c57;
+  }
+
+  .profile-menu-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .profile-menu-scroll::-webkit-scrollbar-track {
+    border-radius: 9999px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%),
+      linear-gradient(180deg, #0a315f 0%, #08264b 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(137, 197, 255, 0.08),
+      inset 0 6px 12px rgba(0, 0, 0, 0.18);
+  }
+
+  .profile-menu-scroll::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 9999px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 100%),
+      linear-gradient(180deg, #78b8ff 0%, #4d88d3 45%, #356fb7 100%);
+    background-clip: padding-box, border-box;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 2px 8px rgba(0, 0, 0, 0.18);
+  }
+
+  .profile-menu-scroll::-webkit-scrollbar-thumb:hover {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.08) 100%),
+      linear-gradient(180deg, #8ac6ff 0%, #5b97e0 48%, #3f7dc7 100%);
+    background-clip: padding-box, border-box;
+  }
+
+  .profile-menu-scroll::-webkit-scrollbar-thumb:active {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 100%),
+      linear-gradient(180deg, #6caef6 0%, #467fc8 55%, #3266aa 100%);
+    background-clip: padding-box, border-box;
+  }
+
+  .profile-menu-scroll::-webkit-scrollbar-corner {
+    background: transparent;
   }
 
   .section-header-theme {

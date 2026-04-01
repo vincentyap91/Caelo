@@ -3,8 +3,10 @@ import { AlertCircle, ArrowRight, Check, ChevronDown, HelpCircle } from 'lucide-
 import PaymentConfirmModal from './PaymentConfirmModal';
 import RolloverRequirementModal from './RolloverRequirementModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
+import RolloverStatusCard from './RolloverStatusCard';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
 import { PUSH_EVENT } from '../constants/pushNotificationCopy';
+import { DEMO_ROLLOVER_STATUS, getRolloverProgressPercent } from '../constants/rolloverStatus';
 import eWalletImg from '../assets/e-wallet.png';
 import instantDepositImg from '../assets/instant-deposit.png';
 
@@ -48,11 +50,10 @@ const BANKS = [
 const PRESET_AMOUNTS = [100, 200, 500, 1000, 2000, 5000];
 const PROCESSING_COUNTDOWN_SECONDS = 5 * 60;
 
-/** When false, opening Withdrawal (nav/URL) and Confirm & Withdraw both show the rollover warning. Replace with API / account flag. */
-const IS_ROLLOVER_REQUIREMENT_MET = false;
-
-export default function WithdrawalPage({ onNavigate }) {
+export default function WithdrawalPage({ onNavigate, navigationState }) {
     const { showTransactionNotification, showPushNotification } = useActionNotifications();
+    const rolloverStatus = DEMO_ROLLOVER_STATUS;
+    const isRolloverRequirementMet = rolloverStatus.requirementMet;
     const [step, setStep] = useState(1);
     const [withdrawalMethod, setWithdrawalMethod] = useState('ewallet');
     const [selectedEwallet, setSelectedEwallet] = useState('');
@@ -96,7 +97,7 @@ export default function WithdrawalPage({ onNavigate }) {
             : selectedBank && bankAccountName.trim() && bankAccountNumber.trim()) && isValidAmount;
 
     const handleConfirmWithdraw = () => {
-        if (!IS_ROLLOVER_REQUIREMENT_MET) {
+        if (!isRolloverRequirementMet) {
             setRolloverWarningOpen(true);
             return;
         }
@@ -119,12 +120,6 @@ export default function WithdrawalPage({ onNavigate }) {
     };
 
     useEffect(() => {
-        if (!IS_ROLLOVER_REQUIREMENT_MET) {
-            setRolloverWarningOpen(true);
-        }
-    }, []);
-
-    useEffect(() => {
         if (processingCountdown == null || processingCountdown <= 0) return undefined;
         const t = setInterval(() => {
             setProcessingCountdown((prev) => (prev <= 1 ? null : prev - 1));
@@ -144,6 +139,12 @@ export default function WithdrawalPage({ onNavigate }) {
         prevCountdownRef.current = processingCountdown;
     }, [processingCountdown, showPushNotification]);
 
+    useEffect(() => {
+        if (navigationState?.openRolloverModal && !isRolloverRequirementMet) {
+            setRolloverWarningOpen(true);
+        }
+    }, [navigationState, isRolloverRequirementMet]);
+
     return (
         <div className="page-container">
             <PaymentConfirmModal
@@ -154,11 +155,12 @@ export default function WithdrawalPage({ onNavigate }) {
             <RolloverRequirementModal
                 open={rolloverWarningOpen}
                 onClose={() => setRolloverWarningOpen(false)}
-                progressPercent={0}
-                latestTopUpBonus="1.00"
-                latestEventAt="2026-03-24 16:14:23"
-                remainingCurrent="0.00"
-                remainingTarget="1.00"
+                progressSectionTitle={`${rolloverStatus.title} Progress`}
+                progressPercent={getRolloverProgressPercent(rolloverStatus)}
+                latestTopUpBonus={rolloverStatus.latestQualifiedAmount}
+                latestEventAt={rolloverStatus.updatedAt}
+                remainingCurrent={rolloverStatus.remainingAmount}
+                remainingTarget={rolloverStatus.targetAmount}
             />
             <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
@@ -177,6 +179,12 @@ export default function WithdrawalPage({ onNavigate }) {
                 </button>
             </div>
 
+            {!isRolloverRequirementMet && (
+                <div className="mb-6">
+                    <RolloverStatusCard status={rolloverStatus} variant="warning" />
+                </div>
+            )}
+
             {processingCountdown != null && processingCountdown > 0 ? (
                 <ProcessingCountdownBanner
                     secondsLeft={processingCountdown}
@@ -186,7 +194,7 @@ export default function WithdrawalPage({ onNavigate }) {
             ) : (
             <>
             {/* Progress indicator */}
-            <div className="mb-8 overflow-x-auto py-2">
+            <div className="mb-8 overflow-x-auto overflow-y-visible px-1 py-3">
                 <div className="flex min-w-max items-center gap-0">
                     {WITHDRAWAL_STEPS.map((s, idx) => {
                         const isCompleted = step > s.id;

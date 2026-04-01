@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import PromotionStyleTabs from './PromotionStyleTabs';
 import ProviderLaunchModal from './ProviderLaunchModal';
+import PromotionWarningModal from './PromotionWarningModal';
 import LobbyProviderCard from './game/LobbyProviderCard';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
 import liveCasinoBanner from '../assets/live-casino.jpg';
@@ -21,8 +22,12 @@ import wecasinoLogo from '../assets/worldent-min-202507141449569526-202507170806
 import mtLogo from '../assets/download-202506250034489694.png';
 /** Compact grid mark; hero/menu tiles use `liveCasinoMenuTileAssets` (`ezugi-hero.png`). */
 import ezugiLogo from '../assets/live-casino/ezugi.webp';
+import afbGamingLogo from '../assets/live-casino/afb-logo.png';
+import ct855Logo from '../assets/live-casino/ct855.png';
 
 const EZUGI_PROVIDER_ID = 'ezugi';
+const AFB_PROVIDER_ID = 'afb-gaming';
+const CT855_PROVIDER_ID = 'ct855';
 
 const providerLogos = [
     { id: 'casino', name: 'W Casino', src: wcasinoLogo, categories: ['Baccarat', 'Game Shows'], featured: true },
@@ -33,6 +38,8 @@ const providerLogos = [
     { id: 'evolution', name: 'Evolution Gaming', src: evolutionLogo, categories: ['Roulette', 'Game Shows'], featured: true },
     { id: 'pragmatic-play', name: 'Pragmatic Play Live Casino', src: pragmaticLiveLogo, categories: ['Game Shows', 'Roulette'], featured: true },
     { id: EZUGI_PROVIDER_ID, name: 'Ezugi', src: ezugiLogo, categories: ['Baccarat', 'Roulette', 'Game Shows'], featured: true },
+    { id: 'afb-gaming', name: 'AFB Gaming', src: afbGamingLogo, categories: ['Baccarat', 'Roulette', 'Blackjack'], featured: true },
+    { id: CT855_PROVIDER_ID, name: 'CT855', src: ct855Logo, categories: ['Baccarat', 'Roulette', 'Dragon Tiger'], featured: true },
     { id: 'wm-casino', name: 'WM Casino', src: wmcasinoLogo, categories: ['Baccarat'], featured: false },
     { id: 'big-gaming', name: 'Big Gaming', src: biggamingLogo, categories: ['Game Shows'], featured: false },
     { id: 'allbet', name: 'AllBet', src: allbetLogo, categories: ['Blackjack', 'Baccarat'], featured: false },
@@ -49,11 +56,35 @@ const EZUGI_LAUNCH_CONFIG = {
     wallet: '201.00',
     membershipRebate: '0.00%',
 };
+const AFB_LAUNCH_CONFIG = {
+    title: 'AFB Gaming',
+    bannerImage:
+        'https://pksoftcdn.azureedge.net/media/1029x420_providerbanner_afbcasino-202408151024208680-202408151200309656.jpg',
+    wallet: '201.00',
+    membershipRebate: '0.00%',
+};
+const CT855_LAUNCH_CONFIG = {
+    title: 'CT855',
+    bannerImage: 'https://pksoftcdn.azureedge.net/media/1029x420_providerbanner_ct855-202409021036566678.jpg',
+    wallet: '201.00',
+    membershipRebate: '0.00%',
+};
+
+const LAUNCH_MODAL_BY_PROVIDER_ID = {
+    [EZUGI_PROVIDER_ID]: EZUGI_LAUNCH_CONFIG,
+    [AFB_PROVIDER_ID]: AFB_LAUNCH_CONFIG,
+    [CT855_PROVIDER_ID]: CT855_LAUNCH_CONFIG,
+};
+
+function resolveLaunchConfig(providerId) {
+    return LAUNCH_MODAL_BY_PROVIDER_ID[providerId] ?? null;
+}
 
 export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate }) {
     const [activeTag, setActiveTag] = useState('All');
     const [query, setQuery] = useState('');
     const [providerLaunchOpen, setProviderLaunchOpen] = useState(false);
+    const [promotionWarningOpen, setPromotionWarningOpen] = useState(false);
     const [bannerProvider, setBannerProvider] = useState(
         () => providerLogos.find((provider) => provider.name === 'SA Gaming') ?? providerLogos[0]
     );
@@ -88,13 +119,11 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
 
     const handleSelectProvider = (provider) => {
         setBannerProvider(provider);
-        if (provider.id === EZUGI_PROVIDER_ID) {
-            setProviderLaunchOpen(true);
-        }
+        if (resolveLaunchConfig(provider.id)) setProviderLaunchOpen(true);
     };
 
     const handlePlayLive = () => {
-        if (bannerProvider.id === EZUGI_PROVIDER_ID) {
+        if (resolveLaunchConfig(bannerProvider.id)) {
             setProviderLaunchOpen(true);
             return;
         }
@@ -102,8 +131,19 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
     };
 
     const handleStartProviderGame = () => {
+        setPromotionWarningOpen(true);
+    };
+
+    const handleCloseProviderLaunch = () => {
         setProviderLaunchOpen(false);
-        navigateToGameDetail(onNavigate, EZUGI_LAUNCH_CONFIG.title, 'Live Casino');
+        setPromotionWarningOpen(false);
+    };
+
+    const handleContinueEzugiLaunch = () => {
+        setPromotionWarningOpen(false);
+        setProviderLaunchOpen(false);
+        const launchCfg = resolveLaunchConfig(bannerProvider.id);
+        navigateToGameDetail(onNavigate, launchCfg?.title ?? bannerProvider.name, 'Live Casino');
     };
 
     useEffect(() => {
@@ -125,8 +165,8 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
             onClick={handlePlayLive}
             className={`btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-black tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base ${className}`}
             aria-label={
-                bannerProvider.id === EZUGI_PROVIDER_ID
-                    ? `Play ${EZUGI_LAUNCH_CONFIG.title}`
+                resolveLaunchConfig(bannerProvider.id)
+                    ? `Play ${resolveLaunchConfig(bannerProvider.id)?.title ?? bannerProvider.name}`
                     : `Play ${bannerProvider.name}`
             }
         >
@@ -140,12 +180,17 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
         >
             <ProviderLaunchModal
                 open={providerLaunchOpen}
-                onClose={() => setProviderLaunchOpen(false)}
-                title={EZUGI_LAUNCH_CONFIG.title}
-                bannerImage={EZUGI_LAUNCH_CONFIG.bannerImage}
-                wallet={EZUGI_LAUNCH_CONFIG.wallet}
-                membershipRebate={EZUGI_LAUNCH_CONFIG.membershipRebate}
+                onClose={handleCloseProviderLaunch}
+                title={(resolveLaunchConfig(bannerProvider.id) ?? EZUGI_LAUNCH_CONFIG).title}
+                bannerImage={(resolveLaunchConfig(bannerProvider.id) ?? EZUGI_LAUNCH_CONFIG).bannerImage}
+                wallet={(resolveLaunchConfig(bannerProvider.id) ?? EZUGI_LAUNCH_CONFIG).wallet}
+                membershipRebate={(resolveLaunchConfig(bannerProvider.id) ?? EZUGI_LAUNCH_CONFIG).membershipRebate}
                 onStartGame={handleStartProviderGame}
+            />
+            <PromotionWarningModal
+                open={promotionWarningOpen}
+                onClose={() => setPromotionWarningOpen(false)}
+                onContinue={handleContinueEzugiLaunch}
             />
 
             {showStickyPlayBar && (
@@ -274,7 +319,7 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                             navigatePage="live-casino"
                             onNavigate={onNavigate}
                             onPlayClick={
-                                provider.id === EZUGI_PROVIDER_ID
+                                resolveLaunchConfig(provider.id)
                                     ? () => {
                                           setBannerProvider(provider);
                                           setProviderLaunchOpen(true);

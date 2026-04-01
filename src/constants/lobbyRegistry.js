@@ -17,6 +17,8 @@ import wecasinoLogo from '../assets/worldent-min-202507141449569526-202507170806
 import mtLogo from '../assets/download-202506250034489694.png';
 import tfGamingLogo from '../assets/tf-gaming.webp';
 import { ezugiMenuTile } from './liveCasinoMenuTileAssets';
+import afbGamingLogo from '../assets/live-casino/afb-logo.png';
+import ct855Logo from '../assets/live-casino/ct855.png';
 import evolutionPokerLogo from '../assets/evolution-202505140444284259-202506242322200281.svg';
 import pragmaticPokerLogo from '../assets/pp-live-casino-202505140447187176-202506240700358930.svg';
 
@@ -40,6 +42,8 @@ export const LIVE_CASINO_LOBBIES = [
     { name: 'WECasino', provider: 'Live Casino', imgUrl: wecasinoLogo, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
     { name: 'MT', provider: 'Live Casino', imgUrl: mtLogo, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
     { name: 'Ezugi', provider: 'Live Casino', imgUrl: ezugiMenuTile, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
+    { name: 'AFB Gaming', provider: 'Live Casino', imgUrl: afbGamingLogo, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
+    { name: 'CT855', provider: 'Live Casino', imgUrl: ct855Logo, categoryLabel: 'Live Casino', categoryPage: 'live-casino', kind: 'lobby' },
 ];
 
 /** @type {LobbyGame[]} */

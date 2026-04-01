@@ -6,6 +6,7 @@ import lotteryBanner from '../assets/lottery-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
+import WalletRebateSummaryBar from './WalletRebateSummaryBar';
 
 const LOTTERY_GAME_FALLBACK_IMAGE = 'https://pksoftcdn.azureedge.net/media/placeholder_riocity-202408050928489215.jpg';
 const pageContainerClass = 'mx-auto w-full max-w-screen-2xl px-4 md:px-8';
@@ -189,6 +190,10 @@ export default function LotteryPage({ onNavigate }) {
                         </div>
                     </div>
                 </div>
+            </section>
+
+            <section className={`${pageContainerClass} mt-4 md:mt-5`}>
+                <WalletRebateSummaryBar />
             </section>
 
             <section className={`${pageContainerClass} mt-4`}>

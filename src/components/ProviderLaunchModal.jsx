@@ -56,42 +56,43 @@ export default function ProviderLaunchModal({
                 role="dialog"
                 aria-modal="true"
                 aria-label={`${title} launch`}
-                className="relative z-[1] flex max-h-[min(92vh,860px)] w-full max-w-[920px] flex-col overflow-hidden rounded-[24px] border border-[rgb(219_228_243)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
+                className="relative z-[1] flex max-h-[min(86vh,720px)] w-full max-w-[760px] flex-col overflow-hidden rounded-[22px] border border-[rgb(219_228_243)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex items-center justify-between gap-4 border-b border-[rgb(228_234_243)] px-5 py-4 sm:px-7">
-                    <h2 className="text-xl font-extrabold tracking-tight text-[var(--color-text-strong)] sm:text-2xl">
+                <div className="flex items-center justify-between gap-4 border-b border-[rgb(228_234_243)] px-5 py-3 sm:px-6">
+                    <h2 className="text-lg font-extrabold tracking-tight text-[var(--color-text-strong)] sm:text-xl">
                         {title}
                     </h2>
                     <button
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-default)] bg-white text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-default)] bg-white text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] sm:h-10 sm:w-10"
                     >
                         <X size={18} />
                     </button>
                 </div>
 
-                <div className="overflow-y-auto px-5 py-5 sm:px-7 sm:py-6">
-                    <div className="overflow-hidden rounded-[20px] border border-[rgb(228_234_243)] bg-[var(--color-surface-muted)] shadow-[0_6px_18px_rgba(15,23,42,0.05)]">
+                <div className="overflow-y-auto px-5 py-4 sm:px-6 sm:py-5">
+                    <div className="overflow-hidden rounded-[18px] border border-[rgb(228_234_243)] bg-[var(--color-surface-muted)] shadow-[0_6px_18px_rgba(15,23,42,0.05)]">
                         <img
                             src={bannerImage}
                             alt={`${title} banner`}
-                            className="block h-auto w-full object-cover"
+                            className="block w-full object-cover"
+                            style={{ aspectRatio: '1029 / 420' }}
                         />
                     </div>
 
-                    <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
                         <InfoCard label="Wallet" value={wallet} icon={Wallet} />
                         <InfoCard label="Membership Rebate" value={membershipRebate} icon={Percent} />
                     </div>
 
-                    <div className="mt-6 flex justify-center border-t border-[rgb(228_234_243)] pt-5 sm:pt-6">
+                    <div className="mt-4 flex justify-center border-t border-[rgb(228_234_243)] pt-4">
                         <button
                             type="button"
                             onClick={onStartGame}
-                            className="btn-theme-cta inline-flex min-h-12 min-w-[180px] items-center justify-center rounded-xl px-8 py-3 text-base font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta inline-flex min-h-11 min-w-[180px] items-center justify-center rounded-xl px-7 py-2.5 text-sm font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 sm:min-h-12 sm:px-8 sm:py-3 sm:text-base"
                         >
                             {startLabel}
                         </button>

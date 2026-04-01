@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
     Copy,
     Check,
@@ -28,9 +28,11 @@ import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasse
 import { useReferralData } from '../context/ReferralDataContext';
 import { REFERRAL_GAME_COMMISSION_ROWS } from '../constants/referralCommissionRates';
 import DownlineReferralsPanel from './referral/DownlineReferralsPanel';
+import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from './HorizontalScrollTabRow';
+import PromotionStyleTabs from './PromotionStyleTabs';
 import ReferralGameCommissionTable from './referral/ReferralGameCommissionTable';
 
-const affiliateTabs = ['Invite friends', 'My referrals', 'How it works'];
+const affiliateTabs = ['Invite Friends', 'My Referrals', 'My Rewards', 'How It Works'];
 
 // Placeholder data – replace with real user data when integrated
 const REFERRAL_CODE = '589092';
@@ -57,8 +59,94 @@ const gameCommissionItems = [
     { id: 'crash', name: 'Crash', icon: TrendingUp },
 ];
 
+const REWARD_HISTORY_FILTERS = [
+    { id: 'commission', label: 'Referral Commission Bonus' },
+    { id: 'deposit', label: 'Referral Deposit Bonus' },
+];
+
+function parseReferralMoney(value) {
+    const text = String(value ?? '').trim();
+    const match = text.match(/^([A-Za-z]+)\s*([\d,.-]+)/);
+    const currency = match?.[1] || 'PKR';
+    const amount = Number((match?.[2] || '0').replace(/,/g, ''));
+
+    return {
+        currency,
+        amount: Number.isFinite(amount) ? amount : 0,
+    };
+}
+
+function formatReferralMoney(currency, amount) {
+    return `${currency} ${Number(amount || 0).toLocaleString('en-US', {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3,
+    })}`;
+}
+
+function formatRewardHistoryDate(date) {
+    return new Intl.DateTimeFormat('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    }).format(date);
+}
+
+function createRewardSummary(title, totalValue, note, icon) {
+    const { currency, amount } = parseReferralMoney(totalValue);
+
+    return {
+        title,
+        currency,
+        today: 0,
+        thisMonth: amount,
+        totalClaimed: 0,
+        unclaimed: amount,
+        note,
+        icon,
+    };
+}
+
+function createInitialRewardHistory(currency) {
+    return {
+        commission: [
+            {
+                id: 'commission-pending-1',
+                date: '18 Mar 2026',
+                amount: formatReferralMoney(currency, 12),
+                status: 'Unclaimed',
+                claimedAt: '-',
+            },
+            {
+                id: 'commission-claimed-1',
+                date: '09 Mar 2026',
+                amount: formatReferralMoney(currency, 24),
+                status: 'Claimed',
+                claimedAt: '09 Mar 2026, 11:20',
+            },
+        ],
+        deposit: [
+            {
+                id: 'deposit-pending-1',
+                date: '15 Mar 2026',
+                amount: formatReferralMoney(currency, 8),
+                status: 'Unclaimed',
+                claimedAt: '-',
+            },
+            {
+                id: 'deposit-claimed-1',
+                date: '02 Mar 2026',
+                amount: formatReferralMoney(currency, 16),
+                status: 'Claimed',
+                claimedAt: '02 Mar 2026, 09:45',
+            },
+        ],
+    };
+}
+
 const tabButtonClasses = (selected) =>
-    `inline-flex min-h-[44px] items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-200 md:text-sm ${
+    `inline-flex min-h-[46px] shrink-0 whitespace-nowrap items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] transition-colors duration-200 sm:min-h-[44px] sm:px-4 sm:py-2.5 sm:text-xs md:text-sm ${
         selected
             ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)]'
             : 'border-transparent bg-transparent text-[var(--color-text-muted)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-strong)]'
@@ -248,7 +336,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                     </div>
                     <button
                         type="button"
-                        onClick={() => onSwitchTab?.('My referrals')}
+                        onClick={() => onSwitchTab?.('My Referrals')}
                         className="btn-theme-cta mt-auto inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
                     >
                         Downlines
@@ -344,6 +432,267 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
 
 function MyReferralsContent({ authUser, onLoginClick }) {
     return <DownlineReferralsPanel />;
+}
+
+function RewardSummaryCard({ reward, onClaim }) {
+    const claimDisabled = reward.unclaimed <= 0;
+
+    return (
+        <article className="surface-card rounded-2xl p-4 shadow-[var(--shadow-card-soft)] sm:p-5 md:p-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-5">
+                <div className="flex min-w-0 items-start gap-3.5">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(180deg,var(--gradient-soft-panel-start)_0%,var(--gradient-blue-panel-end)_100%)] p-2.5 shadow-[var(--shadow-subtle)] sm:h-12 sm:w-12">
+                        <img
+                            src={reward.icon}
+                            alt=""
+                            className="h-full w-full object-contain"
+                            loading="lazy"
+                            draggable={false}
+                        />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <h3 className="text-[17px] font-bold leading-tight text-[var(--color-text-strong)] md:text-lg">
+                            {reward.title}
+                        </h3>
+                        <p className="max-w-[28ch] text-sm leading-6 text-[var(--color-text-muted)] sm:max-w-[32ch] lg:max-w-none">
+                            Claim your available referral reward when ready.
+                        </p>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    onClick={onClaim}
+                    disabled={claimDisabled}
+                    className="btn-theme-cta inline-flex min-h-[44px] w-full shrink-0 items-center justify-center rounded-xl px-5 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105 sm:min-h-[42px] sm:w-auto sm:min-w-[118px] md:min-w-[120px] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+                >
+                    Claim
+                </button>
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:mt-5">
+                <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Today</p>
+                    <p className="mt-1.5 text-[15px] font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
+                        {formatReferralMoney(reward.currency, reward.today)}
+                    </p>
+                </div>
+                <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">This Month</p>
+                    <p className="mt-1.5 text-[15px] font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
+                        {formatReferralMoney(reward.currency, reward.thisMonth)}
+                    </p>
+                </div>
+                <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Total Claimed</p>
+                    <p className="mt-1.5 text-[15px] font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
+                        {formatReferralMoney(reward.currency, reward.totalClaimed)}
+                    </p>
+                </div>
+                <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Unclaimed</p>
+                    <p className="mt-1.5 text-[15px] font-bold text-[var(--color-accent-600)] sm:text-base md:text-lg">
+                        {formatReferralMoney(reward.currency, reward.unclaimed)}
+                    </p>
+                </div>
+            </div>
+
+            <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 py-3 text-sm text-[var(--color-text-main)]">
+                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
+                    <Info size={15} />
+                </span>
+                <span className="leading-6">{reward.note}</span>
+            </div>
+        </article>
+    );
+}
+
+function RewardsLoginRequiredState({ onLoginClick }) {
+    return (
+        <section className="surface-card rounded-2xl px-5 py-8 text-center shadow-[var(--shadow-card-soft)] md:px-6 md:py-10">
+            <div className="mx-auto max-w-[560px]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(180deg,var(--gradient-soft-panel-start)_0%,var(--gradient-blue-panel-end)_100%)] text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)]">
+                    <Gift size={24} />
+                </div>
+                <h2 className="mt-4 text-xl font-bold text-[var(--color-text-strong)] md:text-2xl">
+                    Login Required
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-base">
+                    Sign in to view your reward balances, claim bonuses, and check reward history.
+                </p>
+                <button
+                    type="button"
+                    onClick={onLoginClick}
+                    className="btn-theme-cta mt-5 inline-flex min-h-11 min-w-[160px] items-center justify-center rounded-xl px-6 text-sm font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                >
+                    Login Now
+                </button>
+            </div>
+        </section>
+    );
+}
+
+function rewardStatusClassName(status) {
+    if (status === 'Claimed') {
+        return 'bg-[color-mix(in_srgb,var(--color-success-main)_12%,white)] text-[var(--color-success-main)]';
+    }
+
+    if (status === 'Unclaimed') {
+        return 'bg-[color-mix(in_srgb,var(--color-brand-secondary)_16%,white)] text-[var(--color-brand-deep)]';
+    }
+
+    return 'bg-[var(--color-surface-subtle)] text-[var(--color-text-muted)]';
+}
+
+function RewardHistoryTable({ rows, rewardType }) {
+    const amountLabel = rewardType === 'deposit' ? 'Bonus Amount' : 'Commission Amount';
+
+    if (rows.length === 0) {
+        return (
+            <div className="flex flex-col items-center justify-center px-6 py-14 text-center">
+                <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-surface-subtle)] text-[var(--color-text-soft)]">
+                    <Gift size={24} />
+                </span>
+                <p className="mt-4 text-base font-semibold text-[var(--color-text-strong)]">No claim records yet</p>
+                <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+                    Claimed referral rewards will appear here.
+                </p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="overflow-x-auto">
+            <table className="w-full min-w-[640px] border-collapse text-sm">
+                <thead>
+                    <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
+                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Date</th>
+                        <th className="px-4 py-3 text-right text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{amountLabel}</th>
+                        <th className="px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Status</th>
+                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Claimed Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows.map((row) => (
+                        <tr
+                            key={row.id}
+                            className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
+                        >
+                            <td className="px-4 py-3.5 font-medium text-[var(--color-text-strong)]">{row.date}</td>
+                            <td className="px-4 py-3.5 text-right font-semibold text-[var(--color-accent-600)]">{row.amount}</td>
+                            <td className="px-4 py-3.5 text-center">
+                                <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${rewardStatusClassName(row.status)}`}>
+                                    {row.status}
+                                </span>
+                            </td>
+                            <td className="px-4 py-3.5 text-[var(--color-text-muted)]">{row.claimedAt}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
+function MyRewardsContent({ authUser, onLoginClick }) {
+    const {
+        totalCommissionBonus,
+        totalDepositBonus,
+        setTotalCommissionBonus,
+        setTotalDepositBonus,
+    } = useReferralData();
+    const initialCommissionReward = createRewardSummary(
+        'Referral Commission Bonus',
+        totalCommissionBonus,
+        'Bonus will be credited to Main Wallet.',
+        referralCommissionIcon,
+    );
+    const initialDepositReward = createRewardSummary(
+        'Referral Deposit Bonus',
+        totalDepositBonus,
+        'Bonus will be credited to Bonus Wallet (Coin).',
+        referralDepositIcon,
+    );
+    const [activeHistoryFilter, setActiveHistoryFilter] = useState('commission');
+    const [rewardSummaries, setRewardSummaries] = useState(() => ({
+        commission: initialCommissionReward,
+        deposit: initialDepositReward,
+    }));
+    const [rewardHistory, setRewardHistory] = useState(() => createInitialRewardHistory(initialDepositReward.currency || initialCommissionReward.currency));
+
+    const handleClaimReward = (rewardId) => {
+        const reward = rewardSummaries[rewardId];
+        if (!reward || reward.unclaimed <= 0) return;
+
+        const now = new Date();
+        const amountLabel = formatReferralMoney(reward.currency, reward.unclaimed);
+
+        setRewardSummaries((prev) => ({
+            ...prev,
+            [rewardId]: {
+                ...prev[rewardId],
+                totalClaimed: prev[rewardId].totalClaimed + prev[rewardId].unclaimed,
+                unclaimed: 0,
+            },
+        }));
+
+        setRewardHistory((prev) => ({
+            ...prev,
+            [rewardId]: [
+                {
+                    id: `${rewardId}-${now.getTime()}`,
+                    date: new Intl.DateTimeFormat('en-GB', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                    }).format(now),
+                    amount: amountLabel,
+                    status: 'Claimed',
+                    claimedAt: formatRewardHistoryDate(now),
+                },
+                ...prev[rewardId],
+            ],
+        }));
+
+        if (rewardId === 'commission') {
+            setTotalCommissionBonus(formatReferralMoney(reward.currency, 0));
+        } else {
+            setTotalDepositBonus(formatReferralMoney(reward.currency, 0));
+        }
+    };
+
+    if (!authUser) {
+        return <RewardsLoginRequiredState onLoginClick={onLoginClick} />;
+    }
+
+    return (
+        <div className="space-y-6">
+            <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+                <RewardSummaryCard reward={rewardSummaries.commission} onClaim={() => handleClaimReward('commission')} />
+                <RewardSummaryCard reward={rewardSummaries.deposit} onClaim={() => handleClaimReward('deposit')} />
+            </div>
+
+            <section className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
+                <div className="border-b border-[var(--color-border-default)] px-5 py-4 md:px-6">
+                    <h3 className="text-lg font-bold text-[var(--color-text-strong)] md:text-xl">Reward History</h3>
+                    <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+                        Review your past referral reward claims by reward type.
+                    </p>
+                </div>
+
+                <div className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 py-4 md:px-6">
+                    <PromotionStyleTabs
+                        items={REWARD_HISTORY_FILTERS}
+                        value={activeHistoryFilter}
+                        onChange={setActiveHistoryFilter}
+                        ariaLabel="Rewards history type"
+                        gapClassName="!gap-2"
+                    />
+                </div>
+
+                <RewardHistoryTable rows={rewardHistory[activeHistoryFilter] ?? []} rewardType={activeHistoryFilter} />
+            </section>
+        </div>
+    );
 }
 
 function GameCommissionRow({ item, isOpen, onToggle }) {
@@ -473,7 +822,8 @@ function HowItWorksContent() {
 }
 
 export default function ReferralPage({ authUser, onLoginClick }) {
-    const [activeTab, setActiveTab] = useState('Invite friends');
+    const topTabRefs = useRef({});
+    const [activeTab, setActiveTab] = useState('Invite Friends');
 
     return (
         <main className="w-full bg-[var(--color-page-default)] pb-14">
@@ -518,24 +868,40 @@ export default function ReferralPage({ authUser, onLoginClick }) {
             <section className="mx-auto mt-6 w-full max-w-screen-2xl px-[var(--space-page-x)] md:mt-8 md:px-[var(--space-page-x-md)]">
                 <div className="soft-blue-panel overflow-hidden rounded-[var(--radius-shell)] shadow-[var(--shadow-card-raised)]">
                     {/* Tab bar */}
-                    <div className="flex gap-1 border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 pt-4 md:px-6">
-                        {affiliateTabs.map((tab) => (
-                            <button
-                                key={tab}
-                                type="button"
-                                onClick={() => setActiveTab(tab)}
-                                className={tabButtonClasses(activeTab === tab)}
-                            >
-                                {tab}
-                            </button>
-                        ))}
+                    <div className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 pt-4 md:px-6">
+                        <HorizontalScrollTabRow
+                            className="-mx-2 px-2 md:-mx-0 md:px-0"
+                            innerClassName="!gap-2 md:!gap-1"
+                            innerListProps={{ role: 'tablist', 'aria-label': 'Referral sections' }}
+                        >
+                            {affiliateTabs.map((tab) => (
+                                <button
+                                    key={tab}
+                                    ref={(el) => {
+                                        if (el) topTabRefs.current[tab] = el;
+                                        else delete topTabRefs.current[tab];
+                                    }}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={activeTab === tab}
+                                    onClick={() => {
+                                        setActiveTab(tab);
+                                        scrollTabIntoViewSmooth(topTabRefs.current[tab]);
+                                    }}
+                                    className={tabButtonClasses(activeTab === tab)}
+                                >
+                                    {tab}
+                                </button>
+                            ))}
+                        </HorizontalScrollTabRow>
                     </div>
 
                     {/* Tab content */}
                     <div className="p-4 md:p-6 lg:p-8">
-                        {activeTab === 'Invite friends' && <InviteFriendsContent onSwitchTab={setActiveTab} authUser={authUser} onLoginClick={onLoginClick} />}
-                        {activeTab === 'My referrals' && <MyReferralsContent authUser={authUser} onLoginClick={onLoginClick} />}
-                        {activeTab === 'How it works' && <HowItWorksContent />}
+                        {activeTab === 'Invite Friends' && <InviteFriendsContent onSwitchTab={setActiveTab} authUser={authUser} onLoginClick={onLoginClick} />}
+                        {activeTab === 'My Referrals' && <MyReferralsContent authUser={authUser} onLoginClick={onLoginClick} />}
+                        {activeTab === 'My Rewards' && <MyRewardsContent authUser={authUser} onLoginClick={onLoginClick} />}
+                        {activeTab === 'How It Works' && <HowItWorksContent />}
                     </div>
                 </div>
             </section>

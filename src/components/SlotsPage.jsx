@@ -7,6 +7,7 @@ import PromotionStyleTabs from './PromotionStyleTabs';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
 import { SLOT_GAMES as slotGames } from '../constants/gameCatalogs';
 import { buildGameDetailSlug, navigateToGameDetail } from '../utils/gameDetailRoutes';
+import WalletRebateSummaryBar from './WalletRebateSummaryBar';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
@@ -127,6 +128,10 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                         </div>
                     </div>
                 </div>
+            </section>
+
+            <section className={`${pageContainerClass} mt-4 md:mt-5`}>
+                <WalletRebateSummaryBar />
             </section>
 
             <section className={`${pageContainerClass} mt-4`}>

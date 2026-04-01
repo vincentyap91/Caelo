@@ -135,7 +135,7 @@ export default function AccountSidebar({
         if (pageId === 'rebate') onNavigate?.('rebate');
         if (pageId === 'referral-commission') onNavigate?.('referral-commission');
         if (pageId === 'deposit') onNavigate?.('deposit');
-        if (pageId === 'withdrawal') onNavigate?.('withdrawal');
+        if (pageId === 'withdrawal') onNavigate?.('withdrawal', { openRolloverModal: true, source: 'account-sidebar' });
     };
 
     const username = authUser?.name || 'demo';

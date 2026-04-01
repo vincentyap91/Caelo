@@ -14,4 +14,5 @@ export const menuToPageProviderName = {
     'World Entertainment': 'WECasino',
     'MT Live': 'MT',
     Ezugi: 'Ezugi',
+    'AFB Gaming': 'AFB Gaming',
 };

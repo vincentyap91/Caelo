@@ -40,7 +40,7 @@ function VipLevelCard({ vp, className }) {
     );
 }
 
-export default function VipTier() {
+export default function VipTier({ onNavigate }) {
     const vipLevels = [
         // Normal, Bronze, Silver, Gold, Platinum, Diamond (from VIP Loyalty Tiers)
         { level: 1, tier: 'Normal', btn: '15,000', dep: '500', medal: normalMedal },
@@ -57,6 +57,8 @@ export default function VipTier() {
                 title="VIP Group"
                 icon={<Crown size={22} fill="currentColor" className="text-[var(--color-brand-secondary)]" />}
                 rightLink="More Details"
+                rightLinkTo="vip"
+                onNavigate={onNavigate}
             />
 
             <p className="mt-4 mb-8 max-w-[1000px] text-xs font-semibold leading-relaxed text-[var(--color-text-brand-soft)]">

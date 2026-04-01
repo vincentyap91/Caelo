@@ -464,46 +464,49 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                             <LanguageSwitcher value={language} onChange={setLanguage} />
 
                             {profileMenuOpen && (
-                                <div className="dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] w-[312px] overflow-hidden rounded-[30px] p-3.5 text-white">
+                                <div className="dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] flex max-h-[calc(100vh-5rem)] w-[312px] flex-col overflow-hidden rounded-[30px] p-3.5 text-white">
                                     <div className="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,#29bbff55_0%,transparent_72%)] pointer-events-none" />
 
-                                    <div className="relative flex items-start gap-3">
-                                        <div className="relative shrink-0">
-                                            <div className="flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-[rgb(86_185_255_/_0.5)] bg-[linear-gradient(180deg,#1a5bb1_0%,#0b3e80_100%)] shadow-[var(--inset-highlight-strong)]">
-                                                <UserCircle2 size={40} className="text-white/90" />
+                                    <div className="relative shrink-0">
+                                        <div className="relative flex items-start gap-3">
+                                            <div className="relative shrink-0">
+                                                <div className="flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-[rgb(86_185_255_/_0.5)] bg-[linear-gradient(180deg,#1a5bb1_0%,#0b3e80_100%)] shadow-[var(--inset-highlight-strong)]">
+                                                    <UserCircle2 size={40} className="text-white/90" />
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setProfileMenuOpen(false);
+                                                        onAccountDetailsClick?.();
+                                                    }}
+                                                    className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-[var(--color-nav-badge)] text-white shadow-[0_6px_12px_rgba(0,0,0,0.22)] transition hover:brightness-110"
+                                                    aria-label="Account details"
+                                                >
+                                                    <ScrollText size={12} />
+                                                </button>
                                             </div>
-                                            <button
-                                                type="button"
-                                                onClick={() => {
-                                                    setProfileMenuOpen(false);
-                                                    onAccountDetailsClick?.();
-                                                }}
-                                                className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-[var(--color-nav-badge)] text-white shadow-[0_6px_12px_rgba(0,0,0,0.22)] transition hover:brightness-110"
-                                                aria-label="Account details"
-                                            >
-                                                <ScrollText size={12} />
-                                            </button>
-                                        </div>
 
-                                        <div className="min-w-0 pt-1">
-                                            <p className="truncate text-xl font-extrabold leading-none text-white">
-                                                Hi, {authUser.name}
-                                            </p>
-                                            <div className="mt-1.5 space-y-1 text-xs text-[var(--color-nav-text-soft)]">
-                                                <p className="flex items-center gap-2">
-                                                    <span className="text-[var(--color-nav-text-accent)]">Joined:</span>
-                                                    <span className="font-semibold">08/01/2026</span>
+                                            <div className="min-w-0 pt-1">
+                                                <p className="truncate text-xl font-extrabold leading-none text-white">
+                                                    Hi, {authUser.name}
                                                 </p>
-                                                <p className="flex items-center gap-2">
-                                                    <span className="text-[var(--color-nav-text-accent)]">Player ID:</span>
-                                                    <span className="font-semibold">679129</span>
-                                                </p>
+                                                <div className="mt-1.5 space-y-1 text-xs text-[var(--color-nav-text-soft)]">
+                                                    <p className="flex items-center gap-2">
+                                                        <span className="text-[var(--color-nav-text-accent)]">Joined:</span>
+                                                        <span className="font-semibold">08/01/2026</span>
+                                                    </p>
+                                                    <p className="flex items-center gap-2">
+                                                        <span className="text-[var(--color-nav-text-accent)]">Player ID:</span>
+                                                        <span className="font-semibold">679129</span>
+                                                    </p>
+                                                </div>
+                                                <VipStatusPill level={vipLevel} theme="dark" className="mt-2" />
                                             </div>
-                                            <VipStatusPill level={vipLevel} theme="dark" className="mt-2" />
                                         </div>
                                     </div>
 
-                                    <div className="dark-nav-panel relative mt-4 rounded-[22px] p-3">
+                                    <div className="profile-menu-scroll relative mt-2 min-h-0 flex-1 overflow-y-auto pr-1">
+                                        <div className="dark-nav-panel relative rounded-[22px] p-3">
                                         <button
                                             type="button"
                                             onClick={() => toggleProfileSection('cashier')}
@@ -539,9 +542,9 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                 ))}
                                             </div>
                                         )}
-                                    </div>
+                                        </div>
 
-                                    <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
+                                        <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
                                         <button
                                             type="button"
                                             onClick={() => toggleProfileSection('account')}
@@ -581,9 +584,9 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                 ))}
                                             </div>
                                         )}
-                                    </div>
+                                        </div>
 
-                                    <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
+                                        <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
                                         <button
                                             type="button"
                                             onClick={() => toggleProfileSection('rewards')}
@@ -625,9 +628,9 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                 })}
                                             </div>
                                         )}
-                                    </div>
+                                        </div>
 
-                                    <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
+                                        <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
                                         <button
                                             type="button"
                                             onClick={() => toggleProfileSection('historyRecord')}
@@ -662,9 +665,9 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                 ))}
                                             </div>
                                         )}
-                                    </div>
+                                        </div>
 
-                                    <div className="dark-nav-panel mt-3 rounded-[22px] px-4 py-3 transition hover:border-[rgb(102_203_255_/_0.24)]">
+                                        <div className="dark-nav-panel mt-3 rounded-[22px] px-4 py-3 transition hover:border-[rgb(102_203_255_/_0.24)]">
                                         <button
                                             type="button"
                                             onClick={() => toggleProfileSection('settings')}
@@ -703,19 +706,20 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                 ))}
                                             </div>
                                         )}
-                                    </div>
+                                        </div>
 
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setProfileMenuOpen(false);
-                                            onLogout?.();
-                                        }}
-                                        className="mt-4 inline-flex items-center gap-2.5 text-base font-extrabold text-[var(--color-nav-gold)] transition hover:text-[var(--color-nav-gold-soft)]"
-                                    >
-                                        <LogOut size={16} />
-                                        Log Out
-                                    </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setProfileMenuOpen(false);
+                                                onLogout?.();
+                                            }}
+                                            className="mt-4 inline-flex min-h-[40px] items-center gap-2.5 text-base font-extrabold text-[var(--color-nav-gold)] transition hover:text-[var(--color-nav-gold-soft)]"
+                                        >
+                                            <LogOut size={16} />
+                                            Log Out
+                                        </button>
+                                    </div>
                                 </div>
                             )}
                         </div>

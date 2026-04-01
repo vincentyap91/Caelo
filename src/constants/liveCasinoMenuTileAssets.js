@@ -22,6 +22,8 @@ import saGamingImage from '../assets/live-casino/f63292375b3d6510a02ecd0751e8fef
 import ct855Image from '../assets/live-casino/f63800b44ca9b6f3d38f0aac7dfd1f2ec040af43-CtCycX3u.png';
 import pragmaticPlayImage from '../assets/live-casino/d962173d340d1f347cd214f08272d88852cf6e32-D12hrNcd.png';
 import ezugiMenuTile from '../assets/live-casino/ezugi-hero.png';
+import playtechCasinoTile from '../assets/live-casino/playtech-casino.png';
+import afbGamingMenuTile from '../assets/live-casino/afb-gaming.png';
 
 export {
     sexyBaccaratImage,
@@ -38,6 +40,8 @@ export {
     ct855Image,
     pragmaticPlayImage,
     ezugiMenuTile,
+    playtechCasinoTile,
+    afbGamingMenuTile,
 };
 
 /** Lookup for optional programmatic use (e.g. future nav entries). */
@@ -45,10 +49,11 @@ export const LIVE_CASINO_MENU_TILE_BY_ID = {
     'sexy-gaming': sexyBaccaratImage,
     'yeebet-live': yeebetLiveImage,
     'big-gaming': bigGamingImage,
-    playtech: afb777Image,
+    playtech: playtechCasinoTile,
     'dream-gaming': dreamGamingImage,
     'pragmatic-play': pragmaticPlayImage,
     ezugi: ezugiMenuTile,
+    'afb-gaming': afbGamingMenuTile,
     sagaming: saGamingImage,
     evolution: ct855Image,
     allbet: allbetImage,

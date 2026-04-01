@@ -6,8 +6,10 @@ import instantDepositImg from '../assets/instant-deposit.png';
 import CopyInputField from './security/CopyInputField';
 import PaymentConfirmModal from './PaymentConfirmModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
+import RolloverStatusCard from './RolloverStatusCard';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
 import { PUSH_EVENT } from '../constants/pushNotificationCopy';
+import { DEMO_ROLLOVER_STATUS } from '../constants/rolloverStatus';
 
 const DEPOSIT_STEPS = [
     { id: 1, label: 'Choose Deposit Type' },
@@ -250,6 +252,10 @@ export default function DepositPage({ onNavigate }) {
                 </button>
             </div>
 
+            <div className="mb-5">
+                <RolloverStatusCard status={DEMO_ROLLOVER_STATUS} variant="summary-inline" />
+            </div>
+
             {processingCountdown != null && processingCountdown > 0 ? (
                 <ProcessingCountdownBanner
                     secondsLeft={processingCountdown}
@@ -259,7 +265,7 @@ export default function DepositPage({ onNavigate }) {
             ) : (
             <>
             {/* Progress indicator */}
-            <div className="mb-8 overflow-x-auto py-2">
+            <div className="mb-8 overflow-x-auto overflow-y-visible px-1 py-3">
                 <div className="flex min-w-max items-center gap-0">
                     {DEPOSIT_STEPS.map((s, idx) => {
                         const isCompleted = step > s.id;
