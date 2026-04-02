@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
 import ninetyThreeConnectLightmodeLogo from '../assets/93connect-lightmode.png';
 import gameplayLightmodeLogo from '../assets/gameplay-lightmode.png';
@@ -182,7 +182,7 @@ export default function LotteryPage({ onNavigate }) {
                         <div className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-black uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
+                                    <h1 className="text-xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
                                         Lottery
                                     </h1>
                                 </div>
@@ -225,7 +225,7 @@ export default function LotteryPage({ onNavigate }) {
                 <div className="surface-panel rounded-2xl p-4 md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-xl font-extrabold tracking-tight text-slate-900 md:text-2xl">
+                            <p className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
                                 Lottery Games
                             </p>
                             <p className="mt-1 text-sm text-slate-600">
@@ -263,7 +263,7 @@ export default function LotteryPage({ onNavigate }) {
 
                 {filteredGames.length === 0 && (
                     <div className="surface-card mt-6 rounded-2xl px-4 py-7 text-center">
-                        <p className="text-base font-extrabold text-slate-800">No games match your search.</p>
+                        <p className="text-base font-bold text-slate-800">No games match your search.</p>
                         <p className="mt-1 text-xs text-slate-500">Try a different keyword or switch provider.</p>
                     </div>
                 )}
@@ -271,3 +271,4 @@ export default function LotteryPage({ onNavigate }) {
         </main>
     );
 }
+

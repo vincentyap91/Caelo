@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { ArrowDownToLine, ArrowUpFromLine, Bell, Inbox, Loader2 } from 'lucide-react';
 import { loadNotificationPreferences, saveNotificationPreferences } from '../utils/notificationPreferences';
 import {
@@ -63,7 +63,7 @@ function RecentNotificationCard({ item }) {
             </div>
             <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-start justify-between gap-2">
-                    <p className="text-sm font-extrabold text-[var(--color-text-strong)] md:text-base">{item.title}</p>
+                    <p className="text-sm font-bold text-[var(--color-text-strong)] md:text-base">{item.title}</p>
                     <time
                         className="shrink-0 text-xs font-semibold text-[var(--color-text-soft)]"
                         dateTime={item.createdAt}
@@ -73,7 +73,7 @@ function RecentNotificationCard({ item }) {
                 </div>
                 <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-muted)] md:text-sm">{item.message}</p>
                 <div
-                    className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${
+                    className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${
                         status === 'success'
                             ? 'bg-[rgb(220_252_231)] text-[var(--color-success-main)]'
                             : status === 'error'
@@ -150,7 +150,7 @@ export default function NotificationsPage() {
                         </span>
                         <h2
                             id="recent-notifications-heading"
-                            className="text-lg font-extrabold text-[var(--color-text-strong)] md:text-xl"
+                            className="text-lg font-bold text-[var(--color-text-strong)] md:text-xl"
                         >
                             Recent notifications
                         </h2>
@@ -189,3 +189,5 @@ export default function NotificationsPage() {
         </div>
     );
 }
+
+

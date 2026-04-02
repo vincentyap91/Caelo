@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 const FLAG_CDN = 'https://flagcdn.com/w40';
 const LANGUAGES = [
     { code: 'en-us', label: 'English', flagCode: 'gb', short: 'EN' },
     { code: 'zh-cn', label: '简体中文', flagCode: 'cn', short: 'CN' },
-    { code: 'zh-tw', label: '繁体中文', flagCode: 'tw', short: 'TW' },
-    { code: 'th-th', label: 'ภาษาไทย', flagCode: 'th', short: 'TH' },
+    { code: 'zh-tw', label: '繁體中文', flagCode: 'tw', short: 'TW' },
+    { code: 'th-th', label: 'ไทย', flagCode: 'th', short: 'TH' },
     { code: 'ko-kr', label: '한국어', flagCode: 'kr', short: 'KR' },
     { code: 'vi-vn', label: 'Tiếng Việt', flagCode: 'vn', short: 'VN' },
     { code: 'id-id', label: 'Indonesia', flagCode: 'id', short: 'ID' },
-    { code: 'hi-in', label: 'इंडिया', flagCode: 'in', short: 'IN' },
+    { code: 'hi-in', label: 'हिन्दी', flagCode: 'in', short: 'IN' },
     { code: 'km-kh', label: 'Khmer', flagCode: 'kh', short: 'KH' },
     { code: 'my-mm', label: 'မြန်မာ', flagCode: 'mm', short: 'MM' },
     { code: 'ja-jp', label: '日本語', flagCode: 'jp', short: 'JP' },
@@ -68,7 +68,7 @@ export default function LanguageSwitcher({ value = 'en-us', onChange, buttonClas
                                     onChange?.(lang.code);
                                     setOpen(false);
                                 }}
-                                className={`group relative flex w-full items-center gap-3 px-3.5 py-3 text-left text-[13px] font-semibold tracking-[0.01em] text-white transition-colors duration-200 ${
+                                className={`group relative flex w-full items-center gap-3 px-3.5 py-3 text-left text-sm font-semibold tracking-[0.01em] text-white transition-colors duration-200 ${
                                     isActive
                                         ? 'bg-[linear-gradient(90deg,rgba(255,216,77,0.22)_0%,rgba(0,174,239,0.18)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]'
                                         : 'hover:bg-white/[0.06]'
@@ -79,7 +79,7 @@ export default function LanguageSwitcher({ value = 'en-us', onChange, buttonClas
                                     alt=""
                                     className="h-5 w-7 shrink-0 rounded-[4px] object-cover ring-1 ring-white/10"
                                 />
-                                <span className="min-w-0 flex-1 truncate">{lang.label}</span>
+                                <span className="font-multilingual min-w-0 flex-1 truncate">{lang.label}</span>
                                 <span
                                     className={`ml-auto inline-flex h-2.5 w-2.5 shrink-0 rounded-full transition-opacity ${
                                         isActive
@@ -96,3 +96,4 @@ export default function LanguageSwitcher({ value = 'en-us', onChange, buttonClas
         </div>
     );
 }
+

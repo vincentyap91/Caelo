@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import { LayoutGrid } from 'lucide-react';
 import allGameBanner from '../assets/all-game-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
@@ -50,7 +50,7 @@ export default function AllGamesPage({ onNavigate }) {
                         <div className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-black uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
+                                    <h1 className="text-xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
                                         All Games
                                     </h1>
                                 </div>
@@ -66,7 +66,7 @@ export default function AllGamesPage({ onNavigate }) {
                         <div>
                             <div className="flex items-center gap-2 text-[var(--color-brand-primary)]">
                                 <LayoutGrid size={18} />
-                                <p className="text-xl font-extrabold tracking-tight text-slate-900 md:text-2xl">
+                                <p className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
                                     Browse Games
                                 </p>
                             </div>
@@ -104,7 +104,7 @@ export default function AllGamesPage({ onNavigate }) {
 
                 {filteredGames.length === 0 && (
                     <div className="surface-card mt-6 rounded-2xl px-4 py-8 text-center">
-                        <p className="text-base font-extrabold text-slate-800">No games in this category yet.</p>
+                        <p className="text-base font-bold text-slate-800">No games in this category yet.</p>
                         <p className="mt-1 text-sm text-slate-500">Try a different filter to keep browsing the featured collection.</p>
                     </div>
                 )}
@@ -112,3 +112,4 @@ export default function AllGamesPage({ onNavigate }) {
         </main>
     );
 }
+

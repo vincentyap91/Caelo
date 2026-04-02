@@ -11,7 +11,7 @@ const SETUP_INSTRUCTIONS = [
     'Enter the generated 6-digit code',
 ];
 
-export default function TwoFactorPanel() {
+export default function TwoFactorPanel({ accountName = 'your account' }) {
     const [enabled, setEnabled] = useState(false);
     const [toggleOn, setToggleOn] = useState(false);
     const [secret, setSecret] = useState('');
@@ -26,6 +26,7 @@ export default function TwoFactorPanel() {
     const handleCancelSetup = () => {
         setToggleOn(false);
         setSecret('');
+        setQrModalOpen(false);
     };
 
     const handleVerify = async (code) => {
@@ -129,6 +130,7 @@ export default function TwoFactorPanel() {
                 open={qrModalOpen}
                 onClose={() => setQrModalOpen(false)}
                 secret={secret}
+                accountName={accountName}
                 onVerify={handleVerify}
             />
         </>

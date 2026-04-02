@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Lock, Send, UserRound, X } from 'lucide-react';
 import TwoFactorLoginModal from './TwoFactorLoginModal';
 import { verifyLogin, verify2FALogin } from '../services/authService';
@@ -95,7 +95,7 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
                     <X size={18} strokeWidth={3} />
                 </button>
 
-                <h1 className="text-center text-2xl sm:text-2xl font-black tracking-tight text-[rgb(18_63_128)]">
+                <h1 className="text-center text-2xl sm:text-2xl font-bold tracking-tight text-[rgb(18_63_128)]">
                     {logoText}
                 </h1>
 
@@ -201,3 +201,4 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
         </div>
     );
 }
+

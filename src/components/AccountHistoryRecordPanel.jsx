@@ -9,6 +9,92 @@ function formatDateForInput(d) {
     return `${y}-${m}-${day}`;
 }
 
+function parseHistoryDate(value) {
+    if (!value) {
+        return null;
+    }
+
+    const [datePart] = String(value).split(' ');
+    const parts = datePart.split('-').map((part) => Number(part));
+
+    if (parts.length !== 3 || parts.some((part) => Number.isNaN(part))) {
+        return null;
+    }
+
+    const [first, second, third] = parts;
+    if (String(datePart).length === 10 && first > 31) {
+        return new Date(first, second - 1, third);
+    }
+
+    if (String(datePart).length === 10 && third > 31) {
+        return new Date(third, second - 1, first);
+    }
+
+    if (first > 31) {
+        return new Date(first, second - 1, third);
+    }
+
+    return new Date(third, second - 1, first);
+}
+
+function getStatusTone(value) {
+    const normalized = String(value ?? '').trim().toLowerCase();
+
+    if (!normalized) {
+        return 'neutral';
+    }
+
+    if (
+        normalized.includes('success') ||
+        normalized.includes('completed') ||
+        normalized.includes('approved') ||
+        normalized.includes('claimed') ||
+        normalized.includes('cleared')
+    ) {
+        return 'success';
+    }
+
+    if (
+        normalized.includes('pending') ||
+        normalized.includes('processing') ||
+        normalized.includes('in progress') ||
+        normalized.includes('ongoing')
+    ) {
+        return 'warning';
+    }
+
+    if (
+        normalized.includes('failed') ||
+        normalized.includes('rejected') ||
+        normalized.includes('cancelled') ||
+        normalized.includes('canceled') ||
+        normalized.includes('declined')
+    ) {
+        return 'danger';
+    }
+
+    return 'neutral';
+}
+
+function getStatusPillClassName(value) {
+    const tone = getStatusTone(value);
+    const base = 'inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold leading-none';
+
+    if (tone === 'success') {
+        return `${base} border-[rgb(57_181_74_/_0.24)] bg-[rgb(57_181_74_/_0.12)] text-[var(--color-success-main)]`;
+    }
+
+    if (tone === 'warning') {
+        return `${base} border-[rgb(245_194_66_/_0.28)] bg-[rgb(245_194_66_/_0.14)] text-[rgb(179_121_16)]`;
+    }
+
+    if (tone === 'danger') {
+        return `${base} border-[rgb(239_68_68_/_0.22)] bg-[rgb(239_68_68_/_0.1)] text-[rgb(185_28_28)]`;
+    }
+
+    return `${base} border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)]`;
+}
+
 const HISTORY_QUICK_RANGES = [
     { id: 'today', label: 'Today' },
     { id: '3days', label: 'In 3 days' },
@@ -17,16 +103,27 @@ const HISTORY_QUICK_RANGES = [
 ];
 
 /**
- * Shared “Referral Commission → History” filter + table shell (date range, quick ranges, Submit, empty table).
+ * Shared filter + table shell for history/record pages.
  * @param {Object} props
  * @param {string} props.startDateLabel
  * @param {string} props.endDateLabel
  * @param {{ key: string, label: string, align?: 'left'|'right' }[]} props.columns
- * @param {import('react').ReactNode} [props.filterSlot] — optional block above the date range (e.g. type filters).
- * @param {boolean} [props.pillQuickRanges] — fully rounded pills vs `rounded-xl` tabs; scroll/snap behavior is the same.
- * @param {string} [props.emptyMessage] — centered table empty state (default “No data found”).
+ * @param {Array<Record<string, any>>} [props.rows]
+ * @param {string} [props.rowDateKey]
+ * @param {import('react').ReactNode} [props.filterSlot]
+ * @param {boolean} [props.pillQuickRanges]
+ * @param {string} [props.emptyMessage]
  */
-export default function AccountHistoryRecordPanel({ startDateLabel, endDateLabel, columns, filterSlot = null, pillQuickRanges = false, emptyMessage = null }) {
+export default function AccountHistoryRecordPanel({
+    startDateLabel,
+    endDateLabel,
+    columns,
+    rows = [],
+    rowDateKey = 'date',
+    filterSlot = null,
+    pillQuickRanges = false,
+    emptyMessage = null,
+}) {
     const quickTabRefs = useRef({});
     const today = new Date();
     const [historyStart, setHistoryStart] = useState(formatDateForInput(today));
@@ -51,6 +148,17 @@ export default function AccountHistoryRecordPanel({ startDateLabel, endDateLabel
     };
 
     const colCount = columns.length;
+    const startDate = parseHistoryDate(historyStart);
+    const endDate = parseHistoryDate(historyEnd);
+    const filteredRows = rows.filter((row) => {
+        const rowDate = parseHistoryDate(row?.[rowDateKey]);
+        if (!rowDate || !startDate || !endDate) {
+            return true;
+        }
+
+        const rowTime = rowDate.getTime();
+        return rowTime >= startDate.getTime() && rowTime <= endDate.getTime();
+    });
 
     const quickRangeButtonClass = (selected) => {
         const shape = pillQuickRanges ? 'rounded-full' : 'rounded-xl';
@@ -107,6 +215,7 @@ export default function AccountHistoryRecordPanel({ startDateLabel, endDateLabel
                     </button>
                 </div>
             </div>
+
             <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
                 <div className="overflow-x-auto">
                     <table className="w-full min-w-[320px] border-collapse text-sm">
@@ -125,14 +234,40 @@ export default function AccountHistoryRecordPanel({ startDateLabel, endDateLabel
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td
-                                    colSpan={colCount}
-                                    className="px-4 py-12 text-center text-sm font-medium text-[var(--color-text-muted)]"
-                                >
-                                    {emptyMessage ?? 'No data found'}
-                                </td>
-                            </tr>
+                            {filteredRows.length > 0 ? (
+                                filteredRows.map((row, rowIndex) => (
+                                    <tr
+                                        key={row.id ?? `${rowIndex}-${rowDateKey}`}
+                                        className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
+                                    >
+                                        {columns.map((col) => (
+                                            <td
+                                                key={col.key}
+                                                className={`px-4 py-3.5 text-sm font-medium text-[var(--color-text-strong)] ${
+                                                    col.align === 'right' ? 'text-right' : 'text-left'
+                                                }`}
+                                            >
+                                                {col.key === 'status' ? (
+                                                    <span className={getStatusPillClassName(row?.[col.key])}>
+                                                        {row?.[col.key] ?? '—'}
+                                                    </span>
+                                                ) : (
+                                                    row?.[col.key] ?? '—'
+                                                )}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td
+                                        colSpan={colCount}
+                                        className="px-4 py-12 text-center text-sm font-medium text-[var(--color-text-muted)]"
+                                    >
+                                        {emptyMessage ?? 'No data found'}
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>

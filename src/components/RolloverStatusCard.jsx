@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { AlertTriangle, ChevronDown, ChevronRight, CircleCheckBig, ShieldAlert } from 'lucide-react';
 import {
     DEMO_ROLLOVER_STATUS,
@@ -24,7 +24,7 @@ function ProgressBar({ percent, dark = false }) {
 function Metric({ label, value, dark = false }) {
     return (
         <div className={`rounded-xl px-3 py-2 ${dark ? 'bg-white/[0.05]' : 'bg-[var(--color-surface-muted)]/90'}`}>
-            <p className={`text-[10px] font-bold uppercase tracking-[0.18em] ${dark ? 'text-white/55' : 'text-[var(--color-text-soft)]'}`}>
+            <p className={`text-xs font-bold uppercase tracking-[0.18em] ${dark ? 'text-white/55' : 'text-[var(--color-text-soft)]'}`}>
                 {label}
             </p>
             <p className={`mt-1 text-sm font-bold tabular-nums ${dark ? 'text-white' : 'text-[var(--color-text-strong)]'}`}>
@@ -84,10 +84,10 @@ export default function RolloverStatusCard({
             <>
                 <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--color-nav-text-accent)]">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-nav-text-accent)]">
                             Rollover Summary
                         </p>
-                        <p className="mt-1 truncate text-[15px] font-bold text-white">{title}</p>
+                        <p className="mt-1 truncate text-base font-bold text-white">{title}</p>
                     </div>
                     <p className="shrink-0 text-xs font-bold text-[rgb(255_240_160)]">{Math.round(percent)}%</p>
                 </div>
@@ -97,7 +97,7 @@ export default function RolloverStatusCard({
                 </div>
 
                 <div className="mt-2 flex items-center justify-between gap-3">
-                    <p className="min-w-0 truncate text-[11px] text-white/70">
+                    <p className="min-w-0 truncate text-xs text-white/70">
                         {isComplete ? 'Withdrawal is available.' : `Remaining ${formatRolloverAmount(status?.remainingAmount)} to unlock withdrawal.`}
                     </p>
                     <div className="flex shrink-0 items-center gap-2">
@@ -107,7 +107,7 @@ export default function RolloverStatusCard({
                                 event.stopPropagation();
                                 setDetailsOpen((open) => !open);
                             }}
-                            className="inline-flex items-center gap-1 rounded-md px-1 py-1 text-[11px] font-bold text-[var(--color-nav-text-accent)] transition hover:text-white"
+                            className="inline-flex items-center gap-1 rounded-md px-1 py-1 text-xs font-bold text-[var(--color-nav-text-accent)] transition hover:text-white"
                             aria-expanded={detailsOpen}
                         >
                             Details
@@ -117,7 +117,7 @@ export default function RolloverStatusCard({
                             <button
                                 type="button"
                                 onClick={onClick}
-                                className="inline-flex items-center gap-1 rounded-md px-1 py-1 text-[11px] font-bold text-white/75 transition hover:text-white"
+                                className="inline-flex items-center gap-1 rounded-md px-1 py-1 text-xs font-bold text-white/75 transition hover:text-white"
                             >
                                 Cashier
                                 <ChevronRight size={12} />
@@ -156,14 +156,14 @@ export default function RolloverStatusCard({
                         </div>
                         <div className="min-w-0 space-y-1">
                             <div className="flex flex-wrap items-center gap-2">
-                                <h2 className="text-[15px] font-bold leading-tight text-[var(--color-text-strong)] md:text-[15px]">
+                                <h2 className="text-base font-bold leading-tight text-[var(--color-text-strong)] md:text-base">
                                     {title}
                                 </h2>
-                                <span className="inline-flex items-center rounded-full bg-[#fff1cc] px-2 py-0.5 text-[11px] font-bold text-[#b7791f]">
+                                <span className="inline-flex items-center rounded-full bg-[#fff1cc] px-2 py-0.5 text-xs font-bold text-[#b7791f]">
                                     {badgeLabel}
                                 </span>
                             </div>
-                            <p className="max-w-[34ch] text-[13px] leading-snug text-[var(--color-text-main)] md:text-sm">
+                            <p className="max-w-[34ch] text-sm leading-snug text-[var(--color-text-main)] md:text-sm">
                                 Complete deposit rollover to enable withdrawal.
                             </p>
                         </div>
@@ -220,10 +220,10 @@ export default function RolloverStatusCard({
                         </div>
                         <div className="min-w-0 space-y-1">
                             <div className="flex flex-wrap items-center gap-2">
-                                <p className="truncate text-[15px] font-bold leading-tight text-[var(--color-text-strong)]">
+                                <p className="truncate text-base font-bold leading-tight text-[var(--color-text-strong)]">
                                     {title}
                                 </p>
-                                <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-bold ${
+                                <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-bold ${
                                     isComplete
                                         ? 'bg-[color-mix(in_srgb,var(--color-success-main)_12%,white)] text-[var(--color-success-main)]'
                                         : 'bg-[color-mix(in_srgb,var(--color-accent-600)_10%,white)] text-[var(--color-accent-700)]'
@@ -231,7 +231,7 @@ export default function RolloverStatusCard({
                                     {badgeLabel}
                                 </span>
                             </div>
-                            <p className="max-w-[34ch] text-[13px] leading-snug text-[var(--color-text-main)] md:text-sm">
+                            <p className="max-w-[34ch] text-sm leading-snug text-[var(--color-text-main)] md:text-sm">
                                 Complete rollover before withdrawal
                             </p>
                         </div>
@@ -287,7 +287,7 @@ export default function RolloverStatusCard({
                             {isComplete ? <CircleCheckBig size={20} /> : <ShieldAlert size={20} />}
                         </div>
                         <div className="min-w-0">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--color-accent-700)]">
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent-700)]">
                                 Wallet / Cashier
                             </p>
                             <h2 className="mt-1 text-lg font-bold text-[var(--color-text-strong)]">{title}</h2>
@@ -336,3 +336,4 @@ export default function RolloverStatusCard({
         </div>
     );
 }
+

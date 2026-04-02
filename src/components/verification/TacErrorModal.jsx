@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { XCircle } from 'lucide-react';
 
 /**
@@ -44,7 +44,7 @@ export default function TacErrorModal({ open, onConfirm, titleId = 'tac-error-ti
                     <button
                         type="button"
                         onClick={onConfirm}
-                        className="mt-8 min-w-[140px] rounded-xl bg-[#39FF88] px-10 py-3 text-center text-sm font-extrabold uppercase tracking-wide text-black shadow-[0_10px_24px_rgba(57_255_136_0.35)] transition hover:brightness-95 active:scale-[0.99]"
+                        className="mt-8 min-w-[140px] rounded-xl bg-[#39FF88] px-10 py-3 text-center text-sm font-bold uppercase tracking-wide text-black shadow-[0_10px_24px_rgba(57_255_136_0.35)] transition hover:brightness-95 active:scale-[0.99]"
                     >
                         OK
                     </button>
@@ -53,3 +53,4 @@ export default function TacErrorModal({ open, onConfirm, titleId = 'tac-error-ti
         </div>
     );
 }
+

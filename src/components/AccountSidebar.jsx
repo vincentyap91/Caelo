@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {
     ChevronDown,
     Heart,
@@ -160,7 +160,7 @@ export default function AccountSidebar({
                             </button>
                         </div>
                         <div className="min-w-0 flex-1 pt-1">
-                            <p className="text-[1.6rem] font-bold leading-tight text-[var(--color-text-strong)]">Hi, {username}</p>
+                            <p className="text-2xl font-bold leading-tight text-[var(--color-text-strong)]">Hi, {username}</p>
                             <div className="mt-2 space-y-1 text-sm font-medium text-[var(--color-text-muted)]">
                                 <p>Joined: 08/01/2026</p>
                                 <p>Player ID: 679129</p>
@@ -393,3 +393,4 @@ export default function AccountSidebar({
         </>
     );
 }
+

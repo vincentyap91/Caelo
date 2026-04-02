@@ -1,9 +1,9 @@
-import React from 'react';
+﻿import React from 'react';
 import { GameCardFavouriteButton, GameCardPlayBar } from './GameCardActions';
 
 /**
  * Lobby provider tile (Live Casino pattern): banner tap target, mobile bottom Play + md hover Play,
- * favourite heart, optional HOT — shared across live casino, sports, e-sports, lottery, poker.
+ * favourite heart, optional HOT â€” shared across live casino, sports, e-sports, lottery, poker.
  */
 export default function LobbyProviderCard({
     provider,
@@ -46,7 +46,7 @@ export default function LobbyProviderCard({
                 onPlayClick={onPlayClick}
             />
             {hot && (
-                <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-[10px] font-black tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">
+                <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-xs font-bold tracking-wide text-white shadow-[var(--shadow-hot)] md:text-xs">
                     HOT
                 </span>
             )}
@@ -71,3 +71,5 @@ export default function LobbyProviderCard({
         </div>
     );
 }
+
+

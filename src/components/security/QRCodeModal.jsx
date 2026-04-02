@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { X, QrCode } from 'lucide-react';
 import CopyInputField from './CopyInputField';
+import { buildOtpAuthUri } from '../../services/securityService';
 
-export default function QRCodeModal({ open, onClose, secret, onVerify }) {
+export default function QRCodeModal({ open, onClose, secret, accountName, onVerify }) {
     const [code, setCode] = useState('');
     const [error, setError] = useState('');
+    const [imageError, setImageError] = useState(false);
+
+    const setupUri = useMemo(() => buildOtpAuthUri(secret, accountName), [secret, accountName]);
+    const qrCodeUrl = useMemo(() => {
+        if (!setupUri) return '';
+        return `https://api.qrserver.com/v1/create-qr-code/?size=240x240&format=png&qzone=2&data=${encodeURIComponent(setupUri)}`;
+    }, [setupUri]);
+
+    useEffect(() => {
+        if (open) {
+            setImageError(false);
+        }
+    }, [open, setupUri]);
 
     const handleVerify = async (e) => {
         e.preventDefault();
@@ -38,9 +52,24 @@ export default function QRCodeModal({ open, onClose, secret, onVerify }) {
                 <h3 className="mb-6 text-xl font-bold tracking-tight text-[var(--color-text-strong)]">Verify & Activate 2FA</h3>
 
                 <div className="mb-6 flex flex-col items-center gap-4">
-                    <div className="flex h-40 w-40 items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] p-4">
-                        <QrCode size={120} className="text-[var(--color-text-soft)]" />
+                    <div className="flex h-44 w-44 items-center justify-center rounded-2xl border border-[var(--color-border-default)] bg-white p-4 shadow-[var(--shadow-subtle)]">
+                        {!imageError && qrCodeUrl ? (
+                            <img
+                                src={qrCodeUrl}
+                                alt={`Scan this QR code in Google Authenticator for ${accountName || 'your account'}`}
+                                className="h-full w-full rounded-xl object-contain"
+                                onError={() => setImageError(true)}
+                            />
+                        ) : (
+                            <div className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-xl bg-[var(--color-surface-muted)] text-center text-[var(--color-text-soft)]">
+                                <QrCode size={72} />
+                                <span className="px-4 text-xs font-medium">QR unavailable</span>
+                            </div>
+                        )}
                     </div>
+                    <p className="text-center text-sm text-[var(--color-text-muted)]">
+                        Scan with Google Authenticator or any TOTP app.
+                    </p>
                     <div className="w-full">
                         <CopyInputField label="Manual key" value={secret} />
                     </div>

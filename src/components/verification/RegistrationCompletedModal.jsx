@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+﻿import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Check } from 'lucide-react';
 
@@ -77,7 +77,7 @@ export default function RegistrationCompletedModal({
 
                 <h2
                     id="registration-success-title"
-                    className="text-center text-xl font-black tracking-tight text-[rgb(18_63_128)] sm:text-2xl"
+                    className="text-center text-xl font-bold tracking-tight text-[rgb(18_63_128)] sm:text-2xl"
                 >
                     {title}
                 </h2>
@@ -86,7 +86,7 @@ export default function RegistrationCompletedModal({
                     {messageLines.map((line) => (
                         <p
                             key={line}
-                            className="text-sm font-medium leading-relaxed text-[rgb(35_64_106)] sm:text-[0.9375rem]"
+                            className="text-sm font-medium leading-relaxed text-[rgb(35_64_106)] sm:text-base"
                         >
                             {line}
                         </p>
@@ -96,7 +96,7 @@ export default function RegistrationCompletedModal({
                 <button
                     type="button"
                     onClick={finish}
-                    className="btn-theme-cta mt-8 w-full rounded-xl py-3.5 text-center text-base font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 sm:mt-9 sm:py-4"
+                    className="btn-theme-cta mt-8 w-full rounded-xl py-3.5 text-center text-base font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 sm:mt-9 sm:py-4"
                 >
                     {primaryButtonLabel}
                 </button>
@@ -113,3 +113,5 @@ export default function RegistrationCompletedModal({
 }
 
 export { DEFAULT_REDIRECT_SECONDS };
+
+

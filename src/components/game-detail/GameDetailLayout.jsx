@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import GameDetailBreadcrumb from './GameDetailBreadcrumb';
 import GameDetailPlayer from './GameDetailPlayer';
 import GameDetailDataTable from './GameDetailDataTable';
@@ -11,7 +11,7 @@ import GameDetailRecommendedCarousel from './GameDetailRecommendedCarousel';
  * @param {{ label: string, href?: string, onNavigate?: () => void }[]} props.breadcrumbItems
  * @param {string} props.gameTitle
  * @param {string} props.providerName
- * @param {string} [props.gameSubtitle] — optional line under title
+ * @param {string} [props.gameSubtitle] â€” optional line under title
  * @param {string} [props.iframeUrl]
  * @param {string} [props.iframeTitle]
  * @param {boolean} [props.showGameFallback]
@@ -27,7 +27,7 @@ import GameDetailRecommendedCarousel from './GameDetailRecommendedCarousel';
  * @param {() => void} [props.onRecommendedMoreGames]
  * @param {(game: object) => void} [props.onRecommendedGameClick]
  * @param {string} [props.recommendedTitle]
- * @param {import('react').ReactNode} [props.children] — extra content below latest bets
+ * @param {import('react').ReactNode} [props.children] â€” extra content below latest bets
  */
 export default function GameDetailLayout({
     breadcrumbItems,
@@ -61,11 +61,11 @@ export default function GameDetailLayout({
 
                     <div className="flex flex-col gap-1 border-b border-[var(--color-border-default)] pb-5 md:flex-row md:items-end md:justify-between md:pb-6">
                         <div className="min-w-0">
-                            <h1 className="text-2xl font-black tracking-tight text-[var(--color-text-strong)] md:text-3xl lg:text-[2rem] lg:leading-tight">
+                            <h1 className="text-2xl font-bold tracking-tight text-[var(--color-text-strong)] md:text-3xl lg:text-3xl lg:leading-tight">
                                 {gameTitle}
                             </h1>
                             {gameSubtitle ? (
-                                <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-[0.9375rem]">{gameSubtitle}</p>
+                                <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-base">{gameSubtitle}</p>
                             ) : null}
                         </div>
                     </div>
@@ -83,7 +83,7 @@ export default function GameDetailLayout({
                     </GameDetailPlayer>
                 </div>
 
-                <p className="mt-5 text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-6 md:text-[0.9375rem]">
+                <p className="mt-5 text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-6 md:text-base">
                     <span className="font-semibold text-[var(--color-text-strong)]">{gameTitle}</span>
                     {' by '}
                     <span className="font-bold text-[var(--color-accent-600)] underline decoration-[var(--color-accent-300)] underline-offset-[3px]">
@@ -127,3 +127,5 @@ export default function GameDetailLayout({
         </main>
     );
 }
+
+

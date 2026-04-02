@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 
 export default function PromotionDetailModal({
@@ -63,7 +63,7 @@ export default function PromotionDetailModal({
             >
                 <div className="flex items-center justify-between border-b border-[rgb(228_234_243)] px-5 py-4 sm:px-7">
                     <div>
-                        <h2 className="mt-1 text-xl font-extrabold tracking-tight text-[var(--color-text-strong)] sm:text-2xl">
+                        <h2 className="mt-1 text-xl font-bold tracking-tight text-[var(--color-text-strong)] sm:text-2xl">
                             Promotion Details
                         </h2>
                     </div>
@@ -89,11 +89,11 @@ export default function PromotionDetailModal({
 
                     <div className="mt-6">
                         {category && (
-                            <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-accent-700)]">
+                            <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-accent-700)]">
                                 {category}
                             </span>
                         )}
-                        <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-[var(--color-text-strong)]">
+                        <h3 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-text-strong)]">
                             {title}
                         </h3>
                         {description && (
@@ -104,9 +104,9 @@ export default function PromotionDetailModal({
                     </div>
 
                     <div className="mt-6 rounded-[20px] border border-[rgb(228_234_243)] bg-[linear-gradient(180deg,var(--gradient-soft-panel-start)_0%,var(--gradient-soft-panel-end)_100%)] p-4 sm:p-5">
-                        <h4 className="text-lg font-extrabold text-[var(--color-text-strong)]">Event Details</h4>
+                        <h4 className="text-lg font-bold text-[var(--color-text-strong)]">Event Details</h4>
 
-                        {/* Mobile: same orange header identity as desktop — label strip + value column */}
+                        {/* Mobile: same orange header identity as desktop â€” label strip + value column */}
                         <div className="mt-4 overflow-hidden rounded-2xl border border-[rgb(228_234_243)] bg-white sm:hidden">
                             <dl className="divide-y divide-[rgb(228_234_243)]">
                                 {detailCells.map((cell) => (
@@ -114,7 +114,7 @@ export default function PromotionDetailModal({
                                         key={cell.label}
                                         className="grid grid-cols-[minmax(0,40%)_minmax(0,1fr)] items-stretch"
                                     >
-                                        <dt className="flex items-center bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] border-r border-[rgb(214_188_113)] px-2.5 py-3 text-left text-[10px] font-black uppercase leading-snug tracking-[0.07em] text-[var(--color-cta-text)]">
+                                        <dt className="flex items-center bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] border-r border-[rgb(214_188_113)] px-2.5 py-3 text-left text-xs font-bold uppercase leading-snug tracking-[0.07em] text-[var(--color-cta-text)]">
                                             {cell.label}
                                         </dt>
                                         <dd className="m-0 flex min-w-0 items-center justify-end bg-white px-3 py-3 text-right text-sm font-semibold leading-snug text-[var(--color-text-main)] break-words tabular-nums">
@@ -127,7 +127,7 @@ export default function PromotionDetailModal({
 
                         {/* Tablet / desktop: unchanged wide table */}
                         <div className="mt-4 hidden overflow-hidden rounded-2xl border border-[rgb(228_234_243)] bg-white sm:block">
-                            <div className="grid grid-cols-5 border-b border-[rgb(228_234_243)] bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[11px] font-black uppercase tracking-[0.08em] text-[var(--color-cta-text)]">
+                            <div className="grid grid-cols-5 border-b border-[rgb(228_234_243)] bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-cta-text)]">
                                 {detailCells.map((cell) => (
                                     <div
                                         key={cell.label}
@@ -151,11 +151,11 @@ export default function PromotionDetailModal({
                     </div>
 
                     <div className="mt-6 rounded-[20px] border border-[rgb(228_234_243)] bg-white p-4 shadow-[0_4px_14px_rgba(15,23,42,0.04)] sm:p-5">
-                        <h4 className="text-lg font-extrabold text-[var(--color-text-strong)]">How to Apply</h4>
+                        <h4 className="text-lg font-bold text-[var(--color-text-strong)]">How to Apply</h4>
                         <ol className="mt-4 space-y-3">
                             {applySteps.map((step, index) => (
                                 <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-[var(--color-text-main)] sm:text-base">
-                                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-50)] text-xs font-black text-[var(--color-accent-700)]">
+                                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-50)] text-xs font-bold text-[var(--color-accent-700)]">
                                         {index + 1}
                                     </span>
                                     <span>{step}</span>
@@ -166,7 +166,7 @@ export default function PromotionDetailModal({
 
                     {providers.length > 0 && (
                         <div className="mt-6 rounded-[20px] border border-[rgb(228_234_243)] bg-white p-4 shadow-[0_4px_14px_rgba(15,23,42,0.04)] sm:p-5">
-                            <h4 className="text-lg font-extrabold text-[var(--color-text-strong)]">Applicable Providers</h4>
+                            <h4 className="text-lg font-bold text-[var(--color-text-strong)]">Applicable Providers</h4>
                             <div className="mt-4 flex flex-wrap gap-2.5">
                                 {providers.map((provider) => (
                                     <span
@@ -184,3 +184,5 @@ export default function PromotionDetailModal({
         </div>
     );
 }
+
+

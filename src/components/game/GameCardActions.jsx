@@ -1,13 +1,13 @@
-import React from 'react';
+﻿import React from 'react';
 import { buildGameDetailPath, buildGameDetailSlug } from '../../utils/gameDetailRoutes';
 
 export { default as GameCardFavouriteButton } from './GameCardFavouriteButton';
 
 /**
- * Hover overlay: brand tint + centered gold “Play Now” (site CTA tokens). No title text.
- * Parent card must use `group`. showOnHover: overlay only from md+ (hidden on mobile — use full-card tap to navigate).
+ * Hover overlay: brand tint + centered gold â€œPlay Nowâ€ (site CTA tokens). No title text.
+ * Parent card must use `group`. showOnHover: overlay only from md+ (hidden on mobile â€” use full-card tap to navigate).
  *
- * SPA routing: pass `onNavigate` + `gameName`/`gameProvider` or `gameSlug` — primary click calls
+ * SPA routing: pass `onNavigate` + `gameName`/`gameProvider` or `gameSlug` â€” primary click calls
  * `onNavigate('game-detail', { gameSlug })` while `href` is set for open-in-new-tab / share.
  */
 export function GameCardPlayBar({
@@ -46,7 +46,7 @@ export function GameCardPlayBar({
     };
 
     const ctaBase =
-        'z-[2] flex items-center justify-center rounded-full border border-[var(--color-cta-border)] bg-[linear-gradient(180deg,var(--color-cta-strong-start)_0%,var(--color-cta-strong-end)_100%)] text-center font-black tracking-wide text-[var(--color-cta-text)] shadow-[0_6px_20px_rgba(15,23,42,0.28),inset_0_1px_0_rgba(255,255,255,0.42)] transition hover:brightness-[1.05] active:scale-[0.98] active:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-cta-focus)]';
+        'z-[2] flex items-center justify-center rounded-full border border-[var(--color-cta-border)] bg-[linear-gradient(180deg,var(--color-cta-strong-start)_0%,var(--color-cta-strong-end)_100%)] text-center font-bold tracking-wide text-[var(--color-cta-text)] shadow-[0_6px_20px_rgba(15,23,42,0.28),inset_0_1px_0_rgba(255,255,255,0.42)] transition hover:brightness-[1.05] active:scale-[0.98] active:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-cta-focus)]';
 
     if (mobileBottomBar && showOnHover) {
         return (
@@ -58,7 +58,7 @@ export function GameCardPlayBar({
                         <a
                             href={playHref}
                             onClick={handleClick}
-                            className={`relative mx-auto flex min-h-[40px] w-full max-w-[11.5rem] items-center justify-center rounded-full px-4 text-[11px] ${ctaBase}`}
+                            className={`relative mx-auto flex min-h-[40px] w-full max-w-[11.5rem] items-center justify-center rounded-full px-4 text-xs ${ctaBase}`}
                         >
                             Play Now
                         </a>
@@ -87,10 +87,12 @@ export function GameCardPlayBar({
             <a
                 href={playHref}
                 onClick={handleClick}
-                className={`${ctaPointerCls} absolute left-1/2 top-1/2 z-[2] flex w-[min(88%,12rem)] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-cta-border)] bg-[linear-gradient(180deg,var(--color-cta-strong-start)_0%,var(--color-cta-strong-end)_100%)] px-5 py-2.5 text-center text-xs font-black tracking-wide text-[var(--color-cta-text)] shadow-[0_6px_20px_rgba(15,23,42,0.28),0_0_0_1px_rgba(255,255,255,0.16),inset_0_1px_0_rgba(255,255,255,0.42)] transition hover:brightness-[1.05] active:scale-[0.98] active:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-cta-focus)] sm:min-h-[44px] sm:px-6 sm:text-sm`}
+                className={`${ctaPointerCls} absolute left-1/2 top-1/2 z-[2] flex w-[min(88%,12rem)] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-cta-border)] bg-[linear-gradient(180deg,var(--color-cta-strong-start)_0%,var(--color-cta-strong-end)_100%)] px-5 py-2.5 text-center text-xs font-bold tracking-wide text-[var(--color-cta-text)] shadow-[0_6px_20px_rgba(15,23,42,0.28),0_0_0_1px_rgba(255,255,255,0.16),inset_0_1px_0_rgba(255,255,255,0.42)] transition hover:brightness-[1.05] active:scale-[0.98] active:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-cta-focus)] sm:min-h-[44px] sm:px-6 sm:text-sm`}
             >
                 Play Now
             </a>
         </div>
     );
 }
+
+

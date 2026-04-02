@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { MessageCircle } from 'lucide-react';
 
 export default function FloatingSocials({ onLiveChatClick }) {
@@ -13,9 +13,10 @@ export default function FloatingSocials({ onLiveChatClick }) {
             aria-label="Open live chat"
         >
             <MessageCircle size={24} />
-            <span className="absolute right-0 top-0 inline-flex h-5 min-w-5 -translate-y-1 translate-x-1 items-center justify-center rounded-full bg-[var(--color-danger-main)] px-1 text-[11px] font-bold text-white">
+            <span className="absolute right-0 top-0 inline-flex h-5 min-w-5 -translate-y-1 translate-x-1 items-center justify-center rounded-full bg-[var(--color-danger-main)] px-1 text-xs font-bold text-white">
                 {unreadCount}
             </span>
         </button>
     );
 }
+

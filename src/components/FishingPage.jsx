@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+﻿import React, { useMemo, useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import fishingBanner from '../assets/fishing-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
@@ -19,7 +19,7 @@ const fishingProviders = [
 
 const gameTabs = ['All Games', 'Hot Games', 'New Games'];
 const pageContainerClass = 'mx-auto w-full max-w-screen-2xl px-4 md:px-8';
-const sectionTitleClass = 'text-xl font-extrabold tracking-tight text-slate-900 md:text-2xl';
+const sectionTitleClass = 'text-xl font-bold tracking-tight text-slate-900 md:text-2xl';
 
 const liveBigWins = [
     { user: 'Alex M.', amount: 'MYR 45,200', game: 'Ocean King', time: '2 min ago', amountColor: 'text-[var(--color-danger-main)]' },
@@ -84,7 +84,7 @@ export default function FishingPage({ onNavigate }) {
                         <div className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-black uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
+                                    <h1 className="text-xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
                                         Fishing
                                     </h1>
                                 </div>
@@ -112,7 +112,7 @@ export default function FishingPage({ onNavigate }) {
                                 }`}
                             >
                                 {(provider.featured || provider.new) && (
-                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-black text-white ${provider.new ? 'bg-blue-500' : 'bg-orange-500'}`}>
+                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-bold text-white ${provider.new ? 'bg-blue-500' : 'bg-orange-500'}`}>
                                         {provider.new ? 'New' : 'Hot'}
                                     </span>
                                 )}
@@ -159,7 +159,7 @@ export default function FishingPage({ onNavigate }) {
                                     aria-label={`Open ${game.name}`}
                                 />
                                 {(game.hot || game.new) && (
-                                    <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
+                                    <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-bold text-white">
                                         {game.hot ? 'HOT' : 'NEW'}
                                     </span>
                                 )}
@@ -191,7 +191,7 @@ export default function FishingPage({ onNavigate }) {
                 </div>
                 {filteredGames.length === 0 && (
                     <div className="surface-card mt-6 rounded-2xl px-4 py-7 text-center">
-                        <p className="text-base font-extrabold text-slate-800">No games match your search.</p>
+                        <p className="text-base font-bold text-slate-800">No games match your search.</p>
                         <p className="mt-1 text-xs text-slate-500">Try a different keyword or switch filter.</p>
                     </div>
                 )}
@@ -200,7 +200,7 @@ export default function FishingPage({ onNavigate }) {
                         <button
                             type="button"
                             onClick={() => setGamesToShow(filteredGames.length)}
-                            className="btn-theme-cta inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
                         >
                             SEE MORE
                         </button>
@@ -232,7 +232,7 @@ export default function FishingPage({ onNavigate }) {
                                             {win.user} won <span className={win.amountColor}>{win.amount}</span>
                                         </p>
                                         <p className="mt-0.5 text-xs text-slate-500">
-                                            on {win.game} · {win.time}
+                                            on {win.game} Â· {win.time}
                                         </p>
                                     </div>
                                 </a>
@@ -244,3 +244,4 @@ export default function FishingPage({ onNavigate }) {
         </main>
     );
 }
+

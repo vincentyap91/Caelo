@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import SectionHeader from './SectionHeader';
 import { Crown } from 'lucide-react';
 import slotsImage from '../assets/slots.jpg';
@@ -19,12 +19,12 @@ const CATEGORY_PAGES = {
 
 export default function GameCategories({ onNavigate }) {
     const categories = [
-        { name: 'Slots', icon: '🎰', bgUrl: slotsImage },
-        { name: 'Casino', icon: '🃏', bgUrl: casinoImage },
-        { name: 'Sports', icon: '⚽', bgUrl: sportsImage },
-        { name: 'Fishing', icon: '🐟', bgUrl: fishingImage },
-        { name: 'E-Sports', icon: '🎮', bgUrl: eSportsImage },
-        { name: 'Lottery', icon: '🎫', bgUrl: lotteryImage }
+        { name: 'Slots', icon: 'ðŸŽ°', bgUrl: slotsImage },
+        { name: 'Casino', icon: 'ðŸƒ', bgUrl: casinoImage },
+        { name: 'Sports', icon: 'âš½', bgUrl: sportsImage },
+        { name: 'Fishing', icon: 'ðŸŸ', bgUrl: fishingImage },
+        { name: 'E-Sports', icon: 'ðŸŽ®', bgUrl: eSportsImage },
+        { name: 'Lottery', icon: 'ðŸŽ«', bgUrl: lotteryImage }
     ];
 
     return (
@@ -50,7 +50,7 @@ export default function GameCategories({ onNavigate }) {
                                 <div className="absolute inset-x-2 -bottom-1.5 h-2 rounded-full bg-[rgb(0_114_188_/_0.35)] blur-sm"></div>
                                 <div className="relative overflow-hidden rounded-[10px] border border-[rgb(140_230_255)] bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_55%,#00bdf9_100%)] px-2 py-1.5 shadow-[0_8px_14px_rgba(0,114,188,0.35)]">
                                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.4),rgba(255,255,255,0)_45%)]"></div>
-                                    <span className="relative block text-center text-white text-xs uppercase font-extrabold tracking-[0.14em] drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">
+                                    <span className="relative block text-center text-white text-xs uppercase font-bold tracking-[0.14em] drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">
                                         {cat.name}
                                     </span>
                                 </div>
@@ -77,3 +77,4 @@ export default function GameCategories({ onNavigate }) {
         </section>
     );
 }
+

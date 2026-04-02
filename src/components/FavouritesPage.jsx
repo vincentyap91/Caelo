@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Gamepad2, Heart, Monitor, Trophy } from 'lucide-react';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
-import { isSlotsFavouritesSection } from '../utils/favouriteGames';
+import {
+    isSlotsFavouritesSection,
+    isSportsFavouriteCategory,
+} from '../utils/favouriteGames';
 import { useFavourites } from '../context/FavouritesContext';
 
 const sportsSections = [
     { id: 'games', title: 'Favourite Games', emptyText: 'No favourite games' },
-    { id: 'competitions', title: 'Favourite Competitions', emptyText: 'No favourite competitions' },
 ];
 
 const casinoSections = [
@@ -113,11 +115,13 @@ export default function FavouritesPage({ onNavigate }) {
     const [visibleRowsBySection, setVisibleRowsBySection] = useState({
         'live-casino': 2,
         slots: 2,
+        games: 2,
     });
     const { items } = useFavourites();
 
     const slotsItems = items.filter((i) => isSlotsFavouritesSection(i.category));
-    const liveItems = items.filter((i) => !isSlotsFavouritesSection(i.category));
+    const sportsItems = items.filter((i) => isSportsFavouriteCategory(i.category));
+    const liveItems = items.filter((i) => !isSlotsFavouritesSection(i.category) && !isSportsFavouriteCategory(i.category));
 
     return (
         <div className="page-container">
@@ -152,15 +156,50 @@ export default function FavouritesPage({ onNavigate }) {
 
             <div className="space-y-8">
                 {category === 'sports' ? (
-                    sportsSections.map(({ id, title, emptyText }) => (
-                        <section key={id}>
-                            <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[var(--color-text-strong)]">
-                                <Trophy size={20} className="text-[var(--color-accent-600)]" />
-                                {title}
-                            </h2>
-                            <EmptyCard text={emptyText} />
-                        </section>
-                    ))
+                    sportsSections.map(({ id, title, emptyText }) => {
+                        const sectionItems = sportsItems;
+                        const columnCount = getFavouritesGridColumnCount('live-casino', viewportWidth);
+                        const rowsToShow = visibleRowsBySection[id] ?? 2;
+                        const visibleLimit = columnCount * rowsToShow;
+                        const shownItems = sectionItems.slice(0, visibleLimit);
+                        const hasMore = sectionItems.length > visibleLimit;
+
+                        return (
+                            <section key={id}>
+                                <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[var(--color-text-strong)]">
+                                    <Trophy size={20} className="text-[var(--color-accent-600)]" />
+                                    {title}
+                                </h2>
+                                {sectionItems.length === 0 ? (
+                                    <EmptyCard text={emptyText} />
+                                ) : (
+                                    <>
+                                        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                                            {shownItems.map((item) => (
+                                                <FavouriteTile key={item.id} item={item} onNavigate={onNavigate} />
+                                            ))}
+                                        </div>
+                                        {hasMore ? (
+                                            <div className="mt-6 flex justify-center">
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        setVisibleRowsBySection((prev) => ({
+                                                            ...prev,
+                                                            [id]: (prev[id] ?? 2) + 2,
+                                                        }))
+                                                    }
+                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-accent-300)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                                                >
+                                                    Load more
+                                                </button>
+                                            </div>
+                                        ) : null}
+                                    </>
+                                )}
+                            </section>
+                        );
+                    })
                 ) : (
                     casinoSections.map(({ id, title, emptyText, icon: Icon }) => {
                         const sectionItems = id === 'slots' ? slotsItems : liveItems;

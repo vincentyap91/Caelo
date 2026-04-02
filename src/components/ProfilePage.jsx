@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import {
     Banknote,
     ChevronDown,
@@ -195,7 +195,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                 localStorage.removeItem(PROFILE_PHOTO_STORAGE_KEY);
             }
         } catch {
-            /* ignore quota / private mode — image still shows for this session */
+            /* ignore quota / private mode â€” image still shows for this session */
         }
     };
 
@@ -234,7 +234,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
 
                             <div className="flex min-w-0 flex-1 flex-col gap-3">
                                 <div className="space-y-1.5">
-                                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-accent-600)] sm:text-xs sm:tracking-widest">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent-600)] sm:text-xs sm:tracking-widest">
                                         Verified Account Profile
                                     </p>
                                     <h2 className="truncate text-2xl font-bold tracking-tight text-[var(--color-text-strong)] md:text-3xl">
@@ -243,10 +243,10 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                     <p className="text-sm font-medium text-[var(--color-text-muted)]">{formValues.email}</p>
                                 </div>
                                 <div className="flex flex-row gap-2 sm:flex-wrap">
-                                    <span className="inline-flex w-fit rounded-full border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-accent-700)]">
+                                    <span className="inline-flex w-fit rounded-full border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--color-accent-700)]">
                                         Joined 08/01/2026
                                     </span>
-                                    <span className="inline-flex w-fit rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-accent-700)]">
+                                    <span className="inline-flex w-fit rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--color-accent-700)]">
                                         Player ID 679129
                                     </span>
                                 </div>
@@ -254,7 +254,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                         </div>
 
                         <div className="flex w-full shrink-0 flex-col border-t border-[var(--color-border-default)] pt-4 md:w-auto md:border-t-0 md:pt-0 md:pl-2">
-                            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)] md:sr-only">
+                            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)] md:sr-only">
                                 VIP rank
                             </p>
                             <div className="flex justify-start md:justify-end">
@@ -465,3 +465,4 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
         </AccountLayout>
     );
 }
+

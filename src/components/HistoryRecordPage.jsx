@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AccountHistoryRecordPanel from './AccountHistoryRecordPanel';
-import { HISTORY_RECORD_PANEL_CONFIG } from '../constants/historyRecordPages';
+import SecurityTabs from './security/SecurityTabs';
+import {
+    HISTORY_RECORD_PANEL_CONFIG,
+    TRANSACTION_RECORD_ROWS,
+    TRANSACTION_RECORD_TABS,
+} from '../constants/historyRecordPages';
 
 export default function HistoryRecordPage({ activePage }) {
     const config = HISTORY_RECORD_PANEL_CONFIG[activePage];
+    const [transactionType, setTransactionType] = useState('all');
+    const isTransactionRecord = activePage === 'transaction-record';
+    const transactionRows = isTransactionRecord
+        ? transactionType === 'all'
+            ? TRANSACTION_RECORD_ROWS
+            : TRANSACTION_RECORD_ROWS.filter((row) => row.kind === transactionType)
+        : [];
+
     if (!config) {
         return null;
     }
@@ -15,6 +28,24 @@ export default function HistoryRecordPage({ activePage }) {
                 startDateLabel={config.startDateLabel}
                 endDateLabel={config.endDateLabel}
                 columns={config.columns}
+                rows={isTransactionRecord ? transactionRows : []}
+                rowDateKey="date"
+                filterSlot={
+                    isTransactionRecord ? (
+                        <SecurityTabs
+                            activeTab={transactionType}
+                            onTabChange={setTransactionType}
+                            tabs={TRANSACTION_RECORD_TABS}
+                        />
+                    ) : null
+                }
+                emptyMessage={
+                    isTransactionRecord
+                        ? transactionType === 'all'
+                            ? 'No transaction records found'
+                            : `No ${transactionType} records found`
+                        : undefined
+                }
             />
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import {
     Copy,
     Check,
@@ -34,7 +34,7 @@ import ReferralGameCommissionTable from './referral/ReferralGameCommissionTable'
 
 const affiliateTabs = ['Invite Friends', 'My Referrals', 'My Rewards', 'How It Works'];
 
-// Placeholder data – replace with real user data when integrated
+// Placeholder data â€“ replace with real user data when integrated
 const REFERRAL_CODE = '589092';
 const REFERRAL_URL = `${typeof window !== 'undefined' ? window.location.origin : ''}/register?code=${REFERRAL_CODE}`;
 
@@ -146,7 +146,7 @@ function createInitialRewardHistory(currency) {
 }
 
 const tabButtonClasses = (selected) =>
-    `inline-flex min-h-[46px] shrink-0 whitespace-nowrap items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] transition-colors duration-200 sm:min-h-[44px] sm:px-4 sm:py-2.5 sm:text-xs md:text-sm ${
+    `inline-flex min-h-[46px] shrink-0 whitespace-nowrap items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-3 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-200 sm:min-h-[44px] sm:px-4 sm:py-2.5 sm:text-xs md:text-sm ${
         selected
             ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)]'
             : 'border-transparent bg-transparent text-[var(--color-text-muted)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-strong)]'
@@ -195,10 +195,10 @@ function ReferralBenefitPromoCards() {
                             />
                         </div>
                         <div className="max-w-[24rem]">
-                            <h3 className="text-base font-extrabold leading-tight tracking-[0.01em] text-[var(--color-text-strong)] md:text-[1.35rem]">
+                            <h3 className="text-base font-bold leading-tight tracking-[0.01em] text-[var(--color-text-strong)] md:text-xl">
                                 {card.title}
                             </h3>
-                            <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-[0.95rem]">
+                            <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-base">
                                 Invite friends to receive{' '}
                                 <span className="font-semibold text-[var(--color-text-strong)]">
                                     {card.description.replace('Invite friends to receive ', '')}
@@ -218,7 +218,7 @@ function ReferralGuestState({ onLoginClick }) {
             <section className="relative overflow-hidden rounded-[var(--radius-shell)] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] px-5 py-7 text-center shadow-[var(--shadow-register-card)] md:px-6 md:py-8">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgb(96_165_250_/_0.1),transparent_55%)]" />
                 <div className="relative mx-auto max-w-[720px]">
-                    <h2 className="text-lg font-extrabold tracking-[0.01em] text-[var(--color-text-strong)] sm:text-xl md:text-[1.65rem]">
+                    <h2 className="text-lg font-bold tracking-[0.01em] text-[var(--color-text-strong)] sm:text-xl md:text-2xl">
                         Log In to View Your Unique Referral Info
                     </h2>
                     <p className="mx-auto mt-2.5 max-w-[620px] text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-3">
@@ -227,7 +227,7 @@ function ReferralGuestState({ onLoginClick }) {
                     <button
                         type="button"
                         onClick={onLoginClick}
-                        className="btn-theme-cta mt-4 inline-flex min-h-11 min-w-[188px] items-center justify-center rounded-xl px-6 py-2.5 text-sm font-black tracking-wide shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105 md:min-h-11 md:px-8"
+                        className="btn-theme-cta mt-4 inline-flex min-h-11 min-w-[188px] items-center justify-center rounded-xl px-6 py-2.5 text-sm font-bold tracking-wide shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105 md:min-h-11 md:px-8"
                     >
                         Login Now!
                     </button>
@@ -337,7 +337,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                     <button
                         type="button"
                         onClick={() => onSwitchTab?.('My Referrals')}
-                        className="btn-theme-cta mt-auto inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                        className="btn-theme-cta mt-auto inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
                     >
                         Downlines
                     </button>
@@ -451,7 +451,7 @@ function RewardSummaryCard({ reward, onClaim }) {
                         />
                     </div>
                     <div className="min-w-0 flex-1">
-                        <h3 className="text-[17px] font-bold leading-tight text-[var(--color-text-strong)] md:text-lg">
+                        <h3 className="text-lg font-bold leading-tight text-[var(--color-text-strong)] md:text-lg">
                             {reward.title}
                         </h3>
                         <p className="max-w-[28ch] text-sm leading-6 text-[var(--color-text-muted)] sm:max-w-[32ch] lg:max-w-none">
@@ -472,25 +472,25 @@ function RewardSummaryCard({ reward, onClaim }) {
             <div className="mt-4 grid grid-cols-2 gap-3 sm:mt-5">
                 <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Today</p>
-                    <p className="mt-1.5 text-[15px] font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
+                    <p className="mt-1.5 text-base font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
                         {formatReferralMoney(reward.currency, reward.today)}
                     </p>
                 </div>
                 <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">This Month</p>
-                    <p className="mt-1.5 text-[15px] font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
+                    <p className="mt-1.5 text-base font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
                         {formatReferralMoney(reward.currency, reward.thisMonth)}
                     </p>
                 </div>
                 <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Total Claimed</p>
-                    <p className="mt-1.5 text-[15px] font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
+                    <p className="mt-1.5 text-base font-bold text-[var(--color-text-strong)] sm:text-base md:text-lg">
                         {formatReferralMoney(reward.currency, reward.totalClaimed)}
                     </p>
                 </div>
                 <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Unclaimed</p>
-                    <p className="mt-1.5 text-[15px] font-bold text-[var(--color-accent-600)] sm:text-base md:text-lg">
+                    <p className="mt-1.5 text-base font-bold text-[var(--color-accent-600)] sm:text-base md:text-lg">
                         {formatReferralMoney(reward.currency, reward.unclaimed)}
                     </p>
                 </div>
@@ -522,7 +522,7 @@ function RewardsLoginRequiredState({ onLoginClick }) {
                 <button
                     type="button"
                     onClick={onLoginClick}
-                    className="btn-theme-cta mt-5 inline-flex min-h-11 min-w-[160px] items-center justify-center rounded-xl px-6 text-sm font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                    className="btn-theme-cta mt-5 inline-flex min-h-11 min-w-[160px] items-center justify-center rounded-xl px-6 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
                 >
                     Login Now
                 </button>
@@ -767,7 +767,7 @@ function HowItWorksContent() {
                                             />
                                         </div>
                                     </div>
-                                    <p className="max-w-[16rem] text-sm font-bold leading-snug text-[var(--color-text-strong)] md:max-w-none md:text-[0.95rem] md:leading-relaxed">
+                                    <p className="max-w-[16rem] text-sm font-bold leading-snug text-[var(--color-text-strong)] md:max-w-none md:text-base md:leading-relaxed">
                                         {step.title}
                                     </p>
                                 </div>
@@ -827,7 +827,7 @@ export default function ReferralPage({ authUser, onLoginClick }) {
 
     return (
         <main className="w-full bg-[var(--color-page-default)] pb-14">
-            {/* Top bar — matches Live Casino strip */}
+            {/* Top bar â€” matches Live Casino strip */}
             <section className="w-full border-y border-[var(--color-border-default)] bg-[var(--color-surface-base-85)] backdrop-blur">
                 <div className="mx-auto flex h-12 w-full max-w-screen-2xl items-center justify-between px-[var(--space-page-x)] md:px-[var(--space-page-x-md)]">
                     <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
@@ -841,7 +841,7 @@ export default function ReferralPage({ authUser, onLoginClick }) {
                 </div>
             </section>
 
-            {/* Hero — Live Casino layout, no CTA / no provider logo */}
+            {/* Hero â€” Live Casino layout, no CTA / no provider logo */}
             <section className="w-full">
                 <div className="w-full mx-auto">
                     <div className={PAGE_BANNER_WRAP}>
@@ -852,7 +852,7 @@ export default function ReferralPage({ authUser, onLoginClick }) {
                         />
                         <div className="absolute inset-y-0 right-0 flex w-[56%] items-center justify-end pr-3 sm:w-[52%] sm:pr-4 md:w-[50%] md:justify-start md:pr-0">
                             <div className="flex w-full max-w-[500px] flex-col items-center justify-center px-2 py-2 text-center max-md:justify-center md:block md:px-8 md:py-7 md:text-center">
-                                <h1 className="text-base font-black uppercase tracking-[0.03em] text-white sm:text-xl md:mt-5 md:text-3xl">
+                                <h1 className="text-base font-bold uppercase tracking-[0.03em] text-white sm:text-xl md:mt-5 md:text-3xl">
                                     Referral
                                 </h1>
                                 <p className="mx-auto mt-1 hidden max-w-[420px] text-xs font-semibold leading-[1.35] text-white sm:flex sm:mt-3 sm:text-sm md:mt-4 md:text-base">
@@ -908,3 +908,5 @@ export default function ReferralPage({ authUser, onLoginClick }) {
         </main>
     );
 }
+
+

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight, HelpCircle, Home, MessageCircle, MoreHorizontal, Search, Send, X } from 'lucide-react';
 
 const messageThreads = [
@@ -10,29 +10,29 @@ const messageThreads = [
         time: '3w',
         unread: true,
         status: 'Active 4h ago',
-        avatar: '🦋',
+        avatar: 'ðŸ¦‹',
         accent: 'bg-[linear-gradient(180deg,#ffdfc2_0%,#d77fa5_100%)]',
         type: 'article',
-        articleTitle: 'CNY Is Just Around The Corner Boss 🐎',
+        articleTitle: 'CNY Is Just Around The Corner Boss ðŸŽ',
         articleBody: [
             'Want extra ong this CNY? Better join GemChat early!',
-            'Members get exclusive rewards, surprise treats, and 春节 gifts 💌',
+            'Members get exclusive rewards, surprise treats, and æ˜¥èŠ‚ gifts ðŸ’Œ',
             'Join our player community for info on promos, bonuses & more.',
-            'Wanna know even more? GemNews is perfect for ya 👀',
+            'Wanna know even more? GemNews is perfect for ya ðŸ‘€',
         ],
     },
     {
         id: 'luna-social',
         name: 'Luna',
         title: 'Chat with Luna',
-        preview: 'Luna: Social Platforms You Use ✨ Hi vince...',
+        preview: 'Luna: Social Platforms You Use âœ¨ Hi vince...',
         time: '3w',
         unread: true,
         status: 'Active 4h ago',
-        avatar: '🦋',
+        avatar: 'ðŸ¦‹',
         accent: 'bg-[linear-gradient(180deg,#ffdfc2_0%,#d77fa5_100%)]',
         type: 'article',
-        articleTitle: 'Social Platforms You Use ✨',
+        articleTitle: 'Social Platforms You Use âœ¨',
         articleBody: [
             'Hi demo, we are sharing more support updates on our social platforms.',
             'Follow GemChat for the latest promos, reminders, and festive news.',
@@ -43,11 +43,11 @@ const messageThreads = [
         id: 'nora',
         name: 'Nora',
         title: 'The team can also help',
-        preview: 'Hello there. 🌟 Welcome to GemBet Support. 👋',
+        preview: 'Hello there. ðŸŒŸ Welcome to GemBet Support. ðŸ‘‹',
         time: 'Just now',
         unread: false,
         status: 'The team can also help',
-        avatar: '🧚',
+        avatar: 'ðŸ§š',
         accent: 'bg-[linear-gradient(180deg,#ffb56f_0%,#8a4cff_100%)]',
         type: 'assistant',
     },
@@ -55,11 +55,11 @@ const messageThreads = [
         id: 'rory',
         name: 'Rory',
         title: 'Active',
-        preview: 'Please select a topic related to your inquiry. 🙏',
+        preview: 'Please select a topic related to your inquiry. ðŸ™',
         time: 'Just now',
         unread: false,
         status: 'Active',
-        avatar: '🐰',
+        avatar: 'ðŸ°',
         accent: 'bg-[linear-gradient(180deg,#445bff_0%,#112a88_100%)]',
         type: 'support',
     },
@@ -103,18 +103,18 @@ function BottomNav({ activeTab, onChange }) {
         <div className="relative flex shrink-0 items-center justify-around rounded-none border-x-0 border-b-0 border-t border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-5 py-3.5 shadow-[var(--inset-panel)]">
             <button type="button" onClick={() => onChange('home')} className={`${navBtn} ${activeTab === 'home' ? active : inactive}`}>
                 <Home size={20} strokeWidth={2} />
-                <span className="text-[13px]">Home</span>
+                <span className="text-sm">Home</span>
             </button>
             <button type="button" onClick={() => onChange('messages')} className={`relative ${navBtn} ${activeTab === 'messages' ? active : inactive}`}>
                 <MessageCircle size={20} strokeWidth={2} />
-                <span className="absolute right-4 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--color-danger-main)] px-1 text-[10px] font-bold text-white">
+                <span className="absolute right-4 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--color-danger-main)] px-1 text-xs font-bold text-white">
                     2
                 </span>
-                <span className="text-[13px]">Messages</span>
+                <span className="text-sm">Messages</span>
             </button>
             <button type="button" onClick={() => onChange('help')} className={`${navBtn} ${activeTab === 'help' ? active : inactive}`}>
                 <HelpCircle size={20} strokeWidth={2} />
-                <span className="text-[13px]">Help</span>
+                <span className="text-sm">Help</span>
             </button>
         </div>
     );
@@ -193,7 +193,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
     const renderHome = () => (
         <>
             <div className="relative flex shrink-0 items-center justify-between px-6 pb-6 pt-7">
-                <div className="text-2xl font-black italic tracking-tight text-[var(--color-brand-secondary)]">GEMBET</div>
+                <div className="text-2xl font-bold italic tracking-tight text-[var(--color-brand-secondary)]">GEMBET</div>
                 <button
                     type="button"
                     aria-label="Close"
@@ -206,11 +206,11 @@ export default function LiveChatModal({ open, onClose, authUser }) {
             <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-5">
                 <div className="rounded-[24px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 pb-6 pt-7 shadow-[var(--inset-panel)]">
                 <div className="border-b border-[rgb(171_204_235)] pb-5">
-                    <p className="text-[1.6rem] font-bold leading-tight text-[var(--color-text-strong)]">
+                    <p className="text-2xl font-bold leading-tight text-[var(--color-text-strong)]">
                         Hi {username},
-                        <span className="ml-2 inline-block">👋</span>
+                        <span className="ml-2 inline-block">ðŸ‘‹</span>
                     </p>
-                    <p className="mt-1 text-[1.6rem] font-bold leading-tight text-[var(--color-brand-secondary)]">
+                    <p className="mt-1 text-2xl font-bold leading-tight text-[var(--color-brand-secondary)]">
                         How can we help you?
                     </p>
                 </div>
@@ -233,7 +233,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                     <Avatar thread={thread} small />
                                     <div className="min-w-0 flex-1">
                                         <p className="text-base font-semibold text-[var(--color-text-strong)]">{recentChat.title}</p>
-                                        <p className="mt-1 truncate text-[15px] leading-6 text-[var(--color-text-muted)]">{recentChat.preview}</p>
+                                        <p className="mt-1 truncate text-base leading-6 text-[var(--color-text-muted)]">{recentChat.preview}</p>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className="text-sm text-[var(--color-text-muted)]">{recentChat.time}</span>
@@ -267,10 +267,10 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                             markRecentChat('luna-bonus');
                         }}
                     >
-                        <h2 className="text-[1.2rem] font-semibold leading-snug text-[var(--color-text-strong)]">
+                        <h2 className="text-xl font-semibold leading-snug text-[var(--color-text-strong)]">
                             How Do I Claim The Welcome Bonus MYR?
                         </h2>
-                        <p className="mt-2 text-[15px] leading-6 text-[var(--color-text-muted)]">
+                        <p className="mt-2 text-base leading-6 text-[var(--color-text-muted)]">
                             Claiming process The Welcome Bonus can be claimed through...
                         </p>
                     </button>
@@ -288,7 +288,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                     type="button"
                                     className="flex w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left transition hover:bg-[var(--color-surface-muted)]"
                                 >
-                                    <span className="flex-1 text-[15px] leading-6 text-[var(--color-text-muted)]">{topic}</span>
+                                    <span className="flex-1 text-base leading-6 text-[var(--color-text-muted)]">{topic}</span>
                                     <ChevronRight size={18} className="mt-1 shrink-0 text-[var(--color-brand-primary)]" />
                                 </button>
                             ))}
@@ -305,7 +305,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
         <>
             <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 py-4">
                 <div className="flex items-center justify-between">
-                    <h2 className="flex-1 text-center text-[1.45rem] font-bold text-[var(--color-brand-secondary)]">Messages</h2>
+                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-brand-secondary)]">Messages</h2>
                     <button
                         type="button"
                         onClick={onClose}
@@ -333,7 +333,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                     <p className="text-base font-semibold text-[var(--color-text-strong)]">{thread.title}</p>
                                     <span className="text-sm text-[var(--color-text-muted)]">{thread.time}</span>
                                 </div>
-                                <p className="mt-1 truncate text-[15px] leading-6 text-[var(--color-text-muted)]">{thread.preview}</p>
+                                <p className="mt-1 truncate text-base leading-6 text-[var(--color-text-muted)]">{thread.preview}</p>
                             </div>
                             <span className="mt-3 h-2.5 w-2.5 rounded-full bg-[var(--color-danger-main)]" />
                         </button>
@@ -361,7 +361,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
         <>
             <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 py-4">
                 <div className="flex items-center justify-between">
-                    <h2 className="flex-1 text-center text-[1.45rem] font-bold text-[var(--color-brand-secondary)]">Help</h2>
+                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-brand-secondary)]">Help</h2>
                     <button
                         type="button"
                         onClick={onClose}
@@ -374,13 +374,13 @@ export default function LiveChatModal({ open, onClose, authUser }) {
             <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-5 pt-4">
                 <div className="surface-card rounded-2xl px-4 py-3">
                     <label className="flex items-center gap-3">
-                        <span className="text-[15px] font-semibold text-[var(--color-text-strong)]">Search for help</span>
+                        <span className="text-base font-semibold text-[var(--color-text-strong)]">Search for help</span>
                         <Search size={18} className="ml-auto text-[var(--color-brand-primary)]" />
                     </label>
                 </div>
 
                 <div className="mt-4">
-                    <p className="text-[1.2rem] font-bold text-[var(--color-text-strong)]">7 collections</p>
+                    <p className="text-xl font-bold text-[var(--color-text-strong)]">7 collections</p>
                     <div className="mt-3 space-y-2">
                         {helpCollections.map((collection) => (
                             <button
@@ -389,9 +389,9 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                 className="surface-card flex w-full items-start gap-4 rounded-2xl px-4 py-4 text-left transition hover:border-[var(--color-accent-200)] hover:shadow-[var(--shadow-card-raised)]"
                             >
                                 <div className="min-w-0 flex-1">
-                                    <p className="text-[1.1rem] font-semibold text-[var(--color-text-strong)]">{collection.title}</p>
+                                    <p className="text-lg font-semibold text-[var(--color-text-strong)]">{collection.title}</p>
                                     {collection.description && (
-                                        <p className="mt-1 text-[15px] leading-6 text-[var(--color-text-main)]">{collection.description}</p>
+                                        <p className="mt-1 text-base leading-6 text-[var(--color-text-main)]">{collection.description}</p>
                                     )}
                                     <p className={`text-sm text-[var(--color-text-muted)] ${collection.description ? 'mt-1' : 'mt-2'}`}>{collection.count}</p>
                                 </div>
@@ -446,8 +446,8 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                         <Avatar thread={thread} small />
                         <span className="text-sm text-[var(--color-text-muted)]">{thread.name}</span>
                     </div>
-                    <h3 className="mt-4 text-[1.55rem] font-semibold leading-tight text-[var(--color-text-strong)]">{thread.articleTitle}</h3>
-                    <div className="mt-4 space-y-4 text-[15px] leading-7 text-[var(--color-text-strong)]">
+                    <h3 className="mt-4 text-2xl font-semibold leading-tight text-[var(--color-text-strong)]">{thread.articleTitle}</h3>
+                    <div className="mt-4 space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
                         {thread.articleBody.map((paragraph) => (
                             <p key={paragraph}>{paragraph}</p>
                         ))}
@@ -491,13 +491,13 @@ export default function LiveChatModal({ open, onClose, authUser }) {
             <div className="flex-1 overflow-y-auto px-5 pb-5 pt-5">
                 <p className="text-center text-sm text-[var(--color-text-muted)]">Ask us anything, or share your feedback.</p>
                 <article className="surface-card soft-blue-panel mt-5 w-[86%] rounded-[24px] px-4 py-4 text-left">
-                    <div className="space-y-4 text-[15px] leading-7 text-[var(--color-text-strong)]">
-                        <p>Hello there. 🌟 Welcome to GemBet Support. 👋</p>
+                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
+                        <p>Hello there. ðŸŒŸ Welcome to GemBet Support. ðŸ‘‹</p>
                         <p>Want extra ong this CNY? Better join GemChat early!</p>
                         <p>How can we assist you today?</p>
                     </div>
                 </article>
-                <p className="mt-3 text-sm text-[var(--color-text-muted)]">Nora • AI Agent • Just now</p>
+                <p className="mt-3 text-sm text-[var(--color-text-muted)]">Nora â€¢ AI Agent â€¢ Just now</p>
 
                 <div className="mt-20 flex flex-wrap justify-end gap-3">
                     {supportTags.map((tag) => {
@@ -511,7 +511,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                     setActiveThreadId('rory');
                                     markRecentChat('rory', { title: 'Chat with Rory', preview: 'Nora: Rate your conversation', time: '17m', unread: true });
                                 }}
-                                className={`rounded-full border border-[var(--color-border-default)] px-4 py-2.5 text-[15px] font-medium shadow-[var(--shadow-card-soft)] transition ${
+                                className={`rounded-full border border-[var(--color-border-default)] px-4 py-2.5 text-base font-medium shadow-[var(--shadow-card-soft)] transition ${
                                     isSelected
                                         ? 'bg-[var(--color-brand-primary)] text-white'
                                         : 'bg-[var(--color-surface-base)] text-[var(--color-brand-secondary)]'
@@ -562,25 +562,25 @@ export default function LiveChatModal({ open, onClose, authUser }) {
             </div>
             <div className="flex-1 overflow-y-auto px-5 pb-5 pt-5">
                 <article className="surface-card soft-blue-panel w-[86%] rounded-[24px] px-4 py-4 text-left">
-                    <div className="space-y-4 text-[15px] leading-7 text-[var(--color-text-strong)]">
-                        <p>Please select a topic related to your inquiry. 🙏</p>
+                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
+                        <p>Please select a topic related to your inquiry. ðŸ™</p>
                     </div>
                 </article>
 
                 <div className="mt-6 flex justify-end">
                     <button
                         type="button"
-                        className="btn-theme-primary rounded-full px-6 py-3 text-[15px] font-semibold shadow-[var(--shadow-nav-pill)]"
+                        className="btn-theme-primary rounded-full px-6 py-3 text-base font-semibold shadow-[var(--shadow-nav-pill)]"
                     >
                         General Questions
                     </button>
                 </div>
 
                 <article className="surface-card soft-blue-panel mt-6 w-[86%] rounded-[24px] px-4 py-4 text-left">
-                    <div className="space-y-4 text-[15px] leading-7 text-[var(--color-text-strong)]">
-                        <p>Thank you for selecting the topic. 🌟</p>
+                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
+                        <p>Thank you for selecting the topic. ðŸŒŸ</p>
                         <p>We will connect you with our Support Agent shortly.</p>
-                        <p>If you have a screenshot of the issue, it will help us resolve it quickly. 💎</p>
+                        <p>If you have a screenshot of the issue, it will help us resolve it quickly. ðŸ’Ž</p>
                     </div>
                 </article>
 
@@ -592,12 +592,12 @@ export default function LiveChatModal({ open, onClose, authUser }) {
 
             <div className="surface-card border-x-0 border-b-0 rounded-none px-4 py-3">
                 <div className="rounded-[20px] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-4 py-3">
-                    <p className="text-[15px] text-[var(--color-text-muted)]">Message...</p>
+                    <p className="text-base text-[var(--color-text-muted)]">Message...</p>
                     <div className="mt-4 flex items-center gap-4 text-[var(--color-text-muted)]">
-                        <span>📎</span>
-                        <span>😊</span>
-                        <span className="text-[1.1rem] font-bold">GIF</span>
-                        <span>🎤</span>
+                        <span>ðŸ“Ž</span>
+                        <span>ðŸ˜Š</span>
+                        <span className="text-lg font-bold">GIF</span>
+                        <span>ðŸŽ¤</span>
                         <button
                             type="button"
                             className="ml-auto inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-surface-muted)] text-[var(--color-text-soft)]"
@@ -636,3 +636,5 @@ export default function LiveChatModal({ open, onClose, authUser }) {
         </section>
     );
 }
+
+

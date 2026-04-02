@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { ImagePlus, UserCircle2, X } from 'lucide-react';
 
 const ACCEPT = 'image/jpeg,image/png,image/webp,image/gif';
@@ -100,7 +100,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                 <div className="flex items-center justify-between border-b border-[rgb(228_234_243)] px-5 py-4 sm:px-6">
                     <h2
                         id="profile-photo-modal-title"
-                        className="text-lg font-extrabold tracking-tight text-[var(--color-text-strong)] sm:text-xl"
+                        className="text-lg font-bold tracking-tight text-[var(--color-text-strong)] sm:text-xl"
                     >
                         Profile photo
                     </h2>
@@ -182,3 +182,4 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
         </div>
     );
 }
+

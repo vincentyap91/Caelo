@@ -512,7 +512,7 @@ function AppInner() {
       ) : page === 'promotion' ? (
         <PromotionPage authUser={authUser} onNavigate={handleNavigate} />
       ) : page === 'vip' ? (
-        <VipPage />
+        <VipPage authUser={authUser} />
       ) : page === 'referral' ? (
         <ReferralPage
           authUser={authUser}
@@ -546,7 +546,7 @@ function AppInner() {
         </AccountLayout>
       ) : page === 'security' ? (
         <AccountLayout activePage="security" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
-          <SecurityPage />
+          <SecurityPage authUser={authUser} />
         </AccountLayout>
       ) : page === 'notifications' ? (
         <AccountLayout activePage="notifications" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>

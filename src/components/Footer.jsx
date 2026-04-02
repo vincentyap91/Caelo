@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import FooterPaymentMethods from './FooterPaymentMethods';
 import footerBeGambleAware from '../assets/footer/18_begambleaware.png';
 import footerBmmTestlabs from '../assets/footer/bmmtestlabs.png';
@@ -6,7 +6,7 @@ import footerLogoGli from '../assets/footer/GLI-Logo-English.svg';
 import footerLogoITech from '../assets/footer/iTech-Logo.svg';
 import footerPagcor from '../assets/footer/PAGCORlogos.png';
 
-/** Order: testing / compliance marks, then jurisdiction, then responsible-gaming mark — all from `src/assets/footer` */
+/** Order: testing / compliance marks, then jurisdiction, then responsible-gaming mark â€” all from `src/assets/footer` */
 const CERTIFICATION_LOGOS = [
     { key: 'itech', src: footerLogoITech, alt: 'iTech Labs' },
     { key: 'gli', src: footerLogoGli, alt: 'Gaming Laboratories International (GLI)' },
@@ -24,7 +24,7 @@ export default function Footer() {
 
                 {/* Huge opaque LOGO in center background of footer content */}
                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 pointer-events-none select-none z-0">
-                    <h2 className="text-2xl font-black italic text-white/50 drop-shadow-sm tracking-widest">LOGO</h2>
+                    <h2 className="text-2xl font-bold italic text-white/50 drop-shadow-sm tracking-widest">LOGO</h2>
                 </div>
 
                 {/* Top Info & Links Row */}
@@ -94,7 +94,7 @@ export default function Footer() {
                 {/* Copyright */}
                 <div className="w-full text-center relative z-10 pb-4">
                     <p className="text-xs font-semibold tracking-wide text-[var(--color-brand-primary)]">
-                        Copyright Riocity9 © 2026. All rights reserved.
+                        Copyright Riocity9 Â© 2026. All rights reserved.
                     </p>
                 </div>
 
@@ -102,3 +102,4 @@ export default function Footer() {
         </footer>
     );
 }
+

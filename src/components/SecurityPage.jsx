@@ -8,8 +8,9 @@ const SECURITY_TABS = [
     { id: 'password', label: 'Password Reset' },
 ];
 
-export default function SecurityPage() {
+export default function SecurityPage({ authUser }) {
     const [activeTab, setActiveTab] = useState('2fa');
+    const accountName = authUser?.name || authUser?.username || 'your account';
 
     return (
         <div className="page-container">
@@ -24,7 +25,7 @@ export default function SecurityPage() {
             </div>
 
             <div className="min-h-[320px]">
-                {activeTab === '2fa' && <TwoFactorPanel />}
+                {activeTab === '2fa' && <TwoFactorPanel accountName={accountName} />}
                 {activeTab === 'password' && <PasswordResetPanel />}
             </div>
         </div>

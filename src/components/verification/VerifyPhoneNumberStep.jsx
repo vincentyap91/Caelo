@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+﻿import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { DEFAULT_MOCK_OTP_CODE, DEFAULT_TAC_COUNTDOWN_SECONDS } from '../../constants/verification';
 import { tacSentInstructionLine } from '../../utils/phoneDisplay';
@@ -160,7 +160,7 @@ export default function VerifyPhoneNumberStep({
                 </button>
             ) : null}
 
-            <h2 className="text-center text-xl font-extrabold tracking-tight text-[rgb(18_63_128)] sm:text-2xl">
+            <h2 className="text-center text-xl font-bold tracking-tight text-[rgb(18_63_128)] sm:text-2xl">
                 Verify Your Number
             </h2>
             <p className="mt-3 text-center text-sm font-medium leading-relaxed text-[rgb(35_64_106)] sm:text-base">
@@ -202,7 +202,7 @@ export default function VerifyPhoneNumberStep({
                         <button
                             type="button"
                             onClick={onContactCustomerService}
-                            className="h-12 w-full max-w-sm rounded-xl bg-[#39FF88] px-4 text-center text-base font-extrabold text-black shadow-[0_10px_24px_rgba(57_255_136_0.35)] transition hover:brightness-95 active:scale-[0.99]"
+                            className="h-12 w-full max-w-sm rounded-xl bg-[#39FF88] px-4 text-center text-base font-bold text-black shadow-[0_10px_24px_rgba(57_255_136_0.35)] transition hover:brightness-95 active:scale-[0.99]"
                         >
                             Contact Customer Service
                         </button>
@@ -212,3 +212,4 @@ export default function VerifyPhoneNumberStep({
         </div>
     );
 }
+

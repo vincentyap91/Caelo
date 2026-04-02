@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+﻿import React, { useMemo, useState, useEffect } from 'react';
 import { Play, Search, TrendingUp, TrendingDown } from 'lucide-react';
 import slotsBanner from '../assets/slot-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
@@ -14,7 +14,7 @@ const CDN = 'https://cdn.i8global.com/lb9/master';
 const slotProviders = [
     { name: 'Pragmatic Play', src: `${CDN}/pragmaticplay/pp-202505140448040730-202506200354029751.svg`, featured: true },
     { name: 'PlayTech Slots', src: `${CDN}/playtechslots/playtech-202505140443475046-202507230000384478-202508140011404228.svg`, featured: true },
-    /* AdvantPlay: strip-only asset (navbar mega-menu uses `matchedSlotProviders` — keep URLs independent). */
+    /* AdvantPlay: strip-only asset (navbar mega-menu uses `matchedSlotProviders` â€” keep URLs independent). */
     { name: 'AdvantPlay', src: `${CDN}/advantplay1/advantplay-min-202507170638442926-202509040235032332-202509180625238829.png`, featured: true },
     { name: 'JiLi', src: `${CDN}/jili/jili-min-202506200742098986-202508110205447696-202508212322163049.png`, featured: true },
     { name: 'JDB', src: `${CDN}/jdb/jdbslot-min-202506200911451833-202506250030508552.png`, featured: true },
@@ -43,7 +43,7 @@ const slotProviders = [
 
 const gameTabs = ['All Games', 'Hot Games', 'New Games', 'Highest RTP'];
 const pageContainerClass = 'mx-auto w-full max-w-screen-2xl px-4 md:px-8';
-const sectionTitleClass = 'text-xl font-extrabold tracking-tight text-slate-900 md:text-2xl';
+const sectionTitleClass = 'text-xl font-bold tracking-tight text-slate-900 md:text-2xl';
 
 const liveBigWins = [
     { user: 'Alex M.', amount: 'MYR 67,450', game: 'Great Blue Jackpot', time: '2 min ago', amountColor: 'text-[var(--color-danger-main)]' },
@@ -51,7 +51,7 @@ const liveBigWins = [
     { user: 'John D.', amount: 'MYR 120,500', game: 'Archer', time: '8 min ago', amountColor: 'text-[var(--color-danger-main)]' },
 ];
 
-const INITIAL_GAMES = 30; // 5 rows × 6 columns (lg)
+const INITIAL_GAMES = 30; // 5 rows Ã— 6 columns (lg)
 
 export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
     const [activeTab, setActiveTab] = useState('All Games');
@@ -120,7 +120,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                         <div className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-black uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
+                                    <h1 className="text-xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
                                         Slots
                                     </h1>
                                 </div>
@@ -148,7 +148,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                 }`}
                             >
                                 {(provider.featured || provider.new) && (
-                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-black text-white ${provider.new ? 'bg-blue-500' : 'bg-orange-500'}`}>
+                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-bold text-white ${provider.new ? 'bg-blue-500' : 'bg-orange-500'}`}>
                                         {provider.new ? 'New' : 'Hot'}
                                     </span>
                                 )}
@@ -203,7 +203,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                 aria-label={`Open ${game.name}`}
                             />
                             {(game.hot || game.new) && (
-                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-black text-white">
+                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-bold text-white">
                                     {game.hot ? 'HOT' : 'NEW'}
                                 </span>
                             )}
@@ -229,7 +229,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                             <div className="p-2 md:p-3">
                                 <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>
                                 <p className="mt-1 text-xs text-slate-500">{game.provider}</p>
-                                <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-extrabold text-blue-700">
+                                <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-bold text-blue-700">
                                     RTP {game.rtp.toFixed(2)}%
                                     <TrendIcon size={14} strokeWidth={2.5} className={arrowColor} />
                                 </span>
@@ -240,7 +240,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                 </div>
                 {filteredGames.length === 0 && (
                     <div className="surface-card mt-6 rounded-2xl px-4 py-7 text-center">
-                        <p className="text-base font-extrabold text-slate-800">No games match your search.</p>
+                        <p className="text-base font-bold text-slate-800">No games match your search.</p>
                         <p className="mt-1 text-xs text-slate-500">Try a different keyword or switch filter.</p>
                     </div>
                 )}
@@ -249,7 +249,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                         <button
                             type="button"
                             onClick={() => setGamesToShow(filteredGames.length)}
-                            className="btn-theme-cta inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
                         >
                             SEE MORE
                         </button>
@@ -289,7 +289,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                         {win.user} won <span className={win.amountColor}>{win.amount}</span>
                                     </p>
                                     <p className="mt-0.5 text-xs text-slate-500">
-                                        on {win.game} · {win.time}
+                                        on {win.game} Â· {win.time}
                                     </p>
                                     <button
                                         type="button"
@@ -313,3 +313,4 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
         </main>
     );
 }
+

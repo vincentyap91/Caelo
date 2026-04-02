@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import {
     ChevronDown,
     Clock,
@@ -12,7 +12,7 @@ import RewardsActivityRecordModal from './RewardsActivityRecordModal';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from './HorizontalScrollTabRow';
 import { REWARDS_ACTIVITY_RECORD_TYPES, REWARDS_PROGRAM_IDS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
 
-/** Demo main wallet balance (Spin / Voucher / Prize rewards area — hidden on Daily Bonus) */
+/** Demo main wallet balance (Spin / Voucher / Prize rewards area â€” hidden on Daily Bonus) */
 const REWARDS_WALLET_BALANCE = '201.00';
 
 const REWARDS_RECORD_COLUMNS = [
@@ -40,9 +40,9 @@ const VOUCHERS = [
 ];
 
 const SPIN_OFFERS = [
-    { id: 'sp1', title: 'Daily free spin', value: '5', blurb: '1 free spin per day · MYR credits to wallet' },
+    { id: 'sp1', title: 'Daily free spin', value: '5', blurb: '1 free spin per day Â· MYR credits to wallet' },
     { id: 'sp2', title: 'Lucky wheel', value: '88', blurb: 'Boosted segments during live promos' },
-    { id: 'sp3', title: 'Mega spin', value: '500', blurb: 'VIP eligible · rollover may apply' },
+    { id: 'sp3', title: 'Mega spin', value: '500', blurb: 'VIP eligible Â· rollover may apply' },
 ];
 
 const PRIZE_ITEMS = [
@@ -97,7 +97,7 @@ function TermsBlock({ title, subtitle, children }) {
     );
 }
 
-/** Shared “scratch voucher” visual: neon gradient hero, scan lines, corner badge, footer CTA */
+/** Shared â€œscratch voucherâ€ visual: neon gradient hero, scan lines, corner badge, footer CTA */
 function ScratchStyleRewardCard({
     badge,
     heroCenter,
@@ -119,7 +119,7 @@ function ScratchStyleRewardCard({
                 ) : null}
                 <div className="absolute inset-0 flex items-center justify-center">{heroCenter}</div>
                 <div className="absolute inset-0 flex items-center justify-center bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgb(255_255_255_/_0.06)_2px,rgb(255_255_255_/_0.06)_4px)] opacity-80" />
-                <span className="absolute bottom-2 left-2 z-10 rounded bg-black/40 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                <span className="absolute bottom-2 left-2 z-10 rounded bg-black/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-white">
                     {badge}
                 </span>
             </div>
@@ -177,7 +177,7 @@ function DailyBonusPanel() {
     return (
         <div className="space-y-6">
             <div className="overflow-hidden rounded-[var(--radius-panel-lg)] border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
-                {/* Light blue header — matches screenshot top block */}
+                {/* Light blue header â€” matches screenshot top block */}
                 <div className="bg-[linear-gradient(180deg,var(--color-accent-50)_0%,rgb(219_234_254)_100%)] px-5 py-5 sm:px-6 sm:py-6">
                     <h3 className="text-lg font-bold text-[rgb(18_63_128)] md:text-xl">Daily Check In</h3>
                     <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-main)]">
@@ -197,7 +197,7 @@ function DailyBonusPanel() {
                         Claim MYR rewards each day. Some days may require minimum valid turnover on your main wallet.
                     </p>
                 </div>
-                {/* Day cards — white area inside same card */}
+                {/* Day cards â€” white area inside same card */}
                 <div className="border-t border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-4 sm:p-5 md:p-6">
                     <div className="overflow-x-auto pb-1 [-webkit-overflow-scrolling:touch]">
                         <div className="flex min-w-0 gap-2.5 sm:grid sm:grid-cols-7 sm:gap-3 md:gap-4">
@@ -215,7 +215,7 @@ function DailyBonusPanel() {
                                                   : 'border border-[var(--color-border-default)]'
                                         }`}
                                     >
-                                        <p className="text-center text-[11px] font-bold uppercase tracking-wide text-[rgb(18_63_128)] sm:text-xs">
+                                        <p className="text-center text-xs font-bold uppercase tracking-wide text-[rgb(18_63_128)] sm:text-xs">
                                             {d.label}
                                         </p>
                                         <div className="mt-2 flex flex-1 flex-col items-center justify-center gap-1.5">
@@ -224,7 +224,7 @@ function DailyBonusPanel() {
                                                 strokeWidth={2}
                                                 aria-hidden
                                             />
-                                            <p className="text-center text-[11px] font-bold leading-tight text-[rgb(18_63_128)] sm:text-xs">
+                                            <p className="text-center text-xs font-bold leading-tight text-[rgb(18_63_128)] sm:text-xs">
                                                 {d.reward}
                                             </p>
                                         </div>
@@ -241,13 +241,13 @@ function DailyBonusPanel() {
                                             {d.status === 'locked' && (
                                                 <div className="flex items-center justify-center gap-1 rounded-[var(--radius-control-xs)] bg-[var(--color-surface-muted)] py-2 text-[var(--color-text-soft)]">
                                                     <Lock size={13} strokeWidth={2.25} aria-hidden />
-                                                    <span className="text-[10px] font-bold uppercase tracking-wide">
+                                                    <span className="text-xs font-bold uppercase tracking-wide">
                                                         Locked
                                                     </span>
                                                 </div>
                                             )}
                                             {d.status === 'claimed' && (
-                                                <p className="rounded-[var(--radius-control-xs)] bg-[var(--color-accent-50)] py-2 text-center text-[10px] font-bold text-[var(--color-accent-700)]">
+                                                <p className="rounded-[var(--radius-control-xs)] bg-[var(--color-accent-50)] py-2 text-center text-xs font-bold text-[var(--color-accent-700)]">
                                                     Claimed
                                                 </p>
                                             )}
@@ -279,7 +279,7 @@ function SpinWheelPanel() {
             <div>
                 <h3 className="text-base font-bold text-[var(--color-text-strong)]">Spin offers</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                    Same scratch-card look — spin for random MYR; prizes credit to your wallet after claim.
+                    Same scratch-card look â€” spin for random MYR; prizes credit to your wallet after claim.
                 </p>
                 <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {SPIN_OFFERS.map((s) => (
@@ -287,7 +287,7 @@ function SpinWheelPanel() {
                             key={s.id}
                             badge="Spin"
                             heroCenter={
-                                <span className="text-4xl font-black text-white/90 drop-shadow-lg">
+                                <span className="text-4xl font-bold text-white/90 drop-shadow-lg">
                                     RM {s.value}
                                 </span>
                             }
@@ -316,7 +316,7 @@ function VoucherScratchPanel() {
             <div>
                 <h3 className="text-base font-bold text-[var(--color-text-strong)]">Scratch &amp; redeem</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                    Reveal vouchers — MYR credit applies to your main wallet when you complete redemption.
+                    Reveal vouchers â€” MYR credit applies to your main wallet when you complete redemption.
                 </p>
                 <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {VOUCHERS.map((v) => (
@@ -324,12 +324,12 @@ function VoucherScratchPanel() {
                             key={v.id}
                             badge="Scratch"
                             heroCenter={
-                                <span className="text-4xl font-black text-white/90 drop-shadow-lg">
+                                <span className="text-4xl font-bold text-white/90 drop-shadow-lg">
                                     RM {v.value}
                                 </span>
                             }
                             title={v.title}
-                            description={`Win up to MYR ${v.value} · Credit to wallet after claim`}
+                            description={`Win up to MYR ${v.value} Â· Credit to wallet after claim`}
                             ctaLabel="Scratch & claim"
                         />
                     ))}
@@ -359,23 +359,23 @@ function PrizeBoxPanel() {
                             key={item.id}
                             badge="Prize"
                             metaTopLeft={
-                                <span className="rounded-md bg-black/45 px-2 py-1 text-[11px] font-bold text-white backdrop-blur-sm">
+                                <span className="rounded-md bg-black/45 px-2 py-1 text-xs font-bold text-white backdrop-blur-sm">
                                     Reward #{item.id}
                                 </span>
                             }
                             metaTopRight={
-                                <span className="inline-flex items-center gap-1 rounded-full border border-white/25 bg-black/40 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur-sm">
+                                <span className="inline-flex items-center gap-1 rounded-full border border-white/25 bg-black/40 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">
                                     <Clock size={11} className="shrink-0 opacity-90" />
                                     {item.expires}
                                 </span>
                             }
                             heroCenter={
-                                <span className="text-4xl font-black text-white/90 drop-shadow-lg">
+                                <span className="text-4xl font-bold text-white/90 drop-shadow-lg">
                                     RM {item.amount}
                                 </span>
                             }
                             title={item.campaign}
-                            description="Campaign reward · MYR credits main wallet when claimed"
+                            description="Campaign reward Â· MYR credits main wallet when claimed"
                             ctaLabel={item.available ? 'Claim to wallet' : 'Unavailable'}
                             ctaDisabled={!item.available}
                         />
@@ -469,7 +469,7 @@ export default function RewardsSection({ embedInPage = false }) {
                                 Rewards
                             </h2>
                             <p className="mt-1 text-sm font-medium text-[var(--color-text-muted)]">
-                                Check in, spin, scratch, and open prizes — claim MYR to your wallet.
+                                Check in, spin, scratch, and open prizes â€” claim MYR to your wallet.
                             </p>
                         </div>
                     </div>
@@ -566,3 +566,5 @@ export default function RewardsSection({ embedInPage = false }) {
         </>
     );
 }
+
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Lock, RefreshCw } from 'lucide-react';
 
 function SummaryItem({
@@ -14,14 +14,14 @@ function SummaryItem({
     return (
         <article className="surface-card flex h-full min-h-[86px] min-w-0 items-center justify-between gap-3 rounded-[var(--radius-panel)] border-[var(--color-border-default)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(250,252,255,0.94)_100%)] px-4 py-3 shadow-[var(--shadow-subtle)] sm:min-h-[92px] sm:px-4.5 sm:py-3.5">
             <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold tracking-[-0.01em] text-[var(--color-text-main)] sm:text-[15px]">
+                <p className="text-sm font-semibold tracking-[-0.01em] text-[var(--color-text-main)]">
                     {title}
                 </p>
                 <p
-                    className={`mt-2 tabular-nums leading-none tracking-[-0.03em] ${valueClassName} ${
+                    className={`tabular-nums leading-none tracking-[-0.03em] ${valueClassName} ${
                         isPrimary
-                            ? 'text-[1.7rem] font-bold sm:text-[1.85rem]'
-                            : 'text-[1.6rem] font-bold sm:text-[1.72rem]'
+                            ? 'text-3xl font-bold sm:text-3xl'
+                            : 'text-2xl font-bold sm:text-3xl'
                     }`}
                 >
                     {value}
@@ -65,3 +65,4 @@ export default function WalletRebateSummaryBar({
         </section>
     );
 }
+

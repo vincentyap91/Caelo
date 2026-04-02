@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PromotionDetailModal from './PromotionDetailModal';
 import PromotionCtaButton from './promotion/PromotionCtaButton';
 import PromotionStyleTabs from './PromotionStyleTabs';
@@ -273,10 +273,10 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                 </div>
                                 <div className="flex min-h-0 flex-1 flex-col justify-between gap-4 px-4 py-4 md:px-5 md:py-5">
                                     <div className="space-y-2">
-                                        <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--color-accent-700)]">
+                                        <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-accent-700)]">
                                             {promotion.category}
                                         </span>
-                                        <h2 className="text-lg font-extrabold leading-tight tracking-tight text-[var(--color-text-strong)] md:text-xl">
+                                        <h2 className="text-lg font-bold leading-tight tracking-tight text-[var(--color-text-strong)] md:text-xl">
                                             {promotion.title}
                                         </h2>
                                         <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -308,7 +308,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                             <button
                                 type="button"
                                 onClick={loadMorePromotions}
-                                className="btn-theme-cta inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm font-black tracking-wide shadow-[0_6px_14px_rgba(242,154,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105"
+                                className="btn-theme-cta inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm font-bold tracking-wide shadow-[0_6px_14px_rgba(242,154,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105"
                             >
                                 Load More
                             </button>
@@ -317,7 +317,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
 
                     {filteredPromotions.length === 0 && (
                         <div className="surface-card mt-8 rounded-2xl px-6 py-12 text-center">
-                            <p className="text-lg font-extrabold text-[var(--color-text-strong)]">No promotions in this category yet.</p>
+                            <p className="text-lg font-bold text-[var(--color-text-strong)]">No promotions in this category yet.</p>
                             <p className="mt-2 text-sm text-[var(--color-text-muted)]">Try another category to view available offers.</p>
                         </div>
                     )}
@@ -337,3 +337,5 @@ export default function PromotionPage({ authUser, onNavigate }) {
         </main>
     );
 }
+
+

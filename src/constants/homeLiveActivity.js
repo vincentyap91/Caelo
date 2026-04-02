@@ -55,6 +55,16 @@ export function getUnifiedLiveTransactions() {
 /** Matches slots imagery used elsewhere on the site */
 export const MOCK_RECENT_BIG_WINS = [
     {
+        id: 'bw6',
+        user: 'Chloe W.',
+        game: 'Sugar Rush',
+        provider: 'Pragmatic Play',
+        badge: 'PRAGMATIC PLAY',
+        imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs20olympx.png',
+        amount: 'MYR 19,400',
+        timeAgo: '31 mins ago',
+    },
+    {
         id: 'bw1',
         user: 'Alex M.',
         game: 'Great Blue Jackpot',
@@ -103,15 +113,5 @@ export const MOCK_RECENT_BIG_WINS = [
         imgUrl: 'https://zd3rmimelg.iwzphbojix.net/game_pic/square/200/vs15godsofwar.png',
         amount: 'MYR 88,200',
         timeAgo: '22 mins ago',
-    },
-    {
-        id: 'bw6',
-        user: 'Chloe W.',
-        game: 'Sugar Rush',
-        provider: 'Pragmatic Play',
-        badge: 'PRAGMATIC PLAY',
-        imgUrl: 'https://pksoftcdn.azureedge.net/games/PragmaticPlayT/vs20olympgate.png',
-        amount: 'MYR 19,400',
-        timeAgo: '31 mins ago',
     },
 ];

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import PromotionStyleTabs from './PromotionStyleTabs';
 import ProviderLaunchModal from './ProviderLaunchModal';
@@ -7,77 +7,17 @@ import LobbyProviderCard from './game/LobbyProviderCard';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
 import liveCasinoBanner from '../assets/live-casino.jpg';
 import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
-import wcasinoLogo from '../assets/wcasino-2x-min-202505280008599013-202506250016539240.png';
-import sagamingLogo from '../assets/sagaming2025_wh-202510270604321830.png';
-import playtechLogo from '../assets/playtech-202505140443475046-202506242335087315.svg';
-import sexygamingLogo from '../assets/sexygaming-202505140447445395-202506240659312869.svg';
-import dreamgamingLogo from '../assets/dreamgaming-min-202506201545375005-202506250034043371.png';
-import evolutionLogo from '../assets/evolution-202505140444284259-202506242322200281.svg';
-import pragmaticLiveLogo from '../assets/pp-live-casino-202505140447187176-202506240700358930.svg';
-import wmcasinoLogo from '../assets/wmcasino-202505140442522647-202506242346230340.svg';
-import biggamingLogo from '../assets/biggaming-min-202506201446479379-202506250032270399.png';
-import allbetLogo from '../assets/allbet-1-202505132310053829-202506250015492361.svg';
-import yeebetLogo from '../assets/yeebet-min-202506201536311077-202506250033163315.png';
-import wecasinoLogo from '../assets/worldent-min-202507141449569526-202507170806057662.png';
-import mtLogo from '../assets/download-202506250034489694.png';
-/** Compact grid mark; hero/menu tiles use `liveCasinoMenuTileAssets` (`ezugi-hero.png`). */
-import ezugiLogo from '../assets/live-casino/ezugi.webp';
-import afbGamingLogo from '../assets/live-casino/afb-logo.png';
-import ct855Logo from '../assets/live-casino/ct855.png';
-
-const EZUGI_PROVIDER_ID = 'ezugi';
-const AFB_PROVIDER_ID = 'afb-gaming';
-const CT855_PROVIDER_ID = 'ct855';
-
-const providerLogos = [
-    { id: 'casino', name: 'W Casino', src: wcasinoLogo, categories: ['Baccarat', 'Game Shows'], featured: true },
-    { id: 'sagaming', name: 'SA Gaming', src: sagamingLogo, categories: ['Baccarat', 'Dragon Tiger'], featured: true },
-    { id: 'playtech', name: 'Playtech LiveCasino', src: playtechLogo, categories: ['Roulette', 'Blackjack'], featured: true },
-    { id: 'sexy-gaming', name: 'Sexy Gaming', src: sexygamingLogo, categories: ['Baccarat', 'Blackjack'], featured: true },
-    { id: 'dream-gaming', name: 'DreamGaming', src: dreamgamingLogo, categories: ['Baccarat', 'Roulette'], featured: true },
-    { id: 'evolution', name: 'Evolution Gaming', src: evolutionLogo, categories: ['Roulette', 'Game Shows'], featured: true },
-    { id: 'pragmatic-play', name: 'Pragmatic Play Live Casino', src: pragmaticLiveLogo, categories: ['Game Shows', 'Roulette'], featured: true },
-    { id: EZUGI_PROVIDER_ID, name: 'Ezugi', src: ezugiLogo, categories: ['Baccarat', 'Roulette', 'Game Shows'], featured: true },
-    { id: 'afb-gaming', name: 'AFB Gaming', src: afbGamingLogo, categories: ['Baccarat', 'Roulette', 'Blackjack'], featured: true },
-    { id: CT855_PROVIDER_ID, name: 'CT855', src: ct855Logo, categories: ['Baccarat', 'Roulette', 'Dragon Tiger'], featured: true },
-    { id: 'wm-casino', name: 'WM Casino', src: wmcasinoLogo, categories: ['Baccarat'], featured: false },
-    { id: 'big-gaming', name: 'Big Gaming', src: biggamingLogo, categories: ['Game Shows'], featured: false },
-    { id: 'allbet', name: 'AllBet', src: allbetLogo, categories: ['Blackjack', 'Baccarat'], featured: false },
-    { id: 'yeebet-live', name: 'YeeBet', src: yeebetLogo, categories: ['Baccarat'], featured: false },
-    { id: 'world-entertainment', name: 'WECasino', src: wecasinoLogo, categories: ['Game Shows'], featured: false },
-    { id: 'mt-live', name: 'MT', src: mtLogo, categories: ['Dragon Tiger'], featured: false }
-];
+import {
+    EZUGI_PROVIDER_ID,
+    LIVE_CASINO_LAUNCH_MODAL_BY_PROVIDER_ID,
+    LIVE_CASINO_PAGE_PROVIDERS,
+} from '../constants/liveCasinoProviders';
 
 const providerTags = ['All', 'Trending', 'Baccarat', 'Roulette', 'Dragon Tiger', 'Blackjack', 'Game Shows'];
-const EZUGI_LAUNCH_CONFIG = {
-    title: 'Ezugi',
-    bannerImage:
-        'https://pksoftcdn.azureedge.net/media/ezugi_cam88_providerbanner_1029pxx420px-202601301129537731.jpg',
-    wallet: '201.00',
-    membershipRebate: '0.00%',
-};
-const AFB_LAUNCH_CONFIG = {
-    title: 'AFB Gaming',
-    bannerImage:
-        'https://pksoftcdn.azureedge.net/media/1029x420_providerbanner_afbcasino-202408151024208680-202408151200309656.jpg',
-    wallet: '201.00',
-    membershipRebate: '0.00%',
-};
-const CT855_LAUNCH_CONFIG = {
-    title: 'CT855',
-    bannerImage: 'https://pksoftcdn.azureedge.net/media/1029x420_providerbanner_ct855-202409021036566678.jpg',
-    wallet: '201.00',
-    membershipRebate: '0.00%',
-};
-
-const LAUNCH_MODAL_BY_PROVIDER_ID = {
-    [EZUGI_PROVIDER_ID]: EZUGI_LAUNCH_CONFIG,
-    [AFB_PROVIDER_ID]: AFB_LAUNCH_CONFIG,
-    [CT855_PROVIDER_ID]: CT855_LAUNCH_CONFIG,
-};
+const providerLogos = LIVE_CASINO_PAGE_PROVIDERS;
 
 function resolveLaunchConfig(providerId) {
-    return LAUNCH_MODAL_BY_PROVIDER_ID[providerId] ?? null;
+    return LIVE_CASINO_LAUNCH_MODAL_BY_PROVIDER_ID[providerId] ?? null;
 }
 
 export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate }) {
@@ -163,7 +103,7 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
         <button
             type="button"
             onClick={handlePlayLive}
-            className={`btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-black tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base ${className}`}
+            className={`btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-bold tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base ${className}`}
             aria-label={
                 resolveLaunchConfig(bannerProvider.id)
                     ? `Play ${resolveLaunchConfig(bannerProvider.id)?.title ?? bannerProvider.name}`
@@ -181,10 +121,10 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
             <ProviderLaunchModal
                 open={providerLaunchOpen}
                 onClose={handleCloseProviderLaunch}
-                title={(resolveLaunchConfig(bannerProvider.id) ?? EZUGI_LAUNCH_CONFIG).title}
-                bannerImage={(resolveLaunchConfig(bannerProvider.id) ?? EZUGI_LAUNCH_CONFIG).bannerImage}
-                wallet={(resolveLaunchConfig(bannerProvider.id) ?? EZUGI_LAUNCH_CONFIG).wallet}
-                membershipRebate={(resolveLaunchConfig(bannerProvider.id) ?? EZUGI_LAUNCH_CONFIG).membershipRebate}
+                title={(resolveLaunchConfig(bannerProvider.id) ?? resolveLaunchConfig(EZUGI_PROVIDER_ID)).title}
+                bannerImage={(resolveLaunchConfig(bannerProvider.id) ?? resolveLaunchConfig(EZUGI_PROVIDER_ID)).bannerImage}
+                wallet={(resolveLaunchConfig(bannerProvider.id) ?? resolveLaunchConfig(EZUGI_PROVIDER_ID)).wallet}
+                membershipRebate={(resolveLaunchConfig(bannerProvider.id) ?? resolveLaunchConfig(EZUGI_PROVIDER_ID)).membershipRebate}
                 onStartGame={handleStartProviderGame}
             />
             <PromotionWarningModal
@@ -246,7 +186,7 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                                             className="h-10 max-w-[140px] object-contain sm:h-12 sm:max-w-[170px] md:h-20 md:max-w-none"
                                         />
                                 </div>
-                                <h1 className="mt-3 hidden text-3xl font-black uppercase tracking-[0.03em] text-[rgb(25_41_71)] md:block">
+                                <h1 className="mt-3 hidden text-3xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] md:block">
                                     Live Casino
                                 </h1>
                                 <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-[1.35] text-[rgb(42_53_72)] md:block md:mt-4">
@@ -255,10 +195,10 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                                 <button
                                     type="button"
                                     onClick={handlePlayLive}
-                                    className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-[12px] font-black tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-[13px] md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
+                                    className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-xs font-bold tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-sm md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
                                     aria-label={
                                         bannerProvider.id === EZUGI_PROVIDER_ID
-                                            ? `Play ${EZUGI_LAUNCH_CONFIG.title}`
+                                            ? `Play ${resolveLaunchConfig(EZUGI_PROVIDER_ID)?.title ?? bannerProvider.name}`
                                             : `Play ${bannerProvider.name}`
                                     }
                                 >
@@ -274,7 +214,7 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                 <div className="rounded-2xl border border-[rgb(219_228_243)] bg-[var(--color-surface-base-80)] p-4 shadow-[0_6px_18px_rgba(20,43,87,0.09)] backdrop-blur-sm md:p-5">
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div>
-                            <p className="text-xl font-extrabold tracking-[0.02em] text-[rgb(28_40_65)] md:text-2xl">Live Casino Providers</p>
+                            <p className="text-xl font-bold tracking-[0.02em] text-[rgb(28_40_65)] md:text-2xl">Live Casino Providers</p>
                             <p className="mt-1 text-xs text-[rgb(93_103_128)] md:text-sm">
                                 Choose from top brands with real-time action and studio-grade stream quality.
                             </p>
@@ -331,7 +271,7 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                 </div>
                 {filteredProviders.length === 0 && (
                     <div className="mt-6 rounded-2xl border border-[rgb(220_228_242)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
-                        <p className="text-base font-extrabold text-[rgb(43_58_87)]">No providers match your search.</p>
+                        <p className="text-base font-bold text-[rgb(43_58_87)]">No providers match your search.</p>
                         <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword or switch filter.</p>
                     </div>
                 )}
@@ -339,3 +279,5 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
         </main>
     );
 }
+
+

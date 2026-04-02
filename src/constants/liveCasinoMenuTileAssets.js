@@ -55,10 +55,11 @@ export const LIVE_CASINO_MENU_TILE_BY_ID = {
     ezugi: ezugiMenuTile,
     'afb-gaming': afbGamingMenuTile,
     sagaming: saGamingImage,
-    evolution: ct855Image,
+    ct855: ct855Image,
     allbet: allbetImage,
     'wm-casino': afbSexyCasinoImage,
     'world-entertainment': gameplayInteractiveImage,
+    'gameplay-lottery': gameplayInteractiveImage,
     casino: wCasinoImage,
     'mt-live': veryGoodImage,
 };

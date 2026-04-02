@@ -1,15 +1,15 @@
-import React from 'react';
+﻿import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
 /**
  * @param {Object} props
- * @param {{ label: string, href?: string, onNavigate?: () => void }[]} props.items — last item is highlighted as current.
+ * @param {{ label: string, href?: string, onNavigate?: () => void }[]} props.items â€” last item is highlighted as current.
  */
 export default function GameDetailBreadcrumb({ items = [] }) {
     if (items.length === 0) return null;
 
     return (
-        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-[13px] text-[var(--color-text-muted)] md:text-sm">
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-[var(--color-text-muted)] md:text-sm">
             {items.map((item, index) => {
                 const isLast = index === items.length - 1;
                 return (
@@ -39,3 +39,4 @@ export default function GameDetailBreadcrumb({ items = [] }) {
         </nav>
     );
 }
+

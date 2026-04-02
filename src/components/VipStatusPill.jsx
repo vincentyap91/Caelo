@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { getVipStatus } from '../constants/vipStatus';
 
 export default function VipStatusPill({ level = 'Diamond', theme = 'light', size = 'default', username, layout = 'row', className = '' }) {
@@ -11,7 +11,7 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
   const isColumn = layout === 'column';
 
   const medalSize = header ? 'h-6 w-6' : compact ? 'h-5 w-5' : large ? 'h-10 w-10' : 'h-7 w-7';
-  const textSize = header ? 'text-xs' : compact ? 'text-[11px]' : large ? 'text-sm md:text-base' : 'text-xs';
+  const textSize = header ? 'text-xs' : compact ? 'text-xs' : large ? 'text-sm md:text-base' : 'text-xs';
   const padding = header ? 'px-3 py-0' : compact ? 'px-2.5 py-1' : large ? 'px-4 py-2.5 md:px-5 md:py-3' : 'px-3 py-1.5';
   const gap = isColumn && large ? 'gap-2.5' : header ? 'gap-2' : 'gap-2';
 
@@ -61,3 +61,4 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
     </div>
   );
 }
+

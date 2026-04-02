@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import {
     ArrowDownToLine,
     ArrowUpFromLine,
@@ -196,7 +196,7 @@ const MOBILE_MORE_SECTION_BY_PAGE = MOBILE_MORE_SECTIONS.reduce((accumulator, se
 
 export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'home', onLoginClick, onRegisterClick, authUser, onLogout, onAccountDetailsClick, onLiveChatClick, onCasinoProviderSelect, onSlotsProviderSelect }) {
     const vipLevel = authUser?.vipLevel || 'Diamond';
-    /** `null` | `'casino'` | `'slots'` — shared mega-menu pattern */
+    /** `null` | `'casino'` | `'slots'` â€” shared mega-menu pattern */
     const [navProviderDropdown, setNavProviderDropdown] = useState(null);
     const [profileMenuOpen, setProfileMenuOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -450,7 +450,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                     setProfileMenuOpen(false);
                                     onNavigate?.('deposit');
                                 }}
-                                className="btn-theme-cta-soft h-7 shrink-0 rounded-[9px] px-4 font-black tracking-wide transition hover:brightness-105"
+                                className="btn-theme-cta-soft h-7 shrink-0 rounded-[9px] px-4 font-bold tracking-wide transition hover:brightness-105"
                             >
                                 DEPOSIT
                             </button>
@@ -487,7 +487,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                             </div>
 
                                             <div className="min-w-0 pt-1">
-                                                <p className="truncate text-xl font-extrabold leading-none text-white">
+                                                <p className="truncate text-xl font-bold leading-none text-white">
                                                     Hi, {authUser.name}
                                                 </p>
                                                 <div className="mt-1.5 space-y-1 text-xs text-[var(--color-nav-text-soft)]">
@@ -714,7 +714,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                 setProfileMenuOpen(false);
                                                 onLogout?.();
                                             }}
-                                            className="mt-4 inline-flex min-h-[40px] items-center gap-2.5 text-base font-extrabold text-[var(--color-nav-gold)] transition hover:text-[var(--color-nav-gold-soft)]"
+                                            className="mt-4 inline-flex min-h-[40px] items-center gap-2.5 text-base font-bold text-[var(--color-nav-gold)] transition hover:text-[var(--color-nav-gold-soft)]"
                                         >
                                             <LogOut size={16} />
                                             Log Out
@@ -752,7 +752,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                         <button
                             type="button"
                             onClick={() => onNavigate?.('home')}
-                            className="text-lg font-black text-white tracking-wide cursor-pointer hover:opacity-90 transition-opacity md:text-xl"
+                            className="text-lg font-bold text-white tracking-wide cursor-pointer hover:opacity-90 transition-opacity md:text-xl"
                         >
                             LOGO
                         </button>
@@ -791,7 +791,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                             onNavigate?.(target);
                                         }
                                     }}
-                                    className={`relative px-4 py-2.5 rounded-lg text-[13px] font-medium whitespace-nowrap transition-all border border-transparent
+                                    className={`relative px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all border border-transparent
                                         ${isActive
                                             ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-[0_6px_12px_rgba(255,174,39,0.18)] hover:brightness-105'
                                             : 'text-white/90 hover:text-white hover:bg-white/10 hover:border-white/20'}`}
@@ -812,7 +812,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('deposit')}
-                                    className="btn-theme-cta-soft inline-flex min-h-10 shrink-0 items-center justify-center rounded-xl px-3.5 text-sm font-black tracking-wide"
+                                    className="btn-theme-cta-soft inline-flex min-h-10 shrink-0 items-center justify-center rounded-xl px-3.5 text-sm font-bold tracking-wide"
                                 >
                                     Deposit
                                 </button>
@@ -837,7 +837,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                 <button
                                     type="button"
                                     onClick={() => onRegisterClick?.()}
-                                    className="btn-theme-cta-soft inline-flex min-h-10 items-center justify-center rounded-xl px-3.5 text-sm font-black"
+                                    className="btn-theme-cta-soft inline-flex min-h-10 items-center justify-center rounded-xl px-3.5 text-sm font-bold"
                                 >
                                     Join Now
                                 </button>
@@ -863,67 +863,67 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                 }`}
                 aria-hidden={!mobileMenuOpen}
             >
-                <div className="relative border-b border-white/10 px-4 py-4">
+                <div className="relative border-b border-white/10 px-3.5 py-3">
                     <div className="min-w-0">
                         {authUser ? (
                             <button
                                 type="button"
                                 onClick={() => handleMobileNavigate('profile')}
-                                className="w-full pr-14 text-left text-2xl font-black leading-tight transition hover:opacity-90"
+                                className="w-full pr-12 text-left text-[1.7rem] font-bold leading-tight transition hover:opacity-90"
                             >
                                 Hi, {authUser.name}
                             </button>
                         ) : (
-                            <div className="pr-14">
-                                <h2 className="text-2xl font-black leading-tight">Play Anywhere</h2>
-                                <p className="mt-1 text-sm text-white/70">Your essentials stay up top. Everything else is tucked into More.</p>
+                            <div className="pr-12">
+                                <h2 className="text-xl font-bold leading-tight">Play Anywhere</h2>
+                                <p className="mt-1 text-xs text-white/70">Your essentials stay up top. Everything else is tucked into More.</p>
                             </div>
                         )}
 
                         {authUser ? (
-                            <div className="mt-3 space-y-3">
-                                <VipStatusPill level={vipLevel} theme="dark" />
-                                <div className="w-full rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0.04)_100%)] p-4 shadow-[0_16px_28px_rgba(1,12,33,0.24)]">
-                                    <div className="flex items-center justify-between gap-3">
+                            <div className="mt-2.5 space-y-2.5">
+                                <VipStatusPill level={vipLevel} theme="dark" size="compact" className="rounded-full" />
+                                <div className="w-full rounded-[20px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0.04)_100%)] p-3.5 shadow-[0_14px_24px_rgba(1,12,33,0.22)]">
+                                    <div className="flex items-center justify-between gap-2.5">
                                         <div>
-                                            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--color-nav-text-accent)]">
+                                            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--color-nav-text-accent)]">
                                                 Balance
                                             </p>
-                                            <p className="mt-1 text-lg font-black text-white">{authUser.balance}</p>
+                                            <p className="mt-0.5 text-base font-bold text-white">{authUser.balance}</p>
                                         </div>
-                                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgb(255_216_77_/_0.22)] bg-[rgb(255_216_77_/_0.08)] text-[var(--color-nav-gold)]">
-                                            <CircleDollarSign size={18} />
+                                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[rgb(255_216_77_/_0.22)] bg-[rgb(255_216_77_/_0.08)] text-[var(--color-nav-gold)]">
+                                            <CircleDollarSign size={16} />
                                         </span>
                                     </div>
-                                    <div className="mt-4 grid grid-cols-2 gap-3">
+                                    <div className="mt-3 grid grid-cols-2 gap-2.5">
                                         <button
                                             type="button"
                                             onClick={() => handleMobileNavigate('deposit')}
-                                            className="btn-theme-cta-soft inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-4 text-sm font-black"
+                                            className="btn-theme-cta-soft inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl px-3 text-sm font-bold"
                                         >
-                                            <ArrowDownToLine size={16} />
+                                            <ArrowDownToLine size={15} />
                                             Deposit
                                         </button>
                                         <button
                                             type="button"
                                             onClick={() => handleMobileNavigate('withdrawal')}
-                                            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-4 text-sm font-bold text-white transition hover:bg-white/15"
+                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/10 px-3 text-sm font-bold text-white transition hover:bg-white/15"
                                         >
-                                            <ArrowUpFromLine size={16} />
+                                            <ArrowUpFromLine size={15} />
                                             Withdraw
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         ) : (
-                            <div className="mt-4 grid grid-cols-2 gap-3">
+                            <div className="mt-3 grid grid-cols-2 gap-2.5">
                                 <button
                                     type="button"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         onLoginClick?.();
                                     }}
-                                    className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/30 bg-white/5 px-4 text-sm font-semibold text-white transition hover:bg-white/10"
+                                    className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-white/30 bg-white/5 px-4 text-sm font-semibold text-white transition hover:bg-white/10"
                                 >
                                     Login
                                 </button>
@@ -933,7 +933,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         setMobileMenuOpen(false);
                                         onRegisterClick?.();
                                     }}
-                                    className="btn-theme-cta-soft inline-flex min-h-12 items-center justify-center rounded-2xl px-4 text-sm font-black"
+                                    className="btn-theme-cta-soft inline-flex min-h-[42px] items-center justify-center rounded-xl px-4 text-sm font-bold"
                                 >
                                     Join Now
                                 </button>
@@ -944,22 +944,22 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:bg-white/15"
+                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:bg-white/15"
                         aria-label="Close mobile menu"
                     >
-                        <X size={18} />
+                        <X size={16} />
                     </button>
 
                 </div>
 
-                <div className="flex-1 overflow-y-auto px-4 py-4">
-                    <div className="space-y-2.5">
+                <div className="flex-1 overflow-y-auto px-3.5 py-3">
+                    <div className="space-y-2">
                         {MOBILE_PRIMARY_ITEMS.map(({ id, label, page, icon: Icon }) => {
                             const isMoreRow = id === 'more';
                             const isActive = isMoreRow ? MOBILE_MORE_ACTIVE_PAGES.has(activePage) : activePage === page;
 
                             return (
-                                <div key={id} className="overflow-hidden rounded-[22px]">
+                                <div key={id} className="overflow-hidden rounded-[18px]">
                                     <button
                                         type="button"
                                         onClick={() => {
@@ -970,7 +970,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
 
                                             handleMobileNavigate(page);
                                         }}
-                                        className={`flex min-h-[58px] w-full items-center gap-3 rounded-[22px] border px-4 py-4 text-left transition ${
+                                        className={`flex min-h-[48px] w-full items-center gap-3 rounded-[18px] border px-3.5 py-2.5 text-left transition ${
                                             isActive
                                                 ? 'border-amber-300 bg-[linear-gradient(180deg,rgba(255,212,74,0.98)_0%,rgba(255,181,44,0.96)_100%)] text-[var(--color-cta-text)] shadow-[0_14px_26px_rgba(255,174,39,0.22)]'
                                                 : 'border-white/10 bg-white/[0.06] text-white hover:bg-white/[0.1]'
@@ -978,23 +978,23 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         aria-expanded={isMoreRow ? mobileMoreOpen : undefined}
                                     >
                                         <span
-                                            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border ${
+                                            className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${
                                                 isActive
                                                     ? 'border-amber-950/10 bg-amber-950/10 text-[var(--color-cta-text)]'
                                                     : 'border-white/10 bg-white/10 text-[var(--color-nav-gold)]'
                                             }`}
                                         >
-                                            <Icon size={18} />
+                                            <Icon size={16} />
                                         </span>
-                                        <span className="min-w-0 flex-1 text-base font-bold">{label}</span>
+                                        <span className="min-w-0 flex-1 text-[15px] font-bold">{label}</span>
                                         <ChevronRight
-                                            size={18}
+                                            size={17}
                                             className={`shrink-0 transition-transform ${mobileMoreOpen && isMoreRow ? 'rotate-90' : ''}`}
                                         />
                                     </button>
 
                                     {isMoreRow && mobileMoreOpen && (
-                                        <div className="mt-2 space-y-2 rounded-[22px] border border-white/10 bg-white/[0.04] p-2.5">
+                                        <div className="mt-1.5 space-y-1.5 rounded-[18px] border border-white/10 bg-white/[0.04] p-2">
                                             {MOBILE_MORE_SECTIONS.map(({ id: sectionId, label: sectionLabel, icon: SectionIcon, items }) => {
                                                 const sectionHasActiveItem = items.some((item) => isMobileMoreItemActive(item));
                                                 const sectionOpen = openMobileMoreSection === sectionId;
@@ -1002,7 +1002,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                 return (
                                                     <div
                                                         key={sectionId}
-                                                        className={`overflow-hidden rounded-[20px] border transition ${
+                                                        className={`overflow-hidden rounded-[16px] border transition ${
                                                             sectionHasActiveItem
                                                                 ? 'border-[rgb(255_216_77_/_0.28)] bg-[rgb(255_216_77_/_0.08)]'
                                                                 : 'border-white/10 bg-white/[0.05]'
@@ -1011,23 +1011,23 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                         <button
                                                             type="button"
                                                             onClick={() => handleMobileMoreSectionToggle(sectionId)}
-                                                            className="flex min-h-[54px] w-full items-center gap-3 px-4 py-3.5 text-left"
+                                                            className="flex min-h-[44px] w-full items-center gap-2.5 px-3.5 py-2.5 text-left"
                                                             aria-expanded={sectionOpen}
                                                         >
-                                                            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/10 text-[var(--color-nav-gold)]">
-                                                                <SectionIcon size={17} />
+                                                            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-[var(--color-nav-gold)]">
+                                                                <SectionIcon size={15} />
                                                             </span>
-                                                            <span className="min-w-0 flex-1 text-sm font-black uppercase tracking-[0.16em] text-white/88">
+                                                            <span className="min-w-0 flex-1 text-xs font-bold uppercase tracking-[0.14em] text-white/88">
                                                                 {sectionLabel}
                                                             </span>
                                                             <ChevronRight
-                                                                size={17}
+                                                                size={15}
                                                                 className={`shrink-0 text-white/75 transition-transform ${sectionOpen ? 'rotate-90' : ''}`}
                                                             />
                                                         </button>
 
                                                         {sectionOpen && (
-                                                            <div className="space-y-1.5 border-t border-white/10 px-2 pb-2 pt-1.5">
+                                                            <div className="space-y-1 border-t border-white/10 px-1.5 pb-1.5 pt-1">
                                                                 {items.map((item) => {
                                                                     const itemActive = isMobileMoreItemActive(item);
                                                                     const ItemIcon = item.icon;
@@ -1037,23 +1037,23 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                                             key={item.id}
                                                                             type="button"
                                                                             onClick={() => handleMobileMoreItemClick(item)}
-                                                                            className={`flex min-h-[52px] w-full items-center gap-3 rounded-[18px] px-3.5 py-3 text-left transition ${
+                                                                            className={`flex min-h-[42px] w-full items-center gap-2.5 rounded-[14px] px-3 py-2 text-left transition ${
                                                                                 itemActive
                                                                                     ? 'bg-[linear-gradient(180deg,rgba(255,212,74,0.94)_0%,rgba(255,181,44,0.9)_100%)] text-[var(--color-cta-text)] shadow-[0_10px_18px_rgba(255,174,39,0.18)]'
                                                                                     : 'bg-transparent text-white/88 hover:bg-white/[0.08] hover:text-white'
                                                                             }`}
                                                                         >
                                                                             <span
-                                                                                className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl ${
+                                                                                className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${
                                                                                     itemActive
                                                                                         ? 'bg-amber-950/10 text-[var(--color-cta-text)]'
                                                                                         : 'bg-white/10 text-[var(--color-nav-gold)]'
                                                                                 }`}
                                                                             >
-                                                                                <ItemIcon size={16} />
+                                                                                <ItemIcon size={14} />
                                                                             </span>
-                                                                            <span className="min-w-0 flex-1 text-sm font-semibold">{item.label}</span>
-                                                                            <ChevronRight size={16} className="shrink-0 opacity-70" />
+                                                                            <span className="min-w-0 flex-1 text-[13px] font-semibold">{item.label}</span>
+                                                                            <ChevronRight size={14} className="shrink-0 opacity-70" />
                                                                         </button>
                                                                     );
                                                                 })}
@@ -1069,17 +1069,17 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                         })}
                     </div>
                 </div>
-                <div className="border-t border-white/10 px-4 py-4">
-                    <div className="space-y-3">
+                <div className="border-t border-white/10 px-3.5 py-3">
+                    <div className="space-y-2">
                         <button
                             type="button"
                             onClick={() => {
                                 setMobileMenuOpen(false);
                                 onLiveChatClick?.();
                             }}
-                            className="inline-flex min-h-[54px] w-full items-center justify-center gap-2 rounded-2xl border border-[rgb(255_216_77_/_0.24)] bg-[linear-gradient(180deg,rgba(255,216,77,0.18)_0%,rgba(255,216,77,0.08)_100%)] px-4 text-sm font-black text-[var(--color-nav-gold)] transition hover:bg-[linear-gradient(180deg,rgba(255,216,77,0.22)_0%,rgba(255,216,77,0.12)_100%)]"
+                            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border border-[rgb(255_216_77_/_0.24)] bg-[linear-gradient(180deg,rgba(255,216,77,0.18)_0%,rgba(255,216,77,0.08)_100%)] px-4 text-sm font-bold text-[var(--color-nav-gold)] transition hover:bg-[linear-gradient(180deg,rgba(255,216,77,0.22)_0%,rgba(255,216,77,0.12)_100%)]"
                         >
-                            <Headset size={17} />
+                            <Headset size={16} />
                             Live Chat
                         </button>
                         {authUser ? (
@@ -1089,18 +1089,18 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                     setMobileMenuOpen(false);
                                     onLogout?.();
                                 }}
-                                className="inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/[0.05] px-4 text-sm font-semibold text-white/88 transition hover:bg-white/[0.09] hover:text-white"
+                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 text-sm font-semibold text-white/88 transition hover:bg-white/[0.09] hover:text-white"
                             >
-                                <LogOut size={16} />
+                                <LogOut size={15} />
                                 Log Out
                             </button>
                         ) : (
                             <button
                                 type="button"
                                 onClick={handleMobileDownloadApp}
-                                className="inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/[0.05] px-4 text-sm font-semibold text-white/88 transition hover:bg-white/[0.09] hover:text-white"
+                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 text-sm font-semibold text-white/88 transition hover:bg-white/[0.09] hover:text-white"
                             >
-                                <Smartphone size={16} />
+                                <Smartphone size={15} />
                                 App Download
                             </button>
                         )}
@@ -1131,3 +1131,5 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
         </nav>
     );
 }
+
+

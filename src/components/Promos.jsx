@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import wineGlass from '../assets/wine-glass.png';
 import penguin from '../assets/penguin.png';
 
@@ -13,7 +13,7 @@ const MobilePromoCard = ({ title, image, imageAlt, imageClassName = '', glowClas
 
         <div className="relative z-10 grid min-h-[158px] grid-cols-[1.2fr_0.9fr] items-center gap-2 px-4 py-4">
             <div className="self-center">
-                <h3 className="max-w-[150px] text-[0.98rem] font-black leading-[1.02] tracking-tight text-[var(--color-brand-secondary)]">
+                <h3 className="max-w-[150px] text-base font-bold leading-[1.02] tracking-tight text-[var(--color-brand-secondary)]">
                     {title}
                 </h3>
             </div>
@@ -92,3 +92,5 @@ export default function Promos({ onNavigate }) {
         </section>
     );
 }
+
+

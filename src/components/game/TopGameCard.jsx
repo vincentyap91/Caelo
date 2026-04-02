@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { GameCardFavouriteButton, GameCardPlayBar } from './GameCardActions';
 import { navigateToGameDetail } from '../../utils/gameDetailRoutes';
 import { getTopGameFavouriteCategory } from '../../constants/topGamesCatalog';
@@ -49,7 +49,7 @@ export default function TopGameCard({
                 />
 
                 <div className="pointer-events-none absolute left-0 top-0 z-20 flex items-center justify-center rounded-br-lg bg-white px-2 py-0.5 shadow-sm">
-                    <span className="text-xs font-black italic text-[var(--color-brand-secondary)]">{game.provider}</span>
+                    <span className="text-xs font-bold italic text-[var(--color-brand-secondary)]">{game.provider}</span>
                 </div>
 
                 <GameCardFavouriteButton
@@ -68,3 +68,4 @@ export default function TopGameCard({
         </div>
     );
 }
+

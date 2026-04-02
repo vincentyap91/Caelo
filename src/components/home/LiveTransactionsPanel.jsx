@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import SectionHeader from '../SectionHeader';
 import { ArrowDownToLine, ArrowUpFromLine, Radio, User } from 'lucide-react';
 import {
@@ -39,10 +39,10 @@ function TxRow({ row }) {
                 <User size={18} strokeWidth={2.25} />
             </div>
             <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-bold text-[var(--color-text-strong)] md:text-[15px]">
+                <p className="truncate text-sm font-bold text-[var(--color-text-strong)] md:text-base">
                     {maskUsername(row.user)}
                 </p>
-                <p className="mt-0.5 text-[11px] font-medium text-[var(--color-text-soft)]">{row.timeAgo}</p>
+                <p className="mt-0.5 text-xs font-medium text-[var(--color-text-soft)]">{row.timeAgo}</p>
             </div>
             <div
                 className="flex shrink-0 items-center gap-1.5"
@@ -63,7 +63,7 @@ function TxRow({ row }) {
                         aria-hidden
                     />
                 )}
-                <span className={`text-sm font-extrabold tabular-nums md:text-base ${amountClass}`}>{row.amount}</span>
+                <span className={`text-sm font-bold tabular-nums md:text-base ${amountClass}`}>{row.amount}</span>
             </div>
         </li>
     );
@@ -111,7 +111,7 @@ export default function LiveTransactionsPanel() {
                                 key={t.id}
                                 type="button"
                                 onClick={() => setFilter(t.id)}
-                                className={`rounded-full px-4 py-2 text-xs font-bold tracking-wide transition md:text-[13px] ${
+                                className={`rounded-full px-4 py-2 text-xs font-bold tracking-wide transition md:text-sm ${
                                     active
                                         ? 'bg-[var(--color-brand-secondary)] text-white shadow-sm'
                                         : 'text-[var(--color-text-brand)] hover:bg-white/70'
@@ -123,7 +123,7 @@ export default function LiveTransactionsPanel() {
                     })}
                     <div className="ml-auto flex shrink-0 items-center gap-1.5 rounded-full bg-white/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-default)]/50">
                         <LiveDot />
-                        <span className="text-[10px] font-extrabold uppercase tracking-wide text-[var(--color-text-subtle)]">Live</span>
+                        <span className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-subtle)]">Live</span>
                     </div>
                 </div>
             </div>
@@ -145,3 +145,5 @@ export default function LiveTransactionsPanel() {
         </div>
     );
 }
+
+

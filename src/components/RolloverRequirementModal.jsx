@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { AlertCircle, AlertTriangle } from 'lucide-react';
 
 function formatPercent(value) {
@@ -8,7 +8,7 @@ function formatPercent(value) {
 }
 
 function formatDisplay(value) {
-    if (value == null) return '—';
+    if (value == null) return 'â€”';
     if (typeof value === 'number' && Number.isFinite(value)) return value.toFixed(2);
     return String(value);
 }
@@ -51,7 +51,7 @@ function ProgressRing({ percent }) {
                 />
             </svg>
             <div className="relative z-[1] text-center leading-none">
-                <span className="text-base font-extrabold tabular-nums text-[var(--color-text-strong)]">
+                <span className="text-base font-bold tabular-nums text-[var(--color-text-strong)]">
                     {formatPercent(p)}
                 </span>
                 <span className="text-xs font-bold text-[var(--color-text-muted)]">%</span>
@@ -61,7 +61,7 @@ function ProgressRing({ percent }) {
 }
 
 /**
- * Rollover / turnover requirement not met — blocks withdraw or similar actions until OK.
+ * Rollover / turnover requirement not met â€” blocks withdraw or similar actions until OK.
  * Shell matches TacErrorModal: overlay, panel radius, shadow, primary OK CTA.
  */
 export default function RolloverRequirementModal({
@@ -130,14 +130,14 @@ export default function RolloverRequirementModal({
                         </div>
                         <p
                             id={titleId}
-                            className="mt-5 max-w-[20rem] text-base font-bold leading-snug text-[var(--color-text-strong)] sm:max-w-[22rem] sm:text-[1.08rem]"
+                            className="mt-5 max-w-[20rem] text-base font-bold leading-snug text-[var(--color-text-strong)] sm:max-w-[22rem] sm:text-lg"
                         >
                             {mainMessage}
                         </p>
                     </div>
 
                     <div className="mt-6 text-left">
-                        <h2 className="text-sm font-bold text-[var(--color-text-strong)] sm:text-[15px]">
+                        <h2 className="text-sm font-bold text-[var(--color-text-strong)] sm:text-base">
                             {progressSectionTitle}
                         </h2>
                         <div className="surface-card soft-blue-panel mt-3 flex gap-4 rounded-2xl p-4 sm:gap-5 sm:p-5">
@@ -148,7 +148,7 @@ export default function RolloverRequirementModal({
                                     <span className="tabular-nums">{formatDisplay(latestTopUpBonus)}</span>
                                 </p>
                                 {latestEventAt ? (
-                                    <p className="text-xs font-medium text-[var(--color-text-soft)] sm:text-[13px]">
+                                    <p className="text-xs font-medium text-[var(--color-text-soft)] sm:text-sm">
                                         {latestEventAt}
                                     </p>
                                 ) : null}
@@ -177,7 +177,7 @@ export default function RolloverRequirementModal({
                 <button
                     type="button"
                     onClick={onClose}
-                    className="btn-theme-cta mt-7 min-w-[160px] shrink-0 self-center rounded-xl px-10 py-3 text-center text-sm font-extrabold uppercase tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0"
+                    className="btn-theme-cta mt-7 min-w-[160px] shrink-0 self-center rounded-xl px-10 py-3 text-center text-sm font-bold uppercase tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0"
                 >
                     OK
                 </button>
@@ -185,3 +185,5 @@ export default function RolloverRequirementModal({
         </div>
     );
 }
+
+

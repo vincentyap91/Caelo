@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+﻿import React, { useCallback, useState } from 'react';
 import { ChevronDown, Eye, EyeOff, Lock, Mail, Phone, Send, UserRound } from 'lucide-react';
 import promoImage from '../assets/register-banner.jpg';
 import promoImageMobile from '../assets/register-banner-mobile.jpg';
@@ -50,7 +50,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                             <div className="mx-auto w-full max-w-[420px]">
                                 {phase === 'success' ? (
                                     <div className="flex min-h-[260px] flex-col items-center justify-center gap-2 px-2 py-10 text-center sm:min-h-[300px]">
-                                        <p className="text-sm font-semibold text-[rgb(35_64_106)]">Finishing your registration…</p>
+                                        <p className="text-sm font-semibold text-[rgb(35_64_106)]">Finishing your registrationâ€¦</p>
                                     </div>
                                 ) : phase === 'verify' ? (
                                     <VerifyPhoneNumberStep
@@ -176,7 +176,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                     <button
                                         type="submit"
-                                        className="btn-theme-auth h-11 w-full rounded-md text-base font-black tracking-wide transition hover:brightness-105"
+                                        className="btn-theme-auth h-11 w-full rounded-md text-base font-bold tracking-wide transition hover:brightness-105"
                                     >
                                         REGISTER
                                     </button>
@@ -204,3 +204,4 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
         </main>
     );
 }
+

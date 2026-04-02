@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import LobbyProviderCard from './game/LobbyProviderCard';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
@@ -61,7 +61,7 @@ export default function PokerPage({ onNavigate }) {
         <button
             type="button"
             onClick={handlePlayPoker}
-            className={`btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-black tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base ${className}`}
+            className={`btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-bold tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base ${className}`}
             aria-label={`Play ${bannerProvider.name}`}
         >
             PLAY POKER
@@ -124,7 +124,7 @@ export default function PokerPage({ onNavigate }) {
                                             className="h-10 max-w-[140px] object-contain sm:h-12 sm:max-w-[170px] md:h-20 md:max-w-none"
                                         />
                                     </div>
-                                    <h1 className="mt-3 hidden text-3xl font-black uppercase tracking-[0.03em] text-[rgb(25_41_71)] md:block">
+                                    <h1 className="mt-3 hidden text-3xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] md:block">
                                         Poker
                                     </h1>
                                     <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-[1.35] text-[rgb(42_53_72)] md:block md:mt-4">
@@ -133,7 +133,7 @@ export default function PokerPage({ onNavigate }) {
                                     <button
                                         type="button"
                                         onClick={handlePlayPoker}
-                                        className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-[12px] font-black tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] max-md:self-start sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-[13px] md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
+                                        className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-xs font-bold tracking-[0.05em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] max-md:self-start sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-sm md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
                                         aria-label={`Play ${bannerProvider.name}`}
                                     >
                                         PLAY POKER
@@ -149,7 +149,7 @@ export default function PokerPage({ onNavigate }) {
                 <div className="rounded-2xl border border-[rgb(219_228_243)] bg-[var(--color-surface-base-80)] p-4 shadow-[0_6px_18px_rgba(20,43,87,0.09)] backdrop-blur-sm md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-xl font-extrabold tracking-[0.02em] text-[rgb(28_40_65)] md:text-2xl">Poker Providers</p>
+                            <p className="text-xl font-bold tracking-[0.02em] text-[rgb(28_40_65)] md:text-2xl">Poker Providers</p>
                             <p className="mt-1 text-xs text-[rgb(93_103_128)] md:text-sm">
                                 Choose a poker room for tournaments, cash tables, and quick sit-and-go action.
                             </p>
@@ -189,7 +189,7 @@ export default function PokerPage({ onNavigate }) {
                 </div>
                 {filteredProviders.length === 0 && (
                     <div className="mt-6 rounded-2xl border border-[rgb(220_228_242)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
-                        <p className="text-base font-extrabold text-[rgb(43_58_87)]">No providers match your search.</p>
+                        <p className="text-base font-bold text-[rgb(43_58_87)]">No providers match your search.</p>
                         <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword.</p>
                     </div>
                 )}
@@ -197,3 +197,5 @@ export default function PokerPage({ onNavigate }) {
         </main>
     );
 }
+
+

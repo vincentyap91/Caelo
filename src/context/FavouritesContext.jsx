@@ -1,6 +1,31 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { buildFavouriteGameId, normalizeFavouriteCategory } from '../utils/favouriteGames';
 
 const STORAGE_KEY = 'riocity_favourite_games_v1';
+
+function normalizeEntry(raw) {
+    const category = normalizeFavouriteCategory(raw?.category, raw?.name);
+    const name = raw?.name != null ? String(raw.name) : '';
+    const provider = raw?.provider != null ? String(raw.provider) : '';
+
+    return {
+        id: buildFavouriteGameId(category, name, provider),
+        category,
+        name,
+        provider,
+        imgUrl: raw?.imgUrl != null ? String(raw.imgUrl) : '',
+        navigatePage: raw?.navigatePage ?? null,
+    };
+}
+
+function dedupeEntries(entries) {
+    const seen = new Set();
+    return entries.filter((entry) => {
+        if (!entry.id || seen.has(entry.id)) return false;
+        seen.add(entry.id);
+        return true;
+    });
+}
 
 function loadFromStorage() {
     if (typeof window === 'undefined') return [];
@@ -8,7 +33,8 @@ function loadFromStorage() {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return [];
         const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
+        if (!Array.isArray(parsed)) return [];
+        return dedupeEntries(parsed.map(normalizeEntry).filter((entry) => entry.category && entry.name));
     } catch {
         return [];
     }
@@ -32,19 +58,12 @@ export function FavouritesProvider({ children }) {
     }, [items]);
 
     const toggle = useCallback((raw) => {
-        const entry = {
-            id: raw.id,
-            category: raw.category,
-            name: raw.name,
-            provider: raw.provider ?? '',
-            imgUrl: raw.imgUrl != null ? String(raw.imgUrl) : '',
-            navigatePage: raw.navigatePage ?? null,
-        };
+        const entry = normalizeEntry(raw);
         if (!entry.id || !entry.category || !entry.name) return;
         setItems((prev) => {
             const exists = prev.some((x) => x.id === entry.id);
             if (exists) return prev.filter((x) => x.id !== entry.id);
-            return [...prev, entry];
+            return dedupeEntries([...prev, entry]);
         });
     }, []);
 

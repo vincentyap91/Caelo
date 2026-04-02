@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { Percent, Wallet, X } from 'lucide-react';
 
 function InfoCard({ label, value, icon: Icon }) {
@@ -9,7 +9,7 @@ function InfoCard({ label, value, icon: Icon }) {
             </span>
             <div className="min-w-0">
                 <p className="text-sm font-semibold text-[var(--color-text-muted)]">{label}</p>
-                <p className="mt-1 text-xl font-black tracking-tight text-[var(--color-text-strong)] sm:text-2xl">
+                <p className="text-xl font-bold tracking-tight text-[var(--color-text-strong)] sm:text-2xl">
                     {value}
                 </p>
             </div>
@@ -60,7 +60,7 @@ export default function ProviderLaunchModal({
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex items-center justify-between gap-4 border-b border-[rgb(228_234_243)] px-5 py-3 sm:px-6">
-                    <h2 className="text-lg font-extrabold tracking-tight text-[var(--color-text-strong)] sm:text-xl">
+                    <h2 className="text-lg font-bold tracking-tight text-[var(--color-text-strong)] sm:text-xl">
                         {title}
                     </h2>
                     <button
@@ -92,7 +92,7 @@ export default function ProviderLaunchModal({
                         <button
                             type="button"
                             onClick={onStartGame}
-                            className="btn-theme-cta inline-flex min-h-11 min-w-[180px] items-center justify-center rounded-xl px-7 py-2.5 text-sm font-black tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 sm:min-h-12 sm:px-8 sm:py-3 sm:text-base"
+                            className="btn-theme-cta inline-flex min-h-11 min-w-[180px] items-center justify-center rounded-xl px-7 py-2.5 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 sm:min-h-12 sm:px-8 sm:py-3 sm:text-base"
                         >
                             {startLabel}
                         </button>
@@ -102,3 +102,4 @@ export default function ProviderLaunchModal({
         </div>
     );
 }
+

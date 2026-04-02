@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import SectionHeader from './SectionHeader';
 import { Crown } from 'lucide-react';
 import vipBgImage from '../assets/vip-bg.png';
@@ -22,16 +22,16 @@ function VipLevelCard({ vp, className }) {
                             draggable={false}
                         />
                     </div>
-                    <h3 className="whitespace-nowrap text-sm font-extrabold tracking-wide text-[var(--color-brand-secondary)]">
+                    <h3 className="whitespace-nowrap text-sm font-bold tracking-wide text-[var(--color-brand-secondary)]">
                         VIP {vp.tier}
                     </h3>
                 </div>
 
                 <div className="w-full space-y-1 text-center">
-                    <p className="text-[13px] font-extrabold leading-tight text-[var(--color-brand-primary)]">
+                    <p className="text-sm font-bold leading-tight text-[var(--color-brand-primary)]">
                         Valid Bet Point &gt; {vp.btn}
                     </p>
-                    <p className="text-[13px] font-extrabold leading-tight text-[var(--color-brand-primary)]">
+                    <p className="text-sm font-bold leading-tight text-[var(--color-brand-primary)]">
                         Deposit Point = {vp.dep}
                     </p>
                 </div>
@@ -104,3 +104,5 @@ export default function VipTier({ onNavigate }) {
         </section>
     );
 }
+
+

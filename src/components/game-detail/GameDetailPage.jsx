@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+﻿import React, { useMemo } from 'react';
 import GameDetailLayout from './GameDetailLayout';
 import { gameDetailDemo } from '../../constants/gameDetailDemo';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../../utils/gameDetailRoutes';
 
 /**
- * Game detail route — resolves catalog / lobby data by URL slug (`/game/:slug`), merges template tables from demo.
+ * Game detail route â€” resolves catalog / lobby data by URL slug (`/game/:slug`), merges template tables from demo.
  */
 export default function GameDetailPage({ onNavigate, gameDetailSlug }) {
     const resolved = useMemo(() => findGameDetailBySlug(gameDetailSlug), [gameDetailSlug]);
@@ -38,14 +38,14 @@ export default function GameDetailPage({ onNavigate, gameDetailSlug }) {
             <button
                 type="button"
                 onClick={() => onNavigate?.('home')}
-                className="inline-flex min-h-11 min-w-[140px] items-center justify-center rounded-xl bg-[var(--color-success-main)] px-5 text-sm font-black text-white shadow-sm transition hover:brightness-105"
+                className="inline-flex min-h-11 min-w-[140px] items-center justify-center rounded-xl bg-[var(--color-success-main)] px-5 text-sm font-bold text-white shadow-sm transition hover:brightness-105"
             >
                 Back To Home
             </button>
             <button
                 type="button"
                 onClick={() => onNavigate?.(resolved?.categoryPage ?? 'slots')}
-                className="btn-theme-cta inline-flex min-h-11 min-w-[140px] items-center justify-center rounded-xl px-5 text-sm font-black shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105"
+                className="btn-theme-cta inline-flex min-h-11 min-w-[140px] items-center justify-center rounded-xl px-5 text-sm font-bold shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105"
             >
                 More Games
             </button>
@@ -76,3 +76,4 @@ export default function GameDetailPage({ onNavigate, gameDetailSlug }) {
         />
     );
 }
+

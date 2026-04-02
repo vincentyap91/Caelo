@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Download, QrCode } from 'lucide-react';
 
 const APK_DOWNLOAD_URL = 'https://pksoftcdn.azureedge.net/apk/skywin.apk';
@@ -66,7 +66,7 @@ const BadgeSVG = () => (
 const PhoneBack = () => (
     <div className="flex h-full w-full flex-col gap-2 overflow-hidden rounded-[20px] bg-[linear-gradient(180deg,#48C8F0_0%,#006EB5_100%)] p-2 pt-8">
         <div className="flex items-center justify-between px-1">
-            <div className="rounded bg-white/20 px-2 py-0.5 text-xs font-black text-white">LOGO</div>
+            <div className="rounded bg-white/20 px-2 py-0.5 text-xs font-bold text-white">LOGO</div>
             <div className="flex gap-1">
                 <div className="h-3 w-3 rounded-full bg-white/30" />
                 <div className="h-3 w-3 rounded-full bg-white/30" />
@@ -88,7 +88,7 @@ const PhoneFront = () => (
         <div className="flex items-center justify-between rounded-md bg-white/10 px-1 py-0.5">
             <div className="h-2.5 w-12 rounded-sm bg-white/60" />
             <div className="flex gap-0.5">
-                <div className="flex h-3 w-5 items-center justify-center rounded-sm bg-[#FFB800] text-xs font-black text-white">EN</div>
+                <div className="flex h-3 w-5 items-center justify-center rounded-sm bg-[#FFB800] text-xs font-bold text-white">EN</div>
                 <div className="h-3 w-3 rounded-sm bg-white/30" />
             </div>
         </div>
@@ -125,13 +125,13 @@ export default function AppDownload() {
 
             <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[0.9fr_1fr_0.85fr] lg:gap-10">
                 <div className="w-full max-w-[360px]">
-                    <div className="inline-flex rounded-full border border-white/80 bg-white/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--color-brand-secondary)]">
+                    <div className="inline-flex rounded-full border border-white/80 bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-brand-secondary)]">
                         Mobile App
                     </div>
-                    <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[var(--color-text-brand-soft)] sm:text-[2.1rem]">
+                    <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[var(--color-text-brand-soft)] sm:text-4xl">
                         Download the <span className="text-[var(--color-brand-primary)]">Riocity9 APP</span>
                     </h2>
-                    <p className="mt-4 text-sm font-semibold leading-relaxed text-[var(--color-brand-secondary)]/85 sm:text-[15px]">
+                    <p className="mt-4 text-sm font-semibold leading-relaxed text-[var(--color-brand-secondary)]/85 sm:text-base">
                         Playing through the application is more convenient than playing through the website.
                         You can feel the difference and enjoy free credit plus bonuses through this channel.
                     </p>
@@ -192,7 +192,7 @@ export default function AppDownload() {
                             <div className="pointer-events-none absolute left-[-12px] bottom-8 h-16 w-16 rounded-full bg-white/60 blur-2xl" />
 
                             <div className="relative">
-                                <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/85 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--color-brand-secondary)]">
+                                <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/85 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-brand-secondary)]">
                                     <QrCode size={13} />
                                     Android APK
                                 </div>
@@ -213,18 +213,18 @@ export default function AppDownload() {
                                         </div>
 
                                         <div className="flex min-w-0 flex-1 flex-col items-center text-center sm:items-start sm:text-left">
-                                            <h3 className="text-[1.08rem] font-extrabold tracking-tight text-[var(--color-text-brand-soft)]">
+                                            <h3 className="text-lg font-bold tracking-tight text-[var(--color-text-brand-soft)]">
                                                 Scan or tap to install
                                             </h3>
-                                            <p className="mt-1 text-[12px] font-semibold leading-relaxed text-[var(--color-brand-secondary)]/78">
+                                            <p className="mt-1 text-xs font-semibold leading-relaxed text-[var(--color-brand-secondary)]/78">
                                                 Quick Android access with QR scan and direct APK download.
                                             </p>
 
                                             <div className="mt-2 flex flex-wrap justify-center gap-1.5 sm:justify-start">
-                                                <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[rgb(77_114_145)]">
+                                                <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(77_114_145)]">
                                                     Scan Ready
                                                 </span>
-                                                <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[rgb(77_114_145)]">
+                                                <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(77_114_145)]">
                                                     Direct APK
                                                 </span>
                                             </div>
@@ -240,7 +240,7 @@ export default function AppDownload() {
                                                 APK Download
                                             </a>
 
-                                            <p className="mt-1.5 text-[10px] font-semibold leading-relaxed text-[var(--color-brand-secondary)]/72">
+                                            <p className="mt-1.5 text-xs font-semibold leading-relaxed text-[var(--color-brand-secondary)]/72">
                                                 Desktop scan, mobile tap to install instantly.
                                             </p>
                                         </div>
@@ -254,3 +254,5 @@ export default function AppDownload() {
         </section>
     );
 }
+
+

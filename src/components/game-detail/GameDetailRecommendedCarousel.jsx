@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 /**
@@ -73,7 +73,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                                 decoding="async"
                             />
                             {g.provider ? (
-                                <span className="absolute left-1/2 top-2 z-[1] max-w-[90%] -translate-x-1/2 truncate rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+                                <span className="absolute left-1/2 top-2 z-[1] max-w-[90%] -translate-x-1/2 truncate rounded-full bg-black/55 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
                                     {g.provider}
                                 </span>
                             ) : null}
@@ -85,3 +85,4 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
         </section>
     );
 }
+
