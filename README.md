@@ -54,6 +54,9 @@ Optional single-file build (one large HTML, e.g. offline handoff): `npm run buil
 
 ## Stack
 
-- React 19
-- Vite
-- Tailwind CSS
+- React 19.2
+- Vite 2.9
+- Tailwind CSS 3.4
+- Lucide React icons
+- npm
+- Node.js
