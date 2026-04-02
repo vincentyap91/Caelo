@@ -216,10 +216,6 @@ export default function AppDownload() {
                                             <h3 className="text-lg font-bold tracking-tight text-[var(--color-text-brand-soft)]">
                                                 Scan or tap to install
                                             </h3>
-                                            <p className="mt-1 text-xs font-semibold leading-relaxed text-[var(--color-brand-secondary)]/78">
-                                                Quick Android access with QR scan and direct APK download.
-                                            </p>
-
                                             <div className="mt-2 flex flex-wrap justify-center gap-1.5 sm:justify-start">
                                                 <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(77_114_145)]">
                                                     Scan Ready
