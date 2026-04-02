@@ -1,21 +1,30 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Lock, Send, UserRound, X } from 'lucide-react';
 import TwoFactorLoginModal from './TwoFactorLoginModal';
-import { verifyLogin, verify2FALogin } from '../services/authService';
+import { loginWithTelegram, verifyLogin, verify2FALogin } from '../services/authService';
 
-export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegisterClick, onLogin }) {
+export default function LoginModal({
+    open,
+    onClose,
+    logoText = 'LOGO',
+    onRegisterClick,
+    onLogin,
+    onCustomerServiceClick,
+}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [show2FA, setShow2FA] = useState(false);
     const [sessionId, setSessionId] = useState(null);
     const [loginError, setLoginError] = useState('');
     const [loginLoading, setLoginLoading] = useState(false);
+    const [telegramLoading, setTelegramLoading] = useState(false);
 
     useEffect(() => {
         if (!open) {
             setShow2FA(false);
             setSessionId(null);
             setLoginError('');
+            setTelegramLoading(false);
         }
     }, [open]);
 
@@ -60,6 +69,22 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
         }
     };
 
+    const handleTelegramLogin = async () => {
+        setLoginError('');
+        setTelegramLoading(true);
+        try {
+            const result = await loginWithTelegram();
+            if (!result.success) {
+                setLoginError(result.error || 'Telegram login failed');
+                return;
+            }
+            onLogin?.(result.user || result.username || username.trim() || 'demo');
+            onClose?.();
+        } finally {
+            setTelegramLoading(false);
+        }
+    };
+
     const handle2FASuccess = (user) => {
         onLogin?.(user);
         onClose?.();
@@ -95,7 +120,7 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
                     <X size={18} strokeWidth={3} />
                 </button>
 
-                <h1 className="text-center text-2xl sm:text-2xl font-bold tracking-tight text-[rgb(18_63_128)]">
+                <h1 className="text-center text-2xl font-bold tracking-tight text-[rgb(18_63_128)] sm:text-2xl">
                     {logoText}
                 </h1>
 
@@ -131,14 +156,14 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
                             <p className="mt-2 text-sm font-medium text-[var(--color-danger-main)]">{loginError}</p>
                         )}
                         <div className="mt-2 flex items-center justify-between gap-3">
-                            <button type="button" className="text-sm sm:text-base font-semibold text-[rgb(53_91_143)] hover:underline">
+                            <button type="button" className="text-sm font-semibold text-[rgb(53_91_143)] hover:underline sm:text-base">
                                 Forgot Password?
                             </button>
 
                             <button
                                 type="submit"
                                 disabled={loginLoading}
-                                className="btn-theme-auth h-10 min-w-[100px] rounded-md px-5 text-sm sm:text-base font-bold tracking-[0.03em] transition hover:brightness-105 disabled:opacity-70"
+                                className="btn-theme-auth h-10 min-w-[100px] rounded-md px-5 text-sm font-bold tracking-[0.03em] transition hover:brightness-105 disabled:opacity-70 sm:text-base"
                             >
                                 {loginLoading ? 'Logging in...' : 'LOGIN'}
                             </button>
@@ -153,7 +178,7 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
                     verifyCode={(code, trustDevice) => verify2FALogin(sessionId, code, trustDevice)}
                 />
 
-                <div className="mx-auto mt-7 flex w-full max-w-[420px] items-center gap-4 text-base sm:text-lg font-medium text-[var(--color-text-muted)]">
+                <div className="mx-auto mt-7 flex w-full max-w-[420px] items-center gap-4 text-base font-medium text-[var(--color-text-muted)] sm:text-lg">
                     <div className="h-px flex-1 bg-[rgb(171_204_235)]" />
                     <span>or</span>
                     <div className="h-px flex-1 bg-[rgb(171_204_235)]" />
@@ -162,16 +187,18 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
                 <div className="mt-6 flex justify-center">
                     <button
                         type="button"
-                        className="inline-flex h-12 items-center gap-3 rounded-lg border border-[rgb(152_198_238)] bg-[var(--color-brand-deep)] px-7 text-base sm:text-lg font-semibold text-white transition hover:brightness-110"
+                        onClick={handleTelegramLogin}
+                        disabled={telegramLoading}
+                        className="inline-flex h-12 items-center gap-3 rounded-lg border border-[rgb(152_198_238)] bg-[var(--color-brand-deep)] px-7 text-base font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:text-lg"
                     >
                         <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[rgb(55_174_226)] text-white">
                             <Send size={18} fill="currentColor" className="-rotate-12" />
                         </span>
-                        Telegram
+                        {telegramLoading ? 'Connecting...' : 'Telegram'}
                     </button>
                 </div>
 
-                <p className="mx-auto mt-8 max-w-[480px] text-center text-sm sm:text-base font-medium text-[rgb(80_105_141)]">
+                <p className="mx-auto mt-8 max-w-[480px] text-center text-sm font-medium text-[rgb(80_105_141)] sm:text-base">
                     Don't have an account yet? Click{' '}
                     <button
                         type="button"
@@ -188,11 +215,15 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
 
                 <div className="mx-auto mt-4 h-px w-full max-w-[520px] bg-[rgb(171_204_235)]" />
 
-                <p className="mx-auto mt-4 max-w-[520px] text-center text-sm sm:text-base font-medium leading-[1.35] text-[rgb(80_105_141)]">
+                <p className="mx-auto mt-4 max-w-[520px] text-center text-sm font-medium leading-[1.35] text-[rgb(80_105_141)] sm:text-base">
                     If you encounter any issues while logging in,
                     <br />
                     Please contact our{' '}
-                    <button type="button" className="text-[rgb(255_82_0)] hover:underline">
+                    <button
+                        type="button"
+                        onClick={onCustomerServiceClick}
+                        className="text-[rgb(255_82_0)] hover:underline"
+                    >
                         Customer Service
                     </button>{' '}
                     for further assistance
@@ -201,4 +232,3 @@ export default function LoginModal({ open, onClose, logoText = 'LOGO', onRegiste
         </div>
     );
 }
-

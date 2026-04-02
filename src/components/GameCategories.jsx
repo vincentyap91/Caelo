@@ -19,12 +19,12 @@ const CATEGORY_PAGES = {
 
 export default function GameCategories({ onNavigate }) {
     const categories = [
-        { name: 'Slots', icon: 'ðŸŽ°', bgUrl: slotsImage },
-        { name: 'Casino', icon: 'ðŸƒ', bgUrl: casinoImage },
-        { name: 'Sports', icon: 'âš½', bgUrl: sportsImage },
-        { name: 'Fishing', icon: 'ðŸŸ', bgUrl: fishingImage },
-        { name: 'E-Sports', icon: 'ðŸŽ®', bgUrl: eSportsImage },
-        { name: 'Lottery', icon: 'ðŸŽ«', bgUrl: lotteryImage }
+        { name: 'Slots', icon: '\u{1F3B0}', bgUrl: slotsImage },
+        { name: 'Casino', icon: '\u{1F0CF}', bgUrl: casinoImage },
+        { name: 'Sports', icon: '\u{26BD}', bgUrl: sportsImage },
+        { name: 'Fishing', icon: '\u{1F41F}', bgUrl: fishingImage },
+        { name: 'E-Sports', icon: '\u{1F3AE}', bgUrl: eSportsImage },
+        { name: 'Lottery', icon: '\u{1F3AB}', bgUrl: lotteryImage }
     ];
 
     return (

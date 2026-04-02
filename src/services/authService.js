@@ -33,3 +33,13 @@ export async function verify2FALogin(sessionId, code, trustDevice = false) {
     user: { name: 'demo', balance: 'MYR 0.00', notifications: 1, vipLevel: 'Diamond' },
   };
 }
+
+/** Telegram login integration point. Hook real bot/widget/backend flow here when ready. */
+export async function loginWithTelegram() {
+  // Placeholder: in production, open Telegram auth widget or call POST /api/auth/telegram
+  return {
+    success: false,
+    notImplemented: true,
+    error: 'Telegram login is not available yet.',
+  };
+}

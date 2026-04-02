@@ -600,6 +600,10 @@ function AppInner() {
           setLoginModalOpen(false);
           handleNavigate('register');
         }}
+        onCustomerServiceClick={() => {
+          setLoginModalOpen(false);
+          setLiveChatOpen(true);
+        }}
       />
 
       <LiveChatModal
