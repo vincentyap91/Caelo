@@ -24,7 +24,7 @@ function WinRow({ item }) {
                         <p className="mt-1 text-xs font-semibold text-[var(--color-text-muted)]">{maskUsername(item.user)}</p>
                     </div>
                     <div className="flex shrink-0 flex-col items-end gap-1 text-right">
-                        <span className="text-lg font-bold tabular-nums tracking-tight text-[var(--color-brand-secondary)] md:text-xl">
+                        <span className="text-base font-bold tabular-nums tracking-tight text-[var(--color-brand-secondary)]">
                             {item.amount}
                         </span>
                         <span className="flex items-center gap-1 text-xs font-semibold text-[var(--color-brand-secondary)]">
