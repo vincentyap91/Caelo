@@ -86,7 +86,7 @@ export default function ContentPageLayout({
                                     </div>
                                 </div>
                             </div>
-                            <div className="pointer-events-none absolute inset-x-0 inset-y-0 bg-[linear-gradient(90deg,#fff_0%,#fff_12%,rgba(255,255,255,0.99)_24%,rgba(255,255,255,0.96)_38%,rgba(255,255,255,0.82)_52%,rgba(255,255,255,0.35)_72%,rgba(255,255,255,0.06)_88%,rgba(255,255,255,0)_100%)] md:bg-[linear-gradient(90deg,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.96)_38%,rgba(255,255,255,0.74)_57%,rgba(255,255,255,0.20)_60%,rgba(255,255,255,0)_100%)]" />
+                            <div className="pointer-events-none absolute inset-x-0 inset-y-0 bg-[linear-gradient(90deg,#fff_0%,#fff_12%,rgba(255,255,255,0.99)_24%,rgba(255,255,255,0.96)_38%,rgba(255,255,255,0.82)_52%,rgba(255,255,255,0.35)_72%,rgba(255,255,255,0.06)_88%,rgba(255,255,255,0)_100%)] md:bg-[linear-gradient(90deg,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.96)_26%,rgba(255,255,255,0.74)_50%,rgba(255,255,255,0.20)_56%,rgba(255,255,255,0)_100%)]" />
                             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(0deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.5)_42%,transparent_100%)] md:hidden" />
                             <div
                                 className="pointer-events-none absolute left-[14%] top-[3%] h-[6rem] w-[7rem] bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0.88)_38%,rgba(255,255,255,0.18)_64%,rgba(255,255,255,0)_92%)] blur-[46px] sm:left-[22%] sm:top-[5%] md:left-[31%] md:top-[6%] md:h-28 md:w-32 lg:left-[34%]"
