@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react';
 
-/** SSR-safe: false until mounted, then tracks prefers-reduced-motion. */
+function readPrefersReducedMotion() {
+    if (typeof window === 'undefined') return false;
+    try {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch {
+        return false;
+    }
+}
+
+/** Tracks prefers-reduced-motion; initial state matches the OS on first client paint (no one-frame marquee flash). */
 export function usePrefersReducedMotion() {
-    const [reduced, setReduced] = useState(false);
+    const [reduced, setReduced] = useState(readPrefersReducedMotion);
 
     useEffect(() => {
         const mq = window.matchMedia('(prefers-reduced-motion: reduce)');

@@ -2,7 +2,6 @@
 import SectionHeader from '../SectionHeader';
 import { Clock, Trophy } from 'lucide-react';
 import { HOME_LIVE_BIG_WINS_FEED_HEIGHT_CLASS, MOCK_RECENT_BIG_WINS, maskUsername } from '../../constants/homeLiveActivity';
-import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 function WinRow({ item }) {
     const badge = item.badge || item.provider;
@@ -53,7 +52,6 @@ function WinsTrack({ items }) {
  */
 export default function RecentBigWinsSection() {
     const items = MOCK_RECENT_BIG_WINS;
-    const reducedMotion = usePrefersReducedMotion();
 
     return (
         <div className="flex min-h-0 w-full min-w-0 flex-col lg:h-full lg:min-h-0">
@@ -68,18 +66,12 @@ export default function RecentBigWinsSection() {
             </div>
 
             <div className={`home-marquee-pausable shrink-0 overflow-hidden ${HOME_LIVE_BIG_WINS_FEED_HEIGHT_CLASS}`}>
-                {reducedMotion ? (
-                    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pr-0.5">
-                        <WinsTrack items={items} />
+                <div className="flex w-full flex-col animate-home-marquee-vertical-y will-change-transform">
+                    <WinsTrack items={items} />
+                    <div className="flex flex-col" aria-hidden>
+                        <WinsTrack items={items.map((i) => ({ ...i, id: `${i.id}__dup` }))} />
                     </div>
-                ) : (
-                    <div className="animate-home-marquee-vertical-y will-change-transform">
-                        <WinsTrack items={items} />
-                        <div aria-hidden>
-                            <WinsTrack items={items.map((i) => ({ ...i, id: `${i.id}__dup` }))} />
-                        </div>
-                    </div>
-                )}
+                </div>
             </div>
         </div>
     );

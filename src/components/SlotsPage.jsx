@@ -289,7 +289,9 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                         {win.user} won <span className={win.amountColor}>{win.amount}</span>
                                     </p>
                                     <p className="mt-0.5 text-xs text-slate-500">
-                                        on {win.game} Â· {win.time}
+                                        on {win.game}
+                                        {' \u00B7 '}
+                                        {win.time}
                                     </p>
                                     <button
                                         type="button"

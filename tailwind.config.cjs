@@ -8,8 +8,8 @@ module.exports = {
     extend: {
       keyframes: {
         'home-marquee-vertical-y': {
-          '0%': { transform: 'translateY(0)' },
-          '100%': { transform: 'translateY(-50%)' },
+          '0%': { transform: 'translate3d(0, 0, 0)' },
+          '100%': { transform: 'translate3d(0, -50%, 0)' },
         },
         /** Hero announcement strip: text moves right → left (must not live only under `@theme` in theme.css — browsers ignore it). */
         marquee: {

@@ -40,9 +40,9 @@ const VOUCHERS = [
 ];
 
 const SPIN_OFFERS = [
-    { id: 'sp1', title: 'Daily free spin', value: '5', blurb: '1 free spin per day Â· MYR credits to wallet' },
+    { id: 'sp1', title: 'Daily free spin', value: '5', blurb: '1 free spin per day \u00B7 MYR credits to wallet' },
     { id: 'sp2', title: 'Lucky wheel', value: '88', blurb: 'Boosted segments during live promos' },
-    { id: 'sp3', title: 'Mega spin', value: '500', blurb: 'VIP eligible Â· rollover may apply' },
+    { id: 'sp3', title: 'Mega spin', value: '500', blurb: 'VIP eligible \u00B7 rollover may apply' },
 ];
 
 const PRIZE_ITEMS = [
@@ -329,7 +329,7 @@ function VoucherScratchPanel() {
                                 </span>
                             }
                             title={v.title}
-                            description={`Win up to MYR ${v.value} Â· Credit to wallet after claim`}
+                            description={`Win up to MYR ${v.value} \u00B7 Credit to wallet after claim`}
                             ctaLabel="Scratch & claim"
                         />
                     ))}
@@ -375,7 +375,7 @@ function PrizeBoxPanel() {
                                 </span>
                             }
                             title={item.campaign}
-                            description="Campaign reward Â· MYR credits main wallet when claimed"
+                            description="Campaign reward \u00B7 MYR credits main wallet when claimed"
                             ctaLabel={item.available ? 'Claim to wallet' : 'Unavailable'}
                             ctaDisabled={!item.available}
                         />

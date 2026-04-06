@@ -8,7 +8,6 @@ import {
     getUnifiedLiveTransactions,
     maskUsername,
 } from '../../constants/homeLiveActivity';
-import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 function LiveDot() {
     return (
@@ -84,7 +83,6 @@ function TxTrack({ rows }) {
  */
 export default function LiveTransactionsPanel() {
     const [filter, setFilter] = useState('all');
-    const reducedMotion = usePrefersReducedMotion();
 
     const rows = useMemo(() => {
         if (filter === 'deposit') return MOCK_LIVE_DEPOSITS.map((r) => ({ ...r, kind: 'deposit' }));
@@ -121,7 +119,7 @@ export default function LiveTransactionsPanel() {
                             </button>
                         );
                     })}
-                    <div className="ml-auto flex shrink-0 items-center gap-1.5 rounded-full bg-white/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-default)]/50">
+                    <div className="ml-auto mr-1 flex shrink-0 items-center gap-1.5 rounded-full bg-white/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-default)]/50">
                         <LiveDot />
                         <span className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-subtle)]">Live</span>
                     </div>
@@ -129,18 +127,12 @@ export default function LiveTransactionsPanel() {
             </div>
 
             <div className={`home-marquee-pausable shrink-0 overflow-hidden ${HOME_LIVE_FEED_HEIGHT_CLASS}`}>
-                {reducedMotion ? (
-                    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pr-0.5">
-                        <TxTrack rows={rows} />
+                <div className="flex w-full flex-col animate-home-marquee-vertical-y will-change-transform">
+                    <TxTrack rows={rows} />
+                    <div className="flex flex-col" aria-hidden>
+                        <TxTrack rows={rows.map((r) => ({ ...r, id: `${r.id}__dup` }))} />
                     </div>
-                ) : (
-                    <div className="animate-home-marquee-vertical-y will-change-transform">
-                        <TxTrack rows={rows} />
-                        <div aria-hidden>
-                            <TxTrack rows={rows.map((r) => ({ ...r, id: `${r.id}__dup` }))} />
-                        </div>
-                    </div>
-                )}
+                </div>
             </div>
         </div>
     );

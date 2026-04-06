@@ -106,7 +106,7 @@ export default function Footer({ onNavigate, onLiveChatClick }) {
                 {/* Copyright */}
                 <div className="w-full text-center relative z-10 pb-4">
                     <p className="text-xs font-semibold tracking-wide text-[var(--color-brand-primary)]">
-                        Copyright Riocity9 Â© 2026. All rights reserved.
+                        Copyright Riocity9 {'\u00A9'} 2026. All rights reserved.
                     </p>
                 </div>
 

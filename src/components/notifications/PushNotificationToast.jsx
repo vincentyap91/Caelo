@@ -16,8 +16,10 @@ import {
 import { PUSH_VARIANT } from '../../constants/pushNotificationCopy';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
-const DURATION_MS_DEFAULT = 5200;
-const DURATION_MS_AUTH = 5200;
+const DURATION_MS_DEFAULT = 4000;
+const DURATION_MS_AUTH = 4000;
+
+const EXIT_ANIMATION_NAME = 'push-notification-exit';
 
 const variantStyles = {
     [PUSH_VARIANT.success]: {
@@ -103,40 +105,107 @@ export function PushNotificationToast({
     showPending = false,
     statusLabel,
     durationMs = DURATION_MS_DEFAULT,
+    dismissAt,
+    timerPaused = false,
+    pauseRemainderMs,
+    exiting = false,
     onDismiss,
+    onExitComplete,
+    onTimerPause,
+    onTimerResume,
 }) {
     const reducedMotion = usePrefersReducedMotion();
     const [timeLeftMs, setTimeLeftMs] = React.useState(durationMs);
+    const onExitCompleteRef = React.useRef(onExitComplete);
+    onExitCompleteRef.current = onExitComplete;
+    const resumeRafRef = React.useRef(0);
+
     const resolvedVariant = stateType ?? variant;
     const vs = variantStyles[resolvedVariant] ?? variantStyles[PUSH_VARIANT.info];
     const Icon = pickIcon({ variant: resolvedVariant, category, showPending, eventId });
     const isAssertive = resolvedVariant === PUSH_VARIANT.error || resolvedVariant === PUSH_VARIANT.warning;
     const progress = durationMs > 0 ? Math.max(0, Math.min(1, timeLeftMs / durationMs)) : 0;
 
-    React.useEffect(() => {
-        setTimeLeftMs(durationMs);
-        const startedAt = Date.now();
-        const intervalId = window.setInterval(() => {
-            const next = Math.max(0, durationMs - (Date.now() - startedAt));
-            setTimeLeftMs(next);
-            if (next <= 0) {
-                window.clearInterval(intervalId);
-            }
-        }, 100);
+    const animClass = exiting ? 'push-notification-toast-exit' : 'push-notification-toast-enter';
 
+    React.useEffect(() => {
+        if (exiting) return;
+        if (timerPaused) {
+            setTimeLeftMs(Math.max(0, pauseRemainderMs ?? 0));
+            return;
+        }
+        if (typeof dismissAt !== 'number' || Number.isNaN(dismissAt)) return;
+
+        const tick = () => {
+            setTimeLeftMs(Math.max(0, dismissAt - Date.now()));
+        };
+        tick();
+        const intervalId = window.setInterval(tick, 100);
         return () => window.clearInterval(intervalId);
-    }, [durationMs]);
+    }, [exiting, timerPaused, dismissAt, pauseRemainderMs]);
+
+    function handlePointerEnter(e) {
+        if (exiting) return;
+        if (e.pointerType === 'touch') return;
+        onTimerPause?.();
+    }
+
+    function scheduleResume() {
+        if (exiting) return;
+        if (resumeRafRef.current) window.cancelAnimationFrame(resumeRafRef.current);
+        resumeRafRef.current = window.requestAnimationFrame(() => {
+            resumeRafRef.current = 0;
+            onTimerResume?.();
+        });
+    }
+
+    function handlePointerLeave(e) {
+        if (exiting) return;
+        if (e.pointerType === 'touch') return;
+        scheduleResume();
+    }
+
+    /** Mouse leave mirrors pointer leave (some environments / drivers don’t emit pointer events reliably). */
+    function handleMouseLeave(e) {
+        if (exiting) return;
+        if (e.nativeEvent?.pointerType === 'touch') return;
+        scheduleResume();
+    }
+
+    React.useEffect(
+        () => () => {
+            if (resumeRafRef.current) window.cancelAnimationFrame(resumeRafRef.current);
+        },
+        []
+    );
+
+    /** prefers-reduced-motion: CSS disables animations — unmount immediately after exit intent. */
+    React.useEffect(() => {
+        if (!exiting) return;
+        if (!reducedMotion) return;
+        const id = window.setTimeout(() => onExitCompleteRef.current?.(), 0);
+        return () => window.clearTimeout(id);
+    }, [exiting, reducedMotion]);
+
+    function handleAnimationEnd(e) {
+        if (e.target !== e.currentTarget) return;
+        if (!exiting) return;
+        if (reducedMotion) return;
+        const name = e.animationName || '';
+        if (!name.includes(EXIT_ANIMATION_NAME)) return;
+        onExitCompleteRef.current?.();
+    }
 
     return (
         <div
             role={isAssertive ? 'alert' : 'status'}
             aria-live={isAssertive ? 'assertive' : 'polite'}
-            className={`push-notification-toast-enter relative pointer-events-auto w-full overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-border-default)] bg-[linear-gradient(180deg,var(--gradient-soft-panel-start)_0%,var(--gradient-soft-panel-end)_100%)] shadow-[var(--shadow-card-raised)] ring-1 ring-white/70`}
-            style={
-                reducedMotion
-                    ? { animation: 'none', '--push-toast-duration': `${durationMs}ms` }
-                    : { '--push-toast-duration': `${durationMs}ms` }
-            }
+            onAnimationEnd={handleAnimationEnd}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerLeave}
+            onMouseLeave={handleMouseLeave}
+            className={`${animClass} relative w-full overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-border-default)] bg-[linear-gradient(180deg,var(--gradient-soft-panel-start)_0%,var(--gradient-soft-panel-end)_100%)] shadow-[var(--shadow-card-raised)] ring-1 ring-white/70`}
+            style={{ '--push-toast-duration': `${durationMs}ms` }}
         >
             <div
                 aria-hidden
@@ -181,7 +250,8 @@ export function PushNotificationToast({
                 <button
                     type="button"
                     onClick={onDismiss}
-                    className="shrink-0 -mr-1 -mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-300)] focus-visible:ring-offset-2"
+                    disabled={exiting}
+                    className="shrink-0 -mr-1 -mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-300)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                     aria-label="Dismiss notification"
                 >
                     <X size={18} strokeWidth={2.4} />
@@ -195,26 +265,10 @@ export function PushNotificationToast({
                     className={`h-full transition-[width] duration-100 ease-linear ${vs.accent}`}
                     style={{
                         width: `${progress * 100}%`,
-                        transition: reducedMotion ? 'none' : undefined,
+                        transition: reducedMotion || timerPaused ? 'none' : undefined,
                     }}
                 />
             </div>
-            <style>
-                {`
-                  @keyframes push-notification-enter {
-                    from { transform: translate3d(0, 10px, 0) scale(0.98); opacity: 0; }
-                    to { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
-                  }
-                  .push-notification-toast-enter {
-                    animation: push-notification-enter 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-                  }
-                  @media (prefers-reduced-motion: reduce) {
-                    .push-notification-toast-enter {
-                      animation: none;
-                    }
-                  }
-                `}
-            </style>
         </div>
     );
 }
