@@ -63,7 +63,7 @@ export default function PromotionWarningModal({
                         </span>
 
                         <div className="mt-4 max-w-[30rem]">
-                            <h3 className="text-xl font-bold tracking-tight text-[var(--color-text-strong)] sm:text-[1.75rem]">
+                            <h3 className="text-xl font-bold tracking-tight text-[var(--color-text-strong)] sm:text-2xl">
                                 {title}
                             </h3>
                             <p className="mt-2.5 text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">

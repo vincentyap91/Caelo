@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, Crown, Gift, ShieldCheck, Sparkles, Users } from 'lucide-react';
 import normalMedal from '../assets/Normal.png';
 import bronzeMedal from '../assets/bronze.png';
@@ -330,7 +330,7 @@ export default function VipPage({ authUser }) {
                                 >
                                     VIP Programme
                                 </h1>
-                                <p className="mx-auto mt-2 hidden max-w-[420px] text-base font-medium leading-[1.5] text-[rgb(15_23_42)] max-md:leading-snug md:mt-5 md:block md:leading-[1.45]">
+                                <p className="mx-auto mt-2 hidden max-w-[420px] text-base font-medium leading-relaxed text-[rgb(15_23_42)] md:mt-5 md:block">
                                     Unlock premium rewards, tailored bonuses, and priority support with every VIP tier.
                                 </p>
                                 {showBannerCta && (

@@ -77,7 +77,7 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
 
                 <form onSubmit={handleVerify} className="space-y-4">
                     <label className="block">
-                        <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">6-digit verification code</span>
+                        <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">6-digit verification code</span>
                         <input
                             type="text"
                             inputMode="numeric"

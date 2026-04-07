@@ -56,7 +56,7 @@ export default function FeedbackPage() {
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="block">
-                            <span id="feedback-category-label" className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Feedback Category</span>
+                            <span id="feedback-category-label" className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Feedback Category</span>
                             <div className="relative">
                                 <button
                                     type="button"
@@ -105,7 +105,7 @@ export default function FeedbackPage() {
                         </div>
 
                         <label className="block">
-                            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Comments</span>
+                            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Comments</span>
                             <textarea
                                 value={comments}
                                 onChange={(e) => setComments(e.target.value)}
@@ -116,7 +116,7 @@ export default function FeedbackPage() {
                         </label>
 
                         <label className="block">
-                            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Attachments (Optional)</span>
+                            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Attachments (Optional)</span>
                             <div
                                 className="flex min-h-[140px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 py-6 transition hover:border-[var(--color-accent-300)] hover:bg-[var(--color-accent-50)]"
                                 onClick={() => fileInputRef.current?.click()}

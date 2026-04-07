@@ -35,7 +35,7 @@ export default function GameDetailMobileInfoCard({
                     )}
                 </div>
                 <div className="min-w-0 flex-1 pt-0.5">
-                    <h2 className="text-base font-bold leading-snug tracking-tight text-[var(--color-text-strong)] sm:text-[17px]">
+                    <h2 className="text-base font-bold leading-snug tracking-tight text-[var(--color-text-strong)] sm:text-lg">
                         {gameTitle}
                     </h2>
                     <p className="mt-1.5 text-xs font-medium leading-snug text-[var(--color-text-muted)]">

@@ -125,13 +125,13 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                 <table className="w-full min-w-[280px] border-collapse text-sm md:min-w-[320px]">
                                     <thead>
                                         <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
-                                            <th className="px-3 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 sm:text-xs md:text-[var(--color-text-muted)]">
+                                            <th className="px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]">
                                                 Date
                                             </th>
-                                            <th className="px-3 py-2.5 text-right text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 sm:text-xs md:text-[var(--color-text-muted)]">
+                                            <th className="px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]">
                                                 Commission
                                             </th>
-                                            <th className="px-3 py-2.5 text-right text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 sm:text-xs md:text-[var(--color-text-muted)]">
+                                            <th className="px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]">
                                                 Deposit Bonus
                                             </th>
                                         </tr>
@@ -185,16 +185,16 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                     <table className="w-full min-w-[480px] border-collapse text-sm">
                                         <thead>
                                             <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
-                                                <th className="px-3 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-xs md:text-[var(--color-text-muted)]">
+                                                <th className="px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-[var(--color-text-muted)]">
                                                     Username
                                                 </th>
-                                                <th className="px-3 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-xs md:text-[var(--color-text-muted)]">
+                                                <th className="px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-[var(--color-text-muted)]">
                                                     Joined
                                                 </th>
-                                                <th className="px-3 py-2.5 text-right text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-xs md:text-[var(--color-text-muted)]">
+                                                <th className="px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-[var(--color-text-muted)]">
                                                     Total Deposit
                                                 </th>
-                                                <th className="px-3 py-2.5 text-right text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-xs md:text-[var(--color-text-muted)]">
+                                                <th className="px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-[var(--color-text-muted)]">
                                                     Commission
                                                 </th>
                                             </tr>

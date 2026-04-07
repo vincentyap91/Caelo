@@ -50,10 +50,29 @@ function formatBirthdayDisplay(iso) {
     return `${m.padStart(2, '0')}/${d.padStart(2, '0')}/${y}`;
 }
 
-function ReadOnlyValue({ label, value }) {
+function ReadOnlyValue({ label, value, singleLineEllipsis = false }) {
+    if (singleLineEllipsis) {
+        const display = typeof value === 'string' ? value : '';
+        return (
+            <div className="block">
+                <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
+                <div className="flex h-12 min-h-12 items-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 shadow-[var(--shadow-subtle)]">
+                    <input
+                        type="text"
+                        readOnly
+                        aria-readonly="true"
+                        value={display}
+                        placeholder={display === '' ? '—' : undefined}
+                        title={display || undefined}
+                        className="min-w-0 w-full cursor-text bg-transparent text-sm font-medium text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] overflow-hidden text-ellipsis whitespace-nowrap"
+                    />
+                </div>
+            </div>
+        );
+    }
     return (
         <div className="block">
-            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">{label}</span>
+            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
             <div className="flex h-12 items-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] select-none">
                 <span className="min-w-0 break-all">{value || '—'}</span>
             </div>
@@ -64,7 +83,7 @@ function ReadOnlyValue({ label, value }) {
 function Field({ label, value, placeholder, type = 'text', editable, onChange, icon: Icon }) {
     return (
         <label className="block">
-            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">{label}</span>
+            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
             <div
                 className={`group flex h-12 items-center gap-3 rounded-xl border px-4 shadow-[var(--shadow-subtle)] transition-all focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[rgb(96_165_250_/_0.2)] ${
                     editable
@@ -98,9 +117,11 @@ function SectionCard({ title, description, editing, onToggleEdit, children, acti
         <section className="surface-card rounded-2xl p-6 transition-all md:p-8">
             <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                    <h2 className="text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">{title}</h2>
+                    <h2 className="text-base font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">{title}</h2>
                     {description && (
-                        <p className="mt-1 text-sm font-medium text-[var(--color-text-muted)]">{description}</p>
+                        <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
+                            {description}
+                        </p>
                     )}
                 </div>
 
@@ -341,6 +362,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                         key={key}
                                         label={label}
                                         value={key === 'birthday' ? formatBirthdayDisplay(formValues.birthday) : formValues[key]}
+                                        singleLineEllipsis={key === 'referralLink'}
                                     />
                                 ))}
                             </div>
@@ -412,7 +434,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                         {editingBankId ? 'Edit bank account' : 'Add bank account'}
                                     </p>
                                     <div>
-                                        <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Bank <span className="text-[var(--color-danger-main)]">*</span></span>
+                                        <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Bank <span className="text-[var(--color-danger-main)]">*</span></span>
                                         <div className="relative">
                                             <button
                                                 type="button"

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import SectionHeader from './SectionHeader';
 import { Crown } from 'lucide-react';
 import vipBgImage from '../assets/vip-bg.png';
@@ -28,10 +28,10 @@ function VipLevelCard({ vp, className }) {
                 </div>
 
                 <div className="w-full space-y-1 text-center">
-                    <p className="text-sm font-bold leading-tight text-[var(--color-brand-primary)]">
+                    <p className="text-xs font-semibold leading-snug text-[var(--color-brand-primary)] md:text-sm md:font-bold md:leading-tight">
                         Valid Bet Point &gt; {vp.btn}
                     </p>
-                    <p className="text-sm font-bold leading-tight text-[var(--color-brand-primary)]">
+                    <p className="text-xs font-semibold leading-snug text-[var(--color-brand-primary)] md:text-sm md:font-bold md:leading-tight">
                         Deposit Point = {vp.dep}
                     </p>
                 </div>
@@ -61,7 +61,7 @@ export default function VipTier({ onNavigate }) {
                 onNavigate={onNavigate}
             />
 
-            <p className="mt-4 mb-8 max-w-[1000px] text-xs font-semibold leading-relaxed text-[var(--color-text-brand-soft)]">
+            <p className="mt-4 mb-8 max-w-[1000px] text-xs font-medium leading-relaxed text-[var(--color-text-brand-soft)] md:text-sm">
                 Join the Riocity9 VIP member group, you will receive many special privileges such as promotion bonus, monthly red envelope bonus, birthday bonus. All of these are special privileges for Riocity9 VIP customers only.
             </p>
 

@@ -1,4 +1,4 @@
-﻿import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import SectionHeader from '../SectionHeader';
 import { ArrowDownToLine, ArrowUpFromLine, Radio, User } from 'lucide-react';
 import {
@@ -15,6 +15,21 @@ function LiveDot() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success-main)] opacity-40" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-success-main)]" />
         </span>
+    );
+}
+
+function LiveStatusBadge({ className = '' }) {
+    return (
+        <div
+            className={`inline-flex items-center gap-1.5 rounded-full bg-white/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-default)]/50 ${className}`}
+            role="status"
+            aria-label="Live feed"
+        >
+            <LiveDot />
+            <span className="text-xs font-bold uppercase leading-none tracking-wide text-[var(--color-text-subtle)]">
+                Live
+            </span>
+        </div>
     );
 }
 
@@ -97,11 +112,14 @@ export default function LiveTransactionsPanel() {
                     title="Live Transactions"
                     icon={<Radio size={22} className="text-[var(--color-brand-secondary)]" strokeWidth={2.25} />}
                 />
-                <p className="-mt-1 mb-4 text-xs font-medium text-[var(--color-text-muted)] md:text-sm">
-                    Real-time deposit &amp; withdrawal feed
-                </p>
+                <div className="-mt-1 mb-3 flex flex-row items-center justify-between gap-2 sm:gap-3 md:mb-4">
+                    <p className="min-w-0 flex-1 pr-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] sm:pr-2 md:text-sm">
+                        Real-time deposit &amp; withdrawal feed
+                    </p>
+                    <LiveStatusBadge className="max-sm:gap-1 max-sm:py-0.5 max-sm:pl-1.5 max-sm:pr-2" />
+                </div>
 
-                <div className="mb-4 flex flex-wrap items-center gap-2 rounded-full bg-[var(--color-surface-muted)]/90 p-1 ring-1 ring-[var(--color-border-default)]/60">
+                <div className="mb-4 flex w-full flex-wrap items-center gap-1.5 rounded-full bg-[var(--color-surface-muted)]/90 p-1 ring-1 ring-[var(--color-border-default)]/60 max-sm:flex-nowrap max-sm:gap-0.5">
                     {TABS.map((t) => {
                         const active = filter === t.id;
                         return (
@@ -109,20 +127,16 @@ export default function LiveTransactionsPanel() {
                                 key={t.id}
                                 type="button"
                                 onClick={() => setFilter(t.id)}
-                                className={`rounded-full px-4 py-2 text-xs font-bold tracking-wide transition md:text-sm ${
+                                className={`rounded-full text-xs font-bold tracking-wide transition md:text-sm ${
                                     active
                                         ? 'bg-[var(--color-brand-secondary)] text-white shadow-sm'
                                         : 'text-[var(--color-text-brand)] hover:bg-white/70'
-                                }`}
+                                } max-sm:flex max-sm:min-h-[2.375rem] max-sm:min-w-0 max-sm:flex-1 max-sm:basis-0 max-sm:items-center max-sm:justify-center max-sm:px-2 max-sm:py-2 max-sm:leading-none sm:flex-initial sm:px-4 sm:py-2 sm:leading-normal`}
                             >
-                                {t.label}
+                                <span className="block text-center">{t.label}</span>
                             </button>
                         );
                     })}
-                    <div className="ml-auto mr-1 flex shrink-0 items-center gap-1.5 rounded-full bg-white/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-default)]/50">
-                        <LiveDot />
-                        <span className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-subtle)]">Live</span>
-                    </div>
                 </div>
             </div>
 

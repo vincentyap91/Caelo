@@ -60,9 +60,9 @@ const claimButtonClass =
     'btn-theme-primary inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02] md:min-h-11 md:w-auto md:min-w-[120px]';
 
 const tableHeadClassLeft =
-    'px-3 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 sm:text-xs md:text-[var(--color-text-muted)]';
+    'px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
 const tableHeadClassRight =
-    'px-3 py-2.5 text-right text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 sm:text-xs md:text-[var(--color-text-muted)]';
+    'px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wider text-[var(--color-accent-600)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
 
 function RebateEarnedSummary() {
     return (

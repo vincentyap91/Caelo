@@ -166,7 +166,7 @@ export default function GameDetailLayout({
 
                 {latestBetsColumns.length > 0 && latestBetsRows.length > 0 ? (
                     <section className="mt-10 md:mt-12 lg:mt-14">
-                        <h2 className="mb-4 text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:mb-5 md:text-xl">
+                        <h2 className="mb-4 text-base font-bold tracking-tight text-[var(--color-text-strong)] md:mb-5 md:text-xl">
                             Latest Bets
                         </h2>
                         <GameDetailDataTable columns={latestBetsColumns} rows={latestBetsRows} striped />

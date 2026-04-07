@@ -101,14 +101,14 @@ export default function VerificationPage() {
                                     <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Bank Account Information</h2>
                                     <div className="mt-4 space-y-4">
                                         <label className="block">
-                                            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Select the Bank</span>
+                                            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Select the Bank</span>
                                             <div className="flex h-12 items-center justify-between rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] px-4 text-[var(--color-text-muted)]">
                                                 <span>Select the Bank</span>
                                                 <ChevronDown size={18} />
                                             </div>
                                         </label>
                                         <label className="block">
-                                            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Bank Account Number</span>
+                                            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Bank Account Number</span>
                                             <input
                                                 type="text"
                                                 value={bankForm.accountNumber}
@@ -124,7 +124,7 @@ export default function VerificationPage() {
                                     <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Account Holder Information</h2>
                                     <div className="mt-4 grid gap-4 sm:grid-cols-2">
                                         <label className="block">
-                                            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">First Name</span>
+                                            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">First Name</span>
                                             <input
                                                 type="text"
                                                 value={bankForm.firstName}
@@ -134,7 +134,7 @@ export default function VerificationPage() {
                                             />
                                         </label>
                                         <label className="block">
-                                            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Last Name</span>
+                                            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Last Name</span>
                                             <input
                                                 type="text"
                                                 value={bankForm.lastName}
@@ -281,7 +281,7 @@ export default function VerificationPage() {
                                     {docType === 'id' ? (
                                         <>
                                             <label className="block">
-                                                <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Front side of ID</span>
+                                                <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Front side of ID</span>
                                                 <div className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-200)] bg-[rgb(239_246_255_/_0.5)] p-6 transition hover:border-[var(--color-accent-300)] hover:bg-[rgb(239_246_255_/_0.8)]">
                                                     <FolderPlus size={32} className="text-[var(--color-accent-500)]" />
                                                     <span className="mt-2 text-sm font-medium text-[var(--color-text-main)]">Front side of ID</span>
@@ -290,7 +290,7 @@ export default function VerificationPage() {
                                                 </div>
                                             </label>
                                             <label className="mt-4 block">
-                                                <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Back side of ID</span>
+                                                <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Back side of ID</span>
                                                 <div className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-200)] bg-[rgb(239_246_255_/_0.5)] p-6 transition hover:border-[var(--color-accent-300)] hover:bg-[rgb(239_246_255_/_0.8)]">
                                                     <FolderPlus size={32} className="text-[var(--color-accent-500)]" />
                                                     <span className="mt-2 text-sm font-medium text-[var(--color-text-main)]">Back side of ID</span>

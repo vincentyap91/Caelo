@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import SectionHeader from '../SectionHeader';
 import { Clock, Trophy } from 'lucide-react';
 import { HOME_LIVE_BIG_WINS_FEED_HEIGHT_CLASS, MOCK_RECENT_BIG_WINS, maskUsername } from '../../constants/homeLiveActivity';
@@ -7,28 +7,33 @@ function WinRow({ item }) {
     const badge = item.badge || item.provider;
 
     return (
-        <li className="border-b border-[var(--color-border-default)]/90 py-4 md:py-[18px]">
-            <div className="flex gap-3 md:gap-4">
-                <div className="relative h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden rounded-[var(--radius-control)] bg-[var(--color-surface-muted)] ring-1 ring-[var(--color-border-accent)] md:h-[5rem] md:w-[5rem]">
+        <li className="border-b border-[var(--color-border-default)]/90 py-3.5 sm:py-4 md:py-[18px]">
+            <div className="flex gap-2.5 max-sm:items-start sm:gap-3 md:gap-4">
+                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[var(--radius-control)] bg-[var(--color-surface-muted)] ring-1 ring-[var(--color-border-accent)] max-sm:mt-0.5 sm:h-[4.5rem] sm:w-[4.5rem] md:h-[5rem] md:w-[5rem]">
                     <img src={item.imgUrl} alt="" className="h-full w-full object-cover" loading="lazy" />
                 </div>
-                <div className="flex min-w-0 flex-1 items-center gap-3 md:gap-4">
-                    <div className="min-w-0 flex-1">
-                        <span className="inline-flex w-fit max-w-full rounded-md bg-[var(--color-surface-muted)] px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-subtle)] ring-1 ring-[var(--color-border-default)]/80">
-                            {badge}
+                <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3 md:gap-4">
+                    <div className="min-w-0 flex-1 pr-0.5">
+                        <span
+                            title={badge}
+                            className="inline-flex max-w-full rounded-md bg-[var(--color-surface-muted)] px-1.5 py-0.5 text-xs font-bold uppercase leading-snug tracking-wide text-[var(--color-text-subtle)] ring-1 ring-[var(--color-border-default)]/80 sm:px-2 sm:leading-normal"
+                        >
+                            <span className="min-w-0 break-words [overflow-wrap:anywhere]">{badge}</span>
                         </span>
-                        <p className="mt-2 line-clamp-2 text-sm font-bold leading-snug text-[var(--color-text-strong)] md:text-base">
+                        <p className="mt-1.5 line-clamp-2 text-sm font-bold leading-snug text-[var(--color-text-strong)] max-sm:mt-1.5 sm:mt-2 md:text-base">
                             {item.game}
                         </p>
-                        <p className="mt-1 text-xs font-semibold text-[var(--color-text-muted)]">{maskUsername(item.user)}</p>
+                        <p className="mt-0.5 text-xs font-medium leading-snug text-[var(--color-text-muted)] sm:mt-1">
+                            {maskUsername(item.user)}
+                        </p>
                     </div>
-                    <div className="flex shrink-0 flex-col items-end gap-1 text-right">
-                        <span className="text-base font-bold tabular-nums tracking-tight text-[var(--color-brand-secondary)]">
+                    <div className="flex min-w-0 shrink-0 flex-col items-end gap-0.5 self-center text-right sm:gap-1">
+                        <span className="break-words text-right text-xs font-bold tabular-nums leading-tight tracking-tight text-[var(--color-brand-secondary)] sm:text-base sm:leading-none">
                             {item.amount}
                         </span>
-                        <span className="flex items-center gap-1 text-xs font-semibold text-[var(--color-brand-secondary)]">
-                            <Clock size={12} className="shrink-0 opacity-80" aria-hidden />
-                            {item.timeAgo}
+                        <span className="flex max-w-[7.5rem] items-center justify-end gap-0.5 text-xs font-medium leading-none text-[var(--color-brand-secondary)] sm:max-w-none sm:gap-1">
+                            <Clock size={11} className="max-sm:h-2.5 max-sm:w-2.5 shrink-0 opacity-80 sm:h-3 sm:w-3" aria-hidden />
+                            <span className="min-w-0">{item.timeAgo}</span>
                         </span>
                     </div>
                 </div>
@@ -60,7 +65,7 @@ export default function RecentBigWinsSection() {
                     title="Recent Big Wins"
                     icon={<Trophy size={22} className="text-[var(--color-nav-gold)]" fill="currentColor" strokeWidth={1.75} />}
                 />
-                <p className="-mt-1 mb-4 text-xs font-medium text-[var(--color-text-muted)] md:text-sm">
+                <p className="-mt-1 mb-4 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
                     Latest player jackpot moments
                 </p>
             </div>

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import PromotionStyleTabs from './PromotionStyleTabs';
 import ProviderLaunchModal from './ProviderLaunchModal';
@@ -189,7 +189,7 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                                 <h1 className="mt-3 hidden text-3xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] md:block">
                                     Live Casino
                                 </h1>
-                                <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-[1.35] text-[rgb(42_53_72)] md:block md:mt-4">
+                                <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-snug text-[rgb(42_53_72)] md:block md:mt-4">
                                     Live dealers, real thrills, instant payouts.
                                 </p>
                                 <button

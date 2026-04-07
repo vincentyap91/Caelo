@@ -19,7 +19,7 @@ export function ContentHighlightList({ items = [], className = '', variant = 'de
             {items.map((item) => (
                 <span
                     key={item}
-                    className={`inline-flex min-w-0 shrink-0 items-center justify-center rounded-full border text-center text-[11px] font-bold uppercase leading-tight tracking-[0.14em] text-[var(--color-accent-700)] ${
+                    className={`inline-flex min-w-0 shrink-0 items-center justify-center rounded-full border text-center text-xs font-bold uppercase leading-tight tracking-[0.14em] text-[var(--color-accent-700)] ${
                         heroMobileOverlay
                             ? 'min-h-[2.5rem] w-full border-[var(--color-accent-100)] bg-white/92 px-2 py-2 shadow-[0_2px_12px_rgba(15,23,42,0.1)] backdrop-blur-sm'
                             : 'border-[var(--color-accent-100)] bg-white px-3.5 py-2 shadow-[var(--shadow-subtle)] sm:px-4'
@@ -42,9 +42,9 @@ export function ContentSectionCard({ title, description, icon: Icon, children, c
                     </span>
                 ) : null}
                 <div className="min-w-0 flex-1">
-                    <h2 className="text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">{title}</h2>
+                    <h2 className="text-base font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">{title}</h2>
                     {description ? (
-                        <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-[15px]">{description}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-base">{description}</p>
                     ) : null}
                     {children ? <div className="mt-4">{children}</div> : null}
                 </div>
@@ -103,11 +103,11 @@ export default function ContentPageLayout({
                                         {eyebrow}
                                     </p>
                                 ) : null}
-                                <h1 className="page-title mt-2.5 text-[var(--color-text-strong)] max-md:mt-2 md:mt-3 md:text-[2rem]">
+                                <h1 className="page-title mt-2.5 text-[var(--color-text-strong)] max-md:mt-2 md:mt-3">
                                     {title}
                                 </h1>
                                 {lead ? (
-                                    <p className="mt-3 max-w-[34rem] text-sm leading-[1.7] text-[var(--color-text-muted)] max-md:mt-3 md:mt-4 md:max-w-[32rem] md:text-base md:leading-7">
+                                    <p className="mt-3 max-w-[34rem] text-sm leading-relaxed text-[var(--color-text-muted)] max-md:mt-3 md:mt-4 md:max-w-[32rem] md:text-base md:leading-7">
                                         {lead}
                                     </p>
                                 ) : null}
@@ -120,7 +120,7 @@ export default function ContentPageLayout({
                                 {eyebrow ? (
                                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent-700)]">{eyebrow}</p>
                                 ) : null}
-                                <h1 className="page-title mt-2.5 text-[var(--color-text-strong)] md:mt-3 md:text-[2rem]">{title}</h1>
+                                <h1 className="page-title mt-2.5 text-[var(--color-text-strong)] md:mt-3">{title}</h1>
                                 {lead ? (
                                     <p className="mt-3 max-w-[34rem] text-sm leading-7 text-[var(--color-text-muted)] md:mt-4 md:max-w-[32rem] md:text-base">
                                         {lead}

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Download, QrCode } from 'lucide-react';
 
 const APK_DOWNLOAD_URL = 'https://pksoftcdn.azureedge.net/apk/skywin.apk';
@@ -128,10 +128,10 @@ export default function AppDownload() {
                     <div className="inline-flex rounded-full border border-white/80 bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-brand-secondary)]">
                         Mobile App
                     </div>
-                    <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[var(--color-text-brand-soft)] sm:text-4xl">
+                    <h2 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--color-text-brand-soft)] sm:text-3xl md:text-4xl">
                         Download the <span className="text-[var(--color-brand-primary)]">Riocity9 APP</span>
                     </h2>
-                    <p className="mt-4 text-sm font-semibold leading-relaxed text-[var(--color-brand-secondary)]/85 sm:text-base">
+                    <p className="mt-4 text-sm font-medium leading-relaxed text-[var(--color-brand-secondary)]/85 sm:text-base sm:font-semibold">
                         Playing through the application is more convenient than playing through the website.
                         You can feel the difference and enjoy free credit plus bonuses through this channel.
                     </p>
@@ -213,7 +213,7 @@ export default function AppDownload() {
                                         </div>
 
                                         <div className="flex min-w-0 flex-1 flex-col items-center text-center sm:items-start sm:text-left">
-                                            <h3 className="text-lg font-bold tracking-tight text-[var(--color-text-brand-soft)]">
+                                            <h3 className="text-base font-bold leading-snug tracking-tight text-[var(--color-text-brand-soft)] sm:text-lg">
                                                 Scan or tap to install
                                             </h3>
                                             <div className="mt-2 flex flex-wrap justify-center gap-1.5 sm:justify-start">

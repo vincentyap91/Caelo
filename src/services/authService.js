@@ -34,12 +34,12 @@ export async function verify2FALogin(sessionId, code, trustDevice = false) {
   };
 }
 
-/** Telegram login integration point. Hook real bot/widget/backend flow here when ready. */
-export async function loginWithTelegram() {
-  // Placeholder: in production, open Telegram auth widget or call POST /api/auth/telegram
+/** WhatsApp login integration point. Hook real deep link / backend flow here when ready. */
+export async function loginWithWhatsApp() {
+  // Placeholder: in production, open WhatsApp auth flow or call POST /api/auth/whatsapp
   return {
     success: false,
     notImplemented: true,
-    error: 'Telegram login is not available yet.',
+    error: 'WhatsApp login is not available yet.',
   };
 }

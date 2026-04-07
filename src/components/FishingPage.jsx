@@ -209,18 +209,18 @@ export default function FishingPage({ onNavigate }) {
             </section>
 
             <section className={`${pageContainerClass} mt-8 pb-8 md:mt-10`}>
-                <div className="surface-panel rounded-2xl p-4 md:p-5">
+                <div className="surface-panel rounded-2xl p-3 sm:p-4 md:p-5">
                     <h2 className={sectionTitleClass}>Live Big Wins</h2>
-                    <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-6">
+                    <div className="mt-4 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-6">
                         {liveBigWins.map((win, idx) => {
                             const game = fishingGames.find((g) => g.name === win.game) ?? fishingGames[0];
                             return (
                                 <a
                                     key={idx}
                                     href="#"
-                                    className="surface-card group flex min-w-0 flex-1 basis-[200px] items-center gap-4 rounded-2xl p-4 transition hover:-translate-y-0.5 hover:shadow-lg"
+                                    className="surface-card group flex min-w-0 flex-1 basis-[220px] items-start gap-3.5 rounded-2xl p-3.5 transition hover:-translate-y-0.5 hover:shadow-lg sm:items-center sm:gap-5 sm:p-4"
                                 >
-                                    <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:h-20 sm:w-20">
                                         <img
                                             src={game.imgUrl}
                                             alt={win.game}
@@ -228,10 +228,10 @@ export default function FishingPage({ onNavigate }) {
                                         />
                                     </div>
                                     <div className="min-w-0 flex-1">
-                                        <p className="text-sm font-bold text-slate-800">
+                                        <p className="text-sm font-bold leading-snug text-slate-800">
                                             {win.user} won <span className={win.amountColor}>{win.amount}</span>
                                         </p>
-                                        <p className="mt-0.5 text-xs text-slate-500">
+                                        <p className="mt-px text-xs leading-snug text-slate-500 sm:mt-0.5">
                                             on {win.game}
                                             {' \u00B7 '}
                                             {win.time}

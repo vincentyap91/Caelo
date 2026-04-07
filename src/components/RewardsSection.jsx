@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     ChevronDown,
     Clock,
@@ -432,7 +432,7 @@ export default function RewardsSection({ embedInPage = false }) {
 
     const recordTypeFilterSlot = (
         <label className="block w-full">
-            <span className="mb-2 block text-sm font-semibold text-[var(--color-text-strong)]">Type</span>
+            <span className="mb-2 block text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Type</span>
             <div className="relative">
                 <select
                     value={recordActivityType}
@@ -465,10 +465,10 @@ export default function RewardsSection({ embedInPage = false }) {
                             <Trophy size={22} strokeWidth={2} />
                         </div>
                         <div>
-                            <h2 className="text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">
+                            <h2 className="text-base font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">
                                 Rewards
                             </h2>
-                            <p className="mt-1 text-sm font-medium text-[var(--color-text-muted)]">
+                            <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
                                 Check in, spin, scratch, and open prizes — claim MYR to your wallet.
                             </p>
                         </div>

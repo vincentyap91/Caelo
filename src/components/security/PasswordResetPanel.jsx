@@ -14,7 +14,7 @@ const REQUIREMENTS_HELPER = 'Change your password periodically. It\'s recommende
 function PasswordInput({ label, value, onChange, error, showPassword, onToggleShow }) {
     return (
         <label className="block">
-            <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">{label}</span>
+            <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
             <div className="relative">
                 <input
                     type={showPassword ? 'text' : 'password'}

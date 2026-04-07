@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AlertCircle, ArrowRight, Check, ChevronDown, HelpCircle } from 'lucide-react';
+import { AlertCircle, ArrowRight, ChevronDown, HelpCircle } from 'lucide-react';
 import PaymentConfirmModal from './PaymentConfirmModal';
 import RolloverRequirementModal from './RolloverRequirementModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
 import RolloverStatusCard from './RolloverStatusCard';
+import PaymentFlowStepper from './payment/PaymentFlowStepper';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
 import { PUSH_EVENT } from '../constants/pushNotificationCopy';
 import { DEMO_ROLLOVER_STATUS, getRolloverProgressPercent } from '../constants/rolloverStatus';
@@ -165,7 +166,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
             <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h1 className="page-title">Withdrawal</h1>
-                    <p className="mt-1 text-sm font-medium text-[var(--color-text-muted)]">
+                    <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
                         Complete your withdrawal in a few simple steps.
                     </p>
                 </div>
@@ -180,7 +181,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
             </div>
 
             {!isRolloverRequirementMet && (
-                <div className="mb-6">
+                <div className="mb-3 md:mb-4">
                     <RolloverStatusCard status={rolloverStatus} variant="warning" />
                 </div>
             )}
@@ -193,46 +194,8 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 />
             ) : (
             <>
-            {/* Progress indicator */}
-            <div className="mb-8 overflow-x-auto overflow-y-visible px-1 py-3">
-                <div className="flex min-w-max items-center gap-0">
-                    {WITHDRAWAL_STEPS.map((s, idx) => {
-                        const isCompleted = step > s.id;
-                        const isActive = step === s.id;
-                        const isLast = idx === WITHDRAWAL_STEPS.length - 1;
-                        return (
-                            <React.Fragment key={s.id}>
-                                <div className="flex items-center gap-2">
-                                    <div
-                                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold transition ${
-                                            isCompleted
-                                                ? 'bg-[var(--color-accent-600)] text-white'
-                                                : isActive
-                                                  ? 'bg-[var(--color-accent-600)] text-white ring-4 ring-[rgb(96_165_250_/_0.18)] shadow-[0_8px_18px_rgba(37,99,235,0.18)]'
-                                                  : 'bg-[var(--color-surface-muted)] text-[var(--color-text-muted)]'
-                                        }`}
-                                    >
-                                        {isCompleted ? <Check size={20} strokeWidth={2.5} /> : s.id}
-                                    </div>
-                                    <span
-                                        className={`hidden text-sm font-semibold sm:inline ${
-                                            isActive ? 'text-[var(--color-accent-600)]' : isCompleted ? 'text-[var(--color-text-strong)]' : 'text-[var(--color-text-muted)]'
-                                        }`}
-                                    >
-                                        {s.label}
-                                    </span>
-                                </div>
-                                {!isLast && (
-                                    <div
-                                        className={`mx-2 h-0.5 w-8 shrink-0 rounded sm:mx-4 sm:w-12 ${
-                                            isCompleted ? 'bg-[var(--color-accent-600)]' : 'bg-[var(--color-border-default)]'
-                                        }`}
-                                    />
-                                )}
-                            </React.Fragment>
-                        );
-                    })}
-                </div>
+            <div className="mb-3 sm:mb-4">
+                <PaymentFlowStepper step={step} steps={WITHDRAWAL_STEPS} />
             </div>
 
             <div className="surface-card overflow-visible rounded-2xl shadow-[var(--shadow-card-soft)]">
@@ -244,8 +207,8 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                 1
                             </span>
                             <div>
-                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Withdrawal Method <span className="text-[var(--color-danger-main)]">*</span></h2>
-                                <p className="text-sm text-[var(--color-text-muted)]">Select E-Wallet or Bank Transfer.</p>
+                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">Withdrawal Method <span className="text-[var(--color-danger-main)]">*</span></h2>
+                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Select E-Wallet or Bank Transfer.</p>
                             </div>
                         </div>
 
@@ -291,8 +254,8 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                 2
                             </span>
                             <div>
-                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Account & Amount</h2>
-                                <p className="text-sm text-[var(--color-text-muted)]">
+                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">Account & Amount</h2>
+                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
                                     {withdrawalMethod === 'ewallet' ? 'Select E-Wallet, enter phone number and amount.' : 'Enter your bank account details and amount.'}
                                 </p>
                             </div>
@@ -301,7 +264,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                         {withdrawalMethod === 'ewallet' ? (
                             <>
                                 <div>
-                                    <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Select E-Wallet <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Select E-Wallet <span className="text-[var(--color-danger-main)]">*</span></p>
                                     <div className="relative">
                                         <button
                                             type="button"
@@ -344,7 +307,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Phone Number <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Phone Number <span className="text-[var(--color-danger-main)]">*</span></p>
                                     <input
                                         type="tel"
                                         value={phoneNumber}
@@ -357,7 +320,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                         ) : (
                             <>
                                 <div>
-                                    <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Bank <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Bank <span className="text-[var(--color-danger-main)]">*</span></p>
                                     <div className="relative">
                                         <button
                                             type="button"
@@ -398,7 +361,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Account Name <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Account Name <span className="text-[var(--color-danger-main)]">*</span></p>
                                     <input
                                         type="text"
                                         value={bankAccountName}
@@ -408,7 +371,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                     />
                                 </div>
                                 <div>
-                                    <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Account Number <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Account Number <span className="text-[var(--color-danger-main)]">*</span></p>
                                     <input
                                         type="text"
                                         value={bankAccountNumber}
@@ -421,7 +384,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                         )}
 
                         <div>
-                            <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Amount <span className="text-[var(--color-danger-main)]">*</span></p>
+                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Amount <span className="text-[var(--color-danger-main)]">*</span></p>
                             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                                 <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-subtle)]">
                                     <span className="flex items-center justify-center bg-[var(--color-accent-100)] px-4 text-sm font-bold text-[var(--color-accent-700)]">
@@ -500,8 +463,8 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                 3
                             </span>
                             <div>
-                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Confirm & Withdraw</h2>
-                                <p className="text-sm text-[var(--color-text-muted)]">Review your withdrawal details before confirming.</p>
+                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">Confirm & Withdraw</h2>
+                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Review your withdrawal details before confirming.</p>
                             </div>
                         </div>
 

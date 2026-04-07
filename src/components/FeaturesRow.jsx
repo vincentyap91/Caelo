@@ -226,11 +226,12 @@ const IconFastAction = () => (
 );
 
 /* ─── Feature row items ─────────────────────────── */
+/* NBSP keeps short phrases together so wrapping looks intentional on narrow cards */
 const features = [
-    { title: 'Prestigious Brands', icon: <IconPrestigiousBrands /> },
-    { title: 'Variety of game modes', icon: <IconGameModes /> },
-    { title: 'Guaranteed safety', icon: <IconGuaranteedSafety /> },
-    { title: 'Fast action', icon: <IconFastAction /> },
+    { title: 'Prestigious\u00a0Brands', icon: <IconPrestigiousBrands /> },
+    { title: 'Variety of game\u00a0modes', icon: <IconGameModes /> },
+    { title: 'Guaranteed\u00a0safety', icon: <IconGuaranteedSafety /> },
+    { title: 'Fast\u00a0action', icon: <IconFastAction /> },
 ];
 
 export default function FeaturesRow() {
@@ -241,16 +242,16 @@ export default function FeaturesRow() {
                 icon={<Crown size={22} fill="currentColor" className="text-[var(--color-brand-secondary)]" />}
             />
 
-            <div className="grid grid-cols-2 gap-3 px-4 mt-8 lg:flex lg:items-center lg:justify-between lg:gap-4">
+            <div className="mt-8 grid grid-cols-2 items-stretch gap-3.5 px-4 sm:gap-4 lg:flex lg:items-center lg:justify-between lg:gap-4">
                 {features.map((item, idx) => (
                     <div
                         key={idx}
-                        className="group flex min-w-0 items-center justify-center gap-3 rounded-xl border border-white bg-[rgb(255_255_255_/_0.4)] px-3 py-3 shadow-[0_5px_15px_rgba(0,174,239,0.05)] transition-transform hover:-translate-y-1 lg:min-w-[200px] lg:flex-1 lg:px-4"
+                        className="group flex h-full min-h-[7.5rem] min-w-0 flex-col items-center justify-center gap-2.5 rounded-xl border border-white bg-[rgb(255_255_255_/_0.4)] px-3 py-4 text-center shadow-[0_5px_15px_rgba(0,174,239,0.05)] transition-transform hover:-translate-y-1 sm:gap-3 sm:px-3.5 sm:py-[1.125rem] lg:min-h-0 lg:min-w-[200px] lg:flex-1 lg:flex-row lg:items-center lg:justify-center lg:gap-3 lg:px-4 lg:py-3 lg:text-left"
                     >
-                        <div className="flex items-center justify-center rounded-full border border-[var(--color-brand-soft)] bg-[var(--color-surface-base)] p-2 shadow-sm transition-transform group-hover:scale-110">
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[var(--color-brand-soft)] bg-[var(--color-surface-base)] p-1 shadow-sm transition-transform group-hover:scale-110 lg:h-auto lg:w-auto lg:p-2">
                             {item.icon}
                         </div>
-                        <span className="max-w-[120px] text-sm font-bold leading-tight text-[var(--color-brand-secondary)]">
+                        <span className="w-full text-pretty text-xs font-semibold leading-snug tracking-tight text-[var(--color-brand-secondary)] sm:text-sm lg:max-w-[120px] lg:flex-none lg:font-bold lg:leading-tight lg:tracking-normal">
                             {item.title}
                         </span>
                     </div>

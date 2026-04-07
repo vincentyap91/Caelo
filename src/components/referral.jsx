@@ -1,4 +1,4 @@
-﻿import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
     Copy,
     Check,
@@ -855,7 +855,7 @@ export default function ReferralPage({ authUser, onLoginClick }) {
                                 <h1 className="text-base font-bold uppercase tracking-[0.03em] text-white sm:text-xl md:mt-5 md:text-3xl">
                                     Referral
                                 </h1>
-                                <p className="mx-auto mt-1 hidden max-w-[420px] text-xs font-semibold leading-[1.35] text-white sm:flex sm:mt-3 sm:text-sm md:mt-4 md:text-base">
+                                <p className="mx-auto mt-1 hidden max-w-[420px] text-xs font-semibold leading-snug text-white sm:flex sm:mt-3 sm:text-sm md:mt-4 md:text-base">
                                     Invite friends, earn rewards. Share your referral code and grow together.
                                 </p>
                             </div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Lock, Send, UserRound, X } from 'lucide-react';
+import { Lock, UserRound, X } from 'lucide-react';
 import TwoFactorLoginModal from './TwoFactorLoginModal';
-import { loginWithTelegram, verifyLogin, verify2FALogin } from '../services/authService';
+import WhatsAppIcon from './WhatsAppIcon';
+import { loginWithWhatsApp, verifyLogin, verify2FALogin } from '../services/authService';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
 export default function LoginModal({
@@ -18,7 +19,7 @@ export default function LoginModal({
     const [sessionId, setSessionId] = useState(null);
     const [loginError, setLoginError] = useState('');
     const [loginLoading, setLoginLoading] = useState(false);
-    const [telegramLoading, setTelegramLoading] = useState(false);
+    const [whatsappLoading, setWhatsappLoading] = useState(false);
 
     useBodyScrollLock(open);
 
@@ -27,7 +28,7 @@ export default function LoginModal({
             setShow2FA(false);
             setSessionId(null);
             setLoginError('');
-            setTelegramLoading(false);
+            setWhatsappLoading(false);
         }
     }, [open]);
 
@@ -69,19 +70,19 @@ export default function LoginModal({
         }
     };
 
-    const handleTelegramLogin = async () => {
+    const handleWhatsAppLogin = async () => {
         setLoginError('');
-        setTelegramLoading(true);
+        setWhatsappLoading(true);
         try {
-            const result = await loginWithTelegram();
+            const result = await loginWithWhatsApp();
             if (!result.success) {
-                setLoginError(result.error || 'Telegram login failed');
+                setLoginError(result.error || 'WhatsApp login failed');
                 return;
             }
             onLogin?.(result.user || result.username || username.trim() || 'demo');
             onClose?.();
         } finally {
-            setTelegramLoading(false);
+            setWhatsappLoading(false);
         }
     };
 
@@ -187,14 +188,12 @@ export default function LoginModal({
                 <div className="mt-6 flex justify-center">
                     <button
                         type="button"
-                        onClick={handleTelegramLogin}
-                        disabled={telegramLoading}
-                        className="inline-flex h-12 items-center gap-3 rounded-lg border border-[rgb(152_198_238)] bg-[var(--color-brand-deep)] px-7 text-base font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:text-lg"
+                        onClick={handleWhatsAppLogin}
+                        disabled={whatsappLoading}
+                        className="inline-flex h-10 items-center gap-2 rounded-md border border-[#1da851] bg-[#25D366] px-4 text-sm font-semibold text-white shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[#20bd5a] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97] disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[rgb(55_174_226)] text-white">
-                            <Send size={18} fill="currentColor" className="-rotate-12" />
-                        </span>
-                        {telegramLoading ? 'Connecting...' : 'Telegram'}
+                        <WhatsAppIcon size={16} className="shrink-0 opacity-95" />
+                        {whatsappLoading ? 'Connecting...' : 'WhatsApp'}
                     </button>
                 </div>
 
@@ -215,7 +214,7 @@ export default function LoginModal({
 
                 <div className="mx-auto mt-4 h-px w-full max-w-[520px] bg-[rgb(171_204_235)]" />
 
-                <p className="mx-auto mt-4 max-w-[520px] text-center text-sm font-medium leading-[1.35] text-[rgb(80_105_141)] sm:text-base">
+                <p className="mx-auto mt-4 max-w-[520px] text-center text-sm font-medium leading-snug text-[rgb(80_105_141)] sm:text-base">
                     If you encounter any issues while logging in,
                     <br />
                     Please contact our{' '}

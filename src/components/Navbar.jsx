@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     ArrowDownToLine,
     ArrowUpFromLine,
@@ -859,7 +859,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                             <button
                                 type="button"
                                 onClick={() => handleMobileNavigate('profile')}
-                                className="w-full pr-12 text-left text-[1.7rem] font-bold leading-tight transition hover:opacity-90"
+                                className="w-full pr-12 text-left text-2xl font-bold leading-tight transition hover:opacity-90"
                             >
                                 Hi, {authUser.name}
                             </button>
@@ -876,7 +876,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                 <div className="w-full rounded-[20px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0.04)_100%)] p-3.5 shadow-[0_14px_24px_rgba(1,12,33,0.22)]">
                                     <div className="flex items-center justify-between gap-2.5">
                                         <div>
-                                            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--color-nav-text-accent)]">
+                                            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-nav-text-accent)]">
                                                 Balance
                                             </p>
                                             <p className="mt-0.5 text-base font-bold text-white">{authUser.balance}</p>
@@ -976,7 +976,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         >
                                             <Icon size={16} />
                                         </span>
-                                        <span className="min-w-0 flex-1 text-[15px] font-bold">{label}</span>
+                                        <span className="min-w-0 flex-1 text-base font-bold">{label}</span>
                                         <ChevronRight
                                             size={17}
                                             className={`shrink-0 transition-transform ${mobileMoreOpen && isMoreRow ? 'rotate-90' : ''}`}
@@ -1042,7 +1042,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                                             >
                                                                                 <ItemIcon size={14} />
                                                                             </span>
-                                                                            <span className="min-w-0 flex-1 text-[13px] font-semibold">{item.label}</span>
+                                                                            <span className="min-w-0 flex-1 text-sm font-semibold">{item.label}</span>
                                                                             <ChevronRight size={14} className="shrink-0 opacity-70" />
                                                                         </button>
                                                                     );

@@ -7,6 +7,7 @@ import CopyInputField from './security/CopyInputField';
 import PaymentConfirmModal from './PaymentConfirmModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
 import RolloverStatusCard from './RolloverStatusCard';
+import PaymentFlowStepper from './payment/PaymentFlowStepper';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
 import { PUSH_EVENT } from '../constants/pushNotificationCopy';
 import { DEMO_ROLLOVER_STATUS } from '../constants/rolloverStatus';
@@ -238,7 +239,7 @@ export default function DepositPage({ onNavigate }) {
             <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h1 className="page-title">Deposit</h1>
-                    <p className="mt-1 text-sm font-medium text-[var(--color-text-muted)]">
+                    <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
                         Complete your deposit in just a few simple steps.
                     </p>
                 </div>
@@ -252,7 +253,7 @@ export default function DepositPage({ onNavigate }) {
                 </button>
             </div>
 
-            <div className="mb-5">
+            <div className="mb-3 md:mb-4">
                 <RolloverStatusCard status={DEMO_ROLLOVER_STATUS} variant="summary-inline" />
             </div>
 
@@ -264,46 +265,14 @@ export default function DepositPage({ onNavigate }) {
                 />
             ) : (
             <>
-            {/* Progress indicator */}
-            <div className="mb-8 overflow-x-auto overflow-y-visible px-1 py-3">
-                <div className="flex min-w-max items-center gap-0">
-                    {DEPOSIT_STEPS.map((s, idx) => {
-                        const isCompleted = step > s.id;
-                        const isActive = step === s.id;
-                        const isLast = idx === DEPOSIT_STEPS.length - 1;
-                        return (
-                            <React.Fragment key={s.id}>
-                                <div className="flex items-center gap-2">
-                                    <div
-                                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold transition ${
-                                            isCompleted
-                                                ? 'bg-[var(--color-accent-600)] text-white'
-                                                : isActive
-                                                  ? 'bg-[var(--color-accent-600)] text-white ring-4 ring-[rgb(96_165_250_/_0.18)] shadow-[0_8px_18px_rgba(37,99,235,0.18)]'
-                                                  : 'bg-[var(--color-surface-muted)] text-[var(--color-text-muted)]'
-                                        }`}
-                                    >
-                                        {isCompleted ? <Check size={20} strokeWidth={2.5} /> : s.id}
-                                    </div>
-                                    <span
-                                        className={`hidden text-sm font-semibold sm:inline ${
-                                            isActive ? 'text-[var(--color-accent-600)]' : isCompleted ? 'text-[var(--color-text-strong)]' : 'text-[var(--color-text-muted)]'
-                                        }`}
-                                    >
-                                        {s.id === 3 && isNormal ? 'Confirm & Submit' : s.label}
-                                    </span>
-                                </div>
-                                {!isLast && (
-                                    <div
-                                        className={`mx-2 h-0.5 w-8 shrink-0 rounded sm:mx-4 sm:w-12 ${
-                                            isCompleted ? 'bg-[var(--color-accent-600)]' : 'bg-[var(--color-border-default)]'
-                                        }`}
-                                    />
-                                )}
-                            </React.Fragment>
-                        );
-                    })}
-                </div>
+            <div className="mb-3 sm:mb-4">
+                <PaymentFlowStepper
+                    step={step}
+                    steps={DEPOSIT_STEPS.map((s) => ({
+                        id: s.id,
+                        label: s.id === 3 && isNormal ? 'Confirm & Submit' : s.label,
+                    }))}
+                />
             </div>
 
             <div className="surface-card overflow-visible rounded-2xl shadow-[var(--shadow-card-soft)]">
@@ -345,8 +314,8 @@ export default function DepositPage({ onNavigate }) {
                                 1
                             </span>
                             <div>
-                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Deposit Options <span className="text-[var(--color-danger-main)]">*</span></h2>
-                                <p className="text-sm text-[var(--color-text-muted)]">Select your preferred deposit method.</p>
+                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">Deposit Options <span className="text-[var(--color-danger-main)]">*</span></h2>
+                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Select your preferred deposit method.</p>
                             </div>
                         </div>
 
@@ -380,7 +349,7 @@ export default function DepositPage({ onNavigate }) {
                                         }`}
                                     >
                                         {badge && (
-                                            <span className="absolute left-2 top-2 inline-flex max-w-[calc(100%-1rem)] items-center gap-0.5 truncate rounded bg-gradient-to-r from-amber-400 to-red-500 px-1.5 py-0.5 text-[10px] font-bold text-white sm:left-3 sm:top-3 sm:gap-1 sm:px-2 sm:text-xs">
+                                            <span className="absolute left-2 top-2 inline-flex max-w-[calc(100%-1rem)] items-center gap-0.5 truncate rounded bg-gradient-to-r from-amber-400 to-red-500 px-1.5 py-0.5 text-xs font-bold text-white sm:left-3 sm:top-3 sm:gap-1 sm:px-2">
                                                 <Zap size={12} className="shrink-0" />
                                                 {badge}
                                             </span>
@@ -410,7 +379,7 @@ export default function DepositPage({ onNavigate }) {
 
                         {claimBonus && (
                             <div>
-                                <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Bonus <span className="text-[var(--color-danger-main)]">*</span></p>
+                                <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Bonus <span className="text-[var(--color-danger-main)]">*</span></p>
                                 <div className="relative">
                                     <button
                                         type="button"
@@ -509,10 +478,10 @@ export default function DepositPage({ onNavigate }) {
                                 2
                             </span>
                             <div>
-                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">
+                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">
                                     {isNormal ? 'Bank Account & Amount' : 'Bank, Provider & Amount'}
                                 </h2>
-                                <p className="text-sm text-[var(--color-text-muted)]">
+                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
                                     {isNormal ? 'Choose your bank account and enter the amount.' : 'Choose your bank, provider and enter the amount.'}
                                 </p>
                             </div>
@@ -521,7 +490,7 @@ export default function DepositPage({ onNavigate }) {
                         {isNormal ? (
                             <>
                                 <div>
-                                    <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Bank Account <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Bank Account <span className="text-[var(--color-danger-main)]">*</span></p>
                                     <div className="relative">
                                         <button
                                             type="button"
@@ -583,7 +552,7 @@ export default function DepositPage({ onNavigate }) {
                         ) : (
                             <>
                                 <div>
-                                    <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Bank <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Bank <span className="text-[var(--color-danger-main)]">*</span></p>
                                     <div className="relative">
                                         <button
                                             type="button"
@@ -690,7 +659,7 @@ export default function DepositPage({ onNavigate }) {
                                                     <p className="border-b border-[var(--color-border-default)] pb-1 text-xs font-bold leading-snug text-[var(--color-text-strong)] sm:pb-1.5 sm:text-sm">
                                                         {label}
                                                     </p>
-                                                    <p className="mt-1 line-clamp-3 text-[11px] leading-snug text-[var(--color-text-muted)] sm:mt-1.5 sm:line-clamp-none sm:text-xs">
+                                                    <p className="mt-1 line-clamp-3 text-xs leading-snug text-[var(--color-text-muted)] sm:mt-1.5 sm:line-clamp-none">
                                                         {desc}
                                                     </p>
                                                 </div>
@@ -702,7 +671,7 @@ export default function DepositPage({ onNavigate }) {
                         )}
 
                         <div>
-                            <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Amount <span className="text-[var(--color-danger-main)]">*</span></p>
+                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Amount <span className="text-[var(--color-danger-main)]">*</span></p>
                             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                                 <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-subtle)]">
                                     <span className="flex items-center justify-center bg-[var(--color-accent-100)] px-4 text-sm font-bold text-[var(--color-accent-700)]">
@@ -801,7 +770,7 @@ export default function DepositPage({ onNavigate }) {
                                     )}
                                 </div>
                                 <div>
-                                    <p className="mb-2 text-sm font-semibold text-[var(--color-text-strong)]">Remark</p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Remark</p>
                                     <input
                                         type="text"
                                         value={remark}
@@ -842,10 +811,10 @@ export default function DepositPage({ onNavigate }) {
                                 3
                             </span>
                             <div>
-                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">
+                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">
                                     {isNormal ? 'Confirm & Submit' : 'Transaction Summary'}
                                 </h2>
-                                <p className="text-sm text-[var(--color-text-muted)]">
+                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
                                     {isNormal ? 'Review your deposit details and submit.' : 'Review your deposit details before confirming.'}
                                 </p>
                             </div>

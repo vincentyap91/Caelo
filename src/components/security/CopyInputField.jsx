@@ -18,7 +18,7 @@ export default function CopyInputField({ value, label, readOnly = true }) {
     return (
         <label className="block">
             {label && (
-                <span className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">{label}</span>
+                <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
             )}
             <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 py-3 shadow-[var(--shadow-subtle)] transition-all focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[rgb(96_165_250_/_0.2)]">
                 <input

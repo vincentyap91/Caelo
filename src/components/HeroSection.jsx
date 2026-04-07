@@ -29,7 +29,7 @@ export default function HeroSection() {
                         <Volume2 size={16} fill="currentColor" strokeWidth={1} />
                     </div>
                     <div className="relative flex h-full flex-1 items-center overflow-hidden">
-                        <div className="inline-block whitespace-nowrap animate-marquee text-xs text-white/90 will-change-transform">
+                        <div className="inline-block whitespace-nowrap animate-marquee text-xs font-medium text-white/90 will-change-transform">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.
                         </div>
                     </div>
