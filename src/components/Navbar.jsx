@@ -341,36 +341,123 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
             onMouseLeave={() => setNavProviderDropdown(null)}
         >
             <div className="relative z-[300] flex md:hidden w-full items-center justify-between gap-2 border-b border-white/10 bg-[var(--color-nav-top)] px-3 py-2 text-white">
-                <button
-                    type="button"
-                    onClick={() => setMobileMenuOpen((open) => !open)}
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition hover:bg-white/15"
-                    aria-label="Open mobile menu"
-                    aria-expanded={mobileMenuOpen}
-                >
-                    <Menu size={16} />
-                </button>
-                <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
-                    {authUser && (
-                        <VipStatusPill
-                            level={vipLevel}
-                            theme="dark"
-                            size="header"
-                            username={authUser.name}
-                        />
-                    )}
-                    <LanguageSwitcher
-                        value={language}
-                        onChange={setLanguage}
-                        buttonClassName="h-10 shrink-0 rounded-xl px-3"
-                    />
-                </div>
+                {activePage === 'home' ? (
+                    <>
+                        <div className="flex min-w-0 flex-1 items-center gap-2">
+                            <button
+                                type="button"
+                                onClick={() => setMobileMenuOpen((open) => !open)}
+                                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition hover:bg-white/15"
+                                aria-label="Open mobile menu"
+                                aria-expanded={mobileMenuOpen}
+                            >
+                                <Menu size={16} />
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => onNavigate?.('home')}
+                                className="min-w-0 truncate text-left text-base font-bold tracking-wide text-white"
+                            >
+                                LOGO
+                            </button>
+                        </div>
+                        <div className="flex shrink-0 items-center justify-end gap-1.5">
+                            {authUser ? (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={() => onNavigate?.('profile')}
+                                        className="flex min-w-0 max-w-[11.5rem] shrink items-center gap-2 rounded-xl border border-white/15 bg-[linear-gradient(180deg,#16508f_0%,#0d3562_100%)] py-1 pl-1 pr-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:brightness-110 focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
+                                        aria-label={`Open profile — ${authUser.name}, ${authUser.balance}`}
+                                    >
+                                        <img
+                                            src={getVipStatus(vipLevel).medal}
+                                            alt=""
+                                            className="h-8 w-8 shrink-0 rounded-full border border-white/20 bg-black/10 object-contain"
+                                        />
+                                        <div className="min-w-0 flex-1 text-left leading-tight">
+                                            <p className="truncate text-xs font-bold text-[rgb(255_240_160)]">{authUser.name}</p>
+                                            <p className="mt-0.5 flex items-center gap-0.5 truncate text-xs font-bold tabular-nums text-white">
+                                                <span className="truncate">{authUser.balance}</span>
+                                                <CircleDollarSign size={12} className="shrink-0 text-[var(--color-nav-gold)]" />
+                                            </p>
+                                        </div>
+                                    </button>
+                                    <LanguageSwitcher
+                                        value={language}
+                                        onChange={setLanguage}
+                                        buttonClassName="h-9 shrink-0 rounded-xl px-2"
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={() => onLoginClick?.()}
+                                        className="inline-flex h-9 shrink-0 items-center justify-center rounded-xl border border-white/35 bg-white/5 px-3 text-xs font-semibold text-white transition hover:bg-white/10"
+                                    >
+                                        Login
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => onRegisterClick?.()}
+                                        className="btn-theme-cta-soft inline-flex h-9 shrink-0 items-center justify-center rounded-xl px-3 text-xs font-bold"
+                                    >
+                                        Join
+                                    </button>
+                                    <LanguageSwitcher
+                                        value={language}
+                                        onChange={setLanguage}
+                                        buttonClassName="h-9 shrink-0 rounded-xl px-2"
+                                    />
+                                </>
+                            )}
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <button
+                            type="button"
+                            onClick={() => setMobileMenuOpen((open) => !open)}
+                            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition hover:bg-white/15"
+                            aria-label="Open mobile menu"
+                            aria-expanded={mobileMenuOpen}
+                        >
+                            <Menu size={16} />
+                        </button>
+                        <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
+                            {authUser && (
+                                <button
+                                    type="button"
+                                    onClick={() => onNavigate?.('profile')}
+                                    className="min-w-0 max-w-[11rem] shrink text-left transition hover:opacity-90 focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40 rounded-xl"
+                                    aria-label="Open profile"
+                                >
+                                    <VipStatusPill
+                                        level={vipLevel}
+                                        theme="dark"
+                                        size="header"
+                                        username={authUser.name}
+                                        className="max-w-full"
+                                    />
+                                </button>
+                            )}
+                            <LanguageSwitcher
+                                value={language}
+                                onChange={setLanguage}
+                                buttonClassName="h-10 shrink-0 rounded-xl px-3"
+                            />
+                        </div>
+                    </>
+                )}
             </div>
 
             <button
                 type="button"
                 onClick={() => onDownloadAppClick?.()}
-                className="fixed bottom-24 right-6 z-[110] inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] text-white shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition hover:brightness-105 md:hidden"
+                className={`fixed right-6 z-[110] inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] text-white shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition hover:brightness-105 md:hidden ${
+                    activePage === 'home' ? 'bottom-[5.5rem]' : 'bottom-24'
+                }`}
                 aria-label="Download app"
             >
                 <Smartphone size={18} className="shrink-0" />
@@ -736,7 +823,11 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                 </div>
             </div>
 
-            <div className="flex h-14 w-full items-center bg-[var(--color-nav-main)] px-4 md:px-10">
+            <div
+                className={`flex h-14 w-full items-center bg-[var(--color-nav-main)] px-4 md:px-10 ${
+                    activePage === 'home' ? 'max-md:hidden' : ''
+                }`}
+            >
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between gap-6">
                     <div className="flex items-center gap-2 shrink-0">
                         <button

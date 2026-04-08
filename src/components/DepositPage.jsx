@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertCircle, ArrowRight, Check, ChevronDown, Clock, HelpCircle, Info, Upload, X, Zap } from 'lucide-react';
+import { AlertCircle, ArrowRight, Check, ChevronDown, Clock, HelpCircle, Info, Zap } from 'lucide-react';
 import fpxLogo from '../assets/fpx-logo.svg';
 import eWalletImg from '../assets/e-wallet.png';
 import instantDepositImg from '../assets/instant-deposit.png';
@@ -8,6 +8,7 @@ import PaymentConfirmModal from './PaymentConfirmModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
 import RolloverStatusCard from './RolloverStatusCard';
 import PaymentFlowStepper from './payment/PaymentFlowStepper';
+import ReceiptUploadField, { ReceiptPreviewModal, ReceiptFileCard } from './payment/ReceiptUploadField';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
 import { PUSH_EVENT } from '../constants/pushNotificationCopy';
 import { DEMO_ROLLOVER_STATUS } from '../constants/rolloverStatus';
@@ -113,9 +114,12 @@ export default function DepositPage({ onNavigate }) {
 
     const MAX_UPLOAD_SIZE = 2 * 1024 * 1024; // 2MB
     const receiptPreviewUrl = useMemo(() => (uploadedReceipt ? URL.createObjectURL(uploadedReceipt) : null), [uploadedReceipt]);
-    const isReceiptImage = uploadedReceipt?.type?.startsWith('image/');
 
     useEffect(() => () => { if (receiptPreviewUrl) URL.revokeObjectURL(receiptPreviewUrl); }, [receiptPreviewUrl]);
+
+    useEffect(() => {
+        setReceiptPreviewOpen(false);
+    }, [step]);
     const [claimBonus, setClaimBonus] = useState(false);
     const [selectedBonus, setSelectedBonus] = useState('');
     const [selectedBank, setSelectedBank] = useState('');
@@ -725,49 +729,15 @@ export default function DepositPage({ onNavigate }) {
                         {isNormal && (
                             <>
                                 <div>
-                                    <button
-                                        type="button"
-                                        onClick={() => fileInputRef.current?.click()}
-                                        className="inline-flex h-12 items-center gap-2 rounded-xl border-2 border-[var(--color-accent-400)] bg-[var(--color-accent-50)] px-5 text-sm font-bold text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-100)]"
-                                    >
-                                        <Upload size={18} />
-                                        Upload Recipients
-                                    </button>
-                                    <input
-                                        ref={fileInputRef}
-                                        type="file"
-                                        accept="image/*,.pdf"
-                                        className="hidden"
-                                        onChange={handleFileChange}
+                                    <ReceiptUploadField
+                                        file={uploadedReceipt}
+                                        previewUrl={receiptPreviewUrl}
+                                        onFileChange={handleFileChange}
+                                        onRemove={handleRemoveReceipt}
+                                        fileInputRef={fileInputRef}
+                                        onPreview={() => setReceiptPreviewOpen(true)}
+                                        error={uploadError}
                                     />
-                                    {uploadedReceipt && (
-                                        <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-[var(--color-success-main)]/30 bg-[var(--color-success-main)]/5 px-4 py-3">
-                                            <span className="truncate text-sm font-medium text-[var(--color-text-strong)]">{uploadedReceipt.name}</span>
-                                            <button
-                                                type="button"
-                                                onClick={handleRemoveReceipt}
-                                                className="shrink-0 text-sm font-semibold text-[var(--color-danger-main)] hover:underline"
-                                            >
-                                                Remove
-                                            </button>
-                                        </div>
-                                    )}
-                                    {uploadError && (
-                                        <p className="mt-2 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger-main)]">
-                                            <AlertCircle size={16} className="shrink-0" />
-                                            {uploadError}
-                                        </p>
-                                    )}
-                                    <p className="mt-2 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger-main)]">
-                                        <AlertCircle size={16} className="shrink-0" />
-                                        Upload your deposit receipt for faster processing (Max 2MB)
-                                    </p>
-                                    {!uploadedReceipt && (
-                                        <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger-main)]">
-                                            <AlertCircle size={14} className="shrink-0" />
-                                            Receipt upload is required to continue
-                                        </p>
-                                    )}
                                 </div>
                                 <div>
                                     <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Remark</p>
@@ -882,30 +852,16 @@ export default function DepositPage({ onNavigate }) {
                                         <span className="text-sm font-semibold text-[var(--color-text-strong)]">{remark}</span>
                                     </div>
                                 )}
-                                {isNormal && uploadedReceipt && (
-                                    <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                        <span className="text-sm font-medium text-[var(--color-text-muted)]">Upload Receipt</span>
-                                        <div className="flex items-center gap-3">
-                                            {isReceiptImage && receiptPreviewUrl && (
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setReceiptPreviewOpen(true)}
-                                                    className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] transition hover:border-[var(--color-accent-300)] hover:opacity-90"
-                                                >
-                                                    <img src={receiptPreviewUrl} alt="Receipt thumbnail" className="h-full w-full object-cover" />
-                                                </button>
-                                            )}
-                                            <div className="flex flex-col items-end gap-1">
-                                                <span className="text-sm font-semibold text-[var(--color-text-strong)] truncate max-w-[180px]">{uploadedReceipt.name}</span>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => isReceiptImage ? setReceiptPreviewOpen(true) : receiptPreviewUrl && window.open(receiptPreviewUrl, '_blank')}
-                                                    className="text-sm font-semibold text-[var(--color-accent-600)] hover:underline"
-                                                >
-                                                    {isReceiptImage ? 'Preview' : 'Open'}
-                                                </button>
-                                            </div>
-                                        </div>
+                                {isNormal && uploadedReceipt && receiptPreviewUrl && (
+                                    <div className="px-5 py-4">
+                                        <span className="mb-3 block text-sm font-medium text-[var(--color-text-muted)]">Upload receipt</span>
+                                        <ReceiptFileCard
+                                            file={uploadedReceipt}
+                                            previewUrl={receiptPreviewUrl}
+                                            onPreview={() => setReceiptPreviewOpen(true)}
+                                            showRemove={false}
+                                            className="border-[var(--color-border-default)] bg-[var(--color-surface-muted)]/50"
+                                        />
                                     </div>
                                 )}
                             </div>
@@ -951,34 +907,12 @@ export default function DepositPage({ onNavigate }) {
                 type="deposit"
             />
 
-            {/* Receipt preview modal */}
-            {receiptPreviewOpen && isReceiptImage && receiptPreviewUrl && (
-                <>
-                    <div
-                        className="fixed inset-0 z-[200] bg-black/70 backdrop-blur-sm"
-                        onClick={() => setReceiptPreviewOpen(false)}
-                        aria-hidden
-                    />
-                    <div className="fixed inset-4 z-[201] flex items-center justify-center p-4">
-                        <div className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] shadow-2xl">
-                            <button
-                                type="button"
-                                onClick={() => setReceiptPreviewOpen(false)}
-                                className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white transition hover:bg-black/70"
-                                aria-label="Close preview"
-                            >
-                                <X size={20} />
-                            </button>
-                            <img
-                                src={receiptPreviewUrl}
-                                alt="Receipt preview"
-                                className="max-h-[85vh] max-w-full object-contain"
-                                onClick={(e) => e.stopPropagation()}
-                            />
-                        </div>
-                    </div>
-                </>
-            )}
+            <ReceiptPreviewModal
+                open={receiptPreviewOpen && !!uploadedReceipt && !!receiptPreviewUrl}
+                onClose={() => setReceiptPreviewOpen(false)}
+                file={uploadedReceipt}
+                previewUrl={receiptPreviewUrl}
+            />
         </div>
     );
 }

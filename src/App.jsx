@@ -14,6 +14,9 @@ import TopGames from './components/TopGames';
 import VipTier from './components/VipTier';
 import AppDownload from './components/AppDownload';
 import Promos from './components/Promos';
+import MobileHomeQuickShortcuts from './components/home/MobileHomeQuickShortcuts';
+import MobileHomeCategoryGames from './components/home/MobileHomeCategoryGames';
+import MobileHomeBottomNav from './components/home/MobileHomeBottomNav';
 import LoadingPage from './components/LoadingPage';
 const LiveCasinoPage = React.lazy(() => import('./components/LiveCasinoPage'));
 const SlotsPage = React.lazy(() => import('./components/SlotsPage'));
@@ -466,7 +469,10 @@ function AppInner() {
               ? 'bg-[var(--color-page-account)]'
               : 'bg-[var(--color-page-default)]'
     }`}>
-      <FloatingSocials onLiveChatClick={() => setLiveChatOpen((open) => !open)} />
+      <FloatingSocials
+        onLiveChatClick={() => setLiveChatOpen((open) => !open)}
+        className={page === 'home' ? 'max-md:hidden' : ''}
+      />
 
       <Navbar
         onNavigate={handleNavigate}
@@ -488,23 +494,38 @@ function AppInner() {
         }}
       />
 
-      <div className="pt-[113px] md:pt-[92px]">
+      <div className={page === 'home' ? 'max-md:pt-14 md:pt-[92px]' : 'pt-[113px] md:pt-[92px]'}>
       <Suspense fallback={<LoadingPage fullPage="overlay" minDelay={300} />}>
       {page === 'home' ? (
         <>
-          {/* Hero sits just underneath */}
           <HeroSection />
 
-          {/* Main Content Area */}
-          <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-4 pb-10 md:px-8">
+          <MobileHomeQuickShortcuts
+            onNavigate={handleNavigate}
+            onLiveChatClick={() => setLiveChatOpen(true)}
+          />
+          <MobileHomeCategoryGames onNavigate={handleNavigate} />
+
+          <div className="mx-auto hidden w-full max-w-screen-2xl flex-col gap-8 px-4 pb-10 md:flex md:px-8">
             <FeaturesRow />
             <GameCategories onNavigate={handleNavigate} />
             <TopGames onNavigate={handleNavigate} />
+          </div>
+
+          <div className="mx-auto flex w-full max-w-screen-2xl max-md:pb-24 flex-col gap-8 px-4 pb-10 md:px-8">
             <VipTier onNavigate={handleNavigate} />
             <HomeLiveActivity />
             <AppDownload />
             <Promos onNavigate={handleNavigate} />
           </div>
+
+          <MobileHomeBottomNav
+            activePage={page}
+            authUser={authUser}
+            onNavigate={handleNavigate}
+            onLiveChatClick={() => setLiveChatOpen(true)}
+            onLoginClick={() => setLoginModalOpen(true)}
+          />
         </>
       ) : page === 'live-casino' ? (
         <LiveCasinoPage selectedProviderIdFromMenu={selectedCasinoProviderIdFromMenu} onNavigate={handleNavigate} />
@@ -609,6 +630,7 @@ function AppInner() {
         onNavigate={handleNavigate}
         onLiveChatClick={() => setLiveChatOpen(true)}
         mobileVisualTone={page === 'referral-commission' || page === 'rebate' ? 'softer' : 'default'}
+        className={page === 'home' ? 'max-md:pb-24' : ''}
       />
       </div>
 

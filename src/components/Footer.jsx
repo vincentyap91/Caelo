@@ -15,7 +15,7 @@ const CERTIFICATION_LOGOS = [
     { key: 'begambleaware', src: footerBeGambleAware, alt: 'BeGambleAware' },
 ];
 
-export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone = 'default' }) {
+export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone = 'default', className = '' }) {
     const softerMobile = mobileVisualTone === 'softer';
 
     const links = [
@@ -30,7 +30,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
         <footer
             className={`relative flex w-full flex-col border-t border-[rgb(168_226_251)] bg-[linear-gradient(180deg,var(--gradient-footer-start)_0%,var(--gradient-footer-end)_100%)] pb-6 pt-12 ${
                 softerMobile ? 'max-md:pt-9 max-md:pb-5' : ''
-            }`}
+            } ${className}`.trim()}
         >
             <div className={`page-container relative z-10 flex flex-col gap-8 ${softerMobile ? 'max-md:gap-5' : ''}`}>
                 {/* Huge opaque LOGO in center background of footer content */}
