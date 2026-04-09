@@ -13,7 +13,6 @@ import {
     House,
     Landmark,
     LayoutGrid,
-    Menu,
     Megaphone,
     Smartphone,
     Star,
@@ -42,6 +41,7 @@ import { settingsOptions } from '../constants/settingsOptions';
 import { REWARDS_NAV_ICONS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
 import { getVipStatus } from '../constants/vipStatus';
 import VipStatusPill from './VipStatusPill';
+import MobileSiteHeader from './MobileSiteHeader';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
 const slotsNavDropdownProviders = slotProvidersForNavDropdown();
@@ -255,6 +255,14 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
         return undefined;
     }, [mobileMenuOpen]);
 
+    useEffect(() => {
+        document.body.dataset.mobileMenuOpen = mobileMenuOpen ? 'true' : 'false';
+
+        return () => {
+            delete document.body.dataset.mobileMenuOpen;
+        };
+    }, [mobileMenuOpen]);
+
     const toggleProfileSection = (sectionKey) => {
         setOpenProfileSection((current) => (current === sectionKey ? null : sectionKey));
     };
@@ -340,117 +348,18 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
             className="fixed top-0 left-0 right-0 w-full z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
             onMouseLeave={() => setNavProviderDropdown(null)}
         >
-            <div className="relative z-[300] flex md:hidden w-full items-center justify-between gap-2 border-b border-white/10 bg-[var(--color-nav-top)] px-3 py-2 text-white">
-                {activePage === 'home' ? (
-                    <>
-                        <div className="flex min-w-0 flex-1 items-center gap-2">
-                            <button
-                                type="button"
-                                onClick={() => setMobileMenuOpen((open) => !open)}
-                                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition hover:bg-white/15"
-                                aria-label="Open mobile menu"
-                                aria-expanded={mobileMenuOpen}
-                            >
-                                <Menu size={16} />
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => onNavigate?.('home')}
-                                className="min-w-0 truncate text-left text-base font-bold tracking-wide text-white"
-                            >
-                                LOGO
-                            </button>
-                        </div>
-                        <div className="flex shrink-0 items-center justify-end gap-1.5">
-                            {authUser ? (
-                                <>
-                                    <button
-                                        type="button"
-                                        onClick={() => onNavigate?.('profile')}
-                                        className="flex min-w-0 max-w-[11.5rem] shrink items-center gap-2 rounded-xl border border-white/15 bg-[linear-gradient(180deg,#16508f_0%,#0d3562_100%)] py-1 pl-1 pr-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:brightness-110 focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
-                                        aria-label={`Open profile — ${authUser.name}, ${authUser.balance}`}
-                                    >
-                                        <img
-                                            src={getVipStatus(vipLevel).medal}
-                                            alt=""
-                                            className="h-8 w-8 shrink-0 rounded-full border border-white/20 bg-black/10 object-contain"
-                                        />
-                                        <div className="min-w-0 flex-1 text-left leading-tight">
-                                            <p className="truncate text-xs font-bold text-[rgb(255_240_160)]">{authUser.name}</p>
-                                            <p className="mt-0.5 flex items-center gap-0.5 truncate text-xs font-bold tabular-nums text-white">
-                                                <span className="truncate">{authUser.balance}</span>
-                                                <CircleDollarSign size={12} className="shrink-0 text-[var(--color-nav-gold)]" />
-                                            </p>
-                                        </div>
-                                    </button>
-                                    <LanguageSwitcher
-                                        value={language}
-                                        onChange={setLanguage}
-                                        buttonClassName="h-9 shrink-0 rounded-xl px-2"
-                                    />
-                                </>
-                            ) : (
-                                <>
-                                    <button
-                                        type="button"
-                                        onClick={() => onLoginClick?.()}
-                                        className="inline-flex h-9 shrink-0 items-center justify-center rounded-xl border border-white/35 bg-white/5 px-3 text-xs font-semibold text-white transition hover:bg-white/10"
-                                    >
-                                        Login
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => onRegisterClick?.()}
-                                        className="btn-theme-cta-soft inline-flex h-9 shrink-0 items-center justify-center rounded-xl px-3 text-xs font-bold"
-                                    >
-                                        Join
-                                    </button>
-                                    <LanguageSwitcher
-                                        value={language}
-                                        onChange={setLanguage}
-                                        buttonClassName="h-9 shrink-0 rounded-xl px-2"
-                                    />
-                                </>
-                            )}
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <button
-                            type="button"
-                            onClick={() => setMobileMenuOpen((open) => !open)}
-                            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition hover:bg-white/15"
-                            aria-label="Open mobile menu"
-                            aria-expanded={mobileMenuOpen}
-                        >
-                            <Menu size={16} />
-                        </button>
-                        <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
-                            {authUser && (
-                                <button
-                                    type="button"
-                                    onClick={() => onNavigate?.('profile')}
-                                    className="min-w-0 max-w-[11rem] shrink text-left transition hover:opacity-90 focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40 rounded-xl"
-                                    aria-label="Open profile"
-                                >
-                                    <VipStatusPill
-                                        level={vipLevel}
-                                        theme="dark"
-                                        size="header"
-                                        username={authUser.name}
-                                        className="max-w-full"
-                                    />
-                                </button>
-                            )}
-                            <LanguageSwitcher
-                                value={language}
-                                onChange={setLanguage}
-                                buttonClassName="h-10 shrink-0 rounded-xl px-3"
-                            />
-                        </div>
-                    </>
-                )}
-            </div>
+            <MobileSiteHeader
+                authUser={authUser}
+                vipLevel={vipLevel}
+                language={language}
+                onLanguageChange={setLanguage}
+                mobileMenuOpen={mobileMenuOpen}
+                onMenuToggle={() => setMobileMenuOpen((open) => !open)}
+                onNavigateHome={() => onNavigate?.('home')}
+                onProfileClick={() => onNavigate?.('profile')}
+                onLoginClick={() => onLoginClick?.()}
+                onRegisterClick={() => onRegisterClick?.()}
+            />
 
             <button
                 type="button"
@@ -823,11 +732,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                 </div>
             </div>
 
-            <div
-                className={`flex h-14 w-full items-center bg-[var(--color-nav-main)] px-4 md:px-10 ${
-                    activePage === 'home' ? 'max-md:hidden' : ''
-                }`}
-            >
+            <div className="hidden h-14 w-full items-center bg-[var(--color-nav-main)] px-4 md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between gap-6">
                     <div className="flex items-center gap-2 shrink-0">
                         <button
@@ -939,40 +844,40 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                 tabIndex={mobileMenuOpen ? 0 : -1}
             />
             <aside
-                className={`fixed left-0 top-0 z-[390] flex h-[calc(100vh-96px)] w-full max-w-[360px] h-full flex-col overflow-hidden border-r border-white/10 bg-[linear-gradient(180deg,#0d3f83_0%,#062754_100%)] text-white shadow-[var(--shadow-nav-dropdown)] transition-transform duration-300 ease-out md:hidden ${
+                className={`fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-blue-panel-start)_0%,var(--gradient-blue-panel-end)_46%,var(--color-page-home)_100%)] text-[var(--color-text-main)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${
                     mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
                 }`}
                 aria-hidden={!mobileMenuOpen}
             >
-                <div className="relative border-b border-white/10 px-3.5 py-3">
+                <div className="relative border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.86)_0%,rgba(240,249,255,0.88)_100%)] px-3.5 py-3">
                     <div className="min-w-0">
                         {authUser ? (
                             <button
                                 type="button"
                                 onClick={() => handleMobileNavigate('profile')}
-                                className="w-full pr-12 text-left text-2xl font-bold leading-tight transition hover:opacity-90"
+                                className="w-full pr-12 text-left text-2xl font-bold leading-tight text-[var(--color-text-brand-soft)] transition hover:opacity-90"
                             >
                                 Hi, {authUser.name}
                             </button>
                         ) : (
                             <div className="pr-12">
-                                <h2 className="text-xl font-bold leading-tight">Play Anywhere</h2>
-                                <p className="mt-1 text-xs text-white/70">Your essentials stay up top. Everything else is tucked into More.</p>
+                                <h2 className="text-xl font-bold leading-tight text-[var(--color-text-brand-soft)]">Play Anywhere</h2>
+                                <p className="mt-1 text-xs text-[var(--color-text-muted)]">Your essentials stay up top. Everything else is tucked into More.</p>
                             </div>
                         )}
 
                         {authUser ? (
                             <div className="mt-2.5 space-y-2.5">
-                                <VipStatusPill level={vipLevel} theme="dark" size="compact" className="rounded-full" />
-                                <div className="w-full rounded-[20px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0.04)_100%)] p-3.5 shadow-[0_14px_24px_rgba(1,12,33,0.22)]">
+                                <VipStatusPill level={vipLevel} size="compact" className="rounded-full shadow-[var(--shadow-brand-soft)]" />
+                                <div className="w-full rounded-[20px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(240,249,255,0.92)_100%)] p-3.5 shadow-[var(--shadow-card-soft)]">
                                     <div className="flex items-center justify-between gap-2.5">
                                         <div>
-                                            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-nav-text-accent)]">
+                                            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-text-brand)]">
                                                 Balance
                                             </p>
-                                            <p className="mt-0.5 text-base font-bold text-white">{authUser.balance}</p>
+                                            <p className="mt-0.5 text-base font-bold text-[var(--color-text-strong)]">{authUser.balance}</p>
                                         </div>
-                                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[rgb(255_216_77_/_0.22)] bg-[rgb(255_216_77_/_0.08)] text-[var(--color-nav-gold)]">
+                                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
                                             <CircleDollarSign size={16} />
                                         </span>
                                     </div>
@@ -988,7 +893,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         <button
                                             type="button"
                                             onClick={() => handleMobileNavigate('withdrawal')}
-                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/10 px-3 text-sm font-bold text-white transition hover:bg-white/15"
+                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-white px-3 text-sm font-bold text-[var(--color-text-brand)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
                                         >
                                             <ArrowUpFromLine size={15} />
                                             Withdraw
@@ -1004,7 +909,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         setMobileMenuOpen(false);
                                         onLoginClick?.();
                                     }}
-                                    className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-white/30 bg-white/5 px-4 text-sm font-semibold text-white transition hover:bg-white/10"
+                                    className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-white px-4 text-sm font-semibold text-[var(--color-text-main)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
                                 >
                                     Login
                                 </button>
@@ -1025,7 +930,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:bg-white/15"
+                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-brand)] bg-white/80 text-[var(--color-text-brand)] shadow-[var(--shadow-input)] transition hover:bg-white"
                         aria-label="Close mobile menu"
                     >
                         <X size={16} />
@@ -1033,7 +938,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
 
                 </div>
 
-                <div className="flex-1 overflow-y-auto px-3.5 py-3">
+                <div className="min-h-0 flex-1 overflow-y-auto px-3.5 py-3">
                     <div className="space-y-2">
                         {MOBILE_PRIMARY_ITEMS.map(({ id, label, page, icon: Icon }) => {
                             const isMoreRow = id === 'more';
@@ -1054,7 +959,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         className={`flex min-h-[48px] w-full items-center gap-3 rounded-[18px] border px-3.5 py-2.5 text-left transition ${
                                             isActive
                                                 ? 'border-amber-300 bg-[linear-gradient(180deg,rgba(255,212,74,0.98)_0%,rgba(255,181,44,0.96)_100%)] text-[var(--color-cta-text)] shadow-[0_14px_26px_rgba(255,174,39,0.22)]'
-                                                : 'border-white/10 bg-white/[0.06] text-white hover:bg-white/[0.1]'
+                                                : 'border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(240,249,255,0.9)_100%)] text-[var(--color-text-main)] shadow-[var(--shadow-input)] hover:border-[var(--color-accent-200)] hover:bg-white'
                                         }`}
                                         aria-expanded={isMoreRow ? mobileMoreOpen : undefined}
                                     >
@@ -1062,7 +967,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                             className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${
                                                 isActive
                                                     ? 'border-amber-950/10 bg-amber-950/10 text-[var(--color-cta-text)]'
-                                                    : 'border-white/10 bg-white/10 text-[var(--color-nav-gold)]'
+                                                    : 'border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
                                             }`}
                                         >
                                             <Icon size={16} />
@@ -1075,7 +980,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                     </button>
 
                                     {isMoreRow && mobileMoreOpen && (
-                                        <div className="mt-1.5 space-y-1.5 rounded-[18px] border border-white/10 bg-white/[0.04] p-2">
+                                        <div className="mt-1.5 space-y-1.5 rounded-[18px] border border-[var(--color-border-brand)] bg-[rgba(255,255,255,0.58)] p-2 backdrop-blur-sm">
                                             {MOBILE_MORE_SECTIONS.map(({ id: sectionId, label: sectionLabel, icon: SectionIcon, items }) => {
                                                 const sectionHasActiveItem = items.some((item) => isMobileMoreItemActive(item));
                                                 const sectionOpen = openMobileMoreSection === sectionId;
@@ -1085,8 +990,8 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                         key={sectionId}
                                                         className={`overflow-hidden rounded-[16px] border transition ${
                                                             sectionHasActiveItem
-                                                                ? 'border-[rgb(255_216_77_/_0.28)] bg-[rgb(255_216_77_/_0.08)]'
-                                                                : 'border-white/10 bg-white/[0.05]'
+                                                                ? 'border-[var(--color-accent-200)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(229,246,255,0.96)_100%)] shadow-[var(--shadow-brand-soft)]'
+                                                                : 'border-[var(--color-border-accent)] bg-white/75'
                                                         }`}
                                                     >
                                                         <button
@@ -1095,20 +1000,20 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                             className="flex min-h-[44px] w-full items-center gap-2.5 px-3.5 py-2.5 text-left"
                                                             aria-expanded={sectionOpen}
                                                         >
-                                                            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-[var(--color-nav-gold)]">
+                                                            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--color-text-brand)]">
                                                                 <SectionIcon size={15} />
                                                             </span>
-                                                            <span className="min-w-0 flex-1 text-xs font-bold uppercase tracking-[0.14em] text-white/88">
+                                                            <span className="min-w-0 flex-1 text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-text-subtle)]">
                                                                 {sectionLabel}
                                                             </span>
                                                             <ChevronRight
                                                                 size={15}
-                                                                className={`shrink-0 text-white/75 transition-transform ${sectionOpen ? 'rotate-90' : ''}`}
+                                                                className={`shrink-0 text-[var(--color-text-soft)] transition-transform ${sectionOpen ? 'rotate-90' : ''}`}
                                                             />
                                                         </button>
 
                                                         {sectionOpen && (
-                                                            <div className="space-y-1 border-t border-white/10 px-1.5 pb-1.5 pt-1">
+                                                            <div className="space-y-1 border-t border-[var(--color-border-brand)] px-1.5 pb-1.5 pt-1">
                                                                 {items.map((item) => {
                                                                     const itemActive = isMobileMoreItemActive(item);
                                                                     const ItemIcon = item.icon;
@@ -1120,15 +1025,15 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                                             onClick={() => handleMobileMoreItemClick(item)}
                                                                             className={`flex min-h-[42px] w-full items-center gap-2.5 rounded-[14px] px-3 py-2 text-left transition ${
                                                                                 itemActive
-                                                                                    ? 'bg-[linear-gradient(180deg,rgba(255,212,74,0.94)_0%,rgba(255,181,44,0.9)_100%)] text-[var(--color-cta-text)] shadow-[0_10px_18px_rgba(255,174,39,0.18)]'
-                                                                                    : 'bg-transparent text-white/88 hover:bg-white/[0.08] hover:text-white'
+                                                                                    ? 'bg-[linear-gradient(180deg,var(--color-brand-soft)_0%,rgba(255,255,255,0.96)_100%)] text-[var(--color-text-brand-soft)] shadow-[var(--shadow-brand-soft)]'
+                                                                                    : 'bg-transparent text-[var(--color-text-main)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-strong)]'
                                                                             }`}
                                                                         >
                                                                             <span
                                                                                 className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${
                                                                                     itemActive
-                                                                                        ? 'bg-amber-950/10 text-[var(--color-cta-text)]'
-                                                                                        : 'bg-white/10 text-[var(--color-nav-gold)]'
+                                                                                        ? 'bg-white text-[var(--color-text-brand)]'
+                                                                                        : 'bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
                                                                                 }`}
                                                                             >
                                                                                 <ItemIcon size={14} />
@@ -1150,7 +1055,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                         })}
                     </div>
                 </div>
-                <div className="border-t border-white/10 px-3.5 py-3">
+                <div className="border-t border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.82)_0%,rgba(240,249,255,0.94)_100%)] px-3.5 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] pt-3">
                     <div className="space-y-2">
                         <button
                             type="button"
@@ -1158,7 +1063,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                 setMobileMenuOpen(false);
                                 onLiveChatClick?.();
                             }}
-                            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border border-[rgb(255_216_77_/_0.24)] bg-[linear-gradient(180deg,rgba(255,216,77,0.18)_0%,rgba(255,216,77,0.08)_100%)] px-4 text-sm font-bold text-[var(--color-nav-gold)] transition hover:bg-[linear-gradient(180deg,rgba(255,216,77,0.22)_0%,rgba(255,216,77,0.12)_100%)]"
+                            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-accent-200)] bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] px-4 text-sm font-bold text-white shadow-[var(--shadow-brand-card)] transition hover:brightness-105"
                         >
                             <Headset size={16} />
                             Live Chat
@@ -1170,7 +1075,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                     setMobileMenuOpen(false);
                                     onLogout?.();
                                 }}
-                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 text-sm font-semibold text-white/88 transition hover:bg-white/[0.09] hover:text-white"
+                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-white px-4 text-sm font-semibold text-[var(--color-text-main)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-strong)]"
                             >
                                 <LogOut size={15} />
                                 Log Out
@@ -1179,7 +1084,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                             <button
                                 type="button"
                                 onClick={handleMobileDownloadApp}
-                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 text-sm font-semibold text-white/88 transition hover:bg-white/[0.09] hover:text-white"
+                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-white px-4 text-sm font-semibold text-[var(--color-text-main)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-strong)]"
                             >
                                 <Smartphone size={15} />
                                 App Download
@@ -1212,5 +1117,4 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
         </nav>
     );
 }
-
 

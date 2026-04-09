@@ -130,10 +130,6 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                 </div>
             </section>
 
-            <section className={`${pageContainerClass} mt-4 md:mt-5`}>
-                <WalletRebateSummaryBar />
-            </section>
-
             <section className={`${pageContainerClass} mt-4`}>
                 <div className="flex flex-nowrap gap-2 overflow-x-auto pb-2 pr-3">
                     {slotProviders.map((provider) => {
@@ -159,16 +155,18 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                 </div>
             </section>
 
-            <section className={`${pageContainerClass} mt-4 md:mt-6`}>
+            <section className={`${pageContainerClass} mt-3 md:mt-4`}>
                 <div className="surface-panel rounded-2xl p-4 md:p-5">
-                    <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <PromotionStyleTabs
-                            items={gameTabs}
-                            value={activeTab}
-                            onChange={setActiveTab}
-                            ariaLabel="Slot game filters"
-                        />
-                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 shadow-sm lg:w-72">
+                    <div className="grid gap-4 md:gap-5 xl:grid-cols-[minmax(0,1fr)_300px] xl:gap-x-6">
+                        <div className="min-w-0">
+                            <WalletRebateSummaryBar
+                                compact
+                                embedded
+                                stackOnMobile
+                                className="w-full max-w-[620px]"
+                            />
+                        </div>
+                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-slate-200 bg-white/95 px-3 shadow-[0_3px_12px_rgba(15,23,42,0.05)] xl:self-start">
                             <Search size={16} className="text-slate-500" />
                             <input
                                 value={query}
@@ -177,10 +175,21 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                 className="w-full bg-transparent text-sm font-semibold text-slate-700 outline-none placeholder:text-slate-400"
                             />
                         </label>
+                        <div className="min-w-0 border-t border-[rgb(229_235_244)] pt-3 md:pt-4 xl:col-span-2">
+                            <div className="flex flex-col gap-2.5">
+                                <PromotionStyleTabs
+                                    items={gameTabs}
+                                    value={activeTab}
+                                    onChange={setActiveTab}
+                                    ariaLabel="Slot game filters"
+                                    className="min-w-0"
+                                />
+                                <p className="pl-1 text-[11px] font-bold uppercase tracking-[0.08em] text-orange-600 sm:text-xs">
+                                    Live RTP updates every 30 minutes. Last system update at 3:00 PM (GMT+8).
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <p className="mt-3 text-xs font-bold uppercase tracking-wide text-orange-600">
-                        Live RTP updates every 30 minutes. Last system update at 3:00 PM (GMT+8).
-                    </p>
                 </div>
             </section>
 
@@ -306,4 +315,3 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
         </main>
     );
 }
-
