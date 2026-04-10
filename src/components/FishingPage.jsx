@@ -1,12 +1,13 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
 import fishingBanner from '../assets/fishing-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
 import PromotionStyleTabs from './PromotionStyleTabs';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
 import { FISHING_GAMES as fishingGames } from '../constants/gameCatalogs';
-import WalletRebateSummaryBar from './WalletRebateSummaryBar';
+import SlotBrowseFilterModal from './SlotBrowseFilterModal';
+import ProductBrowseControlPanel from './ProductBrowseControlPanel';
+import useProductBrowseFilters, { DEFAULT_ALL_PROVIDERS_VALUE } from '../hooks/useProductBrowseFilters';
 
 const CDN = 'https://cdn.i8global.com/lb9/master';
 
@@ -18,8 +19,14 @@ const fishingProviders = [
 ];
 
 const gameTabs = ['All Games', 'Hot Games', 'New Games'];
+const searchScopes = [
+    { id: 'all', label: 'All' },
+    { id: 'games', label: 'Games' },
+    { id: 'providers', label: 'Providers' },
+];
 const pageContainerClass = 'mx-auto w-full max-w-screen-2xl px-4 md:px-8';
 const sectionTitleClass = 'text-xl font-bold tracking-tight text-slate-900 md:text-2xl';
+const ALL_PROVIDERS = DEFAULT_ALL_PROVIDERS_VALUE;
 
 const liveBigWins = [
     { user: 'Alex M.', amount: 'MYR 45,200', game: 'Ocean King', time: '2 min ago', amountColor: 'text-[var(--color-danger-main)]' },
@@ -31,31 +38,54 @@ const INITIAL_GAMES = 12;
 
 export default function FishingPage({ onNavigate }) {
     const [activeTab, setActiveTab] = useState('All Games');
-    const [query, setQuery] = useState('');
-    const [activeProvider, setActiveProvider] = useState(fishingProviders[0].name);
+    const [filterModalOpen, setFilterModalOpen] = useState(false);
     const [gamesToShow, setGamesToShow] = useState(INITIAL_GAMES);
+
+    const tabFilteredGames = useMemo(() => fishingGames.filter((game) => (
+        activeTab === 'All Games'
+            ? true
+            : activeTab === 'Hot Games'
+                ? game.hot
+                : activeTab === 'New Games'
+                    ? game.new
+                    : true
+    )), [activeTab]);
+
+    const {
+        query,
+        setQuery,
+        searchScope,
+        setSearchScope,
+        activeProvider,
+        setActiveProvider,
+        visibleProviders,
+        filteredGames,
+        resultSummary,
+        applyBrowseFilters,
+    } = useProductBrowseFilters({
+        providers: fishingProviders,
+        games: tabFilteredGames,
+        initialProvider: fishingProviders[0].name,
+        allProvidersValue: ALL_PROVIDERS,
+    });
 
     useEffect(() => {
         setGamesToShow(INITIAL_GAMES);
-    }, [activeProvider, activeTab]);
+    }, [activeProvider, activeTab, query, searchScope]);
 
-    const filteredGames = useMemo(() => {
-        const text = query.trim().toLowerCase();
-        const games = fishingGames.filter((game) => {
-            const providerMatch = game.provider === activeProvider;
-            const tabMatch =
-                activeTab === 'All Games'
-                    ? true
-                    : activeTab === 'Hot Games'
-                        ? game.hot
-                        : activeTab === 'New Games'
-                            ? game.new
-                            : true;
-            const textMatch = text ? game.name.toLowerCase().includes(text) || game.provider.toLowerCase().includes(text) : true;
-            return providerMatch && tabMatch && textMatch;
-        });
-        return games;
-    }, [activeTab, query, activeProvider]);
+    useEffect(() => {
+        if (activeProvider === ALL_PROVIDERS) return;
+        if (!visibleProviders.length) return;
+        if (!visibleProviders.some((provider) => provider.name === activeProvider)) {
+            setActiveProvider(visibleProviders[0].name);
+            setGamesToShow(INITIAL_GAMES);
+        }
+    }, [activeProvider, setActiveProvider, visibleProviders]);
+
+    const handleApplyFilters = (payload) => {
+        applyBrowseFilters(payload);
+        setGamesToShow(INITIAL_GAMES);
+    };
 
     return (
         <main className="w-full bg-gradient-to-b from-blue-50 via-slate-50 to-slate-100 pb-14 font-sans">
@@ -94,13 +124,9 @@ export default function FishingPage({ onNavigate }) {
                 </div>
             </section>
 
-            <section className={`${pageContainerClass} mt-4 md:mt-5`}>
-                <WalletRebateSummaryBar />
-            </section>
-
             <section className={`${pageContainerClass} mt-4`}>
                 <div className="flex flex-nowrap gap-2 overflow-x-auto pb-2 pr-3">
-                    {fishingProviders.map((provider) => {
+                    {visibleProviders.map((provider) => {
                         const isActive = activeProvider === provider.name;
                         return (
                             <button
@@ -123,29 +149,28 @@ export default function FishingPage({ onNavigate }) {
                 </div>
             </section>
 
-            <section className={`${pageContainerClass} mt-4 md:mt-6`}>
-                <div className="surface-panel rounded-2xl p-4 md:p-5">
-                    <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <PromotionStyleTabs
-                            items={gameTabs}
-                            value={activeTab}
-                            onChange={setActiveTab}
-                            ariaLabel="Fishing game filters"
-                        />
-                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 shadow-sm lg:w-72">
-                            <Search size={16} className="text-slate-500" />
-                            <input
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                placeholder="Search Games"
-                                className="w-full bg-transparent text-sm font-semibold text-slate-700 outline-none placeholder:text-slate-400"
-                            />
-                        </label>
-                    </div>
-                </div>
+            <section className={pageContainerClass}>
+                <ProductBrowseControlPanel
+                    query={query}
+                    onQueryChange={setQuery}
+                    searchScope={searchScope}
+                    onSearchScopeChange={setSearchScope}
+                    scopes={searchScopes}
+                    onOpenFilterModal={() => setFilterModalOpen(true)}
+                    resultSummary={resultSummary}
+                    providerSummaryText={activeProvider === ALL_PROVIDERS ? 'Browsing all providers' : `Provider filter: ${activeProvider}`}
+                />
             </section>
 
             <section className={`${pageContainerClass} mt-5 md:mt-6`}>
+                <div className="mb-3 md:mb-4">
+                    <PromotionStyleTabs
+                        items={gameTabs}
+                        value={activeTab}
+                        onChange={setActiveTab}
+                        ariaLabel="Fishing game filters"
+                    />
+                </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
                     {filteredGames.slice(0, gamesToShow).map((game, idx) => (
                             <div
@@ -243,6 +268,19 @@ export default function FishingPage({ onNavigate }) {
                     </div>
                 </div>
             </section>
+
+            <SlotBrowseFilterModal
+                open={filterModalOpen}
+                onClose={() => setFilterModalOpen(false)}
+                providers={fishingProviders}
+                games={tabFilteredGames}
+                scopes={searchScopes}
+                initialQuery={query}
+                initialScope={searchScope}
+                initialProvider={activeProvider}
+                allProvidersValue={ALL_PROVIDERS}
+                onApply={handleApplyFilters}
+            />
         </main>
     );
 }

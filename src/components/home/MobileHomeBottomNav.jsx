@@ -1,23 +1,7 @@
 import React from 'react';
 import { Crown, Gift, Headset, House, UserCircle2 } from 'lucide-react';
-import { HISTORY_RECORD_PAGE_IDS } from '../../constants/historyRecordPages';
 
-const ACCOUNT_ACTIVE_PAGES = new Set([
-    'profile',
-    'verification',
-    'favourites',
-    'my-bets',
-    'loyalty-rewards',
-    'feedback',
-    'help-center',
-    'security',
-    'notifications',
-    'rebate',
-    'referral-commission',
-    'deposit',
-    'withdrawal',
-    ...HISTORY_RECORD_PAGE_IDS,
-]);
+const ACCOUNT_ACTIVE_PAGES = ['profile', 'verification', 'favourites', 'withdrawal'];
 
 const TABS = [
     { id: 'home', label: 'Home', page: 'home', icon: House },
@@ -28,12 +12,13 @@ const TABS = [
 ];
 
 export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, onLiveChatClick, onLoginClick }) {
-    const isAccountActive = activePage && ACCOUNT_ACTIVE_PAGES.has(activePage);
+    const isAccountActive =
+        activePage && ACCOUNT_ACTIVE_PAGES.includes(activePage);
 
     return (
         <nav
             aria-label="Home quick navigation"
-            className="mobile-home-bottom-nav fixed inset-x-0 bottom-0 z-[85] border-t border-[rgb(168_226_251)] bg-[var(--color-surface-base)] shadow-[0_-2px_12px_rgba(15,23,42,0.06)] transition duration-200 md:hidden"
+            className="fixed inset-x-0 bottom-0 z-[85] border-t border-[rgb(168_226_251)] bg-[var(--color-surface-base)] shadow-[0_-2px_12px_rgba(15,23,42,0.06)] md:hidden"
         >
             <div className="mx-auto flex w-full max-w-screen-2xl items-stretch pb-[max(0.375rem,env(safe-area-inset-bottom,0px))] pt-1">
                 {TABS.map(({ id, label, page, action, icon: Icon }) => {

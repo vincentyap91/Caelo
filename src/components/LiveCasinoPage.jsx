@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
+import PromotionStyleTabs from './PromotionStyleTabs';
 import ProviderLaunchModal from './ProviderLaunchModal';
 import PromotionWarningModal from './PromotionWarningModal';
 import LobbyProviderCard from './game/LobbyProviderCard';
@@ -12,6 +13,7 @@ import {
     LIVE_CASINO_PAGE_PROVIDERS,
 } from '../constants/liveCasinoProviders';
 
+const providerTags = ['All', 'Trending', 'Baccarat', 'Roulette', 'Dragon Tiger', 'Blackjack', 'Game Shows'];
 const providerLogos = LIVE_CASINO_PAGE_PROVIDERS;
 
 function resolveLaunchConfig(providerId) {
@@ -19,6 +21,7 @@ function resolveLaunchConfig(providerId) {
 }
 
 export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate }) {
+    const [activeTag, setActiveTag] = useState('All');
     const [query, setQuery] = useState('');
     const [providerLaunchOpen, setProviderLaunchOpen] = useState(false);
     const [promotionWarningOpen, setPromotionWarningOpen] = useState(false);
@@ -30,6 +33,7 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
         if (selectedProviderIdFromMenu) {
             const match = providerLogos.find((p) => p.id === selectedProviderIdFromMenu);
             if (match) {
+                setActiveTag('All');
                 setQuery('');
                 setBannerProvider(match);
             }
@@ -42,10 +46,16 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
         const text = query.trim().toLowerCase();
 
         return providerLogos.filter((provider) => {
+            const tagMatch =
+                activeTag === 'All'
+                    ? true
+                    : activeTag === 'Trending'
+                        ? provider.featured
+                        : provider.categories.includes(activeTag);
             const textMatch = text ? provider.name.toLowerCase().includes(text) : true;
-            return textMatch;
+            return tagMatch && textMatch;
         });
-    }, [query]);
+    }, [activeTag, query]);
 
     const handleSelectProvider = (provider) => {
         setBannerProvider(provider);
@@ -220,7 +230,16 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                         </label>
                     </div>
 
-                    <p className="mt-4 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(106_117_144)] md:mt-5 md:text-xs">
+                    <div className="mt-4">
+                        <PromotionStyleTabs
+                            items={providerTags}
+                            value={activeTag}
+                            onChange={setActiveTag}
+                            ariaLabel="Live casino categories"
+                        />
+                    </div>
+
+                    <p className="mt-3 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(106_117_144)] md:text-xs">
                         {filteredProviders.length} provider{filteredProviders.length === 1 ? '' : 's'} found
                     </p>
                 </div>
@@ -253,7 +272,7 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                 {filteredProviders.length === 0 && (
                     <div className="mt-6 rounded-2xl border border-[rgb(220_228_242)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
                         <p className="text-base font-bold text-[rgb(43_58_87)]">No providers match your search.</p>
-                        <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword.</p>
+                        <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword or switch filter.</p>
                     </div>
                 )}
             </section>

@@ -471,7 +471,7 @@ function AppInner() {
     }`}>
       <FloatingSocials
         onLiveChatClick={() => setLiveChatOpen((open) => !open)}
-        className="max-md:hidden"
+        className={page === 'home' ? 'max-md:hidden' : ''}
       />
 
       <Navbar
@@ -494,7 +494,7 @@ function AppInner() {
         }}
       />
 
-      <div className="max-md:pt-14 md:pt-[92px]">
+      <div className={page === 'home' ? 'max-md:pt-14 md:pt-[92px]' : 'pt-[113px] md:pt-[92px]'}>
       <Suspense fallback={<LoadingPage fullPage="overlay" minDelay={300} />}>
       {page === 'home' ? (
         <>
@@ -512,12 +512,20 @@ function AppInner() {
             <TopGames onNavigate={handleNavigate} />
           </div>
 
-          <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-4 pb-10 md:px-8">
+          <div className="mx-auto flex w-full max-w-screen-2xl max-md:pb-24 flex-col gap-8 px-4 pb-10 md:px-8">
             <VipTier onNavigate={handleNavigate} />
             <HomeLiveActivity />
             <AppDownload />
             <Promos onNavigate={handleNavigate} />
           </div>
+
+          <MobileHomeBottomNav
+            activePage={page}
+            authUser={authUser}
+            onNavigate={handleNavigate}
+            onLiveChatClick={() => setLiveChatOpen(true)}
+            onLoginClick={() => setLoginModalOpen(true)}
+          />
         </>
       ) : page === 'live-casino' ? (
         <LiveCasinoPage selectedProviderIdFromMenu={selectedCasinoProviderIdFromMenu} onNavigate={handleNavigate} />
@@ -622,15 +630,7 @@ function AppInner() {
         onNavigate={handleNavigate}
         onLiveChatClick={() => setLiveChatOpen(true)}
         mobileVisualTone={page === 'referral-commission' || page === 'rebate' ? 'softer' : 'default'}
-        className="max-md:pb-24"
-      />
-
-      <MobileHomeBottomNav
-        activePage={page}
-        authUser={authUser}
-        onNavigate={handleNavigate}
-        onLiveChatClick={() => setLiveChatOpen(true)}
-        onLoginClick={() => setLoginModalOpen(true)}
+        className={page === 'home' ? 'max-md:pb-24' : ''}
       />
       </div>
 

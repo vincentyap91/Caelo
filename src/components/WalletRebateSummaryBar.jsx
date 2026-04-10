@@ -9,44 +9,68 @@ function SummaryItem({
     iconClassName = 'text-[var(--color-text-soft)]',
     emphasis = 'default',
     compact = false,
+    denseMobile = false,
 }) {
     const isPrimary = emphasis === 'primary';
+
+    const compactLayoutClass = denseMobile
+        ? 'min-h-[56px] gap-1.5 px-2.5 py-1.5 sm:min-h-[68px] sm:gap-2 sm:px-3.5 sm:py-2.5'
+        : 'min-h-[64px] gap-2 px-3 py-2 sm:min-h-[68px] sm:px-3.5 sm:py-2.5';
+
+    const valueSizeClass = (() => {
+        if (!compact) {
+            return isPrimary ? 'text-2xl font-bold sm:text-3xl' : 'text-2xl font-bold sm:text-3xl';
+        }
+        if (denseMobile) {
+            return isPrimary
+                ? 'text-base font-bold sm:text-lg sm:font-bold md:text-xl'
+                : 'text-base font-bold sm:text-lg md:text-xl';
+        }
+        return isPrimary ? 'text-lg font-bold sm:text-xl' : 'text-lg font-bold sm:text-xl';
+    })();
+
+    const iconBtnClass = compact
+        ? denseMobile
+            ? 'h-7 w-7 sm:h-[30px] sm:w-[30px] md:h-[34px] md:w-[34px]'
+            : 'h-[30px] w-[30px] sm:h-[34px] sm:w-[34px]'
+        : 'h-9 w-9 sm:h-10 sm:w-10';
+
+    const iconSize = compact ? (denseMobile ? 13 : 14) : 17;
 
     return (
         <article
             className={`surface-card flex h-full min-w-0 items-center justify-between rounded-[var(--radius-panel)] border-[var(--color-border-default)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(250,252,255,0.94)_100%)] shadow-[var(--shadow-subtle)] ${
-                compact
-                    ? 'min-h-[68px] gap-2.5 px-3 py-2.5 sm:min-h-[72px] sm:px-3.5'
-                    : 'min-h-[86px] gap-3 px-4 py-3 sm:min-h-[92px] sm:px-4.5 sm:py-3.5'
+                compact ? compactLayoutClass : 'min-h-[86px] gap-3 px-4 py-3 sm:min-h-[92px] sm:px-4.5 sm:py-3.5'
             }`}
         >
             <div className="min-w-0 flex-1">
-                <p className={`font-semibold tracking-[-0.01em] text-[var(--color-text-main)] ${compact ? 'text-xs sm:text-[13px]' : 'text-sm'}`}>
+                <p
+                    className={`font-semibold tracking-[-0.01em] text-[var(--color-text-main)] ${
+                        compact
+                            ? denseMobile
+                                ? 'text-[11px] leading-tight sm:text-[12px] md:text-[13px]'
+                                : 'text-[12px] sm:text-[13px]'
+                            : 'text-sm'
+                    }`}
+                >
                     {title}
                 </p>
                 <p
-                    className={`tabular-nums leading-none tracking-[-0.03em] ${valueClassName} ${
-                        isPrimary
-                            ? compact
-                                ? 'text-xl font-bold sm:text-2xl'
-                                : 'text-2xl font-bold sm:text-3xl'
-                            : compact
-                                ? 'text-xl font-bold sm:text-2xl'
-                                : 'text-2xl font-bold sm:text-3xl'
-                    }`}
+                    className={`tabular-nums leading-tight tracking-[-0.03em] sm:leading-none ${valueClassName} ${valueSizeClass}`}
                 >
                     {value}
                 </p>
+
             </div>
 
             <div className="flex shrink-0 items-start">
-                <span
-                    className={`inline-flex items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] ${iconClassName} ${
-                        compact ? 'h-8 w-8 sm:h-9 sm:w-9' : 'h-9 w-9 sm:h-10 sm:w-10'
-                    }`}
+                <button
+                    type="button"
+                    aria-label={title}
+                    className={`inline-flex items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] ${iconClassName} ${iconBtnClass}`}
                 >
-                    <Icon size={compact ? 15 : 17} strokeWidth={2} />
-                </span>
+                    <Icon size={iconSize} strokeWidth={2} />
+                </button>
             </div>
         </article>
     );
@@ -57,24 +81,32 @@ export default function WalletRebateSummaryBar({
     membershipRebate = '0.00%',
     className = '',
     compact = false,
-    embedded = false,
-    stackOnMobile = false,
+    bare = false,
+    denseMobile = false,
 }) {
+    const panelPad = compact
+        ? denseMobile
+            ? 'p-0 sm:p-1.5 md:p-2'
+            : 'p-1.5 sm:p-2'
+        : 'p-2.5 sm:p-3';
+
+    const gridGap = compact
+        ? denseMobile
+            ? 'gap-1 sm:gap-1.5 md:gap-2'
+            : 'gap-1.5 sm:gap-2'
+        : 'gap-2.5 sm:gap-3';
+
     return (
         <section
             aria-label="Wallet and membership rebate summary"
             className={`${
-                embedded
-                    ? ''
-                    : `surface-panel rounded-[calc(var(--radius-shell)-4px)] border-[var(--color-border-default)] bg-[linear-gradient(180deg,rgba(255,255,255,0.76)_0%,rgba(248,251,255,0.82)_100%)] shadow-[var(--shadow-subtle)] ${
-                          compact ? 'p-2 sm:p-2.5' : 'p-2.5 sm:p-3'
-                      }`
+                bare
+                    ? 'rounded-none border-0 bg-transparent p-0 shadow-none'
+                    : `surface-panel rounded-[calc(var(--radius-shell)-4px)] border-[var(--color-border-default)] bg-[linear-gradient(180deg,rgba(255,255,255,0.76)_0%,rgba(248,251,255,0.82)_100%)] shadow-[var(--shadow-subtle)] ${panelPad}`
             } ${className}`}
         >
             <div
-                className={`grid ${
-                    stackOnMobile ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-2'
-                } ${compact ? 'gap-2' : 'gap-2.5 sm:gap-3'}`}
+                className={`grid ${denseMobile ? 'grid-cols-2' : 'sm:grid-cols-2'} ${gridGap}`}
             >
                 <SummaryItem
                     title="Wallet Balance"
@@ -82,6 +114,7 @@ export default function WalletRebateSummaryBar({
                     icon={RefreshCw}
                     emphasis="primary"
                     compact={compact}
+                    denseMobile={denseMobile}
                 />
                 <SummaryItem
                     title="Membership Rebate"
@@ -89,8 +122,10 @@ export default function WalletRebateSummaryBar({
                     icon={Lock}
                     iconClassName="text-[var(--color-text-soft)]"
                     compact={compact}
+                    denseMobile={denseMobile}
                 />
             </div>
         </section>
     );
 }
+

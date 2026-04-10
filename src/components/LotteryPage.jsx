@@ -1,15 +1,22 @@
-﻿import React, { useMemo, useState } from 'react';
-import { Search } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ninetyThreeConnectLightmodeLogo from '../assets/93connect-lightmode.png';
 import gameplayLightmodeLogo from '../assets/gameplay-lightmode.png';
 import lotteryBanner from '../assets/lottery-banner.jpg';
 import { PAGE_BANNER_IMG_FILL, PAGE_BANNER_WRAP_ASPECT } from '../constants/pageBannerClasses';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
-import WalletRebateSummaryBar from './WalletRebateSummaryBar';
+import SlotBrowseFilterModal from './SlotBrowseFilterModal';
+import ProductBrowseControlPanel from './ProductBrowseControlPanel';
+import useProductBrowseFilters, { DEFAULT_ALL_PROVIDERS_VALUE } from '../hooks/useProductBrowseFilters';
 
 const LOTTERY_GAME_FALLBACK_IMAGE = 'https://pksoftcdn.azureedge.net/media/placeholder_riocity-202408050928489215.jpg';
 const pageContainerClass = 'mx-auto w-full max-w-screen-2xl px-4 md:px-8';
+const searchScopes = [
+    { id: 'all', label: 'All' },
+    { id: 'games', label: 'Games' },
+    { id: 'providers', label: 'Providers' },
+];
+const ALL_PROVIDERS = DEFAULT_ALL_PROVIDERS_VALUE;
 
 const lotteryProviders = [
     {
@@ -138,22 +145,58 @@ function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
 }
 
 export default function LotteryPage({ onNavigate }) {
-    const [query, setQuery] = useState('');
-    const [activeProviderId, setActiveProviderId] = useState(lotteryProviders[0].id);
+    const [filterModalOpen, setFilterModalOpen] = useState(false);
+    const [gamesToShow, setGamesToShow] = useState(30);
 
-    const activeProvider = useMemo(
-        () => lotteryProviders.find((provider) => provider.id === activeProviderId) ?? lotteryProviders[0],
-        [activeProviderId]
+    const lotteryBrowseProviders = useMemo(
+        () => lotteryProviders.map((provider) => ({ name: provider.name, src: provider.logo })),
+        []
+    );
+    const lotteryGames = useMemo(
+        () => lotteryProviders.flatMap((provider) => provider.games.map((game) => ({
+            ...game,
+            provider: provider.name,
+            providerId: provider.id,
+            imgUrl: game.imgUrl || LOTTERY_GAME_FALLBACK_IMAGE,
+        }))),
+        []
     );
 
-    const filteredGames = useMemo(() => {
-        const text = query.trim().toLowerCase();
-        return activeProvider.games.filter((game) => (
-            text
-                ? game.name.toLowerCase().includes(text) || activeProvider.name.toLowerCase().includes(text)
-                : true
-        ));
-    }, [activeProvider, query]);
+    const {
+        query,
+        setQuery,
+        searchScope,
+        setSearchScope,
+        activeProvider,
+        setActiveProvider,
+        visibleProviders,
+        filteredGames,
+        resultSummary,
+        applyBrowseFilters,
+    } = useProductBrowseFilters({
+        providers: lotteryBrowseProviders,
+        games: lotteryGames,
+        initialProvider: lotteryBrowseProviders[0]?.name,
+        allProvidersValue: ALL_PROVIDERS,
+    });
+
+    useEffect(() => {
+        if (activeProvider === ALL_PROVIDERS) return;
+        if (!visibleProviders.length) return;
+        if (!visibleProviders.some((provider) => provider.name === activeProvider)) {
+            setActiveProvider(visibleProviders[0].name);
+            setGamesToShow(30);
+        }
+    }, [activeProvider, setActiveProvider, visibleProviders]);
+
+    useEffect(() => {
+        setGamesToShow(30);
+    }, [activeProvider, query, searchScope]);
+
+    const handleApplyFilters = (payload) => {
+        applyBrowseFilters(payload);
+        setGamesToShow(30);
+    };
 
     return (
         <main className="w-full bg-gradient-to-b from-blue-50 via-slate-50 to-slate-100 pb-14 font-sans">
@@ -192,25 +235,21 @@ export default function LotteryPage({ onNavigate }) {
                 </div>
             </section>
 
-            <section className={`${pageContainerClass} mt-4 md:mt-5`}>
-                <WalletRebateSummaryBar />
-            </section>
-
             <section className={`${pageContainerClass} mt-4`}>
                 <div className="flex flex-nowrap gap-2 overflow-x-auto pb-2 pr-3">
-                    {lotteryProviders.map((provider) => {
-                        const isActive = activeProvider.id === provider.id;
+                    {visibleProviders.map((provider) => {
+                        const isActive = activeProvider === provider.name;
                         return (
                             <button
-                                key={provider.id}
+                                key={provider.name}
                                 type="button"
-                                onClick={() => setActiveProviderId(provider.id)}
+                                onClick={() => setActiveProvider(provider.name)}
                                 className={`relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 bg-[var(--color-surface-base)] px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
                                     isActive ? 'border-[var(--color-brand-deep)] ring-2 ring-[var(--color-brand-deep)]/30' : 'border-[rgb(209_216_229)] hover:border-[rgb(183_194_215)]'
                                 }`}
                             >
                                 <img
-                                    src={provider.logo}
+                                    src={provider.src}
                                     alt={provider.name}
                                     className="max-h-8 object-contain md:max-h-10"
                                     draggable={false}
@@ -221,41 +260,27 @@ export default function LotteryPage({ onNavigate }) {
                 </div>
             </section>
 
-            <section className={`${pageContainerClass} mt-4 md:mt-6`}>
-                <div className="surface-panel rounded-2xl p-4 md:p-5">
-                    <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <div>
-                            <p className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
-                                Lottery Games
-                            </p>
-                            <p className="mt-1 text-sm text-slate-600">
-                                Switch providers to browse different lottery draws and instant games.
-                            </p>
-                        </div>
-                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 shadow-sm lg:w-72">
-                            <Search size={16} className="text-slate-500" />
-                            <input
-                                value={query}
-                                onChange={(event) => setQuery(event.target.value)}
-                                placeholder="Search Games"
-                                className="w-full bg-transparent text-sm font-semibold text-slate-700 outline-none placeholder:text-slate-400"
-                            />
-                        </label>
-                    </div>
-                    <p className="mt-3 text-xs font-bold uppercase tracking-wide text-[rgb(106_117_144)]">
-                        {activeProvider.name} | {filteredGames.length} game{filteredGames.length === 1 ? '' : 's'} found
-                    </p>
-                </div>
+            <section className={pageContainerClass}>
+                <ProductBrowseControlPanel
+                    query={query}
+                    onQueryChange={setQuery}
+                    searchScope={searchScope}
+                    onSearchScopeChange={setSearchScope}
+                    scopes={searchScopes}
+                    onOpenFilterModal={() => setFilterModalOpen(true)}
+                    resultSummary={resultSummary}
+                    providerSummaryText={activeProvider === ALL_PROVIDERS ? 'Browsing all providers' : `Provider filter: ${activeProvider}`}
+                />
             </section>
 
             <section className={`${pageContainerClass} mt-5 md:mt-6`}>
                 <div className="grid grid-cols-2 gap-3 md:gap-4 sm:grid-cols-3 lg:grid-cols-6">
-                    {filteredGames.map((game) => (
+                    {filteredGames.slice(0, gamesToShow).map((game) => (
                         <LotteryGameCard
-                            key={`${activeProvider.id}-${game.name}`}
+                            key={`${game.providerId}-${game.name}`}
                             game={game}
-                            providerName={activeProvider.name}
-                            providerId={activeProvider.id}
+                            providerName={game.provider}
+                            providerId={game.providerId}
                             onNavigate={onNavigate}
                         />
                     ))}
@@ -267,7 +292,31 @@ export default function LotteryPage({ onNavigate }) {
                         <p className="mt-1 text-xs text-slate-500">Try a different keyword or switch provider.</p>
                     </div>
                 )}
+                {filteredGames.length > gamesToShow && (
+                    <div className="mt-6 flex justify-center">
+                        <button
+                            type="button"
+                            onClick={() => setGamesToShow(filteredGames.length)}
+                            className="btn-theme-cta inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                        >
+                            SEE MORE
+                        </button>
+                    </div>
+                )}
             </section>
+
+            <SlotBrowseFilterModal
+                open={filterModalOpen}
+                onClose={() => setFilterModalOpen(false)}
+                providers={lotteryBrowseProviders}
+                games={lotteryGames}
+                scopes={searchScopes}
+                initialQuery={query}
+                initialScope={searchScope}
+                initialProvider={activeProvider}
+                allProvidersValue={ALL_PROVIDERS}
+                onApply={handleApplyFilters}
+            />
         </main>
     );
 }

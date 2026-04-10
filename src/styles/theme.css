@@ -343,14 +343,6 @@
     color: var(--color-text-strong);
   }
 
-  @media (max-width: 767px) {
-    body[data-mobile-menu-open='true'] .mobile-home-bottom-nav {
-      opacity: 0;
-      pointer-events: none;
-      transform: translate3d(0, 100%, 0);
-    }
-  }
-
   .font-primary {
     font-family: var(--font-family-sans);
   }
