@@ -29,44 +29,44 @@ export default function MobileHomeCategoryGames({ onNavigate }) {
 
     return (
         <section aria-label="Games by category" className="w-full md:hidden">
-            <div className="mx-auto flex max-w-screen-2xl gap-2 px-3 pb-6 pt-2">
+            <div className="mx-auto flex max-w-screen-2xl gap-3 px-3 pb-8 pt-3">
                 <nav
                     aria-label="Game categories"
-                    className="sticky top-14 z-10 flex w-[4.25rem] shrink-0 flex-col gap-1 self-start py-1"
+                    className="sticky top-14 z-10 flex w-[4.5rem] shrink-0 flex-col gap-2 self-start py-1"
                 >
                     {CATEGORIES.map(({ id, label, icon: Icon }) => {
                         const active = activeId === id;
                         return (
-                            <button
-                                key={id}
-                                type="button"
-                                onClick={() => setActiveId(id)}
-                                className={`flex flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-center transition ${
-                                    active
+                                <button
+                                    key={id}
+                                    type="button"
+                                    onClick={() => setActiveId(id)}
+                                    className={`flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl px-1 py-2.5 text-center transition ${
+                                        active
                                         ? 'bg-[var(--color-accent-600)] text-white shadow-md'
                                         : 'border border-[var(--color-border-default)] bg-[var(--color-surface-base)] text-[var(--color-text-strong)] shadow-sm'
                                 }`}
                             >
-                                <Icon
-                                    size={16}
-                                    strokeWidth={2.25}
-                                    className={active ? 'text-white' : 'text-[var(--color-accent-600)]'}
-                                    aria-hidden
-                                />
-                                <span className="line-clamp-2 w-full text-center text-xs font-bold leading-tight">{label}</span>
-                            </button>
+                                    <Icon
+                                        size={20}
+                                        strokeWidth={active ? 2.5 : 2}
+                                        className={active ? 'text-white' : 'text-[var(--color-brand-primary)]'}
+                                        aria-hidden
+                                    />
+                                    <span className="line-clamp-2 w-full text-center text-[11px] font-bold leading-tight">{label}</span>
+                                </button>
                         );
                     })}
                 </nav>
 
                 <div className="min-w-0 flex-1">
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                         {filteredGames.map((game) => (
                             <TopGameCard
                                 key={`${game.name}-${game.provider}-${activeId}`}
                                 game={game}
                                 onNavigate={onNavigate}
-                                className="rounded-lg border-b-2"
+                                className="h-full"
                             />
                         ))}
                     </div>

@@ -519,13 +519,6 @@ function AppInner() {
             <Promos onNavigate={handleNavigate} />
           </div>
 
-          <MobileHomeBottomNav
-            activePage={page}
-            authUser={authUser}
-            onNavigate={handleNavigate}
-            onLiveChatClick={() => setLiveChatOpen(true)}
-            onLoginClick={() => setLoginModalOpen(true)}
-          />
         </>
       ) : page === 'live-casino' ? (
         <LiveCasinoPage selectedProviderIdFromMenu={selectedCasinoProviderIdFromMenu} onNavigate={handleNavigate} />
@@ -630,9 +623,17 @@ function AppInner() {
         onNavigate={handleNavigate}
         onLiveChatClick={() => setLiveChatOpen(true)}
         mobileVisualTone={page === 'referral-commission' || page === 'rebate' ? 'softer' : 'default'}
-        className={page === 'home' ? 'max-md:pb-24' : ''}
+        className="max-md:pb-24"
       />
       </div>
+
+      <MobileHomeBottomNav
+        activePage={page}
+        authUser={authUser}
+        onNavigate={handleNavigate}
+        onLiveChatClick={() => setLiveChatOpen(true)}
+        onLoginClick={() => setLoginModalOpen(true)}
+      />
 
       <LoginModal
         open={loginModalOpen}

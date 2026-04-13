@@ -364,9 +364,8 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
             <button
                 type="button"
                 onClick={() => onDownloadAppClick?.()}
-                className={`fixed right-6 z-[110] inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] text-white shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition hover:brightness-105 md:hidden ${
-                    activePage === 'home' ? 'bottom-[5.5rem]' : 'bottom-24'
-                }`}
+                className={`fixed right-6 z-[110] inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] text-white shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition hover:brightness-105 md:hidden ${activePage === 'home' ? 'bottom-[5.5rem]' : 'bottom-24'
+                    }`}
                 aria-label="Download app"
             >
                 <Smartphone size={18} className="shrink-0" />
@@ -386,348 +385,348 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                     </div>
 
                     <div className="flex items-center gap-2.5 h-full">
-                    {authUser ? (
-                        <div
-                            ref={profileMenuRef}
-                            className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
-                        >
-                            <div className="flex h-7 items-center gap-1.5 rounded-[9px] border border-white/10 bg-[rgb(14_99_187)] px-3 text-white">
-                                <span className="font-bold tracking-[0.01em]">{authUser.balance}</span>
-                                <CircleDollarSign size={14} className="text-[var(--color-nav-gold)]" />
-                            </div>
-                            <div className="flex h-7 shrink-0 items-stretch overflow-hidden rounded-[9px] border border-white/15 bg-[linear-gradient(180deg,#16508f_0%,#0d3562_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                        {authUser ? (
+                            <div
+                                ref={profileMenuRef}
+                                className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
+                            >
+                                <div className="flex h-7 items-center gap-1.5 rounded-[9px] border border-white/10 bg-[rgb(14_99_187)] px-3 text-white">
+                                    <span className="font-bold tracking-[0.01em]">{authUser.balance}</span>
+                                    <CircleDollarSign size={14} className="text-[var(--color-nav-gold)]" />
+                                </div>
+                                <div className="flex h-7 shrink-0 items-stretch overflow-hidden rounded-[9px] border border-white/15 bg-[linear-gradient(180deg,#16508f_0%,#0d3562_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setProfileMenuOpen(false);
+                                            onNavigate?.('profile');
+                                        }}
+                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-white transition hover:bg-white/[0.06]"
+                                        aria-label="My profile"
+                                    >
+                                        <img
+                                            src={getVipStatus(vipLevel).medal}
+                                            alt=""
+                                            className="h-5 w-5 shrink-0 object-contain"
+                                        />
+                                        <span className="truncate text-xs font-bold tracking-[0.02em] text-[rgb(255_240_160)]">
+                                            {authUser.name}
+                                        </span>
+                                        <UserCircle2 size={18} className="shrink-0 text-white/90" />
+                                    </button>
+                                    <span className="w-px shrink-0 self-stretch bg-white/20" aria-hidden />
+                                    <button
+                                        type="button"
+                                        onClick={() => setProfileMenuOpen((open) => !open)}
+                                        className="inline-flex w-7 shrink-0 items-center justify-center text-white/80 transition hover:bg-white/[0.06] hover:text-white"
+                                        aria-haspopup="menu"
+                                        aria-expanded={profileMenuOpen}
+                                        aria-label="Account menu"
+                                    >
+                                        <ChevronDown
+                                            size={13}
+                                            className={`transition-transform ${profileMenuOpen ? 'rotate-180' : ''}`}
+                                        />
+                                    </button>
+                                </div>
                                 <button
                                     type="button"
                                     onClick={() => {
                                         setProfileMenuOpen(false);
-                                        onNavigate?.('profile');
+                                        onNavigate?.('deposit');
                                     }}
-                                    className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-white transition hover:bg-white/[0.06]"
-                                    aria-label="My profile"
+                                    className="btn-theme-cta-soft h-7 shrink-0 rounded-[9px] px-4 font-bold tracking-wide transition hover:brightness-105"
                                 >
-                                    <img
-                                        src={getVipStatus(vipLevel).medal}
-                                        alt=""
-                                        className="h-5 w-5 shrink-0 object-contain"
-                                    />
-                                    <span className="truncate text-xs font-bold tracking-[0.02em] text-[rgb(255_240_160)]">
-                                        {authUser.name}
-                                    </span>
-                                    <UserCircle2 size={18} className="shrink-0 text-white/90" />
+                                    DEPOSIT
                                 </button>
-                                <span className="w-px shrink-0 self-stretch bg-white/20" aria-hidden />
                                 <button
                                     type="button"
-                                    onClick={() => setProfileMenuOpen((open) => !open)}
-                                    className="inline-flex w-7 shrink-0 items-center justify-center text-white/80 transition hover:bg-white/[0.06] hover:text-white"
-                                    aria-haspopup="menu"
-                                    aria-expanded={profileMenuOpen}
-                                    aria-label="Account menu"
+                                    onClick={() => onLogout?.()}
+                                    className="h-7 rounded-[9px] border border-white/40 bg-white/[0.03] px-4 font-bold text-white hover:bg-white/10 transition"
                                 >
-                                    <ChevronDown
-                                        size={13}
-                                        className={`transition-transform ${profileMenuOpen ? 'rotate-180' : ''}`}
-                                    />
+                                    LOGOUT
                                 </button>
-                            </div>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setProfileMenuOpen(false);
-                                    onNavigate?.('deposit');
-                                }}
-                                className="btn-theme-cta-soft h-7 shrink-0 rounded-[9px] px-4 font-bold tracking-wide transition hover:brightness-105"
-                            >
-                                DEPOSIT
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => onLogout?.()}
-                                className="h-7 rounded-[9px] border border-white/40 bg-white/[0.03] px-4 font-bold text-white hover:bg-white/10 transition"
-                            >
-                                LOGOUT
-                            </button>
-                            <LanguageSwitcher value={language} onChange={setLanguage} />
+                                <LanguageSwitcher value={language} onChange={setLanguage} />
 
-                            {profileMenuOpen && (
-                                <div className="dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] flex max-h-[calc(100vh-5rem)] w-[312px] flex-col overflow-hidden rounded-[30px] p-3.5 text-white">
-                                    <div className="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,#29bbff55_0%,transparent_72%)] pointer-events-none" />
+                                {profileMenuOpen && (
+                                    <div className="dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] flex max-h-[calc(100vh-5rem)] w-[312px] flex-col overflow-hidden rounded-[30px] p-3.5 text-white">
+                                        <div className="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,#29bbff55_0%,transparent_72%)] pointer-events-none" />
 
-                                    <div className="relative shrink-0">
-                                        <div className="relative flex items-start gap-3">
-                                            <div className="relative shrink-0">
-                                                <div className="flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-[rgb(86_185_255_/_0.5)] bg-[linear-gradient(180deg,#1a5bb1_0%,#0b3e80_100%)] shadow-[var(--inset-highlight-strong)]">
-                                                    <UserCircle2 size={40} className="text-white/90" />
+                                        <div className="relative shrink-0">
+                                            <div className="relative flex items-start gap-3">
+                                                <div className="relative shrink-0">
+                                                    <div className="flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-[rgb(86_185_255_/_0.5)] bg-[linear-gradient(180deg,#1a5bb1_0%,#0b3e80_100%)] shadow-[var(--inset-highlight-strong)]">
+                                                        <UserCircle2 size={40} className="text-white/90" />
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setProfileMenuOpen(false);
+                                                            onAccountDetailsClick?.();
+                                                        }}
+                                                        className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-[var(--color-nav-badge)] text-white shadow-[0_6px_12px_rgba(0,0,0,0.22)] transition hover:brightness-110"
+                                                        aria-label="Account details"
+                                                    >
+                                                        <ScrollText size={12} />
+                                                    </button>
                                                 </div>
+
+                                                <div className="min-w-0 pt-1">
+                                                    <p className="truncate text-xl font-bold leading-none text-white">
+                                                        Hi, {authUser.name}
+                                                    </p>
+                                                    <div className="mt-1.5 space-y-1 text-xs text-[var(--color-nav-text-soft)]">
+                                                        <p className="flex items-center gap-2">
+                                                            <span className="text-[var(--color-nav-text-accent)]">Joined:</span>
+                                                            <span className="font-semibold">08/01/2026</span>
+                                                        </p>
+                                                        <p className="flex items-center gap-2">
+                                                            <span className="text-[var(--color-nav-text-accent)]">Player ID:</span>
+                                                            <span className="font-semibold">679129</span>
+                                                        </p>
+                                                    </div>
+                                                    <VipStatusPill level={vipLevel} theme="dark" className="mt-2" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="profile-menu-scroll relative mt-2 min-h-0 flex-1 overflow-y-auto pr-1">
+                                            <div className="dark-nav-panel relative rounded-[22px] p-3">
                                                 <button
                                                     type="button"
-                                                    onClick={() => {
-                                                        setProfileMenuOpen(false);
-                                                        onAccountDetailsClick?.();
-                                                    }}
-                                                    className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-[var(--color-nav-badge)] text-white shadow-[0_6px_12px_rgba(0,0,0,0.22)] transition hover:brightness-110"
-                                                    aria-label="Account details"
+                                                    onClick={() => toggleProfileSection('cashier')}
+                                                    className="flex w-full items-center justify-between"
                                                 >
-                                                    <ScrollText size={12} />
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[var(--color-nav-gold)] shadow-[var(--shadow-nav-pill)]">
+                                                            <Wallet size={14} />
+                                                        </div>
+                                                        <span className="text-lg font-bold text-white">Cashier</span>
+                                                    </div>
+                                                    <ChevronDown
+                                                        size={16}
+                                                        className={`text-white/80 transition-transform ${openProfileSection === 'cashier' ? 'rotate-180' : ''}`}
+                                                    />
                                                 </button>
+                                                {openProfileSection === 'cashier' && (
+                                                    <div className="mt-3 grid grid-cols-2 gap-3">
+                                                        {cashierItems.map(({ id, label, icon: Icon }) => (
+                                                            <button
+                                                                key={id}
+                                                                type="button"
+                                                                onClick={() => {
+                                                                    setProfileMenuOpen(false);
+                                                                    const page = cashierPageById[id];
+                                                                    if (page) onNavigate?.(page);
+                                                                }}
+                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                            >
+                                                                <Icon size={18} className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]" />
+                                                                <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                )}
                                             </div>
 
-                                            <div className="min-w-0 pt-1">
-                                                <p className="truncate text-xl font-bold leading-none text-white">
-                                                    Hi, {authUser.name}
-                                                </p>
-                                                <div className="mt-1.5 space-y-1 text-xs text-[var(--color-nav-text-soft)]">
-                                                    <p className="flex items-center gap-2">
-                                                        <span className="text-[var(--color-nav-text-accent)]">Joined:</span>
-                                                        <span className="font-semibold">08/01/2026</span>
-                                                    </p>
-                                                    <p className="flex items-center gap-2">
-                                                        <span className="text-[var(--color-nav-text-accent)]">Player ID:</span>
-                                                        <span className="font-semibold">679129</span>
-                                                    </p>
-                                                </div>
-                                                <VipStatusPill level={vipLevel} theme="dark" className="mt-2" />
+                                            <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => toggleProfileSection('account')}
+                                                    className="flex w-full items-center justify-between"
+                                                >
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[var(--color-nav-gold)] shadow-[var(--shadow-nav-pill)]">
+                                                            <UserRound size={14} />
+                                                        </div>
+                                                        <span className="text-lg font-bold text-white">My Account</span>
+                                                    </div>
+                                                    <ChevronDown
+                                                        size={16}
+                                                        className={`text-white/80 transition-transform ${openProfileSection === 'account' ? 'rotate-180' : ''}`}
+                                                    />
+                                                </button>
+
+                                                {openProfileSection === 'account' && (
+                                                    <div className="mt-3 grid grid-cols-2 gap-3">
+                                                        {accountCards.map(({ id, label, icon: Icon }) => (
+                                                            <button
+                                                                key={id}
+                                                                type="button"
+                                                                onClick={() => {
+                                                                    setProfileMenuOpen(false);
+                                                                    if (id === 'profile') {
+                                                                        onAccountDetailsClick?.();
+                                                                    } else {
+                                                                        onNavigate?.(id);
+                                                                    }
+                                                                }}
+                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                            >
+                                                                <Icon size={18} className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]" />
+                                                                <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                )}
                                             </div>
+
+                                            <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => toggleProfileSection('rewards')}
+                                                    className="flex w-full items-center justify-between"
+                                                >
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[var(--color-nav-gold)] shadow-[var(--shadow-nav-pill)]">
+                                                            <Trophy size={14} />
+                                                        </div>
+                                                        <span className="text-lg font-bold text-white">Rewards</span>
+                                                    </div>
+                                                    <ChevronDown
+                                                        size={16}
+                                                        className={`text-white/80 transition-transform ${openProfileSection === 'rewards' ? 'rotate-180' : ''}`}
+                                                    />
+                                                </button>
+
+                                                {openProfileSection === 'rewards' && (
+                                                    <div className="mt-3 grid grid-cols-2 gap-3">
+                                                        {REWARDS_PROGRAMS.map(({ id, label }) => {
+                                                            const NavIcon = REWARDS_NAV_ICONS[id] ?? Trophy;
+                                                            return (
+                                                                <button
+                                                                    key={id}
+                                                                    type="button"
+                                                                    onClick={() => {
+                                                                        setProfileMenuOpen(false);
+                                                                        onNavigate?.('loyalty-rewards', { rewardsTab: id });
+                                                                    }}
+                                                                    className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                >
+                                                                    <NavIcon
+                                                                        size={18}
+                                                                        className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]"
+                                                                    />
+                                                                    <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                                </button>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => toggleProfileSection('historyRecord')}
+                                                    className="flex w-full items-center justify-between transition hover:opacity-90"
+                                                >
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[rgb(90_208_255)] shadow-[var(--shadow-nav-pill)]">
+                                                            <History size={14} />
+                                                        </div>
+                                                        <span className="text-lg font-bold text-white">History Record</span>
+                                                    </div>
+                                                    <ChevronDown
+                                                        size={16}
+                                                        className={`text-white/80 transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-180' : ''}`}
+                                                    />
+                                                </button>
+                                                {openProfileSection === 'historyRecord' && (
+                                                    <div className="mt-3 grid grid-cols-2 gap-2">
+                                                        {HISTORY_RECORD_NAV.map(({ id, label, icon: Icon }) => (
+                                                            <button
+                                                                key={id}
+                                                                type="button"
+                                                                onClick={() => {
+                                                                    setProfileMenuOpen(false);
+                                                                    onNavigate?.(id);
+                                                                }}
+                                                                className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                            >
+                                                                <Icon size={18} className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]" />
+                                                                <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="dark-nav-panel mt-3 rounded-[22px] px-4 py-3 transition hover:border-[rgb(102_203_255_/_0.24)]">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => toggleProfileSection('settings')}
+                                                    className="flex w-full items-center justify-between text-left"
+                                                >
+                                                    <span className="flex items-center gap-3">
+                                                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[rgb(75_141_255)]">
+                                                            <Settings size={14} />
+                                                        </span>
+                                                        <span className="text-base font-bold text-white">Settings</span>
+                                                    </span>
+                                                    <ChevronDown
+                                                        size={16}
+                                                        className={`text-white/80 transition-transform ${openProfileSection === 'settings' ? 'rotate-180' : ''}`}
+                                                    />
+                                                </button>
+                                                {openProfileSection === 'settings' && (
+                                                    <div className="mt-3 grid grid-cols-2 gap-2">
+                                                        {settingsOptions.map(({ id, label, icon: Icon, action }) => (
+                                                            <button
+                                                                key={id}
+                                                                type="button"
+                                                                onClick={() => {
+                                                                    setProfileMenuOpen(false);
+                                                                    if (action === 'liveChat') {
+                                                                        onLiveChatClick?.();
+                                                                    } else {
+                                                                        onNavigate?.(id);
+                                                                    }
+                                                                }}
+                                                                className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                            >
+                                                                <Icon size={18} className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]" />
+                                                                <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setProfileMenuOpen(false);
+                                                    onLogout?.();
+                                                }}
+                                                className="mt-4 inline-flex min-h-[40px] items-center gap-2.5 text-base font-bold text-[var(--color-nav-gold)] transition hover:text-[var(--color-nav-gold-soft)]"
+                                            >
+                                                <LogOut size={16} />
+                                                Log Out
+                                            </button>
                                         </div>
                                     </div>
-
-                                    <div className="profile-menu-scroll relative mt-2 min-h-0 flex-1 overflow-y-auto pr-1">
-                                        <div className="dark-nav-panel relative rounded-[22px] p-3">
-                                        <button
-                                            type="button"
-                                            onClick={() => toggleProfileSection('cashier')}
-                                            className="flex w-full items-center justify-between"
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[var(--color-nav-gold)] shadow-[var(--shadow-nav-pill)]">
-                                                    <Wallet size={14} />
-                                                </div>
-                                                <span className="text-lg font-bold text-white">Cashier</span>
-                                            </div>
-                                            <ChevronDown
-                                                size={16}
-                                                className={`text-white/80 transition-transform ${openProfileSection === 'cashier' ? 'rotate-180' : ''}`}
-                                            />
-                                        </button>
-                                        {openProfileSection === 'cashier' && (
-                                            <div className="mt-3 grid grid-cols-2 gap-3">
-                                                {cashierItems.map(({ id, label, icon: Icon }) => (
-                                                    <button
-                                                        key={id}
-                                                        type="button"
-                                                        onClick={() => {
-                                                            setProfileMenuOpen(false);
-                                                            const page = cashierPageById[id];
-                                                            if (page) onNavigate?.(page);
-                                                        }}
-                                                        className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
-                                                    >
-                                                        <Icon size={18} className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]" />
-                                                        <span className="text-xs font-bold leading-tight text-white">{label}</span>
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        )}
-                                        </div>
-
-                                        <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
-                                        <button
-                                            type="button"
-                                            onClick={() => toggleProfileSection('account')}
-                                            className="flex w-full items-center justify-between"
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[var(--color-nav-gold)] shadow-[var(--shadow-nav-pill)]">
-                                                    <UserRound size={14} />
-                                                </div>
-                                                <span className="text-lg font-bold text-white">My Account</span>
-                                            </div>
-                                            <ChevronDown
-                                                size={16}
-                                                className={`text-white/80 transition-transform ${openProfileSection === 'account' ? 'rotate-180' : ''}`}
-                                            />
-                                        </button>
-
-                                        {openProfileSection === 'account' && (
-                                            <div className="mt-3 grid grid-cols-2 gap-3">
-                                                {accountCards.map(({ id, label, icon: Icon }) => (
-                                                    <button
-                                                        key={id}
-                                                        type="button"
-                                                        onClick={() => {
-                                                            setProfileMenuOpen(false);
-                                                            if (id === 'profile') {
-                                                                onAccountDetailsClick?.();
-                                                            } else {
-                                                                onNavigate?.(id);
-                                                            }
-                                                        }}
-                                                        className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
-                                                    >
-                                                        <Icon size={18} className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]" />
-                                                        <span className="text-xs font-bold leading-tight text-white">{label}</span>
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        )}
-                                        </div>
-
-                                        <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
-                                        <button
-                                            type="button"
-                                            onClick={() => toggleProfileSection('rewards')}
-                                            className="flex w-full items-center justify-between"
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[var(--color-nav-gold)] shadow-[var(--shadow-nav-pill)]">
-                                                    <Trophy size={14} />
-                                                </div>
-                                                <span className="text-lg font-bold text-white">Rewards</span>
-                                            </div>
-                                            <ChevronDown
-                                                size={16}
-                                                className={`text-white/80 transition-transform ${openProfileSection === 'rewards' ? 'rotate-180' : ''}`}
-                                            />
-                                        </button>
-
-                                        {openProfileSection === 'rewards' && (
-                                            <div className="mt-3 grid grid-cols-2 gap-3">
-                                                {REWARDS_PROGRAMS.map(({ id, label }) => {
-                                                    const NavIcon = REWARDS_NAV_ICONS[id] ?? Trophy;
-                                                    return (
-                                                        <button
-                                                            key={id}
-                                                            type="button"
-                                                            onClick={() => {
-                                                                setProfileMenuOpen(false);
-                                                                onNavigate?.('loyalty-rewards', { rewardsTab: id });
-                                                            }}
-                                                            className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
-                                                        >
-                                                            <NavIcon
-                                                                size={18}
-                                                                className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]"
-                                                            />
-                                                            <span className="text-xs font-bold leading-tight text-white">{label}</span>
-                                                        </button>
-                                                    );
-                                                })}
-                                            </div>
-                                        )}
-                                        </div>
-
-                                        <div className="dark-nav-panel relative mt-3 rounded-[22px] p-3">
-                                        <button
-                                            type="button"
-                                            onClick={() => toggleProfileSection('historyRecord')}
-                                            className="flex w-full items-center justify-between transition hover:opacity-90"
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[rgb(90_208_255)] shadow-[var(--shadow-nav-pill)]">
-                                                    <History size={14} />
-                                                </div>
-                                                <span className="text-lg font-bold text-white">History Record</span>
-                                            </div>
-                                            <ChevronDown
-                                                size={16}
-                                                className={`text-white/80 transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-180' : ''}`}
-                                            />
-                                        </button>
-                                        {openProfileSection === 'historyRecord' && (
-                                            <div className="mt-3 grid grid-cols-2 gap-2">
-                                                {HISTORY_RECORD_NAV.map(({ id, label, icon: Icon }) => (
-                                                    <button
-                                                        key={id}
-                                                        type="button"
-                                                        onClick={() => {
-                                                            setProfileMenuOpen(false);
-                                                            onNavigate?.(id);
-                                                        }}
-                                                        className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
-                                                    >
-                                                        <Icon size={18} className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]" />
-                                                        <span className="text-xs font-bold leading-tight text-white">{label}</span>
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        )}
-                                        </div>
-
-                                        <div className="dark-nav-panel mt-3 rounded-[22px] px-4 py-3 transition hover:border-[rgb(102_203_255_/_0.24)]">
-                                        <button
-                                            type="button"
-                                            onClick={() => toggleProfileSection('settings')}
-                                            className="flex w-full items-center justify-between text-left"
-                                        >
-                                            <span className="flex items-center gap-3">
-                                                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#2a87d6_0%,#1b58ae_100%)] text-[rgb(75_141_255)]">
-                                                    <Settings size={14} />
-                                                </span>
-                                                <span className="text-base font-bold text-white">Settings</span>
-                                            </span>
-                                            <ChevronDown
-                                                size={16}
-                                                className={`text-white/80 transition-transform ${openProfileSection === 'settings' ? 'rotate-180' : ''}`}
-                                            />
-                                        </button>
-                                        {openProfileSection === 'settings' && (
-                                            <div className="mt-3 grid grid-cols-2 gap-2">
-                                                {settingsOptions.map(({ id, label, icon: Icon, action }) => (
-                                                    <button
-                                                        key={id}
-                                                        type="button"
-                                                        onClick={() => {
-                                                            setProfileMenuOpen(false);
-                                                            if (action === 'liveChat') {
-                                                                onLiveChatClick?.();
-                                                            } else {
-                                                                onNavigate?.(id);
-                                                            }
-                                                        }}
-                                                        className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
-                                                    >
-                                                        <Icon size={18} className="mb-1.5 text-[var(--color-nav-blue-icon)] group-hover:text-[var(--color-nav-blue-icon-hover)]" />
-                                                        <span className="text-xs font-bold leading-tight text-white">{label}</span>
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        )}
-                                        </div>
-
-                                        <button
-                                            type="button"
-                                            onClick={() => {
-                                                setProfileMenuOpen(false);
-                                                onLogout?.();
-                                            }}
-                                            className="mt-4 inline-flex min-h-[40px] items-center gap-2.5 text-base font-bold text-[var(--color-nav-gold)] transition hover:text-[var(--color-nav-gold-soft)]"
-                                        >
-                                            <LogOut size={16} />
-                                            Log Out
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ) : (
-                        <>
-                            <button
-                                type="button"
-                                onClick={() => onLoginClick?.()}
-                                className="h-7 rounded-lg border border-white/40 px-4 text-xs font-semibold text-white hover:bg-white/10 hover:border-white/50 transition-all"
-                            >
-                                Login
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => onRegisterClick?.()}
-                                className="h-7 rounded-lg bg-[var(--color-success-main)] px-4 text-xs font-semibold text-white shadow-[0_2px_8px_rgba(57,181,74,0.35)] transition-all hover:bg-[var(--color-success-hover)] hover:shadow-[0_2px_10px_rgba(57,181,74,0.4)]"
-                            >
-                                Join Now
-                            </button>
-                            <LanguageSwitcher value={language} onChange={setLanguage} />
-                        </>
-                    )}
+                                )}
+                            </div>
+                        ) : (
+                            <>
+                                <button
+                                    type="button"
+                                    onClick={() => onLoginClick?.()}
+                                    className="h-7 rounded-lg border border-white/40 px-4 text-xs font-semibold text-white hover:bg-white/10 hover:border-white/50 transition-all"
+                                >
+                                    Login
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => onRegisterClick?.()}
+                                    className="h-7 rounded-lg bg-[var(--color-success-main)] px-4 text-xs font-semibold text-white shadow-[0_2px_8px_rgba(57,181,74,0.35)] transition-all hover:bg-[var(--color-success-hover)] hover:shadow-[0_2px_10px_rgba(57,181,74,0.4)]"
+                                >
+                                    Join Now
+                                </button>
+                                <LanguageSwitcher value={language} onChange={setLanguage} />
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -835,18 +834,16 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
 
             <button
                 type="button"
-                className={`fixed inset-x-0 bottom-0 top-0 z-[380] bg-[var(--color-nav-overlay)] backdrop-blur-[1px] transition-opacity duration-300 md:hidden ${
-                    mobileMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
-                }`}
+                className={`fixed inset-x-0 bottom-0 top-0 z-[380] bg-[var(--color-nav-overlay)] backdrop-blur-[1px] transition-opacity duration-300 md:hidden ${mobileMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+                    }`}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close mobile menu"
                 aria-hidden={!mobileMenuOpen}
                 tabIndex={mobileMenuOpen ? 0 : -1}
             />
             <aside
-                className={`fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-blue-panel-start)_0%,var(--gradient-blue-panel-end)_46%,var(--color-page-home)_100%)] text-[var(--color-text-main)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${
-                    mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
-                }`}
+                className={`fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-blue-panel-start)_0%,var(--gradient-blue-panel-end)_46%,var(--color-page-home)_100%)] text-[var(--color-text-main)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
+                    }`}
                 aria-hidden={!mobileMenuOpen}
             >
                 <div className="relative border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.86)_0%,rgba(240,249,255,0.88)_100%)] px-3.5 py-3">
@@ -956,19 +953,17 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
 
                                             handleMobileNavigate(page);
                                         }}
-                                        className={`flex min-h-[48px] w-full items-center gap-3 rounded-[18px] border px-3.5 py-2.5 text-left transition ${
-                                            isActive
+                                        className={`flex min-h-[48px] w-full items-center gap-3 rounded-[18px] border px-3.5 py-2.5 text-left transition ${isActive
                                                 ? 'border-amber-300 bg-[linear-gradient(180deg,rgba(255,212,74,0.98)_0%,rgba(255,181,44,0.96)_100%)] text-[var(--color-cta-text)] shadow-[0_14px_26px_rgba(255,174,39,0.22)]'
                                                 : 'border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(240,249,255,0.9)_100%)] text-[var(--color-text-main)] shadow-[var(--shadow-input)] hover:border-[var(--color-accent-200)] hover:bg-white'
-                                        }`}
+                                            }`}
                                         aria-expanded={isMoreRow ? mobileMoreOpen : undefined}
                                     >
                                         <span
-                                            className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${
-                                                isActive
+                                            className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${isActive
                                                     ? 'border-amber-950/10 bg-amber-950/10 text-[var(--color-cta-text)]'
                                                     : 'border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
-                                            }`}
+                                                }`}
                                         >
                                             <Icon size={16} />
                                         </span>
@@ -988,11 +983,10 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                 return (
                                                     <div
                                                         key={sectionId}
-                                                        className={`overflow-hidden rounded-[16px] border transition ${
-                                                            sectionHasActiveItem
+                                                        className={`overflow-hidden rounded-[16px] border transition ${sectionHasActiveItem
                                                                 ? 'border-[var(--color-accent-200)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(229,246,255,0.96)_100%)] shadow-[var(--shadow-brand-soft)]'
                                                                 : 'border-[var(--color-border-accent)] bg-white/75'
-                                                        }`}
+                                                            }`}
                                                     >
                                                         <button
                                                             type="button"
@@ -1023,18 +1017,16 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                                             key={item.id}
                                                                             type="button"
                                                                             onClick={() => handleMobileMoreItemClick(item)}
-                                                                            className={`flex min-h-[42px] w-full items-center gap-2.5 rounded-[14px] px-3 py-2 text-left transition ${
-                                                                                itemActive
+                                                                            className={`flex min-h-[42px] w-full items-center gap-2.5 rounded-[14px] px-3 py-2 text-left transition ${itemActive
                                                                                     ? 'bg-[linear-gradient(180deg,var(--color-brand-soft)_0%,rgba(255,255,255,0.96)_100%)] text-[var(--color-text-brand-soft)] shadow-[var(--shadow-brand-soft)]'
                                                                                     : 'bg-transparent text-[var(--color-text-main)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-strong)]'
-                                                                            }`}
+                                                                                }`}
                                                                         >
                                                                             <span
-                                                                                className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${
-                                                                                    itemActive
+                                                                                className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${itemActive
                                                                                         ? 'bg-white text-[var(--color-text-brand)]'
                                                                                         : 'bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
-                                                                                }`}
+                                                                                    }`}
                                                                             >
                                                                                 <ItemIcon size={14} />
                                                                             </span>
