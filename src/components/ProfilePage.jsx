@@ -285,61 +285,68 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                 <h1 className="page-title">Account Details</h1>
 
                 <div className="mt-8 space-y-6">
-                    <div className="surface-card flex flex-col gap-4 rounded-2xl p-5 sm:p-6 md:flex-row md:items-center md:justify-between md:gap-8 md:p-8">
-                        <div className="flex min-w-0 flex-1 flex-col gap-4 sm:gap-5 md:flex-row md:items-center">
-                            <div className="relative shrink-0 self-start">
+                    <div className="surface-card flex items-center justify-between gap-4 rounded-2xl p-4 sm:p-6 md:gap-8 md:p-8">
+                        <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-6">
+                            <div className="relative shrink-0">
                                 <button
                                     type="button"
                                     onClick={() => setProfilePhotoModalOpen(true)}
                                     className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-400)] focus-visible:ring-offset-2"
                                     aria-label="Change profile photo"
                                 >
-                                    <div className="blue-accent-avatar flex h-[4.5rem] w-[4.5rem] items-center justify-center overflow-hidden rounded-full sm:h-20 sm:w-20 md:h-24 md:w-24">
+                                    <div className="blue-accent-avatar flex h-14 w-14 items-center justify-center overflow-hidden rounded-full sm:h-20 sm:w-20 md:h-24 md:w-24">
                                         {profilePhotoUrl ? (
                                             <img src={profilePhotoUrl} alt="" className="h-full w-full object-cover" />
                                         ) : (
-                                            <UserCircle2 size={48} className="text-[var(--color-accent-600)]" />
+                                            <UserCircle2 size={32} className="text-[var(--color-accent-600)] sm:hidden" />
+                                        )}
+                                        {!profilePhotoUrl && (
+                                            <UserCircle2 size={48} className="hidden text-[var(--color-accent-600)] sm:block md:hidden" />
+                                        )}
+                                        {!profilePhotoUrl && (
+                                            <UserCircle2 size={56} className="hidden text-[var(--color-accent-600)] md:block" />
                                         )}
                                     </div>
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => setProfilePhotoModalOpen(true)}
-                                    className="absolute bottom-0 right-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-sm transition hover:scale-105 hover:bg-[var(--color-accent-50)]"
+                                    className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-sm transition hover:scale-105 hover:bg-[var(--color-accent-50)] sm:h-8 sm:w-8"
                                     aria-label="Edit profile photo"
                                 >
-                                    <PencilLine size={14} />
+                                    <PencilLine size={12} className="sm:hidden" />
+                                    <PencilLine size={14} className="hidden sm:block" />
                                 </button>
                             </div>
-
-                            <div className="flex min-w-0 flex-1 flex-col gap-3">
-                                <div className="space-y-1.5">
-                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent-600)] sm:text-xs sm:tracking-widest">
-                                        Verified Account Profile
+                            
+                            <div className="flex min-w-0 flex-1 flex-col">
+                                <div className="space-y-0.5">
+                                    <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-accent-600)] md:text-xs">
+                                        Verified Profile
                                     </p>
-                                    <h2 className="truncate text-2xl font-bold tracking-tight text-[var(--color-text-strong)] md:text-3xl">
+                                    <h2 className="truncate text-lg font-bold tracking-tight text-[var(--color-text-strong)] sm:text-2xl md:text-3xl">
                                         {formValues.username}
                                     </h2>
-                                    <p className="text-sm font-medium text-[var(--color-text-muted)]">{formValues.email}</p>
+                                    <p className="truncate text-[11px] font-medium text-[var(--color-text-muted)] sm:text-sm">{formValues.email}</p>
                                 </div>
-                                <div className="flex flex-row gap-2 sm:flex-wrap">
-                                    <span className="inline-flex w-fit rounded-full border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--color-accent-700)]">
+                                <div className="mt-1.5 flex flex-wrap gap-1.5">
+                                    <span className="inline-flex rounded-full border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent-700)] sm:px-3 sm:py-1 sm:text-xs">
                                         Joined 08/01/2026
                                     </span>
-                                    <span className="inline-flex w-fit rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--color-accent-700)]">
-                                        Player ID 679129
+                                    <span className="inline-flex rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent-700)] sm:px-3 sm:py-1 sm:text-xs">
+                                        ID 679129
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex w-full shrink-0 flex-col border-t border-[var(--color-border-default)] pt-4 md:w-auto md:border-t-0 md:pt-0 md:pl-2">
-                            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)] md:sr-only">
-                                VIP rank
+                        <div className="flex shrink-0 flex-col items-center justify-center md:items-end">
+                            <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)] md:hidden">
+                                Rank
                             </p>
-                            <div className="flex justify-start md:justify-end">
+                            <div className="flex justify-center md:justify-end">
                                 <div className="md:hidden">
-                                    <VipStatusPill level={vipLevel} size="large" layout="row" />
+                                    <VipStatusPill level={vipLevel} size="compact" layout="row" />
                                 </div>
                                 <div className="hidden md:block">
                                     <VipStatusPill level={vipLevel} size="large" layout="column" />
