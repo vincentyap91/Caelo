@@ -5,10 +5,19 @@
 
 /** Verify username/password – returns session context if 2FA required */
 export async function verifyLogin(username, password) {
+  // Simulate network latency
+  await new Promise((resolve) => setTimeout(resolve, 800));
+
   // Placeholder: in production, call POST /api/auth/login
   if (!username?.trim() || !password) {
     return { success: false, error: 'Username and password are required' };
   }
+
+  // Demo: "fail" username triggers error
+  if (username.toLowerCase() === 'fail' || password === 'error') {
+    return { success: false, error: 'Invalid username or password' };
+  }
+
   // Demo: username "2fa" triggers 2FA step
   const requires2FA = username.toLowerCase().includes('2fa');
   return {
@@ -21,6 +30,9 @@ export async function verifyLogin(username, password) {
 
 /** Verify 6-digit 2FA code for login completion */
 export async function verify2FALogin(sessionId, code, trustDevice = false) {
+  // Simulate network latency
+  await new Promise((resolve) => setTimeout(resolve, 800));
+
   // Placeholder: in production, call POST /api/auth/2fa/verify
   if (!sessionId || !code) {
     return { success: false, error: 'Session and code are required' };
@@ -36,6 +48,9 @@ export async function verify2FALogin(sessionId, code, trustDevice = false) {
 
 /** WhatsApp login integration point. Hook real deep link / backend flow here when ready. */
 export async function loginWithWhatsApp() {
+  // Simulate network latency
+  await new Promise((resolve) => setTimeout(resolve, 600));
+
   // Placeholder: in production, open WhatsApp auth flow or call POST /api/auth/whatsapp
   return {
     success: false,

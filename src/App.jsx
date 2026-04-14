@@ -61,7 +61,7 @@ import { REWARDS_PROGRAM_IDS } from './constants/rewardsPrograms';
 import { HISTORY_RECORD_PAGE_IDS } from './constants/historyRecordPages';
 import { parseGameDetailSlugFromPathname } from './utils/gameDetailRoutes';
 import ErrorBoundary from './components/ErrorBoundary';
-
+import ScrollToTop from './components/ui/ScrollToTop';
 
 function resolvePageFromPath() {
   try {
@@ -267,7 +267,10 @@ function AppInner() {
     if (!suppressLoginToast) {
       showPushNotification({ event: PUSH_EVENT.LOGIN_SUCCESS, userName: name || user.name });
     }
-  }, [showPushNotification]);
+    
+    // Redirect to home page after successful login
+    redirectToPublicHome({ replace: false });
+  }, [showPushNotification, redirectToPublicHome]);
 
   useEffect(() => {
     if (!authUser) return undefined;
@@ -410,6 +413,12 @@ function AppInner() {
       return;
     }
     const nextPath = pathByPage[resolvedPage] ?? pathByPage[targetPage] ?? '/';
+    
+    // If we're already on the same page, scroll to top (user "refresh" action)
+    if (page === resolvedPage) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+
     setPage(resolvedPage);
     setPageNavigationState(options ?? null);
 
@@ -478,6 +487,7 @@ function AppInner() {
               ? 'bg-[var(--color-page-account)]'
               : 'bg-[var(--color-page-default)]'
     }`}>
+      <ScrollToTop />
       <FloatingSocials
         onLiveChatClick={() => setLiveChatOpen((open) => !open)}
         onDownloadAppClick={handleDownloadAppClick}

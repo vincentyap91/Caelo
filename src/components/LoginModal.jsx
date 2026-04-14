@@ -65,6 +65,9 @@ export default function LoginModal({
                 onLogin?.(result.username || username.trim());
                 onClose?.();
             }
+        } catch (err) {
+            console.error('Login error:', err);
+            setLoginError('An unexpected error occurred. Please try again.');
         } finally {
             setLoginLoading(false);
         }
@@ -81,6 +84,9 @@ export default function LoginModal({
             }
             onLogin?.(result.user || result.username || username.trim() || 'demo');
             onClose?.();
+        } catch (err) {
+            console.error('WhatsApp login error:', err);
+            setLoginError('Could not connect to WhatsApp. Please try again later.');
         } finally {
             setWhatsappLoading(false);
         }
