@@ -52,6 +52,7 @@ import FloatingSocials from './components/FloatingSocials';
 import LoginModal from './components/LoginModal';
 import './index.css';
 import LiveChatModal from './components/LiveChatModal';
+
 import { ReferralDataProvider } from './context/ReferralDataContext';
 import { FavouritesProvider } from './context/FavouritesContext';
 import { ActionNotificationsProvider, useActionNotifications } from './context/ActionNotificationsContext';
@@ -59,106 +60,114 @@ import { PUSH_EVENT } from './constants/pushNotificationCopy';
 import { REWARDS_PROGRAM_IDS } from './constants/rewardsPrograms';
 import { HISTORY_RECORD_PAGE_IDS } from './constants/historyRecordPages';
 import { parseGameDetailSlugFromPathname } from './utils/gameDetailRoutes';
+import ErrorBoundary from './components/ErrorBoundary';
+
 
 function resolvePageFromPath() {
-  const pathname = window.location.pathname.toLowerCase();
-  if (pathname === '/casino' || pathname === '/live-casino') {
-    return 'live-casino';
-  }
-  if (pathname === '/game' || pathname.startsWith('/game/')) {
-    return 'game-detail';
-  }
-  if (pathname === '/slots') {
-    return 'slots';
-  }
-  if (pathname === '/all-games' || pathname === '/games') {
-    return 'all-games';
-  }
-  if (pathname === '/sports') {
-    return 'sports';
-  }
-  if (pathname === '/e-sports' || pathname === '/esports') {
-    return 'e-sports';
-  }
-  if (pathname === '/lottery') {
-    return 'lottery';
-  }
-  if (pathname === '/fishing') {
-    return 'fishing';
-  }
-  if (pathname === '/poker') {
-    return 'poker';
-  }
-  if (pathname === '/promotion' || pathname === '/promotions') {
-    return 'promotion';
-  }
-  if (pathname === '/vip') {
-    return 'vip';
-  }
-  if (pathname === '/referral') {
-    return 'referral';
-  }
-  if (pathname === '/register') {
-    return 'register';
-  }
-  if (pathname === '/profile' || pathname === '/account-details') {
-    return 'profile';
-  }
-  if (pathname === '/loyalty-rewards' || pathname === '/loyalty') {
-    return 'loyalty-rewards';
-  }
-  if (pathname === '/verification') {
-    return 'verification';
-  }
-  if (pathname === '/favourites') {
-    return 'favourites';
-  }
-  if (pathname === '/my-bets') {
-    return 'my-bets';
-  }
-  if (pathname === '/feedback') {
-    return 'feedback';
-  }
-  if (pathname === '/help' || pathname === '/help-center') {
-    return 'help-center';
-  }
-  if (pathname === '/terms' || pathname === '/terms-and-conditions') {
-    return 'help-center';
-  }
-  if (pathname === '/about' || pathname === '/about-us') {
-    return 'about';
-  }
-  if (pathname === '/security') {
-    return 'security';
-  }
-  if (pathname === '/notifications') {
-    return 'notifications';
-  }
-  if (pathname === '/rebate') {
-    return 'rebate';
-  }
-  if (pathname === '/referral-commission') {
-    return 'referral-commission';
-  }
-  if (pathname === '/deposit') {
-    return 'deposit';
-  }
-  if (pathname === '/withdrawal') {
-    return 'withdrawal';
-  }
-  const historyRecordPage = HISTORY_RECORD_PAGE_IDS.find((id) => pathname === `/${id}`);
-  if (historyRecordPage) {
-    return historyRecordPage;
-  }
-  // Legacy app-download URLs render homepage (URL normalized in useEffect)
-  if (pathname === '/app-download' || pathname === '/download' || pathname === '/mobile') {
+  try {
+    const pathname = window.location.pathname.toLowerCase();
+    if (pathname === '/casino' || pathname === '/live-casino') {
+      return 'live-casino';
+    }
+    if (pathname === '/game' || pathname.startsWith('/game/')) {
+      return 'game-detail';
+    }
+    if (pathname === '/slots') {
+      return 'slots';
+    }
+    if (pathname === '/all-games' || pathname === '/games') {
+      return 'all-games';
+    }
+    if (pathname === '/sports') {
+      return 'sports';
+    }
+    if (pathname === '/e-sports' || pathname === '/esports') {
+      return 'e-sports';
+    }
+    if (pathname === '/lottery') {
+      return 'lottery';
+    }
+    if (pathname === '/fishing') {
+      return 'fishing';
+    }
+    if (pathname === '/poker') {
+      return 'poker';
+    }
+    if (pathname === '/promotion' || pathname === '/promotions') {
+      return 'promotion';
+    }
+    if (pathname === '/vip') {
+      return 'vip';
+    }
+    if (pathname === '/referral') {
+      return 'referral';
+    }
+    if (pathname === '/register') {
+      return 'register';
+    }
+    if (pathname === '/profile' || pathname === '/account-details') {
+      return 'profile';
+    }
+    if (pathname === '/loyalty-rewards' || pathname === '/loyalty') {
+      return 'loyalty-rewards';
+    }
+    if (pathname === '/verification') {
+      return 'verification';
+    }
+    if (pathname === '/favourites') {
+      return 'favourites';
+    }
+    if (pathname === '/my-bets') {
+      return 'my-bets';
+    }
+    if (pathname === '/feedback') {
+      return 'feedback';
+    }
+    if (pathname === '/help' || pathname === '/help-center') {
+      return 'help-center';
+    }
+    if (pathname === '/terms' || pathname === '/terms-and-conditions') {
+      return 'help-center';
+    }
+    if (pathname === '/about' || pathname === '/about-us') {
+      return 'about';
+    }
+    if (pathname === '/security') {
+      return 'security';
+    }
+    if (pathname === '/notifications') {
+      return 'notifications';
+    }
+    if (pathname === '/rebate') {
+      return 'rebate';
+    }
+    if (pathname === '/referral-commission') {
+      return 'referral-commission';
+    }
+    if (pathname === '/deposit') {
+      return 'deposit';
+    }
+    if (pathname === '/withdrawal') {
+      return 'withdrawal';
+    }
+    const historyRecordPage = HISTORY_RECORD_PAGE_IDS.find((id) => pathname === `/${id}`);
+    if (historyRecordPage) {
+      return historyRecordPage;
+    }
+    // Legacy app-download URLs render homepage (URL normalized in useEffect)
+    if (pathname === '/app-download' || pathname === '/download' || pathname === '/mobile') {
+      return 'home';
+    }
+    if (pathname === '/bet-slip') {
+      return 'my-bets';
+    }
+    return 'home';
+  } catch (err) {
+    console.error('[resolvePageFromPath] Failed to resolve page from pathname:', err);
     return 'home';
   }
-  if (pathname === '/bet-slip') {
-    return 'my-bets';
-  }
-  return 'home';
 }
+
 
 const DOWNLOAD_APP_HASH = '#download-app';
 const PROTECTED_PAGE_IDS = new Set([
@@ -495,6 +504,7 @@ function AppInner() {
       />
 
       <div className={page === 'home' ? 'max-md:pt-14 md:pt-[92px]' : 'pt-14 md:pt-[92px]'}>
+      <ErrorBoundary>
       <Suspense fallback={<LoadingPage fullPage="overlay" minDelay={300} />}>
       {page === 'home' ? (
         <>
@@ -618,6 +628,7 @@ function AppInner() {
         />
       )}
       </Suspense>
+      </ErrorBoundary>
 
       <Footer
         onNavigate={handleNavigate}

@@ -2,13 +2,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://v2.vitejs.dev/config/
-// `base: './'` keeps asset URLs relative for static hosting.
-// Offline mode emits one JS/CSS bundle first; `scripts/inline-dist.cjs` then inlines them
-// into `dist/index.html` so `file://` works without extra files.
+// `base: '/'`  → absolute asset paths; required for Vercel/server deployments so that
+//               sub-routes like /casino still load /assets/index-xxx.js correctly.
+// `base: './'` → relative paths; only used for the offline single-file bundle so that
+//               file:// protocol works without a web server.
 export default defineConfig(({ mode }) => {
   const isOffline = mode === 'offline'
 
   return {
+    // Use absolute base for all server/Vercel deployments; relative only for offline bundle.
     base: isOffline ? './' : '/',
     plugins: [react()],
     build: isOffline

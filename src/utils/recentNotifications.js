@@ -42,7 +42,9 @@ export function recordTransactionNotification({ kind }) {
         const prev = loadRecentNotifications();
         const next = [entry, ...prev].slice(0, MAX_ITEMS);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-        window.dispatchEvent(new CustomEvent('riocity-recent-notifications-updated'));
+        if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('riocity-recent-notifications-updated'));
+        }
     } catch {
         /* quota */
     }
@@ -66,7 +68,9 @@ export function recordPushNotificationEntry({ title, message, status = 'info', k
         const prev = loadRecentNotifications();
         const next = [entry, ...prev].slice(0, MAX_ITEMS);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-        window.dispatchEvent(new CustomEvent('riocity-recent-notifications-updated'));
+        if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('riocity-recent-notifications-updated'));
+        }
     } catch {
         /* quota */
     }
@@ -75,7 +79,9 @@ export function recordPushNotificationEntry({ title, message, status = 'info', k
 export function clearRecentNotifications() {
     try {
         localStorage.removeItem(STORAGE_KEY);
-        window.dispatchEvent(new CustomEvent('riocity-recent-notifications-updated'));
+        if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('riocity-recent-notifications-updated'));
+        }
     } catch {
         /* ignore */
     }
