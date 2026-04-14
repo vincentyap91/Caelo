@@ -63,134 +63,134 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                                     />
                                 ) : (
                                     <>
-                                <form className="space-y-3" onSubmit={handleRegister} noValidate>
-                                    <label className="block">
-                                        <span className="sr-only">Username</span>
-                                        <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                            <UserRound size={16} className="text-[rgb(79_125_183)]" />
-                                            <input
-                                                name="username"
-                                                value={username}
-                                                onChange={(ev) => setUsername(ev.target.value)}
-                                                placeholder="Username *"
-                                                autoComplete="username"
-                                                className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
-                                            />
-                                        </div>
-                                    </label>
+                                        <form className="space-y-3" onSubmit={handleRegister} noValidate>
+                                            <label className="block">
+                                                <span className="sr-only">Username</span>
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
+                                                    <UserRound size={16} className="text-[rgb(79_125_183)]" />
+                                                    <input
+                                                        name="username"
+                                                        value={username}
+                                                        onChange={(ev) => setUsername(ev.target.value)}
+                                                        placeholder="Username *"
+                                                        autoComplete="username"
+                                                        className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
+                                                    />
+                                                </div>
+                                            </label>
 
-                                    <label className="block">
-                                        <span className="sr-only">New Password</span>
-                                        <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                            <Lock size={16} className="text-[rgb(79_125_183)]" />
-                                            <input
-                                                type={showPassword ? 'text' : 'password'}
-                                                placeholder="New Password *"
-                                                className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
-                                            />
+                                            <label className="block">
+                                                <span className="sr-only">New Password</span>
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
+                                                    <Lock size={16} className="text-[rgb(79_125_183)]" />
+                                                    <input
+                                                        type={showPassword ? 'text' : 'password'}
+                                                        placeholder="New Password *"
+                                                        className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setShowPassword((value) => !value)}
+                                                        className="text-[rgb(111_133_168)] hover:text-[rgb(35_64_106)]"
+                                                        aria-label="Toggle password visibility"
+                                                    >
+                                                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                                    </button>
+                                                </div>
+                                            </label>
+
+                                            <div className="grid grid-cols-[84px_1fr] gap-2">
+                                                <label className="block">
+                                                    <span className="sr-only">Country code</span>
+                                                    <div className="flex h-11 items-center justify-between rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[rgb(35_64_106)] shadow-[var(--inset-panel)]">
+                                                        +60
+                                                        <ChevronDown size={14} />
+                                                    </div>
+                                                </label>
+                                                <label className="block">
+                                                    <span className="sr-only">Telephone number</span>
+                                                    <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
+                                                        <Phone size={16} className="text-[rgb(79_125_183)]" />
+                                                        <input
+                                                            placeholder="Telephone Number *"
+                                                            value={phone}
+                                                            onChange={(ev) => setPhone(ev.target.value)}
+                                                            inputMode="tel"
+                                                            autoComplete="tel"
+                                                            className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
+                                                        />
+                                                    </div>
+                                                </label>
+                                            </div>
+
+                                            <label className="block">
+                                                <span className="sr-only">Full Name</span>
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
+                                                    <UserRound size={16} className="text-[rgb(79_125_183)]" />
+                                                    <input
+                                                        placeholder="Full Name *"
+                                                        className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
+                                                    />
+                                                </div>
+                                            </label>
+
+                                            <label className="block">
+                                                <span className="sr-only">Email</span>
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
+                                                    <Mail size={16} className="text-[rgb(79_125_183)]" />
+                                                    <input
+                                                        placeholder="Email *"
+                                                        className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
+                                                    />
+                                                </div>
+                                            </label>
+
+                                            <label className="block">
+                                                <span className="sr-only">Currency</span>
+                                                <div className="flex h-11 items-center justify-between rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[rgb(35_64_106)] shadow-[var(--inset-panel)]">
+                                                    Malaysian Ringgit (MYR)
+                                                    <ChevronDown size={14} />
+                                                </div>
+                                            </label>
+
+                                            <label className="block">
+                                                <span className="sr-only">Affiliate ID</span>
+                                                <div className="flex h-11 items-center justify-between rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[rgb(35_64_106)] shadow-[var(--inset-panel)]">
+                                                    Affiliate ID / Referral (Optional)
+                                                    <ChevronDown size={14} />
+                                                </div>
+                                            </label>
+
+                                            <button
+                                                type="submit"
+                                                className="btn-theme-auth h-11 w-full rounded-md text-base font-bold tracking-wide transition hover:brightness-105"
+                                            >
+                                                REGISTER
+                                            </button>
+                                        </form>
+
+                                        <p className="mt-3 text-xs text-[rgb(80_105_141)]">
+                                            By clicking the <span className="font-bold text-[rgb(255_185_104)]">REGISTER</span> button, I acknowledge that I am above 18 years old and have read and accepted your Terms &amp; Conditions.
+                                        </p>
+                                        <p className="mt-3 text-sm text-[rgb(80_105_141)]">
+                                            Already have account?{' '}
+                                            <button type="button" onClick={() => onLoginClick?.()} className="font-bold text-[rgb(255_185_104)] hover:underline">
+                                                LOGIN
+                                            </button>
+                                        </p>
+
+                                        <div className="mt-5 flex w-full flex-col items-center border-t border-[rgb(171_204_235)] pt-5 text-center">
+                                            <h2 className="text-xs font-medium leading-snug tracking-tight text-[rgb(111_133_168)] sm:text-sm">
+                                                Register with WhatsApp
+                                            </h2>
                                             <button
                                                 type="button"
-                                                onClick={() => setShowPassword((value) => !value)}
-                                                className="text-[rgb(111_133_168)] hover:text-[rgb(35_64_106)]"
-                                                aria-label="Toggle password visibility"
+                                                className="mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[#1da851] bg-[#25D366] px-4 text-sm font-semibold text-white shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[#20bd5a] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97]"
                                             >
-                                                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                                <WhatsAppIcon size={16} className="shrink-0 opacity-95" />
+                                                WhatsApp
                                             </button>
                                         </div>
-                                    </label>
-
-                                    <div className="grid grid-cols-[84px_1fr] gap-2">
-                                        <label className="block">
-                                            <span className="sr-only">Country code</span>
-                                            <div className="flex h-11 items-center justify-between rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[rgb(35_64_106)] shadow-[var(--inset-panel)]">
-                                                +60
-                                                <ChevronDown size={14} />
-                                            </div>
-                                        </label>
-                                        <label className="block">
-                                            <span className="sr-only">Telephone number</span>
-                                            <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                                <Phone size={16} className="text-[rgb(79_125_183)]" />
-                                                <input
-                                                    placeholder="Telephone Number *"
-                                                    value={phone}
-                                                    onChange={(ev) => setPhone(ev.target.value)}
-                                                    inputMode="tel"
-                                                    autoComplete="tel"
-                                                    className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
-                                                />
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <label className="block">
-                                        <span className="sr-only">Full Name</span>
-                                        <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                            <UserRound size={16} className="text-[rgb(79_125_183)]" />
-                                            <input
-                                                placeholder="Full Name *"
-                                                className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
-                                            />
-                                        </div>
-                                    </label>
-
-                                    <label className="block">
-                                        <span className="sr-only">Email</span>
-                                        <div className="flex h-11 items-center gap-2 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                            <Mail size={16} className="text-[rgb(79_125_183)]" />
-                                            <input
-                                                placeholder="Email *"
-                                                className="w-full bg-transparent text-sm text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
-                                            />
-                                        </div>
-                                    </label>
-
-                                    <label className="block">
-                                        <span className="sr-only">Currency</span>
-                                        <div className="flex h-11 items-center justify-between rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[rgb(35_64_106)] shadow-[var(--inset-panel)]">
-                                            Malaysian Ringgit (MYR)
-                                            <ChevronDown size={14} />
-                                        </div>
-                                    </label>
-
-                                    <label className="block">
-                                        <span className="sr-only">Affiliate ID</span>
-                                        <div className="flex h-11 items-center justify-between rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[rgb(35_64_106)] shadow-[var(--inset-panel)]">
-                                            Affiliate ID / Referral (Optional)
-                                            <ChevronDown size={14} />
-                                        </div>
-                                    </label>
-
-                                    <button
-                                        type="submit"
-                                        className="btn-theme-auth h-11 w-full rounded-md text-base font-bold tracking-wide transition hover:brightness-105"
-                                    >
-                                        REGISTER
-                                    </button>
-                                </form>
-
-                                <p className="mt-3 text-xs text-[rgb(80_105_141)]">
-                                    By clicking the <span className="font-bold text-[rgb(255_185_104)]">REGISTER</span> button, I acknowledge that I am above 18 years old and have read and accepted your Terms &amp; Conditions.
-                                </p>
-                                <p className="mt-3 text-sm text-[rgb(80_105_141)]">
-                                    Already have account?{' '}
-                                    <button type="button" onClick={() => onLoginClick?.()} className="font-bold text-[rgb(255_185_104)] hover:underline">
-                                        LOGIN
-                                    </button>
-                                </p>
-
-                                <div className="mt-5 flex w-full flex-col items-center border-t border-[rgb(171_204_235)] pt-5 text-center">
-                                    <h2 className="text-xs font-medium leading-snug tracking-tight text-[rgb(111_133_168)] sm:text-sm">
-                                        Register with WhatsApp
-                                    </h2>
-                                    <button
-                                        type="button"
-                                        className="mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[#1da851] bg-[#25D366] px-4 text-sm font-semibold text-white shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[#20bd5a] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97]"
-                                    >
-                                        <WhatsAppIcon size={16} className="shrink-0 opacity-95" />
-                                        WhatsApp
-                                    </button>
-                                </div>
                                     </>
                                 )}
                             </div>

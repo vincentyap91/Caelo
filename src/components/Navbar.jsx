@@ -11,7 +11,7 @@ import {
     Gift,
     HelpCircle,
     House,
-    Landmark,
+    Spade,
     LayoutGrid,
     Megaphone,
     Smartphone,
@@ -77,7 +77,7 @@ const NAV_HREFS = {
 };
 const MOBILE_PRIMARY_ITEMS = [
     { id: 'home', label: 'Home', page: 'home', icon: House },
-    { id: 'casino', label: 'Casino', page: 'live-casino', icon: Landmark },
+    { id: 'casino', label: 'Casino', page: 'live-casino', icon: Spade },
     { id: 'slots', label: 'Slots', page: 'slots', icon: Dices },
     { id: 'sports', label: 'Sports', page: 'sports', icon: Trophy },
     { id: 'promotions', label: 'Promotions', page: 'promotion', icon: Megaphone },

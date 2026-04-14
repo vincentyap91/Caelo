@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
-import { Dices, Fish, Flame, Gamepad2, Landmark, Ticket, Trophy } from 'lucide-react';
+import { Dices, Fish, Flame, Gamepad2, Spade, Ticket, Trophy } from 'lucide-react';
 import TopGameCard from '../game/TopGameCard';
 import { TOP_GAMES } from '../../constants/topGamesCatalog';
 
 const CATEGORIES = [
     { id: 'popular', label: 'Popular', page: null, icon: Flame },
-    { id: 'live-casino', label: 'Casino', page: 'live-casino', icon: Landmark },
+    { id: 'live-casino', label: 'Casino', page: 'live-casino', icon: Spade },
     { id: 'sports', label: 'Sports', page: 'sports', icon: Trophy },
     { id: 'e-sports', label: 'E-Sports', page: 'e-sports', icon: Gamepad2 },
     { id: 'slots', label: 'Slots', page: 'slots', icon: Dices },
