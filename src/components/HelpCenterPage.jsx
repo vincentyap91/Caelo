@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, Search } from 'lucide-react';
+import SegmentedTabs from './ui/SegmentedTabs';
 
 const mainTabs = [
     { id: 'faq', label: 'FAQ' },
@@ -159,22 +160,11 @@ export default function HelpCenterPage({ navigationState = null }) {
                     <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-soft)]" />
                 </label>
 
-                <div className="flex gap-1 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)]">
-                    {mainTabs.map(({ id, label }) => (
-                        <button
-                            key={id}
-                            type="button"
-                            onClick={() => setMainTab(id)}
-                            className={`min-w-0 flex-1 rounded-lg px-2 py-2.5 text-sm font-semibold transition sm:px-4 ${
-                                mainTab === id
-                                    ? 'btn-theme-primary shadow-sm'
-                                    : 'bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
-                            }`}
-                        >
-                            {label}
-                        </button>
-                    ))}
-                </div>
+                <SegmentedTabs
+                    items={mainTabs}
+                    value={mainTab}
+                    onChange={setMainTab}
+                />
 
                 <div className="flex flex-wrap gap-2">
                     {subCategoryTabs.map(({ id, label }) => (
@@ -182,7 +172,7 @@ export default function HelpCenterPage({ navigationState = null }) {
                             key={id}
                             type="button"
                             onClick={() => setSubTab(id)}
-                            className={`rounded-xl px-4 py-2.5 text-sm font-medium transition ${
+                            className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
                                 subTab === id
                                     ? 'border-2 border-[var(--color-accent-500)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-sm'
                                     : 'border border-transparent bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'

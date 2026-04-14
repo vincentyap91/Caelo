@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AccountHistoryRecordPanel from './AccountHistoryRecordPanel';
-import SecurityTabs from './security/SecurityTabs';
+import SegmentedTabs from './ui/SegmentedTabs';
 import {
     HISTORY_RECORD_PANEL_CONFIG,
     TRANSACTION_RECORD_ROWS,
@@ -32,10 +32,10 @@ export default function HistoryRecordPage({ activePage }) {
                 rowDateKey="date"
                 filterSlot={
                     isTransactionRecord ? (
-                        <SecurityTabs
-                            activeTab={transactionType}
-                            onTabChange={setTransactionType}
-                            tabs={TRANSACTION_RECORD_TABS}
+                        <SegmentedTabs
+                            value={transactionType}
+                            onChange={setTransactionType}
+                            items={TRANSACTION_RECORD_TABS}
                         />
                     ) : null
                 }

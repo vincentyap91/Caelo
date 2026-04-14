@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { ArrowDownUp, Search } from 'lucide-react';
 import CalendarDateInput from '../CalendarDateInput';
-import SecurityTabs from '../security/SecurityTabs';
+import SegmentedTabs from '../ui/SegmentedTabs';
 import PromotionStyleTabs from '../PromotionStyleTabs';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from '../HorizontalScrollTabRow';
 
@@ -152,7 +152,7 @@ export default function DownlineReferralsPanel() {
     return (
         <div>
             <div className="mb-8">
-                <SecurityTabs activeTab={view} onTabChange={setView} tabs={DOWNLINE_VIEW_TABS} />
+                <SegmentedTabs value={view} onChange={setView} items={DOWNLINE_VIEW_TABS} />
             </div>
 
             <div className="space-y-6">

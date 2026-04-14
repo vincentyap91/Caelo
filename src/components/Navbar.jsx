@@ -364,7 +364,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
             <button
                 type="button"
                 onClick={() => onDownloadAppClick?.()}
-                className={`fixed right-6 z-[110] inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] text-white shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition hover:brightness-105 md:hidden bottom-36`}
+                className={`fixed right-6 z-[110] hidden md:inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] text-white shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition hover:brightness-105 bottom-36`}
                 aria-label="Download app"
             >
                 <Smartphone size={18} className="shrink-0" />

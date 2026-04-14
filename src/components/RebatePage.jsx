@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 import CalendarDateInput from './CalendarDateInput';
-import SecurityTabs from './security/SecurityTabs';
+import SegmentedTabs from './ui/SegmentedTabs';
 
 function formatDateForInput(d) {
     const y = d.getFullYear();
@@ -119,7 +119,7 @@ export default function RebatePage() {
             <h1 className="page-title mb-5 md:mb-8">Rebate</h1>
 
             <div className="mb-5 md:mb-8">
-                <SecurityTabs activeTab={activeTab} onTabChange={setActiveTab} tabs={REBATE_TABS} layout="equal-mobile" />
+                <SegmentedTabs activeTab={activeTab} onChange={setActiveTab} items={REBATE_TABS} value={activeTab} />
             </div>
 
             <div className="space-y-4 md:space-y-6">
@@ -239,22 +239,11 @@ export default function RebatePage() {
 
                 {activeTab === 'benefit' && (
                     <div className="space-y-4 md:space-y-6">
-                        <div className="-mx-1 flex gap-1 overflow-x-auto overflow-y-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-1 pb-2 shadow-[var(--shadow-subtle)] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:pb-1">
-                            {BENEFIT_CATEGORY_TABS.map(({ id, label }) => (
-                                <button
-                                    key={id}
-                                    type="button"
-                                    onClick={() => setBenefitCategory(id)}
-                                    className={`min-h-11 shrink-0 rounded-lg px-3 py-2.5 text-sm font-semibold transition sm:min-h-0 sm:min-w-0 sm:flex-1 sm:px-4 ${
-                                        benefitCategory === id
-                                            ? 'btn-theme-primary shadow-sm'
-                                            : 'bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
-                                    }`}
-                                >
-                                    {label}
-                                </button>
-                            ))}
-                        </div>
+                        <SegmentedTabs
+                            items={BENEFIT_CATEGORY_TABS}
+                            value={benefitCategory}
+                            onChange={setBenefitCategory}
+                        />
                         <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-[400px] border-collapse text-sm">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Info, Star, Users } from 'lucide-react';
-import SecurityTabs from './security/SecurityTabs';
+import SegmentedTabs from './ui/SegmentedTabs';
+
 import AccountHistoryRecordPanel from './AccountHistoryRecordPanel';
 import { useReferralData } from '../context/ReferralDataContext';
 
@@ -67,7 +68,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
             <h1 className="page-title mb-5 md:mb-8">Referral Commission</h1>
 
             <div className="mb-5 md:mb-8">
-                <SecurityTabs activeTab={activeTab} onTabChange={setActiveTab} tabs={REFERRAL_TABS} layout="equal-mobile" />
+                <SegmentedTabs items={REFERRAL_TABS} value={activeTab} onChange={setActiveTab} />
             </div>
 
             <div className="space-y-4 md:space-y-6">

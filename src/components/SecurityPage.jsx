@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SecurityTabs from './security/SecurityTabs';
+import SegmentedTabs from './ui/SegmentedTabs';
 import TwoFactorPanel from './security/TwoFactorPanel';
 import PasswordResetPanel from './security/PasswordResetPanel';
 
@@ -17,10 +17,10 @@ export default function SecurityPage({ authUser }) {
             <h1 className="page-title mb-8">Security</h1>
 
             <div className="mb-8">
-                <SecurityTabs
-                    activeTab={activeTab}
-                    onTabChange={setActiveTab}
-                    tabs={SECURITY_TABS}
+                <SegmentedTabs
+                    value={activeTab}
+                    onChange={setActiveTab}
+                    items={SECURITY_TABS}
                 />
             </div>
 

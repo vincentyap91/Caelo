@@ -8,7 +8,7 @@ export default function FloatingSocials({ onLiveChatClick, className = '' }) {
         <button
             type="button"
             onClick={onLiveChatClick}
-            className={`fixed bottom-20 md:bottom-6 right-6 z-[100] inline-flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-accent-500)_0%,var(--color-brand-deep)_100%)] text-white shadow-[var(--shadow-nav-pill)] transition hover:brightness-110 ${className}`.trim()}
+            className={`fixed bottom-20 md:bottom-6 right-6 z-[100] hidden md:inline-flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-accent-500)_0%,var(--color-brand-deep)_100%)] text-white shadow-[var(--shadow-nav-pill)] transition hover:brightness-110 ${className}`.trim()}
             title="Live Chat"
             aria-label="Open live chat"
         >
