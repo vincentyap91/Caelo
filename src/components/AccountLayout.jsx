@@ -9,7 +9,7 @@ export default function AccountLayout({ activePage, authUser, onNavigate, onLogo
         <main
             className="w-full bg-[linear-gradient(180deg,var(--gradient-account-shell-start)_0%,var(--gradient-account-shell-mid)_38%,var(--gradient-account-shell-end)_100%)] pb-16 pt-6 md:pt-8"
         >
-            <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-6 px-4 md:px-6 xl:px-8">
+            <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-5 px-4 md:px-6 xl:px-8">
                 <div className="flex items-center justify-between gap-3 lg:hidden">
                     <button
                         type="button"
@@ -24,7 +24,7 @@ export default function AccountLayout({ activePage, authUser, onNavigate, onLogo
                     </p>
                 </div>
 
-                <div className="flex items-start gap-6 xl:gap-8">
+                <div className="flex items-start gap-4 xl:gap-0">
                     <div
                         className={`fixed inset-y-0 left-0 z-[100] flex h-dvh max-h-dvh min-h-0 w-[min(320px,88vw)] flex-col lg:relative lg:z-auto lg:h-auto lg:max-h-none lg:w-auto ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
                     >

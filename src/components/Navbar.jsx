@@ -854,11 +854,11 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                 tabIndex={mobileMenuOpen ? 0 : -1}
             />
             <aside
-                className={`fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-blue-panel-start)_0%,var(--gradient-blue-panel-end)_46%,var(--color-page-home)_100%)] text-[var(--color-text-main)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
+                className={`fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r border-[var(--color-border-default)] bg-[var(--color-surface-base)] text-[var(--color-text-main)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
                     }`}
                 aria-hidden={!mobileMenuOpen}
             >
-                <div className="relative border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.86)_0%,rgba(240,249,255,0.88)_100%)] px-3.5 py-3">
+                <div className="relative border-b border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-3.5 py-3">
                     <div className="min-w-0">
                         {authUser ? (
                             <button
@@ -878,7 +878,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                         {authUser ? (
                             <div className="mt-2.5 space-y-2.5">
                                 <VipStatusPill level={vipLevel} size="compact" className="rounded-full shadow-[var(--shadow-brand-soft)]" />
-                                <div className="w-full rounded-[20px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(240,249,255,0.92)_100%)] p-3.5 shadow-[var(--shadow-card-soft)]">
+                                <div className="w-full rounded-[20px] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-3.5 shadow-[var(--shadow-card-soft)]">
                                     <div className="flex items-center justify-between gap-2.5">
                                         <div>
                                             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-text-brand)]">
@@ -967,7 +967,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                         }}
                                         className={`flex min-h-[48px] w-full items-center gap-3 rounded-[18px] border px-3.5 py-2.5 text-left transition ${isActive
                                             ? 'nav-desktop-link-active'
-                                            : 'border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(240,249,255,0.9)_100%)] text-[var(--color-text-main)] shadow-[var(--shadow-input)] hover:border-[var(--color-accent-200)] hover:bg-white'
+                                            : 'border-[var(--color-border-default)] bg-[var(--color-surface-base)] text-[var(--color-text-main)] shadow-[var(--shadow-input)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-surface-subtle)]'
                                             }`}
                                         aria-expanded={isMoreRow ? mobileMoreOpen : undefined}
                                     >
@@ -987,7 +987,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                     </button>
 
                                     {isMoreRow && mobileMoreOpen && (
-                                        <div className="mt-1.5 space-y-1.5 rounded-[18px] border border-[var(--color-border-brand)] bg-[rgba(255,255,255,0.58)] p-2 backdrop-blur-sm">
+                                        <div className="mt-1.5 space-y-1.5 rounded-[18px] border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] p-2">
                                             {MOBILE_MORE_SECTIONS.map(({ id: sectionId, label: sectionLabel, icon: SectionIcon, items }) => {
                                                 const sectionHasActiveItem = items.some((item) => isMobileMoreItemActive(item));
                                                 const sectionOpen = openMobileMoreSection === sectionId;
@@ -997,7 +997,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                                         key={sectionId}
                                                         className={`overflow-hidden rounded-[16px] border transition ${sectionHasActiveItem
                                                             ? 'border-[var(--color-accent-200)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(229,246,255,0.96)_100%)] shadow-[var(--shadow-brand-soft)]'
-                                                            : 'border-[var(--color-border-accent)] bg-white/75'
+                                                            : 'border-[var(--color-border-default)] bg-[var(--color-surface-base)]'
                                                             }`}
                                                     >
                                                         <button
@@ -1059,7 +1059,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                         })}
                     </div>
                 </div>
-                <div className="border-t border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.82)_0%,rgba(240,249,255,0.94)_100%)] px-3.5 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] pt-3">
+                <div className="border-t border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-3.5 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] pt-3">
                     <div className="space-y-2">
                         <button
                             type="button"
