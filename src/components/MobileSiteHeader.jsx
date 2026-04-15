@@ -17,12 +17,12 @@ export default function MobileSiteHeader({
     onRegisterClick,
 }) {
     return (
-        <div className="relative z-[300] flex w-full items-center justify-between gap-2 border-b border-white/10 bg-[var(--color-nav-top)] px-3 py-2 text-white md:hidden">
+        <div className="relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-slate-200 bg-white px-3 py-1.5 text-slate-900 md:hidden">
             <div className="flex min-w-0 flex-1 items-center gap-2">
                 <button
                     type="button"
                     onClick={onMenuToggle}
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition hover:bg-white/15"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-900 transition hover:border-slate-400 hover:bg-slate-50"
                     aria-label="Open mobile menu"
                     aria-expanded={mobileMenuOpen}
                 >
@@ -31,9 +31,9 @@ export default function MobileSiteHeader({
                 <button
                     type="button"
                     onClick={onNavigateHome}
-                    className="min-w-0 truncate text-left text-base font-bold tracking-wide text-white"
+                    className="flex shrink-0 items-center justify-center py-1"
                 >
-                    LOGO
+                    <img src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp" alt="12WIN Logo" className="h-[32px] w-auto object-contain block" />
                 </button>
             </div>
 
@@ -43,19 +43,19 @@ export default function MobileSiteHeader({
                         <button
                             type="button"
                             onClick={onProfileClick}
-                            className="flex h-10 min-w-0 max-w-[10.75rem] shrink items-center gap-1.5 rounded-xl border border-white/15 bg-[linear-gradient(180deg,#16508f_0%,#0d3562_100%)] px-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:brightness-110 focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
+                            className="flex h-10 min-w-0 max-w-[10.75rem] shrink items-center gap-1.5 rounded-xl border border-white/10 bg-[var(--color-brand-primary)] px-1.5 shadow-sm transition hover:brightness-110 focus-visible:outline focus-visible:ring-2 focus-visible:ring-slate-300/70"
                             aria-label={`Open profile - ${authUser.name}, ${authUser.balance}`}
                         >
                             <img
                                 src={getVipStatus(vipLevel).medal}
                                 alt=""
-                                className="h-7 w-7 shrink-0 rounded-full border border-white/20 bg-black/10 object-contain"
+                                className="h-7 w-7 shrink-0 rounded-full border border-white/20 bg-white/10 object-contain"
                             />
                             <div className="min-w-0 flex-1 text-left leading-[1.05]">
-                                <p className="truncate text-[11px] font-bold text-[rgb(255_240_160)]">{authUser.name}</p>
-                                <p className="mt-0.5 flex items-center gap-0.5 truncate text-[11px] font-bold tabular-nums text-white">
+                                <p className="truncate text-[11px] font-bold text-white">{authUser.name}</p>
+                                <p className="mt-0.5 flex items-center gap-0.5 truncate text-[11px] font-bold tabular-nums text-white/90">
                                     <span className="truncate">{authUser.balance}</span>
-                                    <CircleDollarSign size={11} className="shrink-0 text-[var(--color-nav-gold)]" />
+                                    <CircleDollarSign size={11} className="shrink-0 text-white/90" />
                                 </p>
                             </div>
                         </button>
@@ -63,6 +63,7 @@ export default function MobileSiteHeader({
                             value={language}
                             onChange={onLanguageChange}
                             buttonClassName="h-10 shrink-0 rounded-xl px-2.5"
+                            tone="light"
                         />
                     </>
                 ) : (
@@ -70,14 +71,14 @@ export default function MobileSiteHeader({
                         <button
                             type="button"
                             onClick={onLoginClick}
-                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-white/35 bg-white/5 px-3 text-xs font-semibold text-white transition hover:bg-white/10"
+                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-900 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
                         >
                             Login
                         </button>
                         <button
                             type="button"
                             onClick={onRegisterClick}
-                            className="btn-theme-cta-soft inline-flex h-10 shrink-0 items-center justify-center rounded-xl px-3 text-xs font-bold"
+                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-[linear-gradient(180deg,#ffcf59_0%,#ffb62d_100%)] px-3 text-xs font-bold text-[#0c3f7e] shadow-[0_4px_12px_rgba(242,154,0,0.18)] transition hover:border-slate-400 hover:brightness-105"
                         >
                             Join
                         </button>
@@ -85,6 +86,7 @@ export default function MobileSiteHeader({
                             value={language}
                             onChange={onLanguageChange}
                             buttonClassName="h-10 shrink-0 rounded-xl px-2.5"
+                            tone="light"
                         />
                     </>
                 )}

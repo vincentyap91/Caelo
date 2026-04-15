@@ -5,7 +5,7 @@ import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from './HorizontalScr
 export function promotionStyleTabButtonClassName(selected) {
     return `rounded-xl px-4 py-2 text-xs font-bold tracking-wide transition-all duration-200 md:text-sm ${
         selected
-            ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-[0_6px_12px_rgba(255,174,39,0.18)]'
+            ? 'btn-theme-tab-selected'
             : 'border border-[var(--color-border-default)] bg-white text-[var(--color-text-main)] hover:border-[var(--color-accent-200)] hover:text-[var(--color-text-strong)] hover:shadow-[0_2px_8px_rgba(15,23,42,0.04)]'
     }`;
 }

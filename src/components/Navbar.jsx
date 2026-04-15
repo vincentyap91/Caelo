@@ -362,7 +362,7 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
             />
 
 
-            <div className="hidden h-9 w-full items-center border-b border-white/10 bg-[var(--color-nav-top)] px-4 text-xs text-white md:flex md:px-10">
+            <div className="relative z-[110] hidden h-9 w-full items-center border-b border-white/10 bg-[var(--color-nav-top)] px-4 text-xs text-white md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between">
                     <div className="flex gap-4 items-center h-full">
                         <button
@@ -704,14 +704,14 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                 <button
                                     type="button"
                                     onClick={() => onLoginClick?.()}
-                                    className="h-7 rounded-lg border border-white/40 px-4 text-xs font-semibold text-white hover:bg-white/10 hover:border-white/50 transition-all"
+                                    className="h-7 rounded-lg bg-[var(--color-brand-primary)] border border-[rgba(255,255,255,0.15)] px-4 text-xs font-semibold text-white hover:brightness-110 shadow-sm transition-all"
                                 >
                                     Login
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => onRegisterClick?.()}
-                                    className="h-7 rounded-lg bg-[var(--color-success-main)] px-4 text-xs font-semibold text-white shadow-[0_2px_8px_rgba(57,181,74,0.35)] transition-all hover:bg-[var(--color-success-hover)] hover:shadow-[0_2px_10px_rgba(57,181,74,0.4)]"
+                                    className="btn-theme-cta-soft h-8 rounded-lg px-5 text-sm font-bold transition-all hover:brightness-105"
                                 >
                                     Join Now
                                 </button>
@@ -722,15 +722,16 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                 </div>
             </div>
 
-            <div className="hidden h-14 w-full items-center bg-[var(--color-nav-main)] px-4 md:flex md:px-10">
+            {/* TWO-TONE HEADER: Main Navigation Row (Lower) */}
+            <div className="relative z-[100] hidden h-16 w-full items-center border-b border-gray-100 bg-white px-4 shadow-sm md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between gap-6">
                     <div className="flex items-center gap-2 shrink-0">
                         <button
                             type="button"
                             onClick={() => onNavigate?.('home')}
-                            className="text-lg font-bold text-white tracking-wide cursor-pointer hover:opacity-90 transition-opacity md:text-xl"
+                            className="flex shrink-0 items-center justify-center py-1 transition-opacity hover:opacity-90"
                         >
-                            LOGO
+                            <img src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp" alt="12WIN Logo" className="h-[36px] md:h-[40px] w-auto object-contain block" />
                         </button>
                     </div>
 
@@ -767,15 +768,16 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                             onNavigate?.(target);
                                         }
                                     }}
-                                    className={`relative px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all border border-transparent
+                                    className={`relative rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap transition-all
                                         ${isActive
-                                            ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-[0_6px_12px_rgba(255,174,39,0.18)] hover:brightness-105'
-                                            : 'text-white/90 hover:text-white hover:bg-white/10 hover:border-white/20'}`}
+                                            ? 'nav-desktop-link-active'
+                                            : 'text-[var(--color-text-brand)] hover:bg-[var(--color-brand-deep)] hover:text-white hover:shadow-[0_10px_18px_rgba(8,26,66,0.18)]'}`}
                                 >
                                     {link}
                                 </a>
                             );
                         })}
+
                     </div>
 
                     <div className="flex items-center gap-2 lg:hidden">
@@ -821,6 +823,24 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                         )}
                     </div>
                 </div>
+
+                {/* Provider mega menus: anchor directly under the white nav row */}
+                <LiveCasinoMenu
+                    open={navProviderDropdown === 'casino'}
+                    onProviderClick={(provider) => {
+                        onCasinoProviderSelect?.(provider);
+                        setNavProviderDropdown(null);
+                    }}
+                />
+
+                <NavProviderDropdownPanel
+                    open={navProviderDropdown === 'slots'}
+                    providers={slotsNavDropdownProviders}
+                    onProviderClick={(provider) => {
+                        onSlotsProviderSelect?.(provider);
+                        setNavProviderDropdown(null);
+                    }}
+                />
             </div>
 
             <button
@@ -945,14 +965,14 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                                             handleMobileNavigate(page);
                                         }}
                                         className={`flex min-h-[48px] w-full items-center gap-3 rounded-[18px] border px-3.5 py-2.5 text-left transition ${isActive
-                                            ? 'border-amber-300 bg-[linear-gradient(180deg,rgba(255,212,74,0.98)_0%,rgba(255,181,44,0.96)_100%)] text-[var(--color-cta-text)] shadow-[0_14px_26px_rgba(255,174,39,0.22)]'
+                                            ? 'nav-desktop-link-active'
                                             : 'border-[var(--color-border-brand)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(240,249,255,0.9)_100%)] text-[var(--color-text-main)] shadow-[var(--shadow-input)] hover:border-[var(--color-accent-200)] hover:bg-white'
                                             }`}
                                         aria-expanded={isMoreRow ? mobileMoreOpen : undefined}
                                     >
                                         <span
                                             className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${isActive
-                                                ? 'border-amber-950/10 bg-amber-950/10 text-[var(--color-cta-text)]'
+                                                ? 'border-[var(--color-cta-border)] bg-white/20 text-[var(--color-cta-text)]'
                                                 : 'border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
                                                 }`}
                                         >
@@ -1077,27 +1097,9 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
                 </div>
             </aside>
 
-            <LiveCasinoMenu
-                open={navProviderDropdown === 'casino'}
-                onProviderClick={(provider) => {
-                    onCasinoProviderSelect?.(provider);
-                    setNavProviderDropdown(null);
-                }}
-            />
-
-            <NavProviderDropdownPanel
-                open={navProviderDropdown === 'slots'}
-                providers={slotsNavDropdownProviders}
-                onProviderClick={(provider) => {
-                    onSlotsProviderSelect?.(provider);
-                    setNavProviderDropdown(null);
-                }}
-            />
-
             {navProviderDropdown != null && (
                 <div className="fixed inset-x-0 bottom-0 top-[92px] z-[70] bg-[var(--color-nav-overlay)] backdrop-blur-[1px] pointer-events-none" />
             )}
         </nav>
     );
 }
-

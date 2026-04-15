@@ -193,7 +193,7 @@ export default function SlotBrowseFilterModal({
                                             aria-selected={selected}
                                             onClick={() => setDraftScope(scope.id)}
                                             className={`flex min-h-11 min-w-0 flex-1 items-center justify-center rounded-xl px-2 py-2 text-xs font-bold tracking-wide transition-all duration-200 lg:min-h-0 lg:px-3 lg:flex-none ${selected
-                                                ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-[0_6px_12px_rgba(255,174,39,0.16)]'
+                                                ? 'btn-theme-tab-selected'
                                                 : 'border border-transparent bg-transparent text-[var(--color-text-main)] hover:border-[var(--color-border-default)] hover:bg-white hover:text-[var(--color-text-strong)]'
                                                 }`}
                                         >
@@ -244,7 +244,7 @@ export default function SlotBrowseFilterModal({
                                                         type="button"
                                                         onClick={() => setDraftProvider(allProvidersValue)}
                                                         className={`col-span-full w-full min-w-0 rounded-xl border px-3 py-2 text-center text-sm font-semibold transition sm:text-left ${draftProvider === allProvidersValue
-                                                            ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-[0_6px_12px_rgba(255,174,39,0.16)]'
+                                                            ? 'btn-theme-tab-selected'
                                                             : 'border-[rgb(220_228_239)] bg-white text-[var(--color-text-main)] hover:border-[var(--color-brand-primary)] hover:bg-[rgb(248_251_255)]'
                                                             }`}
                                                     >

@@ -4,9 +4,9 @@
   --font-family-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --font-family-multilingual: "Poppins", "Noto Sans SC", "Noto Sans TC", "Noto Sans Thai", "Noto Sans KR", "Noto Sans Devanagari", "Noto Sans Myanmar", "Noto Sans JP", "Segoe UI", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Yu Gothic UI", "Leelawadee UI", "Nirmala UI", "Myanmar Text", sans-serif;
 
-  --color-brand-primary: #00AEEF;
-  --color-brand-secondary: #0072BC;
-  --color-brand-deep: #1f5da8;
+  --color-brand-primary: #123B94;
+  --color-brand-secondary: #0d2a6a;
+  --color-brand-deep: #081a42;
   --color-brand-soft: #E5F6FF;
   --color-brand-soft-border: #CCEEFF;
   --color-brand-line: #7AD0F5;
@@ -29,7 +29,7 @@
   --color-text-subtle: #475569;
   --color-text-muted: #64748b;
   --color-text-soft: #94a3b8;
-  --color-text-brand: #0072BC;
+  --color-text-brand: #123B94;
   --color-text-brand-soft: #004C80;
 
   --color-border-default: #e2e8f0;
@@ -47,8 +47,8 @@
   --color-accent-600: #2563eb;
   --color-accent-700: #1d4ed8;
 
-  --color-nav-top: #0072BC;
-  --color-nav-main: #00AEEF;
+  --color-nav-top: #123B94;
+  --color-nav-main: #123B94;
   --color-nav-border: rgb(106 200 255 / 0.18);
   --color-nav-border-soft: rgb(106 200 255 / 0.12);
   --color-nav-tile-border: rgb(87 181 255 / 0.1);
@@ -76,6 +76,7 @@
   --color-cta-border: #f0bb3d;
   --color-cta-focus: #ffd166;
   --color-cta-text: #0c4a8e;
+  --gradient-cta: linear-gradient(180deg, var(--color-cta-start) 0%, var(--color-cta-end) 100%);
 
   --gradient-soft-panel-start: #ffffff;
   --gradient-soft-panel-end: #f8fbff;
@@ -92,8 +93,8 @@
   --gradient-register-page-end: #ecf3ff;
   --gradient-register-panel-mid: #d9ecff;
   --gradient-register-panel-end: #c9e5ff;
-  --gradient-footer-start: #C4EBFC;
-  --gradient-footer-end: #99DDF9;
+  --gradient-footer-start: #123B94;
+  --gradient-footer-end: #123B94;
 
   --radius-control-xs: 9px;
   --radius-control-sm: 10px;
@@ -150,8 +151,8 @@
 
 @theme {
   --font-sans: var(--font-family-sans);
-  --color-prime-light: #00AEEF;
-  --color-prime-dark: #0072BC;
+  --color-prime-light: #123B94;
+  --color-prime-dark: #0d2a6a;
   --radius-xl: 15px;
 
   --animate-scan: scan 1.5s linear infinite;
@@ -379,53 +380,64 @@
   }
 
   .btn-theme-primary {
-    background: var(--color-accent-600);
+    background: var(--color-brand-primary);
     color: white;
   }
 
   .btn-theme-primary:hover {
-    background: var(--color-accent-700);
+    background: #1546b1;
   }
 
   .btn-theme-cta {
     border: 1px solid var(--color-cta-border);
-    color: white;
-    background-image: linear-gradient(180deg, var(--color-cta-strong-start) 0%, var(--color-cta-strong-end) 100%);
+    color: #ffffff;
+    background-image: var(--gradient-cta);
     box-shadow: var(--shadow-cta);
   }
 
   .btn-theme-cta-soft {
     color: var(--color-cta-text);
-    background-image: linear-gradient(180deg, var(--color-cta-start) 0%, var(--color-cta-end) 100%);
+    background-image: var(--gradient-cta);
+    border: 1px solid var(--color-cta-border);
+    box-shadow: var(--shadow-cta-soft);
+  }
+
+  /** Desktop main nav: current page */
+  .nav-desktop-link-active {
+    border: 1px solid var(--color-cta-border);
+    background-image: var(--gradient-cta);
+    color: var(--color-cta-text);
+    box-shadow: var(--shadow-cta-soft);
+  }
+
+  /** Selected filter / category tab (PromotionStyleTabs, browse scope, etc.) */
+  .btn-theme-tab-selected {
+    border: 1px solid var(--color-cta-border);
+    background-image: var(--gradient-cta);
+    color: var(--color-cta-text);
     box-shadow: var(--shadow-cta-soft);
   }
 
   .btn-theme-auth {
     color: white;
-    background-image: linear-gradient(180deg, var(--color-cta-auth-start) 0%, var(--color-cta-auth-end) 100%);
+    background-color: #ff8e24;
     box-shadow: var(--shadow-cta-auth);
   }
 
   .dark-nav-shell {
-    background-image:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 18%, transparent 32%),
-      linear-gradient(180deg, #145099 0%, #0f3f80 24%, #0c326c 58%, #08254c 100%);
+    background-color: var(--color-brand-primary);
     box-shadow: var(--shadow-nav-dropdown);
   }
 
   .dark-nav-panel {
     border: 1px solid var(--color-nav-border-soft);
-    background-image:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 20%, transparent 34%),
-      linear-gradient(180deg, #114685 0%, #0d376f 34%, #082a57 100%);
+    background-color: var(--color-brand-secondary);
     box-shadow: var(--inset-highlight-soft);
   }
 
   .dark-nav-tile {
     border: 1px solid var(--color-nav-tile-border);
-    background-image:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 18%, transparent 34%),
-      linear-gradient(180deg, #0b3164 0%, #07254d 100%);
+    background-color: var(--color-brand-deep);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 

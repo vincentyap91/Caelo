@@ -22,7 +22,8 @@ export default function HeroSection() {
             </div>
 
             {/* Marquee row immediately under hero */}
-            <div className="relative z-20 flex min-h-9 w-full items-center border-t border-[rgb(52_196_249)] border-b-2 border-white bg-[var(--color-brand-primary)] py-1 shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
+            {/* Marquee row immediately under hero */}
+            <div className="relative z-20 flex min-h-9 w-full items-center border-t border-white/5 bg-[var(--color-brand-primary)] py-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
                 <div className="mx-auto flex w-full max-w-screen-2xl items-center gap-2 px-3 md:gap-3 md:px-8">
                     <div className="flex shrink-0 items-center justify-center text-white">
                         <Megaphone size={16} strokeWidth={2} className="opacity-95" aria-hidden />

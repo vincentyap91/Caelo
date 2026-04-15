@@ -127,9 +127,9 @@ export default function LoginModal({
                     <X size={18} strokeWidth={3} />
                 </button>
 
-                <h1 className="text-center text-2xl font-bold tracking-tight text-[rgb(18_63_128)] sm:text-2xl">
-                    {logoText}
-                </h1>
+                <div className="flex justify-center">
+                    <img src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp" alt="12WIN Logo" className="h-[32px] sm:h-[40px] w-auto object-contain" />
+                </div>
 
                 <form onSubmit={handleSubmit} className="mx-auto mt-6 w-full max-w-[420px]">
                     <label className="flex items-center gap-3 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 py-2 shadow-[var(--inset-panel)]">

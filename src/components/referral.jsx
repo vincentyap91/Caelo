@@ -827,20 +827,6 @@ export default function ReferralPage({ authUser, onLoginClick }) {
 
     return (
         <main className="w-full bg-[var(--color-page-default)] pb-14">
-            {/* Top bar — matches Live Casino strip */}
-            <section className="w-full border-y border-[var(--color-border-default)] bg-[var(--color-surface-base-85)] backdrop-blur">
-                <div className="mx-auto flex h-12 w-full max-w-screen-2xl items-center justify-between px-[var(--space-page-x)] md:px-[var(--space-page-x-md)]">
-                    <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
-                        Referral &amp; Rewards
-                    </div>
-                    <div className="hidden items-center gap-3 text-xs font-semibold text-[var(--color-text-subtle)] sm:flex">
-                        <span>Share &amp; earn</span>
-                        <span className="h-1 w-1 rounded-full bg-[var(--color-text-soft)]" />
-                        <span>Unlimited referrals</span>
-                    </div>
-                </div>
-            </section>
-
             {/* Hero — Live Casino layout, no CTA / no provider logo */}
             <section className="w-full">
                 <div className="w-full mx-auto">
@@ -908,5 +894,4 @@ export default function ReferralPage({ authUser, onLoginClick }) {
         </main>
     );
 }
-
 

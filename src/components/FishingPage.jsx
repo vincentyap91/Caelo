@@ -89,19 +89,6 @@ export default function FishingPage({ onNavigate }) {
 
     return (
         <main className="w-full bg-gradient-to-b from-blue-50 via-slate-50 to-slate-100 pb-14 font-sans">
-            <section className="w-full border-y border-slate-200 bg-white/80 backdrop-blur">
-                <div className={`${pageContainerClass} flex h-12 items-center justify-between`}>
-                    <div className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-                        Fishing Games
-                    </div>
-                    <div className="hidden items-center gap-3 text-xs font-semibold text-slate-600 sm:flex">
-                        <span>Live Action</span>
-                        <span className="h-1 w-1 rounded-full bg-slate-400"></span>
-                        <span>Big Catches</span>
-                    </div>
-                </div>
-            </section>
-
             <section className="w-full">
                 <div className="w-full mx-auto">
                     <div className={PAGE_BANNER_WRAP_ASPECT}>
@@ -284,4 +271,3 @@ export default function FishingPage({ onNavigate }) {
         </main>
     );
 }
-

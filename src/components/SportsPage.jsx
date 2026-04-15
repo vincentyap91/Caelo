@@ -92,7 +92,7 @@ export default function SportsPage({ onNavigate }) {
         >
             {showStickyPlayBar && (
                 <div
-                    className="fixed left-0 right-0 top-22 z-40 bg-[rgb(255_255_255_/_0.95)] backdrop-blur-md shadow-[0_8px_24px_rgba(16,32,72,0.12)]"
+                    className="fixed left-0 right-0 top-[92px] z-30 bg-[rgb(255_255_255_/_0.95)] backdrop-blur-md shadow-[0_8px_24px_rgba(16,32,72,0.12)]"
                     role="banner"
                     aria-label="Quick play bar"
                 >
@@ -109,19 +109,6 @@ export default function SportsPage({ onNavigate }) {
                     </div>
                 </div>
             )}
-
-            <section className="w-full border-y border-[rgb(219_226_240)] bg-[var(--color-surface-base-85)] backdrop-blur">
-                <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8 h-12 flex items-center justify-between">
-                    <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[rgb(102_112_134)]">
-                        Premium Sportsbook Arena
-                    </div>
-                    <div className="hidden items-center gap-3 text-xs font-semibold text-[rgb(83_96_122)] sm:flex">
-                        <span>Competitive Odds</span>
-                        <span className="h-1 w-1 rounded-full bg-[rgb(153_166_190)]"></span>
-                        <span>Fast Settlement</span>
-                    </div>
-                </div>
-            </section>
 
             <section className="w-full">
                 <div className="w-full mx-auto">
@@ -218,5 +205,4 @@ export default function SportsPage({ onNavigate }) {
         </main>
     );
 }
-
 

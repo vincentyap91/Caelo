@@ -56,7 +56,7 @@ export default function ProductBrowseControlPanel({
                                             aria-selected={selected}
                                             onClick={() => onSearchScopeChange(scope.id)}
                                             className={`min-w-0 flex-1 rounded-xl px-3 py-2 text-xs font-bold tracking-wide transition-all duration-200 md:flex-none ${selected
-                                                    ? 'btn-theme-cta-soft border-amber-300 text-amber-950 shadow-[0_6px_12px_rgba(255,174,39,0.16)]'
+                                                    ? 'btn-theme-tab-selected'
                                                     : 'border border-transparent bg-transparent text-[var(--color-text-main)] hover:border-[var(--color-border-default)] hover:bg-white hover:text-[var(--color-text-strong)]'
                                                 }`}
                                         >

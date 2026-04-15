@@ -32,7 +32,7 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
     return (
         <nav
             aria-label="Home quick navigation"
-            className="mobile-home-bottom-nav fixed inset-x-0 bottom-0 z-[85] border-t border-[rgb(168_226_251)] bg-[var(--color-surface-base)] shadow-[0_-4px_16px_rgba(15,23,42,0.08)] transition duration-200 md:hidden"
+            className="mobile-home-bottom-nav fixed inset-x-0 bottom-0 z-[85] bg-[var(--color-brand-primary)] shadow-[0_-4px_20px_rgba(0,0,0,0.15)] transition duration-200 md:hidden"
         >
             <div className="mx-auto flex w-full max-w-screen-2xl items-stretch pb-[max(0.375rem,env(safe-area-inset-bottom,0px))] pt-1">
                 {TABS.map(({ id, label, page, action, icon: Icon }) => {
@@ -47,18 +47,18 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('deposit')}
-                                    className="absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-white bg-[linear-gradient(180deg,var(--color-cta-strong-start)_0%,var(--color-cta-strong-end)_100%)] text-white transition active:scale-95"
-                                    aria-label="Deposit"
-                                >
-                                    <Icon size={30} strokeWidth={3} />
-                                </button>
-                                <div className="mt-auto flex flex-col items-center pb-1">
-                                    <span className={`text-[10px] font-medium tracking-tighter ${activePage === 'deposit' ? 'text-[var(--color-brand-secondary)]' : 'text-[var(--color-text-muted)]'
-                                        }`}>
-                                        {label}
-                                    </span>
-                                </div>
-                            </div>
+                            className="btn-theme-cta-soft absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-white text-[var(--color-cta-text)] transition hover:brightness-105 active:scale-95"
+                            aria-label="Deposit"
+                        >
+                            <Icon size={30} strokeWidth={3} />
+                        </button>
+                        <div className="mt-auto flex flex-col items-center pb-1">
+                            <span className={`text-[10px] font-medium tracking-tighter ${activePage === 'deposit' ? 'text-[var(--color-nav-gold)]' : 'text-white/60'
+                                }`}>
+                                {label}
+                            </span>
+                        </div>
+                    </div>
                         );
                     }
 
@@ -80,8 +80,8 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                                 }
                             }}
                             className={`flex min-h-11 min-w-0 flex-1 flex-col items-center justify-center gap-1 px-0.5 py-1.5 transition select-none active:opacity-85 ${isActive
-                                ? 'text-[var(--color-brand-secondary)]'
-                                : 'text-[var(--color-text-muted)]'
+                                ? 'text-[var(--color-nav-gold)]'
+                                : 'text-white/60'
                                 }`}
                         >
                             <div className="relative">
@@ -89,16 +89,17 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                                     size={20}
                                     strokeWidth={isActive ? 2.5 : 2}
                                     className="shrink-0"
+                                    color={isActive ? 'currentColor' : undefined}
                                     aria-hidden
                                 />
                                 {id === 'account' && authUser?.notifications > 0 && (
-                                    <span className="absolute -right-1.5 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[var(--color-danger-main)] px-0.5 text-[9px] font-bold text-white ring-2 ring-[var(--color-surface-base)]">
+                                    <span className="absolute -right-1.5 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[var(--color-danger-main)] px-0.5 text-[9px] font-bold text-white ring-2 ring-white">
                                         {authUser.notifications}
                                     </span>
                                 )}
                             </div>
                             <span
-                                className={`w-full max-w-full truncate text-center text-[11px] leading-none ${isActive ? 'font-bold text-[var(--color-brand-secondary)]' : 'font-medium'
+                                className={`w-full max-w-full truncate text-center text-[11px] leading-none ${isActive ? 'font-bold' : 'font-medium'
                                     }`}
                             >
                                 {label}

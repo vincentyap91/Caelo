@@ -51,8 +51,8 @@ export default function MobileHomeCategoryGames({ onNavigate }) {
                                 type="button"
                                 onClick={() => setActiveId(id)}
                                 className={`flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl px-1 py-2.5 text-center transition ${active
-                                    ? 'bg-[var(--color-accent-600)] text-white shadow-md'
-                                    : 'border border-[var(--color-border-default)] bg-[var(--color-surface-base)] text-[var(--color-text-strong)] shadow-sm'
+                                    ? 'bg-[var(--color-brand-primary)] text-white shadow-lg ring-1 ring-white/10'
+                                    : 'border border-[var(--color-border-default)] bg-white text-[var(--color-text-strong)] shadow-sm'
                                     }`}
                             >
                                 <Icon
