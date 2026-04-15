@@ -42,7 +42,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                             />
                         </div>
                         <p className="max-w-[28rem] text-xs font-semibold leading-relaxed tracking-wide text-white/90">
-                            Riocity9 offer wide range of highest quality gaming products to our players. Our Customer Support Team is available to assist you 24 hours a day. All personal information will be treated and stored at the strictest and most confidential way.
+                            12WIN offer wide range of highest quality gaming products to our players. Our Customer Support Team is available to assist you 24 hours a day. All personal information will be treated and stored at the strictest and most confidential way.
                         </p>
                     </div>
 
@@ -127,7 +127,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                 {/* Copyright */}
                 <div className="relative z-10 w-full pb-3 text-center">
                     <p className="text-xs font-bold tracking-wide text-white/70">
-                        Copyright Riocity9 {'\u00A9'} 2026. All rights reserved.
+                        Copyright 12WIN {'\u00A9'} 2026. All rights reserved.
                     </p>
                 </div>
 

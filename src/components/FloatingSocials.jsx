@@ -4,7 +4,7 @@ export default function FloatingSocials({ onLiveChatClick, onDownloadAppClick, c
     const unreadCount = 2;
 
     return (
-        <div className={`fixed bottom-20 md:bottom-6 right-6 z-[100] hidden md:flex flex-col gap-4 ${className}`.trim()}>
+        <div className={`fixed bottom-20 md:bottom-6 right-6 z-[130] hidden md:flex flex-col gap-4 ${className}`.trim()}>
             {/* App Download - Top */}
             <button
                 type="button"

@@ -23,7 +23,7 @@ const ABOUT_SECTIONS = [
         title: '4D Lottery',
         icon: Trophy,
         description:
-            'Riocity9 brings together multiple lottery options in one place, making it easy to follow popular draws and enjoy a smoother online experience across trusted names and familiar markets.',
+            '12WIN brings together multiple lottery options in one place, making it easy to follow popular draws and enjoy a smoother online experience across trusted names and familiar markets.',
     },
     {
         title: 'Online Casino',
@@ -62,7 +62,7 @@ export default function AboutUsPage() {
         <ContentPageLayout
             eyebrow="Company"
             title="About Us"
-            lead="Riocity9 offers a broad range of gaming products with attractive payout opportunities, convenient payment support, and around-the-clock customer service. The platform is designed to feel fast, accessible, and dependable across desktop, tablet, and mobile, while supporting a rewarding referral and bonus journey for members."
+            lead="12WIN offers a broad range of gaming products with attractive payout opportunities, convenient payment support, and around-the-clock customer service. The platform is designed to feel fast, accessible, and dependable across desktop, tablet, and mobile, while supporting a rewarding referral and bonus journey for members."
             highlights={ABOUT_FEATURES}
             heroVisualSrc={aboutUsBg}
             heroVisualAlt=""
@@ -70,7 +70,7 @@ export default function AboutUsPage() {
             <ContentSectionCard
                 title="Built for convenience, variety, and long-term play"
                 icon={ShieldCheck}
-                description="Within Riocity9, players can explore a full range of lottery, casino, sportsbook, RNG, and virtual experiences in one consistent environment. The focus is straightforward: clear access to games, reliable transaction flows, and a product mix that stays easy to browse and use."
+                description="Within 12WIN, players can explore a full range of lottery, casino, sportsbook, RNG, and virtual experiences in one consistent environment. The focus is straightforward: clear access to games, reliable transaction flows, and a product mix that stays easy to browse and use."
             />
 
             <div className="grid items-stretch gap-5 md:grid-cols-2 md:gap-6">
@@ -88,7 +88,7 @@ export default function AboutUsPage() {
             <ContentSectionCard
                 title="A platform designed to stay simple and secure"
                 icon={ShieldCheck}
-                description="Signing up is intended to be straightforward, with secure data handling, protected payment flows, and an experience that remains practical across devices. Riocity9 aims to deliver a robust online gaming experience with a clean interface, responsive access, and dependable support whenever players need it."
+                description="Signing up is intended to be straightforward, with secure data handling, protected payment flows, and an experience that remains practical across devices. 12WIN aims to deliver a robust online gaming experience with a clean interface, responsive access, and dependable support whenever players need it."
             />
         </ContentPageLayout>
     );

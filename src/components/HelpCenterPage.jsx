@@ -23,26 +23,26 @@ const faqItems = [
     { id: 2, question: 'What payment methods are accepted?', answer: 'We accept major e-wallets, bank transfers, and credit/debit cards. All transactions are encrypted and secure.' },
     { id: 3, question: 'How do I withdraw my winnings?', answer: 'Go to your account dashboard, select Withdraw, choose your preferred method, and follow the verification steps. Withdrawals are typically processed within 24-48 hours.' },
     { id: 4, question: 'Is my personal information secure?', answer: 'Yes. We use industry-standard encryption and never share your data with third parties. Your account is protected by secure login and optional 2FA.' },
-    { id: 5, question: 'How can I contact customer support?', answer: 'Use our 24/7 Live Chat from any page, or email support@riocity.com. Our team typically responds within minutes.' },
+    { id: 5, question: 'How can I contact customer support?', answer: 'Use our 24/7 Live Chat from any page, or email support@12win.com. Our team typically responds within minutes.' },
 ];
 
 const termsSections = [
     {
         title: 'General',
         items: [
-            'These terms govern access to and use of the Riocity9 platform. By registering, logging in, depositing, placing bets, or using any service on the site, you confirm that you have read, understood, and agreed to these terms together with any applicable game rules, bonus terms, or platform policies.',
+            'These terms govern access to and use of the 12WIN platform. By registering, logging in, depositing, placing bets, or using any service on the site, you confirm that you have read, understood, and agreed to these terms together with any applicable game rules, bonus terms, or platform policies.',
             'You must be of legal age in your jurisdiction to register and use the platform.',
             'You are responsible for ensuring that online gaming is permitted where you access the service.',
-            'Riocity9 may refuse service, suspend access, or restrict activity where required for security, compliance, operational, or responsible-gaming reasons.',
+            '12WIN may refuse service, suspend access, or restrict activity where required for security, compliance, operational, or responsible-gaming reasons.',
             'Rules, promotions, products, limits, and content may be updated from time to time, and continued use of the platform constitutes acceptance of the latest version.',
         ],
     },
     {
         title: "Member's Account",
         items: [
-            'Members are responsible for keeping account information accurate, complete, and secure. The account holder is solely responsible for activity conducted through their credentials unless otherwise determined by Riocity9 after review.',
+            'Members are responsible for keeping account information accurate, complete, and secure. The account holder is solely responsible for activity conducted through their credentials unless otherwise determined by 12WIN after review.',
             'Only one account is allowed per person, household, device group, payment source, or shared environment unless the platform has approved otherwise.',
-            'Registration details must be true and kept up to date. Riocity9 may request supporting documents at any time for identity or account review.',
+            'Registration details must be true and kept up to date. 12WIN may request supporting documents at any time for identity or account review.',
             'Passwords, verification codes, and account access details must not be shared with any third party.',
             'Accounts may be suspended, limited, or closed if duplicate registration, identity inconsistency, suspicious activity, or policy breaches are detected.',
         ],
@@ -52,7 +52,7 @@ const termsSections = [
         items: [
             'All financial activity on the platform is subject to internal review, payment-channel rules, fraud screening, and verification requirements. Processing time can vary depending on the payment method, account status, and compliance checks.',
             'Deposits and withdrawals may only be made through approved channels and under the account holder name where required.',
-            'Riocity9 may request identity, payment-source, or account-ownership documents before approving selected transactions.',
+            '12WIN may request identity, payment-source, or account-ownership documents before approving selected transactions.',
             'Withdrawal requests may be delayed, adjusted, or rejected where rollover, bonus, security, or verification requirements remain incomplete.',
             'Chargebacks, payment disputes, fraudulent transaction claims, or reversed deposits may lead to account suspension and recovery action.',
         ],
@@ -62,15 +62,15 @@ const termsSections = [
         items: [
             'All wagers, bet confirmations, settlements, cancellations, and related records are managed according to platform rules and the relevant product or game logic in effect at the time the transaction is accepted.',
             'A bet is only considered accepted once it is confirmed by the platform and recorded in the betting history or system record.',
-            'Riocity9 may void, reject, or cancel bets affected by obvious errors, incorrect odds, duplicate transmissions, pricing mistakes, technical faults, or interrupted game states.',
+            '12WIN may void, reject, or cancel bets affected by obvious errors, incorrect odds, duplicate transmissions, pricing mistakes, technical faults, or interrupted game states.',
             'Where a game round, event, or settlement is impacted by malfunction, disconnection, corruption, or force majeure, the platform reserves the right to review or reverse the affected transaction.',
-            'System records maintained by Riocity9 will be treated as the primary reference in the event of transaction disputes unless there is clear evidence to the contrary.',
+            'System records maintained by 12WIN will be treated as the primary reference in the event of transaction disputes unless there is clear evidence to the contrary.',
         ],
     },
     {
         title: 'Misc / Disclaimers / Other Terms',
         items: [
-            'Riocity9 provides the service on an operational best-effort basis and does not guarantee uninterrupted availability at all times. Access may be affected by maintenance, connectivity issues, third-party providers, or events beyond reasonable control.',
+            '12WIN provides the service on an operational best-effort basis and does not guarantee uninterrupted availability at all times. Access may be affected by maintenance, connectivity issues, third-party providers, or events beyond reasonable control.',
             'The platform is not liable for indirect, incidental, or consequential loss arising from the use of the service except where required by law.',
             'All trademarks, content, design assets, and platform materials remain the property of their respective owners and may not be reused without permission.',
             'If any part of these terms is found invalid or unenforceable, the remaining provisions will continue to apply.',

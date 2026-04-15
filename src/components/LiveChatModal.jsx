@@ -41,7 +41,7 @@ const messageThreads = [
         id: 'nora',
         name: 'Nora',
         title: 'The team can also help',
-        preview: 'Hello there. 🌟 Welcome to GemBet Support. 👋',
+        preview: 'Hello there. 🌟 Welcome to 12WIN Support. 👋',
         time: 'Just now',
         unread: false,
         status: 'The team can also help',
@@ -60,7 +60,7 @@ const messageThreads = [
 ];
 
 const helpCollections = [
-    { title: 'Crypto Handbook', description: 'Your go-to guide for Crypto on GemBet.', count: '4 articles' },
+    { title: 'Crypto Handbook', description: 'Your go-to guide for Crypto on 12WIN.', count: '4 articles' },
     { title: 'Payment Methods', description: '', count: '13 articles' },
     { title: 'SGD Bonuses', description: '', count: '9 articles' },
     { title: 'MYR Bonuses', description: 'Articles connected to MYR Bonuses', count: '2 articles' },
@@ -119,6 +119,20 @@ function BottomNav({ activeTab, onChange }) {
 }
 
 export default function LiveChatModal({ open, onClose, authUser }) {
+    const [isDesktop, setIsDesktop] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return window.innerWidth >= 768;
+    });
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return undefined;
+
+        const updateViewport = () => setIsDesktop(window.innerWidth >= 768);
+        updateViewport();
+        window.addEventListener('resize', updateViewport);
+        return () => window.removeEventListener('resize', updateViewport);
+    }, []);
+
     useEffect(() => {
         if (!open) {
             return undefined;
@@ -188,10 +202,18 @@ export default function LiveChatModal({ open, onClose, authUser }) {
         if (tab === 'help') openHelp();
     };
 
+    useBodyScrollLock(open && !isDesktop);
+
+    if (!open) return null;
+
     const renderHome = () => (
         <>
             <div className="relative flex shrink-0 items-center justify-between px-6 pb-6 pt-7">
-                <div className="text-2xl font-bold italic tracking-tight text-[var(--color-brand-secondary)]">GEMBET</div>
+                <img
+                    src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp"
+                    alt="12WIN Logo"
+                    className="h-9 w-auto object-contain"
+                />
                 <button
                     type="button"
                     aria-label="Close"
@@ -490,7 +512,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                 <p className="text-center text-sm text-[var(--color-text-muted)]">Ask us anything, or share your feedback.</p>
                 <article className="surface-card soft-blue-panel mt-5 w-[86%] rounded-[24px] px-4 py-4 text-left">
                     <div className="space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
-                        <p>Hello there. 🌟 Welcome to GemBet Support. 👋</p>
+                        <p>Hello there. 🌟 Welcome to 12WIN Support. 👋</p>
                         <p>Want extra ong this CNY? Better join GemChat early!</p>
                         <p>How can we assist you today?</p>
                     </div>
@@ -607,44 +629,58 @@ export default function LiveChatModal({ open, onClose, authUser }) {
         </>
     );
 
-    useBodyScrollLock(open);
+    const modalContent = (
+        <>
+            <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_80%_80%_at_50%_0%,rgb(0_174_239_/_0.12)_0%,transparent_70%)] pointer-events-none" />
+            {activeThread
+                ? activeThread.type === 'article'
+                    ? renderArticleThread(activeThread)
+                    : activeThread.type === 'assistant'
+                        ? renderAssistantThread(activeThread)
+                        : renderSupportThread(activeThread)
+                : activeTab === 'messages'
+                    ? renderMessages()
+                    : activeTab === 'help'
+                        ? renderHelp()
+                        : renderHome()}
+        </>
+    );
 
     return (
-        <div 
-            className={`fixed inset-0 z-[200] flex items-center justify-center transition-opacity duration-300 p-4 sm:p-6 ${
-                open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
-            }`}
-        >
-            <div 
-                className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" 
-                onClick={onClose}
-                aria-hidden="true"
-            />
-            
-            <section
-                role="dialog"
-                aria-modal="true"
-                aria-label="Live Chat"
-                className={`relative z-[10] flex h-[min(85vh,760px)] w-full max-w-[420px] flex-col overflow-hidden rounded-[28px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] shadow-[var(--shadow-modal)] transition-all duration-300 ${
-                    open
-                        ? 'translate-y-0 scale-100 opacity-100'
-                        : 'translate-y-4 scale-95 opacity-0'
-                }`}
+        <>
+            {/* Mobile: centered modal with blocking backdrop */}
+            <div
+                className="fixed inset-0 z-[200] flex items-center justify-center p-4 transition-opacity duration-300 sm:p-6 md:hidden pointer-events-auto opacity-100"
             >
-                <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_80%_80%_at_50%_0%,rgb(0_174_239_/_0.12)_0%,transparent_70%)] pointer-events-none" />
-                {activeThread
-                    ? activeThread.type === 'article'
-                        ? renderArticleThread(activeThread)
-                        : activeThread.type === 'assistant'
-                            ? renderAssistantThread(activeThread)
-                            : renderSupportThread(activeThread)
-                    : activeTab === 'messages'
-                        ? renderMessages()
-                        : activeTab === 'help'
-                            ? renderHelp()
-                            : renderHome()}
-            </section>
-        </div>
+                <div
+                    className="absolute inset-0 bg-black/70 backdrop-blur-[2px]"
+                    onClick={onClose}
+                    aria-hidden="true"
+                />
+                <section
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Live Chat"
+                    className="relative z-[10] flex h-[min(85vh,760px)] w-full max-w-[420px] flex-col overflow-hidden rounded-[28px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] shadow-[var(--shadow-modal)] transition-all duration-300 translate-y-0 scale-100 opacity-100"
+                >
+                    {modalContent}
+                </section>
+            </div>
+
+            {/* Desktop: docked panel above floating live chat, no blocking backdrop */}
+            <div
+                className="pointer-events-none fixed inset-0 z-[200] hidden transition-opacity duration-300 md:block opacity-100"
+            >
+                <section
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Live Chat"
+                    className="pointer-events-auto absolute bottom-[calc(1.5rem+3.5rem+0.75rem)] right-6 flex h-[min(85vh,760px)] w-full max-w-[420px] flex-col overflow-hidden rounded-[28px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] shadow-[var(--shadow-modal)] transition-all duration-300 translate-y-0 scale-100 opacity-100"
+                >
+                    {modalContent}
+                </section>
+            </div>
+        </>
     );
 }
 

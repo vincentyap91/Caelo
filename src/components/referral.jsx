@@ -267,7 +267,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
     const handleShare = (type) => {
         if (navigator.share) {
             navigator.share({
-                title: 'Join me on Riocity9',
+                title: 'Join me on 12WIN',
                 text: `Use my referral code ${REFERRAL_CODE} when you sign up!`,
                 url: REFERRAL_URL,
             }).catch(() => {});

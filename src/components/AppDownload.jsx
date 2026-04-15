@@ -129,7 +129,7 @@ export default function AppDownload() {
                         Mobile App
                     </div>
                     <h2 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--color-text-brand-soft)] sm:text-3xl md:text-4xl">
-                        Download the <span className="text-[var(--color-brand-primary)]">Riocity9 APP</span>
+                        Download the <span className="text-[var(--color-brand-primary)]">12WIN APP</span>
                     </h2>
                     <p className="mt-4 text-sm font-medium leading-relaxed text-[var(--color-brand-secondary)]/85 sm:text-base sm:font-semibold">
                         Playing through the application is more convenient than playing through the website.
@@ -204,7 +204,7 @@ export default function AppDownload() {
                                                 <div className="flex h-[102px] w-[102px] items-center justify-center rounded-[14px] border border-dashed border-gray-300 bg-[linear-gradient(180deg,#ffffff_0%,#f4f9fd_100%)] sm:h-[108px] sm:w-[108px]">
                                                     <img
                                                         src={APK_QR_CODE_URL}
-                                                        alt="Riocity9 Android APK QR code"
+                                                        alt="12WIN Android APK QR code"
                                                         className="block h-[88px] w-[88px] object-contain sm:h-[92px] sm:w-[92px]"
                                                     />
                                                 </div>
@@ -230,7 +230,7 @@ export default function AppDownload() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="mt-2.5 flex min-h-9 w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(90deg,#00CFFF_0%,var(--color-brand-primary)_100%)] px-4 py-2 text-sm font-bold text-white shadow-[0_10px_20px_rgba(0,174,239,0.24)] transition-transform hover:scale-[1.02]"
-                                                aria-label="Download Riocity9 Android APK"
+                                                aria-label="Download 12WIN Android APK"
                                             >
                                                 <Download size={14} />
                                                 APK Download

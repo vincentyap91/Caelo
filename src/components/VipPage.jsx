@@ -274,7 +274,7 @@ function ReferralContent() {
                 <div className="mt-5 space-y-3">
                     <div className="rounded-xl border border-[rgb(219_228_243)] bg-[var(--color-surface-subtle)] p-4">
                         <p className="text-xs font-bold uppercase tracking-[0.1em] text-[rgb(100_116_139)]">Email</p>
-                        <p className="mt-1 font-semibold text-[rgb(28_40_65)]">vip@riocity.example</p>
+                        <p className="mt-1 font-semibold text-[rgb(28_40_65)]">vip@12win.example</p>
                     </div>
                     <div className="rounded-xl border border-[rgb(219_228_243)] bg-[var(--color-surface-subtle)] p-4">
                         <p className="text-xs font-bold uppercase tracking-[0.1em] text-[rgb(100_116_139)]">Support Hours</p>

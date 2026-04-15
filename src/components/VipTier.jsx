@@ -62,7 +62,7 @@ export default function VipTier({ onNavigate }) {
             />
 
             <p className="mt-4 mb-8 max-w-[1000px] text-xs font-medium leading-relaxed text-[var(--color-text-brand-soft)] md:text-sm">
-                Join the Riocity9 VIP member group, you will receive many special privileges such as promotion bonus, monthly red envelope bonus, birthday bonus. All of these are special privileges for Riocity9 VIP customers only.
+                Join the 12WIN VIP member group, you will receive many special privileges such as promotion bonus, monthly red envelope bonus, birthday bonus. All of these are special privileges for 12WIN VIP customers only.
             </p>
 
             <div className="flex flex-col gap-4 items-center mt-4 md:flex-row">
