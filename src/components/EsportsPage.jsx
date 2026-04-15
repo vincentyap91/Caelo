@@ -3,6 +3,7 @@ import { Search } from 'lucide-react';
 import LobbyProviderCard from './game/LobbyProviderCard';
 import { navigateToGameDetail } from '../utils/gameDetailRoutes';
 import esportsBanner from '../assets/esports.jpg';
+import { NAV_STICKY_QUICK_PLAY_BAR_CLASS } from '../constants/navStickyOffsets';
 import { PAGE_BANNER_IMG, PAGE_BANNER_WRAP } from '../constants/pageBannerClasses';
 import tfGamingLogo from '../assets/tf-gaming.webp';
 
@@ -59,11 +60,7 @@ export default function EsportsPage({ onNavigate }) {
             className="w-full pb-14 bg-[linear-gradient(180deg,var(--gradient-live-page-start)_0%,var(--gradient-live-page-mid)_36%,var(--gradient-live-page-end)_100%)]"
         >
             {showStickyPlayBar && (
-                <div
-                    className="fixed left-0 right-0 z-40 bg-[rgb(255_255_255_/_0.95)] backdrop-blur-md shadow-[0_8px_24px_rgba(16,32,72,0.12)] md:top-[100px]"
-                    role="banner"
-                    aria-label="Quick play bar"
-                >
+                <div className={NAV_STICKY_QUICK_PLAY_BAR_CLASS} role="banner" aria-label="Quick play bar">
                     <div className="flex items-center justify-center gap-4 px-4 py-3">
                         <img
                             src={bannerProvider.src}

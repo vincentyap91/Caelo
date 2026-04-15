@@ -177,7 +177,6 @@ const PROTECTED_PAGE_IDS = new Set([
   'my-bets',
   'loyalty-rewards',
   'feedback',
-  'help-center',
   'security',
   'notifications',
   'rebate',
@@ -513,7 +512,7 @@ function AppInner() {
         }}
       />
 
-      <div className={page === 'home' ? 'max-md:pt-14 md:pt-[92px]' : 'pt-14 md:pt-[92px]'}>
+      <div className={page === 'home' ? 'max-md:pt-14 md:pt-[100px]' : 'pt-14 md:pt-[100px]'}>
       <ErrorBoundary>
       <Suspense fallback={<LoadingPage fullPage="overlay" minDelay={300} />}>
       {page === 'home' ? (
@@ -595,9 +594,15 @@ function AppInner() {
       ) : page === 'about' ? (
         <AboutUsPage />
       ) : page === 'help-center' ? (
-        <AccountLayout activePage="help-center" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
-          <HelpCenterPage navigationState={pageNavigationState} />
-        </AccountLayout>
+        authUser ? (
+          <AccountLayout activePage="help-center" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
+            <HelpCenterPage navigationState={pageNavigationState} />
+          </AccountLayout>
+        ) : (
+          <main className="w-full bg-[linear-gradient(180deg,var(--gradient-account-shell-start)_0%,var(--gradient-account-shell-mid)_38%,var(--gradient-account-shell-end)_100%)] pb-16 pt-6 md:pt-8">
+            <HelpCenterPage navigationState={pageNavigationState} guestLayout />
+          </main>
+        )
       ) : page === 'security' ? (
         <AccountLayout activePage="security" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => setLiveChatOpen(true)}>
           <SecurityPage authUser={authUser} />

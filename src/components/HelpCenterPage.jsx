@@ -111,7 +111,7 @@ function AccordionItem({ index, question, answer, isOpen, onToggle }) {
     );
 }
 
-export default function HelpCenterPage({ navigationState = null }) {
+export default function HelpCenterPage({ navigationState = null, guestLayout = false }) {
     const [mainTab, setMainTab] = useState(() => resolveHelpMainTab(navigationState?.helpTab));
     const [subTab, setSubTab] = useState('general');
     const [searchQuery, setSearchQuery] = useState('');
@@ -143,8 +143,12 @@ export default function HelpCenterPage({ navigationState = null }) {
           )
         : faqItems;
 
+    const shellClass = guestLayout
+        ? 'mx-auto w-full max-w-[1480px] px-4 md:px-6 xl:px-8'
+        : 'page-container';
+
     return (
-        <div className="page-container">
+        <div className={shellClass}>
             <h1 className="page-title">Help Center</h1>
 
             <div className="mt-8 space-y-6">

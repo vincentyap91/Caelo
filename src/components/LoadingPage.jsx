@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { NAV_STICKY_SUBHEADER_TOP_CLASS } from '../constants/navStickyOffsets';
 
 /**
  * General loading page – shows when content loads slowly.
@@ -33,7 +34,7 @@ export default function LoadingPage({ message = 'Loading...', fullPage = true, m
     if (fullPage === 'overlay') {
         return (
             <div
-                className="fixed inset-0 top-[92px] z-[100] flex items-center justify-center bg-[var(--color-surface-base)]/90 backdrop-blur-sm"
+                className={`fixed left-0 right-0 bottom-0 z-[100] flex items-center justify-center bg-[var(--color-surface-base)]/90 backdrop-blur-sm ${NAV_STICKY_SUBHEADER_TOP_CLASS}`}
                 role="status"
                 aria-live="polite"
                 aria-label={message}

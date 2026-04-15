@@ -43,6 +43,7 @@ import { getVipStatus } from '../constants/vipStatus';
 import VipStatusPill from './VipStatusPill';
 import MobileSiteHeader from './MobileSiteHeader';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
+import { NAV_STICKY_SUBHEADER_TOP_CLASS } from '../constants/navStickyOffsets';
 
 const slotsNavDropdownProviders = slotProvidersForNavDropdown();
 const DESKTOP_MAIN_LINKS = [
@@ -1098,7 +1099,9 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
             </aside>
 
             {navProviderDropdown != null && (
-                <div className="fixed inset-x-0 bottom-0 top-[92px] z-[70] bg-[var(--color-nav-overlay)] backdrop-blur-[1px] pointer-events-none" />
+                <div
+                    className={`fixed inset-x-0 bottom-0 z-[70] bg-[var(--color-nav-overlay)] backdrop-blur-[1px] pointer-events-none ${NAV_STICKY_SUBHEADER_TOP_CLASS}`}
+                />
             )}
         </nav>
     );

@@ -59,7 +59,7 @@ export default function FooterPaymentMethods() {
                     />
                 </PaymentMethodChip>
             ))}
-            <PaymentMethodChip>
+            <PaymentMethodChip minWide>
                 <UsdtIcon className={squareIconClass} />
             </PaymentMethodChip>
         </div>
