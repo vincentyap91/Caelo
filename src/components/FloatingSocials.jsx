@@ -1,18 +1,30 @@
-import { MessageCircle, Smartphone } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
+import rewardButtonImage from '../assets/reward.png';
 
-export default function FloatingSocials({ onLiveChatClick, onDownloadAppClick, className = '' }) {
+// Keep this label as a plain string for easier future multilingual updates.
+const CLAIM_REWARDS_LABEL = 'Rewards';
+
+export default function FloatingSocials({ onLiveChatClick, onClaimRewardsClick, className = '' }) {
     const unreadCount = 2;
 
     return (
-        <div className={`fixed bottom-20 md:bottom-6 right-6 z-[130] hidden md:flex flex-col gap-4 ${className}`.trim()}>
-            {/* App Download - Top */}
+        <div className={`fixed bottom-20 md:bottom-6 right-2 z-[130] hidden md:flex flex-col gap-3 items-center ${className}`.trim()}>
+            {/* Claim Rewards - Top */}
             <button
                 type="button"
-                onClick={onDownloadAppClick}
-                className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] text-white shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition hover:brightness-110"
-                aria-label="Download app"
+                onClick={onClaimRewardsClick}
+                className="relative inline-flex h-[82px] w-[82px] items-center justify-center hover:brightness-105 transition-all hover:scale-105 active:scale-95"
+                aria-label={CLAIM_REWARDS_LABEL}
+                title={CLAIM_REWARDS_LABEL}
             >
-                <Smartphone size={24} className="shrink-0" />
+                <img
+                    src={rewardButtonImage}
+                    alt={CLAIM_REWARDS_LABEL}
+                    className="h-full w-full object-contain drop-shadow-[0_8px_14px_rgba(0,0,0,0.2)]"
+                />
+                <span className="pointer-events-none absolute bottom-[13px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[12px] font-bold leading-none text-[rgb(133_72_20)]">
+                    {CLAIM_REWARDS_LABEL}
+                </span>
             </button>
 
             {/* Live Chat - Bottom */}

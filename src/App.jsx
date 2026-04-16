@@ -488,7 +488,7 @@ function AppInner() {
       <ScrollToTop />
       <FloatingSocials
         onLiveChatClick={() => setLiveChatOpen((open) => !open)}
-        onDownloadAppClick={handleDownloadAppClick}
+        onClaimRewardsClick={() => handleNavigate('loyalty-rewards')}
       />
 
       <Navbar

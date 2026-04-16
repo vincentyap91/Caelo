@@ -50,15 +50,15 @@ export default function MobileHomeCategoryGames({ onNavigate }) {
                                 key={id}
                                 type="button"
                                 onClick={() => setActiveId(id)}
-                                className={`flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl px-1 py-2.5 text-center transition ${active
-                                    ? 'bg-[var(--color-brand-primary)] text-white shadow-lg ring-1 ring-white/10'
-                                    : 'border border-[var(--color-border-default)] bg-white text-[var(--color-text-strong)] shadow-sm'
+                                className={`group flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl px-1 py-2.5 text-center transition-all ${active
+                                    ? 'border border-white/10 bg-[linear-gradient(90deg,rgb(232_23_47)_0%,rgb(248_48_77)_52%,rgb(255_108_121)_100%)] text-white ring-1 ring-white/10'
+                                    : 'border border-[var(--color-border-default)] bg-white text-[var(--color-text-strong)] shadow-sm hover:border-white/10 hover:bg-[linear-gradient(90deg,rgb(239_32_58)_0%,rgb(251_63_92)_52%,rgb(255_124_136)_100%)] hover:text-white'
                                     }`}
                             >
                                 <Icon
                                     size={18}
                                     strokeWidth={active ? 2.5 : 2}
-                                    className={active ? 'text-white' : 'text-[var(--color-brand-primary)]'}
+                                    className={active ? 'text-white' : 'text-[var(--color-brand-primary)] group-hover:text-white'}
                                     aria-hidden
                                 />
                                 <span className="line-clamp-2 w-full text-center text-[11px] font-bold leading-tight">{label}</span>
