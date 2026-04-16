@@ -18,7 +18,7 @@ export default function MobileSiteHeader({
 }) {
     return (
         <div className="relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-slate-200 bg-white px-3 py-1.5 text-slate-900 md:hidden">
-            <div className="flex min-w-0 flex-1 items-center gap-2">
+            <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
                 <button
                     type="button"
                     onClick={onMenuToggle}
@@ -31,9 +31,13 @@ export default function MobileSiteHeader({
                 <button
                     type="button"
                     onClick={onNavigateHome}
-                    className="flex shrink-0 items-center justify-center py-1"
+                    className="flex min-w-0 flex-1 items-center justify-center py-1"
                 >
-                    <img src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp" alt="12WIN Logo" className="h-[32px] w-auto object-contain block" />
+                    <img
+                        src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp"
+                        alt="12WIN Logo"
+                        className="block h-[32px] w-full max-w-[132px] object-contain"
+                    />
                 </button>
             </div>
 
@@ -62,8 +66,9 @@ export default function MobileSiteHeader({
                         <LanguageSwitcher
                             value={language}
                             onChange={onLanguageChange}
-                            buttonClassName="h-10 shrink-0 rounded-xl px-2.5"
+                            buttonClassName="h-10 shrink-0 rounded-xl px-2"
                             tone="light"
+                            showShortLabel={false}
                         />
                     </>
                 ) : (
@@ -85,8 +90,9 @@ export default function MobileSiteHeader({
                         <LanguageSwitcher
                             value={language}
                             onChange={onLanguageChange}
-                            buttonClassName="h-10 shrink-0 rounded-xl px-2.5"
+                            buttonClassName="h-10 shrink-0 rounded-xl px-2"
                             tone="light"
+                            showShortLabel={false}
                         />
                     </>
                 )}
