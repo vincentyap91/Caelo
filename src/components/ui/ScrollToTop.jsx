@@ -7,6 +7,7 @@ import { ArrowUp } from 'lucide-react';
  */
 export default function ScrollToTop({ authUser }) {
     const [visible, setVisible] = useState(false);
+    const mobilePositionClass = authUser ? 'bottom-44 right-4' : 'bottom-24 right-4';
     const desktopPositionClass = authUser
         ? 'md:bottom-[11.5rem] md:right-8'
         : 'md:bottom-[6.5625rem] md:right-[1.3125rem]';
@@ -38,7 +39,7 @@ export default function ScrollToTop({ authUser }) {
         <button
             type="button"
             onClick={scrollToTop}
-            className={`fixed bottom-24 right-4 z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-secondary)_100%)] text-white shadow-[0_8px_16px_rgba(0,114,188,0.24)] ring-1 ring-white/20 transition-all hover:scale-105 active:scale-95 ${desktopPositionClass} md:z-[140] md:h-14 md:w-14 active:brightness-95`}
+            className={`fixed ${mobilePositionClass} z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-secondary)_100%)] text-white shadow-[0_8px_16px_rgba(0,114,188,0.24)] ring-1 ring-white/20 transition-all hover:scale-105 active:scale-95 ${desktopPositionClass} md:z-[140] md:h-14 md:w-14 active:brightness-95`}
             aria-label="Scroll to top"
         >
             <ArrowUp size={24} strokeWidth={2.5} />
