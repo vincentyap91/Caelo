@@ -1,24 +1,45 @@
-import React from 'react';
-import { CircleDollarSign, Menu } from 'lucide-react';
+import React, { useMemo } from 'react';
+import { Menu, RefreshCw } from 'lucide-react';
 
 import LanguageSwitcher from './LanguageSwitcher';
-import { getVipStatus } from '../constants/vipStatus';
+
+/** When balance is long, show currency on line 1 and amount on line 2 (same string if no space). */
+function getMobileBalanceLayout(balance) {
+    const raw = String(balance ?? '').trim();
+    const m = raw.match(/^(\S+)\s+(.+)$/);
+    if (!m) {
+        return { variant: 'single', text: raw };
+    }
+    const currency = m[1];
+    const amount = m[2].trim();
+    const long = raw.length > 14 || amount.length > 9;
+    if (!long) {
+        return { variant: 'single', text: raw };
+    }
+    return { variant: 'split', currency, amount };
+}
 
 export default function MobileSiteHeader({
     authUser,
-    vipLevel = 'Diamond',
     language,
     onLanguageChange,
     mobileMenuOpen = false,
     onMenuToggle,
     onNavigateHome,
     onProfileClick,
+    onRefreshBalance,
+    balanceRefreshing = false,
     onLoginClick,
     onRegisterClick,
 }) {
+    const balanceLayout = useMemo(
+        () => (authUser ? getMobileBalanceLayout(authUser.balance) : null),
+        [authUser]
+    );
+
     return (
         <div className="relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-slate-200 bg-white px-3 py-1.5 text-slate-900 md:hidden">
-            <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
+            <div className="flex min-w-0 flex-1 items-center overflow-hidden">
                 <button
                     type="button"
                     onClick={onMenuToggle}
@@ -36,7 +57,7 @@ export default function MobileSiteHeader({
                     <img
                         src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp"
                         alt="12WIN Logo"
-                        className="block h-[32px] w-full max-w-[132px] object-contain"
+                        className="block h-[32px] w-full max-w-[100px] object-contain"
                     />
                 </button>
             </div>
@@ -44,30 +65,53 @@ export default function MobileSiteHeader({
             <div className="flex shrink-0 items-center justify-end gap-1.5">
                 {authUser ? (
                     <>
-                        <button
-                            type="button"
-                            onClick={onProfileClick}
-                            className="flex h-10 min-w-0 max-w-[10.75rem] shrink items-center gap-1.5 rounded-xl border border-white/10 bg-[var(--color-brand-primary)] px-1.5 shadow-sm transition hover:brightness-110 focus-visible:outline focus-visible:ring-2 focus-visible:ring-slate-300/70"
-                            aria-label={`Open profile - ${authUser.name}, ${authUser.balance}`}
-                        >
-                            <img
-                                src={getVipStatus(vipLevel).medal}
-                                alt=""
-                                className="h-7 w-7 shrink-0 rounded-full border border-white/20 bg-white/10 object-contain"
-                            />
-                            <div className="min-w-0 flex-1 text-left leading-[1.05]">
-                                <p
-                                    className="min-w-0 truncate text-[11px] font-bold text-white"
-                                    title={authUser.name}
-                                >
-                                    {authUser.name}
-                                </p>
-                                <p className="mt-0.5 flex min-w-0 items-center gap-0.5 text-[11px] font-bold tabular-nums text-white/90">
-                                    <span className="min-w-0 flex-1 truncate">{authUser.balance}</span>
-                                    <CircleDollarSign size={11} className="shrink-0 text-white/90" />
-                                </p>
-                            </div>
-                        </button>
+                        <div className="inline-flex min-h-11 min-w-0 max-w-[min(13.75rem,calc(100vw-9.25rem))] shrink items-stretch overflow-hidden rounded-xl border border-white/10 bg-[var(--color-brand-primary)] shadow-sm">
+                            <button
+                                type="button"
+                                onClick={onProfileClick}
+                                className={`flex min-w-0 flex-1 touch-manipulation text-left transition hover:bg-white/[0.06] focus-visible:z-10 focus-visible:outline focus-visible:ring-2 focus-visible:ring-slate-300/70 focus-visible:ring-offset-0 ${
+                                    balanceLayout?.variant === 'split'
+                                        ? 'items-start justify-center py-1.5 pl-2.5 pr-1'
+                                        : 'h-11 items-center py-0 pl-2.5 pr-1'
+                                }`}
+                                aria-label={`Open profile — ${authUser.balance} (${authUser.name})`}
+                                title={authUser.name}
+                            >
+                                {balanceLayout?.variant === 'split' ? (
+                                    <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                                        <span className="text-[10px] font-semibold leading-none tracking-wide text-white/90">
+                                            {balanceLayout.currency}
+                                        </span>
+                                        <span className="min-w-0 w-full truncate whitespace-nowrap text-[clamp(11px,3vw,13.5px)] font-extrabold tabular-nums leading-tight tracking-tight text-white">
+                                            {balanceLayout.amount}
+                                        </span>
+                                    </span>
+                                ) : (
+                                    <span className="min-w-0 flex-1 truncate whitespace-nowrap text-[clamp(11.5px,3.15vw,14.5px)] font-extrabold tabular-nums leading-none tracking-tight text-white">
+                                        {balanceLayout?.text ?? authUser.balance}
+                                    </span>
+                                )}
+                            </button>
+                            <button
+                                type="button"
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    onRefreshBalance?.();
+                                }}
+                                disabled={!onRefreshBalance || balanceRefreshing}
+                                className="inline-flex min-h-[44px] w-11 min-w-[44px] shrink-0 touch-manipulation items-center justify-center self-stretch border-l border-white/15 bg-transparent pl-1 pr-0.5 text-white/90 transition hover:bg-white/[0.08] hover:text-white disabled:pointer-events-none disabled:opacity-40"
+                                aria-label="Refresh balance"
+                                title="Refresh balance"
+                            >
+                                <RefreshCw
+                                    size={15}
+                                    strokeWidth={2.25}
+                                    className={`shrink-0 ${balanceRefreshing ? 'animate-spin' : ''}`}
+                                    aria-hidden
+                                />
+                            </button>
+                        </div>
                         <LanguageSwitcher
                             value={language}
                             onChange={onLanguageChange}

@@ -198,6 +198,7 @@ function AppInner() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [liveChatOpen, setLiveChatOpen] = useState(false);
   const [authUser, setAuthUser] = useState(initialAuthUser);
+  const [balanceRefreshing, setBalanceRefreshing] = useState(false);
   const [page, setPage] = useState(() => {
     const nextPage = resolvePageFromPath();
     return !initialAuthUser && isProtectedPage(nextPage) ? 'home' : nextPage;
@@ -251,6 +252,30 @@ function AppInner() {
     },
     [page, redirectToPublicHome, showPushNotification]
   );
+
+  const handleRefreshBalance = useCallback(() => {
+    setBalanceRefreshing(true);
+    const started = Date.now();
+    const finish = () => {
+      const elapsed = Date.now() - started;
+      window.setTimeout(() => setBalanceRefreshing(false), Math.max(0, 320 - elapsed));
+    };
+    try {
+      const sessionUser = loadAuthSession();
+      setAuthUser((prev) => {
+        if (!prev || !sessionUser) return prev;
+        return {
+          ...prev,
+          balance: sessionUser.balance ?? prev.balance,
+          name: sessionUser.name ?? prev.name,
+          vipLevel: sessionUser.vipLevel ?? prev.vipLevel,
+          notifications: sessionUser.notifications ?? prev.notifications,
+        };
+      });
+    } finally {
+      finish();
+    }
+  }, []);
 
   const handleLogin = useCallback((userOrUsername, options = {}) => {
     const { suppressLoginToast = false } = options;
@@ -510,6 +535,8 @@ function AppInner() {
           setSelectedSlotsProviderIdFromMenu(menuProvider?.id ?? null);
           handleNavigate('slots');
         }}
+        onRefreshBalance={authUser ? handleRefreshBalance : undefined}
+        balanceRefreshing={balanceRefreshing}
       />
 
       <div className={page === 'home' ? 'max-md:pt-14 md:pt-[100px]' : 'pt-14 md:pt-[100px]'}>

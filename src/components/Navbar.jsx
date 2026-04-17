@@ -90,6 +90,7 @@ const MOBILE_MORE_SECTIONS = [
         label: 'Games',
         icon: Gamepad2,
         items: [
+            { id: 'all-games', label: 'All Games', page: 'all-games', icon: LayoutGrid },
             { id: 'e-sports', label: 'E-Sports', page: 'e-sports', icon: Trophy },
             { id: 'lottery', label: 'Lottery', page: 'lottery', icon: Ticket },
             { id: 'fishing', label: 'Fishing', page: 'fishing', icon: Fish },
@@ -158,6 +159,7 @@ const MOBILE_MORE_SECTIONS = [
     },
 ];
 const MOBILE_MORE_ACTIVE_PAGES = new Set([
+    'all-games',
     'e-sports',
     'lottery',
     'fishing',
@@ -196,7 +198,21 @@ const MOBILE_MORE_SECTION_BY_PAGE = MOBILE_MORE_SECTIONS.reduce((accumulator, se
     return accumulator;
 }, {});
 
-export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'home', onLoginClick, onRegisterClick, authUser, onLogout, onAccountDetailsClick, onLiveChatClick, onCasinoProviderSelect, onSlotsProviderSelect }) {
+export default function Navbar({
+    onNavigate,
+    onDownloadAppClick,
+    activePage = 'home',
+    onLoginClick,
+    onRegisterClick,
+    authUser,
+    onLogout,
+    onAccountDetailsClick,
+    onLiveChatClick,
+    onCasinoProviderSelect,
+    onSlotsProviderSelect,
+    onRefreshBalance,
+    balanceRefreshing = false,
+}) {
     const vipLevel = authUser?.vipLevel || 'Diamond';
     /** `null` | `'casino'` | `'slots'` ΓÇö shared mega-menu pattern */
     const [navProviderDropdown, setNavProviderDropdown] = useState(null);
@@ -351,13 +367,14 @@ export default function Navbar({ onNavigate, onDownloadAppClick, activePage = 'h
         >
             <MobileSiteHeader
                 authUser={authUser}
-                vipLevel={vipLevel}
                 language={language}
                 onLanguageChange={setLanguage}
                 mobileMenuOpen={mobileMenuOpen}
                 onMenuToggle={() => setMobileMenuOpen((open) => !open)}
                 onNavigateHome={() => onNavigate?.('home')}
                 onProfileClick={() => onNavigate?.('profile')}
+                onRefreshBalance={onRefreshBalance}
+                balanceRefreshing={balanceRefreshing}
                 onLoginClick={() => onLoginClick?.()}
                 onRegisterClick={() => onRegisterClick?.()}
             />
