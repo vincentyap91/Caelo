@@ -43,7 +43,7 @@ export const MATCHED_SLOT_PROVIDERS = [
         id: 'pussy888',
         label: 'Pussy888',
         gameProvider: 'Pussy888',
-        image: 'https://pksoftcdn.azureedge.net/media/pussy888-202511050844023196.png',
+        image: 'https://pksoftcdn.azureedge.net/media/pussy888_slot-202512051029432232.png',
         hot: true,
     },
     {

@@ -23,7 +23,7 @@ export default function Pussy888PreLaunchPanel({ onLaunchWebsite }) {
             <img
                 src={pussy888PrelaunchBanner}
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover object-[center_right] md:object-center"
+                className="absolute inset-0 h-full w-full object-cover object-[89%_0%] md:object-center"
                 loading="lazy"
                 decoding="async"
             />
@@ -33,7 +33,7 @@ export default function Pussy888PreLaunchPanel({ onLaunchWebsite }) {
             />
 
             <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-8 text-center md:max-w-none md:flex-row md:items-center md:justify-between md:gap-12 md:px-10 md:py-12 md:text-left lg:gap-16">
-                <div className="flex w-full max-w-md flex-col items-center md:max-w-lg md:items-start">
+                <div className="flex w-full max-w-md flex-col items-center md:max-w-lg md:items-center">
                     <img
                         src={LOGO_URL}
                         alt="Pussy888"
