@@ -39,7 +39,7 @@ export default function MobileSiteHeader({
 
     return (
         <div className="relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-slate-200 bg-white px-3 py-1.5 text-slate-900 md:hidden">
-            <div className="flex min-w-0 flex-1 items-center overflow-hidden">
+            <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
                 <button
                     type="button"
                     onClick={onMenuToggle}
@@ -52,12 +52,12 @@ export default function MobileSiteHeader({
                 <button
                     type="button"
                     onClick={onNavigateHome}
-                    className="flex min-w-0 flex-1 items-center justify-center py-1"
+                    className="flex shrink-0 items-center py-1"
                 >
                     <img
                         src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp"
                         alt="12WIN Logo"
-                        className="block h-[32px] w-full max-w-[100px] object-contain"
+                        className="block h-[32px] w-auto max-w-[100px] object-contain object-left"
                     />
                 </button>
             </div>
@@ -72,7 +72,7 @@ export default function MobileSiteHeader({
                                 className={`flex min-w-0 flex-1 touch-manipulation text-left transition hover:bg-white/[0.06] focus-visible:z-10 focus-visible:outline focus-visible:ring-2 focus-visible:ring-slate-300/70 focus-visible:ring-offset-0 ${
                                     balanceLayout?.variant === 'split'
                                         ? 'items-start justify-center py-1.5 pl-2.5 pr-1'
-                                        : 'h-11 items-center py-0 pl-2.5 pr-1'
+                                        : 'h-11 items-center py-0 pl-2.5 pr-2.5'
                                 }`}
                                 aria-label={`Open profile — ${authUser.balance} (${authUser.name})`}
                                 title={authUser.name}
