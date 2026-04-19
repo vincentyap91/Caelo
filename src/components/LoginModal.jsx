@@ -170,7 +170,7 @@ export default function LoginModal({
                             <button
                                 type="submit"
                                 disabled={loginLoading}
-                                className="btn-theme-auth h-10 min-w-[100px] rounded-md px-5 text-sm font-bold tracking-[0.03em] transition hover:brightness-105 disabled:opacity-70 sm:text-base"
+                                className="btn-theme-cta-soft inline-flex h-10 min-w-[100px] items-center justify-center rounded-xl px-5 text-sm font-bold tracking-[0.03em] transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70 sm:text-base"
                             >
                                 {loginLoading ? 'Logging in...' : 'LOGIN'}
                             </button>
