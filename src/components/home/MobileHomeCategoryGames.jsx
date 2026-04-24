@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Dices, Fish, Flame, Gamepad2, Search, Spade, Ticket, Trophy } from 'lucide-react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Dices, Fish, Flame, Gamepad2, Search, Spade, Ticket, Trophy, X } from 'lucide-react';
 import TopGameCard from '../game/TopGameCard';
 import { TOP_GAMES } from '../../constants/topGamesCatalog';
 import { SPORTS_LOBBIES } from '../../constants/lobbyRegistry';
@@ -18,6 +18,7 @@ const CATEGORIES = [
 export default function MobileHomeCategoryGames({ onNavigate }) {
     const [activeId, setActiveId] = useState('popular');
     const [searchQuery, setSearchQuery] = useState('');
+    const searchInputRef = useRef(null);
 
     const activeCategory = useMemo(
         () => CATEGORIES.find((category) => category.id === activeId),
@@ -103,16 +104,38 @@ export default function MobileHomeCategoryGames({ onNavigate }) {
                 </nav>
 
                 <div className="min-w-0 flex-1">
-                    <label className="group mb-3 flex h-11 min-h-[44px] w-full items-center gap-2.5 rounded-[var(--radius-control)] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-3 py-0 shadow-[var(--shadow-input)] transition-all hover:border-[var(--color-accent-200)] focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[rgb(96_165_250_/_0.2)]">
-                        <Search size={16} className="shrink-0 text-[var(--color-text-brand)]" strokeWidth={2.25} aria-hidden />
-                        <input
-                            value={searchQuery}
-                            onChange={(event) => setSearchQuery(event.target.value)}
-                            placeholder={`Search in ${activeCategoryName}...`}
-                            aria-label={`Search games in ${activeCategoryName}`}
-                            className="w-full min-w-0 bg-transparent text-sm font-semibold text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)]"
-                        />
-                    </label>
+                    <div
+                        role="search"
+                        className="group mb-3 flex h-11 min-h-[44px] w-full min-w-0 items-center border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-0 pl-3 pr-2 shadow-[var(--shadow-input)] transition-all hover:border-[var(--color-accent-200)] focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[rgb(96_165_250_/_0.2)] rounded-[var(--radius-control)]"
+                    >
+                        <div className="flex min-w-0 flex-1 items-center gap-2.5 pr-1">
+                            <Search size={16} className="shrink-0 text-[var(--color-text-brand)]" strokeWidth={2.25} aria-hidden />
+                            <input
+                                ref={searchInputRef}
+                                type="search"
+                                value={searchQuery}
+                                onChange={(event) => setSearchQuery(event.target.value)}
+                                placeholder={`Search in ${activeCategoryName}...`}
+                                aria-label={`Search games in ${activeCategoryName}`}
+                                className="min-w-0 flex-1 bg-transparent text-sm font-semibold text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] [&::-webkit-search-cancel-button]:hidden"
+                            />
+                        </div>
+                        {searchQuery ? (
+                            <div className="flex shrink-0 items-center justify-end self-stretch pl-2">
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setSearchQuery('');
+                                        searchInputRef.current?.focus();
+                                    }}
+                                    className="inline-flex h-9 w-6 items-center justify-center rounded-lg text-[var(--color-text-muted)] transition hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-strong)]"
+                                    aria-label="Clear search"
+                                >
+                                    <X size={16} strokeWidth={2.25} aria-hidden />
+                                </button>
+                            </div>
+                        ) : null}
+                    </div>
                     <div className="grid grid-cols-2 gap-3">
                         {filteredGames.map((game) => (
                             <TopGameCard
