@@ -121,7 +121,7 @@ export default function MobileHomeCategoryGames({ onNavigate }) {
                             />
                         </div>
                         {searchQuery ? (
-                            <div className="flex shrink-0 items-center justify-end self-stretch pl-2">
+                            <div className="flex shrink-0 items-center justify-end self-stretch">
                                 <button
                                     type="button"
                                     onClick={() => {
