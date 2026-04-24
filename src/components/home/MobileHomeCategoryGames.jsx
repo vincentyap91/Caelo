@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react';
-import { Dices, Fish, Flame, Gamepad2, Spade, Ticket, Trophy } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Dices, Fish, Flame, Gamepad2, Search, Spade, Ticket, Trophy } from 'lucide-react';
 import TopGameCard from '../game/TopGameCard';
-import { TOP_GAMES, getTopGameFavouriteCategory } from '../../constants/topGamesCatalog';
+import { TOP_GAMES } from '../../constants/topGamesCatalog';
 import { SPORTS_LOBBIES } from '../../constants/lobbyRegistry';
 
 const CATEGORIES = [
@@ -17,23 +17,58 @@ const CATEGORIES = [
 
 export default function MobileHomeCategoryGames({ onNavigate }) {
     const [activeId, setActiveId] = useState('popular');
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const filteredGames = useMemo(() => {
+    const activeCategory = useMemo(
+        () => CATEGORIES.find((category) => category.id === activeId),
+        [activeId]
+    );
+    const activeCategoryName = activeCategory?.label ?? 'Category';
+
+    /** Full list for the active category (used when searching so matches aren’t limited to the first 12). */
+    const gamesPool = useMemo(() => {
         if (activeId === 'popular') {
-            return TOP_GAMES.slice(0, 12);
+            return TOP_GAMES;
         }
         if (activeId === 'sports') {
-            // "Refactor to reuse the same provider image system used in the slot category"
-            // Use Lobby providers structured as TopGame items
-            return SPORTS_LOBBIES.map(lobby => ({
+            return SPORTS_LOBBIES.map((lobby) => ({
                 ...lobby,
-                page: 'sports'
+                page: 'sports',
             }));
         }
         const cat = CATEGORIES.find((c) => c.id === activeId);
         const pageKey = cat?.page;
-        if (!pageKey) return TOP_GAMES.slice(0, 12);
-        return TOP_GAMES.filter((g) => g.page === pageKey).slice(0, 12);
+        if (!pageKey) return TOP_GAMES;
+        return TOP_GAMES.filter((g) => g.page === pageKey);
+    }, [activeId]);
+
+    const categoryGames = useMemo(() => {
+        if (searchQuery.trim()) {
+            return gamesPool;
+        }
+        return gamesPool.slice(0, 12);
+    }, [gamesPool, searchQuery]);
+
+    const filteredGames = useMemo(() => {
+        const normalizedQuery = searchQuery.trim().toLowerCase();
+        if (!normalizedQuery) {
+            return categoryGames;
+        }
+
+        return categoryGames.filter((game) => {
+            const name = (game.name ?? '').toLowerCase();
+            const provider = (game.provider ?? '').toLowerCase();
+            const label = (game.categoryLabel ?? '').toLowerCase();
+            return (
+                name.includes(normalizedQuery)
+                || provider.includes(normalizedQuery)
+                || label.includes(normalizedQuery)
+            );
+        });
+    }, [categoryGames, searchQuery]);
+
+    useEffect(() => {
+        setSearchQuery('');
     }, [activeId]);
 
     return (
@@ -41,7 +76,7 @@ export default function MobileHomeCategoryGames({ onNavigate }) {
             <div className="mx-auto flex max-w-screen-2xl gap-3 px-3 pb-8 pt-3">
                 <nav
                     aria-label="Game categories"
-                    className="sticky top-14 z-10 flex w-[4.5rem] shrink-0 flex-col gap-2 self-start py-1"
+                    className="sticky top-14 z-10 flex w-[4.5rem] shrink-0 flex-col gap-2 self-start"
                 >
                     {CATEGORIES.map(({ id, label, icon: Icon }) => {
                         const active = activeId === id;
@@ -68,6 +103,16 @@ export default function MobileHomeCategoryGames({ onNavigate }) {
                 </nav>
 
                 <div className="min-w-0 flex-1">
+                    <label className="group mb-3 flex h-11 min-h-[44px] w-full items-center gap-2.5 rounded-[var(--radius-control)] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-3 py-0 shadow-[var(--shadow-input)] transition-all hover:border-[var(--color-accent-200)] focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[rgb(96_165_250_/_0.2)]">
+                        <Search size={16} className="shrink-0 text-[var(--color-text-brand)]" strokeWidth={2.25} aria-hidden />
+                        <input
+                            value={searchQuery}
+                            onChange={(event) => setSearchQuery(event.target.value)}
+                            placeholder={`Search in ${activeCategoryName}...`}
+                            aria-label={`Search games in ${activeCategoryName}`}
+                            className="w-full min-w-0 bg-transparent text-sm font-semibold text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)]"
+                        />
+                    </label>
                     <div className="grid grid-cols-2 gap-3">
                         {filteredGames.map((game) => (
                             <TopGameCard
@@ -81,7 +126,9 @@ export default function MobileHomeCategoryGames({ onNavigate }) {
                     </div>
                     {filteredGames.length === 0 ? (
                         <p className="mt-4 rounded-xl border border-dashed border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 py-6 text-center text-sm font-medium text-[var(--color-text-muted)]">
-                            No featured games in this category yet.
+                            {searchQuery.trim()
+                                ? 'No games match your search. Try a different name or provider.'
+                                : 'No featured games in this category yet.'}
                         </p>
                     ) : null}
                 </div>
