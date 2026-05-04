@@ -4,6 +4,7 @@ import SegmentedTabs from './ui/SegmentedTabs';
 
 import AccountHistoryRecordPanel from './AccountHistoryRecordPanel';
 import { useReferralData } from '../context/ReferralDataContext';
+import DownlineDetailModal from './referral/DownlineDetailModal';
 
 const REFERRAL_TABS = [
     { id: 'unclaim', label: 'Unclaim' },
@@ -19,8 +20,8 @@ const REFERRAL_HISTORY_COLUMNS = [
 
 // Mock downlines – replace with real data
 const MOCK_DOWNLINES = [
-    { id: '1', username: 'player_001', joinedAt: '2026-01-15', totalDeposit: 'PKR 1,200', commission: 'PKR 36.00' },
-    { id: '2', username: 'player_002', joinedAt: '2026-02-01', totalDeposit: 'PKR 800', commission: 'PKR 24.00' },
+    { id: '1', username: 'player_001', joinedAt: '2026-01-15', totalDeposit: 'PKR 1,200', commission: 'PKR 36.00', contact: '********112', createdDate: '15-01-2026', remark: '' },
+    { id: '2', username: 'player_002', joinedAt: '2026-02-01', totalDeposit: 'PKR 800', commission: 'PKR 24.00', contact: '********901', createdDate: '01-02-2026', remark: '' },
 ];
 
 function CommissionStatBlock({ icon: Icon, iconWrapClassName, label, infoTitle, value }) {
@@ -50,8 +51,17 @@ function CommissionStatBlock({ icon: Icon, iconWrapClassName, label, infoTitle, 
 export default function ReferralCommissionPage({ onNavigate }) {
     const { totalCommissionBonus, totalDepositBonus, setTotalCommissionBonus, setTotalDepositBonus } = useReferralData();
     const [activeTab, setActiveTab] = useState('unclaim');
+    const [downlines, setDownlines] = useState(MOCK_DOWNLINES);
+    const [selectedDownline, setSelectedDownline] = useState(null);
 
-    const hasDownlines = MOCK_DOWNLINES.length > 0;
+    function handleSaveRemark(id, remark) {
+        setDownlines((prev) => prev.map((d) => d.id === id ? { ...d, remark } : d));
+        if (selectedDownline?.id === id) {
+            setSelectedDownline((prev) => ({ ...prev, remark }));
+        }
+    }
+
+    const hasDownlines = downlines.length > 0;
 
     const handleClaim = () => {
         setTotalCommissionBonus('PKR 0.000');
@@ -64,6 +74,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
         'btn-theme-primary inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 md:min-h-11 md:w-auto md:min-w-[120px]';
 
     return (
+        <>
         <div className="page-container">
             <h1 className="page-title mb-5 md:mb-8">Referral Commission</h1>
 
@@ -201,12 +212,20 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {MOCK_DOWNLINES.map((row) => (
+                                            {downlines.map((row) => (
                                                 <tr
                                                     key={row.id}
                                                     className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
                                                 >
-                                                    <td className="px-3 py-3 text-sm font-medium text-[var(--color-text-strong)] md:px-4 md:py-3.5">{row.username}</td>
+                                                    <td className="px-3 py-3 text-sm md:px-4 md:py-3.5">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setSelectedDownline(row)}
+                                                            className="font-semibold text-[var(--color-text-brand)] underline-offset-2 transition hover:underline"
+                                                        >
+                                                            {row.username}
+                                                        </button>
+                                                    </td>
                                                     <td className="px-3 py-3 text-sm text-[var(--color-text-muted)] md:px-4 md:py-3.5">{row.joinedAt}</td>
                                                     <td className="px-3 py-3 text-right text-sm font-medium text-[var(--color-text-strong)] md:px-4 md:py-3.5">
                                                         {row.totalDeposit}
@@ -239,5 +258,14 @@ export default function ReferralCommissionPage({ onNavigate }) {
                 )}
             </div>
         </div>
+
+        {selectedDownline && (
+            <DownlineDetailModal
+                downline={selectedDownline}
+                onClose={() => setSelectedDownline(null)}
+                onSaveRemark={handleSaveRemark}
+            />
+        )}
+        </>
     );
 }

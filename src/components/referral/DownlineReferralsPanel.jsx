@@ -4,6 +4,7 @@ import CalendarDateInput from '../CalendarDateInput';
 import SegmentedTabs from '../ui/SegmentedTabs';
 import PromotionStyleTabs from '../PromotionStyleTabs';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from '../HorizontalScrollTabRow';
+import DownlineDetailModal from './DownlineDetailModal';
 
 /** Same tab chrome as Referral Commission (`ReferralCommissionPage` → `SecurityTabs`). */
 const DOWNLINE_VIEW_TABS = [
@@ -84,22 +85,26 @@ function applySummaryQuickRange(id, setStart, setEnd, setQuickId) {
 }
 
 /** Demo KPI rows — replace with API */
-const MOCK_KPI_DOWNLINES = [
+const INITIAL_KPI_DOWNLINES = [
     {
         id: '1',
         username: 'damrefer',
         contact: '********112',
         registerDate: '2025-10-15 08:32:00',
+        createdDate: '15-10-2025',
         deposit: '500.00',
         active: true,
+        remark: '',
     },
     {
         id: '2',
         username: 'player_beta',
         contact: '********901',
         registerDate: '2025-11-02 14:20:00',
+        createdDate: '02-11-2025',
         deposit: '120.00',
         active: false,
+        remark: '',
     },
 ];
 
@@ -133,23 +138,34 @@ export default function DownlineReferralsPanel() {
     const [kpiSubTab, setKpiSubTab] = useState('active');
     const [searchQuery, setSearchQuery] = useState('');
 
-    const activeCount = useMemo(() => MOCK_KPI_DOWNLINES.filter((r) => r.active).length, []);
-    const inactiveCount = useMemo(() => MOCK_KPI_DOWNLINES.filter((r) => !r.active).length, []);
+    const [kpiDownlines, setKpiDownlines] = useState(INITIAL_KPI_DOWNLINES);
+    const [selectedDownline, setSelectedDownline] = useState(null);
+
+    const activeCount = useMemo(() => kpiDownlines.filter((r) => r.active).length, [kpiDownlines]);
+    const inactiveCount = useMemo(() => kpiDownlines.filter((r) => !r.active).length, [kpiDownlines]);
 
     const filteredKpiRows = useMemo(() => {
         const q = searchQuery.trim().toLowerCase();
-        return MOCK_KPI_DOWNLINES.filter((row) => {
+        return kpiDownlines.filter((row) => {
             const matchesTab = kpiSubTab === 'active' ? row.active : !row.active;
             const matchesSearch = !q || row.username.toLowerCase().includes(q);
             return matchesTab && matchesSearch;
         });
-    }, [kpiSubTab, searchQuery]);
+    }, [kpiDownlines, kpiSubTab, searchQuery]);
 
     const onSummaryQuickClick = (id) => {
         applySummaryQuickRange(id, setSummaryStart, setSummaryEnd, setSummaryQuickId);
     };
 
+    function handleSaveRemark(id, remark) {
+        setKpiDownlines((prev) => prev.map((d) => d.id === id ? { ...d, remark } : d));
+        if (selectedDownline?.id === id) {
+            setSelectedDownline((prev) => ({ ...prev, remark }));
+        }
+    }
+
     return (
+        <>
         <div>
             <div className="mb-8">
                 <SegmentedTabs value={view} onChange={setView} items={DOWNLINE_VIEW_TABS} />
@@ -299,7 +315,15 @@ export default function DownlineReferralsPanel() {
                                                 key={row.id}
                                                 className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
                                             >
-                                                <td className="px-4 py-3.5 font-semibold text-amber-700">{row.username}</td>
+                                                <td className="px-4 py-3.5 text-sm">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setSelectedDownline(row)}
+                                                        className="font-semibold text-[var(--color-text-brand)] underline-offset-2 transition hover:underline"
+                                                    >
+                                                        {row.username}
+                                                    </button>
+                                                </td>
                                                 <td className="px-4 py-3.5 text-[var(--color-text-muted)]">{row.contact}</td>
                                                 <td className="px-4 py-3.5 tabular-nums text-[var(--color-text-muted)]">{row.registerDate}</td>
                                                 <td className="px-4 py-3.5 text-right font-medium tabular-nums text-[var(--color-text-strong)]">
@@ -316,5 +340,14 @@ export default function DownlineReferralsPanel() {
             )}
             </div>
         </div>
+
+        {selectedDownline && (
+            <DownlineDetailModal
+                downline={selectedDownline}
+                onClose={() => setSelectedDownline(null)}
+                onSaveRemark={handleSaveRemark}
+            />
+        )}
+        </>
     );
 }
