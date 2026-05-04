@@ -49,16 +49,14 @@ function CommissionStatBlock({ icon: Icon, iconWrapClassName, label, infoTitle, 
 }
 
 export default function ReferralCommissionPage({ onNavigate }) {
-    const { totalCommissionBonus, totalDepositBonus, setTotalCommissionBonus, setTotalDepositBonus } = useReferralData();
+    const { totalCommissionBonus, totalDepositBonus, setTotalCommissionBonus, setTotalDepositBonus, downlines, handleSaveRemark: globalSaveRemark } = useReferralData();
     const [activeTab, setActiveTab] = useState('unclaim');
-    const [downlines, setDownlines] = useState(MOCK_DOWNLINES);
-    const [selectedDownline, setSelectedDownline] = useState(null);
+    const [selectedDownlineId, setSelectedDownlineId] = useState(null);
+
+    const selectedDownline = downlines.find((d) => d.id === selectedDownlineId) || null;
 
     function handleSaveRemark(id, remark) {
-        setDownlines((prev) => prev.map((d) => d.id === id ? { ...d, remark } : d));
-        if (selectedDownline?.id === id) {
-            setSelectedDownline((prev) => ({ ...prev, remark }));
-        }
+        globalSaveRemark(id, remark);
     }
 
     const hasDownlines = downlines.length > 0;
@@ -220,7 +218,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                                     <td className="px-3 py-3 text-sm md:px-4 md:py-3.5">
                                                         <button
                                                             type="button"
-                                                            onClick={() => setSelectedDownline(row)}
+                                                            onClick={() => setSelectedDownlineId(row.id)}
                                                             className="font-semibold text-[var(--color-text-brand)] underline-offset-2 transition hover:underline"
                                                         >
                                                             {row.username}
@@ -262,7 +260,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
         {selectedDownline && (
             <DownlineDetailModal
                 downline={selectedDownline}
-                onClose={() => setSelectedDownline(null)}
+                onClose={() => setSelectedDownlineId(null)}
                 onSaveRemark={handleSaveRemark}
             />
         )}

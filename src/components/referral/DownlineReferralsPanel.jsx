@@ -5,6 +5,7 @@ import SegmentedTabs from '../ui/SegmentedTabs';
 import PromotionStyleTabs from '../PromotionStyleTabs';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from '../HorizontalScrollTabRow';
 import DownlineDetailModal from './DownlineDetailModal';
+import { useReferralData } from '../../context/ReferralDataContext';
 
 /** Same tab chrome as Referral Commission (`ReferralCommissionPage` → `SecurityTabs`). */
 const DOWNLINE_VIEW_TABS = [
@@ -84,29 +85,7 @@ function applySummaryQuickRange(id, setStart, setEnd, setQuickId) {
     setEnd(formatDateForInput(end));
 }
 
-/** Demo KPI rows — replace with API */
-const INITIAL_KPI_DOWNLINES = [
-    {
-        id: '1',
-        username: 'damrefer',
-        contact: '********112',
-        registerDate: '2025-10-15 08:32:00',
-        createdDate: '15-10-2025',
-        deposit: '500.00',
-        active: true,
-        remark: '',
-    },
-    {
-        id: '2',
-        username: 'player_beta',
-        contact: '********901',
-        registerDate: '2025-11-02 14:20:00',
-        createdDate: '02-11-2025',
-        deposit: '120.00',
-        active: false,
-        remark: '',
-    },
-];
+
 
 function StatTile({ label, value }) {
     return (
@@ -138,8 +117,10 @@ export default function DownlineReferralsPanel() {
     const [kpiSubTab, setKpiSubTab] = useState('active');
     const [searchQuery, setSearchQuery] = useState('');
 
-    const [kpiDownlines, setKpiDownlines] = useState(INITIAL_KPI_DOWNLINES);
-    const [selectedDownline, setSelectedDownline] = useState(null);
+    const { downlines: kpiDownlines, handleSaveRemark: globalSaveRemark } = useReferralData();
+    const [selectedDownlineId, setSelectedDownlineId] = useState(null);
+
+    const selectedDownline = kpiDownlines.find((d) => d.id === selectedDownlineId) || null;
 
     const activeCount = useMemo(() => kpiDownlines.filter((r) => r.active).length, [kpiDownlines]);
     const inactiveCount = useMemo(() => kpiDownlines.filter((r) => !r.active).length, [kpiDownlines]);
@@ -158,10 +139,7 @@ export default function DownlineReferralsPanel() {
     };
 
     function handleSaveRemark(id, remark) {
-        setKpiDownlines((prev) => prev.map((d) => d.id === id ? { ...d, remark } : d));
-        if (selectedDownline?.id === id) {
-            setSelectedDownline((prev) => ({ ...prev, remark }));
-        }
+        globalSaveRemark(id, remark);
     }
 
     return (
@@ -318,7 +296,7 @@ export default function DownlineReferralsPanel() {
                                                 <td className="px-4 py-3.5 text-sm">
                                                     <button
                                                         type="button"
-                                                        onClick={() => setSelectedDownline(row)}
+                                                        onClick={() => setSelectedDownlineId(row.id)}
                                                         className="font-semibold text-[var(--color-text-brand)] underline-offset-2 transition hover:underline"
                                                     >
                                                         {row.username}
@@ -344,7 +322,7 @@ export default function DownlineReferralsPanel() {
         {selectedDownline && (
             <DownlineDetailModal
                 downline={selectedDownline}
-                onClose={() => setSelectedDownline(null)}
+                onClose={() => setSelectedDownlineId(null)}
                 onSaveRemark={handleSaveRemark}
             />
         )}
