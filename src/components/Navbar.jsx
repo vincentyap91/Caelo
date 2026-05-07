@@ -743,7 +743,7 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onLoginClick?.()}
-                                    className="h-7 rounded-lg bg-[var(--color-brand-primary)] border border-[rgba(255,255,255,0.15)] px-4 text-xs font-semibold text-white hover:brightness-110 shadow-sm transition-all"
+                                    className="h-8 rounded-lg bg-[var(--color-brand-primary)] border border-[rgba(255,255,255,0.15)] px-4 text-sm font-bold text-white hover:brightness-110 shadow-sm transition-all"
                                 >
                                     Login
                                 </button>

@@ -51,6 +51,7 @@ import FloatingSocials from './components/FloatingSocials';
 import LoginModal from './components/LoginModal';
 import './index.css';
 import LiveChatModal from './components/LiveChatModal';
+import AnnouncementModal from './components/AnnouncementModal';
 
 import { ReferralDataProvider } from './context/ReferralDataContext';
 import { FavouritesProvider } from './context/FavouritesContext';
@@ -199,6 +200,7 @@ function AppInner() {
   const [liveChatOpen, setLiveChatOpen] = useState(false);
   const [authUser, setAuthUser] = useState(initialAuthUser);
   const [balanceRefreshing, setBalanceRefreshing] = useState(false);
+  const [announcementModalOpen, setAnnouncementModalOpen] = useState(false);
   const [page, setPage] = useState(() => {
     const nextPage = resolvePageFromPath();
     return !initialAuthUser && isProtectedPage(nextPage) ? 'home' : nextPage;
@@ -397,6 +399,13 @@ function AppInner() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [page]);
 
+  useEffect(() => {
+    // Show announcement modal on mount/refresh if we are on the homepage
+    if (resolvePageFromPath() === 'home') {
+      setAnnouncementModalOpen(true);
+    }
+  }, []);
+
     const handleNavigate = (targetPage, options) => {
       const settingsToProfile = { security: 'security', notifications: 'notifications' };
       const resolvedPage = settingsToProfile[targetPage] ?? targetPage;
@@ -440,6 +449,9 @@ function AppInner() {
     // If we're already on the same page, scroll to top (user "refresh" action)
     if (page === resolvedPage) {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      if (resolvedPage === 'home') {
+        setAnnouncementModalOpen(true);
+      }
     }
 
     setPage(resolvedPage);
@@ -709,6 +721,11 @@ function AppInner() {
         open={liveChatOpen}
         onClose={() => setLiveChatOpen(false)}
         authUser={authUser}
+      />
+
+      <AnnouncementModal
+        isOpen={announcementModalOpen}
+        onClose={() => setAnnouncementModalOpen(false)}
       />
     </div>
   );
