@@ -410,10 +410,10 @@ export default function Navbar({
                         <button
                             type="button"
                             onClick={() => onDownloadAppClick?.()}
-                            className="flex h-7 items-center gap-2 rounded-lg border border-white/25 bg-white/5 px-3 hover:bg-white/10 hover:border-white/35 transition-all"
+                            className="nav-top-pill nav-top-pill--icon shrink-0"
                         >
                             <Smartphone size={14} className="shrink-0 text-white/90" />
-                            <span className="text-sm font-medium">Download App</span>
+                            <span>Download App</span>
                         </button>
                     </div>
 
@@ -421,10 +421,10 @@ export default function Navbar({
                         {authUser ? (
                             <div
                                 ref={profileMenuRef}
-                                className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
+                                className="relative flex h-full items-center gap-2 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
                             >
                                 <div className="relative">
-                                    <div className="flex h-7 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-[9px] border border-white/15 bg-[var(--color-brand-primary)] text-white">
+                                    <div className="flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg border border-white/15 bg-[var(--color-brand-primary)] text-white">
                                         <button
                                             type="button"
                                             onClick={() => {
@@ -465,7 +465,7 @@ export default function Navbar({
                                         />
                                     )}
                                 </div>
-                                <div className="flex h-7 shrink-0 items-stretch overflow-hidden rounded-[9px] border border-white/15 bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] shadow-[var(--inset-highlight-soft)]">
+                                <div className="flex h-8 shrink-0 items-stretch overflow-hidden rounded-lg border border-white/15 bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] shadow-[var(--inset-highlight-soft)]">
                                     <button
                                         type="button"
                                         onClick={() => {
@@ -509,26 +509,30 @@ export default function Navbar({
                                         setProfileMenuOpen(false);
                                         onNavigate?.('deposit');
                                     }}
-                                    className="btn-theme-cta-soft h-7 shrink-0 rounded-[9px] px-4 font-bold transition hover:brightness-105"
+                                    className="btn-theme-cta-soft h-8 shrink-0 rounded-lg px-4 text-xs font-bold transition hover:brightness-105"
                                 >
                                     DEPOSIT
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => onLogout?.()}
-                                    className="h-7 rounded-[9px] border border-white/40 bg-white/[0.03] px-4 font-bold text-white hover:bg-white/10 transition"
+                                    className="nav-top-pill shrink-0"
                                 >
                                     LOGOUT
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => (onTopLiveChatClick ?? onLiveChatClick)?.()}
-                                    className="h-7 inline-flex items-center gap-1.5 rounded-[9px] border border-white/15 bg-white/5 px-2.5 text-xs font-bold text-white hover:bg-white/10 transition-all"
+                                    className="nav-top-pill nav-top-pill--icon shrink-0"
                                 >
                                     <Headset size={14} />
                                     <span>Live Chat</span>
                                 </button>
-                                <LanguageSwitcher value={language} onChange={setLanguage} />
+                                <LanguageSwitcher
+                                    value={language}
+                                    onChange={setLanguage}
+                                    buttonClassName="nav-top-pill nav-top-pill--icon shrink-0"
+                                />
 
                                 {profileMenuOpen && (
                                     <div className="dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] flex max-h-[calc(100vh-5rem)] w-[280px] flex-col overflow-hidden rounded-[24px] p-2.5 text-white">
@@ -799,26 +803,30 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onLoginClick?.()}
-                                    className="h-8 rounded-lg bg-[var(--color-brand-primary)] border border-white/15 px-4 text-sm font-bold text-white hover:brightness-110 shadow-sm transition-all"
+                                    className="nav-top-pill shrink-0"
                                 >
                                     Login
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => onRegisterClick?.()}
-                                    className="btn-theme-cta-soft h-8 rounded-lg px-5 text-sm font-bold transition-all hover:brightness-105"
+                                    className="btn-theme-cta-soft h-8 shrink-0 rounded-lg px-4 text-xs font-bold transition hover:brightness-105"
                                 >
                                     Join Now
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => (onTopLiveChatClick ?? onLiveChatClick)?.()}
-                                    className="h-8 inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-2.5 text-xs font-bold text-white hover:bg-white/10 transition-all"
+                                    className="nav-top-pill nav-top-pill--icon shrink-0"
                                 >
                                     <Headset size={14} />
                                     <span>Live Chat</span>
                                 </button>
-                                <LanguageSwitcher value={language} onChange={setLanguage} />
+                                <LanguageSwitcher
+                                    value={language}
+                                    onChange={setLanguage}
+                                    buttonClassName="nav-top-pill nav-top-pill--icon shrink-0"
+                                />
                             </>
                         )}
                     </div>

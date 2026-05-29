@@ -19,7 +19,7 @@ const LANGUAGES = [
 export default function LanguageSwitcher({
     value = 'en-us',
     onChange,
-    buttonClassName = 'h-7 rounded-[12px] px-3 py-1.5',
+    buttonClassName = 'nav-top-pill nav-top-pill--icon shrink-0',
     tone = 'dark',
     showShortLabel = true,
 }) {
@@ -42,10 +42,10 @@ export default function LanguageSwitcher({
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className={`flex items-center ${showShortLabel ? 'gap-1.5' : 'gap-1'} transition-all ${buttonClassName} ${
+                className={`flex items-center ${showShortLabel ? 'gap-1.5' : 'gap-1'} ${buttonClassName} ${
                     isLightTone
-                        ? 'border border-slate-300 bg-white text-slate-900 shadow-[0_6px_14px_rgba(15,23,42,0.08)] hover:border-slate-400 hover:bg-slate-50'
-                        : 'border border-white/25 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_8px_14px_rgba(0,0,0,0.12)] hover:border-white/40 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.1)_100%)]'
+                        ? 'border border-slate-300 bg-white text-slate-900 shadow-[0_6px_14px_rgba(15,23,42,0.08)] transition-all hover:border-slate-400 hover:bg-slate-50'
+                        : ''
                 }`}
                 aria-haspopup="listbox"
                 aria-expanded={open}
