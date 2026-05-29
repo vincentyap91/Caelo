@@ -56,7 +56,7 @@ export default function LanguageSwitcher({
                     alt=""
                     className="h-4 w-6 shrink-0 rounded-sm object-cover"
                 />
-                {showShortLabel ? <span className="text-xs font-bold">{current.short}</span> : null}
+                {showShortLabel ? <span className="text-xs font-bold uppercase">{current.short}</span> : null}
                 <ChevronDown
                     size={12}
                     className={`transition-transform ${isLightTone ? 'text-slate-500' : 'text-white/75'} ${open ? 'rotate-180' : ''}`}

@@ -523,7 +523,7 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => (onTopLiveChatClick ?? onLiveChatClick)?.()}
-                                    className="nav-top-pill nav-top-pill--icon shrink-0"
+                                    className="nav-top-pill nav-top-pill--icon shrink-0 uppercase"
                                 >
                                     <Headset size={14} />
                                     <span>Live Chat</span>
@@ -531,7 +531,7 @@ export default function Navbar({
                                 <LanguageSwitcher
                                     value={language}
                                     onChange={setLanguage}
-                                    buttonClassName="nav-top-pill nav-top-pill--icon shrink-0"
+                                    buttonClassName="nav-top-pill nav-top-pill--icon shrink-0 uppercase"
                                 />
 
                                 {profileMenuOpen && (
@@ -803,21 +803,21 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onLoginClick?.()}
-                                    className="nav-top-pill shrink-0"
+                                    className="nav-top-pill shrink-0 uppercase"
                                 >
                                     Login
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => onRegisterClick?.()}
-                                    className="btn-theme-cta-soft h-8 shrink-0 rounded-lg px-4 text-xs font-bold transition hover:brightness-105"
+                                    className="btn-theme-cta-soft h-8 shrink-0 rounded-lg px-4 text-xs font-bold uppercase transition hover:brightness-105"
                                 >
                                     Join Now
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => (onTopLiveChatClick ?? onLiveChatClick)?.()}
-                                    className="nav-top-pill nav-top-pill--icon shrink-0"
+                                    className="nav-top-pill nav-top-pill--icon shrink-0 uppercase"
                                 >
                                     <Headset size={14} />
                                     <span>Live Chat</span>
@@ -825,7 +825,7 @@ export default function Navbar({
                                 <LanguageSwitcher
                                     value={language}
                                     onChange={setLanguage}
-                                    buttonClassName="nav-top-pill nav-top-pill--icon shrink-0"
+                                    buttonClassName="nav-top-pill nav-top-pill--icon shrink-0 uppercase"
                                 />
                             </>
                         )}
