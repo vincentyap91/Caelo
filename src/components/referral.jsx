@@ -146,7 +146,7 @@ function createInitialRewardHistory(currency) {
 }
 
 const tabButtonClasses = (selected) =>
-    `inline-flex min-h-[46px] shrink-0 whitespace-nowrap items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-3 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-200 sm:min-h-[44px] sm:px-4 sm:py-2.5 sm:text-xs md:text-sm ${
+    `inline-flex min-h-[46px] shrink-0 whitespace-nowrap items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-3 text-xs font-bold uppercase transition-colors duration-200 sm:min-h-[44px] sm:px-4 sm:py-2.5 sm:text-xs md:text-sm ${
         selected
             ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)]'
             : 'border-transparent bg-transparent text-[var(--color-text-muted)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-strong)]'
@@ -195,7 +195,7 @@ function ReferralBenefitPromoCards() {
                             />
                         </div>
                         <div className="max-w-[24rem]">
-                            <h3 className="text-base font-bold leading-tight tracking-[0.01em] text-[var(--color-text-strong)] md:text-xl">
+                            <h3 className="text-base font-bold leading-tight text-[var(--color-text-strong)] md:text-xl">
                                 {card.title}
                             </h3>
                             <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-base">
@@ -218,7 +218,7 @@ function ReferralGuestState({ onLoginClick }) {
             <section className="relative overflow-hidden rounded-[var(--radius-shell)] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] px-5 py-7 text-center shadow-[var(--shadow-register-card)] md:px-6 md:py-8">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgb(96_165_250_/_0.1),transparent_55%)]" />
                 <div className="relative mx-auto max-w-[720px]">
-                    <h2 className="text-lg font-bold tracking-[0.01em] text-[var(--color-text-strong)] sm:text-xl md:text-2xl">
+                    <h2 className="text-lg font-bold text-[var(--color-text-strong)] sm:text-xl md:text-2xl">
                         Log In to View Your Unique Referral Info
                     </h2>
                     <p className="mx-auto mt-2.5 max-w-[620px] text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-3">
@@ -227,7 +227,7 @@ function ReferralGuestState({ onLoginClick }) {
                     <button
                         type="button"
                         onClick={onLoginClick}
-                        className="btn-theme-cta mt-4 inline-flex min-h-11 min-w-[188px] items-center justify-center rounded-xl px-6 py-2.5 text-sm font-bold tracking-wide shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105 md:min-h-11 md:px-8"
+                        className="btn-theme-cta mt-4 inline-flex min-h-11 min-w-[188px] items-center justify-center rounded-xl px-6 py-2.5 text-sm font-bold shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105 md:min-h-11 md:px-8"
                     >
                         Login Now!
                     </button>
@@ -337,7 +337,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                     <button
                         type="button"
                         onClick={() => onSwitchTab?.('My Referrals')}
-                        className="btn-theme-cta mt-auto inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                        className="btn-theme-cta mt-auto inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105"
                     >
                         Downlines
                     </button>
@@ -522,7 +522,7 @@ function RewardsLoginRequiredState({ onLoginClick }) {
                 <button
                     type="button"
                     onClick={onLoginClick}
-                    className="btn-theme-cta mt-5 inline-flex min-h-11 min-w-[160px] items-center justify-center rounded-xl px-6 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                    className="btn-theme-cta mt-5 inline-flex min-h-11 min-w-[160px] items-center justify-center rounded-xl px-6 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105"
                 >
                     Login Now
                 </button>
@@ -565,10 +565,10 @@ function RewardHistoryTable({ rows, rewardType }) {
             <table className="w-full min-w-[640px] border-collapse text-sm">
                 <thead>
                     <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Date</th>
-                        <th className="px-4 py-3 text-right text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{amountLabel}</th>
-                        <th className="px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Status</th>
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Claimed Time</th>
+                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Date</th>
+                        <th className="px-4 py-3 text-right text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">{amountLabel}</th>
+                        <th className="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Status</th>
+                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Claimed Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -749,7 +749,7 @@ function HowItWorksContent() {
                                 key={step.num}
                                 className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[linear-gradient(180deg,var(--color-surface-base)_0%,var(--color-surface-subtle)_100%)] shadow-[var(--shadow-subtle)]"
                             >
-                                <span className="absolute left-4 top-4 z-10 rounded-md bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-[var(--color-cta-text)] shadow-sm">
+                                <span className="absolute left-4 top-4 z-10 rounded-md bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-cta-text)] shadow-sm">
                                     Step {step.num}
                                 </span>
                                 <div className="flex flex-1 flex-col items-center px-4 pb-7 pt-14 text-center md:px-5 md:pb-8">

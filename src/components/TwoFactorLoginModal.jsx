@@ -113,7 +113,7 @@ export default function TwoFactorLoginModal({
                             value={code}
                             onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
                             placeholder="e.g. 123456"
-                            className="flex-1 rounded-xl border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-4 py-3 text-center text-lg font-mono tracking-[0.2em] text-[rgb(35_64_106)] shadow-[var(--inset-panel)] outline-none placeholder:text-[rgb(111_133_168)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                            className="flex-1 rounded-xl border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-4 py-3 text-center text-lg font-mono tracking-code text-[rgb(35_64_106)] shadow-[var(--inset-panel)] outline-none placeholder:text-[rgb(111_133_168)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
                         />
                         <button
                             type="button"

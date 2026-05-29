@@ -50,7 +50,7 @@ export default function GameCategories({ onNavigate }) {
                                 <div className="absolute inset-x-2 -bottom-1.5 h-2 rounded-full bg-[rgb(18_59_148_/_0.35)] blur-sm"></div>
                                 <div className="relative overflow-hidden rounded-[10px] border border-[var(--color-brand-soft-border)] bg-[var(--color-brand-primary)] px-2 py-1.5 shadow-[0_8px_14px_rgba(18,59,148,0.35)]">
                                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.2),rgba(255,255,255,0)_45%)]"></div>
-                                    <span className="relative block text-center text-white text-xs uppercase font-bold tracking-[0.14em] drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">
+                                    <span className="relative block text-center text-white text-xs uppercase font-bold tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">
                                         {cat.name}
                                     </span>
                                 </div>

@@ -150,7 +150,7 @@ export default function FeedbackPage() {
 
                         <button
                             type="submit"
-                            className="btn-theme-cta flex h-12 w-full items-center justify-center rounded-xl px-4 text-base font-bold tracking-wide shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta flex h-12 w-full items-center justify-center rounded-xl px-4 text-base font-bold shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105"
                         >
                             Send
                         </button>

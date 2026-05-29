@@ -881,7 +881,7 @@ function ThemeEditorInner() {
                             autoFocus
                             value={passcodeInput}
                             onChange={(e) => setPasscodeInput(e.target.value)}
-                            className="mb-4 w-full rounded-xl border border-slate-200 bg-white/50 px-4 py-2 text-center text-lg tracking-widest outline-none focus:border-[#123B94]"
+                            className="mb-4 w-full rounded-xl border border-slate-200 bg-white/50 px-4 py-2 text-center text-lg tracking-wide outline-none focus:border-[#123B94]"
                             placeholder="••••"
                         />
                         <div className="flex gap-2">

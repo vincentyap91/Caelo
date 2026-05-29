@@ -6,6 +6,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      letterSpacing: {
+        tight: 'var(--tracking-tight)',
+        wide: 'var(--tracking-wide)',
+        code: 'var(--tracking-code)',
+      },
       keyframes: {
         'home-marquee-vertical-y': {
           '0%': { transform: 'translate3d(0, 0, 0)' },

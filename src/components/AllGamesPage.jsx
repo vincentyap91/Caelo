@@ -37,7 +37,7 @@ export default function AllGamesPage({ onNavigate }) {
                         <div className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
+                                    <h1 className="text-xl font-bold uppercase text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
                                         All Games
                                     </h1>
                                 </div>
@@ -58,7 +58,7 @@ export default function AllGamesPage({ onNavigate }) {
                                 </p>
                             </div>
                         </div>
-                        <p className="text-xs font-bold uppercase tracking-[0.08em] text-[rgb(106_117_144)] md:text-xs">
+                        <p className="text-xs font-bold uppercase tracking-wide text-[rgb(106_117_144)] md:text-xs">
                             Showing {filteredGames.length} game{filteredGames.length === 1 ? '' : 's'}
                         </p>
                     </div>

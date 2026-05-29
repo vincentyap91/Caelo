@@ -88,7 +88,7 @@ export default function PromotionWarningModal({
                     <button
                         type="button"
                         onClick={onContinue}
-                        className="btn-theme-cta inline-flex min-h-11 min-w-[200px] items-center justify-center rounded-xl px-6 py-2.5 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 sm:min-h-12 sm:px-7 sm:py-3 sm:text-base"
+                        className="btn-theme-cta inline-flex min-h-11 min-w-[200px] items-center justify-center rounded-xl px-6 py-2.5 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105 sm:min-h-12 sm:px-7 sm:py-3 sm:text-base"
                     >
                         {continueLabel}
                     </button>

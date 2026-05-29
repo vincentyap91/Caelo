@@ -18,7 +18,7 @@ export default function VipTierProgressCard({
                 <div className="flex items-center gap-3">
                     <img src={vip.medal} alt={`${vip.tier} medal`} className="h-12 w-12 shrink-0 object-contain" />
                     <div className="min-w-0">
-                        <p className="text-sm font-extrabold uppercase tracking-[0.02em] text-[var(--color-text-strong)]">
+                        <p className="text-sm font-extrabold uppercase text-[var(--color-text-strong)]">
                             {currentTier}
                         </p>
                     </div>
@@ -26,7 +26,7 @@ export default function VipTierProgressCard({
             </div>
 
             <div className="mt-3 flex items-center justify-between gap-3">
-                <span className="rounded-full bg-[var(--color-brand-primary)] px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.02em] text-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]">
+                <span className="rounded-full bg-[var(--color-brand-primary)] px-4 py-1.5 text-[11px] font-extrabold uppercase text-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]">
                     TARGET: {targetTier}
                 </span>
                 <span className="text-sm font-bold text-[var(--color-text-strong)]">{safeProgress}%</span>

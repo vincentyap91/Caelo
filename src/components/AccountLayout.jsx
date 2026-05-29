@@ -28,7 +28,7 @@ export default function AccountLayout({
                         <UserRound size={16} />
                         Account Menu
                     </button>
-                    <p className="text-right text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    <p className="text-right text-xs font-semibold uppercase tracking-wide text-slate-500">
                         Secure Profile
                     </p>
                 </div>

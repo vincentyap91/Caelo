@@ -259,7 +259,7 @@ export function PushNotificationToast({
                         </p>
                         {statusLabel ? (
                             <span
-                                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-[0.14em] ${
+                                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${
                                     showPending
                                         ? 'bg-[var(--color-accent-100)] text-[var(--color-accent-700)]'
                                         : `${vs.accentSoft} ${vs.accentText}`

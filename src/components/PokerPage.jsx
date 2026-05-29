@@ -64,7 +64,7 @@ export default function PokerPage({ onNavigate }) {
                 <div className="rounded-2xl border border-[rgb(219_228_243)] bg-[var(--color-surface-base-80)] p-4 shadow-[0_6px_18px_rgba(20,43,87,0.09)] backdrop-blur-sm md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-xl font-bold tracking-[0.02em] text-[rgb(28_40_65)] md:text-2xl">Poker Providers</p>
+                            <p className="text-xl font-bold text-[rgb(28_40_65)] md:text-2xl">Poker Providers</p>
                             <p className="mt-1 text-xs text-[rgb(93_103_128)] md:text-sm">
                                 Choose a poker room for tournaments, cash tables, and quick sit-and-go action.
                             </p>
@@ -80,7 +80,7 @@ export default function PokerPage({ onNavigate }) {
                         </label>
                     </div>
 
-                    <p className="mt-4 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(106_117_144)] md:text-xs">
+                    <p className="mt-4 text-xs font-bold uppercase tracking-wide text-[rgb(106_117_144)] md:text-xs">
                         {filteredProviders.length} provider{filteredProviders.length === 1 ? '' : 's'} found
                     </p>
                 </div>

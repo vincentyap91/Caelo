@@ -103,7 +103,7 @@ function VipMedal({ src, alt, className = '' }) {
             <span
                 aria-label={alt}
                 title={alt}
-                className={`inline-flex items-center justify-center rounded-full border border-[rgb(201_208_224)] bg-[linear-gradient(180deg,#eef2f7_0%,#cfd7e6_100%)] text-xs font-bold uppercase tracking-[0.08em] text-[rgb(67_84_114)] shadow-[0_6px_14px_rgba(148,163,184,0.18)] ${className}`}
+                className={`inline-flex items-center justify-center rounded-full border border-[rgb(201_208_224)] bg-[linear-gradient(180deg,#eef2f7_0%,#cfd7e6_100%)] text-xs font-bold uppercase tracking-wide text-[rgb(67_84_114)] shadow-[0_6px_14px_rgba(148,163,184,0.18)] ${className}`}
             >
                 SV
             </span>
@@ -155,7 +155,7 @@ function UpgradeContent() {
                                     >
                                         <div className="flex flex-col items-center gap-3">
                                             <VipMedal src={t.medal} alt={`${t.tier} medal`} className="h-11 w-11 shrink-0 md:h-12 md:w-12" />
-                                            <span className="font-bold uppercase tracking-[0.08em] text-white drop-shadow-sm">{t.tier}</span>
+                                            <span className="font-bold uppercase tracking-wide text-white drop-shadow-sm">{t.tier}</span>
                                         </div>
                                     </th>
                                 ))}
@@ -167,7 +167,7 @@ function UpgradeContent() {
                                     <tr>
                                         <td
                                             colSpan={7}
-                                            className="border-b border-[rgb(226_232_240)] bg-[rgb(241_245_252)] px-4 py-3 text-xs font-bold uppercase tracking-[0.1em] text-[rgb(28_40_65)]"
+                                            className="border-b border-[rgb(226_232_240)] bg-[rgb(241_245_252)] px-4 py-3 text-xs font-bold uppercase tracking-wide text-[rgb(28_40_65)]"
                                         >
                                             {section.header}
                                         </td>
@@ -201,12 +201,12 @@ function UpgradeContent() {
                         <div key={t.tier} className="surface-card rounded-xl overflow-hidden">
                             <div className="flex items-center gap-3 border-b border-[rgb(226_232_240)] bg-[#1c63b9] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
                                 <VipMedal src={t.medal} alt={`${t.tier} medal`} className="h-11 w-11 shrink-0" />
-                                <span className="font-bold uppercase tracking-[0.08em] text-white drop-shadow-sm">{t.tier}</span>
+                                <span className="font-bold uppercase tracking-wide text-white drop-shadow-sm">{t.tier}</span>
                             </div>
                             <div className="divide-y divide-[rgb(226_232_240)] p-4">
                                 {vipTierComparisonSections.map((section) => (
                                     <div key={section.header} className="py-3 first:pt-0 last:pb-0">
-                                        <p className="text-xs font-bold uppercase tracking-[0.1em] text-[rgb(28_40_65)]">
+                                        <p className="text-xs font-bold uppercase tracking-wide text-[rgb(28_40_65)]">
                                             {section.header}
                                         </p>
                                         <div className="mt-2 space-y-2">
@@ -273,17 +273,17 @@ function ReferralContent() {
                 </p>
                 <div className="mt-5 space-y-3">
                     <div className="rounded-xl border border-[rgb(219_228_243)] bg-[var(--color-surface-subtle)] p-4">
-                        <p className="text-xs font-bold uppercase tracking-[0.1em] text-[rgb(100_116_139)]">Email</p>
+                        <p className="text-xs font-bold uppercase tracking-wide text-[rgb(100_116_139)]">Email</p>
                         <p className="mt-1 font-semibold text-[rgb(28_40_65)]">vip@12win.example</p>
                     </div>
                     <div className="rounded-xl border border-[rgb(219_228_243)] bg-[var(--color-surface-subtle)] p-4">
-                        <p className="text-xs font-bold uppercase tracking-[0.1em] text-[rgb(100_116_139)]">Support Hours</p>
+                        <p className="text-xs font-bold uppercase tracking-wide text-[rgb(100_116_139)]">Support Hours</p>
                         <p className="mt-1 font-semibold text-[rgb(28_40_65)]">24/7 Live Chat Assistance</p>
                     </div>
                 </div>
                 <button
                     type="button"
-                    className="btn-theme-cta mt-5 inline-flex h-11 items-center justify-center rounded-xl px-6 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                    className="btn-theme-cta mt-5 inline-flex h-11 items-center justify-center rounded-xl px-6 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105"
                 >
                     Contact Support
                 </button>
@@ -310,7 +310,7 @@ export default function VipPage({ authUser }) {
                         <div className="absolute inset-y-0 right-0 flex w-[56%] items-center justify-end pr-3 sm:w-[52%] sm:pr-4 md:w-[52%] md:justify-start md:pr-0">
                             <div className="flex w-full max-w-[500px] flex-col items-center justify-center px-2 py-2 text-center max-md:justify-center md:max-w-[520px] md:px-8 md:py-7">
                                 <h1
-                                    className="bg-gradient-to-br from-[#FFE082] via-[#FFC107] to-[#E6A800] bg-clip-text text-lg font-bold uppercase tracking-[0.1em] text-transparent max-md:leading-tight md:text-3xl md:tracking-[0.12em]"
+                                    className="bg-gradient-to-br from-[#FFE082] via-[#FFC107] to-[#E6A800] bg-clip-text text-lg font-bold uppercase tracking-wide text-transparent max-md:leading-tight md:text-3xl md:tracking-wide"
                                     style={{
                                         textShadow: '0 1px 0 rgba(255,255,255,0.5), 0 2px 6px rgba(0,0,0,0.3), 0 4px 16px rgba(230,168,0,0.25)',
                                     }}
@@ -323,7 +323,7 @@ export default function VipPage({ authUser }) {
                                 {showBannerCta && (
                                     <a
                                         href="/register"
-                                        className="btn-theme-cta mt-2 inline-flex h-9 min-w-[150px] items-center justify-center rounded-[10px] px-5 text-xs font-bold tracking-[0.06em] transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] md:mt-6 md:h-14 md:min-w-[240px] md:px-12 md:text-lg"
+                                        className="btn-theme-cta mt-2 inline-flex h-9 min-w-[150px] items-center justify-center rounded-[10px] px-5 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] md:mt-6 md:h-14 md:min-w-[240px] md:px-12 md:text-lg"
                                         aria-label="Join VIP now"
                                     >
                                         JOIN NOW
@@ -338,7 +338,7 @@ export default function VipPage({ authUser }) {
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
                 <div className="soft-blue-panel rounded-[28px] p-4 shadow-[var(--shadow-card-raised)] md:p-6">
                     <div>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-[var(--color-accent-700)] shadow-[var(--shadow-subtle)]">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)] shadow-[var(--shadow-subtle)]">
                             <Crown size={14} className="text-[var(--color-nav-accent)]" />
                             VIP Group
                         </span>
@@ -354,7 +354,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-accent-600)]">Starting Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)]">Starting Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-strong)]">Normal</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
@@ -365,7 +365,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-accent-600)]">Top Reward Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)]">Top Reward Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-strong)]">Diamond</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
@@ -376,7 +376,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5 sm:col-span-2 lg:col-span-1">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-accent-600)]">Member Support</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)]">Member Support</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-strong)]">24 / 7</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-subtle)] p-2 shadow-[var(--shadow-subtle)]">
@@ -410,7 +410,7 @@ export default function VipPage({ authUser }) {
                 <div className="rounded-2xl border border-[rgb(219_228_243)] bg-[var(--color-surface-base)] p-5 shadow-[0_6px_18px_rgba(20,43,87,0.08)]">
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
-                            <p className="text-xl font-bold tracking-[0.02em] text-[rgb(28_40_65)] md:text-2xl">VIP Highlights</p>
+                            <p className="text-xl font-bold text-[rgb(28_40_65)] md:text-2xl">VIP Highlights</p>
                             <p className="mt-1 text-sm leading-relaxed text-[rgb(93_103_128)]">
                                 Monthly reloads, special campaigns, birthday treats, and tailored support designed for loyal members.
                             </p>
@@ -418,7 +418,7 @@ export default function VipPage({ authUser }) {
 
                         <a
                             href="/register"
-                            className="btn-theme-cta inline-flex h-11 items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta inline-flex h-11 items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105"
                         >
                             Join Now
                             <ChevronRight size={16} />

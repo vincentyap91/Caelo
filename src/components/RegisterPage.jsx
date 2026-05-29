@@ -163,7 +163,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <button
                                                 type="submit"
-                                                className="btn-theme-auth h-11 w-full rounded-md text-base font-bold tracking-wide transition hover:brightness-105"
+                                                className="btn-theme-auth h-11 w-full rounded-md text-base font-bold transition hover:brightness-105"
                                             >
                                                 REGISTER
                                             </button>

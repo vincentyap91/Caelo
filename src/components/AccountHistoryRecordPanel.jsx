@@ -224,7 +224,7 @@ export default function AccountHistoryRecordPanel({
                                 {columns.map((col) => (
                                     <th
                                         key={col.key}
-                                        className={`px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] ${
+                                        className={`px-4 py-3 text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)] ${
                                             col.align === 'right' ? 'text-right' : 'text-left'
                                         }`}
                                     >

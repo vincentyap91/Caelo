@@ -119,7 +119,7 @@ function DesktopLayout({ onNavigate, onShare, copied, onCopy }) {
 
                         {/* Referral link field */}
                         <div className="mt-4">
-                            <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
+                            <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-white/70">
                                 My Referral Link
                             </p>
                             <div

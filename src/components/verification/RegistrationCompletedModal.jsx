@@ -1,4 +1,4 @@
-﻿import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Check } from 'lucide-react';
 
@@ -96,7 +96,7 @@ export default function RegistrationCompletedModal({
                 <button
                     type="button"
                     onClick={finish}
-                    className="btn-theme-cta mt-8 w-full rounded-xl py-3.5 text-center text-base font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 sm:mt-9 sm:py-4"
+                    className="btn-theme-cta mt-8 w-full rounded-xl py-3.5 text-center text-base font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 sm:mt-9 sm:py-4"
                 >
                     {primaryButtonLabel}
                 </button>

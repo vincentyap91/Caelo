@@ -53,7 +53,7 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                             <Icon size={30} strokeWidth={3} />
                         </button>
                         <div className="mt-auto flex flex-col items-center pb-1">
-                            <span className={`text-[10px] font-medium tracking-tighter ${activePage === 'deposit' ? 'text-[var(--color-nav-accent)]' : 'text-white/60'
+                            <span className={`text-[10px] font-medium tracking-tight ${activePage === 'deposit' ? 'text-[var(--color-nav-accent)]' : 'text-white/60'
                                 }`}>
                                 {label}
                             </span>

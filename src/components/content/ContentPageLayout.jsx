@@ -19,7 +19,7 @@ export function ContentHighlightList({ items = [], className = '', variant = 'de
             {items.map((item) => (
                 <span
                     key={item}
-                    className={`inline-flex min-w-0 shrink-0 items-center justify-center rounded-full border text-center text-xs font-bold uppercase leading-tight tracking-[0.14em] text-[var(--color-accent-700)] ${
+                    className={`inline-flex min-w-0 shrink-0 items-center justify-center rounded-full border text-center text-xs font-bold uppercase leading-tight tracking-wide text-[var(--color-accent-700)] ${
                         heroMobileOverlay
                             ? 'min-h-[2.5rem] w-full border-[var(--color-accent-100)] bg-white/92 px-2 py-2 shadow-[0_2px_12px_rgba(15,23,42,0.1)] backdrop-blur-sm'
                             : 'border-[var(--color-accent-100)] bg-white px-3.5 py-2 shadow-[var(--shadow-subtle)] sm:px-4'
@@ -99,7 +99,7 @@ export default function ContentPageLayout({
                         {heroVisualSrc ? (
                             <div className="w-full max-w-[28rem] max-md:max-w-[58%] max-md:min-w-0 max-md:pb-32 max-md:pr-0 pr-10 sm:max-w-[31rem] sm:pr-16 md:block md:max-w-[57%] md:pb-0 md:pr-8 lg:max-w-[54%]">
                                 {eyebrow ? (
-                                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-accent-700)]">
+                                    <p className="text-xs font-bold uppercase tracking-code text-[var(--color-accent-700)]">
                                         {eyebrow}
                                     </p>
                                 ) : null}
@@ -118,7 +118,7 @@ export default function ContentPageLayout({
                         ) : (
                             <div className="max-w-4xl">
                                 {eyebrow ? (
-                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent-700)]">{eyebrow}</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)]">{eyebrow}</p>
                                 ) : null}
                                 <h1 className="page-title mt-2.5 text-[var(--color-text-strong)] md:mt-3">{title}</h1>
                                 {lead ? (

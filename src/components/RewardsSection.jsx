@@ -145,7 +145,7 @@ function ScratchStyleRewardCard({
                 ) : null}
                 <div className="absolute inset-0 flex items-center justify-center">{heroCenter}</div>
                 <div className="absolute inset-0 flex items-center justify-center bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgb(255_255_255_/_0.06)_2px,rgb(255_255_255_/_0.06)_4px)] opacity-80" />
-                <span className="absolute bottom-2 left-2 z-10 rounded bg-black/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-white">
+                <span className="absolute bottom-2 left-2 z-10 rounded bg-black/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-white">
                     {badge}
                 </span>
             </div>

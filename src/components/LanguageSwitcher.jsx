@@ -1,19 +1,19 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 const FLAG_CDN = 'https://flagcdn.com/w40';
 const LANGUAGES = [
     { code: 'en-us', label: 'English', flagCode: 'gb', short: 'EN' },
-    { code: 'zh-cn', label: '简体中文', flagCode: 'cn', short: 'CN' },
-    { code: 'zh-tw', label: '繁體中文', flagCode: 'tw', short: 'TW' },
-    { code: 'th-th', label: 'ไทย', flagCode: 'th', short: 'TH' },
-    { code: 'ko-kr', label: '한국어', flagCode: 'kr', short: 'KR' },
-    { code: 'vi-vn', label: 'Tiếng Việt', flagCode: 'vn', short: 'VN' },
+    { code: 'zh-cn', label: '????', flagCode: 'cn', short: 'CN' },
+    { code: 'zh-tw', label: '????', flagCode: 'tw', short: 'TW' },
+    { code: 'th-th', label: '???', flagCode: 'th', short: 'TH' },
+    { code: 'ko-kr', label: '???', flagCode: 'kr', short: 'KR' },
+    { code: 'vi-vn', label: 'Ti?ng Vi?t', flagCode: 'vn', short: 'VN' },
     { code: 'id-id', label: 'Indonesia', flagCode: 'id', short: 'ID' },
-    { code: 'hi-in', label: 'हिन्दी', flagCode: 'in', short: 'IN' },
+    { code: 'hi-in', label: '??????', flagCode: 'in', short: 'IN' },
     { code: 'km-kh', label: 'Khmer', flagCode: 'kh', short: 'KH' },
-    { code: 'my-mm', label: 'မြန်မာ', flagCode: 'mm', short: 'MM' },
-    { code: 'ja-jp', label: '日本語', flagCode: 'jp', short: 'JP' },
+    { code: 'my-mm', label: '??????', flagCode: 'mm', short: 'MM' },
+    { code: 'ja-jp', label: '???', flagCode: 'jp', short: 'JP' },
 ];
 
 export default function LanguageSwitcher({
@@ -98,7 +98,7 @@ export default function LanguageSwitcher({
                                     onChange?.(lang.code);
                                     setOpen(false);
                                 }}
-                                className={`group relative flex w-full items-center gap-3 px-3.5 py-3 text-left text-sm font-semibold tracking-[0.01em] transition-colors duration-200 ${
+                                className={`group relative flex w-full items-center gap-3 px-3.5 py-3 text-left text-sm font-semibold transition-colors duration-200 ${
                                     isLightTone
                                         ? `text-slate-900 ${
                                             isActive

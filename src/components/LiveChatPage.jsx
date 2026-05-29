@@ -118,7 +118,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                             <h2 className="text-[15px] font-bold text-white leading-none">RioCity9 Support</h2>
                             <div className="mt-1 flex items-center gap-1.5">
                                 <span className="h-1.5 w-1.5 rounded-full bg-[#4ade80]"></span>
-                                <p className="text-[10px] font-bold text-white/70 uppercase tracking-wider">SUPPORT ONLINE</p>
+                                <p className="text-[10px] font-bold text-white/70 uppercase tracking-wide">SUPPORT ONLINE</p>
                             </div>
                         </div>
                     </div>
@@ -134,7 +134,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                     if (msg.type === 'date') {
                         return (
                             <div key={msg.id} className="flex justify-center my-8">
-                                <span className="px-5 py-1.5 rounded-full bg-white border border-[var(--color-border-default)] text-[10px] font-extrabold text-[var(--color-text-muted)] uppercase tracking-widest shadow-sm">
+                                <span className="px-5 py-1.5 rounded-full bg-white border border-[var(--color-border-default)] text-[10px] font-extrabold text-[var(--color-text-muted)] uppercase shadow-sm">
                                     {msg.text}
                                 </span>
                             </div>

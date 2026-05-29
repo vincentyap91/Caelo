@@ -14,10 +14,10 @@ export const BROWSE_SUMMARY_CARD_COMPACT_CLASS =
 
 /** Typography aligned with compact denseMobile wallet/rebate tiles. */
 export const BROWSE_SUMMARY_LABEL_COMPACT_CLASS =
-    'font-semibold tracking-[-0.01em] leading-tight text-[var(--color-text-main)] text-xs sm:text-sm';
+    'font-semibold tracking-tight leading-tight text-[var(--color-text-main)] text-xs sm:text-sm';
 
 export const BROWSE_SUMMARY_VALUE_COMPACT_CLASS =
-    'tabular-nums font-bold leading-tight tracking-[-0.03em] text-[var(--color-brand-deep)] text-base sm:text-lg md:text-xl';
+    'tabular-nums font-bold leading-tight tracking-tight text-[var(--color-brand-deep)] text-base sm:text-lg md:text-xl';
 
 function SummaryItem({
     title,
@@ -65,13 +65,13 @@ function SummaryItem({
                     className={
                         compact && denseMobile
                             ? BROWSE_SUMMARY_LABEL_COMPACT_CLASS
-                            : `font-semibold tracking-[-0.01em] text-[var(--color-text-main)] ${compact ? 'text-xs sm:text-sm' : 'text-sm'}`
+                            : `font-semibold tracking-tight text-[var(--color-text-main)] ${compact ? 'text-xs sm:text-sm' : 'text-sm'}`
                     }
                 >
                     {title}
                 </p>
                 <p
-                    className={`tabular-nums leading-tight tracking-[-0.03em] sm:leading-none ${valueClassName} ${compact && denseMobile ? BROWSE_SUMMARY_VALUE_COMPACT_CLASS : valueSizeClass}`}
+                    className={`tabular-nums leading-tight tracking-tight sm:leading-none ${valueClassName} ${compact && denseMobile ? BROWSE_SUMMARY_VALUE_COMPACT_CLASS : valueSizeClass}`}
                 >
                     {value}
                 </p>

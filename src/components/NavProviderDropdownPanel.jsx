@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 /**
  * Full-width nav mega-menu: fixed square provider tiles (same chrome as legacy Live Casino dropdown).
@@ -36,7 +36,7 @@ export default function NavProviderDropdownPanel({ open = false, providers = [],
                                 ) : null}
 
                                 {provider.hot ? (
-                                    <span className="absolute right-2 top-2 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-xs font-bold tracking-[0.06em] text-white shadow-[0_4px_10px_rgba(255,77,0,0.4)]">
+                                    <span className="absolute right-2 top-2 rounded-full bg-[var(--color-hot-main)] px-2 py-0.5 text-xs font-bold tracking-wide text-white shadow-[0_4px_10px_rgba(255,77,0,0.4)]">
                                         HOT
                                     </span>
                                 ) : null}

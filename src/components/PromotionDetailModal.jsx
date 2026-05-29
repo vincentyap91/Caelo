@@ -92,7 +92,7 @@ export default function PromotionDetailModal({
                     <div className="mt-6">
                         <div className="flex flex-wrap items-center justify-between gap-4">
                             {category && (
-                                <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-accent-700)]">
+                                <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)]">
                                     {category}
                                 </span>
                             )}
@@ -124,7 +124,7 @@ export default function PromotionDetailModal({
                                         key={cell.label}
                                         className="grid grid-cols-[minmax(0,40%)_minmax(0,1fr)] items-stretch"
                                     >
-                                        <dt className="flex items-center bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] border-r border-[rgb(214_188_113)] px-2.5 py-3 text-left text-xs font-bold uppercase leading-snug tracking-[0.07em] text-[var(--color-cta-text)]">
+                                        <dt className="flex items-center bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] border-r border-[rgb(214_188_113)] px-2.5 py-3 text-left text-xs font-bold uppercase leading-snug tracking-wide text-[var(--color-cta-text)]">
                                             {cell.label}
                                         </dt>
                                         <dd className="m-0 flex min-w-0 items-center justify-end bg-white px-3 py-3 text-right text-sm font-semibold leading-snug text-[var(--color-text-main)] break-words tabular-nums">
@@ -137,7 +137,7 @@ export default function PromotionDetailModal({
 
                         {/* Tablet / desktop: unchanged wide table */}
                         <div className="mt-4 hidden overflow-hidden rounded-2xl border border-[rgb(228_234_243)] bg-white sm:block">
-                            <div className="grid grid-cols-5 border-b border-[rgb(228_234_243)] bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-cta-text)]">
+                            <div className="grid grid-cols-5 border-b border-[rgb(228_234_243)] bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-xs font-bold uppercase tracking-wide text-[var(--color-cta-text)]">
                                 {detailCells.map((cell) => (
                                     <div
                                         key={cell.label}

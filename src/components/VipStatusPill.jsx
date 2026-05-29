@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { getVipStatus } from '../constants/vipStatus';
 
 export default function VipStatusPill({ level = 'Diamond', theme = 'light', size = 'default', username, layout = 'row', className = '' }) {
@@ -44,7 +44,7 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
         <div
           className="-mt-2 inline-flex items-center justify-center rounded-full border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] px-4 py-2 shadow-[0_0_12px_rgba(59_130_246_/_0.25)]"
         >
-          <span className="text-sm font-bold tracking-[0.02em] text-[var(--color-accent-700)] md:text-base">{labelText}</span>
+          <span className="text-sm font-bold text-[var(--color-accent-700)] md:text-base">{labelText}</span>
         </div>
       </div>
     );
@@ -57,7 +57,7 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
         alt={`${vip.tier} medal`}
         className={`${medalSize} shrink-0 object-contain`}
       />
-      <span className={`font-bold tracking-[0.02em] ${isColumn ? 'text-center' : 'min-w-0 truncate'} ${header ? 'max-w-[130px]' : ''} ${textColor || ''}`}>{labelText}</span>
+      <span className={`font-bold ${isColumn ? 'text-center' : 'min-w-0 truncate'} ${header ? 'max-w-[130px]' : ''} ${textColor || ''}`}>{labelText}</span>
     </div>
   );
 }

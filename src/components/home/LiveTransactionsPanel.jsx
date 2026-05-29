@@ -127,7 +127,7 @@ export default function LiveTransactionsPanel() {
                                 key={t.id}
                                 type="button"
                                 onClick={() => setFilter(t.id)}
-                                className={`rounded-full text-xs font-bold tracking-wide transition md:text-sm ${
+                                className={`rounded-full text-xs font-bold transition md:text-sm ${
                                     active
                                         ? 'bg-[var(--color-brand-secondary)] text-white shadow-sm'
                                         : 'text-[var(--color-text-brand)] hover:bg-white/70'

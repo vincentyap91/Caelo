@@ -431,7 +431,7 @@ export default function Navbar({
                                                 setBalanceDropdownOpen((prev) => !prev);
                                                 setProfileMenuOpen(false);
                                             }}
-                                            className="flex min-w-0 flex-1 items-center gap-1.5 px-2.5 text-xs font-bold tracking-[0.01em] transition hover:bg-white/[0.08]"
+                                            className="flex min-w-0 flex-1 items-center gap-1.5 px-2.5 text-xs font-bold transition hover:bg-white/[0.08]"
                                         >
                                             <span className="min-w-0 truncate tabular-nums">{authUser.balance}</span>
                                             <ChevronDown size={13} className={`transition-transform ${balanceDropdownOpen ? 'rotate-180' : ''}`} />
@@ -480,7 +480,7 @@ export default function Navbar({
                                             alt=""
                                             className="h-5 w-5 shrink-0 object-contain"
                                         />
-                                        <span className="truncate text-xs font-bold tracking-[0.02em] text-[var(--color-nav-accent)]">
+                                        <span className="truncate text-xs font-bold text-[var(--color-nav-accent)]">
                                             {authUser.name}
                                         </span>
                                         <UserCircle2 size={18} className="shrink-0 text-white/90" />
@@ -509,7 +509,7 @@ export default function Navbar({
                                         setProfileMenuOpen(false);
                                         onNavigate?.('deposit');
                                     }}
-                                    className="btn-theme-cta-soft h-7 shrink-0 rounded-[9px] px-4 font-bold tracking-wide transition hover:brightness-105"
+                                    className="btn-theme-cta-soft h-7 shrink-0 rounded-[9px] px-4 font-bold transition hover:brightness-105"
                                 >
                                     DEPOSIT
                                 </button>
@@ -958,7 +958,7 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('deposit')}
-                                    className="btn-theme-cta-soft inline-flex min-h-10 shrink-0 items-center justify-center rounded-xl px-3.5 text-sm font-bold tracking-wide"
+                                    className="btn-theme-cta-soft inline-flex min-h-10 shrink-0 items-center justify-center rounded-xl px-3.5 text-sm font-bold"
                                 >
                                     Deposit
                                 </button>
@@ -1049,7 +1049,7 @@ export default function Navbar({
                                 <div className="w-full rounded-[20px] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-3.5 shadow-[var(--shadow-card-soft)]">
                                     <div className="flex items-center justify-between gap-2.5">
                                         <div>
-                                            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-text-brand)]">
+                                            <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-brand)]">
                                                 Balance
                                             </p>
                                             <p className="mt-0.5 text-base font-bold text-[var(--color-text-strong)]">{authUser.balance}</p>
@@ -1183,7 +1183,7 @@ export default function Navbar({
                                     {isGamesRow && mobileGamesOpen && (
                                         <div className="space-y-1 border-t border-[var(--color-border-brand)] px-1.5 pb-1.5 pt-1">
                                             <div className="mb-1 px-2 pt-1.5">
-                                                <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]" style={{ fontFamily: 'var(--base-font-family)' }}>
+                                                <p className="text-[10px] font-bold uppercase tracking-wide text-[var(--color-text-muted)]" style={{ fontFamily: 'var(--base-font-family)' }}>
                                                     GAME CATEGORIES
                                                 </p>
                                             </div>
@@ -1244,7 +1244,7 @@ export default function Navbar({
                                                             >
                                                                 <SectionIcon size={15} />
                                                             </span>
-                                                            <span className="min-w-0 flex-1 text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-text-subtle)]" style={{ fontFamily: 'var(--base-font-family)' }}>
+                                                            <span className="min-w-0 flex-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-subtle)]" style={{ fontFamily: 'var(--base-font-family)' }}>
                                                                 {sectionLabel}
                                                             </span>
                                                             <ChevronRight

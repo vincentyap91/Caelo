@@ -125,7 +125,7 @@ export default function AppDownload() {
 
             <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[0.9fr_1fr_0.85fr] lg:gap-10">
                 <div className="w-full max-w-[360px]">
-                    <div className="inline-flex rounded-full border border-white/80 bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-brand-secondary)]">
+                    <div className="inline-flex rounded-full border border-white/80 bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-brand-secondary)]">
                         Mobile App
                     </div>
                     <h2 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--color-text-brand-soft)] sm:text-3xl md:text-4xl">
@@ -192,7 +192,7 @@ export default function AppDownload() {
                             <div className="pointer-events-none absolute left-[-12px] bottom-8 h-16 w-16 rounded-full bg-white/60 blur-2xl" />
 
                             <div className="relative">
-                                <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/85 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-brand-secondary)]">
+                                <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/85 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-brand-secondary)]">
                                     <QrCode size={13} />
                                     Android APK
                                 </div>
@@ -217,10 +217,10 @@ export default function AppDownload() {
                                                 Scan or tap to install
                                             </h3>
                                             <div className="mt-2 flex flex-wrap justify-center gap-1.5 sm:justify-start">
-                                                <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(77_114_145)]">
+                                                <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[rgb(77_114_145)]">
                                                     Scan Ready
                                                 </span>
-                                                <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(77_114_145)]">
+                                                <span className="rounded-full border border-[rgb(202_227_244)] bg-[rgb(244_251_255)] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[rgb(77_114_145)]">
                                                     Direct APK
                                                 </span>
                                             </div>

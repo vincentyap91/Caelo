@@ -71,7 +71,7 @@ export default function ProductBrowseControlPanel({
                                             role="tab"
                                             aria-selected={selected}
                                             onClick={() => onSearchScopeChange(scope.id)}
-                                            className={`min-w-0 flex-1 rounded-xl px-3 py-2 text-xs font-bold tracking-wide transition-all duration-200 md:flex-none ${selected
+                                            className={`min-w-0 flex-1 rounded-xl px-3 py-2 text-xs font-bold transition-all duration-200 md:flex-none ${selected
                                                     ? 'btn-theme-tab-selected'
                                                     : 'border border-transparent bg-transparent text-[var(--color-text-main)] hover:border-[var(--color-border-default)] hover:bg-white hover:text-[var(--color-text-strong)]'
                                                 }`}

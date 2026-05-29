@@ -147,7 +147,7 @@ export default function SlotBrowseFilterModal({
             >
                 <div className="flex shrink-0 items-center justify-between gap-3 border-b border-[rgb(229_235_244)] px-4 py-3 max-lg:gap-2 sm:px-6 sm:py-4">
                     <div className="min-w-0 pr-2">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[rgb(118_129_151)] max-lg:tracking-[0.12em] sm:text-[11px] sm:tracking-[0.16em]">
+                        <p className="text-[10px] font-semibold uppercase tracking-wide text-[rgb(118_129_151)] max-lg:tracking-wide sm:text-[11px] sm:tracking-wide">
                             Browse Control
                         </p>
                         <h2 className="mt-0.5 text-base font-bold leading-tight tracking-tight text-[var(--color-text-strong)] max-lg:line-clamp-2 sm:mt-1 sm:text-lg lg:text-xl">
@@ -192,7 +192,7 @@ export default function SlotBrowseFilterModal({
                                             role="tab"
                                             aria-selected={selected}
                                             onClick={() => setDraftScope(scope.id)}
-                                            className={`flex min-h-11 min-w-0 flex-1 items-center justify-center rounded-xl px-2 py-2 text-xs font-bold tracking-wide transition-all duration-200 lg:min-h-0 lg:px-3 lg:flex-none ${selected
+                                            className={`flex min-h-11 min-w-0 flex-1 items-center justify-center rounded-xl px-2 py-2 text-xs font-bold transition-all duration-200 lg:min-h-0 lg:px-3 lg:flex-none ${selected
                                                 ? 'btn-theme-tab-selected'
                                                 : 'border border-transparent bg-transparent text-[var(--color-text-main)] hover:border-[var(--color-border-default)] hover:bg-white hover:text-[var(--color-text-strong)]'
                                                 }`}
@@ -222,7 +222,7 @@ export default function SlotBrowseFilterModal({
                                         Select one provider or browse across all providers.
                                     </p>
                                 </div>
-                                <span className="shrink-0 rounded-full border border-[rgb(226_233_242)] bg-[rgb(247_250_255)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[rgb(113_126_150)] sm:px-2.5 sm:py-1 sm:text-[11px]">
+                                <span className="shrink-0 rounded-full border border-[rgb(226_233_242)] bg-[rgb(247_250_255)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[rgb(113_126_150)] sm:px-2.5 sm:py-1 sm:text-[11px]">
                                     {visibleProviders.length}
                                 </span>
                             </div>
@@ -324,7 +324,7 @@ export default function SlotBrowseFilterModal({
                                         Browse the games that match your current search and provider filter.
                                     </p>
                                 </div>
-                                <span className="shrink-0 rounded-full border border-[rgb(226_233_242)] bg-[rgb(247_250_255)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[rgb(113_126_150)] sm:px-2.5 sm:py-1 sm:text-[11px]">
+                                <span className="shrink-0 rounded-full border border-[rgb(226_233_242)] bg-[rgb(247_250_255)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[rgb(113_126_150)] sm:px-2.5 sm:py-1 sm:text-[11px]">
                                     {visibleGames.length}
                                 </span>
                             </div>
@@ -398,7 +398,7 @@ export default function SlotBrowseFilterModal({
                     <button
                         type="button"
                         onClick={handleApply}
-                        className="btn-theme-cta inline-flex h-12 min-h-12 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold tracking-wide shadow-[0_4px_14px_rgba(255,174,39,0.22)] lg:h-11 lg:min-h-0 lg:w-auto lg:shadow-none"
+                        className="btn-theme-cta inline-flex h-12 min-h-12 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold shadow-[0_4px_14px_rgba(255,174,39,0.22)] lg:h-11 lg:min-h-0 lg:w-auto lg:shadow-none"
                     >
                         <SlidersHorizontal size={16} />
                         Apply Filters

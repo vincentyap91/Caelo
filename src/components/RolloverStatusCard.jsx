@@ -10,7 +10,7 @@ import ProgressBar from './ui/ProgressBar';
 function Metric({ label, value, dark = false }) {
     return (
         <div className={`rounded-xl px-3 py-2 ${dark ? 'bg-white/[0.05]' : 'bg-[var(--color-surface-muted)]/90'}`}>
-            <p className={`text-xs font-bold uppercase tracking-[0.18em] ${dark ? 'text-white/55' : 'text-[var(--color-text-soft)]'}`}>
+            <p className={`text-xs font-bold uppercase tracking-wide ${dark ? 'text-white/55' : 'text-[var(--color-text-soft)]'}`}>
                 {label}
             </p>
             <p className={`mt-1 text-sm font-bold tabular-nums ${dark ? 'text-white' : 'text-[var(--color-text-strong)]'}`}>
@@ -70,7 +70,7 @@ export default function RolloverStatusCard({
             <>
                 <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
-                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-nav-text-accent)]">
+                        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-nav-text-accent)]">
                             Rollover Summary
                         </p>
                         <p className="mt-1 truncate text-base font-bold text-white">{title}</p>
@@ -273,7 +273,7 @@ export default function RolloverStatusCard({
                             {isComplete ? <CircleCheckBig size={20} /> : <ShieldAlert size={20} />}
                         </div>
                         <div className="min-w-0">
-                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent-700)]">
+                            <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)]">
                                 Wallet / Cashier
                             </p>
                             <h2 className="mt-1 text-lg font-bold text-[var(--color-text-strong)]">{title}</h2>

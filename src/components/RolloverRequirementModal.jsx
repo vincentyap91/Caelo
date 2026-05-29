@@ -1,4 +1,4 @@
-ï»¿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { AlertCircle, AlertTriangle } from 'lucide-react';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
@@ -9,7 +9,7 @@ function formatPercent(value) {
 }
 
 function formatDisplay(value) {
-    if (value == null) return 'â€”';
+    if (value == null) return '—';
     if (typeof value === 'number' && Number.isFinite(value)) return value.toFixed(2);
     return String(value);
 }
@@ -62,7 +62,7 @@ function ProgressRing({ percent }) {
 }
 
 /**
- * Rollover / turnover requirement not met â€” blocks withdraw or similar actions until OK.
+ * Rollover / turnover requirement not met — blocks withdraw or similar actions until OK.
  * Shell matches TacErrorModal: overlay, panel radius, shadow, primary OK CTA.
  */
 export default function RolloverRequirementModal({
@@ -177,7 +177,7 @@ export default function RolloverRequirementModal({
                 <button
                     type="button"
                     onClick={onClose}
-                    className="btn-theme-cta mt-7 min-w-[160px] shrink-0 self-center rounded-xl px-10 py-3 text-center text-sm font-bold uppercase tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0"
+                    className="btn-theme-cta mt-7 min-w-[160px] shrink-0 self-center rounded-xl px-10 py-3 text-center text-sm font-bold uppercase transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0"
                 >
                     OK
                 </button>

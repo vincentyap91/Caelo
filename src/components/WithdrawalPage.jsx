@@ -470,7 +470,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
 
                         <div className="overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
                             <div className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-5 py-3">
-                                <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Withdrawal Details</p>
+                                <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Withdrawal Details</p>
                             </div>
                             <div className="divide-y divide-[var(--color-border-default)]">
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">

@@ -260,16 +260,16 @@ export default function DownlineReferralsPanel() {
                             <table className="w-full min-w-[640px] border-collapse text-sm">
                                 <thead>
                                     <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">
                                             Username
                                         </th>
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">
                                             Contact
                                         </th>
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">
                                             Register Date
                                         </th>
-                                        <th className="px-4 py-3 text-right text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                                        <th className="px-4 py-3 text-right text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">
                                             <span className="inline-flex items-center justify-end gap-1">
                                                 <ArrowDownUp size={14} className="shrink-0 opacity-70" aria-hidden />
                                                 Deposit

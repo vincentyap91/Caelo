@@ -289,7 +289,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                 <div className="flex min-h-0 flex-1 flex-col justify-between gap-4 px-4 py-4 md:px-5 md:py-5">
                                     <div className="flex flex-col gap-3">
                                         <div className="flex items-center justify-between gap-2">
-                                            <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-accent-700)]">
+                                            <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)]">
                                                 {promotion.category}
                                             </span>
                                             {promotion.endDate && (
@@ -331,7 +331,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                         <button
                             type="button"
                             onClick={loadMorePromotions}
-                            className="btn-theme-cta inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm font-bold tracking-wide shadow-[0_6px_14px_rgba(242,154,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm font-bold shadow-[0_6px_14px_rgba(242,154,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105"
                         >
                             Load More
                         </button>

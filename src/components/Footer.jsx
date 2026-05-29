@@ -50,7 +50,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                     <div className="flex w-full flex-col items-center gap-6 md:w-auto md:items-end md:gap-5">
                         {/* PAYMENT METHOD section */}
                         <div className="flex flex-col items-center gap-2.5 md:items-end">
-                            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Payment Method</h4>
+                            <h4 className="text-xs font-bold uppercase tracking-wide text-white">Payment Method</h4>
                             <FooterPaymentMethods />
                         </div>
 
@@ -89,7 +89,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                 >
 
                     <div className="flex flex-col items-center gap-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-white">Certificated by</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-wide text-white">Certificated by</h4>
                         <div
                             className="flex max-w-full flex-wrap items-center justify-center gap-x-4 gap-y-3.5 px-1 sm:gap-x-5 sm:gap-y-4 md:gap-x-6"
                             role="list"
@@ -114,7 +114,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                     </div>
 
                     <div className="flex flex-col items-center gap-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-white">Responsible Gaming</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-wide text-white">Responsible Gaming</h4>
                         <div className="flex items-center gap-4 text-white opacity-95">
                             <div className="flex h-10 w-10 items-center justify-center rounded-full border-[2px] border-white text-lg font-bold">18+</div>
                             <div className="flex items-center gap-1 font-bold text-xs text-center leading-tight">

@@ -162,12 +162,12 @@ function ProfileVipProgressSection({ targetTier, progressPercent, tier, showTier
         <div className={wrapClass}>
             {showTierHeader && vip ? (
                 <div className="mb-3 flex items-center">
-                    <p className="text-sm font-extrabold uppercase tracking-[0.03em] text-[var(--color-brand-primary)]">{vip.tier}</p>
+                    <p className="text-sm font-extrabold uppercase text-[var(--color-brand-primary)]">{vip.tier}</p>
                 </div>
             ) : null}
 
             <div className="flex items-center justify-between gap-2">
-                <span className="rounded-full bg-[var(--color-brand-primary)] px-3.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.02em] text-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]">
+                <span className="rounded-full bg-[var(--color-brand-primary)] px-3.5 py-1 text-[10px] font-extrabold uppercase text-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]">
                     TARGET: {String(targetTier || '').toUpperCase()}
                 </span>
                 <span className="text-sm font-bold text-[var(--color-text-strong)]">{progressPercent}%</span>
@@ -356,7 +356,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
 
                             <div className="flex min-w-0 flex-1 flex-col gap-1 md:gap-3">
                                 <div className="space-y-0.5 md:space-y-1.5">
-                                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-accent-600)] md:text-xs md:tracking-[0.2em]">
+                                    <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent-600)] md:text-xs md:tracking-code">
                                         Verified Account
                                     </p>
                                     <h2 className="truncate text-lg font-bold tracking-tight text-[var(--color-text-strong)] sm:text-xl md:text-3xl">
