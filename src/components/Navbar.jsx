@@ -421,7 +421,7 @@ export default function Navbar({
                         {authUser ? (
                             <div
                                 ref={profileMenuRef}
-                                className="relative flex h-full items-center gap-2 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
+                                className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
                             >
                                 <div className="relative">
                                     <div className="flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg border border-white/15 bg-[var(--color-brand-primary)] text-white">
