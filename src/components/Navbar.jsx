@@ -45,7 +45,7 @@ import { slotProvidersForNavDropdown } from '../constants/matchedSlotProviders';
 import LanguageSwitcher from './LanguageSwitcher';
 import { HISTORY_RECORD_NAV } from '../constants/historyRecordPages';
 import { settingsOptions } from '../constants/settingsOptions';
-import { REWARDS_NAV_ICONS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
+import { REWARDS_NAV_ICONS, REWARDS_PROGRAMS, parseRewardsTabFromHash } from '../constants/rewardsPrograms';
 import { getVipStatus } from '../constants/vipStatus';
 import VipStatusPill from './VipStatusPill';
 import MobileSiteHeader from './MobileSiteHeader';
@@ -70,9 +70,8 @@ const NAV_TARGETS = {
     Promotion: 'promotion',
     VIP: 'vip',
     Rebate: 'rebate',
-    Rewards: 'loyalty-rewards',
 };
-const DESKTOP_MORE_LINKS = ['Promotion', 'Referral', 'VIP', 'Rebate', 'Rewards'];
+const DESKTOP_MORE_LINKS = ['Promotion', 'Referral', 'VIP', 'Rebate'];
 const NAV_HREFS = {
     Home: '/',
     Casino: '/casino',
@@ -86,7 +85,6 @@ const NAV_HREFS = {
     Promotion: '/promotion',
     VIP: '/vip',
     Rebate: '/rebate',
-    Rewards: '/loyalty-rewards',
 };
 const MOBILE_PRIMARY_ITEMS = [
     { id: 'home', label: 'Home', page: 'home', icon: House },
@@ -232,6 +230,7 @@ export default function Navbar({
     const [openMobileMoreSection, setOpenMobileMoreSection] = useState(null);
     const [language, setLanguage] = useState('en-us');
     const [openProfileSection, setOpenProfileSection] = useState('account');
+    const [rewardsNavTab, setRewardsNavTab] = useState(parseRewardsTabFromHash);
     const profileMenuRef = useRef(null);
     const accountCards = [
         { id: 'profile', label: 'Account Details', icon: UserRound },
@@ -268,6 +267,17 @@ export default function Navbar({
         window.addEventListener('pointerdown', handlePointerDown);
         return () => window.removeEventListener('pointerdown', handlePointerDown);
     }, [profileMenuOpen, balanceDropdownOpen]);
+
+    useEffect(() => {
+        const syncRewardsTab = () => setRewardsNavTab(parseRewardsTabFromHash());
+        syncRewardsTab();
+        window.addEventListener('hashchange', syncRewardsTab);
+        window.addEventListener('popstate', syncRewardsTab);
+        return () => {
+            window.removeEventListener('hashchange', syncRewardsTab);
+            window.removeEventListener('popstate', syncRewardsTab);
+        };
+    }, [activePage]);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -887,25 +897,17 @@ export default function Navbar({
                                 More <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
                             </button>
 
-                            <div className="absolute right-0 top-full pt-1 z-[130] w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div className="absolute right-0 top-full pt-1 z-[130] w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                 <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--surface-base)] py-2 shadow-[var(--shadow-nav-dropdown)]">
                                     {DESKTOP_MORE_LINKS.map((subLink) => {
                                         const targetId = NAV_TARGETS[subLink];
-                                        const rewardsTab = subLink === 'Rewards' ? 'daily-bonus' : undefined;
                                         return (
                                             <a
                                                 key={subLink}
-                                                href={
-                                                    rewardsTab
-                                                        ? `${NAV_HREFS[subLink]}#${rewardsTab}`
-                                                        : NAV_HREFS[subLink]
-                                                }
+                                                href={NAV_HREFS[subLink]}
                                                 onClick={(event) => {
                                                     event.preventDefault();
-                                                    onNavigate?.(
-                                                        targetId,
-                                                        rewardsTab ? { rewardsTab } : undefined,
-                                                    );
+                                                    onNavigate?.(targetId);
                                                     setNavProviderDropdown(null);
                                                 }}
                                                 className={`block px-5 py-2.5 text-sm font-bold transition-colors ${
@@ -915,6 +917,28 @@ export default function Navbar({
                                                 }`}
                                             >
                                                 {subLink}
+                                            </a>
+                                        );
+                                    })}
+                                    {REWARDS_PROGRAMS.map(({ id, label }) => {
+                                        const isRewardsItemActive =
+                                            activePage === 'loyalty-rewards' && rewardsNavTab === id;
+                                        return (
+                                            <a
+                                                key={id}
+                                                href={`/loyalty-rewards#${id}`}
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    onNavigate?.('loyalty-rewards', { rewardsTab: id });
+                                                    setNavProviderDropdown(null);
+                                                }}
+                                                className={`block px-5 py-2.5 text-sm font-bold transition-colors ${
+                                                    isRewardsItemActive
+                                                        ? 'bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
+                                                        : 'text-[var(--color-text-main)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-brand)]'
+                                                }`}
+                                            >
+                                                {label}
                                             </a>
                                         );
                                     })}

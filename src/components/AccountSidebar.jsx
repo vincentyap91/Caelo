@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { HISTORY_RECORD_NAV } from '../constants/historyRecordPages';
 import { settingsOptions } from '../constants/settingsOptions';
-import { REWARDS_NAV_ICONS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
+import { REWARDS_NAV_ICONS, REWARDS_PROGRAMS, parseRewardsTabFromHash } from '../constants/rewardsPrograms';
 import { PROFILE_NEXT_VIP_TIER, PROFILE_VIP_PROGRESS_PERCENT, PROFILE_VIP_TIER } from '../constants/profileVipTier';
 import VipTierProgressCard from './VipTierProgressCard';
 
@@ -50,14 +50,6 @@ const MENU_BY_PAGE = {
     withdrawal: 'cashier',
     ...Object.fromEntries(HISTORY_RECORD_NAV.map(({ id }) => [id, 'historyRecord'])),
 };
-
-function parseRewardsTabFromHash() {
-    if (typeof window === 'undefined') return 'daily-bonus';
-    if (window.location.pathname !== '/loyalty-rewards') return 'daily-bonus';
-    const h = window.location.hash.slice(1);
-    const ids = REWARDS_PROGRAMS.map((p) => p.id);
-    return ids.includes(h) ? h : 'daily-bonus';
-}
 
 export default function AccountSidebar({
     activePage = 'profile',
