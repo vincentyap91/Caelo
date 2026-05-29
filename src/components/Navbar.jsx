@@ -417,7 +417,7 @@ export default function Navbar({
                         </button>
                     </div>
 
-                    <div className="flex items-center gap-2.5 h-full">
+                    <div className="flex items-center gap-1 h-full">
                         {authUser ? (
                             <div
                                 ref={profileMenuRef}
