@@ -187,7 +187,6 @@ const PROTECTED_PAGE_IDS = new Set([
   'verification',
   'favourites',
   'my-bets',
-  'loyalty-rewards',
   'feedback',
   'security',
   'notifications',
@@ -641,8 +640,16 @@ function AppInner() {
       ) : page === 'profile' ? (
         <ProfilePage authUser={authUser} onLogout={handleLogout} onNavigate={handleNavigate} onLiveChatClick={() => handleNavigate('live-chat')} />
       ) : page === 'loyalty-rewards' ? (
-        <AccountLayout activePage="loyalty-rewards" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => handleNavigate('live-chat')}>
-          <RewardsPage />
+        <AccountLayout
+          activePage="loyalty-rewards"
+          authUser={authUser}
+          guestPreview={!authUser}
+          onNavigate={handleNavigate}
+          onLogout={handleLogout}
+          onLoginClick={() => setLoginModalOpen(true)}
+          onLiveChatClick={() => handleNavigate('live-chat')}
+        >
+          <RewardsPage guestPreview={!authUser} onLoginClick={() => setLoginModalOpen(true)} />
         </AccountLayout>
       ) : page === 'verification' ? (
         <AccountLayout activePage="verification" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => handleNavigate('live-chat')}>

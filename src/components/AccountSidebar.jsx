@@ -62,8 +62,10 @@ function parseRewardsTabFromHash() {
 export default function AccountSidebar({
     activePage = 'profile',
     authUser,
+    guestPreview = false,
     onNavigate,
     onLogout,
+    onLoginClick,
     onLiveChatClick,
 }) {
     const [openMenus, setOpenMenus] = useState({
@@ -138,7 +140,7 @@ export default function AccountSidebar({
         if (pageId === 'withdrawal') onNavigate?.('withdrawal', { openRolloverModal: true, source: 'account-sidebar' });
     };
 
-    const username = authUser?.name || 'demo';
+    const username = guestPreview ? 'Guest' : (authUser?.name || 'demo');
 
     return (
         <>
@@ -151,29 +153,40 @@ export default function AccountSidebar({
                             <div className="blue-accent-avatar flex aspect-square h-14 w-14 items-center justify-center overflow-hidden rounded-full lg:h-16 lg:w-16">
                                 <UserCircle2 className="block h-8 w-8 text-[var(--color-accent-600)] lg:h-10 lg:w-10" />
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => onNavigate?.('profile')}
-                                className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-sm transition hover:scale-105 hover:bg-[var(--color-accent-50)] lg:h-7 lg:w-7"
-                                aria-label="Edit profile"
-                            >
-                                <PencilLine className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
-                            </button>
+                            {!guestPreview && (
+                                <button
+                                    type="button"
+                                    onClick={() => onNavigate?.('profile')}
+                                    className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-sm transition hover:scale-105 hover:bg-[var(--color-accent-50)] lg:h-7 lg:w-7"
+                                    aria-label="Edit profile"
+                                >
+                                    <PencilLine className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
+                                </button>
+                            )}
                         </div>
                         <div className="min-w-0 flex-1 pt-0 lg:pt-1">
                             <p className="text-xl font-bold leading-tight text-[var(--color-text-strong)] lg:text-2xl">Hi, {username}</p>
-                            <div className="mt-1.5 space-y-0.5 text-xs font-medium text-[var(--color-text-muted)] lg:mt-2 lg:space-y-1 lg:text-sm">
-                                <p>Joined: 08/01/2026</p>
-                                <p>Player ID: 679129</p>
-                            </div>
+                            {!guestPreview && (
+                                <div className="mt-1.5 space-y-0.5 text-xs font-medium text-[var(--color-text-muted)] lg:mt-2 lg:space-y-1 lg:text-sm">
+                                    <p>Joined: 08/01/2026</p>
+                                    <p>Player ID: 679129</p>
+                                </div>
+                            )}
+                            {guestPreview && (
+                                <p className="mt-1.5 text-xs font-medium text-[var(--color-text-muted)] lg:mt-2 lg:text-sm">
+                                    Sign in to claim rewards and save your progress.
+                                </p>
+                            )}
                         </div>
                     </div>
-                    <VipTierProgressCard
-                        currentTier={PROFILE_VIP_TIER.toUpperCase()}
-                        targetTier={PROFILE_NEXT_VIP_TIER}
-                        progressPercent={PROFILE_VIP_PROGRESS_PERCENT}
-                        className="mt-3 lg:hidden"
-                    />
+                    {!guestPreview && (
+                        <VipTierProgressCard
+                            currentTier={PROFILE_VIP_TIER.toUpperCase()}
+                            targetTier={PROFILE_NEXT_VIP_TIER}
+                            progressPercent={PROFILE_VIP_PROGRESS_PERCENT}
+                            className="mt-3 lg:hidden"
+                        />
+                    )}
                 </div>
 
                 <div className="mt-5 space-y-3 lg:mt-8 lg:space-y-5">
@@ -400,14 +413,24 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <button
-                        type="button"
-                        onClick={onLogout}
-                        className="mt-1.5 inline-flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-text-main)] shadow-[0_4px_12px_rgba(15,23,42,0.04)] transition-all hover:scale-[1.02] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] lg:mt-2 lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5"
-                    >
-                        <LogOut className="h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px]" />
-                        Log Out
-                    </button>
+                    {guestPreview ? (
+                        <button
+                            type="button"
+                            onClick={onLoginClick}
+                            className="btn-theme-primary mt-1.5 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 text-sm font-bold shadow-sm transition hover:brightness-105 lg:mt-2 lg:min-h-[48px] lg:text-base"
+                        >
+                            Login
+                        </button>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={onLogout}
+                            className="mt-1.5 inline-flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-text-main)] shadow-[0_4px_12px_rgba(15,23,42,0.04)] transition-all hover:scale-[1.02] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] lg:mt-2 lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5"
+                        >
+                            <LogOut className="h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px]" />
+                            Log Out
+                        </button>
+                    )}
                 </div>
             </aside>
         </>

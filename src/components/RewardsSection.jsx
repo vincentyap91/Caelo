@@ -132,6 +132,7 @@ function ScratchStyleRewardCard({
     description,
     ctaLabel,
     ctaDisabled = false,
+    onCtaClick,
 }) {
     return (
         <div className="flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] shadow-sm transition hover:border-[var(--color-accent-200)]">
@@ -155,7 +156,8 @@ function ScratchStyleRewardCard({
                 ) : null}
                 <button
                     type="button"
-                    disabled={ctaDisabled}
+                    disabled={ctaDisabled && !onCtaClick}
+                    onClick={onCtaClick}
                     className="mt-auto w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-2.5 text-sm font-bold text-[var(--color-text-strong)] transition hover:bg-[var(--color-accent-50)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                     {ctaLabel}
@@ -356,14 +358,31 @@ const DailyStreakNode = React.forwardRef(function DailyStreakNode({ day, positio
     );
 });
 
-function DailyBonusPanel() {
+function GuestPreviewBanner({ onLoginClick }) {
+    return (
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[var(--radius-control)] border border-[var(--color-accent-200)] bg-[var(--color-accent-50)] px-4 py-3 sm:px-5">
+            <p className="text-sm font-medium text-[var(--color-text-main)]">
+                Preview mode — sign in to claim rewards and track your check-in streak.
+            </p>
+            {onLoginClick ? (
+                <button
+                    type="button"
+                    onClick={onLoginClick}
+                    className="btn-theme-primary inline-flex h-10 shrink-0 items-center justify-center rounded-xl px-5 text-sm font-bold text-white shadow-sm transition hover:brightness-105"
+                >
+                    Login
+                </button>
+            ) : null}
+        </div>
+    );
+}
+
+function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
     const [days, setDays] = useState(DAILY_CHECKIN_DAYS);
     const [congratsAmount, setCongratsAmount] = useState(null);
     const scrollerRef = useRef(null);
     const todayRef = useRef(null);
-    const streakDays = days.filter((d) => d.status === 'claimed').length;
     const todayIdx = days.findIndex((d) => d.status === 'claimable');
-    const todayDay = todayIdx >= 0 ? days[todayIdx] : null;
 
     useEffect(() => {
         const scroller = scrollerRef.current;
@@ -376,13 +395,18 @@ function DailyBonusPanel() {
     }, []);
 
     const handleClaimToday = () => {
-        if (todayIdx < 0) return;
+        if (guestPreview || todayIdx < 0) return;
         const reward = days[todayIdx].reward;
         setDays((prev) =>
             prev.map((d, i) => (i === todayIdx ? { ...d, status: 'claimed' } : d))
         );
         setCongratsAmount(reward);
     };
+
+    const displayDays = guestPreview ? DAILY_CHECKIN_DAYS : days;
+    const displayStreakDays = displayDays.filter((d) => d.status === 'claimed').length;
+    const displayTodayIdx = displayDays.findIndex((d) => d.status === 'claimable');
+    const displayTodayDay = displayTodayIdx >= 0 ? displayDays[displayTodayIdx] : null;
 
     return (
         <div className="space-y-6">
@@ -392,7 +416,7 @@ function DailyBonusPanel() {
                     <h3 className="text-lg font-bold text-[rgb(18_63_128)] md:text-xl">Daily Check In</h3>
                     <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-main)]">
                         You have accumulated{' '}
-                        <span className="font-bold text-[var(--color-cta-strong-end)]">Day {streakDays}</span> check-in
+                        <span className="font-bold text-[var(--color-cta-strong-end)]">Day {displayStreakDays}</span> check-in
                     </p>
                 </div>
                 {/* Gray-blue info banner + square yellow trophy */}
@@ -415,10 +439,10 @@ function DailyBonusPanel() {
                     >
                         <ol
                             role="list"
-                            aria-label={`${days.length}-day check-in streak`}
+                            aria-label={`${displayDays.length}-day check-in streak`}
                             className="flex flex-nowrap items-start gap-2 pb-3 pt-7 sm:gap-3 sm:pb-4 sm:pt-8"
                         >
-                            {days.map((d, idx) => {
+                            {displayDays.map((d, idx) => {
                                 const isTodayNode = d.status === 'claimable';
                                 return (
                                     <React.Fragment key={d.id}>
@@ -427,11 +451,11 @@ function DailyBonusPanel() {
                                                 <DailyStreakNode
                                                     ref={isTodayNode ? todayRef : undefined}
                                                     day={d}
-                                                    position={`Step ${idx + 1} of ${days.length}`}
+                                                    position={`Step ${idx + 1} of ${displayDays.length}`}
                                                 />
                                             </div>
                                         </li>
-                                        {idx < days.length - 1 && (
+                                        {idx < displayDays.length - 1 && (
                                             <span
                                                 aria-hidden
                                                 className={`mt-5 h-1 w-6 shrink-0 rounded-full sm:mt-7 sm:w-8 ${
@@ -449,13 +473,13 @@ function DailyBonusPanel() {
 
                     <div className="mt-2 px-3 sm:px-6">
                         <p className="text-center text-[11px] font-medium text-[var(--color-text-soft)]">
-                            Scroll to see all {days.length} days &middot; {streakDays}/{days.length} claimed
+                            Scroll to see all {displayDays.length} days &middot; {displayStreakDays}/{displayDays.length} claimed
                         </p>
                     </div>
 
                     <div className="px-3 sm:px-6">
 
-                    {todayDay ? (
+                    {displayTodayDay ? (
                         <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-control)] border-2 border-[var(--color-nav-accent)] bg-[linear-gradient(180deg,var(--color-accent-50)_0%,var(--color-surface-base)_100%)] px-4 py-3 shadow-[var(--shadow-subtle)] sm:px-5">
                             <div className="flex min-w-0 items-center gap-3">
                                 <span
@@ -469,17 +493,27 @@ function DailyBonusPanel() {
                                         Today&rsquo;s reward
                                     </p>
                                     <p className="truncate text-base font-bold text-[var(--color-text-strong)]">
-                                        {todayDay.label} &middot; {todayDay.reward}
+                                        {displayTodayDay.label} &middot; {displayTodayDay.reward}
                                     </p>
                                 </div>
                             </div>
-                            <button
-                                type="button"
-                                onClick={handleClaimToday}
-                                className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-white shadow-sm transition hover:brightness-105 active:brightness-95"
-                            >
-                                Claim now
-                            </button>
+                            {guestPreview ? (
+                                <button
+                                    type="button"
+                                    onClick={onLoginClick}
+                                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-white shadow-sm transition hover:brightness-105 active:brightness-95"
+                                >
+                                    Login to claim
+                                </button>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={handleClaimToday}
+                                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-white shadow-sm transition hover:brightness-105 active:brightness-95"
+                                >
+                                    Claim now
+                                </button>
+                            )}
                         </div>
                     ) : (
                         <div className="mt-6 rounded-[var(--radius-control)] border border-[var(--color-accent-200)] bg-[var(--color-accent-50)] px-4 py-3 text-center text-sm font-semibold text-[var(--color-accent-700)]">
@@ -500,16 +534,18 @@ function DailyBonusPanel() {
                 </ol>
             </TermsBlock>
 
-            <CongratsClaimModal
-                open={Boolean(congratsAmount)}
-                amount={congratsAmount}
-                onClose={() => setCongratsAmount(null)}
-            />
+            {!guestPreview && (
+                <CongratsClaimModal
+                    open={Boolean(congratsAmount)}
+                    amount={congratsAmount}
+                    onClose={() => setCongratsAmount(null)}
+                />
+            )}
         </div>
     );
 }
 
-function SpinWheelPanel() {
+function SpinWheelPanel({ guestPreview = false, onLoginClick }) {
     return (
         <div className="space-y-6">
             <div>
@@ -529,7 +565,8 @@ function SpinWheelPanel() {
                             }
                             title={s.title}
                             description={s.blurb}
-                            ctaLabel="Spin now"
+                            ctaLabel={guestPreview ? 'Login to spin' : 'Spin now'}
+                            onCtaClick={guestPreview ? onLoginClick : undefined}
                         />
                     ))}
                 </div>
@@ -546,7 +583,7 @@ function SpinWheelPanel() {
     );
 }
 
-function VoucherScratchPanel() {
+function VoucherScratchPanel({ guestPreview = false, onLoginClick }) {
     return (
         <div className="space-y-6">
             <div>
@@ -566,7 +603,8 @@ function VoucherScratchPanel() {
                             }
                             title={v.title}
                             description={`Win up to MYR ${v.value} \u00B7 Credit to wallet after claim`}
-                            ctaLabel="Scratch & claim"
+                            ctaLabel={guestPreview ? 'Login to claim' : 'Scratch & claim'}
+                            onCtaClick={guestPreview ? onLoginClick : undefined}
                         />
                     ))}
                 </div>
@@ -583,7 +621,7 @@ function VoucherScratchPanel() {
     );
 }
 
-function PrizeBoxPanel() {
+function PrizeBoxPanel({ guestPreview = false, onLoginClick }) {
     return (
         <div className="space-y-6">
             <div>
@@ -612,8 +650,15 @@ function PrizeBoxPanel() {
                             }
                             title={item.campaign}
                             description="Campaign reward \u00B7 MYR credits main wallet when claimed"
-                            ctaLabel={item.available ? 'Claim to wallet' : 'Unavailable'}
-                            ctaDisabled={!item.available}
+                            ctaLabel={
+                                guestPreview
+                                    ? 'Login to claim'
+                                    : item.available
+                                      ? 'Claim to wallet'
+                                      : 'Unavailable'
+                            }
+                            ctaDisabled={!guestPreview && !item.available}
+                            onCtaClick={guestPreview ? onLoginClick : undefined}
                         />
                     ))}
                 </div>
@@ -630,7 +675,7 @@ function PrizeBoxPanel() {
     );
 }
 
-export default function RewardsSection({ embedInPage = false }) {
+export default function RewardsSection({ embedInPage = false, guestPreview = false, onLoginClick }) {
     const programTabRefs = useRef({});
     const activeProgram = useRewardsProgramFromHash();
     const [recordModalOpen, setRecordModalOpen] = useState(false);
@@ -662,7 +707,7 @@ export default function RewardsSection({ embedInPage = false }) {
         setRecordModalOpen(true);
     };
 
-    const showWalletBar = activeProgram !== 'daily-bonus';
+    const showWalletBar = !guestPreview && activeProgram !== 'daily-bonus';
 
     const recordTypeLabel = REWARDS_ACTIVITY_RECORD_TYPES.find((t) => t.id === recordActivityType)?.label ?? '';
 
@@ -783,22 +828,34 @@ export default function RewardsSection({ embedInPage = false }) {
                 </div>
             )}
 
+            {guestPreview && <GuestPreviewBanner onLoginClick={onLoginClick} />}
+
             <div className="space-y-6">
-                {activeProgram === 'daily-bonus' && <DailyBonusPanel />}
-                {activeProgram === 'spin-wheel' && <SpinWheelPanel />}
-                {activeProgram === 'voucher-scratch' && <VoucherScratchPanel />}
-                {activeProgram === 'prize-box' && <PrizeBoxPanel />}
+                {activeProgram === 'daily-bonus' && (
+                    <DailyBonusPanel guestPreview={guestPreview} onLoginClick={onLoginClick} />
+                )}
+                {activeProgram === 'spin-wheel' && (
+                    <SpinWheelPanel guestPreview={guestPreview} onLoginClick={onLoginClick} />
+                )}
+                {activeProgram === 'voucher-scratch' && (
+                    <VoucherScratchPanel guestPreview={guestPreview} onLoginClick={onLoginClick} />
+                )}
+                {activeProgram === 'prize-box' && (
+                    <PrizeBoxPanel guestPreview={guestPreview} onLoginClick={onLoginClick} />
+                )}
             </div>
         </section>
 
-        <RewardsActivityRecordModal
-            open={recordModalOpen}
-            onClose={() => setRecordModalOpen(false)}
-            filterSlot={recordTypeFilterSlot}
-            columns={REWARDS_RECORD_COLUMNS}
-            recordContextKey={recordActivityType}
-            tableEmptyMessage={recordTypeLabel ? `No data found for ${recordTypeLabel}` : 'No data found'}
-        />
+        {!guestPreview && (
+            <RewardsActivityRecordModal
+                open={recordModalOpen}
+                onClose={() => setRecordModalOpen(false)}
+                filterSlot={recordTypeFilterSlot}
+                columns={REWARDS_RECORD_COLUMNS}
+                recordContextKey={recordActivityType}
+                tableEmptyMessage={recordTypeLabel ? `No data found for ${recordTypeLabel}` : 'No data found'}
+            />
+        )}
         </>
     );
 }

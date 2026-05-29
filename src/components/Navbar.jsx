@@ -70,7 +70,9 @@ const NAV_TARGETS = {
     Promotion: 'promotion',
     VIP: 'vip',
     Rebate: 'rebate',
+    Rewards: 'loyalty-rewards',
 };
+const DESKTOP_MORE_LINKS = ['Promotion', 'Referral', 'VIP', 'Rebate', 'Rewards'];
 const NAV_HREFS = {
     Home: '/',
     Casino: '/casino',
@@ -84,6 +86,7 @@ const NAV_HREFS = {
     Promotion: '/promotion',
     VIP: '/vip',
     Rebate: '/rebate',
+    Rewards: '/loyalty-rewards',
 };
 const MOBILE_PRIMARY_ITEMS = [
     { id: 'home', label: 'Home', page: 'home', icon: House },
@@ -877,7 +880,7 @@ export default function Navbar({
                         >
                             <button
                                 className={`relative rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap flex items-center gap-1 transition-all
-                                    ${['promotion', 'referral', 'vip', 'rebate'].includes(activePage)
+                                    ${['promotion', 'referral', 'vip', 'rebate', 'loyalty-rewards'].includes(activePage)
                                         ? 'nav-desktop-link-active'
                                         : 'text-[var(--color-text-brand)] hover:bg-[var(--color-brand-deep)] hover:text-white hover:shadow-[var(--shadow-nav-top)]'}`}
                             >
@@ -886,15 +889,23 @@ export default function Navbar({
 
                             <div className="absolute right-0 top-full pt-1 z-[130] w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                 <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--surface-base)] py-2 shadow-[var(--shadow-nav-dropdown)]">
-                                    {['Promotion', 'Referral', 'VIP', 'Rebate'].map((subLink) => {
+                                    {DESKTOP_MORE_LINKS.map((subLink) => {
                                         const targetId = NAV_TARGETS[subLink];
+                                        const rewardsTab = subLink === 'Rewards' ? 'daily-bonus' : undefined;
                                         return (
                                             <a
                                                 key={subLink}
-                                                href={NAV_HREFS[subLink]}
+                                                href={
+                                                    rewardsTab
+                                                        ? `${NAV_HREFS[subLink]}#${rewardsTab}`
+                                                        : NAV_HREFS[subLink]
+                                                }
                                                 onClick={(event) => {
                                                     event.preventDefault();
-                                                    onNavigate?.(targetId);
+                                                    onNavigate?.(
+                                                        targetId,
+                                                        rewardsTab ? { rewardsTab } : undefined,
+                                                    );
                                                     setNavProviderDropdown(null);
                                                 }}
                                                 className={`block px-5 py-2.5 text-sm font-bold transition-colors ${
