@@ -68,6 +68,7 @@ const NAV_TARGETS = {
     Fishing: 'fishing',
     Poker: 'poker',
     Promotion: 'promotion',
+    Referral: 'referral',
     VIP: 'vip',
     Rebate: 'rebate',
 };
@@ -83,6 +84,7 @@ const NAV_HREFS = {
     Fishing: '/fishing',
     Poker: '/poker',
     Promotion: '/promotion',
+    Referral: '/referral',
     VIP: '/vip',
     Rebate: '/rebate',
 };
@@ -915,7 +917,9 @@ export default function Navbar({
                                                 href={NAV_HREFS[subLink]}
                                                 onClick={(event) => {
                                                     event.preventDefault();
-                                                    onNavigate?.(targetId);
+                                                    if (targetId) {
+                                                        onNavigate?.(targetId);
+                                                    }
                                                     setNavProviderDropdown(null);
                                                 }}
                                                 className={`block px-5 py-2.5 text-sm font-bold transition-colors ${
