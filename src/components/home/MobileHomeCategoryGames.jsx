@@ -95,7 +95,7 @@ function useCategoryGamesState() {
 
 function CategoryGamesEmpty({ searchQuery }) {
     return (
-        <p className="mt-4 rounded-xl border border-dashed border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 py-6 text-center text-sm font-medium text-[var(--color-text-muted)]">
+        <p className="mt-4 rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 py-6 text-center text-sm font-medium text-[var(--color-text-muted)]">
             {searchQuery.trim()
                 ? 'No games match your search. Try a different name or provider.'
                 : 'No featured games in this category yet.'}
@@ -186,7 +186,7 @@ function DesktopCategoryBrowse({ onNavigate, state }) {
         <section className="w-full pt-4">
             <SectionHeader
                 title="Category Games"
-                icon={<LayoutGrid size={22} className="text-[var(--color-brand-secondary)]" strokeWidth={2.25} />}
+                icon={<LayoutGrid size={22} className="text-[var(--color-button-hover)]" strokeWidth={2.25} />}
             />
 
             <nav

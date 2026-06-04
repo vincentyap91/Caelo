@@ -87,16 +87,16 @@ export default function GameDetailLayout({
     };
 
     return (
-        <main className="w-full bg-gradient-to-b from-[var(--gradient-live-page-start)] via-[var(--gradient-live-page-mid)] to-[var(--gradient-live-page-end)] pb-14 font-sans md:pb-20 lg:pb-24">
+        <main className="w-full bg-gradient-live-page-content pb-14 font-sans md:pb-20 lg:pb-24">
             <div className="mx-auto flex w-full max-w-screen-2xl flex-col px-4 md:px-8">
                 <header className="pt-4 md:pt-8">
                     <div className="mb-5 md:mb-6">
                         <GameDetailBreadcrumb items={breadcrumbItems} />
                     </div>
 
-                    <div className="hidden flex-col gap-1 border-b border-[var(--color-border-default)] pb-5 md:flex md:flex-row md:items-end md:justify-between md:pb-6">
+                    <div className="hidden flex-col gap-1 border-b border-[var(--color-border-subtle)] pb-5 md:flex md:flex-row md:items-end md:justify-between md:pb-6">
                         <div className="min-w-0">
-                            <h1 className="text-2xl font-bold tracking-tight text-[var(--color-text-strong)] md:text-3xl lg:text-3xl lg:leading-tight">
+                            <h1 className="text-2xl font-bold tracking-tight text-[var(--color-text-primary)] md:text-3xl lg:text-3xl lg:leading-tight">
                                 {gameTitle}
                             </h1>
                             {gameSubtitle ? (
@@ -111,8 +111,8 @@ export default function GameDetailLayout({
                     <div className="mt-5">
                         {isPussy888 && !pussy888Ready ? (
                             <div className="space-y-4">
-                                <div className="border-b border-[var(--color-border-default)] pb-4">
-                                    <h1 className="text-xl font-bold tracking-tight text-[var(--color-text-strong)]">{gameTitle}</h1>
+                                <div className="border-b border-[var(--color-border-subtle)] pb-4">
+                                    <h1 className="text-xl font-bold tracking-tight text-[var(--color-text-primary)]">{gameTitle}</h1>
                                     {gameSubtitle ? (
                                         <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">{gameSubtitle}</p>
                                     ) : null}
@@ -164,7 +164,7 @@ export default function GameDetailLayout({
                 ) : null}
 
                 <p className="mt-5 hidden text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-6 md:block md:text-base">
-                    <span className="font-semibold text-[var(--color-text-strong)]">{gameTitle}</span>
+                    <span className="font-semibold text-[var(--color-text-primary)]">{gameTitle}</span>
                     {' by '}
                     <span className="font-bold text-[var(--color-accent-600)] underline decoration-[var(--color-accent-300)] underline-offset-[3px]">
                         {providerName}
@@ -173,7 +173,7 @@ export default function GameDetailLayout({
 
                 {rankingColumns.length > 0 && rankingRows.length > 0 ? (
                     <section className="mt-10 space-y-4 md:mt-12 md:space-y-5 lg:mt-14">
-                        <div className="inline-flex rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)]">
+                        <div className="inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)]">
                             <span className="rounded-lg bg-[var(--color-surface-muted)] px-4 py-2.5 text-sm font-bold text-[var(--color-accent-600)] md:px-5">
                                 {rankingSectionTitle}
                             </span>
@@ -195,7 +195,7 @@ export default function GameDetailLayout({
 
                 {latestBetsColumns.length > 0 && latestBetsRows.length > 0 ? (
                     <section className="mt-10 md:mt-12 lg:mt-14">
-                        <h2 className="mb-4 text-base font-bold tracking-tight text-[var(--color-text-strong)] md:mb-5 md:text-xl">
+                        <h2 className="mb-4 text-base font-bold tracking-tight text-[var(--color-text-primary)] md:mb-5 md:text-xl">
                             Latest Bets
                         </h2>
                         <GameDetailDataTable columns={latestBetsColumns} rows={latestBetsRows} striped />

@@ -203,11 +203,11 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 {step === 1 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-[var(--color-text-card-text)]">
                                 1
                             </span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">Withdrawal Method <span className="text-[var(--color-danger-main)]">*</span></h2>
+                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Withdrawal Method <span className="text-[var(--color-danger)]">*</span></h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Select E-Wallet or Bank Transfer.</p>
                             </div>
                         </div>
@@ -221,7 +221,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                     className={`flex h-full min-h-[7.25rem] flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6 ${
                                         withdrawalMethod === id
                                             ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)]'
-                                            : 'border-[var(--color-border-default)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-200)]'
+                                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-200)]'
                                     }`}
                                 >
                                     <img
@@ -229,7 +229,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         alt={label}
                                         className="h-12 w-auto max-w-full object-contain sm:h-14"
                                     />
-                                    <p className="text-sm font-bold leading-tight text-[var(--color-text-strong)] sm:text-base">{label}</p>
+                                    <p className="text-sm font-bold leading-tight text-[var(--color-text-primary)] sm:text-base">{label}</p>
                                 </button>
                             ))}
                         </div>
@@ -250,11 +250,11 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 {step === 2 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-[var(--color-text-card-text)]">
                                 2
                             </span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">Account & Amount</h2>
+                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Account & Amount</h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
                                     {withdrawalMethod === 'ewallet' ? 'Select E-Wallet, enter phone number and amount.' : 'Enter your bank account details and amount.'}
                                 </p>
@@ -264,17 +264,17 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                         {withdrawalMethod === 'ewallet' ? (
                             <>
                                 <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Select E-Wallet <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Select E-Wallet <span className="text-[var(--color-danger)]">*</span></p>
                                     <div className="relative">
                                         <button
                                             type="button"
                                             onClick={() => setEwalletDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                         >
                                             {selectedEwallet && selectedEwalletOption ? (
                                                 <span className="flex items-center gap-2.5">
                                                     <img src={selectedEwalletOption.image} alt="" className="h-6 w-6 object-contain" />
-                                                    <span className="font-medium text-[var(--color-text-strong)]">
+                                                    <span className="font-medium text-[var(--color-text-primary)]">
                                                         {selectedEwalletOption.label} ({selectedEwalletOption.min} - {selectedEwalletOption.max.toLocaleString()})
                                                     </span>
                                                 </span>
@@ -286,7 +286,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         {ewalletDropdownOpen && (
                                             <>
                                                 <div className="absolute inset-0 z-10" onClick={() => setEwalletDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
                                                     {E_WALLET_OPTIONS.map((opt) => (
                                                         <button
                                                             key={opt.id}
@@ -298,7 +298,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                                             className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-muted)]"
                                                         >
                                                             <img src={opt.image} alt={opt.label} className="h-6 w-6 shrink-0 object-contain" />
-                                                            <span className="font-normal text-[var(--color-text-strong)]">{opt.label} ({opt.min} - {opt.max.toLocaleString()})</span>
+                                                            <span className="font-normal text-[var(--color-text-primary)]">{opt.label} ({opt.min} - {opt.max.toLocaleString()})</span>
                                                         </button>
                                                     ))}
                                                 </div>
@@ -307,30 +307,30 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Phone Number <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Phone Number <span className="text-[var(--color-danger)]">*</span></p>
                                     <input
                                         type="tel"
                                         value={phoneNumber}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                         placeholder="Enter your phone number"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-sm text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                                     />
                                 </div>
                             </>
                         ) : (
                             <>
                                 <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Bank <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Bank <span className="text-[var(--color-danger)]">*</span></p>
                                     <div className="relative">
                                         <button
                                             type="button"
                                             onClick={() => setBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                         >
                                             {selectedBank && BANKS.find((b) => b.id === selectedBank)?.image ? (
                                                 <span className="flex items-center gap-2.5">
                                                     <img src={BANKS.find((b) => b.id === selectedBank)?.image} alt="" className="h-6 w-6 object-contain" />
-                                                    <span className="font-medium text-[var(--color-text-strong)]">{selectedBankLabel}</span>
+                                                    <span className="font-medium text-[var(--color-text-primary)]">{selectedBankLabel}</span>
                                                 </span>
                                             ) : (
                                                 <span className="text-[var(--color-text-soft)]">Select Bank</span>
@@ -340,7 +340,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         {bankDropdownOpen && (
                                             <>
                                                 <div className="absolute inset-0 z-10" onClick={() => setBankDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
                                                     {BANKS.map((b) => (
                                                         <button
                                                             key={b.id}
@@ -352,7 +352,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                                             className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-muted)]"
                                                         >
                                                             <img src={b.image} alt={b.label} className="h-6 w-6 shrink-0 object-contain" />
-                                                            <span className="font-normal text-[var(--color-text-strong)]">{b.label}</span>
+                                                            <span className="font-normal text-[var(--color-text-primary)]">{b.label}</span>
                                                         </button>
                                                     ))}
                                                 </div>
@@ -361,32 +361,32 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Account Name <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Account Name <span className="text-[var(--color-danger)]">*</span></p>
                                     <input
                                         type="text"
                                         value={bankAccountName}
                                         onChange={(e) => setBankAccountName(e.target.value)}
                                         placeholder="Enter account holder name"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-sm text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                                     />
                                 </div>
                                 <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Account Number <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Account Number <span className="text-[var(--color-danger)]">*</span></p>
                                     <input
                                         type="text"
                                         value={bankAccountNumber}
                                         onChange={(e) => setBankAccountNumber(e.target.value)}
                                         placeholder="Enter account number"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-sm text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                                     />
                                 </div>
                             </>
                         )}
 
                         <div>
-                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Amount <span className="text-[var(--color-danger-main)]">*</span></p>
+                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Amount <span className="text-[var(--color-danger)]">*</span></p>
                             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-subtle)]">
+                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-subtle)]">
                                     <span className="flex items-center justify-center bg-[var(--color-accent-100)] px-4 text-sm font-bold text-[var(--color-accent-700)]">
                                         MYR
                                     </span>
@@ -397,7 +397,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         placeholder="0"
                                         min={minAmount}
                                         max={maxAmount}
-                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)]"
+                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)]"
                                     />
                                 </div>
                                 <div className="flex flex-wrap gap-2">
@@ -410,7 +410,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                                 onClick={() => setPresetAmount(val)}
                                                 className={`rounded-xl border-2 px-4 py-2.5 text-sm font-bold transition ${
                                                     isActive
-                                                        ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-500)] text-white'
+                                                        ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-500)] text-[var(--color-text-card-text)]'
                                                         : 'border-[var(--color-accent-300)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] hover:bg-[var(--color-accent-50)]'
                                                 }`}
                                             >
@@ -424,7 +424,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                 Min/Max Limit {minAmount.toLocaleString()} / {maxAmount.toLocaleString()}
                             </p>
                             {!isValidAmount && amount && (
-                                <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger-main)]">
+                                <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger)]">
                                     <AlertCircle size={14} className="shrink-0" />
                                     {amountNum < minAmount
                                         ? `Minimum amount is MYR ${minAmount.toLocaleString()}`
@@ -438,7 +438,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                             <button
                                 type="button"
                                 onClick={() => setStep(1)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-6 text-sm font-bold text-[var(--color-text-strong)] transition hover:bg-[var(--color-surface-subtle)]"
+                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             >
                                 Back
                             </button>
@@ -459,23 +459,23 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 {step === 3 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-[var(--color-text-card-text)]">
                                 3
                             </span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">Confirm & Withdraw</h2>
+                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Confirm & Withdraw</h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Review your withdrawal details before confirming.</p>
                             </div>
                         </div>
 
-                        <div className="overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
-                            <div className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-5 py-3">
+                        <div className="overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
+                            <div className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-5 py-3">
                                 <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Withdrawal Details</p>
                             </div>
-                            <div className="divide-y divide-[var(--color-border-default)]">
+                            <div className="divide-y divide-[var(--color-border-subtle)]">
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
                                     <span className="text-sm font-medium text-[var(--color-text-muted)]">Method</span>
-                                    <span className="text-sm font-semibold text-[var(--color-text-strong)]">
+                                    <span className="text-sm font-semibold text-[var(--color-text-primary)]">
                                         {withdrawalMethod === 'ewallet' ? 'E-Wallet' : 'Bank Transfer'}
                                     </span>
                                 </div>
@@ -483,7 +483,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                     <>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
                                             <span className="text-sm font-medium text-[var(--color-text-muted)]">E-Wallet</span>
-                                            <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-strong)]">
+                                            <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
                                                 {selectedEwalletOption?.image && (
                                                     <img src={selectedEwalletOption.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                                 )}
@@ -492,14 +492,14 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         </div>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
                                             <span className="text-sm font-medium text-[var(--color-text-muted)]">Phone Number</span>
-                                            <span className="text-sm font-semibold text-[var(--color-text-strong)]">{phoneNumber}</span>
+                                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">{phoneNumber}</span>
                                         </div>
                                     </>
                                 ) : (
                                     <>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
                                             <span className="text-sm font-medium text-[var(--color-text-muted)]">Bank</span>
-                                            <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-strong)]">
+                                            <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
                                                 {selectedBank && BANKS.find((b) => b.id === selectedBank)?.image && (
                                                     <img src={BANKS.find((b) => b.id === selectedBank)?.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                                 )}
@@ -508,18 +508,18 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         </div>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
                                             <span className="text-sm font-medium text-[var(--color-text-muted)]">Account Name</span>
-                                            <span className="text-sm font-semibold text-[var(--color-text-strong)]">{bankAccountName}</span>
+                                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">{bankAccountName}</span>
                                         </div>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
                                             <span className="text-sm font-medium text-[var(--color-text-muted)]">Account Number</span>
-                                            <span className="text-sm font-semibold text-[var(--color-text-strong)]">{bankAccountNumber}</span>
+                                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">{bankAccountNumber}</span>
                                         </div>
                                     </>
                                 )}
                             </div>
-                            <div className="border-t-2 border-[var(--color-border-default)] bg-[var(--color-accent-50)] px-5 py-4">
+                            <div className="border-t-2 border-[var(--color-border-subtle)] bg-[var(--color-accent-50)] px-5 py-4">
                                 <div className="flex items-center justify-between gap-4">
-                                    <span className="text-sm font-bold text-[var(--color-text-strong)]">Total Amount</span>
+                                    <span className="text-sm font-bold text-[var(--color-text-primary)]">Total Amount</span>
                                     <span className="text-xl font-bold text-[var(--color-accent-600)]">
                                         RM {amountNum.toLocaleString()}
                                     </span>
@@ -531,7 +531,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                             <button
                                 type="button"
                                 onClick={() => setStep(2)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-6 text-sm font-bold text-[var(--color-text-strong)] transition hover:bg-[var(--color-surface-subtle)]"
+                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             >
                                 Back
                             </button>

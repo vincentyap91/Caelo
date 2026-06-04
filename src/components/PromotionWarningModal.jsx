@@ -39,18 +39,18 @@ export default function PromotionWarningModal({
                 role="dialog"
                 aria-modal="true"
                 aria-label="Promotion warning"
-                className="relative z-[1] flex w-full max-w-[500px] flex-col overflow-hidden rounded-[22px] border border-[rgb(219_228_243)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
+                className="relative z-[1] flex w-full max-w-[500px] flex-col overflow-hidden rounded-[22px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
                 onClick={(event) => event.stopPropagation()}
             >
-                <div className="flex items-center justify-between gap-4 border-b border-[rgb(228_234_243)] px-5 py-3.5 sm:px-6">
-                    <h2 className="text-lg font-bold tracking-tight text-[var(--color-text-strong)] sm:text-xl">
+                <div className="flex items-center justify-between gap-4 border-b border-[var(--color-border-subtle)] px-5 py-3.5 sm:px-6">
+                    <h2 className="text-lg font-bold tracking-tight text-[var(--color-text-primary)] sm:text-xl">
                         Promotion Notice
                     </h2>
                     <button
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-default)] bg-white text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] sm:h-10 sm:w-10"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] sm:h-10 sm:w-10"
                     >
                         <X size={18} />
                     </button>
@@ -58,12 +58,12 @@ export default function PromotionWarningModal({
 
                 <div className="px-5 py-5 sm:px-6 sm:py-5.5">
                     <div className="mx-auto flex max-w-[500px] flex-col items-center text-center">
-                        <span className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[var(--color-cta-text)] shadow-[0_12px_24px_rgba(255,178,45,0.16)]">
+                        <span className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-gradient-cta text-[var(--color-cta-text)] shadow-[0_12px_24px_rgba(255,178,45,0.16)]">
                             <AlertTriangle size={30} strokeWidth={2.4} />
                         </span>
 
                         <div className="mt-4 max-w-[30rem]">
-                            <h3 className="text-xl font-bold tracking-tight text-[var(--color-text-strong)] sm:text-2xl">
+                            <h3 className="text-xl font-bold tracking-tight text-[var(--color-text-primary)] sm:text-2xl">
                                 {title}
                             </h3>
                             <p className="mt-2.5 text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
@@ -71,12 +71,12 @@ export default function PromotionWarningModal({
                             </p>
                         </div>
 
-                        <div className="mt-5 w-full rounded-[20px] border border-[rgb(255_91_46_/_0.2)] bg-[rgb(255_91_46_/_0.06)] px-4 py-3.5 text-left shadow-[0_4px_14px_rgba(255,91,46,0.06)] sm:px-5 sm:py-4">
+                        <div className="mt-5 w-full rounded-[20px] border border-[var(--color-danger)]/20 bg-[var(--color-danger)]/6 px-4 py-3.5 text-left shadow-[var(--shadow-subtle)] sm:px-5 sm:py-4">
                             <div className="flex items-start gap-3">
-                                <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[rgb(255_91_46_/_0.12)] text-[var(--color-danger-main)]">
+                                <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-danger)]/12 text-[var(--color-danger)]">
                                     <AlertCircle size={18} strokeWidth={2.3} />
                                 </span>
-                                <p className="text-sm font-semibold leading-relaxed text-[rgb(173,49,24)] sm:text-base">
+                                <p className="text-sm font-semibold leading-relaxed text-[var(--color-danger-deep)] sm:text-base">
                                     {warningMessage}
                                 </p>
                             </div>
@@ -84,7 +84,7 @@ export default function PromotionWarningModal({
                     </div>
                 </div>
 
-                <div className="flex justify-center border-t border-[rgb(228_234_243)] px-5 py-4 sm:px-6 sm:py-5">
+                <div className="flex justify-center border-t border-[var(--color-border-subtle)] px-5 py-4 sm:px-6 sm:py-5">
                     <button
                         type="button"
                         onClick={onContinue}

@@ -24,6 +24,7 @@ import pragmaticPlayImage from '../assets/live-casino/d962173d340d1f347cd214f082
 import ezugiMenuTile from '../assets/live-casino/ezugi-hero.png';
 import playtechCasinoTile from '../assets/live-casino/playtech-casino.png';
 import afbGamingMenuTile from '../assets/live-casino/afb-gaming.png';
+import evolutionLobbyTile from '../assets/live-casino/playtech-casino.png';
 
 export {
     sexyBaccaratImage,
@@ -42,6 +43,7 @@ export {
     ezugiMenuTile,
     playtechCasinoTile,
     afbGamingMenuTile,
+    evolutionLobbyTile,
 };
 
 /** Lookup for optional programmatic use (e.g. future nav entries). */

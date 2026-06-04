@@ -56,7 +56,7 @@ export default function RegistrationCompletedModal({
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="registration-success-title"
-                className="relative z-[1] mt-9 w-full max-w-[400px] rounded-2xl border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-6 pb-8 pt-[3.25rem] shadow-[var(--shadow-modal)] sm:mt-10 sm:max-w-[420px] sm:px-8 sm:pb-9 sm:pt-14"
+                className="relative z-[1] mt-9 w-full max-w-[400px] rounded-2xl border border-[var(--color-border-brand)] bg-gradient-register-panel px-6 pb-8 pt-[3.25rem] shadow-[var(--shadow-modal)] sm:mt-10 sm:max-w-[420px] sm:px-8 sm:pb-9 sm:pt-14"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
@@ -64,9 +64,9 @@ export default function RegistrationCompletedModal({
                         className="pointer-events-none flex h-[3.75rem] w-[3.75rem] items-center justify-center rounded-full border-2 border-[var(--color-border-brand)] bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-card)] sm:h-16 sm:w-16"
                         aria-hidden
                     >
-                        <div className="flex h-[2.85rem] w-[2.85rem] items-center justify-center rounded-full bg-[linear-gradient(180deg,rgb(240_253_245)_0%,rgb(220_252_231)_100%)] shadow-[var(--inset-panel)] ring-1 ring-[var(--color-success-main)]/20 sm:h-[3.25rem] sm:w-[3.25rem]">
+                        <div className="flex h-[2.85rem] w-[2.85rem] items-center justify-center rounded-full bg-gradient-success-icon shadow-[var(--inset-panel)] ring-1 ring-[var(--color-success)]/20 sm:h-[3.25rem] sm:w-[3.25rem]">
                             <Check
-                                className="text-[var(--color-success-main)]"
+                                className="text-[var(--color-success)]"
                                 strokeWidth={2.5}
                                 size={26}
                                 aria-hidden
@@ -77,7 +77,7 @@ export default function RegistrationCompletedModal({
 
                 <h2
                     id="registration-success-title"
-                    className="text-center text-xl font-bold tracking-tight text-[rgb(18_63_128)] sm:text-2xl"
+                    className="text-center text-xl font-bold tracking-tight text-[var(--color-text-brand)] sm:text-2xl"
                 >
                     {title}
                 </h2>
@@ -86,7 +86,7 @@ export default function RegistrationCompletedModal({
                     {messageLines.map((line) => (
                         <p
                             key={line}
-                            className="text-sm font-medium leading-relaxed text-[rgb(35_64_106)] sm:text-base"
+                            className="text-sm font-medium leading-relaxed text-[var(--color-text-secondary)] sm:text-base"
                         >
                             {line}
                         </p>

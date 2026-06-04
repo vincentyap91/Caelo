@@ -16,7 +16,7 @@ export default function AccountLayout({
 
     return (
         <main
-            className="w-full bg-[linear-gradient(180deg,var(--gradient-account-shell-start)_0%,var(--gradient-account-shell-mid)_38%,var(--gradient-account-shell-end)_100%)] pb-16 pt-6 md:pt-8"
+            className="w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8"
         >
             <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-5 px-4 md:px-6 xl:px-8">
                 <div className="flex items-center justify-between gap-3 lg:hidden">
@@ -28,7 +28,7 @@ export default function AccountLayout({
                         <UserRound size={16} />
                         Account Menu
                     </button>
-                    <p className="text-right text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <p className="text-right text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
                         Secure Profile
                     </p>
                 </div>
@@ -64,7 +64,7 @@ export default function AccountLayout({
                         <button
                             type="button"
                             onClick={() => setMobileSidebarOpen(false)}
-                            className="fixed inset-0 z-[135] bg-slate-900/20 backdrop-blur-[2px] lg:hidden"
+                            className="fixed inset-0 z-[135] bg-[var(--color-surface-darkest)]/20 backdrop-blur-[2px] lg:hidden"
                             aria-label="Close account menu"
                         />
                     )}

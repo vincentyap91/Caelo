@@ -6,7 +6,7 @@ import { getCategoryGameBadgeLabel, getTopGameFavouriteCategory } from '../../co
 
 /** Footer game title — shared by Top Games and Category Games (compact) cards. */
 const COMPACT_GAME_TITLE_CLASS =
-    'line-clamp-2 text-center text-[11px] font-bold leading-tight text-white';
+    'line-clamp-2 text-center text-[11px] font-bold leading-tight text-[var(--color-text-card-text)]';
 
 export default function TopGameCard({
     game,
@@ -42,17 +42,17 @@ export default function TopGameCard({
 
     const titleClassName = category
         ? categoryCompact
-            ? 'line-clamp-1 w-full text-center text-[11px] font-bold leading-snug tracking-tight text-white'
-            : 'line-clamp-2 w-full text-center text-xs font-bold leading-snug tracking-tight text-white'
+            ? 'line-clamp-1 w-full text-center text-[11px] font-bold leading-snug tracking-tight text-[var(--color-text-card-text)]'
+            : 'line-clamp-2 w-full text-center text-xs font-bold leading-snug tracking-tight text-[var(--color-text-card-text)]'
         : detailed
-            ? 'line-clamp-2 text-xs font-bold leading-snug text-[var(--color-text-strong)] md:text-sm'
+            ? 'line-clamp-2 text-xs font-bold leading-snug text-[var(--color-text-primary)] md:text-sm'
             : COMPACT_GAME_TITLE_CLASS;
 
     const cardClassName = category
         ? categoryCompact
             ? 'rounded-lg border-0 bg-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]'
             : 'rounded-xl border-0 bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-card)]'
-        : 'rounded-xl border-b-4 border-[var(--color-brand-primary)] bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-card)]';
+        : 'rounded-xl border-b-4 border-[var(--color-primary)] bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-card)]';
 
     const imageStageClass = categoryCompact
         ? `aspect-square w-full overflow-hidden rounded-t-lg bg-[var(--color-surface-muted)] ${imageStageClassName}`.trim()
@@ -90,23 +90,23 @@ export default function TopGameCard({
                 />
 
                 {(game.hot || game.new) && detailed ? (
-                    <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-full bg-[var(--color-hot-main)] px-2.5 py-0.5 text-xs font-bold text-white shadow-[var(--shadow-hot)]">
+                    <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-full bg-[var(--color-danger)] px-2.5 py-0.5 text-xs font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-hot)]">
                         {game.hot ? 'HOT' : 'NEW'}
                     </span>
                 ) : null}
 
                 {showCompactProviderBadge ? (
                     <div className="pointer-events-none absolute left-0 top-0 z-20 flex max-w-[65%] items-center justify-center rounded-br-lg bg-[var(--color-surface-base)] px-2 py-0.5 shadow-sm">
-                        <span className="truncate text-xs font-bold italic text-[var(--color-brand-secondary)]">{game.provider}</span>
+                        <span className="truncate text-xs font-bold italic text-[var(--color-primary)]">{game.provider}</span>
                     </div>
                 ) : null}
 
                 {showCategoryProviderBadge ? (
                     <div
-                        className={`pointer-events-none absolute z-20 max-w-[calc(100%-1.75rem)] rounded bg-white shadow-sm ${categoryCompact ? 'left-1 top-1 px-1 py-0.5' : 'left-2 top-2 rounded-lg px-2 py-1'}`}
+                        className={`pointer-events-none absolute z-20 max-w-[calc(100%-1.75rem)] rounded bg-[var(--color-surface-base)] shadow-sm ${categoryCompact ? 'left-1 top-1 px-1 py-0.5' : 'left-2 top-2 rounded-lg px-2 py-1'}`}
                     >
                         <span
-                            className={`line-clamp-1 font-semibold leading-tight text-[var(--color-brand-secondary)] ${categoryCompact ? 'text-[9px]' : 'text-[10px]'}`}
+                            className={`line-clamp-1 font-semibold leading-tight text-[var(--color-primary)] ${categoryCompact ? 'text-[9px]' : 'text-[10px]'}`}
                         >
                             {badgeLabel}
                         </span>
@@ -127,13 +127,13 @@ export default function TopGameCard({
             <div
                 className={category
                     ? categoryCompact
-                        ? 'flex w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-white/10 bg-[var(--color-brand-primary)] px-1.5 py-2'
-                        : 'flex min-h-[4rem] w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-white/10 bg-[var(--color-brand-primary)] px-2 py-2.5'
+                        ? 'flex w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-1.5 py-2'
+                        : 'flex min-h-[4rem] w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-2 py-2.5'
                     : detailed
-                        ? 'flex min-h-[4.6rem] w-full shrink-0 flex-col justify-center border-t border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-2.5 py-2 md:px-3'
+                        ? 'flex min-h-[4.6rem] w-full shrink-0 flex-col justify-center border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-2.5 py-2 md:px-3'
                         : showRtpFooter
-                            ? 'flex w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-white/10 bg-[var(--color-brand-primary)] px-2 py-2'
-                            : 'flex h-11 w-full shrink-0 items-center justify-center border-t border-white/10 bg-[var(--color-brand-primary)] px-2 py-1'
+                            ? 'flex w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-2 py-2'
+                            : 'flex h-11 w-full shrink-0 items-center justify-center border-t border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-2 py-1'
                 }
             >
                 <span className={titleClassName}>{game.name}</span>

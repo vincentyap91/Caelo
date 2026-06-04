@@ -32,7 +32,7 @@ function SummaryBox({ username, contact }) {
             className="rounded-xl border bg-[var(--color-surface-muted)] px-4 py-3"
             style={{ borderColor: 'var(--color-cta-border)' }}
         >
-            <p className="text-sm font-semibold text-[var(--color-text-strong)]">
+            <p className="text-sm font-semibold text-[var(--color-text-primary)]">
                 {username}
             </p>
             <p className="mt-0.5 text-sm text-[var(--color-text-brand)]">
@@ -68,7 +68,7 @@ function ViewMode({ downline, onEdit, onBack }) {
                         <p className="text-xs font-medium text-[var(--color-text-muted)]">
                             Username
                         </p>
-                        <p className="mt-0.5 text-sm font-bold text-[var(--color-text-strong)]">
+                        <p className="mt-0.5 text-sm font-bold text-[var(--color-text-primary)]">
                             {downline.username}
                         </p>
                     </div>
@@ -130,7 +130,7 @@ function EditMode({ downline, onBack, onSave }) {
                         value={remark}
                         onChange={(e) => setRemark(e.target.value)}
                         placeholder=""
-                        className="w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm text-[var(--color-text-strong)] outline-none transition focus:border-[var(--color-cta-border)] focus:ring-2 focus:ring-[var(--color-cta-border)]"
+                        className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none transition focus:border-[var(--color-cta-border)] focus:ring-2 focus:ring-[var(--color-cta-border)]"
                     />
                 </div>
 
@@ -197,14 +197,14 @@ export default function DownlineDetailModal({ downline, onClose, onSaveRemark })
                 className="relative w-full max-w-[480px] rounded-2xl bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
             >
                 {/* Modal header */}
-                <div className="flex items-center justify-between border-b border-[var(--color-border-default)] px-5 py-4">
+                <div className="flex items-center justify-between border-b border-[var(--color-border-subtle)] px-5 py-4">
                     <h2 className="text-base font-bold text-[var(--color-text-brand)]">
                         Downlines
                     </h2>
                     <button
                         type="button"
                         onClick={onClose}
-                        className="rounded-lg p-1 text-[var(--color-text-muted)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-strong)]"
+                        className="rounded-lg p-1 text-[var(--color-text-muted)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-primary)]"
                         aria-label="Close modal"
                     >
                         <X size={20} strokeWidth={2} />

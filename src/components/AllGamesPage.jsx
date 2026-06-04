@@ -24,7 +24,7 @@ export default function AllGamesPage({ onNavigate }) {
     }, [activeFilter]);
 
     return (
-        <main className="w-full bg-gradient-to-b from-blue-50 via-slate-50 to-slate-100 pb-14 font-sans">
+        <main className="w-full bg-gradient-soft-blue-panel pb-14 font-sans">
             <section className="w-full pt-5 md:pt-7">
                 <div className={pageContainerClass}>
                     <div className="page-hero-banner">
@@ -33,11 +33,11 @@ export default function AllGamesPage({ onNavigate }) {
                             alt="All Games Banner"
                             className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL}`}
                         />
-                        <div className="absolute inset-y-0 left-0 w-[56%] bg-[linear-gradient(90deg,rgb(234_244_255_/_0.96)_0%,rgb(234_244_255_/_0.86)_65%,transparent_100%)] sm:w-[52%] md:w-[50%]" />
+                        <div className="absolute inset-y-0 left-0 w-[56%] bg-gradient-hero-fade-left sm:w-[52%] md:w-[50%]" />
                         <div className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-bold uppercase text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
+                                    <h1 className="text-xl font-bold uppercase text-[var(--color-text-primary)] sm:text-2xl md:text-3xl">
                                         All Games
                                     </h1>
                                 </div>
@@ -51,14 +51,14 @@ export default function AllGamesPage({ onNavigate }) {
                 <div className="surface-panel rounded-2xl p-4 md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <div className="flex items-center gap-2 text-[var(--color-brand-primary)]">
+                            <div className="flex items-center gap-2 text-[var(--color-primary)]">
                                 <LayoutGrid size={18} />
-                                <p className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+                                <p className="text-xl font-bold tracking-tight text-[var(--color-text-primary)] md:text-2xl">
                                     Browse Games
                                 </p>
                             </div>
                         </div>
-                        <p className="text-xs font-bold uppercase tracking-wide text-[rgb(106_117_144)] md:text-xs">
+                        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-soft)] md:text-xs">
                             Showing {filteredGames.length} game{filteredGames.length === 1 ? '' : 's'}
                         </p>
                     </div>
@@ -81,15 +81,15 @@ export default function AllGamesPage({ onNavigate }) {
                             game={game}
                             onNavigate={onNavigate}
                             imageFit={['e-sports', 'poker', 'lottery'].includes(game.page) ? 'contain' : 'cover'}
-                            imageStageClassName={['e-sports', 'poker', 'lottery'].includes(game.page) ? 'bg-[linear-gradient(180deg,rgb(248_250_255)_0%,rgb(236_243_252)_100%)]' : ''}
+                            imageStageClassName={['e-sports', 'poker', 'lottery'].includes(game.page) ? 'bg-gradient-game-stage' : ''}
                         />
                     ))}
                 </div>
 
                 {filteredGames.length === 0 && (
                     <div className="surface-card mt-6 rounded-2xl px-4 py-8 text-center">
-                        <p className="text-base font-bold text-slate-800">No games in this category yet.</p>
-                        <p className="mt-1 text-sm text-slate-500">Try a different filter to keep browsing the featured collection.</p>
+                        <p className="text-base font-bold text-[var(--color-text-primary)]">No games in this category yet.</p>
+                        <p className="mt-1 text-sm text-[var(--color-text-muted)]">Try a different filter to keep browsing the featured collection.</p>
                     </div>
                 )}
             </section>

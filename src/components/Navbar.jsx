@@ -405,7 +405,7 @@ export default function Navbar({
             />
 
 
-            <div className="relative z-[110] hidden h-9 w-full items-center border-b border-white/10 bg-[var(--color-nav-top)] px-4 text-xs text-white md:flex md:px-10">
+            <div className="relative z-[110] hidden h-9 w-full items-center border-b border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-4 text-xs text-[var(--color-text-card-text)] md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between">
                     <div className="flex gap-4 items-center h-full">
                         <button
@@ -413,7 +413,7 @@ export default function Navbar({
                             onClick={() => onDownloadAppClick?.()}
                             className="nav-top-pill nav-top-pill--icon shrink-0"
                         >
-                            <Smartphone size={14} className="shrink-0 text-white/90" />
+                            <Smartphone size={14} className="shrink-0 text-[var(--color-nav-text-soft)]" />
                             <span>Download App</span>
                         </button>
                     </div>
@@ -425,14 +425,14 @@ export default function Navbar({
                                 className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
                             >
                                 <div className="relative">
-                                    <div className="flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg border border-white/15 bg-[var(--color-brand-primary)] text-white">
+                                    <div className="flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg border border-[var(--color-nav-border)] bg-[var(--color-primary)] text-[var(--color-text-card-text)]">
                                         <button
                                             type="button"
                                             onClick={() => {
                                                 setBalanceDropdownOpen((prev) => !prev);
                                                 setProfileMenuOpen(false);
                                             }}
-                                            className="flex min-w-0 flex-1 items-center gap-1.5 px-2.5 text-xs font-bold transition hover:bg-white/[0.08]"
+                                            className="flex min-w-0 flex-1 items-center gap-1.5 px-2.5 text-xs font-bold transition hover:bg-[var(--color-surface-light-active)]"
                                         >
                                             <span className="min-w-0 truncate tabular-nums">{authUser.balance}</span>
                                             <ChevronDown size={13} className={`transition-transform ${balanceDropdownOpen ? 'rotate-180' : ''}`} />
@@ -445,7 +445,7 @@ export default function Navbar({
                                                 onRefreshBalance?.();
                                             }}
                                             disabled={!onRefreshBalance || balanceRefreshing}
-                                            className="inline-flex h-full w-7 min-w-7 shrink-0 touch-manipulation items-center justify-center border-l border-white/15 text-white/90 transition hover:bg-white/[0.08] hover:text-white disabled:pointer-events-none disabled:opacity-40"
+                                            className="inline-flex h-full w-7 min-w-7 shrink-0 touch-manipulation items-center justify-center border-l border-[var(--color-nav-border)] text-[var(--color-nav-text-soft)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-card-text)] disabled:pointer-events-none disabled:opacity-40"
                                             aria-label="Refresh balance"
                                             title="Refresh balance"
                                         >
@@ -466,14 +466,14 @@ export default function Navbar({
                                         />
                                     )}
                                 </div>
-                                <div className="flex h-8 shrink-0 items-stretch overflow-hidden rounded-lg border border-white/15 bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] shadow-[var(--inset-highlight-soft)]">
+                                <div className="flex h-8 shrink-0 items-stretch overflow-hidden rounded-lg border border-[var(--color-nav-border)] bg-gradient-side-menu-brand shadow-[var(--inset-highlight-soft)]">
                                     <button
                                         type="button"
                                         onClick={() => {
                                             setProfileMenuOpen(false);
                                             onNavigate?.('profile');
                                         }}
-                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-white transition hover:bg-white/[0.06]"
+                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-[var(--color-text-card-text)] transition hover:bg-[var(--color-nav-tile-border)]"
                                         aria-label="My profile"
                                     >
                                         <img
@@ -481,19 +481,19 @@ export default function Navbar({
                                             alt=""
                                             className="h-5 w-5 shrink-0 object-contain"
                                         />
-                                        <span className="truncate text-xs font-bold text-[var(--color-nav-accent)]">
+                                        <span className="truncate text-xs font-bold text-[var(--color-accent)]">
                                             {authUser.name}
                                         </span>
-                                        <UserCircle2 size={18} className="shrink-0 text-white/90" />
+                                        <UserCircle2 size={18} className="shrink-0 text-[var(--color-nav-text-soft)]" />
                                     </button>
-                                    <span className="w-px shrink-0 self-stretch bg-white/20" aria-hidden />
+                                    <span className="w-px shrink-0 self-stretch bg-[var(--color-nav-border)]" aria-hidden />
                                     <button
                                         type="button"
                                         onClick={() => {
                                             setProfileMenuOpen((open) => !open);
                                             setBalanceDropdownOpen(false);
                                         }}
-                                        className="inline-flex w-7 shrink-0 items-center justify-center text-white/80 transition hover:bg-white/[0.06] hover:text-white"
+                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-nav-text-soft)] transition hover:bg-[var(--color-nav-tile-border)] hover:text-[var(--color-text-card-text)]"
                                         aria-haspopup="menu"
                                         aria-expanded={profileMenuOpen}
                                         aria-label="Account menu"
@@ -536,19 +536,19 @@ export default function Navbar({
                                 />
 
                                 {profileMenuOpen && (
-                                    <div className="dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] flex max-h-[calc(100vh-5rem)] w-[280px] flex-col overflow-hidden rounded-[24px] p-2.5 text-white">
-                                        <div className="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,var(--color-nav-border)_0%,transparent_72%)] pointer-events-none" />
+                                    <div className="dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] flex max-h-[calc(100vh-5rem)] w-[280px] flex-col overflow-hidden rounded-[24px] p-2.5 text-[var(--color-text-card-text)]">
+                                        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-nav-radial-top pointer-events-none" />
 
                                         <div className="relative shrink-0">
                                             <div className="relative flex items-start gap-3">
                                                 <div className="relative shrink-0">
-                                                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-nav-border-soft)] bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] shadow-[var(--inset-highlight-strong)]">
-                                                        <UserCircle2 size={36} className="text-white/90" />
+                                                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-nav-border-soft)] bg-gradient-side-menu-brand shadow-[var(--inset-highlight-strong)]">
+                                                        <UserCircle2 size={36} className="text-[var(--color-nav-text-soft)]" />
                                                     </div>
                                                 </div>
 
                                                 <div className="min-w-0 pt-1">
-                                                    <p className="truncate text-xl font-bold leading-none text-white">
+                                                    <p className="truncate text-xl font-bold leading-none text-[var(--color-text-card-text)]">
                                                         Hi, {authUser.name}
                                                     </p>
                                                     <VipStatusPill level={vipLevel} theme="dark" className="mt-2" />
@@ -564,14 +564,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] text-[var(--color-nav-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <Wallet size={14} />
                                                         </div>
-                                                        <span className="text-lg font-bold text-white">Cashier</span>
+                                                        <span className="text-lg font-bold text-[var(--color-text-card-text)]">Cashier</span>
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-white/80 transition-transform ${openProfileSection === 'cashier' ? 'rotate-180' : ''}`}
+                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'cashier' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'cashier' && (
@@ -589,7 +589,7 @@ export default function Navbar({
                                                                 className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
                                                                 <Icon size={18} className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]" />
-                                                                <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                                <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -603,14 +603,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] text-[var(--color-nav-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <UserRound size={14} />
                                                         </div>
-                                                        <span className="text-lg font-bold text-white">My Account</span>
+                                                        <span className="text-lg font-bold text-[var(--color-text-card-text)]">My Account</span>
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-white/80 transition-transform ${openProfileSection === 'account' ? 'rotate-180' : ''}`}
+                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'account' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
 
@@ -632,7 +632,7 @@ export default function Navbar({
                                                                 className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
                                                                 <Icon size={18} className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]" />
-                                                                <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                                <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -646,14 +646,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] text-[var(--color-nav-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <Trophy size={14} />
                                                         </div>
-                                                        <span className="text-lg font-bold text-white">Rewards</span>
+                                                        <span className="text-lg font-bold text-[var(--color-text-card-text)]">Rewards</span>
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-white/80 transition-transform ${openProfileSection === 'rewards' ? 'rotate-90' : ''}`}
+                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'rewards' ? 'rotate-90' : ''}`}
                                                     />
                                                 </button>
 
@@ -675,7 +675,7 @@ export default function Navbar({
                                                                         size={18}
                                                                         className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]"
                                                                     />
-                                                                    <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                                    <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                                 </button>
                                                             );
                                                         })}
@@ -690,14 +690,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between transition hover:opacity-90"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] text-[var(--color-nav-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <History size={14} />
                                                         </div>
-                                                        <span className="text-lg font-bold text-white">History Record</span>
+                                                        <span className="text-lg font-bold text-[var(--color-text-card-text)]">History Record</span>
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-white/80 transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-90' : ''}`}
+                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-90' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'historyRecord' && (
@@ -714,7 +714,7 @@ export default function Navbar({
                                                                 className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
                                                                 <Icon size={18} className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]" />
-                                                                <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                                <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -728,14 +728,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between text-left"
                                                 >
                                                     <span className="flex items-center gap-3">
-                                                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] text-[var(--color-nav-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <Settings size={14} />
                                                         </span>
-                                                        <span className="text-base font-bold text-white">Settings</span>
+                                                        <span className="text-base font-bold text-[var(--color-text-card-text)]">Settings</span>
                                                     </span>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-white/80 transition-transform ${openProfileSection === 'settings' ? 'rotate-180' : ''}`}
+                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'settings' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'settings' && (
@@ -756,7 +756,7 @@ export default function Navbar({
                                                                 className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
                                                                 <Icon size={18} className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]" />
-                                                                <span className="text-xs font-bold leading-tight text-white">{label}</span>
+                                                                <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -814,7 +814,7 @@ export default function Navbar({
             </div>
 
             {/* TWO-TONE HEADER: Main Navigation Row (Lower) */}
-            <div className="relative z-[100] hidden h-16 w-full items-center border-b border-[var(--color-border-default)] bg-[var(--surface-base)] px-4 shadow-sm md:flex md:px-10">
+            <div className="relative z-[100] hidden h-16 w-full items-center border-b border-[var(--color-border-subtle)] bg-[var(--surface-base)] px-4 shadow-sm md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between gap-6">
                     <div className="flex items-center gap-2 shrink-0">
                         <button
@@ -864,7 +864,7 @@ export default function Navbar({
                                     className={`relative rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap transition-all
                                         ${isActive
                                             ? 'nav-desktop-link-active'
-                                            : 'text-[var(--color-text-brand)] hover:bg-[var(--color-brand-deep)] hover:text-white hover:shadow-[var(--shadow-nav-top)]'}`}
+                                            : 'text-[var(--color-text-brand)] hover:bg-[var(--color-surface-accent-hover)] hover:text-[var(--color-text-card-text)] hover:shadow-[var(--shadow-nav-top)]'}`}
                                 >
                                     {link}
                                 </a>
@@ -880,13 +880,13 @@ export default function Navbar({
                                 className={`relative rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap flex items-center gap-1 transition-all
                                     ${['promotion', 'referral', 'vip', 'rebate', 'loyalty-rewards'].includes(activePage)
                                         ? 'nav-desktop-link-active'
-                                        : 'text-[var(--color-text-brand)] hover:bg-[var(--color-brand-deep)] hover:text-white hover:shadow-[var(--shadow-nav-top)]'}`}
+                                        : 'text-[var(--color-text-brand)] hover:bg-[var(--color-surface-accent-hover)] hover:text-[var(--color-text-card-text)] hover:shadow-[var(--shadow-nav-top)]'}`}
                             >
                                 More <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
                             </button>
 
                             <div className="absolute right-0 top-full pt-1 z-[130] w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--surface-base)] py-2 shadow-[var(--shadow-nav-dropdown)]">
+                                <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--surface-base)] py-2 shadow-[var(--shadow-nav-dropdown)]">
                                     {DESKTOP_MORE_LINKS.map((subLink) => {
                                         const targetId = NAV_TARGETS[subLink];
                                         return (
@@ -903,7 +903,7 @@ export default function Navbar({
                                                 className={`block px-5 py-2.5 text-sm font-bold transition-colors ${
                                                     activePage === targetId
                                                         ? 'bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
-                                                        : 'text-[var(--color-text-main)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-brand)]'
+                                                        : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-brand)]'
                                                 }`}
                                             >
                                                 {subLink}
@@ -925,7 +925,7 @@ export default function Navbar({
                                                 className={`block px-5 py-2.5 text-sm font-bold transition-colors ${
                                                     isRewardsItemActive
                                                         ? 'bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
-                                                        : 'text-[var(--color-text-main)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-brand)]'
+                                                        : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-brand)]'
                                                 }`}
                                             >
                                                 {label}
@@ -941,9 +941,9 @@ export default function Navbar({
                     <div className="flex items-center gap-2 lg:hidden">
                         {authUser ? (
                             <>
-                                <div className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-white/15 bg-white/10 px-3 text-sm font-bold text-white shadow-[var(--shadow-card-soft)]">
+                                <div className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-[var(--color-nav-border)] bg-[var(--color-nav-border-soft)] px-3 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-card-soft)]">
                                     <span className="truncate">{authUser.balance}</span>
-                                    <CircleDollarSign size={14} className="shrink-0 text-[var(--color-nav-accent)]" />
+                                    <CircleDollarSign size={14} className="shrink-0 text-[var(--color-accent)]" />
                                 </div>
                                 <button
                                     type="button"
@@ -955,10 +955,10 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('profile')}
-                                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white transition hover:bg-white/15"
+                                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-nav-border)] bg-[var(--color-nav-border-soft)] text-[var(--color-text-card-text)] transition hover:bg-[var(--color-nav-border-soft)]"
                                     aria-label="My profile"
                                 >
-                                    <UserCircle2 size={20} className="text-white/90" />
+                                    <UserCircle2 size={20} className="text-[var(--color-nav-text-soft)]" />
                                 </button>
                             </>
                         ) : (
@@ -966,7 +966,7 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onLoginClick?.()}
-                                    className="inline-flex min-h-10 items-center justify-center rounded-xl border border-white/35 bg-white/5 px-3.5 text-sm font-semibold text-white transition hover:bg-white/10 hover:border-white/50"
+                                    className="inline-flex min-h-10 items-center justify-center rounded-xl border border-[var(--color-nav-tile-border-hover)] bg-[var(--color-nav-tile-border)] px-3.5 text-sm font-semibold text-[var(--color-text-card-text)] transition hover:bg-[var(--color-nav-border-soft)] hover:border-[var(--color-nav-tile-border-hover)]"
                                 >
                                     Login
                                 </button>
@@ -1012,11 +1012,11 @@ export default function Navbar({
                 tabIndex={mobileMenuOpen ? 0 : -1}
             />
             <aside
-                className={`fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r border-[var(--color-border-default)] bg-[var(--color-surface-base)] text-[var(--color-text-main)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
+                className={`fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
                     }`}
                 aria-hidden={!mobileMenuOpen}
             >
-                <div className="relative border-b border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-3.5 py-3">
+                <div className="relative border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3.5 py-3">
                     <div className="min-w-0">
                         {authUser ? (
                             <button
@@ -1036,13 +1036,13 @@ export default function Navbar({
                         {authUser ? (
                             <div className="mt-2.5 space-y-2.5">
                                 <VipStatusPill level={vipLevel} size="compact" className="rounded-full shadow-[var(--shadow-brand-soft)]" />
-                                <div className="w-full rounded-[20px] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-3.5 shadow-[var(--shadow-card-soft)]">
+                                <div className="w-full rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3.5 shadow-[var(--shadow-card-soft)]">
                                     <div className="flex items-center justify-between gap-2.5">
                                         <div>
                                             <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-brand)]">
                                                 Balance
                                             </p>
-                                            <p className="mt-0.5 text-base font-bold text-[var(--color-text-strong)]">{authUser.balance}</p>
+                                            <p className="mt-0.5 text-base font-bold text-[var(--color-text-primary)]">{authUser.balance}</p>
                                         </div>
                                         <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
                                             <CircleDollarSign size={16} />
@@ -1060,7 +1060,7 @@ export default function Navbar({
                                         <button
                                             type="button"
                                             onClick={() => handleMobileNavigate('withdrawal')}
-                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-white px-3 text-sm font-bold text-[var(--color-text-brand)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
+                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm font-bold text-[var(--color-text-brand)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
                                         >
                                             <ArrowUpFromLine size={15} />
                                             Withdraw
@@ -1076,7 +1076,7 @@ export default function Navbar({
                                         setMobileMenuOpen(false);
                                         onLoginClick?.();
                                     }}
-                                    className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-white px-4 text-sm font-semibold text-[var(--color-text-main)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
+                                    className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
                                 >
                                     Login
                                 </button>
@@ -1125,8 +1125,8 @@ export default function Navbar({
                                     className={
                                         isGamesRow
                                             ? `overflow-hidden rounded-xl border transition ${isActive
-                                                ? 'border-[var(--color-accent-200)] bg-[linear-gradient(180deg,var(--color-surface-base)_0%,var(--color-brand-soft)_100%)] shadow-[var(--shadow-brand-soft)]'
-                                                : 'border-[var(--color-border-default)] bg-[var(--surface-base)]'
+                                                ? 'border-[var(--color-accent-200)] bg-gradient-brand-soft-panel shadow-[var(--shadow-brand-soft)]'
+                                                : 'border-[var(--color-border-subtle)] bg-[var(--surface-base)]'
                                             }`
                                             : "overflow-hidden rounded-xl"
                                     }
@@ -1149,14 +1149,14 @@ export default function Navbar({
                                             ? ''
                                             : `rounded-xl border ${isActive
                                                 ? 'nav-desktop-link-active'
-                                                : 'border-[var(--color-border-default)] bg-[var(--surface-base)] text-[var(--color-text-main)] shadow-[var(--shadow-input)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-surface-subtle)]'
+                                                : 'border-[var(--color-border-subtle)] bg-[var(--surface-base)] text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-surface-subtle)]'
                                             }`
                                             }`}
                                         aria-expanded={isOpen}
                                     >
                                         <span
                                             className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${isActive && !isGamesRow
-                                                ? 'border-[var(--color-cta-border)] bg-white/20 text-[var(--color-cta-text)]'
+                                                ? 'border-[var(--color-cta-border)] bg-[var(--color-nav-border)] text-[var(--color-cta-text)]'
                                                 : 'border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--surface-utility-2)]'
                                                 }`}
 
@@ -1187,14 +1187,14 @@ export default function Navbar({
                                                         type="button"
                                                         onClick={() => handleMobileNavigate(item.page)}
                                                         className={`flex min-h-[42px] w-full items-center gap-2.5 rounded-xl pl-3 pr-3 py-2 text-left transition ${itemActive
-                                                            ? 'bg-[linear-gradient(90deg,var(--color-brand-soft)_0%,var(--color-surface-base)_100%)] text-[var(--color-text-brand-soft)] shadow-[var(--shadow-brand-soft)]'
-                                                            : 'bg-transparent text-[var(--color-text-main)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-strong)]'
+                                                            ? 'bg-gradient-brand-soft-horizontal text-[var(--color-text-brand-soft)] shadow-[var(--shadow-brand-soft)]'
+                                                            : 'bg-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-primary)]'
                                                             }`}
                                                         style={{ fontFamily: 'var(--base-font-family)' }}
                                                     >
                                                         <span
                                                             className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${itemActive
-                                                                ? 'bg-white text-[var(--surface-utility-2)]'
+                                                                ? 'bg-[var(--color-surface-base)] text-[var(--surface-utility-2)]'
                                                                 : 'bg-[var(--color-accent-50)] text-[var(--surface-utility-2)]'
                                                                 }`}
                                                         >
@@ -1209,7 +1209,7 @@ export default function Navbar({
                                     )}
 
                                     {isMoreRow && mobileMoreOpen && (
-                                        <div className="mt-1.5 space-y-1.5 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] p-2">
+                                        <div className="mt-1.5 space-y-1.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-2">
                                             {/* eslint-disable-next-line no-unused-vars */}
                                             {MOBILE_MORE_SECTIONS.map(({ id: sectionId, label: sectionLabel, icon: SectionIcon, items }) => {
                                                 const sectionHasActiveItem = items.some((item) => isMobileMoreItemActive(item));
@@ -1219,8 +1219,8 @@ export default function Navbar({
                                                     <div
                                                         key={sectionId}
                                                         className={`overflow-hidden rounded-xl border transition ${sectionHasActiveItem
-                                                            ? 'border-[var(--color-accent-200)] bg-[linear-gradient(180deg,var(--color-surface-base)_0%,var(--color-brand-soft)_100%)] shadow-[var(--shadow-brand-soft)]'
-                                                            : 'border-[var(--color-border-default)] bg-[var(--surface-base)]'
+                                                            ? 'border-[var(--color-accent-200)] bg-gradient-brand-soft-panel shadow-[var(--shadow-brand-soft)]'
+                                                            : 'border-[var(--color-border-subtle)] bg-[var(--surface-base)]'
                                                             }`}
                                                     >
                                                         <button
@@ -1255,13 +1255,13 @@ export default function Navbar({
                                                                             type="button"
                                                                             onClick={() => handleMobileMoreItemClick(item)}
                                                                             className={`flex min-h-[42px] w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left transition ${itemActive
-                                                                                ? 'bg-[linear-gradient(180deg,var(--color-brand-soft)_0%,var(--color-surface-base)_100%)] text-[var(--color-text-brand-soft)] shadow-[var(--shadow-brand-soft)]'
-                                                                                : 'bg-transparent text-[var(--color-text-main)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-strong)]'
+                                                                                ? 'bg-gradient-brand-soft-panel-alt text-[var(--color-text-brand-soft)] shadow-[var(--shadow-brand-soft)]'
+                                                                                : 'bg-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-primary)]'
                                                                                 }`}
                                                                         >
                                                                             <span
                                                                                 className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${itemActive
-                                                                                    ? 'bg-white text-[var(--surface-utility-2)]'
+                                                                                    ? 'bg-[var(--color-surface-base)] text-[var(--surface-utility-2)]'
                                                                                     : 'bg-[var(--color-accent-50)] text-[var(--surface-utility-2)]'
                                                                                     }`}
                                                                             >
@@ -1284,7 +1284,7 @@ export default function Navbar({
                         })}
                     </div>
                 </div>
-                <div className="border-t border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-3.5 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] pt-3">
+                <div className="border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3.5 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] pt-3">
                     <div className="space-y-2">
                         <button
                             type="button"
@@ -1292,7 +1292,7 @@ export default function Navbar({
                                 setMobileMenuOpen(false);
                                 onLiveChatClick?.();
                             }}
-                            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-accent-200)] bg-[linear-gradient(90deg,var(--color-brand-secondary)_0%,var(--color-brand-primary)_100%)] px-4 text-sm font-bold text-white shadow-[var(--shadow-brand-card)] transition hover:brightness-105"
+                            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-accent-200)] bg-gradient-nav-cta px-4 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-brand-card)] transition hover:brightness-105"
                         >
                             <Headset size={16} />
                             Live Chat
@@ -1304,7 +1304,7 @@ export default function Navbar({
                                     setMobileMenuOpen(false);
                                     onLogout?.();
                                 }}
-                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-white px-4 text-sm font-semibold text-[var(--color-text-main)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-strong)]"
+                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-primary)]"
                             >
                                 <LogOut size={15} />
                                 Log Out
@@ -1313,7 +1313,7 @@ export default function Navbar({
                             <button
                                 type="button"
                                 onClick={handleMobileDownloadApp}
-                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-white px-4 text-sm font-semibold text-[var(--color-text-main)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-strong)]"
+                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-primary)]"
                             >
                                 <Smartphone size={15} />
                                 App Download

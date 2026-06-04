@@ -67,7 +67,7 @@ const tableHeadClassRight =
 function RebateEarnedSummary() {
     return (
         <div className="flex items-center gap-3 sm:gap-4">
-            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[var(--color-cta-text)] sm:h-12 sm:w-12">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-cta-text)] sm:h-12 sm:w-12">
                 <Star className="h-[22px] w-[22px] sm:h-6 sm:w-6" strokeWidth={2} aria-hidden />
             </span>
             <div className="min-w-0 flex-1">
@@ -81,8 +81,8 @@ function RebateEarnedSummary() {
 function EmptyTableNotice({ message, hint, colSpan = 2 }) {
     return (
         <td colSpan={colSpan} className="px-4 py-10 md:py-12">
-            <div className="mx-auto flex flex-col items-center justify-center rounded-xl border border-dashed border-[var(--color-border-default)] bg-[var(--color-surface-muted)]/50 px-4 py-6">
-                <p className="text-center text-sm font-semibold text-[var(--color-text-strong)]">{message}</p>
+            <div className="mx-auto flex flex-col items-center justify-center rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)]/50 px-4 py-6">
+                <p className="text-center text-sm font-semibold text-[var(--color-text-primary)]">{message}</p>
                 {hint ? <p className="mt-1 text-center text-xs leading-relaxed text-[var(--color-text-muted)]">{hint}</p> : null}
             </div>
         </td>
@@ -92,8 +92,8 @@ function EmptyTableNotice({ message, hint, colSpan = 2 }) {
 function GuestLoginCard({ onLoginClick }) {
     return (
         <div className="surface-card rounded-2xl p-4 shadow-[var(--shadow-card-soft)] sm:p-5 md:p-6">
-            <div className="flex min-h-[200px] flex-col items-center justify-center rounded-xl bg-[linear-gradient(180deg,var(--color-surface-subtle)_0%,var(--color-surface-muted)_100%)] border border-[var(--color-border-default)] px-4 py-8 shadow-inner md:min-h-[240px]">
-                <p className="mb-6 text-center text-lg font-bold text-[var(--color-text-strong)] sm:text-xl">
+            <div className="flex min-h-[200px] flex-col items-center justify-center rounded-xl bg-gradient-surface-muted border border-[var(--color-border-subtle)] px-4 py-8 shadow-inner md:min-h-[240px]">
+                <p className="mb-6 text-center text-lg font-bold text-[var(--color-text-primary)] sm:text-xl">
                     Log In to View Your Rebate Info
                 </p>
                 <button
@@ -156,7 +156,7 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                             </div>
                             <div className="hidden items-center justify-between gap-4 md:flex">
                                 <div className="flex items-center gap-4">
-                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[var(--color-cta-text)]">
+                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-cta-text)]">
                                         <Star size={24} strokeWidth={2} />
                                     </span>
                                     <div>
@@ -177,7 +177,7 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-[280px] border-collapse text-sm md:min-w-[320px]">
                                     <thead>
-                                        <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
+                                        <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]">
                                             <th className={tableHeadClassLeft}>Date</th>
                                             <th className={tableHeadClassRight}>Amount</th>
                                         </tr>
@@ -224,7 +224,7 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                                         className={`min-h-11 min-w-0 flex-1 rounded-xl border px-3 py-2.5 text-sm font-semibold transition sm:min-h-0 sm:px-4 ${
                                             historyQuickRange === id
                                                 ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]'
-                                                : 'border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
+                                                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
                                         }`}
                                     >
                                         {label}
@@ -244,7 +244,7 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-[280px] border-collapse text-sm md:min-w-[320px]">
                                     <thead>
-                                        <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
+                                        <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]">
                                             <th className={tableHeadClassLeft}>Claimed Time</th>
                                             <th className={tableHeadClassRight}>Amount</th>
                                         </tr>
@@ -275,7 +275,7 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-[400px] border-collapse text-sm">
                                     <thead>
-                                        <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
+                                        <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]">
                                             <th className={tableHeadClassLeft}>Game Provider</th>
                                             <th className={tableHeadClassLeft}>Category</th>
                                             <th className={tableHeadClassRight}>Rebate Benefit</th>
@@ -287,9 +287,9 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                                         ).map((row) => (
                                             <tr
                                                 key={`${row.provider}-${row.category}`}
-                                                className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
+                                                className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-subtle)]"
                                             >
-                                                <td className="px-3 py-3 text-sm font-medium text-[var(--color-text-strong)] md:px-4 md:py-3.5">
+                                                <td className="px-3 py-3 text-sm font-medium text-[var(--color-text-primary)] md:px-4 md:py-3.5">
                                                     {row.provider}
                                                 </td>
                                                 <td className="px-3 py-3 text-sm text-[var(--color-text-muted)] md:px-4 md:py-3.5">{row.category}</td>

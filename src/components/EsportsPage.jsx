@@ -57,7 +57,7 @@ export default function EsportsPage({ onNavigate }) {
 
     return (
         <main
-            className="w-full pb-14 bg-[linear-gradient(180deg,var(--gradient-live-page-start)_0%,var(--gradient-live-page-mid)_36%,var(--gradient-live-page-end)_100%)]"
+            className="w-full pb-14 bg-gradient-live-page"
         >
             {showStickyPlayBar && (
                 <div className={NAV_STICKY_QUICK_PLAY_BAR_CLASS} role="banner" aria-label="Quick play bar">
@@ -67,7 +67,7 @@ export default function EsportsPage({ onNavigate }) {
                             alt={bannerProvider.name}
                             className="h-8 object-contain md:h-10"
                         />
-                        <span className="hidden text-sm font-bold text-[rgb(42_53_72)] sm:inline md:text-base">
+                        <span className="hidden text-sm font-bold text-[var(--color-text-secondary)] sm:inline md:text-base">
                             {bannerProvider.name}
                         </span>
                         <PlayButton />
@@ -95,16 +95,16 @@ export default function EsportsPage({ onNavigate }) {
                                         className="h-10 max-w-[140px] object-contain sm:h-12 sm:max-w-[170px] md:h-15 md:max-w-none"
                                     />
                                 </div>
-                                <h1 className="mt-3 hidden text-3xl font-bold uppercase text-[rgb(25_41_71)] md:block">
+                                <h1 className="mt-3 hidden text-3xl font-bold uppercase text-[var(--color-text-primary)] md:block">
                                     E-Sports
                                 </h1>
-                                <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-snug text-[rgb(42_53_72)] md:block md:mt-4">
+                                <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-snug text-[var(--color-text-secondary)] md:block md:mt-4">
                                     Top tournaments, live odds, nonstop hype.
                                 </p>
                                 <button
                                     type="button"
                                     onClick={handlePlayEsports}
-                                    className="btn-theme-cta relative z-10 mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-sm md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
+                                    className="btn-theme-cta relative z-10 mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface-mid-container)] sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-sm md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
                                     aria-label={`Play ${bannerProvider.name}`}
                                 >
                                     PLAY E-SPORTS
@@ -116,26 +116,26 @@ export default function EsportsPage({ onNavigate }) {
             </section>
 
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
-                <div className="rounded-2xl border border-[rgb(219_228_243)] bg-[var(--color-surface-base-80)] p-4 shadow-[0_6px_18px_rgba(20,43,87,0.09)] backdrop-blur-sm md:p-5">
+                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base-80)] p-4 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-xl font-bold text-[rgb(28_40_65)] md:text-2xl">E-Sports Providers</p>
-                            <p className="mt-1 text-xs text-[rgb(93_103_128)] md:text-sm">
+                            <p className="text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">E-Sports Providers</p>
+                            <p className="mt-1 text-xs text-[var(--color-text-muted)] md:text-sm">
                                 Choose your preferred E-sports and virtual competition provider with the same premium sportsbook experience.
                             </p>
                         </div>
-                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-live)] bg-[var(--color-surface-base)] px-3 shadow-[inset_0_1px_2px_rgba(9,30,66,0.06)] lg:w-[330px]">
-                            <Search size={16} className="text-[rgb(95_110_139)]" />
+                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-live)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)] lg:w-[330px]">
+                            <Search size={16} className="text-[var(--color-text-muted)]" />
                             <input
                                 value={query}
                                 onChange={(event) => setQuery(event.target.value)}
                                 placeholder="Search provider"
-                                className="w-full bg-transparent text-sm font-semibold text-[rgb(42_58_88)] outline-none placeholder:text-[rgb(139_151_174)]"
+                                className="w-full bg-transparent text-sm font-semibold text-[var(--color-text-secondary)] outline-none placeholder:text-[var(--color-text-soft)]"
                             />
                         </label>
                     </div>
 
-                    <p className="mt-4 text-xs font-bold uppercase tracking-wide text-[rgb(106_117_144)] md:text-xs">
+                    <p className="mt-4 text-xs font-bold uppercase tracking-wide text-[var(--color-text-soft)] md:text-xs">
                         {filteredProviders.length} provider{filteredProviders.length === 1 ? '' : 's'} found
                     </p>
                 </div>
@@ -158,9 +158,9 @@ export default function EsportsPage({ onNavigate }) {
                     ))}
                 </div>
                 {filteredProviders.length === 0 && (
-                    <div className="mt-6 rounded-2xl border border-[rgb(220_228_242)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
-                        <p className="text-base font-bold text-[rgb(43_58_87)]">No providers match your search.</p>
-                        <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword or switch filter.</p>
+                    <div className="mt-6 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
+                        <p className="text-base font-bold text-[var(--color-text-secondary)]">No providers match your search.</p>
+                        <p className="mt-1 text-xs text-[var(--color-text-soft)]">Try a different keyword or switch filter.</p>
                     </div>
                 )}
             </section>

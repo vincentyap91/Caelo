@@ -44,7 +44,7 @@ export default function LanguageSwitcher({
                 onClick={() => setOpen((o) => !o)}
                 className={`flex items-center ${showShortLabel ? 'gap-1.5' : 'gap-1'} ${buttonClassName} ${
                     isLightTone
-                        ? 'border border-slate-300 bg-white text-slate-900 shadow-[0_6px_14px_rgba(15,23,42,0.08)] transition-all hover:border-slate-400 hover:bg-slate-50'
+                        ? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,42,0.08)] transition-all hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-muted)]'
                         : ''
                 }`}
                 aria-haspopup="listbox"
@@ -59,31 +59,31 @@ export default function LanguageSwitcher({
                 {showShortLabel ? <span className="text-xs font-bold uppercase">{current.short}</span> : null}
                 <ChevronDown
                     size={12}
-                    className={`transition-transform ${isLightTone ? 'text-slate-500' : 'text-white/75'} ${open ? 'rotate-180' : ''}`}
+                    className={`transition-transform ${isLightTone ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-text-card-text)]/75'} ${open ? 'rotate-180' : ''}`}
                 />
             </button>
 
             {open && (
                 <div
-                    className={`absolute right-0 top-full z-[450] mt-2 w-[240px] max-w-[calc(100vw-1rem)] overflow-hidden rounded-[18px] py-1 shadow-[0_20px_44px_rgba(0,16,56,0.45)] backdrop-blur-xl ${
+                    className={`absolute right-0 top-full z-[450] mt-2 w-[240px] max-w-[calc(100vw-1rem)] overflow-hidden rounded-[18px] py-1 shadow-[var(--shadow-nav-dropdown)] backdrop-blur-xl ${
                         isLightTone
-                            ? 'border border-slate-200 bg-white'
-                            : 'border border-[var(--color-nav-border)] bg-[linear-gradient(180deg,#12458a_0%,#0e3570_42%,#0a2a56_74%,#081f41_100%)]'
+                            ? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]'
+                            : 'border border-[var(--color-nav-border)] bg-gradient-language-nav'
                     }`}
                     role="listbox"
                 >
                     <div
                         className={`pointer-events-none absolute inset-x-0 top-0 h-12 ${
                             isLightTone
-                                ? 'bg-[linear-gradient(180deg,rgba(15,23,42,0.04)_0%,rgba(15,23,42,0.01)_38%,transparent_100%)]'
-                                : 'bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.04)_38%,transparent_100%)]'
+                                ? 'bg-gradient-language-panel-top-light'
+                                : 'bg-gradient-language-panel-top'
                         }`}
                     />
                     <div
                         className={`pointer-events-none absolute inset-x-0 bottom-0 h-14 ${
                             isLightTone
-                                ? 'bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.08)_0%,transparent_74%)]'
-                                : 'bg-[radial-gradient(circle_at_bottom,rgba(0,174,239,0.14)_0%,transparent_74%)]'
+                                ? 'bg-gradient-language-panel-radial-light'
+                                : 'bg-gradient-language-panel-radial'
                         }`}
                     />
                     {LANGUAGES.map((lang) => {
@@ -100,15 +100,15 @@ export default function LanguageSwitcher({
                                 }}
                                 className={`group relative flex w-full items-center gap-3 px-3.5 py-3 text-left text-sm font-semibold transition-colors duration-200 ${
                                     isLightTone
-                                        ? `text-slate-900 ${
+                                        ? `text-[var(--color-text-primary)] ${
                                             isActive
-                                                ? 'bg-slate-100 shadow-[inset_0_1px_0_rgba(15,23,42,0.04)]'
-                                                : 'hover:bg-slate-50'
+                                                ? 'bg-[var(--color-surface-subtle)] shadow-[var(--inset-panel)]'
+                                                : 'hover:bg-[var(--color-surface-muted)]'
                                         }`
-                                        : `text-white ${
+                                        : `text-[var(--color-text-card-text)] ${
                                             isActive
-                                                ? 'bg-[linear-gradient(90deg,rgba(255,216,77,0.22)_0%,rgba(0,174,239,0.18)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]'
-                                                : 'hover:bg-white/[0.06]'
+                                                ? 'bg-gradient-language-option-active shadow-[var(--inset-highlight-soft)]'
+                                                : 'hover:bg-[var(--color-nav-tile-border)]'
                                         }`
                                 }`}
                             >
@@ -122,11 +122,11 @@ export default function LanguageSwitcher({
                                     className={`ml-auto inline-flex h-2.5 w-2.5 shrink-0 rounded-full transition-opacity ${
                                         isActive
                                             ? isLightTone
-                                                ? 'bg-[var(--color-brand-primary)] shadow-[0_0_0_4px_rgba(37,99,235,0.12)]'
-                                                : 'bg-[var(--color-nav-accent)] shadow-[0_0_0_4px_rgba(255,216,77,0.18)]'
+                                                ? 'bg-[var(--color-primary)] shadow-[0_0_0_4px_var(--color-accent-500)]/12'
+                                                : 'bg-[var(--color-accent)] shadow-[0_0_0_4px_var(--color-accent-400)]/18'
                                             : isLightTone
-                                                ? 'bg-slate-400/0 opacity-0 group-hover:bg-slate-400/30 group-hover:opacity-100'
-                                                : 'bg-white/0 opacity-0 group-hover:bg-white/30 group-hover:opacity-100'
+                                                ? 'bg-[var(--color-text-soft)]/0 opacity-0 group-hover:bg-[var(--color-text-soft)]/30 group-hover:opacity-100'
+                                                : 'bg-[var(--color-surface-base)]/0 opacity-0 group-hover:bg-[var(--color-surface-base)]/30 group-hover:opacity-100'
                                     }`}
                                     aria-hidden="true"
                                 />

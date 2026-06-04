@@ -10,7 +10,7 @@ const VARIANT_CONFIG = {
     browse: {
         section: 'slot-current-promo soft-blue-panel rounded-[var(--radius-panel)] p-2.5 md:p-3',
         eyebrow: 'font-bold uppercase tracking-wide text-[var(--color-text-muted)]',
-        name: 'font-bold normal-case text-[var(--color-brand-primary)]',
+        name: 'font-bold normal-case text-[var(--color-primary)]',
         headerText: 'flex min-w-0 flex-col gap-0.5 text-xs leading-snug text-[var(--color-text-muted)] md:flex-row md:flex-wrap md:items-baseline md:gap-0 sm:text-sm',
         innerCard: `${BROWSE_SUMMARY_CARD_SHELL_CLASS} ${BROWSE_SUMMARY_CARD_COMPACT_CLASS} slot-current-promo__card`,
         progressVariant: 'browse',
@@ -46,7 +46,7 @@ export default function CurrentPromoSection({
         <button
             type="button"
             onClick={onEndPromo}
-            className="btn-theme-cta-soft inline-flex h-9 shrink-0 items-center justify-center rounded-[var(--radius-control)] px-3 text-xs font-bold transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-primary)] sm:px-4 sm:text-sm"
+            className="btn-theme-cta-soft inline-flex h-9 shrink-0 items-center justify-center rounded-[var(--radius-control)] px-3 text-xs font-bold transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] sm:px-4 sm:text-sm"
         >
             End Promo
         </button>

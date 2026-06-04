@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { Calendar } from 'lucide-react';
 
 const INPUT_CLASS =
-    'date-input-single-icon h-11 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]';
+    'date-input-single-icon h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20';
 
 /**
  * Styled `type="date"` with a single Lucide calendar affordance (see `.date-input-single-icon` in theme.css).
@@ -37,7 +37,7 @@ const CalendarDateInput = forwardRef(function CalendarDateInput(
             <label className={className ?? 'block'}>
                 <span
                     className={[
-                        'mb-2 block text-xs font-semibold text-[var(--color-text-strong)] md:text-sm',
+                        'mb-2 block text-xs font-semibold text-[var(--color-text-primary)] md:text-sm',
                         labelClassName,
                     ]
                         .filter(Boolean)

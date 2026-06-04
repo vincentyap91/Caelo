@@ -98,32 +98,32 @@ export default function LiveChatPage({ onNavigate, authUser }) {
     return (
         <div className="flex flex-col h-[calc(100vh-56px)] md:h-[calc(100vh-100px)] bg-[var(--color-page-default)] animate-in fade-in duration-500">
             {/* Header */}
-            <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-[var(--color-brand-primary)] shadow-sm">
+            <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-[var(--color-primary)] shadow-sm">
                 <div className="flex items-center gap-3">
                     <button 
                         type="button" 
                         onClick={() => onNavigate?.('home')}
-                        className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
+                        className="p-1.5 hover:bg-[var(--color-nav-border-soft)] rounded-full transition-colors"
                     >
-                        <ChevronLeft size={22} className="text-white" />
+                        <ChevronLeft size={22} className="text-[var(--color-text-card-text)]" />
                     </button>
                     <div className="flex items-center gap-2.5">
                         <div className="relative">
-                            <div className="h-10 w-10 rounded-full bg-white/20 border border-white/10 p-0.5 overflow-hidden">
+                            <div className="h-10 w-10 rounded-full bg-[var(--color-nav-border)] border border-[var(--color-nav-border-soft)] p-0.5 overflow-hidden">
                                 <img src={liveChatSupportAvatar} alt="Support" className="w-full h-full object-cover" />
                             </div>
-                            <span className="absolute bottom-0.5 right-0.5 h-3 w-3 rounded-full bg-[#4ade80] border-2 border-[var(--color-brand-primary)]"></span>
+                            <span className="absolute bottom-0.5 right-0.5 h-3 w-3 rounded-full bg-[var(--color-success-vivid)] border-2 border-[var(--color-primary)]"></span>
                         </div>
                         <div>
-                            <h2 className="text-[15px] font-bold text-white leading-none">RioCity9 Support</h2>
+                            <h2 className="text-[15px] font-bold text-[var(--color-text-card-text)] leading-none">RioCity9 Support</h2>
                             <div className="mt-1 flex items-center gap-1.5">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[#4ade80]"></span>
-                                <p className="text-[10px] font-bold text-white/70 uppercase tracking-wide">SUPPORT ONLINE</p>
+                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success-vivid)]"></span>
+                                <p className="text-[10px] font-bold text-[var(--color-text-card-text)]/70 uppercase tracking-wide">SUPPORT ONLINE</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" className="p-2 text-white/60 hover:text-white transition-colors">
+                <button type="button" className="p-2 text-[var(--color-text-card-text)]/60 hover:text-[var(--color-text-card-text)] transition-colors">
                     <MoreVertical size={20} />
                 </button>
             </header>
@@ -134,7 +134,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                     if (msg.type === 'date') {
                         return (
                             <div key={msg.id} className="flex justify-center my-8">
-                                <span className="px-5 py-1.5 rounded-full bg-white border border-[var(--color-border-default)] text-[10px] font-extrabold text-[var(--color-text-muted)] uppercase shadow-sm">
+                                <span className="px-5 py-1.5 rounded-full bg-[var(--color-surface-base)] border border-[var(--color-border-subtle)] text-[10px] font-extrabold text-[var(--color-text-muted)] uppercase shadow-sm">
                                     {msg.text}
                                 </span>
                             </div>
@@ -146,20 +146,20 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                     return (
                         <div key={msg.id} className={`flex items-start gap-3 ${isSent ? 'flex-row-reverse' : ''} animate-in slide-in-from-bottom-2 duration-300`}>
                             {!isSent && (
-                                <div className="h-9 w-9 rounded-full overflow-hidden border border-[var(--color-border-default)] bg-white shadow-sm shrink-0 mt-1">
+                                <div className="h-9 w-9 rounded-full overflow-hidden border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-sm shrink-0 mt-1">
                                     <img src={msg.avatar || liveChatSupportAvatar} alt={msg.sender} className="w-full h-full object-cover" />
                                 </div>
                             )}
                             <div className={`flex flex-col max-w-[92%] ${isSent ? 'items-end' : 'items-start'}`}>
                                 <div className="flex items-center gap-2 mb-1.5 px-1.5">
-                                    {!isSent && <span className="text-[11px] font-bold text-[var(--color-brand-primary)]">{msg.sender || 'Support'}</span>}
+                                    {!isSent && <span className="text-[11px] font-bold text-[var(--color-primary)]">{msg.sender || 'Support'}</span>}
                                     <span className="text-[10px] font-medium text-[var(--color-text-muted)] opacity-70 uppercase tracking-tight">{msg.timestamp}</span>
                                 </div>
                                 <div 
                                     className={`px-4 py-3 rounded-[20px] text-[14px] leading-relaxed shadow-sm transition-all
                                         ${isSent 
-                                            ? 'bg-[var(--color-brand-primary)] text-white rounded-tr-none font-medium' 
-                                            : 'bg-white text-[var(--color-text-strong)] border border-[var(--color-border-default)] rounded-tl-none'
+                                            ? 'bg-[var(--color-primary)] text-[var(--color-text-card-text)] rounded-tr-none font-medium' 
+                                            : 'bg-[var(--color-surface-base)] text-[var(--color-text-primary)] border border-[var(--color-border-subtle)] rounded-tl-none'
                                         }`}
                                 >
                                     {msg.text}
@@ -172,16 +172,16 @@ export default function LiveChatPage({ onNavigate, authUser }) {
             </main>
 
             {/* Bottom Section */}
-            <div className="sticky bottom-0 bg-white border-t border-[var(--color-border-default)]">
+            <div className="sticky bottom-0 bg-[var(--color-surface-base)] border-t border-[var(--color-border-subtle)]">
                 {/* Suggested Replies */}
-                <div className="px-4 py-3 bg-[var(--color-surface-muted)]/30 border-b border-[var(--color-border-default)]/10">
+                <div className="px-4 py-3 bg-[var(--color-surface-muted)]/30 border-b border-[var(--color-border-subtle)]/10">
                     <div className="flex gap-2.5 overflow-x-auto no-scrollbar pb-0.5 scroll-smooth">
                         {SUGGESTED_MESSAGES.map((text) => (
                             <button
                                 key={text}
                                 type="button"
                                 onClick={() => handleSuggestedClick(text)}
-                                className="whitespace-nowrap px-4 py-2 rounded-full border border-[var(--color-border-default)] bg-white text-[12px] font-bold text-[var(--color-text-main)] hover:bg-[var(--color-brand-primary)] hover:text-white hover:border-[var(--color-brand-primary)] transition-all shrink-0"
+                                className="whitespace-nowrap px-4 py-2 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[12px] font-bold text-[var(--color-text-secondary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-card-text)] hover:border-[var(--color-primary)] transition-all shrink-0"
                             >
                                 {text}
                             </button>
@@ -190,9 +190,9 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                 </div>
 
                 {/* Input Bar - Redesigned to match second screenshot exactly */}
-                <div className="px-4 py-4 w-full bg-[#f8f9fc]">
+                <div className="px-4 py-4 w-full bg-[var(--color-page-default)]">
                     <div className="flex items-center gap-4 w-full">
-                        <button type="button" className="text-[#94a3b8] hover:text-[var(--color-brand-primary)] transition-colors p-1 shrink-0">
+                        <button type="button" className="text-[var(--color-text-soft)] hover:text-[var(--color-primary)] transition-colors p-1 shrink-0">
                             <Paperclip size={22} />
                         </button>
                         <div className="flex-1">
@@ -202,7 +202,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                                 onChange={(e) => setInputValue(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                                 placeholder="Type your message here..."
-                                className="w-full bg-[#f1f5f9] border-none rounded-xl focus:ring-1 focus:ring-[var(--color-brand-primary)]/20 text-[14px] text-[var(--color-text-strong)] placeholder:text-[#94a3b8] py-3 px-5"
+                                className="w-full bg-[var(--color-surface-muted)] border-none rounded-xl focus:ring-1 focus:ring-[var(--color-primary)]/20 text-[14px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-soft)] py-3 px-5"
                             />
                         </div>
                         <button 
@@ -211,8 +211,8 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                             disabled={!inputValue.trim()}
                             className={`h-10 w-10 rounded-full transition-all flex items-center justify-center shrink-0 ${
                                 inputValue.trim() 
-                                    ? 'bg-[var(--color-brand-primary)] text-white shadow-md' 
-                                    : 'bg-[#f1f5f9] text-[#94a3b8]'
+                                    ? 'bg-[var(--color-primary)] text-[var(--color-text-card-text)] shadow-md' 
+                                    : 'bg-[var(--color-surface-muted)] text-[var(--color-text-soft)]'
                             }`}
                         >
                             <Send size={18} strokeWidth={2} />

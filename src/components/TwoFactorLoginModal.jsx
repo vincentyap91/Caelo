@@ -82,25 +82,25 @@ export default function TwoFactorLoginModal({
                 type="button"
                 aria-label="Close"
                 onClick={onClose}
-                className="absolute inset-0 bg-black/70 backdrop-blur-[1px]"
+                className="absolute inset-0 bg-[var(--color-surface-darkest)]/70 backdrop-blur-[1px]"
             />
             <section
                 role="dialog"
                 aria-modal="true"
                 aria-label={title}
-                className="relative z-[1] w-full max-w-[420px] rounded-2xl border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
+                className="relative z-[1] w-full max-w-[420px] rounded-2xl border border-[var(--color-border-brand)] bg-gradient-register-panel px-5 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
                     type="button"
                     aria-label="Close"
                     onClick={onClose}
-                    className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-brand-deep)] text-white transition hover:brightness-95"
+                    className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-surface-accent-hover)] text-[var(--color-text-card-text)] transition hover:brightness-95"
                 >
                     <X size={18} strokeWidth={3} />
                 </button>
 
-                <h2 className="text-center text-xl font-bold tracking-tight text-[rgb(18_63_128)] sm:text-2xl">
+                <h2 className="text-center text-xl font-bold tracking-tight text-[var(--color-text-brand)] sm:text-2xl">
                     {title}
                 </h2>
 
@@ -113,12 +113,12 @@ export default function TwoFactorLoginModal({
                             value={code}
                             onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
                             placeholder="e.g. 123456"
-                            className="flex-1 rounded-xl border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-4 py-3 text-center text-lg font-mono tracking-code text-[rgb(35_64_106)] shadow-[var(--inset-panel)] outline-none placeholder:text-[rgb(111_133_168)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                            className="flex-1 rounded-xl border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-4 py-3 text-center text-lg font-mono tracking-code text-[var(--color-text-secondary)] shadow-[var(--inset-panel)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                         />
                         <button
                             type="button"
                             onClick={handlePaste}
-                            className="rounded-xl border border-[rgb(159_201_238)] bg-[var(--color-brand-deep)] px-4 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+                            className="rounded-xl border border-[var(--color-border-accent)] bg-[var(--color-surface-accent-hover)] px-4 py-3 text-sm font-semibold text-[var(--color-text-card-text)] transition hover:brightness-110"
                         >
                             Paste
                         </button>
@@ -129,15 +129,15 @@ export default function TwoFactorLoginModal({
                             type="checkbox"
                             checked={trustDevice}
                             onChange={(e) => setTrustDevice(e.target.checked)}
-                            className="h-4 w-4 rounded border-2 border-[var(--color-success-main)] text-[var(--color-success-main)] focus:ring-[var(--color-success-main)]"
+                            className="h-4 w-4 rounded border-2 border-[var(--color-success)] text-[var(--color-success)] focus:ring-[var(--color-success)]"
                         />
-                        <span className="text-sm font-medium text-[rgb(35_64_106)]">
+                        <span className="text-sm font-medium text-[var(--color-text-secondary)]">
                             Trust this device for future logins
                         </span>
                     </label>
 
                     {error && (
-                        <p className="text-sm font-medium text-[var(--color-danger-main)]">{error}</p>
+                        <p className="text-sm font-medium text-[var(--color-danger)]">{error}</p>
                     )}
 
                     <button

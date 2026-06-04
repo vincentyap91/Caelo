@@ -3,10 +3,10 @@
 // Advanced mode: full semantic tokens grouped by category
 
 export const BASIC_CONTROLS = [
-  { label: 'Primary', variable: '--color-brand-primary', defaultValue: '#123B94' },
-  { label: 'Secondary', variable: '--color-brand-secondary', defaultValue: '#0d2a6a' },
+  { label: 'Primary', variable: '--color-primary', defaultValue: '#123B94' },
+  { label: 'Secondary', variable: '--color-button-hover', defaultValue: '#0d2a6a' },
   { label: 'Background', variable: '--color-surface-base', defaultValue: '#ffffff' },
-  { label: 'Text', variable: '--color-text-strong', defaultValue: '#0f172a' },
+  { label: 'Text', variable: '--color-text-primary', defaultValue: '#0f172a' },
   { label: 'CTA Accent', variable: '--color-cta-start', defaultValue: '#ffcf4a' },
 ];
 
@@ -15,9 +15,9 @@ export const ADVANCED_GROUPS = [
     id: 'brand',
     label: 'Brand',
     variables: [
-      { label: 'Brand Primary', variable: '--color-brand-primary', defaultValue: '#123B94' },
-      { label: 'Brand Secondary', variable: '--color-brand-secondary', defaultValue: '#0d2a6a' },
-      { label: 'Brand Deep', variable: '--color-brand-deep', defaultValue: '#01206C' },
+      { label: 'Brand Primary', variable: '--color-primary', defaultValue: '#123B94' },
+      { label: 'Brand Secondary', variable: '--color-button-hover', defaultValue: '#0d2a6a' },
+      { label: 'Brand Deep', variable: '--brand-700', defaultValue: '#01206C' },
       { label: 'Brand Soft', variable: '--color-brand-soft', defaultValue: '#E5F6FF' },
       { label: 'Brand Soft Border', variable: '--color-brand-soft-border', defaultValue: '#CCEEFF' },
       { label: 'Brand Line', variable: '--color-brand-line', defaultValue: '#7AD0F5' },
@@ -37,8 +37,8 @@ export const ADVANCED_GROUPS = [
     id: 'typography',
     label: 'Typography',
     variables: [
-      { label: 'Text Strong', variable: '--color-text-strong', defaultValue: '#0f172a' },
-      { label: 'Text Main', variable: '--color-text-main', defaultValue: '#334155' },
+      { label: 'Text Strong', variable: '--color-text-primary', defaultValue: '#0f172a' },
+      { label: 'Text Main', variable: '--color-text-secondary', defaultValue: '#334155' },
       { label: 'Text Subtle', variable: '--color-text-subtle', defaultValue: '#475569' },
       { label: 'Text Muted', variable: '--color-text-muted', defaultValue: '#64748b' },
       { label: 'Text Soft', variable: '--color-text-soft', defaultValue: '#94a3b8' },
@@ -49,19 +49,18 @@ export const ADVANCED_GROUPS = [
     id: 'borders',
     label: 'Borders',
     variables: [
-      { label: 'Border Default', variable: '--color-border-default', defaultValue: '#e2e8f0' },
+      { label: 'Border Default', variable: '--color-border-subtle', defaultValue: '#e2e8f0' },
       { label: 'Border Accent', variable: '--color-border-accent', defaultValue: '#dbeafe' },
       { label: 'Border Brand', variable: '--color-border-brand', defaultValue: '#cfe0f9' },
-      { label: 'Border Brand Soft', variable: '--color-border-brand-soft', defaultValue: '#CCEEFF' },
     ],
   },
   {
     id: 'navigation',
     label: 'Navigation',
     variables: [
-      { label: 'Nav Top', variable: '--color-nav-top', defaultValue: '#123B94' },
-      { label: 'Nav Main', variable: '--color-nav-main', defaultValue: '#123B94' },
-      { label: 'Nav Gold', variable: '--color-nav-accent', defaultValue: '#ffd84d' },
+      { label: 'Nav Top', variable: '--color-primary', defaultValue: '#123B94' },
+      { label: 'Nav Main', variable: '--color-primary', defaultValue: '#123B94' },
+      { label: 'Nav Gold', variable: '--color-accent', defaultValue: '#ffd84d' },
       { label: 'Nav Gold Soft', variable: '--color-nav-accent-soft', defaultValue: '#ffe27d' },
       { label: 'Nav Text Soft', variable: '--color-nav-text-soft', defaultValue: '#d3eaff' },
       { label: 'Nav Text Accent', variable: '--color-nav-text-accent', defaultValue: '#8ad4ff' },
@@ -86,10 +85,9 @@ export const ADVANCED_GROUPS = [
     id: 'feedback',
     label: 'Feedback',
     variables: [
-      { label: 'Success', variable: '--color-success-main', defaultValue: '#39B54A' },
+      { label: 'Success', variable: '--color-success', defaultValue: '#39B54A' },
       { label: 'Success Hover', variable: '--color-success-hover', defaultValue: '#2e9e3c' },
-      { label: 'Danger', variable: '--color-danger-main', defaultValue: '#ff5b2e' },
-      { label: 'Hot', variable: '--color-hot-main', defaultValue: '#ff4d00' },
+      { label: 'Danger', variable: '--color-danger', defaultValue: '#ff5b2e' },
     ],
   },
   {
@@ -107,8 +105,12 @@ export const ADVANCED_GROUPS = [
     label: 'Elevation & Gradients',
     variables: [
       { label: 'Modal Header BG', variable: '--color-universal-modal-header-bg', defaultValue: '#e8eef6' },
-      { label: 'Footer Gradient Start', variable: '--gradient-footer-start', defaultValue: '#123B94' },
-      { label: 'Footer Gradient End', variable: '--gradient-footer-end', defaultValue: '#123B94' },
+      { label: 'CTA Gradient', variable: '--color-gradient-button-cta', defaultValue: 'linear-gradient(180deg, #ffcf4a 0%, #ffb22d 100%)' },
+      { label: 'Register Page Gradient', variable: '--color-gradient-register-page', defaultValue: 'linear-gradient(180deg, #e8f4ff 0%, #f3f7ff 45%, #ecf3ff 100%)' },
+      { label: 'Footer Gradient', variable: '--color-gradient-footer', defaultValue: 'linear-gradient(180deg, #123B94 0%, #123B94 100%)' },
+      { label: 'Side Menu Brand Gradient', variable: '--color-gradient-side-menu-brand', defaultValue: 'linear-gradient(180deg, #123B94 0%, #01206C 100%)' },
+      { label: 'Referral Panel Gradient', variable: '--color-gradient-referral-panel', defaultValue: 'linear-gradient(180deg, #e8f4ff 0%, #f3f7ff 45%, #ecf3ff 100%)' },
+      { label: 'Home CTA Gradient', variable: '--color-gradient-home-cta', defaultValue: 'linear-gradient(90deg, #123B94 0%, #0d2a6a 100%)' },
     ],
   },
 ];
@@ -160,12 +162,11 @@ export function deriveLinkedColors(variable, hexValue) {
   const [h, s, l] = hexToHSL(hexValue);
   const derived = {};
 
-  if (variable === '--color-brand-primary') {
-    derived['--color-brand-secondary'] = hslToHex(h, s, Math.max(l - 12, 5));
-    derived['--color-brand-deep'] = hslToHex(h, s, Math.max(l - 20, 3));
+  if (variable === '--color-primary') {
+    derived['--color-button-hover'] = hslToHex(h, s, Math.max(l - 12, 5));
+    derived['--brand-700'] = hslToHex(h, s, Math.max(l - 20, 3));
     derived['--color-brand-soft'] = hslToHex(h, Math.min(s + 10, 100), Math.min(l + 55, 95));
-    derived['--color-nav-top'] = hexValue;
-    derived['--color-nav-main'] = hexValue;
+    derived['--color-primary'] = hexValue;
     derived['--color-text-brand'] = hexValue;
     derived['--color-prime-light'] = hexValue;
     derived['--color-prime-dark'] = hslToHex(h, s, Math.max(l - 12, 5));
@@ -180,8 +181,8 @@ export function deriveLinkedColors(variable, hexValue) {
     }
   }
 
-  if (variable === '--color-text-strong') {
-    derived['--color-text-main'] = hslToHex(h, Math.max(s - 10, 0), Math.min(l + 14, 90));
+  if (variable === '--color-text-primary') {
+    derived['--color-text-secondary'] = hslToHex(h, Math.max(s - 10, 0), Math.min(l + 14, 90));
     derived['--color-text-subtle'] = hslToHex(h, Math.max(s - 15, 0), Math.min(l + 22, 90));
     derived['--color-text-muted'] = hslToHex(h, Math.max(s - 20, 0), Math.min(l + 32, 90));
     derived['--color-text-soft'] = hslToHex(h, Math.max(s - 25, 0), Math.min(l + 45, 90));

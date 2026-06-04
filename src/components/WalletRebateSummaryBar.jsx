@@ -1,29 +1,30 @@
 import React from 'react';
 import { Lock, RefreshCw } from 'lucide-react';
+import { BROWSE_MEMBERSHIP_REBATE, BROWSE_WALLET_BALANCE } from '../constants/browseWalletSummary';
 
 /** Matches ProductBrowseControlPanel: outer panel around WalletRebateSummaryBar (Slots / browse). */
 export const WALLET_REBATE_BROWSE_PANEL_CLASS =
-    'rounded-[24px] border border-[rgb(223_231_242)] bg-[linear-gradient(180deg,rgba(255,255,255,0.72)_0%,rgba(247,250,255,0.82)_100%)] px-2.5 py-2 shadow-[0_8px_24px_rgba(20,43,87,0.06)] backdrop-blur-sm md:px-4 md:py-4';
+    'rounded-[24px] border border-[var(--color-border-subtle)] bg-gradient-wallet-glass px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
 
 /** Shared inner card shell for slots browse summary tiles (wallet, promo, etc.). */
 export const BROWSE_SUMMARY_CARD_SHELL_CLASS =
-    'surface-card rounded-[var(--radius-panel)] border-[var(--color-border-default)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(250,252,255,0.94)_100%)] shadow-[var(--shadow-subtle)]';
+    'surface-card rounded-[var(--radius-panel)] border-[var(--color-border-subtle)] bg-gradient-wallet-panel shadow-[var(--shadow-subtle)]';
 
 export const BROWSE_SUMMARY_CARD_COMPACT_CLASS =
     'min-h-[56px] px-2.5 py-2.5 sm:min-h-[68px] sm:px-3.5 sm:py-3';
 
 /** Typography aligned with compact denseMobile wallet/rebate tiles. */
 export const BROWSE_SUMMARY_LABEL_COMPACT_CLASS =
-    'font-semibold tracking-tight leading-tight text-[var(--color-text-main)] text-xs sm:text-sm';
+    'font-semibold tracking-tight leading-tight text-[var(--color-text-secondary)] text-xs sm:text-sm';
 
 export const BROWSE_SUMMARY_VALUE_COMPACT_CLASS =
-    'tabular-nums font-bold leading-tight tracking-tight text-[var(--color-brand-deep)] text-base sm:text-lg md:text-xl';
+    'tabular-nums font-bold leading-tight tracking-tight text-[var(--color-surface-accent-hover)] text-base sm:text-lg md:text-xl';
 
 function SummaryItem({
     title,
     value,
     icon: Icon,
-    valueClassName = 'text-[var(--color-brand-deep)]',
+    valueClassName = 'text-[var(--color-surface-accent-hover)]',
     iconClassName = 'text-[var(--color-text-soft)]',
     emphasis = 'default',
     compact = false,
@@ -65,7 +66,7 @@ function SummaryItem({
                     className={
                         compact && denseMobile
                             ? BROWSE_SUMMARY_LABEL_COMPACT_CLASS
-                            : `font-semibold tracking-tight text-[var(--color-text-main)] ${compact ? 'text-xs sm:text-sm' : 'text-sm'}`
+                            : `font-semibold tracking-tight text-[var(--color-text-secondary)] ${compact ? 'text-xs sm:text-sm' : 'text-sm'}`
                     }
                 >
                     {title}
@@ -82,7 +83,7 @@ function SummaryItem({
                 <button
                     type="button"
                     aria-label={title}
-                    className={`inline-flex items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] ${iconClassName} ${iconBtnClass}`}
+                    className={`inline-flex items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] ${iconClassName} ${iconBtnClass}`}
                 >
                     <Icon size={iconSize} strokeWidth={2} />
                 </button>
@@ -92,8 +93,8 @@ function SummaryItem({
 }
 
 export default function WalletRebateSummaryBar({
-    wallet = '251.00',
-    membershipRebate = '0.00%',
+    wallet = BROWSE_WALLET_BALANCE,
+    membershipRebate = BROWSE_MEMBERSHIP_REBATE,
     className = '',
     compact = false,
     bare = false,
@@ -116,7 +117,7 @@ export default function WalletRebateSummaryBar({
             aria-label="Wallet and membership rebate summary"
             className={`${bare
                 ? 'rounded-none border-0 bg-transparent p-0 shadow-none'
-                : `surface-panel rounded-[calc(var(--radius-shell)-4px)] border-[var(--color-border-default)] bg-[linear-gradient(180deg,rgba(255,255,255,0.76)_0%,rgba(248,251,255,0.82)_100%)] shadow-[var(--shadow-subtle)] ${panelPad}`
+                : `surface-panel rounded-[calc(var(--radius-shell)-4px)] border-[var(--color-border-subtle)] bg-gradient-wallet-shell shadow-[var(--shadow-subtle)] ${panelPad}`
                 } ${className}`}
         >
             <div

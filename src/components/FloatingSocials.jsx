@@ -24,9 +24,9 @@ export default function FloatingSocials({ authUser, onLiveChatClick, onClaimRewa
                     <img
                         src={rewardButtonImage}
                         alt={CLAIM_REWARDS_LABEL}
-                        className="h-full w-full object-contain drop-shadow-[0_8px_14px_rgba(0,0,0,0.2)]"
+                        className="h-full w-full object-contain drop-shadow-[var(--shadow-nav-pill)]"
                     />
-                    <span className="pointer-events-none absolute bottom-[11px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[11px] font-bold leading-none text-[rgb(133_72_20)]">
+                    <span className="pointer-events-none absolute bottom-[11px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[11px] font-bold leading-none text-[var(--color-text-warm)]">
                         {CLAIM_REWARDS_LABEL}
                     </span>
                 </button>
@@ -46,7 +46,7 @@ export default function FloatingSocials({ authUser, onLiveChatClick, onClaimRewa
                     <div 
                         className={`transition-all duration-500 ease-out flex flex-row-reverse items-center gap-2 ${isRightHovered ? '-translate-x-4' : 'translate-x-[calc(100%-12px)]'}`}
                     >
-                        <div className={`h-16 w-1.5 bg-[var(--color-brand-primary)] rounded-full transition-opacity duration-300 ${isRightHovered ? 'opacity-0' : 'opacity-40 animate-pulse'}`} />
+                        <div className={`h-16 w-1.5 bg-[var(--color-primary)] rounded-full transition-opacity duration-300 ${isRightHovered ? 'opacity-0' : 'opacity-40 animate-pulse'}`} />
                         <button
                             type="button"
                             onClick={onClaimRewardsClick}
@@ -57,9 +57,9 @@ export default function FloatingSocials({ authUser, onLiveChatClick, onClaimRewa
                             <img
                                 src={rewardButtonImage}
                                 alt={CLAIM_REWARDS_LABEL}
-                                className="h-full w-full object-contain drop-shadow-[0_8px_14px_rgba(0,0,0,0.2)]"
+                                className="h-full w-full object-contain drop-shadow-[var(--shadow-nav-pill)]"
                             />
-                            <span className="pointer-events-none absolute bottom-[13px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[12px] font-bold leading-none text-[rgb(133_72_20)]">
+                            <span className="pointer-events-none absolute bottom-[13px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[12px] font-bold leading-none text-[var(--color-text-warm)]">
                                 {CLAIM_REWARDS_LABEL}
                             </span>
                         </button>
@@ -74,12 +74,12 @@ export default function FloatingSocials({ authUser, onLiveChatClick, onClaimRewa
                     <button
                         type="button"
                         onClick={onLiveChatClick}
-                        className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-accent-500)_0%,var(--color-brand-deep)_100%)] text-white shadow-[var(--shadow-nav-pill)] transition hover:brightness-110 hover:scale-105 active:scale-95"
+                        className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-floating-social text-[var(--color-text-card-text)] shadow-[var(--shadow-nav-pill)] transition hover:brightness-110 hover:scale-105 active:scale-95"
                         title="Live Chat"
                         aria-label="Open live chat"
                     >
                         <MessageCircle size={24} />
-                        <span className="absolute right-0 top-0 inline-flex h-5 min-w-5 -translate-y-1 translate-x-1 items-center justify-center rounded-full bg-[var(--color-danger-main)] px-1 text-xs font-bold text-white">
+                        <span className="absolute right-0 top-0 inline-flex h-5 min-w-5 -translate-y-1 translate-x-1 items-center justify-center rounded-full bg-[var(--color-danger)] px-1 text-xs font-bold text-[var(--color-text-card-text)]">
                             {unreadCount}
                         </span>
                     </button>

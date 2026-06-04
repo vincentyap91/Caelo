@@ -29,6 +29,7 @@ import {
     ezugiMenuTile,
     playtechCasinoTile,
     afbGamingMenuTile,
+    evolutionLobbyTile,
 } from './liveCasinoMenuTileAssets';
 
 export const EZUGI_PROVIDER_ID = 'ezugi';
@@ -36,7 +37,9 @@ export const AFB_PROVIDER_ID = 'afb-gaming';
 export const CT855_PROVIDER_ID = 'ct855';
 export const GAMEPLAY_PROVIDER_ID = 'gameplay-lottery';
 export const VERY_GOOD_BET_PROVIDER_ID = 'mt-live';
-const WM_CASINO_MENU_IMAGE = 'https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_wmcasino-202503190916141518.png';
+/** Same CDN source as 12WIN nav (pksoftcdn). */
+export const WM_CASINO_MENU_IMAGE =
+    'https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_wmcasino-202503190916141518.png';
 
 const LIVE_CASINO_PROVIDER_SOURCE = [
     {
@@ -49,7 +52,8 @@ const LIVE_CASINO_PROVIDER_SOURCE = [
         featured: true,
         navHot: false,
         navOrder: 1,
-        pageOrder: 10,
+        pageOrder: 6,
+        cardLabel: 'CT855',
         launchConfig: {
             title: 'CT855',
             bannerImage: 'https://pksoftcdn.azureedge.net/media/1029x420_providerbanner_ct855-202409021036566678.jpg',
@@ -67,7 +71,7 @@ const LIVE_CASINO_PROVIDER_SOURCE = [
         featured: true,
         navHot: false,
         navOrder: 13,
-        pageOrder: 1,
+        pageOrder: 20,
         launchConfig: {
             title: 'W Casino',
             bannerImage: 'https://pksoftcdn.azureedge.net/media/1029x420_providerbanner_wcasino-202408150923116133.jpg',
@@ -85,19 +89,21 @@ const LIVE_CASINO_PROVIDER_SOURCE = [
         featured: true,
         navHot: true,
         navOrder: 9,
-        pageOrder: 2,
+        pageOrder: 4,
+        cardLabel: 'SA Gaming',
     },
     {
         id: 'playtech',
         name: 'Playtech LiveCasino',
         navLabel: 'Playtech',
-        menuImage: playtechCasinoTile,
+        menuImage: gameplayInteractiveImage,
         pageImage: playtechLogo,
         categories: ['Roulette', 'Blackjack'],
         featured: true,
         navHot: true,
         navOrder: 4,
-        pageOrder: 3,
+        pageOrder: 7,
+        cardLabel: 'PlayAce',
     },
     {
         id: 'sexy-gaming',
@@ -109,7 +115,8 @@ const LIVE_CASINO_PROVIDER_SOURCE = [
         featured: true,
         navHot: true,
         navOrder: 2,
-        pageOrder: 4,
+        pageOrder: 5,
+        cardLabel: 'Sexy Baccarat',
     },
     {
         id: 'dream-gaming',
@@ -127,13 +134,14 @@ const LIVE_CASINO_PROVIDER_SOURCE = [
         id: 'evolution',
         name: 'Evolution Gaming',
         navLabel: 'Evolution Gaming',
-        menuImage: ct855Image,
+        menuImage: evolutionLobbyTile,
         pageImage: evolutionLogo,
         categories: ['Roulette', 'Game Shows'],
         featured: true,
         navHot: false,
         navOrder: 10,
-        pageOrder: 6,
+        pageOrder: 1,
+        cardLabel: 'Evolution Gaming',
     },
     {
         id: 'pragmatic-play',
@@ -145,7 +153,8 @@ const LIVE_CASINO_PROVIDER_SOURCE = [
         featured: true,
         navHot: true,
         navOrder: 6,
-        pageOrder: 7,
+        pageOrder: 3,
+        cardLabel: 'Pragmatic Play Casino',
     },
     {
         id: EZUGI_PROVIDER_ID,
@@ -193,7 +202,8 @@ const LIVE_CASINO_PROVIDER_SOURCE = [
         featured: false,
         navHot: false,
         navOrder: 15,
-        pageOrder: 11,
+        pageOrder: 2,
+        cardLabel: 'WM Casino',
     },
     {
         id: 'big-gaming',
@@ -261,11 +271,22 @@ function sortByOrder(entries, key) {
     return [...entries].sort((a, b) => (a[key] ?? Number.MAX_SAFE_INTEGER) - (b[key] ?? Number.MAX_SAFE_INTEGER));
 }
 
+/** Wide hero + launch modal art (pksoftcdn), matching 12WIN GameLobby. */
+export function resolveLiveCasinoHeroBanner(provider) {
+    if (!provider) return null;
+    return provider.bannerImage ?? provider.tileImage ?? provider.src ?? null;
+}
+
 export const LIVE_CASINO_PAGE_PROVIDERS = sortByOrder(LIVE_CASINO_PROVIDER_SOURCE, 'pageOrder').map(
-    ({ id, name, pageImage, categories, featured }) => ({
+    ({ id, name, navLabel, pageImage, menuImage, categories, featured, launchConfig, cardLabel }) => ({
         id,
         name,
+        cardLabel: cardLabel ?? navLabel ?? name,
+        /** Logo mark for sticky bar / compact UI */
         src: pageImage,
+        /** Lobby card art (12WIN GameLobby tiles) */
+        tileImage: menuImage ?? pageImage,
+        bannerImage: launchConfig?.bannerImage ?? null,
         categories,
         featured,
     }),

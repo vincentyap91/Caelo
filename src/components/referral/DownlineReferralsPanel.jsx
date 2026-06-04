@@ -32,7 +32,7 @@ function quickRangePillClassName(selected, smMinWidthClass = 'sm:min-w-[96px]') 
     return `max-sm:snap-start shrink-0 whitespace-nowrap rounded-xl border px-3 py-2.5 text-xs font-semibold transition ${smMinWidthClass} sm:px-4 sm:text-sm ${
         selected
             ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]'
-            : 'border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
+            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
     }`;
 }
 
@@ -99,7 +99,7 @@ function StatTile({ label, value }) {
 /** Compact metric for grouped summary panel */
 function SummaryMetricCard({ label, value }) {
     return (
-        <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-4 md:p-5">
+        <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] p-4 md:p-5">
             <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">{label}</p>
             <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-accent-600)] md:text-3xl">{value}</p>
         </div>
@@ -193,7 +193,7 @@ export default function DownlineReferralsPanel() {
                         <div className="mt-4">
                             <button
                                 type="button"
-                                className="btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-white shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
+                                className="btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
                             >
                                 Submit
                             </button>
@@ -207,7 +207,7 @@ export default function DownlineReferralsPanel() {
                             <SummaryMetricCard label="New All Downlines" value="0" />
                         </div>
 
-                        <div className="my-6 border-t border-dashed border-[var(--color-border-default)]" />
+                        <div className="my-6 border-t border-dashed border-[var(--color-border-subtle)]" />
 
                         <p className="mb-3 text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Up to now</p>
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -227,7 +227,7 @@ export default function DownlineReferralsPanel() {
                     </div>
 
                     <div>
-                        <h4 className="text-base font-bold text-[var(--color-text-strong)]">Downline L1 KPIs</h4>
+                        <h4 className="text-base font-bold text-[var(--color-text-primary)]">Downline L1 KPIs</h4>
                         <PromotionStyleTabs
                             className="mt-4"
                             items={KPI_SUB_TABS}
@@ -250,7 +250,7 @@ export default function DownlineReferralsPanel() {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search downline username"
-                                className="h-11 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] py-2 pl-10 pr-4 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                className="h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] py-2 pl-10 pr-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                             />
                         </div>
                     </label>
@@ -259,7 +259,7 @@ export default function DownlineReferralsPanel() {
                         <div className="overflow-x-auto">
                             <table className="w-full min-w-[640px] border-collapse text-sm">
                                 <thead>
-                                    <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
+                                    <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]">
                                         <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">
                                             Username
                                         </th>
@@ -291,7 +291,7 @@ export default function DownlineReferralsPanel() {
                                         filteredKpiRows.map((row) => (
                                             <tr
                                                 key={row.id}
-                                                className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
+                                                className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-subtle)]"
                                             >
                                                 <td className="px-4 py-3.5 text-sm">
                                                     <button
@@ -304,7 +304,7 @@ export default function DownlineReferralsPanel() {
                                                 </td>
                                                 <td className="px-4 py-3.5 text-[var(--color-text-muted)]">{row.contact}</td>
                                                 <td className="px-4 py-3.5 tabular-nums text-[var(--color-text-muted)]">{row.registerDate}</td>
-                                                <td className="px-4 py-3.5 text-right font-medium tabular-nums text-[var(--color-text-strong)]">
+                                                <td className="px-4 py-3.5 text-right font-medium tabular-nums text-[var(--color-text-primary)]">
                                                     {row.deposit}
                                                 </td>
                                             </tr>

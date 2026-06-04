@@ -16,7 +16,7 @@ export default function GameDetailBreadcrumb({ items = [] }) {
                     <React.Fragment key={`${item.label}-${index}`}>
                         {index > 0 && <ChevronRight size={14} className="shrink-0 text-[var(--color-text-soft)]" aria-hidden />}
                         {isLast ? (
-                            <span className="inline-flex items-center rounded-full bg-[var(--color-accent-600)] px-3 py-1 text-xs font-bold text-white shadow-sm md:text-sm">
+                            <span className="inline-flex items-center rounded-full bg-[var(--color-accent-600)] px-3 py-1 text-xs font-bold text-[var(--color-text-card-text)] shadow-sm md:text-sm">
                                 {item.label}
                             </span>
                         ) : item.onNavigate || item.href ? (

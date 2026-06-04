@@ -295,14 +295,14 @@ export default function DepositPage({ onNavigate }) {
                                             idx === 0 ? 'rounded-tl-2xl' : 'rounded-tr-2xl'
                                         } ${
                                             isActive
-                                                ? 'bg-gradient-to-b from-[var(--color-accent-400)] to-[var(--color-accent-600)] text-white shadow-none sm:shadow-sm'
-                                                : 'bg-[var(--color-surface-muted)] text-[var(--color-text-strong)] hover:bg-[var(--color-surface-subtle)]'
+                                                ? 'bg-gradient-to-b from-[var(--color-accent-400)] to-[var(--color-accent-600)] text-[var(--color-text-card-text)] shadow-none sm:shadow-sm'
+                                                : 'bg-[var(--color-surface-muted)] text-[var(--color-text-primary)] hover:bg-[var(--color-surface-subtle)]'
                                         }`}
                                     >
                                         <p className="text-sm font-bold leading-tight sm:text-base sm:leading-normal">{label}</p>
                                         <p
                                             className={`mt-0.5 flex items-center justify-center gap-0.5 text-xs leading-tight sm:mt-1 sm:gap-1 sm:leading-normal ${
-                                                isActive ? 'text-white/90' : 'text-[var(--color-text-muted)]'
+                                                isActive ? 'text-[var(--color-nav-text-soft)]' : 'text-[var(--color-text-muted)]'
                                             }`}
                                         >
                                             <Clock className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" strokeWidth={2} aria-hidden />
@@ -314,11 +314,11 @@ export default function DepositPage({ onNavigate }) {
                         </div>
                         <div className="space-y-4 p-5 sm:space-y-6 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-[var(--color-text-card-text)]">
                                 1
                             </span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">Deposit Options <span className="text-[var(--color-danger-main)]">*</span></h2>
+                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Deposit Options <span className="text-[var(--color-danger)]">*</span></h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Select your preferred deposit method.</p>
                             </div>
                         </div>
@@ -334,7 +334,7 @@ export default function DepositPage({ onNavigate }) {
                                         alt="Normal Deposit"
                                         className="h-12 w-auto max-w-full object-contain sm:h-14"
                                     />
-                                    <p className="line-clamp-2 text-sm font-bold leading-tight text-[var(--color-text-strong)] sm:text-base">
+                                    <p className="line-clamp-2 text-sm font-bold leading-tight text-[var(--color-text-primary)] sm:text-base">
                                         Normal Deposit
                                     </p>
                                 </button>
@@ -349,11 +349,11 @@ export default function DepositPage({ onNavigate }) {
                                         className={`relative flex h-full min-h-[7.25rem] flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6 ${
                                             depositOptionType === id
                                                 ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)]'
-                                                : 'border-[var(--color-border-default)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-200)]'
+                                                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-200)]'
                                         }`}
                                     >
                                         {badge && (
-                                            <span className="absolute left-2 top-2 inline-flex max-w-[calc(100%-1rem)] items-center gap-0.5 truncate rounded bg-gradient-to-r from-amber-400 to-red-500 px-1.5 py-0.5 text-xs font-bold text-white sm:left-3 sm:top-3 sm:gap-1 sm:px-2">
+                                            <span className="absolute left-2 top-2 inline-flex max-w-[calc(100%-1rem)] items-center gap-0.5 truncate rounded bg-gradient-to-r from-[var(--color-warning)] to-[var(--color-danger)] px-1.5 py-0.5 text-xs font-bold text-[var(--color-text-card-text)] sm:left-3 sm:top-3 sm:gap-1 sm:px-2">
                                                 <Zap size={12} className="shrink-0" />
                                                 {badge}
                                             </span>
@@ -363,7 +363,7 @@ export default function DepositPage({ onNavigate }) {
                                             alt={label}
                                             className="h-12 w-auto max-w-full object-contain sm:h-14"
                                         />
-                                        <p className="line-clamp-2 text-sm font-bold leading-tight text-[var(--color-text-strong)] sm:text-base">
+                                        <p className="line-clamp-2 text-sm font-bold leading-tight text-[var(--color-text-primary)] sm:text-base">
                                             {label}
                                         </p>
                                     </button>
@@ -376,21 +376,21 @@ export default function DepositPage({ onNavigate }) {
                                 type="checkbox"
                                 checked={claimBonus}
                                 onChange={(e) => setClaimBonus(e.target.checked)}
-                                className="h-5 w-5 rounded border-[var(--color-border-default)] text-[var(--color-accent-600)] focus:ring-[var(--color-accent-400)]"
+                                className="h-5 w-5 rounded border-[var(--color-border-subtle)] text-[var(--color-accent-600)] focus:ring-[var(--color-accent-400)]"
                             />
-                            <span className="text-sm font-semibold text-[var(--color-text-strong)]">Do you want to claim bonus?</span>
+                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">Do you want to claim bonus?</span>
                         </label>
 
                         {claimBonus && (
                             <div>
-                                <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Bonus <span className="text-[var(--color-danger-main)]">*</span></p>
+                                <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Bonus <span className="text-[var(--color-danger)]">*</span></p>
                                 <div className="relative">
                                     <button
                                         type="button"
                                         onClick={() => setBonusDropdownOpen((o) => !o)}
-                                        className="flex h-12 w-full items-center justify-between rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                        className="flex h-12 w-full items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                     >
-                                        <span className={selectedBonus ? 'font-medium text-[var(--color-text-strong)]' : 'text-[var(--color-text-soft)]'}>
+                                        <span className={selectedBonus ? 'font-medium text-[var(--color-text-primary)]' : 'text-[var(--color-text-soft)]'}>
                                             {selectedBonus ? BONUS_OPTIONS.find((b) => b.id === selectedBonus)?.label ?? 'Select Bonus' : 'Select Bonus'}
                                         </span>
                                         <ChevronDown size={18} className={`text-[var(--color-text-muted)] transition ${bonusDropdownOpen ? 'rotate-180' : ''}`} />
@@ -398,7 +398,7 @@ export default function DepositPage({ onNavigate }) {
                                     {bonusDropdownOpen && (
                                         <>
                                             <div className="absolute inset-0 z-10" onClick={() => setBonusDropdownOpen(false)} aria-hidden />
-                                            <div className="absolute top-full left-0 right-0 z-20 mt-1 max-h-56 overflow-auto rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                            <div className="absolute top-full left-0 right-0 z-20 mt-1 max-h-56 overflow-auto rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
                                                 {BONUS_OPTIONS.map((b) => (
                                                     <button
                                                         key={b.id}
@@ -407,7 +407,7 @@ export default function DepositPage({ onNavigate }) {
                                                             setSelectedBonus(b.id);
                                                             setBonusDropdownOpen(false);
                                                         }}
-                                                        className="flex w-full px-4 py-2.5 text-left text-sm font-medium text-[var(--color-text-strong)] hover:bg-[var(--color-surface-muted)]"
+                                                        className="flex w-full px-4 py-2.5 text-left text-sm font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-surface-muted)]"
                                                     >
                                                         {b.label}
                                                     </button>
@@ -424,7 +424,7 @@ export default function DepositPage({ onNavigate }) {
                             return (
                                 <div className="rounded-xl border-2 border-dashed border-[var(--color-accent-300)] bg-[var(--color-accent-50)]/50 p-4">
                                     <div className="mb-3 flex items-center gap-2">
-                                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-white">
+                                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-[var(--color-text-card-text)]">
                                             <Info size={14} strokeWidth={2.5} />
                                         </div>
                                         <span className="text-sm font-bold text-[var(--color-accent-600)]">Bonus Info</span>
@@ -432,27 +432,27 @@ export default function DepositPage({ onNavigate }) {
                                     <div className="space-y-2 text-sm">
                                         <p className="flex gap-2">
                                             <span className="font-medium text-[var(--color-text-muted)]">Rollover :</span>
-                                            <span className="text-[var(--color-text-strong)]">{info.rollover}</span>
+                                            <span className="text-[var(--color-text-primary)]">{info.rollover}</span>
                                         </p>
                                         <p className="flex gap-2">
                                             <span className="font-medium text-[var(--color-text-muted)]">Claim :</span>
-                                            <span className="text-[var(--color-text-strong)]">{info.claim}</span>
+                                            <span className="text-[var(--color-text-primary)]">{info.claim}</span>
                                         </p>
                                         <p className="flex gap-2">
                                             <span className="font-medium text-[var(--color-text-muted)]">Minimum Deposit :</span>
-                                            <span className="text-[var(--color-text-strong)]">{info.minDeposit}</span>
+                                            <span className="text-[var(--color-text-primary)]">{info.minDeposit}</span>
                                         </p>
                                         <p className="flex gap-2">
                                             <span className="font-medium text-[var(--color-text-muted)]">Percentage Bonus Reward :</span>
-                                            <span className="text-[var(--color-text-strong)]">{info.percentageBonus}</span>
+                                            <span className="text-[var(--color-text-primary)]">{info.percentageBonus}</span>
                                         </p>
                                         <p className="flex gap-2">
                                             <span className="font-medium text-[var(--color-text-muted)]">Maximum Bonus :</span>
-                                            <span className="text-[var(--color-text-strong)]">{info.maxBonus}</span>
+                                            <span className="text-[var(--color-text-primary)]">{info.maxBonus}</span>
                                         </p>
                                         <p className="flex gap-2">
                                             <span className="shrink-0 font-medium text-[var(--color-text-muted)]">Game (Provider) :</span>
-                                            <span className="font-bold text-[var(--color-text-strong)]">
+                                            <span className="font-bold text-[var(--color-text-primary)]">
                                                 {info.gameProviders.join(', ')}
                                             </span>
                                         </p>
@@ -478,11 +478,11 @@ export default function DepositPage({ onNavigate }) {
                 {step === 2 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-[var(--color-text-card-text)]">
                                 2
                             </span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">
+                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">
                                     {isNormal ? 'Bank Account & Amount' : 'Bank, Provider & Amount'}
                                 </h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
@@ -494,23 +494,23 @@ export default function DepositPage({ onNavigate }) {
                         {isNormal ? (
                             <>
                                 <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Bank Account <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Bank Account <span className="text-[var(--color-danger)]">*</span></p>
                                     <div className="relative">
                                         <button
                                             type="button"
                                             onClick={() => setNormalBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                         >
                                             {selectedNormalAccount ? (
                                                 <span className="flex items-center gap-2.5">
                                                     {selectedNormalAccount.image ? (
                                                         <img src={selectedNormalAccount.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                                     ) : (
-                                                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100">
-                                                            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                                                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-success-light)]">
+                                                            <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
                                                         </span>
                                                     )}
-                                                    <span className="font-medium text-[var(--color-text-strong)]">{selectedNormalAccount.label}</span>
+                                                    <span className="font-medium text-[var(--color-text-primary)]">{selectedNormalAccount.label}</span>
                                                 </span>
                                             ) : (
                                                 <span className="text-[var(--color-text-soft)]">Select Bank Account</span>
@@ -520,7 +520,7 @@ export default function DepositPage({ onNavigate }) {
                                         {normalBankDropdownOpen && (
                                             <>
                                                 <div className="absolute inset-0 z-10" onClick={() => setNormalBankDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
                                                     {NORMAL_BANK_ACCOUNTS.map((a) => (
                                                         <button
                                                             key={a.id}
@@ -534,11 +534,11 @@ export default function DepositPage({ onNavigate }) {
                                                             {a.image ? (
                                                                 <img src={a.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                                             ) : (
-                                                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100">
-                                                                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                                                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-success-light)]">
+                                                                    <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
                                                                 </span>
                                                             )}
-                                                            <span className="font-normal text-[var(--color-text-strong)]">{a.label}</span>
+                                                            <span className="font-normal text-[var(--color-text-primary)]">{a.label}</span>
                                                         </button>
                                                     ))}
                                                 </div>
@@ -556,12 +556,12 @@ export default function DepositPage({ onNavigate }) {
                         ) : (
                             <>
                                 <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Bank <span className="text-[var(--color-danger-main)]">*</span></p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Bank <span className="text-[var(--color-danger)]">*</span></p>
                                     <div className="relative">
                                         <button
                                             type="button"
                                             onClick={() => setBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                         >
                                             {depositOptionType === 'ewallet' && selectedTng ? (
                                                 <span className="flex items-center gap-2.5">
@@ -570,7 +570,7 @@ export default function DepositPage({ onNavigate }) {
                                                         alt=""
                                                         className="h-6 w-6 object-contain"
                                                     />
-                                                    <span className="font-medium text-[var(--color-text-strong)]">
+                                                    <span className="font-medium text-[var(--color-text-primary)]">
                                                         {TOUCH_N_GO_OPTIONS.find((t) => t.id === selectedTng)?.label}
                                                     </span>
                                                 </span>
@@ -581,7 +581,7 @@ export default function DepositPage({ onNavigate }) {
                                                         alt=""
                                                         className="h-6 w-6 object-contain"
                                                     />
-                                                    <span className="font-medium text-[var(--color-text-strong)]">{selectedBankLabel}</span>
+                                                    <span className="font-medium text-[var(--color-text-primary)]">{selectedBankLabel}</span>
                                                 </span>
                                             ) : (
                                                 <span className="text-[var(--color-text-soft)]">Select Bank Account</span>
@@ -591,7 +591,7 @@ export default function DepositPage({ onNavigate }) {
                                         {bankDropdownOpen && (
                                             <>
                                                 <div className="absolute inset-0 z-10" onClick={() => setBankDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[500px] overflow-y-auto rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[500px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
                                                     {depositOptionType === 'ewallet' ? (
                                                         TOUCH_N_GO_OPTIONS.map((t) => (
                                                             <button
@@ -604,7 +604,7 @@ export default function DepositPage({ onNavigate }) {
                                                                 className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-muted)]"
                                                             >
                                                                 <img src={t.image} alt={t.label} className="h-6 w-6 shrink-0 object-contain" />
-                                                                <span className="font-normal text-[var(--color-text-strong)]">{t.label}</span>
+                                                                <span className="font-normal text-[var(--color-text-primary)]">{t.label}</span>
                                                             </button>
                                                         ))
                                                     ) : (
@@ -619,7 +619,7 @@ export default function DepositPage({ onNavigate }) {
                                                                 className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-muted)]"
                                                             >
                                                                 <img src={b.image} alt={b.label} className="h-6 w-6 shrink-0 object-contain" />
-                                                                <span className="font-normal text-[var(--color-text-strong)]">{b.label}</span>
+                                                                <span className="font-normal text-[var(--color-text-primary)]">{b.label}</span>
                                                             </button>
                                                         ))
                                                     )}
@@ -630,8 +630,8 @@ export default function DepositPage({ onNavigate }) {
                                 </div>
 
                                 <div className={canSelectChannel ? '' : 'opacity-60'}>
-                                    <p className="mb-3 text-sm font-semibold text-[var(--color-text-strong)]">
-                                        Provider Channel <span className="text-[var(--color-danger-main)]">*</span>
+                                    <p className="mb-3 text-sm font-semibold text-[var(--color-text-primary)]">
+                                        Provider Channel <span className="text-[var(--color-danger)]">*</span>
                                         {!canSelectChannel && (
                                             <span className="ml-2 text-xs font-normal text-[var(--color-text-muted)]">(Select a bank first)</span>
                                         )}
@@ -646,11 +646,11 @@ export default function DepositPage({ onNavigate }) {
                                                 className={`relative flex min-h-[8.5rem] flex-col items-center gap-2 rounded-xl border p-3 text-center transition sm:min-h-0 sm:flex-row sm:items-center sm:gap-4 sm:p-4 sm:text-left ${
                                                     selectedChannel === id
                                                         ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)]'
-                                                        : 'border-[var(--color-border-default)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-200)]'
+                                                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-200)]'
                                                 } ${!canSelectChannel ? 'cursor-not-allowed' : ''}`}
                                             >
                                                 {selectedChannel === id && (
-                                                    <div className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-white sm:right-3 sm:top-3 sm:h-6 sm:w-6">
+                                                    <div className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-[var(--color-text-card-text)] sm:right-3 sm:top-3 sm:h-6 sm:w-6">
                                                         <Check size={12} strokeWidth={2.5} />
                                                     </div>
                                                 )}
@@ -660,7 +660,7 @@ export default function DepositPage({ onNavigate }) {
                                                     className="h-8 w-auto shrink-0 object-contain sm:h-10"
                                                 />
                                                 <div className="min-w-0 flex-1 sm:text-left">
-                                                    <p className="border-b border-[var(--color-border-default)] pb-1 text-xs font-bold leading-snug text-[var(--color-text-strong)] sm:pb-1.5 sm:text-sm">
+                                                    <p className="border-b border-[var(--color-border-subtle)] pb-1 text-xs font-bold leading-snug text-[var(--color-text-primary)] sm:pb-1.5 sm:text-sm">
                                                         {label}
                                                     </p>
                                                     <p className="mt-1 line-clamp-3 text-xs leading-snug text-[var(--color-text-muted)] sm:mt-1.5 sm:line-clamp-none">
@@ -675,9 +675,9 @@ export default function DepositPage({ onNavigate }) {
                         )}
 
                         <div>
-                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Amount <span className="text-[var(--color-danger-main)]">*</span></p>
+                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Amount <span className="text-[var(--color-danger)]">*</span></p>
                             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-subtle)]">
+                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-subtle)]">
                                     <span className="flex items-center justify-center bg-[var(--color-accent-100)] px-4 text-sm font-bold text-[var(--color-accent-700)]">
                                         MYR
                                     </span>
@@ -688,7 +688,7 @@ export default function DepositPage({ onNavigate }) {
                                         placeholder="0"
                                         min={minAmount}
                                         max={maxAmount}
-                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)]"
+                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)]"
                                     />
                                 </div>
                                 <div className="flex flex-wrap gap-2">
@@ -701,7 +701,7 @@ export default function DepositPage({ onNavigate }) {
                                                 onClick={() => (isNormal ? setPresetAmount(val) : addPreset(val))}
                                                 className={`rounded-xl border-2 px-4 py-2.5 text-sm font-bold transition ${
                                                     isActive
-                                                        ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-500)] text-white'
+                                                        ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-500)] text-[var(--color-text-card-text)]'
                                                         : 'border-[var(--color-accent-300)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] hover:bg-[var(--color-accent-50)]'
                                                 }`}
                                             >
@@ -716,7 +716,7 @@ export default function DepositPage({ onNavigate }) {
                                 Min/Max Limit {minAmount.toFixed(2)} / {maxAmount.toLocaleString()}
                             </p>
                             {!isValidAmount && amount && (
-                                <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger-main)]">
+                                <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger)]">
                                     <AlertCircle size={14} className="shrink-0" />
                                     {amountNum < minAmount
                                         ? `Minimum amount is MYR ${minAmount.toFixed(2)}`
@@ -740,13 +740,13 @@ export default function DepositPage({ onNavigate }) {
                                     />
                                 </div>
                                 <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Remark</p>
+                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Remark</p>
                                     <input
                                         type="text"
                                         value={remark}
                                         onChange={(e) => setRemark(e.target.value)}
                                         placeholder="Optional remark"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-sm text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                                     />
                                 </div>
                             </>
@@ -756,7 +756,7 @@ export default function DepositPage({ onNavigate }) {
                             <button
                                 type="button"
                                 onClick={() => setStep(1)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-6 text-sm font-bold text-[var(--color-text-strong)] transition hover:bg-[var(--color-surface-subtle)]"
+                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             >
                                 Back
                             </button>
@@ -777,11 +777,11 @@ export default function DepositPage({ onNavigate }) {
                 {step === 3 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-white">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-600)] text-sm font-bold text-[var(--color-text-card-text)]">
                                 3
                             </span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">
+                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">
                                     {isNormal ? 'Confirm & Submit' : 'Transaction Summary'}
                                 </h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
@@ -790,20 +790,20 @@ export default function DepositPage({ onNavigate }) {
                             </div>
                         </div>
 
-                        <div className="overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
-                            <div className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-5 py-3">
+                        <div className="overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
+                            <div className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-5 py-3">
                                 <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Payment Details</p>
                             </div>
-                            <div className="divide-y divide-[var(--color-border-default)]">
+                            <div className="divide-y divide-[var(--color-border-subtle)]">
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
                                     <span className="text-sm font-medium text-[var(--color-text-muted)]">Deposit Type</span>
-                                    <span className="text-sm font-semibold text-[var(--color-text-strong)]">
+                                    <span className="text-sm font-semibold text-[var(--color-text-primary)]">
                                         {DEPOSIT_SPEED_TABS.find((t) => t.id === depositSpeedTab)?.label ?? depositSpeedTab}
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
                                     <span className="text-sm font-medium text-[var(--color-text-muted)]">Deposit Option</span>
-                                    <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-strong)]">
+                                    <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
                                         {!isNormal && DEPOSIT_OPTION_TYPES.find((o) => o.id === depositOptionType)?.image && (
                                             <img src={DEPOSIT_OPTION_TYPES.find((o) => o.id === depositOptionType)?.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
@@ -812,7 +812,7 @@ export default function DepositPage({ onNavigate }) {
                                 </div>
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
                                     <span className="text-sm font-medium text-[var(--color-text-muted)]">{isNormal ? 'Bank Account' : 'Bank'}</span>
-                                    <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-strong)]">
+                                    <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
                                         {isNormal && selectedNormalAccount?.image && (
                                             <img src={selectedNormalAccount.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
@@ -832,7 +832,7 @@ export default function DepositPage({ onNavigate }) {
                                 {!isNormal && (
                                     <div className="flex items-center justify-between gap-4 px-5 py-4">
                                         <span className="text-sm font-medium text-[var(--color-text-muted)]">Channel</span>
-                                        <span className="text-right text-sm font-semibold text-[var(--color-text-strong)]">
+                                        <span className="text-right text-sm font-semibold text-[var(--color-text-primary)]">
                                             {selectedChannelLabel}
                                             <span className="block text-xs font-normal text-[var(--color-text-muted)]">{selectedChannelDesc}</span>
                                         </span>
@@ -841,7 +841,7 @@ export default function DepositPage({ onNavigate }) {
                                 {claimBonus && selectedBonus && (
                                     <div className="flex items-center justify-between gap-4 px-5 py-4">
                                         <span className="text-sm font-medium text-[var(--color-text-muted)]">Bonus</span>
-                                        <span className="text-sm font-semibold text-[var(--color-success-main)]">
+                                        <span className="text-sm font-semibold text-[var(--color-success)]">
                                             {BONUS_OPTIONS.find((b) => b.id === selectedBonus)?.label ?? 'Selected'}
                                         </span>
                                     </div>
@@ -849,7 +849,7 @@ export default function DepositPage({ onNavigate }) {
                                 {isNormal && remark && (
                                     <div className="flex items-center justify-between gap-4 px-5 py-4">
                                         <span className="text-sm font-medium text-[var(--color-text-muted)]">Remark</span>
-                                        <span className="text-sm font-semibold text-[var(--color-text-strong)]">{remark}</span>
+                                        <span className="text-sm font-semibold text-[var(--color-text-primary)]">{remark}</span>
                                     </div>
                                 )}
                                 {isNormal && uploadedReceipt && receiptPreviewUrl && (
@@ -860,14 +860,14 @@ export default function DepositPage({ onNavigate }) {
                                             previewUrl={receiptPreviewUrl}
                                             onPreview={() => setReceiptPreviewOpen(true)}
                                             showRemove={false}
-                                            className="border-[var(--color-border-default)] bg-[var(--color-surface-muted)]/50"
+                                            className="border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)]/50"
                                         />
                                     </div>
                                 )}
                             </div>
-                            <div className="border-t-2 border-[var(--color-border-default)] bg-[var(--color-accent-50)] px-5 py-4">
+                            <div className="border-t-2 border-[var(--color-border-subtle)] bg-[var(--color-accent-50)] px-5 py-4">
                                 <div className="flex items-center justify-between gap-4">
-                                    <span className="text-sm font-bold text-[var(--color-text-strong)]">Total Amount</span>
+                                    <span className="text-sm font-bold text-[var(--color-text-primary)]">Total Amount</span>
                                     <span className="text-xl font-bold text-[var(--color-accent-600)]">
                                         RM {amountNum.toLocaleString()}
                                     </span>
@@ -879,7 +879,7 @@ export default function DepositPage({ onNavigate }) {
                             <button
                                 type="button"
                                 onClick={() => setStep(2)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-6 text-sm font-bold text-[var(--color-text-strong)] transition hover:bg-[var(--color-surface-subtle)]"
+                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             >
                                 Back
                             </button>

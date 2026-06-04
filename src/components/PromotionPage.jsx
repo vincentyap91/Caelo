@@ -277,9 +277,9 @@ export default function PromotionPage({ authUser, onNavigate }) {
                         return !(isLoggedIn && isExpired) ? (
                             <article
                                 key={promotion.id}
-                                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-[rgb(228_234_243)] bg-[var(--color-surface-base)] shadow-[0_4px_16px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(15,23,42,0.08)] ${isExpired ? 'card-muted' : ''}`}
+                                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-subtle)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-soft)] ${isExpired ? 'card-muted' : ''}`}
                             >
-                                <div className="relative w-full shrink-0 overflow-hidden border-b border-[rgb(228_234_243)]">
+                                <div className="relative w-full shrink-0 overflow-hidden border-b border-[var(--color-border-subtle)]">
                                     <img
                                         src={promotion.image}
                                         alt={promotion.title}
@@ -297,7 +297,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                             )}
                                         </div>
                                         <div className="space-y-1.5">
-                                            <h2 className="text-lg font-bold leading-tight tracking-tight text-[var(--color-text-strong)] md:text-xl">
+                                            <h2 className="text-lg font-bold leading-tight tracking-tight text-[var(--color-text-primary)] md:text-xl">
                                                 {promotion.title}
                                             </h2>
                                             <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -310,7 +310,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                         <button
                                             type="button"
                                             onClick={() => setSelectedPromotion(promotion)}
-                                            className="btn-more-info inline-flex h-10 min-w-[100px] flex-1 items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-white px-4 text-sm font-bold text-[var(--color-text-main)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                                            className="btn-more-info inline-flex h-10 min-w-[100px] flex-1 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-bold text-[var(--color-text-secondary)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
                                         >
                                             More Info
                                         </button>
@@ -331,7 +331,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                         <button
                             type="button"
                             onClick={loadMorePromotions}
-                            className="btn-theme-cta inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm font-bold shadow-[0_6px_14px_rgba(242,154,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm font-bold shadow-[var(--shadow-cta-soft)] transition hover:-translate-y-0.5 hover:brightness-105"
                         >
                             Load More
                         </button>
@@ -340,7 +340,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
 
                 {filteredPromotions.length === 0 && (
                     <div className="surface-card mt-8 rounded-2xl px-6 py-12 text-center">
-                        <p className="text-lg font-bold text-[var(--color-text-strong)]">No promotions in this category yet.</p>
+                        <p className="text-lg font-bold text-[var(--color-text-primary)]">No promotions in this category yet.</p>
                         <p className="mt-2 text-sm text-[var(--color-text-muted)]">Try another category to view available offers.</p>
                     </div>
                 )}

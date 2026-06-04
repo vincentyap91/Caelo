@@ -31,7 +31,7 @@ export default function GameCategories({ onNavigate }) {
         <section className="w-full pt-4">
             <SectionHeader
                 title="Popular Category"
-                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-brand-secondary)]" />}
+                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}
             />
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-6">
@@ -42,19 +42,19 @@ export default function GameCategories({ onNavigate }) {
                         key={idx}
                         type="button"
                         onClick={() => page && onNavigate?.(page)}
-                        className="group relative flex flex-col rounded-[15px] border border-white bg-[var(--color-brand-soft)] p-1.5 shadow-[0_5px_15px_rgba(0,174,239,0.1)] transition-transform hover:-translate-y-1 text-left w-full"
+                        className="group relative flex flex-col rounded-[15px] border border-[var(--color-nav-border)] bg-[var(--color-brand-soft)] p-1.5 shadow-[var(--shadow-brand-soft)] transition-transform hover:-translate-y-1 text-left w-full"
                     >
                         {/* Title Ribbon - overlaps top edge */}
                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 w-[86%]">
                             <div className="relative w-full">
-                                <div className="absolute inset-x-2 -bottom-1.5 h-2 rounded-full bg-[rgb(18_59_148_/_0.35)] blur-sm"></div>
-                                <div className="relative overflow-hidden rounded-[10px] border border-[var(--color-brand-soft-border)] bg-[var(--color-brand-primary)] px-2 py-1.5 shadow-[0_8px_14px_rgba(18,59,148,0.35)]">
-                                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.2),rgba(255,255,255,0)_45%)]"></div>
-                                    <span className="relative block text-center text-white text-xs uppercase font-bold tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">
+                                <div className="absolute inset-x-2 -bottom-1.5 h-2 rounded-full bg-[var(--color-primary)]/35 blur-sm"></div>
+                                <div className="relative overflow-hidden rounded-[10px] border border-[var(--color-brand-soft-border)] bg-[var(--color-primary)] px-2 py-1.5 shadow-[var(--shadow-nav-pill)]">
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-card-shine"></div>
+                                    <span className="relative block text-center text-[var(--color-text-card-text)] text-xs uppercase font-bold tracking-wide drop-shadow-[var(--shadow-subtle)]">
                                         {cat.name}
                                     </span>
                                 </div>
-                                <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-0 h-0 border-y-[11px] border-y-transparent border-l-[12px] border-l-[var(--color-brand-secondary)] drop-shadow-[0_2px_3px_rgba(8,26,66,0.35)]"></div>
+                                <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-0 h-0 border-y-[11px] border-y-transparent border-l-[12px] border-l-[var(--color-button-hover)] drop-shadow-[var(--shadow-nav-pill)]"></div>
                             </div>
                         </div>
 
@@ -66,7 +66,7 @@ export default function GameCategories({ onNavigate }) {
                             />
 
                             {/* Center Icon */}
-                            <div className="absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-lg md:text-xl shadow-[0_0_15px_rgba(255,255,255,0.4)] border border-white/40">
+                            <div className="absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-[var(--color-nav-border)] backdrop-blur-sm rounded-full flex items-center justify-center text-lg md:text-xl shadow-[var(--inset-white-glow)] border border-[var(--color-nav-border)]/40">
                                 {cat.icon}
                             </div>
                         </div>

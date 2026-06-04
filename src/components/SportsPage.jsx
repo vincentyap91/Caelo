@@ -89,7 +89,7 @@ export default function SportsPage({ onNavigate }) {
 
     return (
         <main
-            className="w-full pb-14 bg-[linear-gradient(180deg,var(--gradient-live-page-start)_0%,var(--gradient-live-page-mid)_36%,var(--gradient-live-page-end)_100%)]"
+            className="w-full pb-14 bg-gradient-live-page"
         >
             {showStickyPlayBar && (
                 <div className={NAV_STICKY_QUICK_PLAY_BAR_CLASS} role="banner" aria-label="Quick play bar">
@@ -99,7 +99,7 @@ export default function SportsPage({ onNavigate }) {
                             alt={bannerProvider.name}
                             className="h-8 md:h-10 object-contain"
                         />
-                        <span className="hidden text-sm font-bold text-[rgb(42_53_72)] sm:inline md:text-base">
+                        <span className="hidden text-sm font-bold text-[var(--color-text-secondary)] sm:inline md:text-base">
                             {bannerProvider.name}
                         </span>
                         <PlayButton />
@@ -115,7 +115,7 @@ export default function SportsPage({ onNavigate }) {
                             alt="Sports Banner"
                             className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL} page-hero-banner__img--show-bottom`}
                         />
-                        <div className="absolute inset-y-0 left-0 w-[56%] bg-[linear-gradient(90deg,rgb(234_244_255_/_0.96)_0%,rgb(234_244_255_/_0.86)_45%,transparent_100%)] sm:w-[52%] md:w-[50%]" />
+                        <div className="absolute inset-y-0 left-0 w-[56%] bg-gradient-hero-fade-left sm:w-[52%] md:w-[50%]" />
                         <div ref={playButtonAreaRef} className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
@@ -126,16 +126,16 @@ export default function SportsPage({ onNavigate }) {
                                             className="h-10 max-w-[140px] object-contain sm:h-12 sm:max-w-[170px] md:h-15 md:max-w-none"
                                         />
                                     </div>
-                                    <h1 className="mt-3 hidden text-3xl font-bold uppercase text-[rgb(25_41_71)] md:block">
+                                    <h1 className="mt-3 hidden text-3xl font-bold uppercase text-[var(--color-text-primary)] md:block">
                                         Sportsbook
                                     </h1>
-                                    <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-snug text-[rgb(42_53_72)] md:block md:mt-4">
+                                    <p className="mx-auto mt-3 hidden max-w-[420px] text-base font-semibold leading-snug text-[var(--color-text-secondary)] md:block md:mt-4">
                                         Big matches, sharp odds, instant action.
                                     </p>
                                     <button
                                         type="button"
                                         onClick={() => navigateToGameDetail(onNavigate, bannerProvider.name, 'Sportsbook')}
-                                        className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(29_51_84)] max-md:self-start sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-sm md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
+                                        className="btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface-mid-container)] max-md:self-start sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-sm md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl"
                                         aria-label={`Play ${bannerProvider.name}`}
                                     >
                                         PLAY SPORTS
@@ -148,11 +148,11 @@ export default function SportsPage({ onNavigate }) {
             </section>
 
             <section className="w-full max-w-screen-2xl mx-auto px-4 md:px-8 mt-4 md:mt-6">
-                <div className="rounded-2xl border border-[rgb(219_228_243)] bg-[var(--color-surface-base-80)] p-4 shadow-[0_6px_18px_rgba(20,43,87,0.09)] backdrop-blur-sm md:p-5">
+                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base-80)] p-4 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:p-5">
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div>
-                            <p className="text-xl font-bold text-[rgb(28_40_65)] md:text-2xl">Sports Providers</p>
-                            <p className="mt-1 text-xs text-[rgb(93_103_128)] md:text-sm">
+                            <p className="text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">Sports Providers</p>
+                            <p className="mt-1 text-xs text-[var(--color-text-muted)] md:text-sm">
                                 Pick your preferred sportsbook or virtual sports provider with a consistent premium experience.
                             </p>
                         </div>
@@ -166,7 +166,7 @@ export default function SportsPage({ onNavigate }) {
                         />
                     </div>
 
-                    <p className="mt-4 text-xs font-bold uppercase tracking-wide text-[rgb(106_117_144)] md:text-xs">
+                    <p className="mt-4 text-xs font-bold uppercase tracking-wide text-[var(--color-text-soft)] md:text-xs">
                         {filteredProviders.length} provider{filteredProviders.length === 1 ? '' : 's'} found
                     </p>
                 </div>
@@ -192,9 +192,9 @@ export default function SportsPage({ onNavigate }) {
                     ))}
                 </div>
                 {filteredProviders.length === 0 && (
-                    <div className="mt-6 rounded-2xl border border-[rgb(220_228_242)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
-                        <p className="text-base font-bold text-[rgb(43_58_87)]">No providers match your search.</p>
-                        <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword or switch filter.</p>
+                    <div className="mt-6 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
+                        <p className="text-base font-bold text-[var(--color-text-secondary)]">No providers match your search.</p>
+                        <p className="mt-1 text-xs text-[var(--color-text-soft)]">Try a different keyword or switch filter.</p>
                     </div>
                 )}
             </section>

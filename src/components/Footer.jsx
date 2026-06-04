@@ -24,7 +24,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
 
     return (
         <footer
-            className={`relative flex w-full flex-col border-t border-[rgb(168_226_251)] bg-[linear-gradient(180deg,var(--gradient-footer-start)_0%,var(--gradient-footer-end)_100%)] pb-6 pt-12 ${
+            className={`relative flex w-full flex-col border-t border-[var(--color-border-brand)] bg-gradient-footer pb-6 pt-12 ${
                 softerMobile ? 'max-md:pt-9 max-md:pb-5' : ''
             } ${className}`.trim()}
         >
@@ -34,14 +34,14 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                     
                     {/* Branding: Logo & Blurb */}
                     <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
-                        <div className="inline-flex items-center justify-center rounded-[18px] border border-white/20 bg-white px-4 py-2.5 shadow-[0_10px_24px_rgba(0,0,0,0.14)] md:rounded-[20px] md:px-5 md:py-3 md:translate-y-2">
+                        <div className="inline-flex items-center justify-center rounded-[18px] border border-[var(--color-nav-border)]/20 bg-[var(--color-surface-base)] px-4 py-2.5 shadow-[var(--shadow-nav-pill)] md:rounded-[20px] md:px-5 md:py-3 md:translate-y-2">
                             <img
                                 src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp"
                                 alt="12WIN Logo"
                                 className="h-7 w-auto object-contain md:h-8"
                             />
                         </div>
-                        <p className="max-w-[28rem] text-xs font-semibold leading-relaxed tracking-wide text-white/90">
+                        <p className="max-w-[28rem] text-xs font-semibold leading-relaxed tracking-wide text-[var(--color-nav-text-soft)]">
                             12WIN offer wide range of highest quality gaming products to our players. Our Customer Support Team is available to assist you 24 hours a day. All personal information will be treated and stored at the strictest and most confidential way.
                         </p>
                     </div>
@@ -50,7 +50,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                     <div className="flex w-full flex-col items-center gap-6 md:w-auto md:items-end md:gap-5">
                         {/* PAYMENT METHOD section */}
                         <div className="flex flex-col items-center gap-2.5 md:items-end">
-                            <h4 className="text-xs font-bold uppercase tracking-wide text-white">Payment Method</h4>
+                            <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)]">Payment Method</h4>
                             <FooterPaymentMethods />
                         </div>
 
@@ -62,19 +62,19 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                                         <button
                                             type="button"
                                             onClick={link.onClick}
-                                            className="text-xs font-bold text-white transition-colors hover:text-white/80"
+                                            className="text-xs font-bold text-[var(--color-text-card-text)] transition-colors hover:text-[var(--color-nav-text-soft)]"
                                         >
                                             {link.label}
                                         </button>
                                     ) : (
                                         <a
                                             href={link.href}
-                                            className="text-xs font-bold text-white transition-colors hover:text-white/80"
+                                            className="text-xs font-bold text-[var(--color-text-card-text)] transition-colors hover:text-[var(--color-nav-text-soft)]"
                                         >
                                             {link.label}
                                         </a>
                                     )}
-                                    {idx < links.length - 1 && <span className="select-none text-xs text-white/40">|</span>}
+                                    {idx < links.length - 1 && <span className="select-none text-xs text-[var(--color-text-card-text)]/40">|</span>}
                                 </React.Fragment>
                             ))}
                         </div>
@@ -83,13 +83,13 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
 
                 {/* Certifications and Compliance */}
                 <div
-                    className={`relative z-10 mt-3 flex w-full flex-col justify-center gap-10 border-t border-white/20 pt-6 md:flex-row md:items-center md:gap-20 ${
+                    className={`relative z-10 mt-3 flex w-full flex-col justify-center gap-10 border-t border-[var(--color-nav-border)]/20 pt-6 md:flex-row md:items-center md:gap-20 ${
                         softerMobile ? 'max-md:mt-2 max-md:gap-7 max-md:pt-5' : ''
                     }`}
                 >
 
                     <div className="flex flex-col items-center gap-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wide text-white">Certificated by</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)]">Certificated by</h4>
                         <div
                             className="flex max-w-full flex-wrap items-center justify-center gap-x-4 gap-y-3.5 px-1 sm:gap-x-5 sm:gap-y-4 md:gap-x-6"
                             role="list"
@@ -114,9 +114,9 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                     </div>
 
                     <div className="flex flex-col items-center gap-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wide text-white">Responsible Gaming</h4>
-                        <div className="flex items-center gap-4 text-white opacity-95">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full border-[2px] border-white text-lg font-bold">18+</div>
+                        <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)]">Responsible Gaming</h4>
+                        <div className="flex items-center gap-4 text-[var(--color-text-card-text)] opacity-95">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full border-[2px] border-[var(--color-nav-border)] text-lg font-bold">18+</div>
                             <div className="flex items-center gap-1 font-bold text-xs text-center leading-tight">
                                 Be<br />Gamble<br />Aware
                             </div>
@@ -126,7 +126,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
 
                 {/* Copyright */}
                 <div className="relative z-10 w-full pb-3 text-center">
-                    <p className="text-xs font-bold tracking-wide text-white/70">
+                    <p className="text-xs font-bold tracking-wide text-[var(--color-text-card-text)]/70">
                         Copyright 12WIN {'\u00A9'} 2026. All rights reserved.
                     </p>
                 </div>

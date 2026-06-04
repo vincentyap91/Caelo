@@ -39,20 +39,20 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" aria-hidden onClick={onClose} />
-            <div className="relative z-[1] w-full max-w-md rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-6 shadow-[var(--shadow-modal)]" onClick={(e) => e.stopPropagation()}>
+            <div className="absolute inset-0 bg-[var(--color-surface-darkest)]/70 backdrop-blur-[1px]" aria-hidden onClick={onClose} />
+            <div className="relative z-[1] w-full max-w-md rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-6 shadow-[var(--shadow-modal)]" onClick={(e) => e.stopPropagation()}>
                 <button
                     type="button"
                     onClick={onClose}
-                    className="absolute right-4 top-4 rounded-lg p-1 text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-strong)]"
+                    className="absolute right-4 top-4 rounded-lg p-1 text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-primary)]"
                     aria-label="Close"
                 >
                     <X size={20} />
                 </button>
-                <h3 className="mb-6 text-xl font-bold tracking-tight text-[var(--color-text-strong)]">Verify & Activate 2FA</h3>
+                <h3 className="mb-6 text-xl font-bold tracking-tight text-[var(--color-text-primary)]">Verify & Activate 2FA</h3>
 
                 <div className="mb-6 flex flex-col items-center gap-4">
-                    <div className="flex h-44 w-44 items-center justify-center rounded-2xl border border-[var(--color-border-default)] bg-white p-4 shadow-[var(--shadow-subtle)]">
+                    <div className="flex h-44 w-44 items-center justify-center rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-4 shadow-[var(--shadow-subtle)]">
                         {!imageError && qrCodeUrl ? (
                             <img
                                 src={qrCodeUrl}
@@ -85,10 +85,10 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
                             value={code}
                             onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
                             placeholder="000000"
-                            className="w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-4 py-3 text-center text-lg font-mono tracking-code text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                            className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3 text-center text-lg font-mono tracking-code text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                         />
                     </label>
-                    {error && <p className="text-sm text-[var(--color-danger-main)]">{error}</p>}
+                    {error && <p className="text-sm text-[var(--color-danger)]">{error}</p>}
                     <button
                         type="submit"
                         className="btn-theme-cta w-full rounded-xl py-3.5 text-base font-bold shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105"

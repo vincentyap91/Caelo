@@ -20,13 +20,13 @@ function resolveCategoryTarget(category) {
 
 /** Selected state — mobile sidebar & desktop horizontal tabs (red gradient, white icon/label). */
 export const CATEGORY_NAV_ACTIVE_CLASS =
-    'border border-white/10 bg-[linear-gradient(90deg,rgb(232_23_47)_0%,rgb(248_48_77)_52%,rgb(255_108_121)_100%)] text-white ring-1 ring-white/10';
+    'border border-[var(--color-nav-border-soft)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';
 
 const MOBILE_SIDEBAR_INACTIVE_CLASS =
-    'border border-[var(--color-border-default)] bg-white text-[var(--color-text-strong)] shadow-sm';
+    'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-sm';
 
 const DESKTOP_TAB_INACTIVE_CLASS =
-    'border border-[var(--color-border-default)] bg-white text-[var(--color-text-strong)] shadow-sm hover:border-[var(--color-accent-200)] hover:bg-[var(--color-surface-subtle)]';
+    'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-sm hover:border-[var(--color-accent-200)] hover:bg-[var(--color-surface-subtle)]';
 
 export function GameCategoryNavItem({
     category,
@@ -53,7 +53,7 @@ export function GameCategoryNavItem({
             <Icon
                 size={vertical ? 18 : 20}
                 strokeWidth={active ? 2.5 : 2}
-                className={`shrink-0 ${active ? 'text-white' : 'text-[var(--color-brand-primary)]'}`}
+                className={`shrink-0 ${active ? 'text-[var(--color-text-card-text)]' : 'text-[var(--color-primary)]'}`}
                 aria-hidden
             />
             <span

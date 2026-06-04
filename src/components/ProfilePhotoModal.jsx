@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ImagePlus, UserCircle2, X } from 'lucide-react';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
@@ -87,20 +87,20 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                 type="button"
                 aria-label="Close profile photo"
                 onClick={onClose}
-                className="absolute inset-0 bg-[rgb(2_11_31_/_0.68)] backdrop-blur-[2px]"
+                className="absolute inset-0 bg-[var(--color-nav-overlay)] backdrop-blur-[2px]"
             />
 
             <section
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="profile-photo-modal-title"
-                className="relative z-[1] flex w-full max-w-[420px] flex-col overflow-hidden rounded-[24px] border border-[rgb(219_228_243)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
+                className="relative z-[1] flex w-full max-w-[420px] flex-col overflow-hidden rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex items-center justify-between border-b border-[rgb(228_234_243)] px-5 py-4 sm:px-6">
+                <div className="flex items-center justify-between border-b border-[var(--color-border-subtle)] px-5 py-4 sm:px-6">
                     <h2
                         id="profile-photo-modal-title"
-                        className="text-lg font-bold tracking-tight text-[var(--color-text-strong)] sm:text-xl"
+                        className="text-lg font-bold tracking-tight text-[var(--color-text-primary)] sm:text-xl"
                     >
                         Profile photo
                     </h2>
@@ -108,7 +108,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-default)] bg-white text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
                     >
                         <X size={18} />
                     </button>
@@ -145,18 +145,18 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                     </button>
 
                     {error && (
-                        <p className="mt-3 text-center text-sm font-medium text-[var(--color-danger-main)]" role="alert">
+                        <p className="mt-3 text-center text-sm font-medium text-[var(--color-danger)]" role="alert">
                             {error}
                         </p>
                     )}
                 </div>
 
-                <div className="flex flex-col-reverse gap-2 border-t border-[rgb(228_234_243)] bg-[var(--color-surface-subtle)] px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                <div className="flex flex-col-reverse gap-2 border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                     {(initialUrl || hasPhoto) && (
                         <button
                             type="button"
                             onClick={handleRemove}
-                            className="text-sm font-semibold text-[var(--color-text-muted)] underline-offset-2 transition hover:text-[var(--color-danger-main)] hover:underline"
+                            className="text-sm font-semibold text-[var(--color-text-muted)] underline-offset-2 transition hover:text-[var(--color-danger)] hover:underline"
                         >
                             Remove photo
                         </button>
@@ -165,7 +165,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                         <button
                             type="button"
                             onClick={onClose}
-                            className="inline-flex min-h-[44px] min-w-[100px] items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-white px-4 text-sm font-semibold text-[var(--color-text-strong)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)]"
+                            className="inline-flex min-h-[44px] min-w-[100px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-primary)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)]"
                         >
                             Cancel
                         </button>

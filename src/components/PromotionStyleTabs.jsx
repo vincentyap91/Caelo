@@ -6,7 +6,7 @@ export function promotionStyleTabButtonClassName(selected) {
     return `rounded-xl px-4 py-2 text-xs font-bold transition-all duration-200 md:text-sm ${
         selected
             ? 'btn-theme-tab-selected'
-            : 'border border-[var(--color-border-default)] bg-white text-[var(--color-text-main)] hover:border-[var(--color-accent-200)] hover:text-[var(--color-text-strong)] hover:shadow-[0_2px_8px_rgba(15,23,42,0.04)]'
+            : 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent-200)] hover:text-[var(--color-text-primary)] hover:shadow-[var(--shadow-subtle)]'
     }`;
 }
 
@@ -74,7 +74,7 @@ export default function PromotionStyleTabs({
     if (variant === 'panel') {
         return (
             <section
-                className={`rounded-2xl border border-[rgb(228_234_243)] bg-[var(--color-surface-base)] p-4 shadow-[0_4px_16px_rgba(15,23,42,0.04)] md:p-5 ${panelClassName} ${className}`.trim()}
+                className={`rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-4 shadow-[var(--shadow-subtle)] md:p-5 ${panelClassName} ${className}`.trim()}
             >
                 {list}
             </section>

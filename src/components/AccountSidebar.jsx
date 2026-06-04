@@ -137,7 +137,7 @@ export default function AccountSidebar({
     return (
         <>
             <aside
-                className="relative flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-y-contain border-r border-[var(--color-accent-100)] bg-[var(--color-surface-base)] p-3.5 text-[var(--color-text-strong)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 lg:sticky lg:top-24 lg:h-auto lg:max-h-none lg:w-[320px] lg:flex-none lg:overflow-visible lg:rounded-[24px] lg:border lg:border-[var(--color-border-default)] lg:p-6 lg:shadow-[var(--shadow-card-raised)] w-full max-w-[88vw] lg:max-w-none"
+                className="relative flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-y-contain border-r border-[var(--color-accent-100)] bg-[var(--color-surface-base)] p-3.5 text-[var(--color-text-primary)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 lg:sticky lg:top-24 lg:h-auto lg:max-h-none lg:w-[320px] lg:flex-none lg:overflow-visible lg:rounded-[24px] lg:border lg:border-[var(--color-border-subtle)] lg:p-6 lg:shadow-[var(--shadow-card-raised)] w-full max-w-[88vw] lg:max-w-none"
             >
                 <div>
                     <div className="flex items-start gap-3 pt-0 lg:gap-4 lg:pt-1">
@@ -157,7 +157,7 @@ export default function AccountSidebar({
                             )}
                         </div>
                         <div className="min-w-0 flex-1 pt-0 lg:pt-1">
-                            <p className="text-xl font-bold leading-tight text-[var(--color-text-strong)] lg:text-2xl">Hi, {username}</p>
+                            <p className="text-xl font-bold leading-tight text-[var(--color-text-primary)] lg:text-2xl">Hi, {username}</p>
                             {guestPreview && (
                                 <p className="mt-1.5 text-xs font-medium text-[var(--color-text-muted)] lg:mt-2 lg:text-sm">
                                     Sign in to claim rewards and save your progress.
@@ -176,7 +176,7 @@ export default function AccountSidebar({
                 </div>
 
                 <div className="mt-5 space-y-3 lg:mt-8 lg:space-y-5">
-                    <div className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('cashier')}
@@ -186,7 +186,7 @@ export default function AccountSidebar({
                                 <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
                                     <Wallet className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
-                                <span className="text-base font-bold text-[var(--color-text-strong)] lg:text-lg">Cashier</span>
+                                <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">Cashier</span>
                             </span>
                             <ChevronDown
                                 className={`h-4 w-4 shrink-0 text-[var(--color-text-soft)] transition-transform lg:h-[18px] lg:w-[18px] ${openMenus.cashier ? 'rotate-180' : ''}`}
@@ -218,7 +218,7 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('account')}
@@ -228,7 +228,7 @@ export default function AccountSidebar({
                                 <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
                                     <UserRound className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
-                                <span className="text-base font-bold text-[var(--color-text-strong)] lg:text-lg">My Account</span>
+                                <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">My Account</span>
                             </span>
                             <ChevronDown
                                 className={`h-4 w-4 shrink-0 text-[var(--color-text-soft)] transition-transform lg:h-[18px] lg:w-[18px] ${isMenuOpen('account') ? 'rotate-180' : ''}`}
@@ -260,7 +260,7 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('loyaltyRewards')}
@@ -270,7 +270,7 @@ export default function AccountSidebar({
                                 <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
                                     <Trophy className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
-                                <span className="text-base font-bold text-[var(--color-text-strong)] lg:text-lg">Rewards</span>
+                                <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">Rewards</span>
                             </span>
                             <ChevronDown
                                 className={`h-4 w-4 shrink-0 text-[var(--color-text-soft)] transition-transform lg:h-[18px] lg:w-[18px] ${isMenuOpen('loyaltyRewards') ? 'rotate-180' : ''}`}
@@ -308,7 +308,7 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('historyRecord')}
@@ -318,7 +318,7 @@ export default function AccountSidebar({
                                 <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
                                     <History className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
-                                <span className="text-base font-bold text-[var(--color-text-strong)] lg:text-lg">History Record</span>
+                                <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">History Record</span>
                             </span>
                             <ChevronDown
                                 className={`h-4 w-4 shrink-0 text-[var(--color-text-soft)] transition-transform lg:h-[18px] lg:w-[18px] ${isMenuOpen('historyRecord') ? 'rotate-180' : ''}`}
@@ -350,7 +350,7 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('settings')}
@@ -360,7 +360,7 @@ export default function AccountSidebar({
                                 <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
                                     <Settings className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
-                                <span className="text-base font-bold text-[var(--color-text-strong)] lg:text-lg">Settings</span>
+                                <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">Settings</span>
                             </span>
                             <ChevronDown
                                 className={`h-4 w-4 shrink-0 text-[var(--color-text-soft)] transition-transform lg:h-[18px] lg:w-[18px] ${isMenuOpen('settings') ? 'rotate-180' : ''}`}
@@ -411,7 +411,7 @@ export default function AccountSidebar({
                         <button
                             type="button"
                             onClick={onLogout}
-                            className="mt-1.5 inline-flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-text-main)] shadow-[0_4px_12px_rgba(15,23,42,0.04)] transition-all hover:scale-[1.02] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] lg:mt-2 lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5"
+                            className="mt-1.5 inline-flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-text-secondary)] shadow-[0_4px_12px_rgba(15,23,42,0.04)] transition-all hover:scale-[1.02] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] lg:mt-2 lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5"
                         >
                             <LogOut className="h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px]" />
                             Log Out

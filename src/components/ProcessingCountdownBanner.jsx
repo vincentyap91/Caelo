@@ -8,19 +8,19 @@ export default function ProcessingCountdownBanner({ secondsLeft, totalSeconds, t
     const progressPercent = totalSeconds > 0 ? Math.max(0, ((totalSeconds - secondsLeft) / totalSeconds) * 100) : 0;
 
     return (
-        <div className="mb-6 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 py-3 sm:px-5 sm:py-4">
+        <div className="mb-6 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 py-3 sm:px-5 sm:py-4">
             <div className="flex items-center gap-2">
-                <Loader2 size={18} className="shrink-0 animate-spin text-[var(--color-brand-primary)]" />
-                <span className="text-sm font-semibold text-[var(--color-text-strong)]">
+                <Loader2 size={18} className="shrink-0 animate-spin text-[var(--color-primary)]" />
+                <span className="text-sm font-semibold text-[var(--color-text-primary)]">
                     Processing now
                 </span>
             </div>
-            <p className="mt-2 text-sm font-medium text-[var(--color-text-main)]">
-                Please wait <span className="font-bold text-[var(--color-brand-primary)]">{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</span> for {typeLabel} approval
+            <p className="mt-2 text-sm font-medium text-[var(--color-text-secondary)]">
+                Please wait <span className="font-bold text-[var(--color-primary)]">{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</span> for {typeLabel} approval
             </p>
-            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[var(--color-border-default)]">
+            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[var(--color-border-subtle)]">
                 <div
-                    className="h-full rounded-full bg-[var(--color-brand-primary)] transition-all duration-1000"
+                    className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-1000"
                     style={{ width: `${progressPercent}%` }}
                 />
             </div>

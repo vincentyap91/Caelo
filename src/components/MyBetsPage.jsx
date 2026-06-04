@@ -31,8 +31,8 @@ export default function MyBetsPage() {
                             onClick={() => setActiveTab(id)}
                             className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                                 activeTab === id
-                                    ? 'bg-[var(--color-accent-600)] text-white shadow-sm'
-                                    : 'bg-[var(--color-surface-base)] text-[var(--color-text-muted)] ring-1 ring-[var(--color-border-default)] hover:ring-[var(--color-accent-300)] hover:text-[var(--color-accent-600)]'
+                                    ? 'bg-[var(--color-accent-600)] text-[var(--color-text-card-text)] shadow-sm'
+                                    : 'bg-[var(--color-surface-base)] text-[var(--color-text-muted)] ring-1 ring-[var(--color-border-subtle)] hover:ring-[var(--color-accent-300)] hover:text-[var(--color-accent-600)]'
                             }`}
                         >
                             {label}
@@ -48,7 +48,7 @@ export default function MyBetsPage() {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="e.g. Real Madrid"
-                            className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent-400)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                            className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent-400)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                         />
                         <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-soft)]" />
                     </label>
@@ -57,7 +57,7 @@ export default function MyBetsPage() {
                         <button
                             type="button"
                             onClick={() => setDateDropdownOpen((o) => !o)}
-                            className="flex h-12 min-w-[160px] items-center gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-4 text-sm font-medium text-[var(--color-text-main)] shadow-[var(--shadow-subtle)]"
+                            className="flex h-12 min-w-[160px] items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-medium text-[var(--color-text-secondary)] shadow-[var(--shadow-subtle)]"
                         >
                             <Calendar size={18} className="text-[var(--color-text-muted)]" />
                             {dateRange}
@@ -70,7 +70,7 @@ export default function MyBetsPage() {
                                     aria-hidden="true"
                                     onClick={() => setDateDropdownOpen(false)}
                                 />
-                                <div className="absolute left-0 top-full z-20 mt-1 min-w-[180px] rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-2 shadow-lg">
+                                <div className="absolute left-0 top-full z-20 mt-1 min-w-[180px] rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-2 shadow-lg">
                                     {dateRangeOptions.map((opt) => (
                                         <button
                                             key={opt}
@@ -80,7 +80,7 @@ export default function MyBetsPage() {
                                                 setDateDropdownOpen(false);
                                             }}
                                             className={`w-full px-4 py-2.5 text-left text-sm font-medium ${
-                                                dateRange === opt ? 'bg-[var(--color-accent-50)] text-[var(--color-accent-700)]' : 'text-[var(--color-text-main)] hover:bg-[var(--color-surface-muted)]'
+                                                dateRange === opt ? 'bg-[var(--color-accent-50)] text-[var(--color-accent-700)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-muted)]'
                                             }`}
                                         >
                                             {opt}
@@ -98,23 +98,23 @@ export default function MyBetsPage() {
                             aria-checked={setAsDefault}
                             onClick={() => setSetAsDefault((v) => !v)}
                             className={`flex h-5 w-5 items-center justify-center rounded border-2 transition ${
-                                setAsDefault ? 'border-green-500 bg-green-500' : 'border-slate-300 bg-[var(--color-surface-base)]'
+                                setAsDefault ? 'border-[var(--color-success)] bg-[var(--color-success)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]'
                             }`}
                         >
-                            {setAsDefault && <Check size={12} className="text-white" strokeWidth={3} />}
+                            {setAsDefault && <Check size={12} className="text-[var(--color-text-card-text)]" strokeWidth={3} />}
                         </button>
-                        <span className="text-sm font-medium text-[var(--color-text-main)]">Set this search as Default</span>
+                        <span className="text-sm font-medium text-[var(--color-text-secondary)]">Set this search as Default</span>
                     </label>
                 </div>
 
                 <div className="surface-card flex min-h-[320px] flex-col items-center justify-center rounded-2xl p-12">
                     <div className="relative">
                         <ReceiptText size={64} className="text-[var(--color-text-soft)]" strokeWidth={1.5} />
-                        <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-text-soft)] text-xs font-bold text-white">
+                        <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-text-soft)] text-xs font-bold text-[var(--color-text-card-text)]">
                             1
                         </span>
                     </div>
-                    <p className="mt-6 text-base font-semibold text-[var(--color-text-main)]">No bets placed yet.</p>
+                    <p className="mt-6 text-base font-semibold text-[var(--color-text-secondary)]">No bets placed yet.</p>
                     <p className="mt-2 text-sm text-[var(--color-text-muted)]">Your bet history will appear here once you place a bet.</p>
                 </div>
         </div>

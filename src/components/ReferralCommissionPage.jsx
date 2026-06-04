@@ -88,12 +88,12 @@ export default function ReferralCommissionPage({ onNavigate }) {
                             <div className="flex flex-col gap-4 md:hidden">
                                 <CommissionStatBlock
                                     icon={Star}
-                                    iconWrapClassName="bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[var(--color-cta-text)]"
+                                    iconWrapClassName="bg-gradient-cta text-[var(--color-cta-text)]"
                                     label="Total Referral Commission Bonus"
                                     infoTitle="Commission earned from downline activity"
                                     value={totalCommissionBonus}
                                 />
-                                <div className="h-px w-full bg-[var(--color-border-default)]" aria-hidden />
+                                <div className="h-px w-full bg-[var(--color-border-subtle)]" aria-hidden />
                                 <CommissionStatBlock
                                     icon={Users}
                                     iconWrapClassName="bg-[var(--color-accent-100)] text-[var(--color-accent-600)]"
@@ -110,12 +110,12 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                 <div className="flex flex-wrap items-center gap-6 md:gap-8">
                                     <CommissionStatBlock
                                         icon={Star}
-                                        iconWrapClassName="bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[var(--color-cta-text)]"
+                                        iconWrapClassName="bg-gradient-cta text-[var(--color-cta-text)]"
                                         label="Total Referral Commission Bonus"
                                         infoTitle="Commission earned from downline activity"
                                         value={totalCommissionBonus}
                                     />
-                                    <div className="hidden h-10 w-px shrink-0 bg-[var(--color-border-default)] md:block" aria-hidden />
+                                    <div className="hidden h-10 w-px shrink-0 bg-[var(--color-border-subtle)] md:block" aria-hidden />
                                     <CommissionStatBlock
                                         icon={Users}
                                         iconWrapClassName="bg-[var(--color-accent-100)] text-[var(--color-accent-600)]"
@@ -134,7 +134,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-[280px] border-collapse text-sm md:min-w-[320px]">
                                     <thead>
-                                        <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
+                                        <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]">
                                             <th className="px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]">
                                                 Date
                                             </th>
@@ -149,8 +149,8 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                     <tbody>
                                         <tr>
                                             <td colSpan={3} className="px-4 py-10 md:px-4 md:py-12">
-                                                <div className="mx-auto flex max-w-[20rem] flex-col items-center justify-center rounded-xl border border-dashed border-[var(--color-border-default)] bg-[var(--color-surface-muted)]/50 px-4 py-6">
-                                                    <p className="text-center text-sm font-semibold text-[var(--color-text-strong)]">No data found</p>
+                                                <div className="mx-auto flex max-w-[20rem] flex-col items-center justify-center rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)]/50 px-4 py-6">
+                                                    <p className="text-center text-sm font-semibold text-[var(--color-text-primary)]">No data found</p>
                                                     <p className="mt-1 text-center text-xs leading-relaxed text-[var(--color-text-muted)]">
                                                         Commission lines will show here when available.
                                                     </p>
@@ -176,7 +176,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
                     <div className="space-y-4 md:space-y-6">
                         <div className="surface-card rounded-2xl p-4 shadow-[var(--shadow-card-soft)] sm:p-5 md:p-6">
                             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
-                                <h3 className="text-base font-bold text-[var(--color-text-strong)] md:text-lg">My Downlines</h3>
+                                <h3 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">My Downlines</h3>
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('referral')}
@@ -194,7 +194,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                 <div className="overflow-x-auto">
                                     <table className="w-full min-w-[480px] border-collapse text-sm">
                                         <thead>
-                                            <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
+                                            <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]">
                                                 <th className="px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)] md:px-4 md:py-3 md:text-[var(--color-text-muted)]">
                                                     Username
                                                 </th>
@@ -213,7 +213,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                             {downlines.map((row) => (
                                                 <tr
                                                     key={row.id}
-                                                    className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
+                                                    className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-subtle)]"
                                                 >
                                                     <td className="px-3 py-3 text-sm md:px-4 md:py-3.5">
                                                         <button
@@ -225,7 +225,7 @@ export default function ReferralCommissionPage({ onNavigate }) {
                                                         </button>
                                                     </td>
                                                     <td className="px-3 py-3 text-sm text-[var(--color-text-muted)] md:px-4 md:py-3.5">{row.joinedAt}</td>
-                                                    <td className="px-3 py-3 text-right text-sm font-medium text-[var(--color-text-strong)] md:px-4 md:py-3.5">
+                                                    <td className="px-3 py-3 text-right text-sm font-medium text-[var(--color-text-primary)] md:px-4 md:py-3.5">
                                                         {row.totalDeposit}
                                                     </td>
                                                     <td className="px-3 py-3 text-right text-sm font-semibold text-[var(--color-accent-600)] md:px-4 md:py-3.5">

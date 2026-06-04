@@ -61,7 +61,7 @@ function ReadOnlyValue({ label, value, singleLineEllipsis = false }) {
         return (
             <div className="block">
                 <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
-                <div className="flex h-12 min-h-12 items-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 shadow-[var(--shadow-subtle)]">
+                <div className="flex h-12 min-h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 shadow-[var(--shadow-subtle)]">
                     <input
                         type="text"
                         readOnly
@@ -69,7 +69,7 @@ function ReadOnlyValue({ label, value, singleLineEllipsis = false }) {
                         value={display}
                         placeholder={display === '' ? '—' : undefined}
                         title={display || undefined}
-                        className="min-w-0 w-full cursor-text bg-transparent text-sm font-medium text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] overflow-hidden text-ellipsis whitespace-nowrap"
+                        className="min-w-0 w-full cursor-text bg-transparent text-sm font-medium text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] overflow-hidden text-ellipsis whitespace-nowrap"
                     />
                 </div>
             </div>
@@ -78,7 +78,7 @@ function ReadOnlyValue({ label, value, singleLineEllipsis = false }) {
     return (
         <div className="block">
             <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
-            <div className="flex h-12 items-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] select-none">
+            <div className="flex h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] select-none">
                 <span className="min-w-0 break-all">{value || '—'}</span>
             </div>
         </div>
@@ -90,10 +90,10 @@ function Field({ label, value, placeholder, type = 'text', editable, onChange, i
         <label className="block">
             <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
             <div
-                className={`group flex h-12 items-center gap-3 rounded-xl border px-4 shadow-[var(--shadow-subtle)] transition-all focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[rgb(96_165_250_/_0.2)] ${
+                className={`group flex h-12 items-center gap-3 rounded-xl border px-4 shadow-[var(--shadow-subtle)] transition-all focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[var(--color-accent-400)]/20 ${
                     editable
                         ? 'border-[var(--color-accent-300)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-400)]'
-                        : 'border-[var(--color-border-default)] bg-[var(--color-surface-muted)] hover:border-[var(--color-accent-200)]'
+                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] hover:border-[var(--color-accent-200)]'
                 }`}
             >
                 {Icon && (
@@ -109,7 +109,7 @@ function Field({ label, value, placeholder, type = 'text', editable, onChange, i
                     disabled={!editable}
                     onChange={onChange}
                     className={`w-full bg-transparent text-sm font-medium outline-none ${
-                        editable ? 'text-[var(--color-text-strong)]' : 'text-[var(--color-text-muted)]'
+                        editable ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-muted)]'
                     } placeholder:text-[var(--color-text-soft)] disabled:cursor-not-allowed`}
                 />
             </div>
@@ -122,7 +122,7 @@ function SectionCard({ title, description, editing, onToggleEdit, children, acti
         <section className="surface-card rounded-2xl p-6 transition-all md:p-8">
             <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                    <h2 className="text-base font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">{title}</h2>
+                    <h2 className="text-base font-bold tracking-tight text-[var(--color-text-primary)] md:text-xl">{title}</h2>
                     {description && (
                         <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
                             {description}
@@ -155,31 +155,31 @@ function ProfileVipProgressSection({ targetTier, progressPercent, tier, showTier
     const vip = showTierHeader ? getVipStatus(tier || 'Platinum') : null;
     const wrapClass =
         variant === 'card'
-            ? `rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-5 py-4 shadow-[var(--shadow-card-soft)] ${className}`
+            ? `rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-5 py-4 shadow-[var(--shadow-card-soft)] ${className}`
             : className;
 
     return (
         <div className={wrapClass}>
             {showTierHeader && vip ? (
                 <div className="mb-3 flex items-center">
-                    <p className="text-sm font-extrabold uppercase text-[var(--color-brand-primary)]">{vip.tier}</p>
+                    <p className="text-sm font-extrabold uppercase text-[var(--color-primary)]">{vip.tier}</p>
                 </div>
             ) : null}
 
             <div className="flex items-center justify-between gap-2">
-                <span className="rounded-full bg-[var(--color-brand-primary)] px-3.5 py-1 text-[10px] font-extrabold uppercase text-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]">
+                <span className="rounded-full bg-[var(--color-primary)] px-3.5 py-1 text-[10px] font-extrabold uppercase text-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]">
                     TARGET: {String(targetTier || '').toUpperCase()}
                 </span>
-                <span className="text-sm font-bold text-[var(--color-text-strong)]">{progressPercent}%</span>
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">{progressPercent}%</span>
             </div>
             <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-[var(--color-accent-100)]">
                 <div
-                    className="h-full rounded-full bg-[image:var(--gradient-cta)]"
+                    className="h-full rounded-full bg-gradient-cta"
                     style={{ width: `${progressPercent}%` }}
                     aria-hidden="true"
                 />
             </div>
-            <p className="mt-3 text-center text-sm font-medium text-[var(--color-text-main)]">
+            <p className="mt-3 text-center text-sm font-medium text-[var(--color-text-secondary)]">
                 Progress to next tier: {progressPercent}%
             </p>
         </div>
@@ -351,7 +351,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                     <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent-600)] md:text-xs md:tracking-code">
                                         Verified Account
                                     </p>
-                                    <h2 className="truncate text-lg font-bold tracking-tight text-[var(--color-text-strong)] sm:text-xl md:text-3xl">
+                                    <h2 className="truncate text-lg font-bold tracking-tight text-[var(--color-text-primary)] sm:text-xl md:text-3xl">
                                         {formValues.username}
                                     </h2>
                                     <p className="truncate text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{formValues.email}</p>
@@ -361,7 +361,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
 
                         <div className="flex shrink-0 items-center justify-center pl-3 md:pl-6">
                             <VipStatusPill level={vipLevel} size="large" layout="column" />
-                            <div className="ml-4 hidden h-[108px] w-px bg-[var(--color-border-default)] md:block" />
+                            <div className="ml-4 hidden h-[108px] w-px bg-[var(--color-border-subtle)] md:block" />
                             <ProfileVipProgressSection
                                 targetTier={PROFILE_NEXT_VIP_TIER}
                                 progressPercent={vipProgressPercent}
@@ -450,7 +450,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                             <button
                                                 type="button"
                                                 onClick={closeBankForm}
-                                                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-strong)] transition hover:bg-[var(--color-surface-subtle)]"
+                                                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                                             >
                                                 Cancel
                                             </button>
@@ -468,21 +468,21 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                         >
                             {showBankForm ? (
                                 <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-                                    <p className="col-span-full text-sm font-semibold text-[var(--color-text-strong)]">
+                                    <p className="col-span-full text-sm font-semibold text-[var(--color-text-primary)]">
                                         {editingBankId ? 'Edit bank account' : 'Add bank account'}
                                     </p>
                                     <div>
-                                        <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Bank <span className="text-[var(--color-danger-main)]">*</span></span>
+                                        <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Bank <span className="text-[var(--color-danger)]">*</span></span>
                                         <div className="relative">
                                             <button
                                                 type="button"
                                                 onClick={() => setBankDropdownOpen((o) => !o)}
-                                                className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                                className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                             >
                                                 {bankForm.bankId && BANKS.find((b) => b.id === bankForm.bankId)?.image ? (
                                                     <span className="flex items-center gap-2.5">
                                                         <img src={BANKS.find((b) => b.id === bankForm.bankId)?.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
-                                                        <span className="font-medium text-[var(--color-text-strong)]">{BANKS.find((b) => b.id === bankForm.bankId)?.label}</span>
+                                                        <span className="font-medium text-[var(--color-text-primary)]">{BANKS.find((b) => b.id === bankForm.bankId)?.label}</span>
                                                     </span>
                                                 ) : (
                                                     <span className="text-[var(--color-text-soft)]">Select Bank</span>
@@ -492,7 +492,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                             {bankDropdownOpen && (
                                                 <>
                                                     <div className="absolute inset-0 z-10" onClick={() => setBankDropdownOpen(false)} aria-hidden />
-                                                    <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                                    <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
                                                         {BANKS.map((b) => (
                                                             <button
                                                                 key={b.id}
@@ -501,7 +501,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                                                 className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-muted)]"
                                                             >
                                                                 {b.image ? <img src={b.image} alt="" className="h-6 w-6 shrink-0 object-contain" /> : null}
-                                                                <span className="font-normal text-[var(--color-text-strong)]">{b.label}</span>
+                                                                <span className="font-normal text-[var(--color-text-primary)]">{b.label}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -519,15 +519,15 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                         {bankAccounts.map((acc) => (
                                             <div
                                                 key={acc.id}
-                                                className="flex items-start gap-3 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] p-4 transition hover:border-[var(--color-accent-200)] sm:gap-4"
+                                                className="flex items-start gap-3 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] p-4 transition hover:border-[var(--color-accent-200)] sm:gap-4"
                                             >
                                                 <div className="flex min-w-0 flex-1 flex-col gap-1">
                                                     <div className="flex items-center gap-2">
                                                         {acc.bankImage ? <img src={acc.bankImage} alt="" className="h-8 w-8 shrink-0 object-contain" /> : <Landmark size={24} className="text-[var(--color-text-muted)]" />}
-                                                        <span className="truncate font-semibold text-[var(--color-text-strong)]">{acc.bankName}</span>
+                                                        <span className="truncate font-semibold text-[var(--color-text-primary)]">{acc.bankName}</span>
                                                     </div>
                                                     <p className="text-sm text-[var(--color-text-muted)]">{acc.accountHolder}</p>
-                                                    <p className="font-mono text-sm font-medium text-[var(--color-text-strong)]">{acc.accountNumber}</p>
+                                                    <p className="font-mono text-sm font-medium text-[var(--color-text-primary)]">{acc.accountNumber}</p>
                                                     {acc.branchName && <p className="text-xs text-[var(--color-text-soft)]">{acc.branchName}</p>}
                                                 </div>
                                                 <div className="flex shrink-0 items-start gap-0.5">
@@ -543,7 +543,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                                         type="button"
                                                         onClick={() => handleRemoveBankAccount(acc.id)}
                                                         aria-label="Remove bank account"
-                                                        className="rounded-lg p-2 text-[var(--color-text-muted)] transition hover:bg-[var(--color-danger-main)]/10 hover:text-[var(--color-danger-main)]"
+                                                        className="rounded-lg p-2 text-[var(--color-text-muted)] transition hover:bg-[var(--color-danger)]/10 hover:text-[var(--color-danger)]"
                                                     >
                                                         <Trash2 size={18} />
                                                     </button>
@@ -557,7 +557,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                     <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-[var(--shadow-accent-avatar)]">
                                         <Landmark size={28} />
                                     </div>
-                                    <p className="mt-5 text-lg font-bold text-[var(--color-text-strong)]">No bank account added</p>
+                                    <p className="mt-5 text-lg font-bold text-[var(--color-text-primary)]">No bank account added</p>
                                     <p className="mt-2 max-w-[420px] text-sm font-medium leading-6 text-[var(--color-text-muted)]">
                                         Add your bank profile to enable secure withdrawals and faster account verification.
                                     </p>

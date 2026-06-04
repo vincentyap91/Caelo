@@ -675,7 +675,7 @@ function AppInner() {
             <HelpCenterPage navigationState={pageNavigationState} />
           </AccountLayout>
         ) : (
-          <main className="w-full bg-[linear-gradient(180deg,var(--gradient-account-shell-start)_0%,var(--gradient-account-shell-mid)_38%,var(--gradient-account-shell-end)_100%)] pb-16 pt-6 md:pt-8">
+          <main className="w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8">
             <HelpCenterPage navigationState={pageNavigationState} guestLayout />
           </main>
         )
@@ -692,7 +692,7 @@ function AppInner() {
           <HistoryRecordPage activePage={page} />
         </AccountLayout>
       ) : page === 'rebate' ? (
-        <main className="w-full bg-[linear-gradient(180deg,var(--gradient-account-shell-start)_0%,var(--gradient-account-shell-mid)_38%,var(--gradient-account-shell-end)_100%)] pb-16 pt-6 md:pt-8">
+        <main className="w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8">
           <RebatePage 
             authUser={authUser} 
             onNavigate={handleNavigate} 

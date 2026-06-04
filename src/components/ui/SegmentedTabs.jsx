@@ -12,7 +12,7 @@ export default function SegmentedTabs({ items, value, onChange, layout = 'equal'
 
     return (
         <div
-            className={`flex gap-1 overflow-x-auto rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isEqual ? 'w-full' : 'w-fit'
+            className={`flex gap-1 overflow-x-auto rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isEqual ? 'w-full' : 'w-fit'
                 } ${className}`}
         >
             {items.map((item) => {

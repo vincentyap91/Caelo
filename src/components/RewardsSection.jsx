@@ -110,8 +110,8 @@ function useRewardsProgramFromHash() {
 
 function TermsBlock({ title, subtitle, children }) {
     return (
-        <div className="mt-8 border-t border-[var(--color-border-default)] pt-6">
-            <h3 className="text-base font-bold text-[var(--color-text-strong)]">{title}</h3>
+        <div className="mt-8 border-t border-[var(--color-border-subtle)] pt-6">
+            <h3 className="text-base font-bold text-[var(--color-text-primary)]">{title}</h3>
             {subtitle && (
                 <p className="mt-1 text-sm font-semibold text-[var(--color-accent-700)] underline decoration-[var(--color-accent-200)] underline-offset-2">
                     {subtitle}
@@ -135,8 +135,8 @@ function ScratchStyleRewardCard({
     onCtaClick,
 }) {
     return (
-        <div className="flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] shadow-sm transition hover:border-[var(--color-accent-200)]">
-            <div className="relative aspect-[16/10] bg-[linear-gradient(145deg,rgb(15_23_42)_0%,rgb(30_58_138)_50%,rgb(59_130_246)_100%)]">
+        <div className="flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] shadow-sm transition hover:border-[var(--color-accent-200)]">
+            <div className="relative aspect-[16/10] bg-gradient-rewards-scratch">
                 {metaTopLeft ? (
                     <div className="absolute left-2 top-2 z-10 max-w-[58%]">{metaTopLeft}</div>
                 ) : null}
@@ -145,12 +145,12 @@ function ScratchStyleRewardCard({
                 ) : null}
                 <div className="absolute inset-0 flex items-center justify-center">{heroCenter}</div>
                 <div className="absolute inset-0 flex items-center justify-center bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgb(255_255_255_/_0.06)_2px,rgb(255_255_255_/_0.06)_4px)] opacity-80" />
-                <span className="absolute bottom-2 left-2 z-10 rounded bg-black/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-white">
+                <span className="absolute bottom-2 left-2 z-10 rounded bg-[var(--color-surface-darkest)]/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)]">
                     {badge}
                 </span>
             </div>
             <div className="flex flex-1 flex-col gap-3 p-4">
-                <p className="font-bold text-[var(--color-text-strong)]">{title}</p>
+                <p className="font-bold text-[var(--color-text-primary)]">{title}</p>
                 {description ? (
                     <p className="text-xs font-medium text-[var(--color-text-muted)]">{description}</p>
                 ) : null}
@@ -158,7 +158,7 @@ function ScratchStyleRewardCard({
                     type="button"
                     disabled={ctaDisabled && !onCtaClick}
                     onClick={onCtaClick}
-                    className="mt-auto w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] py-2.5 text-sm font-bold text-[var(--color-text-strong)] transition hover:bg-[var(--color-accent-50)] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mt-auto w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-2.5 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-accent-50)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                     {ctaLabel}
                 </button>
@@ -169,13 +169,13 @@ function ScratchStyleRewardCard({
 
 function RewardsWalletBar({ balance, onRecordClick }) {
     return (
-        <div className="surface-card flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-card)] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+        <div className="surface-card flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-card)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-5 shadow-[var(--shadow-card-soft)] md:p-6">
             <div className="flex min-w-0 flex-1 items-center gap-4">
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[var(--color-cta-text)] shadow-[var(--shadow-cta-soft)] ring-1 ring-[var(--color-cta-border)]/60">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-cta-text)] shadow-[var(--shadow-cta-soft)] ring-1 ring-[var(--color-cta-border)]/60">
                     <Wallet className="h-6 w-6" strokeWidth={2} />
                 </span>
                 <div className="min-w-0">
-                    <p className="text-sm font-semibold text-[var(--color-text-main)]">Wallet Balance:</p>
+                    <p className="text-sm font-semibold text-[var(--color-text-secondary)]">Wallet Balance:</p>
                     <p className="mt-0.5 text-xl font-bold leading-tight text-[var(--color-accent-600)] md:text-2xl tabular-nums">{balance}</p>
                 </div>
             </div>
@@ -184,7 +184,7 @@ function RewardsWalletBar({ balance, onRecordClick }) {
                 onClick={onRecordClick}
                 className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02] sm:min-w-[148px]"
             >
-                <History size={18} strokeWidth={2.5} className="shrink-0 text-white" aria-hidden />
+                <History size={18} strokeWidth={2.5} className="shrink-0 text-[var(--color-text-card-text)]" aria-hidden />
                 Record
             </button>
         </div>
@@ -241,7 +241,7 @@ function CongratsClaimModal({ open, amount, onClose, autoCloseMs = 3000 }) {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Reward claimed"
-                className="claim-congrats-pop relative z-[1] flex w-full max-w-[420px] flex-col items-center overflow-hidden rounded-[22px] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-6 py-7 text-center shadow-[var(--shadow-modal)] sm:px-8 sm:py-9"
+                className="claim-congrats-pop relative z-[1] flex w-full max-w-[420px] flex-col items-center overflow-hidden rounded-[22px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-6 py-7 text-center shadow-[var(--shadow-modal)] sm:px-8 sm:py-9"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -262,13 +262,13 @@ function CongratsClaimModal({ open, amount, onClose, autoCloseMs = 3000 }) {
                 </div>
 
                 <span
-                    className="claim-coin-burst relative z-[1] flex h-20 w-20 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[rgb(15_23_42)] shadow-[0_18px_36px_rgba(255,178,45,0.4)] ring-2 ring-[var(--color-nav-accent)] sm:h-24 sm:w-24"
+                    className="claim-coin-burst relative z-[1] flex h-20 w-20 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-text-primary)] shadow-[var(--shadow-cta)] ring-2 ring-[var(--color-accent)] sm:h-24 sm:w-24"
                     aria-hidden
                 >
                     <Coins className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={2.25} />
                 </span>
 
-                <h2 className="relative z-[1] mt-5 text-lg font-bold tracking-tight text-[var(--color-text-strong)] sm:text-xl">
+                <h2 className="relative z-[1] mt-5 text-lg font-bold tracking-tight text-[var(--color-text-primary)] sm:text-xl">
                     Congratulations!
                 </h2>
                 <p className="relative z-[1] mt-2 text-2xl font-bold text-[var(--color-cta-strong-end)] sm:text-3xl">
@@ -281,7 +281,7 @@ function CongratsClaimModal({ open, amount, onClose, autoCloseMs = 3000 }) {
                 <button
                     type="button"
                     onClick={onClose}
-                    className="btn-theme-primary relative z-[1] mt-5 inline-flex h-11 w-full items-center justify-center rounded-xl px-6 text-sm font-bold text-white shadow-sm transition hover:brightness-105"
+                    className="btn-theme-primary relative z-[1] mt-5 inline-flex h-11 w-full items-center justify-center rounded-xl px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105"
                 >
                     Awesome
                 </button>
@@ -300,10 +300,10 @@ const DailyStreakNode = React.forwardRef(function DailyStreakNode({ day, positio
     const isToday = day.status === 'claimable';
 
     const circleClass = isClaimed
-        ? 'bg-[linear-gradient(180deg,var(--color-accent-500)_0%,var(--color-accent-700)_100%)] text-white ring-2 ring-[var(--color-accent-200)] shadow-[var(--shadow-subtle)]'
+        ? 'bg-gradient-accent-tab text-[var(--color-text-card-text)] ring-2 ring-[var(--color-accent-200)] shadow-[var(--shadow-subtle)]'
         : isToday
-          ? 'bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] text-[rgb(15_23_42)] ring-2 ring-[var(--color-nav-accent)] shadow-[var(--shadow-cta-soft)]'
-          : 'bg-[var(--color-surface-muted)] text-[var(--color-text-soft)] ring-1 ring-[var(--color-border-default)]';
+          ? 'bg-gradient-cta text-[var(--color-text-primary)] ring-2 ring-[var(--color-accent)] shadow-[var(--shadow-cta-soft)]'
+          : 'bg-[var(--color-surface-muted)] text-[var(--color-text-soft)] ring-1 ring-[var(--color-border-subtle)]';
 
     const labelClass = isToday
         ? 'text-[var(--color-cta-strong-end)]'
@@ -312,7 +312,7 @@ const DailyStreakNode = React.forwardRef(function DailyStreakNode({ day, positio
           : 'text-[var(--color-text-soft)]';
 
     const rewardClass = isToday || isClaimed
-        ? 'text-[rgb(18_63_128)]'
+        ? 'text-[var(--color-text-brand)]'
         : 'text-[var(--color-text-soft)]';
 
     return (
@@ -334,7 +334,7 @@ const DailyStreakNode = React.forwardRef(function DailyStreakNode({ day, positio
                 )}
                 {isToday && (
                     <span
-                        className="pointer-events-none absolute -inset-1 animate-ping rounded-full ring-2 ring-[var(--color-nav-accent)]/50"
+                        className="pointer-events-none absolute -inset-1 animate-ping rounded-full ring-2 ring-[var(--color-accent)]/50"
                         aria-hidden
                     />
                 )}
@@ -361,14 +361,14 @@ const DailyStreakNode = React.forwardRef(function DailyStreakNode({ day, positio
 function GuestPreviewBanner({ onLoginClick }) {
     return (
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[var(--radius-control)] border border-[var(--color-accent-200)] bg-[var(--color-accent-50)] px-4 py-3 sm:px-5">
-            <p className="text-sm font-medium text-[var(--color-text-main)]">
+            <p className="text-sm font-medium text-[var(--color-text-secondary)]">
                 Preview mode — sign in to claim rewards and track your check-in streak.
             </p>
             {onLoginClick ? (
                 <button
                     type="button"
                     onClick={onLoginClick}
-                    className="btn-theme-primary inline-flex h-10 shrink-0 items-center justify-center rounded-xl px-5 text-sm font-bold text-white shadow-sm transition hover:brightness-105"
+                    className="btn-theme-primary inline-flex h-10 shrink-0 items-center justify-center rounded-xl px-5 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105"
                 >
                     Login
                 </button>
@@ -412,27 +412,27 @@ function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
         <div className="space-y-6">
             <div className="overflow-hidden rounded-[var(--radius-panel-lg)] border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
                 {/* Light blue header — matches screenshot top block */}
-                <div className="bg-[linear-gradient(180deg,var(--color-accent-50)_0%,rgb(219_234_254)_100%)] px-5 py-5 sm:px-6 sm:py-6">
-                    <h3 className="text-lg font-bold text-[rgb(18_63_128)] md:text-xl">Daily Check In</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-main)]">
+                <div className="bg-gradient-rewards-accent-footer px-5 py-5 sm:px-6 sm:py-6">
+                    <h3 className="text-lg font-bold text-[var(--color-text-brand)] md:text-xl">Daily Check In</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
                         You have accumulated{' '}
                         <span className="font-bold text-[var(--color-cta-strong-end)]">Day {displayStreakDays}</span> check-in
                     </p>
                 </div>
                 {/* Gray-blue info banner + square yellow trophy */}
-                <div className="flex flex-wrap items-center gap-4 border-t border-[var(--color-border-default)] bg-[linear-gradient(180deg,var(--color-surface-muted)_0%,var(--color-accent-50)_40%)] px-5 py-4 sm:px-6 sm:py-5">
+                <div className="flex flex-wrap items-center gap-4 border-t border-[var(--color-border-subtle)] bg-gradient-rewards-footer px-5 py-4 sm:px-6 sm:py-5">
                     <div
-                        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-control)] bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] shadow-[var(--shadow-subtle)] ring-1 ring-[var(--color-cta-border)]/50"
+                        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-control)] bg-gradient-cta shadow-[var(--shadow-subtle)] ring-1 ring-[var(--color-cta-border)]/50"
                         aria-hidden
                     >
-                        <Trophy className="h-7 w-7 text-[rgb(15_23_42)]" strokeWidth={2} />
+                        <Trophy className="h-7 w-7 text-[var(--color-text-primary)]" strokeWidth={2} />
                     </div>
-                    <p className="min-w-0 flex-1 text-sm font-medium leading-relaxed text-[var(--color-text-main)]">
+                    <p className="min-w-0 flex-1 text-sm font-medium leading-relaxed text-[var(--color-text-secondary)]">
                         Claim MYR rewards each day. Some days may require minimum valid turnover on your main wallet.
                     </p>
                 </div>
                 {/* 31-day horizontal streak */}
-                <div className="border-t border-[var(--color-border-default)] bg-[var(--color-surface-base)] pb-4 sm:pb-5">
+                <div className="border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pb-4 sm:pb-5">
                     <div
                         ref={scrollerRef}
                         className="overflow-x-auto scroll-smooth px-3 py-1 [-webkit-overflow-scrolling:touch] sm:px-6 sm:py-2"
@@ -461,7 +461,7 @@ function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
                                                 className={`mt-5 h-1 w-6 shrink-0 rounded-full sm:mt-7 sm:w-8 ${
                                                     d.status === 'claimed'
                                                         ? 'bg-[var(--color-accent-400)]'
-                                                        : 'bg-[var(--color-border-default)]'
+                                                        : 'bg-[var(--color-border-subtle)]'
                                                 }`}
                                             />
                                         )}
@@ -480,19 +480,19 @@ function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
                     <div className="px-3 sm:px-6">
 
                     {displayTodayDay ? (
-                        <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-control)] border-2 border-[var(--color-nav-accent)] bg-[linear-gradient(180deg,var(--color-accent-50)_0%,var(--color-surface-base)_100%)] px-4 py-3 shadow-[var(--shadow-subtle)] sm:px-5">
+                        <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-control)] border-2 border-[var(--color-accent)] bg-gradient-rewards-highlight px-4 py-3 shadow-[var(--shadow-subtle)] sm:px-5">
                             <div className="flex min-w-0 items-center gap-3">
                                 <span
-                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)] shadow-[var(--shadow-subtle)] ring-1 ring-[var(--color-cta-border)]/60"
+                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-cta shadow-[var(--shadow-subtle)] ring-1 ring-[var(--color-cta-border)]/60"
                                     aria-hidden
                                 >
-                                    <Coins className="h-5 w-5 text-[rgb(15_23_42)]" strokeWidth={2.5} />
+                                    <Coins className="h-5 w-5 text-[var(--color-text-primary)]" strokeWidth={2.5} />
                                 </span>
                                 <div className="min-w-0">
                                     <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-text-soft)]">
                                         Today&rsquo;s reward
                                     </p>
-                                    <p className="truncate text-base font-bold text-[var(--color-text-strong)]">
+                                    <p className="truncate text-base font-bold text-[var(--color-text-primary)]">
                                         {displayTodayDay.label} &middot; {displayTodayDay.reward}
                                     </p>
                                 </div>
@@ -501,7 +501,7 @@ function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
                                 <button
                                     type="button"
                                     onClick={onLoginClick}
-                                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-white shadow-sm transition hover:brightness-105 active:brightness-95"
+                                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105 active:brightness-95"
                                 >
                                     Login to claim
                                 </button>
@@ -509,7 +509,7 @@ function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
                                 <button
                                     type="button"
                                     onClick={handleClaimToday}
-                                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-white shadow-sm transition hover:brightness-105 active:brightness-95"
+                                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105 active:brightness-95"
                                 >
                                     Claim now
                                 </button>
@@ -549,7 +549,7 @@ function SpinWheelPanel({ guestPreview = false, onLoginClick }) {
     return (
         <div className="space-y-6">
             <div>
-                <h3 className="text-base font-bold text-[var(--color-text-strong)]">Spin offers</h3>
+                <h3 className="text-base font-bold text-[var(--color-text-primary)]">Spin offers</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Same scratch-card look — spin for random MYR; prizes credit to your wallet after claim.
                 </p>
@@ -559,7 +559,7 @@ function SpinWheelPanel({ guestPreview = false, onLoginClick }) {
                             key={s.id}
                             badge="Spin"
                             heroCenter={
-                                <span className="text-4xl font-bold text-white/90 drop-shadow-lg">
+                                <span className="text-4xl font-bold text-[var(--color-nav-text-soft)] drop-shadow-lg">
                                     RM {s.value}
                                 </span>
                             }
@@ -587,7 +587,7 @@ function VoucherScratchPanel({ guestPreview = false, onLoginClick }) {
     return (
         <div className="space-y-6">
             <div>
-                <h3 className="text-base font-bold text-[var(--color-text-strong)]">Scratch &amp; redeem</h3>
+                <h3 className="text-base font-bold text-[var(--color-text-primary)]">Scratch &amp; redeem</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Reveal vouchers — MYR credit applies to your main wallet when you complete redemption.
                 </p>
@@ -597,7 +597,7 @@ function VoucherScratchPanel({ guestPreview = false, onLoginClick }) {
                             key={v.id}
                             badge="Scratch"
                             heroCenter={
-                                <span className="text-4xl font-bold text-white/90 drop-shadow-lg">
+                                <span className="text-4xl font-bold text-[var(--color-nav-text-soft)] drop-shadow-lg">
                                     RM {v.value}
                                 </span>
                             }
@@ -625,7 +625,7 @@ function PrizeBoxPanel({ guestPreview = false, onLoginClick }) {
     return (
         <div className="space-y-6">
             <div>
-                <h3 className="text-base font-bold text-[var(--color-text-strong)]">Your rewards</h3>
+                <h3 className="text-base font-bold text-[var(--color-text-primary)]">Your rewards</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Campaign items appear here when available for claim.</p>
                 <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {PRIZE_ITEMS.map((item) => (
@@ -633,18 +633,18 @@ function PrizeBoxPanel({ guestPreview = false, onLoginClick }) {
                             key={item.id}
                             badge="Prize"
                             metaTopLeft={
-                                <span className="rounded-md bg-black/45 px-2 py-1 text-xs font-bold text-white backdrop-blur-sm">
+                                <span className="rounded-md bg-[var(--color-surface-darkest)]/45 px-2 py-1 text-xs font-bold text-[var(--color-text-card-text)] backdrop-blur-sm">
                                     Reward #{item.id}
                                 </span>
                             }
                             metaTopRight={
-                                <span className="inline-flex items-center gap-1 rounded-full border border-white/25 bg-black/40 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                                <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-nav-border)]/25 bg-[var(--color-surface-darkest)]/40 px-2.5 py-1 text-xs font-semibold text-[var(--color-text-card-text)] backdrop-blur-sm">
                                     <Clock size={11} className="shrink-0 opacity-90" />
                                     {item.expires}
                                 </span>
                             }
                             heroCenter={
-                                <span className="text-4xl font-bold text-white/90 drop-shadow-lg">
+                                <span className="text-4xl font-bold text-[var(--color-nav-text-soft)] drop-shadow-lg">
                                     RM {item.amount}
                                 </span>
                             }
@@ -713,13 +713,13 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
 
     const recordTypeFilterSlot = (
         <label className="block w-full">
-            <span className="mb-2 block text-xs font-semibold text-[var(--color-text-strong)] md:text-sm">Type</span>
+            <span className="mb-2 block text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Type</span>
             <div className="relative">
                 <select
                     value={recordActivityType}
                     onChange={(e) => setRecordActivityType(e.target.value)}
                     aria-label="Record type"
-                    className="h-11 w-full cursor-pointer appearance-none rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none transition focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                    className="h-11 w-full cursor-pointer appearance-none rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none transition focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                 >
                     {REWARDS_ACTIVITY_RECORD_TYPES.map(({ id, label }) => (
                         <option key={id} value={id}>
@@ -746,7 +746,7 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
                             <Trophy size={22} strokeWidth={2} />
                         </div>
                         <div>
-                            <h2 className="text-base font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">
+                            <h2 className="text-base font-bold tracking-tight text-[var(--color-text-primary)] md:text-xl">
                                 Rewards
                             </h2>
                             <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
@@ -761,7 +761,7 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
                 <>
                     <div className="mb-6 md:hidden">
                         <label htmlFor="rewards-program-select" className="block">
-                            <span className="mb-2 block text-sm font-semibold text-[var(--color-text-strong)]">
+                            <span className="mb-2 block text-sm font-semibold text-[var(--color-text-primary)]">
                                 Program
                             </span>
                             <div className="relative">
@@ -770,7 +770,7 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
                                     value={activeProgram}
                                     onChange={(e) => setProgramHash(e.target.value)}
                                     aria-label="Rewards programme"
-                                    className="h-11 w-full cursor-pointer appearance-none rounded-full border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-semibold text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none transition focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                    className="h-11 w-full cursor-pointer appearance-none rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] pl-4 pr-10 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none transition focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                                 >
                                     {REWARDS_PROGRAMS.map(({ id, label }) => (
                                         <option key={id} value={id}>
@@ -811,7 +811,7 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
                                     className={`max-lg:snap-start min-h-[44px] shrink-0 whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold transition ${
                                         selected
                                             ? 'border-[var(--color-accent-300)] bg-[var(--color-accent-50)] text-[var(--color-accent-800)] shadow-sm ring-1 ring-[var(--color-accent-100)]'
-                                            : 'border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:text-[var(--color-text-strong)]'
+                                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:text-[var(--color-text-primary)]'
                                     }`}
                                 >
                                     {label}

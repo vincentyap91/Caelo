@@ -1,5 +1,6 @@
-﻿import React, { useRef } from 'react';
+import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { GameCardPlayBar } from '../game/GameCardActions';
 
 /**
  * @param {Object} props
@@ -21,7 +22,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
     return (
         <section className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6 lg:p-7">
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3 md:mb-6">
-                <h3 className="text-lg font-bold italic tracking-tight text-[var(--color-text-strong)] md:text-xl">{title}</h3>
+                <h3 className="text-lg font-bold italic tracking-tight text-[var(--color-text-primary)] md:text-xl">{title}</h3>
                 <div className="flex flex-shrink-0 items-center gap-2">
                     {onMoreGames ? (
                         <button
@@ -36,7 +37,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                         <button
                             type="button"
                             onClick={() => scrollBy(-1)}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-50)]"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-50)]"
                             aria-label="Scroll left"
                         >
                             <ChevronLeft size={18} />
@@ -44,7 +45,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                         <button
                             type="button"
                             onClick={() => scrollBy(1)}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-50)]"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-50)]"
                             aria-label="Scroll right"
                         >
                             <ChevronRight size={18} />
@@ -58,13 +59,20 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                 className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 pt-0.5 md:gap-4 lg:gap-5"
             >
                 {games.map((g) => (
-                    <button
+                    <div
                         key={g.id}
-                        type="button"
+                        role="button"
+                        tabIndex={0}
                         onClick={() => onGameClick?.(g)}
-                        className="group relative flex w-[42%] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-[200px] md:w-[220px]"
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                onGameClick?.(g);
+                            }
+                        }}
+                        className="group relative flex w-[42%] shrink-0 cursor-pointer snap-start flex-col overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-[200px] md:w-[220px]"
                     >
-                        <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-slate-200">
+                        <div className="pointer-events-none relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-[var(--color-border-subtle)]">
                             <img
                                 src={g.imgUrl}
                                 alt=""
@@ -73,13 +81,19 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                                 decoding="async"
                             />
                             {g.provider ? (
-                                <span className="absolute left-1/2 top-2 z-[1] max-w-[90%] -translate-x-1/2 truncate rounded-full bg-black/55 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+                                <span className="absolute left-1/2 top-2 z-[1] max-w-[90%] -translate-x-1/2 truncate rounded-full bg-[var(--color-surface-darkest)]/55 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)] backdrop-blur-sm">
                                     {g.provider}
                                 </span>
                             ) : null}
+                            <GameCardPlayBar
+                                showOnHover
+                                gameName={g.name}
+                                gameProvider={g.provider}
+                                onPlayClick={() => onGameClick?.(g)}
+                            />
                         </div>
-                        <p className="line-clamp-2 shrink-0 px-2 py-2 text-center text-xs font-bold text-[var(--color-text-strong)] md:text-sm">{g.name}</p>
-                    </button>
+                        <p className="line-clamp-2 shrink-0 px-2 py-2 text-center text-xs font-bold text-[var(--color-text-primary)] md:text-sm">{g.name}</p>
+                    </div>
                 ))}
             </div>
         </section>

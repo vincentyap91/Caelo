@@ -25,13 +25,13 @@ const searchScopes = [
     { id: 'providers', label: 'Providers' },
 ];
 const pageContainerClass = 'mx-auto w-full max-w-screen-2xl px-4 md:px-8';
-const sectionTitleClass = 'text-xl font-bold tracking-tight text-slate-900 md:text-2xl';
+const sectionTitleClass = 'text-xl font-bold tracking-tight text-[var(--color-text-primary)] md:text-2xl';
 const ALL_PROVIDERS = DEFAULT_ALL_PROVIDERS_VALUE;
 
 const liveBigWins = [
-    { user: 'Alex M.', amount: 'MYR 45,200', game: 'Ocean King', time: '2 min ago', amountColor: 'text-[var(--color-danger-main)]' },
-    { user: 'Sarah K.', amount: 'MYR 32,800', game: 'Fishing God', time: '5 min ago', amountColor: 'text-[var(--color-brand-primary)]' },
-    { user: 'John D.', amount: 'MYR 78,500', game: 'Dragon Fortune', time: '8 min ago', amountColor: 'text-[var(--color-danger-main)]' },
+    { user: 'Alex M.', amount: 'MYR 45,200', game: 'Ocean King', time: '2 min ago', amountColor: 'text-[var(--color-danger)]' },
+    { user: 'Sarah K.', amount: 'MYR 32,800', game: 'Fishing God', time: '5 min ago', amountColor: 'text-[var(--color-primary)]' },
+    { user: 'John D.', amount: 'MYR 78,500', game: 'Dragon Fortune', time: '8 min ago', amountColor: 'text-[var(--color-danger)]' },
 ];
 
 const INITIAL_GAMES = 12;
@@ -88,7 +88,7 @@ export default function FishingPage({ onNavigate }) {
     };
 
     return (
-        <main className="w-full bg-gradient-to-b from-blue-50 via-slate-50 to-slate-100 pb-14 font-sans">
+        <main className="w-full bg-gradient-soft-blue-panel pb-14 font-sans">
             <section className="w-full pt-5 md:pt-7">
                 <div className={pageContainerClass}>
                     <div className="page-hero-banner">
@@ -97,11 +97,11 @@ export default function FishingPage({ onNavigate }) {
                             alt="Fishing Banner"
                             className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL}`}
                         />
-                        <div className="absolute inset-y-0 left-0 w-[56%] bg-[linear-gradient(90deg,rgb(234_244_255_/_0.96)_0%,rgb(234_244_255_/_0.86)_45%,transparent_100%)] sm:w-[52%] md:w-[50%]" />
+                        <div className="absolute inset-y-0 left-0 w-[56%] bg-gradient-hero-fade-left sm:w-[52%] md:w-[50%]" />
                         <div className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-bold uppercase text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
+                                    <h1 className="text-xl font-bold uppercase text-[var(--color-text-primary)] sm:text-2xl md:text-3xl">
                                         Fishing
                                     </h1>
                                 </div>
@@ -121,11 +121,11 @@ export default function FishingPage({ onNavigate }) {
                                 type="button"
                                 onClick={() => setActiveProvider(provider.name)}
                                 className={`relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 bg-[var(--color-surface-base)] px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
-                                    isActive ? 'border-[var(--color-brand-deep)] ring-2 ring-[var(--color-brand-deep)]/30' : 'border-[rgb(209_216_229)] hover:border-[rgb(183_194_215)]'
+                                    isActive ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-surface-accent-hover)]/30' : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-accent)]'
                                 }`}
                             >
                                 {(provider.featured || provider.new) && (
-                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-bold text-white ${provider.new ? 'bg-blue-500' : 'bg-orange-500'}`}>
+                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-bold text-[var(--color-text-card-text)] ${provider.new ? 'bg-[var(--color-accent-500)]' : 'bg-[var(--color-danger)]'}`}>
                                         {provider.new ? 'New' : 'Hot'}
                                     </span>
                                 )}
@@ -172,7 +172,7 @@ export default function FishingPage({ onNavigate }) {
                                     aria-label={`Open ${game.name}`}
                                 />
                                 {(game.hot || game.new) && (
-                                    <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-bold text-white">
+                                    <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-danger)] px-2.5 py-0.5 text-xs font-bold text-[var(--color-text-card-text)]">
                                         {game.hot ? 'HOT' : 'NEW'}
                                     </span>
                                 )}
@@ -196,16 +196,16 @@ export default function FishingPage({ onNavigate }) {
                                     />
                                 </div>
                                 <div className="p-2 md:p-3">
-                                    <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>
-                                    <p className="mt-1 text-xs text-slate-500">{game.provider}</p>
+                                    <p className="line-clamp-2 text-xs font-bold text-[var(--color-text-primary)] md:text-sm">{game.name}</p>
+                                    <p className="mt-1 text-xs text-[var(--color-text-muted)]">{game.provider}</p>
                                 </div>
                             </div>
                     ))}
                 </div>
                 {filteredGames.length === 0 && (
                     <div className="surface-card mt-6 rounded-2xl px-4 py-7 text-center">
-                        <p className="text-base font-bold text-slate-800">No games match your search.</p>
-                        <p className="mt-1 text-xs text-slate-500">Try a different keyword or switch filter.</p>
+                        <p className="text-base font-bold text-[var(--color-text-primary)]">No games match your search.</p>
+                        <p className="mt-1 text-xs text-[var(--color-text-muted)]">Try a different keyword or switch filter.</p>
                     </div>
                 )}
                 {filteredGames.length > gamesToShow && (
@@ -233,7 +233,7 @@ export default function FishingPage({ onNavigate }) {
                                     href="#"
                                     className="surface-card group flex min-w-0 flex-1 basis-[220px] items-start gap-3.5 rounded-2xl p-3.5 transition hover:-translate-y-0.5 hover:shadow-lg sm:items-center sm:gap-5 sm:p-4"
                                 >
-                                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:h-20 sm:w-20">
+                                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[var(--color-surface-subtle)] sm:h-20 sm:w-20">
                                         <img
                                             src={game.imgUrl}
                                             alt={win.game}
@@ -241,10 +241,10 @@ export default function FishingPage({ onNavigate }) {
                                         />
                                     </div>
                                     <div className="min-w-0 flex-1">
-                                        <p className="text-sm font-bold leading-snug text-slate-800">
+                                        <p className="text-sm font-bold leading-snug text-[var(--color-text-primary)]">
                                             {win.user} won <span className={win.amountColor}>{win.amount}</span>
                                         </p>
-                                        <p className="mt-px text-xs leading-snug text-slate-500 sm:mt-0.5">
+                                        <p className="mt-px text-xs leading-snug text-[var(--color-text-muted)] sm:mt-0.5">
                                             on {win.game}
                                             {' \u00B7 '}
                                             {win.time}

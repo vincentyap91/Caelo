@@ -4,7 +4,7 @@ import { Info } from 'lucide-react';
 export default function RequirementCard({ title, items, helperText }) {
     return (
         <div className="surface-card rounded-2xl p-6 shadow-[var(--shadow-card-soft)]">
-            <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-[var(--color-text-strong)]">
+            <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-[var(--color-text-primary)]">
                 <Info size={18} className="text-[var(--color-accent-500)]" />
                 {title}
             </h3>
@@ -19,7 +19,7 @@ export default function RequirementCard({ title, items, helperText }) {
                 </ul>
             )}
             {helperText && (
-                <div className="flex gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] p-4">
+                <div className="flex gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] p-4">
                     <Info size={18} className="mt-0.5 shrink-0 text-[var(--color-accent-500)]" />
                     <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">{helperText}</p>
                 </div>

@@ -109,14 +109,14 @@ export default function RecentPayoutSection({ onNavigate, payouts = MOCK_RECENT_
                 <header className={RECENT_PAYOUT_HEADER_CLASS}>
                     <Trophy
                         size={18}
-                        className="recent-payout-header__icon shrink-0 text-[var(--color-nav-accent)] md:hidden"
+                        className="recent-payout-header__icon shrink-0 text-[var(--color-accent)] md:hidden"
                         fill="currentColor"
                         strokeWidth={1.75}
                         aria-hidden
                     />
                     <Trophy
                         size={20}
-                        className="recent-payout-header__icon hidden shrink-0 text-[var(--color-nav-accent)] md:block"
+                        className="recent-payout-header__icon hidden shrink-0 text-[var(--color-accent)] md:block"
                         fill="currentColor"
                         strokeWidth={1.75}
                         aria-hidden

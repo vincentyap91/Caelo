@@ -20,15 +20,15 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
   const basePillClasses = `inline-flex ${flexDir} items-center ${gap} ${header ? 'h-10 rounded-xl' : 'rounded-full'} ${padding} ${textSize} transition-all duration-200 ${header ? 'shrink-0' : ''} ${className}`;
 
   const lightStyles = 'border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)]';
-  const darkStyles = 'border border-[rgb(61_125_203)] bg-[linear-gradient(180deg,#143567_0%,#0e2547_100%)] text-[rgb(219_234_255)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]';
+  const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-nav-text-soft)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]';
 
   const headerGlossyPill =
-    'border border-white/15 bg-[linear-gradient(180deg,#16508f_0%,#0d3562_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-[linear-gradient(180deg,#18599e_0%,#0e3a6d_100%)]';
+    'border border-[var(--color-nav-border)] bg-gradient-vip-nav-pill shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-gradient-vip-nav-pill-hover';
 
   const pillStyles = header && isDark ? headerGlossyPill : isDark ? darkStyles : lightStyles;
 
   const displayText = headerWithUsername ? username : vip.label;
-  const textColor = header && isDark ? 'text-[rgb(255_240_160)]' : '';
+  const textColor = header && isDark ? 'text-[var(--color-nav-accent-soft)]' : '';
   const labelText = isColumn ? vip.tier : displayText;
 
   if (isColumn && large && !isDark) {

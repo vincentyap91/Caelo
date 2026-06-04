@@ -48,7 +48,7 @@ export default function HotGamesPage({ onNavigate }) {
                 aria-label={`Open ${game.name}`}
               />
               {(game.hot || game.new) && (
-                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-orange-500 px-2.5 py-0.5 text-xs font-bold text-white">
+                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-danger)] px-2.5 py-0.5 text-xs font-bold text-[var(--color-text-card-text)]">
                   {game.hot ? 'HOT' : 'NEW'}
                 </span>
               )}
@@ -76,7 +76,7 @@ export default function HotGamesPage({ onNavigate }) {
                 />
               </div>
               <div className="p-2 md:p-3">
-                <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>
+                <p className="line-clamp-2 text-xs font-bold text-[var(--color-text-primary)] md:text-sm">{game.name}</p>
               </div>
             </div>
           ))}
@@ -84,7 +84,7 @@ export default function HotGamesPage({ onNavigate }) {
 
         {hotGames.length === 0 && (
           <div className="surface-card mt-6 rounded-2xl px-4 py-7 text-center">
-            <p className="text-base font-bold text-[var(--color-text-strong)]">No hot games available.</p>
+            <p className="text-base font-bold text-[var(--color-text-primary)]">No hot games available.</p>
             <p className="mt-1 text-xs text-[var(--color-text-muted)]">Please try again later.</p>
           </div>
         )}

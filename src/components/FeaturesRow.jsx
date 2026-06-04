@@ -239,19 +239,19 @@ export default function FeaturesRow() {
         <section className="w-full pt-8">
             <SectionHeader
                 title="Outstanding Functions"
-                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-brand-secondary)]" />}
+                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}
             />
 
             <div className="mt-8 grid grid-cols-2 items-stretch gap-3.5 px-4 sm:gap-4 lg:flex lg:items-center lg:justify-between lg:gap-4">
                 {features.map((item, idx) => (
                     <div
                         key={idx}
-                        className="group flex h-full min-h-[7.5rem] min-w-0 flex-col items-center justify-center gap-2.5 rounded-xl border border-white bg-[rgb(255_255_255_/_0.4)] px-3 py-4 text-center shadow-[0_5px_15px_rgba(0,174,239,0.05)] transition-transform hover:-translate-y-1 sm:gap-3 sm:px-3.5 sm:py-[1.125rem] lg:min-h-0 lg:min-w-[200px] lg:flex-1 lg:flex-row lg:items-center lg:justify-center lg:gap-3 lg:px-4 lg:py-3 lg:text-left"
+                        className="group flex h-full min-h-[7.5rem] min-w-0 flex-col items-center justify-center gap-2.5 rounded-xl border border-[var(--color-nav-border)] bg-[var(--color-surface-base)]/40 px-3 py-4 text-center shadow-[0_5px_15px_rgba(0,174,239,0.05)] transition-transform hover:-translate-y-1 sm:gap-3 sm:px-3.5 sm:py-[1.125rem] lg:min-h-0 lg:min-w-[200px] lg:flex-1 lg:flex-row lg:items-center lg:justify-center lg:gap-3 lg:px-4 lg:py-3 lg:text-left"
                     >
                         <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[var(--color-brand-soft)] bg-[var(--color-surface-base)] p-1 shadow-sm transition-transform group-hover:scale-110 lg:h-auto lg:w-auto lg:p-2">
                             {item.icon}
                         </div>
-                        <span className="w-full text-pretty text-xs font-semibold leading-snug tracking-tight text-[var(--color-brand-secondary)] sm:text-sm lg:max-w-[120px] lg:flex-none lg:font-bold lg:leading-tight lg:tracking-normal">
+                        <span className="w-full text-pretty text-xs font-semibold leading-snug tracking-tight text-[var(--color-button-hover)] sm:text-sm lg:max-w-[120px] lg:flex-none lg:font-bold lg:leading-tight lg:tracking-normal">
                             {item.title}
                         </span>
                     </div>

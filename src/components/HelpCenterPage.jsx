@@ -94,7 +94,7 @@ function AccordionItem({ index, question, answer, isOpen, onToggle }) {
                 onClick={onToggle}
                 className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-[var(--color-surface-muted)]"
             >
-                <span className="text-base font-bold text-[var(--color-text-strong)]">
+                <span className="text-base font-bold text-[var(--color-text-primary)]">
                     {index}. {question}
                 </span>
                 <ChevronDown
@@ -103,7 +103,7 @@ function AccordionItem({ index, question, answer, isOpen, onToggle }) {
                 />
             </button>
             {isOpen && (
-                <div className="border-t border-[var(--color-border-default)] px-5 py-4">
+                <div className="border-t border-[var(--color-border-subtle)] px-5 py-4">
                     <p className="text-sm font-medium leading-relaxed text-[var(--color-text-muted)]">{answer}</p>
                 </div>
             )}
@@ -159,7 +159,7 @@ export default function HelpCenterPage({ navigationState = null, guestLayout = f
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search for help..."
-                        className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent-400)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent-400)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
                     />
                     <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-soft)]" />
                 </label>
@@ -208,7 +208,7 @@ export default function HelpCenterPage({ navigationState = null, guestLayout = f
                         <div className="space-y-4">
                             {termsSections.map((section) => (
                                 <section key={section.title} className="surface-card rounded-2xl p-6 md:p-8">
-                                    <h2 className="text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">
+                                    <h2 className="text-lg font-bold tracking-tight text-[var(--color-text-primary)] md:text-xl">
                                         {section.title}
                                     </h2>
                                     <ol className="mt-4 space-y-3">

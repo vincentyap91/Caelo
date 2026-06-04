@@ -17,7 +17,7 @@ export default function GameDetailMobileInfoCard({
         <div className="surface-card overflow-hidden rounded-2xl p-4 sm:p-5">
             <div className="flex items-center gap-3.5 sm:gap-4">
                 <div
-                    className="relative flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)]"
+                    className="relative flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)]"
                     aria-hidden={!hasImage}
                 >
                     {hasImage ? (
@@ -35,7 +35,7 @@ export default function GameDetailMobileInfoCard({
                     )}
                 </div>
                 <div className="min-w-0 flex-1 pt-0.5">
-                    <h2 className="text-base font-bold leading-snug tracking-tight text-[var(--color-text-strong)] sm:text-lg">
+                    <h2 className="text-base font-bold leading-snug tracking-tight text-[var(--color-text-primary)] sm:text-lg">
                         {gameTitle}
                     </h2>
                     <p className="mt-1.5 text-xs font-medium leading-snug text-[var(--color-text-muted)]">
@@ -49,7 +49,7 @@ export default function GameDetailMobileInfoCard({
                                 {providerName}
                             </button>
                         ) : (
-                            <span className="font-semibold text-[var(--color-text-strong)]">{providerName}</span>
+                            <span className="font-semibold text-[var(--color-text-primary)]">{providerName}</span>
                         )}
                     </p>
                 </div>

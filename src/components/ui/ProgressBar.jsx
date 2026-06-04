@@ -3,15 +3,15 @@ import React from 'react';
 const VARIANT_STYLES = {
     default: {
         track: 'bg-[var(--color-surface-muted)]',
-        fill: 'bg-[linear-gradient(90deg,var(--color-accent-400)_0%,var(--color-accent-600)_100%)]',
+        fill: 'bg-gradient-progress-fill',
     },
     dark: {
-        track: 'bg-white/10',
-        fill: 'bg-[linear-gradient(90deg,var(--color-cta-start)_0%,var(--color-cta-end)_100%)]',
+        track: 'bg-[var(--color-nav-border-soft)]',
+        fill: 'bg-gradient-button-cta',
     },
     'slot-promo': {
         track: 'bg-[var(--color-accent-100)]',
-        fill: 'bg-[linear-gradient(90deg,var(--color-accent-400)_0%,var(--color-accent-600)_100%)]',
+        fill: 'bg-gradient-progress-fill',
     },
 };
 

@@ -32,7 +32,7 @@ export default function PromoSummaryDropdown({
                     <button
                         type="button"
                         onClick={onEndPromo}
-                        className="btn-theme-cta-soft inline-flex h-8 shrink-0 items-center justify-center rounded-[var(--radius-control)] px-3 text-xs font-bold shadow-[var(--shadow-cta-soft)] transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-nav-accent)]"
+                        className="btn-theme-cta-soft inline-flex h-8 shrink-0 items-center justify-center rounded-[var(--radius-control)] px-3 text-xs font-bold shadow-[var(--shadow-cta-soft)] transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
                     >
                         End Promo
                     </button>

@@ -55,13 +55,13 @@ export default function PromoProgressRow({
         ? 'font-bold tabular-nums balance-modal-text-secondary'
         : isProfile
           ? 'font-bold tabular-nums text-[var(--base-ink)]'
-          : 'font-bold tabular-nums text-[var(--color-brand-deep)]';
+          : 'font-bold tabular-nums text-[var(--color-surface-accent-hover)]';
 
     const percentClass = isBalance
         ? 'shrink-0 text-xs font-bold tabular-nums balance-modal-text-primary'
         : isProfile
           ? 'shrink-0 text-xs font-bold tabular-nums text-[var(--base-ink)] sm:text-sm'
-          : 'shrink-0 text-xs font-bold tabular-nums text-[var(--color-text-strong)] sm:text-sm';
+          : 'shrink-0 text-xs font-bold tabular-nums text-[var(--color-text-primary)] sm:text-sm';
 
     const separatorClass = isBalance
         ? 'font-semibold balance-modal-text-primary/50'

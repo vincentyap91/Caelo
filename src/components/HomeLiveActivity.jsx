@@ -3,7 +3,7 @@ import LiveTransactionsPanel from './home/LiveTransactionsPanel';
 import RecentBigWinsSection from './home/RecentBigWinsSection';
 
 const liveActivityCardClass =
-    'w-full overflow-hidden rounded-2xl border border-[var(--color-border-brand-soft)] bg-gradient-to-b from-white via-[var(--color-surface-subtle)] to-[var(--color-accent-50)]/50 p-6 shadow-[var(--shadow-card-soft)] md:p-8 lg:p-9';
+    'w-full overflow-hidden rounded-2xl border border-[var(--color-border-brand)] bg-gradient-home-dashboard p-6 shadow-[var(--shadow-card-soft)] md:p-8 lg:p-9';
 
 /**
  * Homepage: Live Transactions and Recent Big Wins — each full-width row, stacked.

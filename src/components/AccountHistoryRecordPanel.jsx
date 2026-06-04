@@ -81,18 +81,18 @@ function getStatusPillClassName(value) {
     const base = 'inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold leading-none';
 
     if (tone === 'success') {
-        return `${base} border-[rgb(57_181_74_/_0.24)] bg-[rgb(57_181_74_/_0.12)] text-[var(--color-success-main)]`;
+        return `${base} border-[var(--color-success)]/25 bg-[var(--color-success)]/12 text-[var(--color-success)]`;
     }
 
     if (tone === 'warning') {
-        return `${base} border-[rgb(245_194_66_/_0.28)] bg-[rgb(245_194_66_/_0.14)] text-[rgb(179_121_16)]`;
+        return `${base} border-[var(--color-warning)]/30 bg-[var(--color-warning)]/15 text-[var(--color-text-sub-title)]`;
     }
 
     if (tone === 'danger') {
-        return `${base} border-[rgb(239_68_68_/_0.22)] bg-[rgb(239_68_68_/_0.1)] text-[rgb(185_28_28)]`;
+        return `${base} border-[var(--color-danger)]/22 bg-[var(--color-danger)]/10 text-[var(--color-danger-red)]`;
     }
 
-    return `${base} border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)]`;
+    return `${base} border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)]`;
 }
 
 const HISTORY_QUICK_RANGES = [
@@ -167,7 +167,7 @@ export default function AccountHistoryRecordPanel({
             shape,
             selected
                 ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]'
-                : 'border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]',
+                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]',
         ].join(' ');
     };
 
@@ -209,7 +209,7 @@ export default function AccountHistoryRecordPanel({
                 <div className="mt-4">
                     <button
                         type="button"
-                        className="btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-white shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
+                        className="btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
                     >
                         Submit
                     </button>
@@ -220,7 +220,7 @@ export default function AccountHistoryRecordPanel({
                 <div className="overflow-x-auto">
                     <table className="w-full min-w-[320px] border-collapse text-sm">
                         <thead>
-                            <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)]">
+                            <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]">
                                 {columns.map((col) => (
                                     <th
                                         key={col.key}
@@ -238,12 +238,12 @@ export default function AccountHistoryRecordPanel({
                                 filteredRows.map((row, rowIndex) => (
                                     <tr
                                         key={row.id ?? `${rowIndex}-${rowDateKey}`}
-                                        className="border-b border-[var(--color-border-default)] transition hover:bg-[var(--color-surface-subtle)]"
+                                        className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-subtle)]"
                                     >
                                         {columns.map((col) => (
                                             <td
                                                 key={col.key}
-                                                className={`px-4 py-3.5 text-sm font-medium text-[var(--color-text-strong)] ${
+                                                className={`px-4 py-3.5 text-sm font-medium text-[var(--color-text-primary)] ${
                                                     col.align === 'right' ? 'text-right' : 'text-left'
                                                 }`}
                                             >

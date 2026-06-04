@@ -13,8 +13,8 @@ function VipLevelCard({ vp, className }) {
     return (
         <div className={className}>
             <div className="flex flex-col items-center justify-center px-3 py-4">
-                <div className="mb-3 flex w-full items-center justify-center gap-2 border-b border-[rgb(204_238_255_/_0.55)] pb-3">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[rgb(204_238_255_/_0.65)] bg-[linear-gradient(135deg,#d0f0ff_0%,#f0f8ff_100%)] shadow-[var(--shadow-subtle)]">
+                <div className="mb-3 flex w-full items-center justify-center gap-2 border-b border-[var(--color-nav-border-soft)] pb-3">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[var(--color-nav-border)] bg-gradient-vip-tier-avatar shadow-[var(--shadow-subtle)]">
                         <img
                             src={vp.medal}
                             alt={`VIP ${vp.tier} medal`}
@@ -22,16 +22,16 @@ function VipLevelCard({ vp, className }) {
                             draggable={false}
                         />
                     </div>
-                    <h3 className="whitespace-nowrap text-sm font-bold tracking-wide text-[var(--color-brand-secondary)]">
+                    <h3 className="whitespace-nowrap text-sm font-bold tracking-wide text-[var(--color-button-hover)]">
                         VIP {vp.tier}
                     </h3>
                 </div>
 
                 <div className="w-full space-y-1 text-center">
-                    <p className="text-xs font-semibold leading-snug text-[var(--color-brand-primary)] md:text-sm md:font-bold md:leading-tight">
+                    <p className="text-xs font-semibold leading-snug text-[var(--color-primary)] md:text-sm md:font-bold md:leading-tight">
                         Valid Bet Point &gt; {vp.btn}
                     </p>
-                    <p className="text-xs font-semibold leading-snug text-[var(--color-brand-primary)] md:text-sm md:font-bold md:leading-tight">
+                    <p className="text-xs font-semibold leading-snug text-[var(--color-primary)] md:text-sm md:font-bold md:leading-tight">
                         Deposit Point = {vp.dep}
                     </p>
                 </div>
@@ -55,7 +55,7 @@ export default function VipTier({ onNavigate }) {
         <section className="w-full pt-4 relative">
             <SectionHeader
                 title="VIP Group"
-                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-brand-secondary)]" />}
+                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}
                 rightLink="More Details"
                 rightLinkTo="vip"
                 onNavigate={onNavigate}
@@ -83,7 +83,7 @@ export default function VipTier({ onNavigate }) {
                             <VipLevelCard
                                 key={vp.level}
                                 vp={vp}
-                                className="surface-card min-w-[288px] snap-center overflow-hidden rounded-[22px] border border-white/70 bg-white/90 shadow-[0_8px_20px_rgba(0,114,188,0.06)]"
+                                className="surface-card min-w-[288px] snap-center overflow-hidden rounded-[22px] border border-[var(--color-nav-border)]/70 bg-[var(--color-surface-base)]/90 shadow-[0_8px_20px_rgba(0,114,188,0.06)]"
                             />
                         ))}
                     </div>
@@ -95,7 +95,7 @@ export default function VipTier({ onNavigate }) {
                         <VipLevelCard
                             key={vp.level}
                             vp={vp}
-                            className="surface-card overflow-hidden rounded-[22px] border border-white/70 bg-white/90 transition-all hover:border-[var(--color-brand-primary)] hover:shadow-[var(--shadow-card-hover)]"
+                            className="surface-card overflow-hidden rounded-[22px] border border-[var(--color-nav-border)]/70 bg-[var(--color-surface-base)]/90 transition-all hover:border-[var(--color-primary)] hover:shadow-[var(--shadow-card-hover)]"
                         />
                     ))}
                 </div>
