@@ -27,7 +27,6 @@ import {
     History,
     Heart,
     LogOut,
-    ScrollText,
     Settings,
     ShieldCheck,
     Trophy,
@@ -546,17 +545,6 @@ export default function Navbar({
                                                     <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-nav-border-soft)] bg-[linear-gradient(180deg,var(--color-brand-primary)_0%,var(--color-brand-deep)_100%)] shadow-[var(--inset-highlight-strong)]">
                                                         <UserCircle2 size={36} className="text-white/90" />
                                                     </div>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => {
-                                                            setProfileMenuOpen(false);
-                                                            onAccountDetailsClick?.();
-                                                        }}
-                                                        className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-nav-border-soft)] bg-[var(--color-nav-badge)] text-white shadow-[var(--shadow-nav-dropdown)] transition hover:brightness-110"
-                                                        aria-label="Account details"
-                                                    >
-                                                        <ScrollText size={12} />
-                                                    </button>
                                                 </div>
 
                                                 <div className="min-w-0 pt-1">
@@ -791,10 +779,10 @@ export default function Navbar({
                                                     setProfileMenuOpen(false);
                                                     onLogout?.();
                                                 }}
-                                                className="mt-4 inline-flex min-h-[40px] items-center gap-2.5 text-base font-bold text-[var(--color-nav-accent)] transition hover:text-[var(--color-nav-accent-soft)]"
+                                                className="profile-menu-logout mt-3"
                                             >
-                                                <LogOut size={16} />
-                                                Log Out
+                                                <LogOut size={18} className="shrink-0" strokeWidth={2.25} />
+                                                <span>Log Out</span>
                                             </button>
                                         </div>
                                     </div>

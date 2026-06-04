@@ -344,14 +344,6 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                         )}
                                     </div>
                                 </button>
-                                <button
-                                    type="button"
-                                    onClick={() => setProfilePhotoModalOpen(true)}
-                                    className="absolute bottom-0 right-[-4px] md:right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-sm transition hover:scale-105 hover:bg-[var(--color-accent-50)] md:h-8 md:w-8"
-                                    aria-label="Edit profile photo"
-                                >
-                                    <PencilLine size={14} className="h-3 w-3 md:h-4 md:w-4" />
-                                </button>
                             </div>
 
                             <div className="flex min-w-0 flex-1 flex-col gap-1 md:gap-3">

@@ -19,7 +19,7 @@ function resolveCategoryTarget(category) {
 }
 
 /** Selected state — mobile sidebar & desktop horizontal tabs (red gradient, white icon/label). */
-const CATEGORY_NAV_ACTIVE_CLASS =
+export const CATEGORY_NAV_ACTIVE_CLASS =
     'border border-white/10 bg-[linear-gradient(90deg,rgb(232_23_47)_0%,rgb(248_48_77)_52%,rgb(255_108_121)_100%)] text-white ring-1 ring-white/10';
 
 const MOBILE_SIDEBAR_INACTIVE_CLASS =
