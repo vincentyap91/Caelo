@@ -158,12 +158,6 @@ export default function AccountSidebar({
                         </div>
                         <div className="min-w-0 flex-1 pt-0 lg:pt-1">
                             <p className="text-xl font-bold leading-tight text-[var(--color-text-strong)] lg:text-2xl">Hi, {username}</p>
-                            {!guestPreview && (
-                                <div className="mt-1.5 space-y-0.5 text-xs font-medium text-[var(--color-text-muted)] lg:mt-2 lg:space-y-1 lg:text-sm">
-                                    <p>Joined: 08/01/2026</p>
-                                    <p>Player ID: 679129</p>
-                                </div>
-                            )}
                             {guestPreview && (
                                 <p className="mt-1.5 text-xs font-medium text-[var(--color-text-muted)] lg:mt-2 lg:text-sm">
                                     Sign in to claim rewards and save your progress.

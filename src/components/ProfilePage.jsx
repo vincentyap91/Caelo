@@ -356,14 +356,6 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                     </h2>
                                     <p className="truncate text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{formValues.email}</p>
                                 </div>
-                                <div className="mt-1 flex flex-wrap gap-1.5 md:mt-0 md:gap-2">
-                                    <span className="inline-flex w-fit rounded-full border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent-700)] md:px-3 md:py-1.5 md:text-xs">
-                                        Joined 08/01/2026
-                                    </span>
-                                    <span className="inline-flex w-fit rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent-700)] md:px-3 md:py-1.5 md:text-xs">
-                                        Player ID 679129
-                                    </span>
-                                </div>
                             </div>
                         </div>
 

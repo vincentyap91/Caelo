@@ -551,16 +551,6 @@ export default function Navbar({
                                                     <p className="truncate text-xl font-bold leading-none text-white">
                                                         Hi, {authUser.name}
                                                     </p>
-                                                    <div className="mt-1.5 space-y-1 text-xs text-[var(--color-nav-text-soft)]">
-                                                        <p className="flex items-center gap-2">
-                                                            <span className="text-[var(--color-nav-text-accent)]">Joined:</span>
-                                                            <span className="font-semibold">08/01/2026</span>
-                                                        </p>
-                                                        <p className="flex items-center gap-2">
-                                                            <span className="text-[var(--color-nav-text-accent)]">Player ID:</span>
-                                                            <span className="font-semibold">679129</span>
-                                                        </p>
-                                                    </div>
                                                     <VipStatusPill level={vipLevel} theme="dark" className="mt-2" />
                                                 </div>
                                             </div>
