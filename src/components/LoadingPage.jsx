@@ -24,7 +24,7 @@ export default function LoadingPage({ message = 'Loading...', fullPage = true, m
 
     const content = (
         <div className="flex flex-col items-center justify-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-accent-50)] text-[var(--color-primary)]">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-accent-pale)] text-[var(--color-primary)]">
                 <Loader2 size={32} className="animate-spin" strokeWidth={2} />
             </div>
             <p className="text-sm font-semibold text-[var(--color-text-muted)]">{message}</p>
@@ -61,7 +61,7 @@ export default function LoadingPage({ message = 'Loading...', fullPage = true, m
 
     return (
         <div
-            className="flex min-h-[120px] w-full items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] p-6"
+            className="flex min-h-[120px] w-full items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] p-6"
             role="status"
             aria-live="polite"
             aria-label={message}

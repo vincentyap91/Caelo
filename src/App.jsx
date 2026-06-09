@@ -200,6 +200,32 @@ function isProtectedPage(pageId) {
   return PROTECTED_PAGE_IDS.has(pageId);
 }
 
+/** Cam88 shell background role → Caelo page tint (see styles/theme.css `.app-shell[data-app-shell-bg]`). */
+function resolveAppShellBg(pageId, authUser) {
+  if (pageId === 'home') return 'home';
+  if (pageId === 'register') return 'register';
+  if (pageId === 'rebate' && !authUser) return 'default';
+  if (
+    pageId === 'profile'
+    || pageId === 'verification'
+    || pageId === 'favourites'
+    || pageId === 'my-bets'
+    || pageId === 'loyalty-rewards'
+    || pageId === 'feedback'
+    || pageId === 'help-center'
+    || pageId === 'security'
+    || pageId === 'notifications'
+    || pageId === 'referral-commission'
+    || pageId === 'deposit'
+    || pageId === 'withdrawal'
+    || pageId === 'rebate'
+    || HISTORY_RECORD_PAGE_IDS.includes(pageId)
+  ) {
+    return 'account';
+  }
+  return 'default';
+}
+
 /** Inactivity-based sign-out (demo client guard). Session storage expiry is separate. */
 const IDLE_LOGOUT_MS = 45 * 60 * 1000;
 
@@ -506,37 +532,10 @@ function AppInner() {
   };
 
   return (
-    <div className={`relative min-h-screen w-full overflow-x-hidden font-sans ${
-      page === 'home'
-        ? 'bg-[var(--color-page-home)]'
-        : page === 'register'
-          ? 'bg-[var(--color-page-register)]'
-          : page === 'slots' || page === 'game-detail'
-            ? 'bg-[var(--color-page-default)]'
-            : page === 'sports'
-              ? 'bg-[var(--color-page-default)]'
-              : page === 'e-sports'
-                ? 'bg-[var(--color-page-default)]'
-            : page === 'lottery'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'fishing'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'poker'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'promotion'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'vip'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'referral'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'about'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'rebate' && !authUser
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'profile' || page === 'verification' || page === 'favourites' || page === 'my-bets' || page === 'loyalty-rewards' || page === 'feedback' || page === 'help-center' || page === 'security' || page === 'notifications' || page === 'rebate' || page === 'referral-commission' || page === 'deposit' || page === 'withdrawal' || HISTORY_RECORD_PAGE_IDS.includes(page)
-              ? 'bg-[var(--color-page-account)]'
-              : 'bg-[var(--color-page-default)]'
-    }`}>
+    <div
+      data-app-shell-bg={resolveAppShellBg(page, authUser)}
+      className="app-shell relative min-h-screen w-full overflow-x-hidden font-sans"
+    >
       <ScrollToTop authUser={authUser} />
       <FloatingSocials
         authUser={authUser}
@@ -592,7 +591,7 @@ function AppInner() {
             <VipTier onNavigate={handleNavigate} />
             <MobileHomeCategoryGames onNavigate={handleNavigate} variant="desktop" />
             {authUser && <ReferralBannerSection onNavigate={handleNavigate} />}
-            <HomeLiveActivity />
+            <HomeLiveActivity onNavigate={handleNavigate} />
             <AppDownload />
             <ProviderShowcaseSection
               onSlotsProviderSelect={(menuProvider) => {

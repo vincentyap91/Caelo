@@ -7,14 +7,14 @@ import { X, ChevronLeft } from 'lucide-react';
 function InfoBox({ label, value, children, className = '' }) {
     return (
         <div
-            className={`rounded-xl border bg-[var(--color-surface-muted)] px-4 py-3 ${className}`}
-            style={{ borderColor: 'var(--color-cta-border)' }}
+            className={`rounded-xl border bg-[var(--color-surface-cool-light)] px-4 py-3 ${className}`}
+            style={{ borderColor: 'var(--color-border-brand)' }}
         >
             <p className="text-xs font-medium text-[var(--color-text-muted)]">
                 {label}
             </p>
             {value !== undefined && (
-                <p className="mt-0.5 text-sm font-bold text-[var(--color-text-brand)]">
+                <p className="mt-0.5 text-sm font-bold text-[var(--color-text-primary-card-title)]">
                     {value || '–'}
                 </p>
             )}
@@ -29,13 +29,13 @@ function InfoBox({ label, value, children, className = '' }) {
 function SummaryBox({ username, contact }) {
     return (
         <div
-            className="rounded-xl border bg-[var(--color-surface-muted)] px-4 py-3"
-            style={{ borderColor: 'var(--color-cta-border)' }}
+            className="rounded-xl border bg-[var(--color-surface-cool-light)] px-4 py-3"
+            style={{ borderColor: 'var(--color-border-brand)' }}
         >
             <p className="text-sm font-semibold text-[var(--color-text-primary)]">
                 {username}
             </p>
-            <p className="mt-0.5 text-sm text-[var(--color-text-brand)]">
+            <p className="mt-0.5 text-sm text-[var(--color-text-primary-card-title)]">
                 Contact No. : {contact || '–'}
             </p>
         </div>
@@ -52,7 +52,7 @@ function ViewMode({ downline, onEdit, onBack }) {
             <button
                 type="button"
                 onClick={onBack}
-                className="mb-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-text-brand)] transition hover:opacity-80"
+                className="mb-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-text-primary-card-title)] transition hover:opacity-80"
             >
                 <ChevronLeft size={16} strokeWidth={2.5} aria-hidden />
                 Downline Detail
@@ -61,8 +61,8 @@ function ViewMode({ downline, onEdit, onBack }) {
             <div className="space-y-3">
                 {/* Username box with Edit Detail button */}
                 <div
-                    className="flex items-center justify-between gap-3 rounded-xl border bg-[var(--color-surface-muted)] px-4 py-3"
-                    style={{ borderColor: 'var(--color-cta-border)' }}
+                    className="flex items-center justify-between gap-3 rounded-xl border bg-[var(--color-surface-cool-light)] px-4 py-3"
+                    style={{ borderColor: 'var(--color-border-brand)' }}
                 >
                     <div className="min-w-0">
                         <p className="text-xs font-medium text-[var(--color-text-muted)]">
@@ -110,7 +110,7 @@ function EditMode({ downline, onBack, onSave }) {
             <button
                 type="button"
                 onClick={onBack}
-                className="mb-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-text-brand)] transition hover:opacity-80"
+                className="mb-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-text-primary-card-title)] transition hover:opacity-80"
             >
                 <ChevronLeft size={16} strokeWidth={2.5} aria-hidden />
                 Edit Downline Detail
@@ -130,7 +130,7 @@ function EditMode({ downline, onBack, onSave }) {
                         value={remark}
                         onChange={(e) => setRemark(e.target.value)}
                         placeholder=""
-                        className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none transition focus:border-[var(--color-cta-border)] focus:ring-2 focus:ring-[var(--color-cta-border)]"
+                        className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none transition focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]"
                     />
                 </div>
 
@@ -198,13 +198,13 @@ export default function DownlineDetailModal({ downline, onClose, onSaveRemark })
             >
                 {/* Modal header */}
                 <div className="flex items-center justify-between border-b border-[var(--color-border-subtle)] px-5 py-4">
-                    <h2 className="text-base font-bold text-[var(--color-text-brand)]">
+                    <h2 className="text-base font-bold text-[var(--color-text-primary-card-title)]">
                         Downlines
                     </h2>
                     <button
                         type="button"
                         onClick={onClose}
-                        className="rounded-lg p-1 text-[var(--color-text-muted)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-primary)]"
+                        className="rounded-lg p-1 text-[var(--color-text-muted)] transition hover:bg-[var(--color-surface-cool-light)] hover:text-[var(--color-text-primary)]"
                         aria-label="Close modal"
                     >
                         <X size={20} strokeWidth={2} />

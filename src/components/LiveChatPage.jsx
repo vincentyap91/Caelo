@@ -96,20 +96,20 @@ export default function LiveChatPage({ onNavigate, authUser }) {
     };
 
     return (
-        <div className="flex flex-col h-[calc(100vh-56px)] md:h-[calc(100vh-100px)] bg-[var(--color-page-default)] animate-in fade-in duration-500">
+        <div className="flex flex-col h-[calc(100vh-56px)] md:h-[calc(100vh-100px)] bg-[var(--color-surface-base)] animate-in fade-in duration-500">
             {/* Header */}
             <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-[var(--color-primary)] shadow-sm">
                 <div className="flex items-center gap-3">
                     <button 
                         type="button" 
                         onClick={() => onNavigate?.('home')}
-                        className="p-1.5 hover:bg-[var(--color-nav-border-soft)] rounded-full transition-colors"
+                        className="p-1.5 hover:bg-[var(--color-border-subtle)] rounded-full transition-colors"
                     >
                         <ChevronLeft size={22} className="text-[var(--color-text-card-text)]" />
                     </button>
                     <div className="flex items-center gap-2.5">
                         <div className="relative">
-                            <div className="h-10 w-10 rounded-full bg-[var(--color-nav-border)] border border-[var(--color-nav-border-soft)] p-0.5 overflow-hidden">
+                            <div className="h-10 w-10 rounded-full bg-[var(--color-border-brand)] border border-[var(--color-border-subtle)] p-0.5 overflow-hidden">
                                 <img src={liveChatSupportAvatar} alt="Support" className="w-full h-full object-cover" />
                             </div>
                             <span className="absolute bottom-0.5 right-0.5 h-3 w-3 rounded-full bg-[var(--color-success-vivid)] border-2 border-[var(--color-primary)]"></span>
@@ -129,7 +129,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
             </header>
 
             {/* Chat Body */}
-            <main className="flex-1 overflow-y-auto px-4 py-8 space-y-6 bg-[var(--color-page-default)]">
+            <main className="flex-1 overflow-y-auto px-4 py-8 space-y-6 bg-[var(--color-surface-base)]">
                 {messages.map((msg) => {
                     if (msg.type === 'date') {
                         return (
@@ -174,7 +174,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
             {/* Bottom Section */}
             <div className="sticky bottom-0 bg-[var(--color-surface-base)] border-t border-[var(--color-border-subtle)]">
                 {/* Suggested Replies */}
-                <div className="px-4 py-3 bg-[var(--color-surface-muted)]/30 border-b border-[var(--color-border-subtle)]/10">
+                <div className="px-4 py-3 bg-[var(--color-surface-cool-light)]/30 border-b border-[var(--color-border-subtle)]/10">
                     <div className="flex gap-2.5 overflow-x-auto no-scrollbar pb-0.5 scroll-smooth">
                         {SUGGESTED_MESSAGES.map((text) => (
                             <button
@@ -190,7 +190,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                 </div>
 
                 {/* Input Bar - Redesigned to match second screenshot exactly */}
-                <div className="px-4 py-4 w-full bg-[var(--color-page-default)]">
+                <div className="px-4 py-4 w-full bg-[var(--color-surface-base)]">
                     <div className="flex items-center gap-4 w-full">
                         <button type="button" className="text-[var(--color-text-soft)] hover:text-[var(--color-primary)] transition-colors p-1 shrink-0">
                             <Paperclip size={22} />
@@ -202,7 +202,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                                 onChange={(e) => setInputValue(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                                 placeholder="Type your message here..."
-                                className="w-full bg-[var(--color-surface-muted)] border-none rounded-xl focus:ring-1 focus:ring-[var(--color-primary)]/20 text-[14px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-soft)] py-3 px-5"
+                                className="w-full bg-[var(--color-surface-cool-light)] border-none rounded-xl focus:ring-1 focus:ring-[var(--color-primary)]/20 text-[14px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-soft)] py-3 px-5"
                             />
                         </div>
                         <button 
@@ -212,7 +212,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                             className={`h-10 w-10 rounded-full transition-all flex items-center justify-center shrink-0 ${
                                 inputValue.trim() 
                                     ? 'bg-[var(--color-primary)] text-[var(--color-text-card-text)] shadow-md' 
-                                    : 'bg-[var(--color-surface-muted)] text-[var(--color-text-soft)]'
+                                    : 'bg-[var(--color-surface-cool-light)] text-[var(--color-text-soft)]'
                             }`}
                         >
                             <Send size={18} strokeWidth={2} />

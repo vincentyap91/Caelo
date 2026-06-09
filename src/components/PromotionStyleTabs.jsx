@@ -6,7 +6,7 @@ export function promotionStyleTabButtonClassName(selected) {
     return `rounded-xl px-4 py-2 text-xs font-bold transition-all duration-200 md:text-sm ${
         selected
             ? 'btn-theme-tab-selected'
-            : 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent-200)] hover:text-[var(--color-text-primary)] hover:shadow-[var(--shadow-subtle)]'
+            : 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent-glow)] hover:text-[var(--color-text-primary)] hover:shadow-[var(--shadow-subtle)]'
     }`;
 }
 

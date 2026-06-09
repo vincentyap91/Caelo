@@ -78,7 +78,7 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                             <button
                                 type="button"
                                 onClick={openExternal}
-                                className="rounded-xl border border-[var(--color-accent-400)] bg-[var(--color-accent-50)] px-3 py-2 text-xs font-bold text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-100)] sm:text-sm"
+                                className="rounded-xl border border-[var(--color-accent)] bg-[var(--color-accent-pale)] px-3 py-2 text-xs font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-glow)] sm:text-sm"
                             >
                                 Open file
                             </button>
@@ -86,14 +86,14 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                         <button
                             type="button"
                             onClick={onClose}
-                            className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-surface-muted)] text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             aria-label="Close"
                         >
                             <X size={20} />
                         </button>
                     </div>
                 </div>
-                <div className="flex min-h-0 flex-1 items-center justify-center bg-[var(--color-surface-muted)] p-4 sm:p-6">
+                <div className="flex min-h-0 flex-1 items-center justify-center bg-[var(--color-surface-cool-light)] p-4 sm:p-6">
                     {isImage && !imageBroken ? (
                         <img
                             src={previewUrl}
@@ -103,7 +103,7 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                         />
                     ) : (
                         <div className="flex max-w-sm flex-col items-center gap-4 text-center">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-[var(--shadow-card-soft)]">
+                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-[var(--shadow-card-soft)]">
                                 <FileText size={36} strokeWidth={1.75} />
                             </div>
                             <div>
@@ -117,7 +117,7 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                             <button
                                 type="button"
                                 onClick={openExternal}
-                                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-accent-600)] px-5 py-2.5 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:bg-[var(--color-accent-500)]"
+                                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-button-hover)] px-5 py-2.5 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:bg-[var(--color-accent)]"
                             >
                                 <Eye size={18} />
                                 Open file
@@ -159,7 +159,7 @@ export function ReceiptFileCard({
             <button
                 type="button"
                 onClick={onPreview}
-                className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-accent-600)] transition hover:border-[var(--color-accent-300)] hover:shadow-md focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-accent-400)] sm:h-20 sm:w-20"
+                className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] transition hover:border-[var(--color-border-subtle)] hover:shadow-md focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] sm:h-20 sm:w-20"
                 aria-label="Preview receipt"
             >
                 {showThumb ? (
@@ -178,7 +178,7 @@ export function ReceiptFileCard({
                 <button
                     type="button"
                     onClick={onPreview}
-                    className="w-full truncate text-left text-sm font-semibold text-[var(--color-text-primary)] underline-offset-2 hover:text-[var(--color-accent-600)] hover:underline focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-accent-400)] rounded-sm"
+                    className="w-full truncate text-left text-sm font-semibold text-[var(--color-text-primary)] underline-offset-2 hover:text-[var(--color-button-hover)] hover:underline focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded-sm"
                     title={file.name}
                 >
                     {file.name}
@@ -190,7 +190,7 @@ export function ReceiptFileCard({
                 <button
                     type="button"
                     onClick={onPreview}
-                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl border-2 border-[var(--color-accent-400)] bg-[var(--color-accent-50)] px-4 py-2 text-sm font-bold text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-100)] sm:flex-initial"
+                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl border-2 border-[var(--color-accent)] bg-[var(--color-accent-pale)] px-4 py-2 text-sm font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-glow)] sm:flex-initial"
                 >
                     <Eye size={16} strokeWidth={2.25} />
                     Preview
@@ -248,7 +248,7 @@ export default function ReceiptUploadField({
                 <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border-2 border-[var(--color-accent-400)] bg-[var(--color-accent-50)] px-5 text-sm font-bold text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-100)] sm:w-auto sm:justify-start"
+                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border-2 border-[var(--color-accent)] bg-[var(--color-accent-pale)] px-5 text-sm font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-glow)] sm:w-auto sm:justify-start"
                 >
                     <Upload size={18} strokeWidth={2.25} />
                     {uploadButtonLabel}
@@ -267,8 +267,8 @@ export default function ReceiptUploadField({
                 </p>
             ) : null}
 
-            <p className="flex items-start gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)]/80 px-3 py-2.5 text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm">
-                <Info size={16} className="mt-0.5 shrink-0 text-[var(--color-accent-600)]" strokeWidth={2.25} />
+            <p className="flex items-start gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)]/80 px-3 py-2.5 text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm">
+                <Info size={16} className="mt-0.5 shrink-0 text-[var(--color-button-hover)]" strokeWidth={2.25} />
                 <span>
                     {helperText} <span className="font-medium text-[var(--color-text-primary)]">{maxSizeNote}</span>
                 </span>

@@ -4,8 +4,10 @@
  * Palette: --mono-*, --brand-*, --accent-*, --support-*, --raw-*, --raw-gradient-*
  * UI:      --color-*  (defined once above --color-table-highlight)
  *
- * Naming: prefer riocity-figma shared --color-* names in components.
- *         Add a new --color-* only when a new --raw-* / primitive exists and Figma has no match.
+ * Naming: --color-* names 1:1 with src/theme-riocity.css (see VARIABLE-RULES.en.md §13).
+ *         Gradients: stops --raw-gradient-* / --raw-scrim-*; composites --color-gradient-* (§6.1).
+ *         Caelo blue/white values via --raw-* overrides below --color-table-highlight.
+ *         Riocity → Caelo migration playbook: VARIABLE-RULES.en.md §13.0–§13.13.
  *
  * Below --color-table-highlight: Caelo primitive VALUES only (no duplicate semantics).
  * Regenerate Figma block: node generate-theme-css.mjs — preserve lines below marker.
@@ -338,6 +340,10 @@
   --raw-surface-panel: var(--mono-860);
   --raw-border-brand: var(--brand-500);
 
+  /* color — Riocity semantic names (Caelo values resolve from overrides below) */
+  --color-button-cta-end: var(--raw-cta-end);
+  --color-button-cta-start: var(--raw-cta-start);
+
   /* raw */
   --raw-bar: #3a3a3a;
   --raw-border-sports-card: #0e192d;
@@ -365,431 +371,384 @@
 
   /* ---------------------------------------------------------------------------
      02 Semantic — role tokens (use in application code)
+     Names: 1:1 with src/theme-riocity.css | Values: Caelo palette
      --------------------------------------------------------------------------- */
   /* text */
-  --color-text-accent: var(--accent-460);
-  --color-text-accent-deep: var(--accent-420);
-  --color-text-accent-light: var(--accent-460);
-  --color-text-card-text: var(--mono-0);
-  --color-text-check-in-day-active: var(--brand-400);
-  --color-text-check-in-day-muted: var(--mono-475);
-  --color-text-check-in-day-past: var(--mono-471);
-  --color-text-check-in-reward: var(--mono-647);
-  --color-text-dim: var(--mono-604);
-  --color-text-disabled: var(--mono-220);
-  --color-text-download: var(--support-link);
-  --color-text-faded: var(--mono-565);
-  --color-text-fifth: var(--mono-950);
-  --color-text-fifth-title: var(--brand-500);
-  --color-text-footer: var(--mono-0);
-  --color-text-four-title: var(--accent-450);
-  --color-text-fourth: var(--mono-750);
-  --color-text-game-title: var(--mono-660);
-  --color-text-highlight: var(--raw-promo-date);
-  --color-text-hover: var(--mono-950);
-  --color-text-label: var(--mono-490);
-  --color-text-light: var(--mono-488);
-  --color-text-link: var(--support-link);
-  --color-text-link-danger: var(--support-link-danger);
-  --color-text-link-inverse: var(--mono-0);
-  --color-text-mid: var(--mono-644);
-  --color-text-mid-alt: var(--mono-646);
-  --color-text-mid-neutral: var(--mono-465);
-  --color-text-muted: var(--raw-app-text-muted);
-  --color-text-placeholder: var(--mono-400);
-  --color-text-primary: var(--raw-app-text-primary);
-  --color-text-primary-card-title: var(--brand-500);
-  --color-text-recent-amount: var(--brand-500);
-  --color-text-referral-accent: var(--accent-420);
-  --color-text-secondary: var(--raw-app-text-secondary);
-  --color-text-secondary-card-title: var(--accent-450);
-  --color-text-small: var(--mono-400);
-  --color-text-soft: var(--raw-app-text-soft);
-  --color-text-sports-muted: var(--raw-text-sports-muted);
-  --color-text-sports-primary: var(--raw-text-sports-primary);
-  --color-text-sub-highlight: var(--accent-460);
-  --color-text-sub-title: var(--support-warning);
-  --color-text-subtle: var(--raw-app-text-subtle);
-  --color-text-subtle-dark: var(--mono-545);
-  --color-text-tertiary: var(--mono-950);
-  --color-text-third-title: var(--brand-500);
-  --color-text-title: var(--accent-400);
-  --color-text-warm: var(--accent-brown-800);
+  --color-text-accent:                       var(--accent-460);
+  --color-text-accent-deep:                  var(--accent-420);
+  --color-text-accent-light:                 var(--accent-460);
+  --color-text-card-text:                    var(--mono-0);
+  --color-text-check-in-day-active:          var(--brand-400);
+  --color-text-check-in-day-muted:           var(--mono-475);
+  --color-text-check-in-day-past:            var(--mono-471);
+  --color-text-check-in-reward:              var(--mono-647);
+  --color-text-cta-inverse:                  var(--raw-cta-text);
+  --color-text-cta-transparent:              var(--mono-950);
+  --color-text-dim:                          var(--mono-604);
+  --color-text-disabled:                     var(--mono-220);
+  --color-text-download:                     var(--support-link);
+  --color-text-faded:                        var(--mono-565);
+  --color-text-fifth:                        var(--mono-950);
+  --color-text-fifth-title:                  var(--brand-500);
+  --color-text-footer:                       var(--mono-0);
+  --color-text-four-title:                   var(--accent-450);
+  --color-text-fourth:                       var(--mono-750);
+  --color-text-game-title:                   var(--mono-660);
+  --color-text-highlight:                    var(--raw-promo-date);
+  --color-text-hover:                        var(--mono-950);
+  --color-text-label:                        var(--mono-490);
+  --color-text-light:                        var(--mono-488);
+  --color-text-link:                         var(--support-link);
+  --color-text-link-danger:                  var(--support-link-danger);
+  --color-text-link-inverse:                 var(--mono-0);
+  --color-text-mid:                          var(--mono-644);
+  --color-text-mid-alt:                      var(--mono-646);
+  --color-text-mid-neutral:                  var(--mono-465);
+  --color-text-muted:                        var(--raw-app-text-muted);
+  --color-text-placeholder:                  var(--mono-400);
+  --color-text-primary:                      var(--raw-app-text-primary);
+  --color-text-primary-card-title:           var(--raw-text-brand);
+  --color-text-recent-amount:                var(--raw-payout-amount);
+  --color-text-referral-accent:              var(--accent-420);
+  --color-text-secondary:                    var(--raw-app-text-secondary);
+  --color-text-secondary-card-title:         var(--accent-450);
+  --color-text-small:                        var(--mono-400);
+  --color-text-soft:                         var(--raw-app-text-soft);
+  --color-text-sports-muted:                 var(--raw-text-sports-muted);
+  --color-text-sports-primary:               var(--raw-text-sports-primary);
+  --color-text-sticky-nav-active:            var(--raw-nav-text-accent);
+  --color-text-sticky-nav-text:              var(--raw-nav-text-soft);
+  --color-text-sub-highlight:                var(--accent-460);
+  --color-text-sub-title:                    var(--support-warning);
+  --color-text-subtle:                       var(--raw-app-text-subtle);
+  --color-text-subtle-dark:                  var(--mono-545);
+  --color-text-tertiary:                     var(--mono-950);
+  --color-text-third-title:                  var(--brand-500);
+  --color-text-title:                        var(--accent-400);
+  --color-text-warm:                         var(--accent-brown-800);
 
   /* surface */
-  --color-surface: var(--raw-app-surface);
-  --color-surface-accent: var(--mono-330);
-  --color-surface-accent-hover: var(--brand-700);
-  --color-surface-base: var(--raw-app-surface-base);
-  --color-surface-base-dark: var(--mono-808);
-  --color-surface-border: var(--mono-870);
-  --color-surface-card-container: var(--mono-900);
-  --color-surface-card-dark: var(--mono-628);
-  --color-surface-card-light: var(--mono-330);
-  --color-surface-cat-navigation: var(--mono-750);
-  --color-surface-chatbox: var(--mono-750);
-  --color-surface-check-in-cell: var(--mono-453);
-  --color-surface-check-in-cell-active: var(--brand-630);
-  --color-surface-check-in-cell-alt: var(--mono-855);
-  --color-surface-check-in-cell-hover: var(--mono-636);
-  --color-surface-check-in-cta: var(--brand-500);
-  --color-surface-check-in-day-bg: var(--mono-112);
-  --color-surface-check-in-day-current: var(--brand-500);
-  --color-surface-check-in-footer: var(--brand-700);
-  --color-surface-check-in-icon: var(--mono-650);
-  --color-surface-check-in-inverse: var(--accent-450);
-  --color-surface-check-in-text: var(--brand-500);
-  --color-surface-chip: var(--mono-632);
-  --color-surface-chip-hover: var(--brand-500);
-  --color-surface-chip-info: var(--brand-630);
-  --color-surface-chip-muted: var(--mono-640);
-  --color-surface-code: var(--mono-622);
-  --color-surface-coloful-deep: var(--raw-brand-soft);
-  --color-surface-colorful: var(--brand-700);
-  --color-surface-cool-light: var(--mono-115);
-  --color-surface-darkest: var(--mono-940);
-  --color-surface-deep: var(--mono-920);
-  --color-surface-deep-dark: var(--mono-915);
-  --color-surface-filter: var(--mono-825);
-  --color-surface-filter-active: var(--brand-500);
-  --color-surface-filter-dark: var(--mono-867);
-  --color-surface-filter-deep: var(--mono-868);
-  --color-surface-float: var(--mono-750);
-  --color-surface-forest-1: var(--brand-700);
-  --color-surface-forest-2: var(--brand-630);
-  --color-surface-forest-3: var(--brand-700);
-  --color-surface-forest-4: var(--brand-630);
-  --color-surface-forest-5: var(--brand-700);
-  --color-surface-forest-accent: var(--brand-500);
-  --color-surface-forest-card: var(--brand-630);
-  --color-surface-forest-card-alt: var(--brand-700);
-  --color-surface-forest-darkest: var(--brand-700);
-  --color-surface-forest-deep: var(--brand-700);
-  --color-surface-game-stage: var(--raw-surface-game-stage);
-  --color-surface-high: var(--mono-800);
-  --color-surface-highlight: var(--mono-310);
-  --color-surface-info: var(--support-info);
-  --color-surface-info-deep: var(--support-info-strong);
-  --color-surface-info-warning: var(--support-warning-surface);
-  --color-surface-input: var(--mono-905);
-  --color-surface-input-color: var(--brand-700);
-  --color-surface-input-inverse: var(--mono-330);
-  --color-surface-input-light: var(--mono-0);
-  --color-surface-input-light-border: var(--mono-0);
-  --color-surface-input-muted: var(--mono-565);
-  --color-surface-input-muted-border: var(--mono-565);
-  --color-surface-inset: var(--mono-950);
-  --color-surface-light: var(--mono-108);
-  --color-surface-light-active: var(--brand-500-soft);
-  --color-surface-low: var(--mono-930);
-  --color-surface-menu-active: var(--brand-500);
-  --color-surface-mid: var(--mono-660);
-  --color-surface-mid-dark: var(--mono-630);
-  --color-surface-mid-color: var(--brand-630);
-  --color-surface-mid-container: var(--brand-700);
-  --color-surface-mid-text: var(--mono-0);
-  --color-surface-nav: var(--mono-720);
-  --color-surface-navy: var(--support-navy);
-  --color-surface-near-black: var(--mono-770);
-  --color-surface-near-black-alt: var(--mono-768);
-  --color-surface-neutral-light: var(--mono-114);
-  --color-surface-notify: var(--mono-750);
-  --color-surface-overlay-dark: var(--mono-775);
-  --color-surface-pale-blue: var(--mono-112);
-  --color-surface-panel: var(--raw-surface-panel);
-  --color-surface-panel-border: var(--support-success-strong);
-  --color-surface-primary-shape: var(--support-success-strong);
-  --color-surface-qrcode: var(--mono-0);
-  --color-surface-referral-card: var(--brand-500);
-  --color-surface-referral-input: var(--brand-630);
-  --color-surface-rtp-card: var(--mono-750);
-  --color-surface-scrim-dark: var(--mono-798);
-  --color-surface-search: var(--mono-896);
-  --color-surface-secondary-chip: var(--mono-632);
-  --color-surface-secondary-shape: var(--support-danger-maroon);
-  --color-surface-secondary-table-head: var(--brand-630);
-  --color-surface-sheet: var(--mono-735);
-  --color-surface-sidebar: var(--mono-710);
-  --color-surface-slate: var(--support-teal-dark);
-  --color-surface-start: var(--mono-990);
-  --color-surface-striped-even: var(--mono-310);
-  --color-surface-striped-odd: var(--mono-660);
-  --color-surface-subtle: var(--raw-surface-subtle);
-  --color-surface-table: var(--mono-795);
-  --color-surface-table-head: var(--mono-750);
-  --color-surface-teal-dark: var(--mono-818);
+  --color-surface:                           var(--raw-app-surface);
+  --color-surface-accent:                    var(--mono-330);
+  --color-surface-accent-hover:              var(--brand-700);
+  --color-surface-base:                      var(--raw-app-surface-base);
+  --color-surface-base-dark:                 var(--mono-808);
+  --color-surface-border:                    var(--mono-870);
+  --color-surface-card-container:            var(--mono-900);
+  --color-surface-card-dark:                 var(--mono-628);
+  --color-surface-card-light:                var(--mono-330);
+  --color-surface-cat-navigation:            var(--mono-750);
+  --color-surface-chatbox:                   var(--mono-750);
+  --color-surface-check-in-cell:             var(--mono-453);
+  --color-surface-check-in-cell-active:      var(--brand-630);
+  --color-surface-check-in-cell-alt:         var(--mono-855);
+  --color-surface-check-in-cell-hover:       var(--mono-636);
+  --color-surface-check-in-cta:              var(--brand-500);
+  --color-surface-check-in-day-bg:           var(--mono-112);
+  --color-surface-check-in-day-current:      var(--brand-500);
+  --color-surface-check-in-footer:           var(--brand-700);
+  --color-surface-check-in-icon:             var(--mono-650);
+  --color-surface-check-in-inverse:          var(--accent-450);
+  --color-surface-check-in-text:             var(--brand-500);
+  --color-surface-chip:                      var(--mono-632);
+  --color-surface-chip-hover:                var(--brand-500);
+  --color-surface-chip-info:                 var(--brand-630);
+  --color-surface-chip-muted:                var(--mono-640);
+  --color-surface-code:                      var(--mono-622);
+  --color-surface-coloful-deep:              var(--raw-brand-soft);
+  --color-surface-colorful:                  var(--brand-700);
+  --color-surface-cool-light:                var(--raw-surface-muted);
+  --color-surface-darkest:                   var(--mono-940);
+  --color-surface-deep:                      var(--mono-920);
+  --color-surface-deep-dark:                 var(--mono-915);
+  --color-surface-filter:                    var(--mono-825);
+  --color-surface-filter-active:             var(--brand-500);
+  --color-surface-filter-dark:               var(--mono-867);
+  --color-surface-filter-deep:               var(--mono-868);
+  --color-surface-float:                     var(--raw-surface-muted-soft);
+  --color-surface-forest-1:                  var(--brand-700);
+  --color-surface-forest-2:                  var(--brand-630);
+  --color-surface-forest-3:                  var(--brand-700);
+  --color-surface-forest-4:                  var(--brand-630);
+  --color-surface-forest-5:                  var(--brand-700);
+  --color-surface-forest-accent:             var(--brand-500);
+  --color-surface-forest-card:               var(--brand-630);
+  --color-surface-forest-card-alt:           var(--brand-700);
+  --color-surface-forest-darkest:            var(--brand-700);
+  --color-surface-forest-deep:               var(--brand-700);
+  --color-surface-forest-deep:               var(--brand-700);
+  --color-surface-game-stage:                var(--raw-surface-game-stage);
+  --color-surface-high:                      var(--mono-800);
+  --color-surface-highlight:                 var(--mono-310);
+  --color-surface-info:                      var(--support-info);
+  --color-surface-info-deep:                 var(--support-info-strong);
+  --color-surface-info-warning:              var(--support-warning-surface);
+  --color-surface-input:                     var(--mono-905);
+  --color-surface-input-color:               var(--brand-700);
+  --color-surface-input-inverse:             var(--mono-330);
+  --color-surface-input-light:               var(--mono-0);
+  --color-surface-input-light-border:        var(--mono-0);
+  --color-surface-input-muted:               var(--mono-565);
+  --color-surface-input-muted-border:        var(--mono-565);
+  --color-surface-inset:                     var(--mono-950);
+  --color-surface-light:                     var(--mono-108);
+  --color-surface-light-active:              rgb(255 255 255 / 0.08);
+  --color-surface-low:                       var(--mono-930);
+  --color-surface-menu-active:               var(--brand-500);
+  --color-surface-mid:                       var(--mono-660);
+  --color-surface-mid-dark:                  var(--mono-630);
+  --color-surface-mid-color:                 var(--brand-630);
+  --color-surface-mid-container:             var(--brand-700);
+  --color-surface-mid-text:                  var(--mono-0);
+  --color-surface-nav:                       var(--mono-720);
+  --color-surface-navy:                      var(--support-navy);
+  --color-surface-near-black:                var(--mono-770);
+  --color-surface-near-black-alt:            var(--mono-768);
+  --color-surface-neutral-light:             var(--mono-114);
+  --color-surface-notify:                    var(--mono-750);
+  --color-surface-overlay-dark:              var(--mono-775);
+  --color-surface-pale-blue:                 var(--mono-112);
+  --color-surface-panel:                     var(--raw-surface-panel);
+  --color-surface-panel-border:              var(--support-success-strong);
+  --color-surface-primary-shape:             var(--support-success-strong);
+  --color-surface-qrcode:                    var(--mono-0);
+  --color-surface-referral-card:             var(--brand-500);
+  --color-surface-referral-input:            var(--brand-630);
+  --color-surface-rtp-card:                  var(--mono-750);
+  --color-surface-rtp-secondary-card:        var(--accent-450);
+  --color-surface-rtp-secondary-card-text:   var(--raw-app-text-secondary);
+  --color-surface-scrim-dark:                var(--mono-798);
+  --color-surface-search:                    var(--mono-896);
+  --color-surface-secondary-chip:            var(--mono-632);
+  --color-surface-secondary-shape:           var(--support-danger-maroon);
+  --color-surface-secondary-table-head:      var(--brand-630);
+  --color-surface-sheet:                     var(--mono-735);
+  --color-surface-sidebar:                   var(--mono-710);
+  --color-surface-slate:                     var(--support-teal-dark);
+  --color-surface-start:                     var(--mono-990);
+  --color-surface-striped-even:              var(--mono-310);
+  --color-surface-striped-odd:               var(--mono-660);
+  --color-surface-subtle:                    var(--raw-surface-subtle);
+  --color-surface-table:                     var(--mono-795);
+  --color-surface-table-head:                var(--mono-750);
+  --color-surface-teal-dark:                 var(--mono-818);
 
   /* primary */
-  --color-primary: var(--brand-500);
+  --color-primary:                           var(--brand-500);
 
   /* border */
-  --color-border: var(--raw-app-border);
-  --color-border-brand: var(--raw-border-brand);
-  --color-border-divider: var(--mono-540);
-  --color-border-line: var(--mono-628);
-  --color-border-sports-card: var(--raw-border-sports-card);
-  --color-border-sports-market: var(--raw-border-sports-market);
-  --color-border-strong: var(--mono-650);
-  --color-border-subtle: var(--raw-app-border);
+  --color-border:                            var(--raw-app-border);
+  --color-border-brand:                      var(--raw-border-brand);
+  --color-border-danger:                     var(--brand-500);
+  --color-border-divider:                    var(--mono-540);
+  --color-border-line:                       var(--mono-628);
+  --color-border-sports-card:                var(--raw-border-sports-card);
+  --color-border-sports-market:              var(--raw-border-sports-market);
+  --color-border-strong:                     var(--mono-650);
+  --color-border-subtle:                     var(--raw-app-border);
+  --color-border-tabs:                       var(--mono-0909);
 
   /* accent */
-  --color-accent: var(--accent-400);
-  --color-accent-check-in-reward: var(--accent-470);
-  --color-accent-chip: var(--accent-420);
-  --color-accent-glow: var(--accent-200);
-  --color-accent-gold: var(--accent-360);
-  --color-accent-gold-light: var(--accent-200);
-  --color-accent-gold-mid: var(--accent-330);
-  --color-accent-gold-muted: var(--accent-280);
-  --color-accent-khaki: var(--accent-khaki-900);
-  --color-accent-pale: var(--accent-pale-100);
-  --color-accent-yellow: var(--accent-460);
+  --color-accent:                            var(--accent-400);
+  --color-accent-check-in-reward:            var(--accent-470);
+  --color-accent-chip:                       var(--accent-420);
+  --color-accent-glow:                       var(--raw-gradient-accent-100);
+  --color-accent-gold:                       var(--accent-360);
+  --color-accent-gold-light:                 var(--accent-200);
+  --color-accent-gold-mid:                   var(--accent-330);
+  --color-accent-gold-muted:                 var(--accent-280);
+  --color-accent-khaki:                      var(--accent-khaki-900);
+  --color-accent-pale:                       var(--raw-gradient-accent-50);
+  --color-accent-yellow:                     var(--accent-460);
 
   /* button */
-  --color-button-accent: var(--accent-400);
-  --color-button-accent-deep: var(--accent-360);
-  --color-button-accordian-head: var(--mono-0);
-  --color-button-back: var(--mono-510);
-  --color-button-cta: var(--raw-app-button-cta);
-  --color-button-cta-fifth: var(--mono-900);
-  --color-button-cta-fifth-text: var(--mono-0);
-  --color-button-cta-fourth: var(--accent-400);
-  --color-button-cta-fourth-text: var(--mono-950);
-  --color-button-cta-primary: var(--mono-950);
-  --color-button-cta-secondary: var(--support-success-strong);
-  --color-button-cta-secondary-text: var(--mono-0);
-  --color-button-cta-tertiary: var(--mono-330);
-  --color-button-cta-tertiary-text: var(--mono-0);
-  --color-button-dashboard-primary-end: var(--brand-500);
-  --color-button-dashboard-primary-start: var(--brand-500);
-  --color-button-disabled: var(--brand-630);
-  --color-button-hover: var(--brand-630);
-  --color-button-hover-text: var(--brand-500);
-  --color-button-lang-border: var(--mono-650);
-  --color-button-lang-icon: var(--mono-0);
-  --color-button-lang-text: var(--mono-0);
-  --color-button-menu-active: var(--brand-500);
-  --color-button-muted: var(--mono-510);
-  --color-button-muted-text: var(--mono-0);
-  --color-button-pagination-disabled: var(--mono-666);
-  --color-button-referral-cta: var(--support-warning);
-  --color-button-referral-cta-text: var(--accent-brown-800);
-  --color-button-sidenav-text: var(--brand-500);
-  --color-button-sports: var(--raw-surface-sports-button);
-  --color-button-tabs: var(--mono-660);
-  --color-button-tabs-muted: var(--mono-800);
-  --color-button-tabs-muted-text: var(--mono-0);
-  --color-button-tabs-text: var(--brand-400);
+  --color-button-accent:                     var(--accent-400);
+  --color-button-accent-deep:                var(--accent-360);
+  --color-button-accordian-head:             var(--mono-0);
+  --color-button-back:                       var(--mono-510);
+  --color-button-cta:                        var(--raw-app-button-cta);
+  --color-button-cta-arrow:                  var(--brand-500);
+  --color-button-cta-arrow-selected:         var(--mono-0);
+  --color-button-cta-category:               var(--mono-510);
+  --color-button-cta-category-text:          var(--raw-text-brand);
+  --color-button-cta-fifth:                  var(--mono-900);
+  --color-button-cta-fifth-text:             var(--mono-0);
+  --color-button-cta-fourth:                 var(--accent-400);
+  --color-button-cta-fourth-text:            var(--mono-950);
+  --color-button-cta-pagination:             var(--mono-310);
+  --color-button-cta-pagination-selected:    var(--brand-700);
+  --color-button-cta-primary:                var(--mono-950);
+  --color-button-cta-secondary:              var(--support-success-strong);
+  --color-button-cta-secondary-text:         var(--mono-0);
+  --color-button-cta-tertiary:               var(--mono-330);
+  --color-button-cta-tertiary-text:          var(--mono-0);
+  --color-button-dashboard-primary-end:      var(--brand-500);
+  --color-button-dashboard-primary-start:    var(--brand-500);
+  --color-button-disabled:                   var(--brand-630);
+  --color-button-dot:                        var(--brand-500);
+  --color-button-hover:                      var(--raw-gradient-accent-600);
+  --color-button-hover-text:                 var(--brand-500);
+  --color-button-lang-border:                var(--mono-650);
+  --color-button-lang-icon:                  var(--mono-0);
+  --color-button-lang-text:                  var(--mono-0);
+  --color-button-menu-active:                var(--brand-500);
+  --color-button-muted:                      var(--mono-510);
+  --color-button-muted-text:                 var(--mono-0);
+  --color-button-nav:                        var(--raw-surface-muted-soft);
+  --color-button-pagination:                 var(--mono-310);
+  --color-button-pagination-arrow:           var(--mono-0);
+  --color-button-pagination-disabled:        var(--mono-666);
+  --color-button-referral-cta:               var(--support-warning);
+  --color-button-referral-cta-text:          var(--accent-brown-800);
+  --color-button-sidenav-text:               var(--brand-500);
+  --color-button-sports:                     var(--raw-surface-sports-button);
+  --color-button-tabs:                       var(--mono-660);
+  --color-button-tabs-muted:                 var(--mono-800);
+  --color-button-tabs-muted-text:            var(--mono-0);
+  --color-button-tabs-text:                  var(--brand-400);
 
   /* popup */
-  --color-popup-body: var(--mono-900);
-  --color-popup-head: var(--mono-910);
+  --color-popup-body:                        var(--mono-0);
+  --color-popup-head:                        var(--raw-universal-modal-header-bg);
 
   /* progress */
-  --color-progress-bar-bg: var(--mono-915);
-  --color-progress-bar-fill: var(--brand-500);
+  --color-progress-bar-bg:                   var(--mono-915);
+  --color-progress-bar-fill:                 var(--brand-500);
 
   /* success */
-  --color-success: var(--support-success);
-  --color-success-light: var(--support-success-light);
-  --color-success-lime-bright: var(--support-lime-bright);
-  --color-success-lime-deep: var(--support-lime-deep);
-  --color-success-lime-medium: var(--support-lime-medium);
-  --color-success-mid: var(--support-success-mid);
-  --color-success-positive: var(--support-success-bright);
-  --color-success-strong: var(--support-success-strong);
-  --color-success-vivid: var(--support-lime-vivid);
-  --color-success-vivid-green: var(--support-success-vivid);
+  --color-success:                           var(--support-success);
+  --color-success-light:                     var(--support-success-light);
+  --color-success-lime-bright:               var(--support-lime-bright);
+  --color-success-lime-deep:                 var(--support-lime-deep);
+  --color-success-lime-medium:               var(--support-lime-medium);
+  --color-success-mid:                       var(--support-success-mid);
+  --color-success-positive:                  var(--support-success-bright);
+  --color-success-strong:                    var(--support-success-strong);
+  --color-success-vivid:                     var(--support-lime-vivid);
+  --color-success-vivid-green:               var(--support-success-vivid);
 
   /* danger */
-  --color-danger: var(--support-danger);
-  --color-danger-accent: var(--support-danger-maroon);
-  --color-danger-deep: var(--support-danger-maroon);
-  --color-danger-maroon: var(--support-danger-maroon);
-  --color-danger-negative: var(--support-negative);
-  --color-danger-red: var(--support-danger-red);
-  --color-danger-vivid: var(--support-danger-vivid);
+  --color-danger:                            var(--support-danger);
+  --color-danger-accent:                     var(--support-danger-maroon);
+  --color-danger-deep:                       var(--support-danger-maroon);
+  --color-danger-maroon:                     var(--support-danger-maroon);
+  --color-danger-negative:                   var(--support-negative);
+  --color-danger-red:                        var(--support-danger-red);
+  --color-danger-vivid:                      var(--support-danger-vivid);
 
   /* error */
-  --color-error-alert: var(--support-error-vivid);
-  --color-error-bright: var(--support-error-bright);
-  --color-error-coral: var(--support-error-coral);
-  --color-error-crimson: var(--support-error-crimson);
-  --color-error-icon: var(--support-error);
-  --color-error-medium: var(--support-error-medium);
-  --color-error-strong: var(--support-error-strong);
-  --color-error-warm: var(--support-error-warm);
+  --color-error-alert:                       var(--support-error-vivid);
+  --color-error-bright:                      var(--support-error-bright);
+  --color-error-coral:                       var(--support-error-coral);
+  --color-error-crimson:                     var(--support-error-crimson);
+  --color-error-icon:                        var(--support-error);
+  --color-error-medium:                      var(--support-error-medium);
+  --color-error-strong:                      var(--support-error-strong);
+  --color-error-warm:                        var(--support-error-warm);
 
   /* warning */
-  --color-warning: var(--support-warning);
+  --color-warning:                           var(--support-warning);
 
   /* overlay */
-  --color-overlay: var(--overlay-default);
-  --color-overlay-sports-card: var(--overlay-sports-card);
-  --color-overlay-sports-event: var(--overlay-sports-event);
-  --color-overlay-strong: var(--overlay-strong);
+  --color-overlay:                           var(--overlay-default);
+  --color-overlay-sports-card:               var(--overlay-sports-card);
+  --color-overlay-sports-event:              var(--overlay-sports-event);
+  --color-overlay-strong:                    var(--overlay-strong);
 
   /* muted */
-  --color-muted: var(--mono-510);
+  --color-muted:                             var(--mono-510);
 
   /* info */
-  --color-info-icon: var(--mono-648);
-  --color-info-steel-light: var(--support-steel-light);
+  --color-info-icon:                         var(--mono-648);
+  --color-info-steel-light:                  var(--support-steel-light);
 
   /* effect */
-  --color-effect-glow: var(--brand-500-soft);
-  --color-effect-header-shadow: var(--mono-950-a25);
-  --color-effect-shadow-soft: var(--overlay-shadow-soft);
+  --color-effect-glow:                       var(--brand-500-soft);
+  --color-effect-header-shadow:              var(--mono-950-a25);
+  --color-effect-shadow-soft:                var(--overlay-shadow-soft);
 
   /* icon */
-  --color-icon-action: var(--mono-580);
-  --color-icon-check-in-active: var(--brand-400);
-  --color-icon-check-in-muted: var(--mono-468);
-  --color-icon-check-in-star-deep: var(--brand-700);
-  --color-icon-muted: var(--mono-555);
-  --color-icon-rank-alert-base: var(--raw-icon-rank-alert-base);
-  --color-icon-rank-alert-highlight: var(--raw-icon-rank-alert-highlight);
-  --color-icon-rank-first: var(--raw-icon-rank-first-mark);
-  --color-icon-rank-second: var(--raw-icon-rank-second-mark);
-  --color-icon-rank-third: var(--raw-icon-rank-third-mark);
-  --color-icon-subtle: var(--mono-560);
-  --color-icon-rtp-trend-up: var(--color-success);
-  --color-icon-rtp-trend-down: var(--color-danger-red);
+  --color-icon-action:                       var(--mono-580);
+  --color-icon-check-in-active:              var(--brand-400);
+  --color-icon-check-in-muted:               var(--mono-468);
+  --color-icon-check-in-star-deep:           var(--brand-700);
+  --color-icon-muted:                        var(--mono-555);
+  --color-icon-rank-alert-base:              var(--raw-icon-rank-alert-base);
+  --color-icon-rank-alert-highlight:         var(--raw-icon-rank-alert-highlight);
+  --color-icon-rank-first:                   var(--raw-icon-rank-first-mark);
+  --color-icon-rank-second:                  var(--raw-icon-rank-second-mark);
+  --color-icon-rank-third:                   var(--raw-icon-rank-third-mark);
+  --color-icon-subtle:                       var(--mono-560);
+  --color-icon-um:                           var(--brand-500);
 
   /* transparent */
-  --color-transparent: var(--mono-0909);
+  --color-transparent:                       var(--mono-0909);
 
   /* bar */
-  --color-bar: var(--raw-bar);
+  --color-bar:                               var(--raw-bar);
+
+  /* primary-tag */
+  --color-primary-tag:                       var(--support-error-medium);
+
+  /* primary-tag-text */
+  --color-primary-tag-text:                  var(--mono-0);
+
+  /* scrollbar */
+  --color-scrollbar:                         var(--brand-500);
 
   /* secondary */
-  --color-secondary: var(--mono-0);
+  --color-secondary:                         var(--mono-0);
+
+  /* secondary-tag */
+  --color-secondary-tag:                     var(--raw-gradient-accent-50);
+
+  /* secondary-tag-text */
+  --color-secondary-tag-text:                var(--support-success-vivid);
+
+  /* sticky-nav */
+  --color-sticky-nav:                        var(--brand-700);
+
+  /* thumbnail */
+  --color-thumbnail:                         var(--mono-950);
 
   /* gradient */
-  --color-gradient-button-cta:             linear-gradient(180deg, var(--raw-cta-start) 0%, var(--raw-cta-end) 100%);
-  --color-gradient-card-brand:             linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);
-  --color-gradient-check-in-card:          linear-gradient(90deg, var(--support-success-strong) 0%, var(--brand-700) 100%);
-  --color-gradient-check-in-day:           linear-gradient(90deg, var(--brand-500) 0%, var(--brand-630) 100%);
-  --color-gradient-check-in-reward:        linear-gradient(90deg, var(--accent-475) 0%, var(--accent-476) 100%);
+  --color-gradient-button-cta:               linear-gradient(180deg, var(--raw-cta-start) 0%, var(--raw-cta-end) 100%);
+  --color-gradient-card-brand:               linear-gradient(180deg, var(--raw-gradient-live-page-start) 0%, var(--raw-gradient-live-page-mid) 36%, var(--raw-gradient-live-page-end) 100%);
+  --color-gradient-check-in-card:            linear-gradient(90deg, var(--support-success-strong) 0%, var(--brand-700) 100%);
+  --color-gradient-check-in-day:             linear-gradient(90deg, var(--brand-500) 0%, var(--brand-630) 100%);
+  --color-gradient-check-in-reward:          linear-gradient(90deg, var(--accent-475) 0%, var(--accent-476) 100%);
+
   /* missing start/end for color/gradient/dashboard/button/brand */
-  --color-gradient-dashboard-warm:         linear-gradient(90deg, var(--accent-orange-500) 0%, var(--accent-orange-700) 100%);
-  --color-gradient-header-balance:         linear-gradient(90deg, var(--mono-550) 0%, var(--mono-600) 100%);
-  --color-gradient-home-card:              linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);
-  --color-gradient-home-cta:               linear-gradient(90deg, var(--brand-500) 0%, var(--raw-gradient-home-cta-edge) 100%);
-  --color-gradient-home-dashboard:         linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);
-  --color-gradient-home-highlight:         linear-gradient(90deg, var(--raw-gradient-home-highlight-start) 0%, var(--raw-gradient-home-highlight-end) 100%);
-  --color-gradient-home-muted:             linear-gradient(90deg, var(--mono-542) 0%, var(--mono-604) 100%);
-  --color-gradient-rank-first:             linear-gradient(90deg, var(--raw-gradient-rank-first-start) 0%, var(--raw-gradient-rank-first-end) 100%);
-  --color-gradient-rank-second:            linear-gradient(90deg, var(--raw-gradient-rank-second-start) 0%, var(--raw-gradient-rank-second-end) 100%);
-  --color-gradient-rank-third:             linear-gradient(90deg, var(--raw-gradient-rank-third-start) 0%, var(--raw-gradient-rank-third-end) 100%);
-  --color-gradient-referral-card:          linear-gradient(90deg, var(--brand-630) 0%, var(--brand-700) 100%);
-  --color-gradient-referral-commission:    linear-gradient(90deg, var(--brand-630) 0%, var(--brand-700) 100%);
-  --color-gradient-referral-deposit:       linear-gradient(90deg, var(--accent-brown-700) 0%, var(--support-danger-maroon) 100%);
-  --color-gradient-referral-icon:          linear-gradient(90deg, var(--accent-340) 0%, var(--accent-310) 100%);
-  --color-gradient-referral-panel:         linear-gradient(180deg, var(--raw-gradient-register-page-start) 0%, var(--raw-gradient-register-page-mid) 45%, var(--raw-gradient-register-page-end) 100%);
-  --color-gradient-side-menu-brand:        linear-gradient(180deg, var(--brand-500) 0%, var(--brand-700) 100%);
-  --color-gradient-side-menu-warm:         linear-gradient(90deg, var(--accent-brown-800) 0%, var(--accent-brown-700) 100%);
-  --color-gradient-sidenav-daily-bonus:    linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);
-  --color-gradient-sidenav-highlight:      linear-gradient(90deg, var(--accent-340) 0%, var(--accent-310) 100%);
-  --color-gradient-sidenav-info:           linear-gradient(90deg, var(--support-navy-deep) 0%, var(--support-navy-mid) 100%);
-  --color-gradient-sidenav-scrim:          linear-gradient(90deg, var(--mono-330) 0%, var(--mono-330-a0) 100%);
-  --color-gradient-slot-panel:             linear-gradient(90deg, var(--mono-750) 0%, var(--mono-750) 100%);
-  --color-gradient-sports-button:          linear-gradient(90deg, var(--raw-gradient-sports-button-start) 0%, var(--raw-gradient-sports-button-end) 100%);
-  --color-gradient-sports-card:            linear-gradient(90deg, var(--raw-gradient-sports-card-start) 0%, var(--raw-gradient-sports-card-end) 100%);
+  --color-gradient-dashboard-warm:           linear-gradient(90deg, var(--accent-orange-500) 0%, var(--accent-orange-700) 100%);
+  --color-gradient-header-balance:           linear-gradient(90deg, var(--mono-550) 0%, var(--mono-600) 100%);
+  --color-gradient-home-card:                radial-gradient(circle at top, var(--raw-scrim-accent-blue-16) 0%, transparent 72%);
+  --color-gradient-home-cta:                 linear-gradient(90deg, var(--brand-630) 0%, var(--brand-500) 100%);
+  --color-gradient-home-dashboard:           linear-gradient(180deg, var(--color-surface-base) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-pale) 50%, transparent) 100%);
+  --color-gradient-home-highlight:           linear-gradient(180deg, var(--raw-gradient-app-download-section-start) 0%, var(--raw-gradient-app-download-section-end) 100%);
+  --color-gradient-home-muted:               linear-gradient(180deg, var(--raw-gradient-soft-panel-start) 0%, var(--raw-gradient-soft-panel-end) 100%);
+  --color-gradient-rank-first:               linear-gradient(90deg, var(--raw-gradient-rank-first-start) 0%, var(--raw-gradient-rank-first-end) 100%);
+  --color-gradient-rank-second:              linear-gradient(90deg, var(--raw-gradient-rank-second-start) 0%, var(--raw-gradient-rank-second-end) 100%);
+  --color-gradient-rank-third:               linear-gradient(90deg, var(--raw-gradient-rank-third-start) 0%, var(--raw-gradient-rank-third-end) 100%);
+  --color-gradient-referral-card:            linear-gradient(90deg, var(--brand-630) 0%, var(--brand-700) 100%);
+  --color-gradient-referral-commission:      linear-gradient(90deg, var(--brand-630) 0%, var(--brand-700) 100%);
+  --color-gradient-referral-deposit:         linear-gradient(90deg, var(--accent-brown-700) 0%, var(--support-danger-maroon) 100%);
+  --color-gradient-referral-icon:            linear-gradient(90deg, var(--accent-340) 0%, var(--accent-310) 100%);
+  --color-gradient-referral-panel:           linear-gradient(180deg, var(--raw-gradient-register-page-start) 0%, var(--raw-gradient-register-page-mid) 45%, var(--raw-gradient-register-page-end) 100%);
+  --color-gradient-side-menu-brand:          linear-gradient(180deg, var(--raw-gradient-vip-nav-pill-start) 0%, var(--raw-gradient-vip-nav-pill-end) 100%);
+  --color-gradient-side-menu-warm:           linear-gradient(90deg, var(--accent-brown-800) 0%, var(--accent-brown-700) 100%);
+  --color-gradient-sidenav-daily-bonus:      linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);
+  --color-gradient-sidenav-highlight:        linear-gradient(90deg, var(--accent-340) 0%, var(--accent-310) 100%);
+  --color-gradient-sidenav-info:             linear-gradient(90deg, var(--support-navy-deep) 0%, var(--support-navy-mid) 100%);
+  --color-gradient-sidenav-scrim:            linear-gradient(90deg, var(--raw-scrim-game-launch-start) 0%, var(--raw-scrim-game-launch-mid) 45%, var(--raw-scrim-game-launch-end-soft) 100%);
+  --color-gradient-slot-panel:               linear-gradient(90deg, var(--mono-750) 0%, var(--mono-750) 100%);
+  --color-gradient-sports-button:            linear-gradient(90deg, var(--raw-gradient-sports-button-start) 0%, var(--raw-gradient-sports-button-end) 100%);
+  --color-gradient-sports-card:              linear-gradient(90deg, var(--raw-gradient-sports-card-start) 0%, var(--raw-gradient-sports-card-end) 100%);
+
   /* missing start/end for color/gradient/sports/stage */
-  --color-gradient-button-cta-strong:       linear-gradient(180deg, var(--raw-cta-strong-start) 0%, var(--raw-cta-strong-end) 100%);
-  --color-gradient-nav-cta:                 linear-gradient(90deg, var(--brand-630) 0%, var(--brand-500) 100%);
-  --color-gradient-register-page:           linear-gradient(180deg, var(--raw-gradient-register-page-start) 0%, var(--raw-gradient-register-page-mid) 45%, var(--raw-gradient-register-page-end) 100%);
-  --color-gradient-register-panel:          linear-gradient(180deg, var(--raw-gradient-register-page-start) 0%, var(--raw-gradient-register-panel-mid) 52%, var(--raw-gradient-register-panel-end) 100%);
-  --color-gradient-live-page:               linear-gradient(180deg, var(--raw-gradient-live-page-start) 0%, var(--raw-gradient-live-page-mid) 36%, var(--raw-gradient-live-page-end) 100%);
-  --color-gradient-live-page-content:       linear-gradient(180deg, var(--raw-gradient-live-page-start) 0%, var(--raw-gradient-live-page-mid) 42%, var(--raw-gradient-live-page-end) 100%);
-  --color-gradient-account-shell:           linear-gradient(180deg, var(--raw-gradient-account-shell-start) 0%, var(--raw-gradient-account-shell-mid) 38%, var(--raw-gradient-account-shell-end) 100%);
-  --color-gradient-soft-panel:              linear-gradient(180deg, var(--raw-gradient-soft-panel-start) 0%, var(--raw-gradient-soft-panel-end) 100%);
-  --color-gradient-blue-panel:              linear-gradient(180deg, var(--raw-gradient-blue-panel-start) 0%, var(--raw-gradient-blue-panel-end) 100%);
-  --color-gradient-soft-blue-panel:         linear-gradient(180deg, var(--raw-gradient-soft-panel-start) 0%, var(--raw-gradient-blue-panel-end) 100%);
-  --color-gradient-promo-card:              linear-gradient(180deg, var(--raw-gradient-promo-card-start) 0%, var(--raw-gradient-promo-card-end) 100%);
-  --color-gradient-promo-card-desktop:      linear-gradient(180deg, var(--raw-gradient-promo-card-desktop-start) 0%, var(--raw-gradient-promo-card-desktop-end) 100%);
-  --color-gradient-app-download-phone:      linear-gradient(180deg, var(--raw-gradient-app-download-phone-start) 0%, var(--raw-gradient-app-download-phone-end) 100%);
-  --color-gradient-app-download-section:    linear-gradient(180deg, var(--raw-gradient-app-download-section-start) 0%, var(--raw-gradient-app-download-section-end) 100%);
-  --color-gradient-app-download-preview:    linear-gradient(180deg, var(--brand-500) 0%, var(--raw-gradient-app-download-preview-end) 100%);
-  --color-gradient-app-download-button:     linear-gradient(90deg, var(--raw-gradient-app-download-button-start) 0%, var(--brand-500) 100%);
-  --color-gradient-app-download-qr:         linear-gradient(180deg, var(--mono-0) 0%, var(--raw-gradient-app-download-qr-end) 100%);
-  --color-gradient-vip-nav-pill:            linear-gradient(180deg, var(--raw-gradient-vip-nav-pill-start) 0%, var(--raw-gradient-vip-nav-pill-end) 100%);
-  --color-gradient-vip-nav-pill-hover:      linear-gradient(180deg, var(--raw-gradient-vip-nav-pill-hover-start) 0%, var(--raw-gradient-vip-nav-pill-hover-end) 100%);
-  --color-gradient-language-nav:              linear-gradient(180deg, var(--raw-gradient-language-nav-start) 0%, var(--raw-gradient-language-nav-mid) 42%, var(--raw-gradient-language-nav-deep) 74%, var(--raw-gradient-language-nav-end) 100%);
-  --color-gradient-mobile-cta:              linear-gradient(180deg, var(--raw-gradient-mobile-cta-start) 0%, var(--raw-gradient-mobile-cta-end) 100%);
-  --color-gradient-vip-badge:               linear-gradient(180deg, var(--raw-gradient-vip-badge-start) 0%, var(--raw-gradient-vip-badge-end) 100%);
-  --color-gradient-vip-tier-muted:          linear-gradient(180deg, var(--raw-gradient-vip-tier-muted-start) 0%, var(--raw-gradient-vip-tier-muted-end) 100%);
-  --color-gradient-vip-tier-avatar:         linear-gradient(135deg, var(--raw-gradient-vip-tier-avatar-start) 0%, var(--raw-gradient-vip-tier-avatar-end) 100%);
-  --color-gradient-rewards-scratch:         linear-gradient(145deg, var(--raw-gradient-rewards-scratch-start) 0%, var(--raw-gradient-rewards-scratch-mid) 50%, var(--raw-gradient-rewards-scratch-end) 100%);
-  --color-gradient-logout-default:          linear-gradient(180deg, var(--raw-gradient-logout-default-start) 0%, var(--raw-gradient-logout-default-end) 100%);
-  --color-gradient-logout-hover:            linear-gradient(90deg, var(--raw-gradient-logout-hover-start) 0%, var(--raw-gradient-logout-hover-mid) 52%, var(--raw-gradient-logout-hover-end) 100%);
-  --color-gradient-scrollbar-track:         linear-gradient(180deg, var(--raw-gradient-scrollbar-track-start) 0%, var(--raw-gradient-scrollbar-track-end) 100%);
-  --color-gradient-scrollbar-thumb:         linear-gradient(180deg, var(--raw-gradient-scrollbar-thumb-start) 0%, var(--raw-gradient-scrollbar-thumb-mid) 45%, var(--raw-gradient-scrollbar-thumb-end) 100%);
-  --color-gradient-scrollbar-thumb-hover:   linear-gradient(180deg, var(--raw-gradient-scrollbar-thumb-hover-start) 0%, var(--raw-gradient-scrollbar-thumb-hover-mid) 48%, var(--raw-gradient-scrollbar-thumb-hover-end) 100%);
-  --color-gradient-scrollbar-thumb-active:  linear-gradient(180deg, var(--raw-gradient-scrollbar-thumb-active-start) 0%, var(--raw-gradient-scrollbar-thumb-active-mid) 55%, var(--raw-gradient-scrollbar-thumb-active-end) 100%);
-  --color-gradient-brand-soft-panel:        linear-gradient(180deg, var(--mono-0) 0%, var(--raw-brand-soft) 100%);
-  --color-gradient-brand-soft-panel-alt:    linear-gradient(180deg, var(--raw-brand-soft) 0%, var(--mono-0) 100%);
-  --color-gradient-brand-soft-horizontal:   linear-gradient(90deg, var(--raw-brand-soft) 0%, var(--mono-0) 100%);
-  --color-gradient-floating-social:         linear-gradient(180deg, var(--raw-gradient-accent-500) 0%, var(--brand-700) 100%);
-  --color-gradient-footer:                  linear-gradient(180deg, var(--brand-500) 0%, var(--brand-500) 100%);
-  --color-gradient-accent-avatar:           linear-gradient(180deg, var(--raw-gradient-accent-50) 0%, var(--raw-gradient-accent-100) 100%);
-  --color-gradient-surface-card:            linear-gradient(180deg, var(--mono-0) 0%, var(--raw-gradient-surface-subtle) 100%);
-  --color-gradient-surface-muted:           linear-gradient(180deg, var(--raw-gradient-surface-subtle) 0%, var(--raw-gradient-surface-muted) 100%);
-  --color-gradient-surface-accent:          linear-gradient(180deg, var(--raw-gradient-accent-50) 0%, var(--raw-gradient-accent-100) 100%);
-  --color-gradient-accent-tab:              linear-gradient(180deg, var(--raw-gradient-accent-500) 0%, var(--raw-gradient-accent-700) 100%);
-  --color-gradient-rollover-warn:           linear-gradient(180deg, var(--raw-gradient-rollover-warn-start) 0%, var(--raw-gradient-rollover-warn-end) 100%);
-  --color-gradient-wallet-glass:            linear-gradient(180deg, var(--raw-gradient-wallet-glass-start) 0%, var(--raw-gradient-wallet-glass-end) 100%);
-  --color-gradient-wallet-panel:            linear-gradient(180deg, var(--raw-gradient-wallet-panel-start) 0%, var(--raw-gradient-wallet-panel-end) 100%);
-  --color-gradient-wallet-shell:            linear-gradient(180deg, var(--raw-gradient-wallet-shell-start) 0%, var(--raw-gradient-wallet-shell-end) 100%);
-  --color-gradient-rewards-accent-footer:   linear-gradient(180deg, var(--raw-gradient-accent-50) 0%, var(--raw-gradient-rewards-accent-footer-start) 100%);
-  --color-gradient-rewards-panel:           linear-gradient(180deg, var(--raw-gradient-rewards-panel-start) 0%, var(--raw-gradient-rewards-panel-end) 100%);
-  --color-gradient-scroll-top:              linear-gradient(180deg, var(--brand-500) 0%, var(--brand-630) 100%);
-  --color-gradient-error-shell:             linear-gradient(160deg, var(--raw-gradient-accent-50) 0%, var(--raw-gradient-accent-100) 100%);
-  --color-gradient-error-icon:              linear-gradient(135deg, var(--raw-gradient-accent-100) 0%, var(--raw-gradient-accent-200) 100%);
-  --color-gradient-error-action:            linear-gradient(180deg, var(--raw-gradient-accent-700) 0%, var(--raw-gradient-accent-500) 100%);
-  --color-gradient-lottery-header:          linear-gradient(180deg, var(--raw-gradient-lottery-header-start) 0%, var(--raw-gradient-lottery-header-end) 100%);
-  --color-gradient-hero-fade-left:          linear-gradient(90deg, var(--raw-gradient-hero-fade-left-start) 0%, var(--raw-gradient-hero-fade-left-mid) 45%, transparent 100%);
-  --color-gradient-game-stage:              linear-gradient(180deg, var(--raw-gradient-game-stage-start) 0%, var(--raw-gradient-game-stage-end) 100%);
-  --color-gradient-modal-shell:             linear-gradient(180deg, var(--raw-gradient-modal-shell-start) 0%, var(--raw-gradient-modal-shell-end) 100%);
-  --color-gradient-rewards-footer:          linear-gradient(180deg, var(--raw-gradient-surface-muted) 0%, var(--raw-gradient-accent-50) 40%);
-  --color-gradient-rewards-highlight:       linear-gradient(180deg, var(--raw-gradient-accent-50) 0%, var(--mono-0) 100%);
-  --color-gradient-table:                  linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);
-  --color-gradient-card-shine:             linear-gradient(120deg, var(--raw-scrim-shine-start) 0%, var(--raw-scrim-shine-end) 45%);
-  --color-gradient-promo-overlay:          radial-gradient(circle at top left, var(--raw-scrim-white-55) 0%, transparent 48%), linear-gradient(135deg, var(--raw-scrim-brand-cyan-12) 0%, transparent 58%);
-  --color-gradient-promo-bottom-glow:      linear-gradient(180deg, transparent 0%, var(--raw-scrim-brand-deep-08) 100%);
-  --color-gradient-promo-bottom-glow-soft: linear-gradient(180deg, transparent 0%, var(--raw-scrim-brand-mid-06) 100%);
-  --color-gradient-language-panel-top:     linear-gradient(180deg, var(--raw-scrim-white-14) 0%, var(--raw-scrim-white-04) 38%, transparent 100%);
-  --color-gradient-language-panel-top-light: linear-gradient(180deg, var(--raw-scrim-slate-04) 0%, var(--raw-scrim-slate-01) 38%, transparent 100%);
-  --color-gradient-language-panel-radial:  radial-gradient(circle at bottom, var(--raw-scrim-brand-cyan-14) 0%, transparent 74%);
-  --color-gradient-language-panel-radial-light: radial-gradient(circle at bottom, var(--raw-scrim-accent-blue-08) 0%, transparent 74%);
-  --color-gradient-language-option-active: linear-gradient(90deg, var(--raw-scrim-gold-22) 0%, var(--raw-scrim-brand-cyan-18) 100%);
-  --color-gradient-app-download-shell:     linear-gradient(180deg, var(--raw-scrim-app-shell-start) 0%, var(--raw-scrim-app-shell-end) 100%);
-  --color-gradient-app-download-inner:     linear-gradient(180deg, var(--raw-scrim-app-inner-start) 0%, var(--raw-scrim-app-inner-end) 100%);
-  --color-gradient-success-icon:           linear-gradient(180deg, var(--raw-scrim-success-start) 0%, var(--raw-scrim-success-end) 100%);
-  --color-gradient-progress-fill:          linear-gradient(90deg, var(--color-accent-400) 0%, var(--color-accent-600) 100%);
-  --color-gradient-content-hero-top:       radial-gradient(circle at top, var(--raw-scrim-accent-blue-16) 0%, transparent 72%);
-  --color-gradient-content-hero-blob:      radial-gradient(circle, var(--raw-scrim-hero-blob-start) 0%, var(--raw-scrim-hero-blob-mid) 48%, var(--raw-scrim-hero-clear) 76%);
-  --color-gradient-content-hero-scrim:     linear-gradient(90deg, var(--raw-scrim-hero-edge) 0%, var(--raw-scrim-hero-edge) 12%, var(--raw-scrim-hero-stop-99) 24%, var(--raw-scrim-hero-stop-96) 38%, var(--raw-scrim-hero-stop-82) 52%, var(--raw-scrim-hero-stop-35) 72%, var(--raw-scrim-hero-stop-06) 88%, var(--raw-scrim-hero-clear) 100%);
-  --color-gradient-content-hero-scrim-md:  linear-gradient(90deg, var(--raw-scrim-hero-stop-99) 0%, var(--raw-scrim-hero-stop-96) 26%, var(--raw-scrim-hero-stop-74) 50%, var(--raw-scrim-hero-stop-20) 56%, var(--raw-scrim-hero-clear) 100%);
-  --color-gradient-content-hero-bottom:    linear-gradient(0deg, var(--raw-scrim-panel-98) 0%, var(--raw-scrim-panel-50) 42%, transparent 100%);
-  --color-gradient-content-hero-spotlight: radial-gradient(circle, var(--raw-scrim-hero-spot-full) 0%, var(--raw-scrim-hero-spot-mid) 38%, var(--raw-scrim-hero-spot-soft) 64%, var(--raw-scrim-hero-clear) 92%);
-  --color-gradient-content-hero-mobile-fade: linear-gradient(180deg, transparent 0%, var(--raw-scrim-panel-65) 32%, var(--raw-scrim-panel-96) 100%);
-  --color-gradient-referral-glow-left:     radial-gradient(circle at left center, var(--raw-scrim-accent-blue-14) 0%, transparent 62%);
-  --color-gradient-referral-glow-right:    radial-gradient(circle at right center, var(--raw-scrim-gold-12) 0%, transparent 58%);
-  --color-gradient-referral-glow-top:      radial-gradient(circle at top center, var(--raw-scrim-accent-blue-10) 0%, transparent 55%);
-  --color-gradient-live-chat-header:       radial-gradient(ellipse 80% 80% at 50% 0%, var(--raw-scrim-brand-cyan-12) 0%, transparent 70%);
-  --color-gradient-nav-radial-top:         radial-gradient(circle at top, var(--color-nav-border) 0%, transparent 72%);
-  --color-gradient-notification-shine:   radial-gradient(circle at top right, var(--raw-scrim-toast-shine) 0%, transparent 46%);
-  --color-gradient-favourite-inactive:     linear-gradient(180deg, var(--raw-scrim-fav-inactive-start) 0%, var(--raw-scrim-fav-inactive-end) 100%);
-  --color-gradient-favourite-inactive-hover: linear-gradient(180deg, var(--raw-scrim-fav-hover-start) 0%, var(--raw-scrim-fav-hover-end) 100%);
-  --color-gradient-favourite-active:       linear-gradient(163deg, var(--raw-scrim-fav-active-start) 0%, var(--raw-scrim-fav-active-mid) 42%, var(--raw-scrim-fav-active-end) 100%);
-  --color-gradient-favourite-active-hover: linear-gradient(163deg, var(--raw-scrim-fav-active-hover-start) 0%, var(--raw-scrim-fav-active-hover-mid) 45%, var(--raw-scrim-fav-active-hover-end) 100%);
-  --color-gradient-game-card-overlay:      linear-gradient(180deg, var(--raw-scrim-game-overlay-start) 0%, var(--raw-scrim-game-overlay-mid) 36%, var(--raw-scrim-game-overlay-end) 100%);
-  --color-gradient-game-card-glow-soft:    radial-gradient(circle, var(--raw-scrim-game-glow-soft) 0%, var(--raw-scrim-game-glow-faint) 48%, transparent 78%);
-  --color-gradient-game-card-glow-strong:  radial-gradient(circle, var(--raw-scrim-game-glow-strong) 0%, var(--raw-scrim-game-glow-mid) 46%, transparent 76%);
-  --color-scrim-rollover-panel:            var(--raw-scrim-panel-45);
-  --color-gradient-tag:                    linear-gradient(90deg, var(--raw-gradient-logout-hover-start) 0%, var(--raw-gradient-logout-hover-mid) 52%, var(--raw-gradient-logout-hover-end) 100%);
+  --color-gradient-table:                    linear-gradient(180deg, var(--raw-gradient-scrollbar-track-start) 0%, var(--raw-gradient-scrollbar-track-end) 100%);
+  --color-gradient-tag:                      linear-gradient(90deg, var(--raw-gradient-logout-hover-start) 0%, var(--raw-gradient-logout-hover-mid) 52%, var(--raw-gradient-logout-hover-end) 100%);
+
+  /* table */
 
   /* table */
   --color-table-highlight: var(--color-gradient-table);
@@ -904,6 +863,13 @@
   --raw-gradient-promo-card-end: #a6d7f2;
   --raw-gradient-promo-card-desktop-start: #c5eefd;
   --raw-gradient-promo-card-desktop-end: #8ccbf0;
+
+  /* Home promo banners — Caelo formulas on Riocity --color-gradient-* (§6.1, §13.6) */
+  --color-gradient-referral-card: linear-gradient(180deg, var(--raw-gradient-promo-card-start) 0%, var(--raw-gradient-promo-card-end) 100%);
+  --color-gradient-referral-commission: linear-gradient(180deg, var(--raw-gradient-promo-card-desktop-start) 0%, var(--raw-gradient-promo-card-desktop-end) 100%);
+  --color-gradient-referral-icon: radial-gradient(circle at top left, var(--raw-scrim-white-55) 0%, transparent 48%), linear-gradient(135deg, var(--raw-scrim-brand-cyan-12) 0%, transparent 58%);
+  --color-gradient-referral-deposit: linear-gradient(180deg, transparent 0%, var(--raw-scrim-brand-deep-08) 100%);
+  --color-gradient-sidenav-highlight: linear-gradient(180deg, transparent 0%, var(--raw-scrim-brand-mid-06) 100%);
   --raw-gradient-app-download-phone-start: #48c8f0;
   --raw-gradient-app-download-phone-end: #006eb5;
   --raw-gradient-app-download-section-start: #edf8ff;
@@ -985,72 +951,10 @@
   --raw-app-border: var(--mono-255);
   --raw-app-button-cta: var(--raw-cta-start);
 
-  /* ---------------------------------------------------------------------------
-     Caelo app-specific semantics (Figma has no token — each maps to --raw-* above)
-     Keep: page-*, nav-*, payout-*, universal-modal-*, cta-*, accent-50–700, surface-muted*
-     Migrated to Figma names in components: side-menu-brand, surface-secondary-table-head,
-     border-brand, danger (was hot-main / border-brand-soft / nav-brand / table-head).
-     --------------------------------------------------------------------------- */
-  --color-brand-soft: var(--raw-brand-soft);
-  --color-brand-soft-border: var(--raw-brand-soft-border);
-  --color-brand-line: var(--raw-brand-line);
-  --color-page-home: var(--raw-page-home);
-  --color-page-register: var(--raw-page-register);
-  --color-page-account: var(--raw-page-account);
-  --color-page-default: var(--raw-page-default);
-  --color-surface-muted: var(--raw-surface-muted);
-  --color-surface-muted-soft: var(--raw-surface-muted-soft);
-  --color-surface-subtle-app: var(--raw-surface-subtle);
-  --color-surface-base-80: var(--raw-surface-base-80);
-  --color-surface-base-85: var(--raw-surface-base-85);
-  --color-text-brand: var(--raw-text-brand);
-  --color-text-brand-soft: var(--raw-text-brand-soft);
-  --color-border-accent: var(--raw-border-accent);
-  --color-border-live: var(--raw-border-live);
-  --color-accent-50: var(--raw-gradient-accent-50);
-  --color-accent-100: var(--raw-gradient-accent-100);
-  --color-accent-200: var(--raw-gradient-accent-200);
-  --color-accent-300: var(--raw-gradient-accent-300);
-  --color-accent-400: var(--raw-gradient-accent-400);
-  --color-accent-500: var(--raw-gradient-accent-500);
-  --color-accent-600: var(--raw-gradient-accent-600);
-  --color-accent-700: var(--raw-gradient-accent-700);
-  --color-wash-400: var(--raw-wash-400);
-  --color-success-hover: var(--support-success-strong);
-  --color-nav-border: var(--raw-nav-border);
-  --color-nav-border-soft: var(--raw-nav-border-soft);
-  --color-nav-tile-border: var(--raw-nav-tile-border);
-  --color-nav-tile-border-hover: var(--raw-nav-tile-border-hover);
-  --color-nav-accent-soft: var(--raw-nav-accent-soft);
-  --color-nav-text-soft: var(--raw-nav-text-soft);
-  --color-nav-text-accent: var(--raw-nav-text-accent);
-  --color-accent: var(--accent-400);
-  --color-nav-icon: var(--raw-nav-icon);
-  --color-nav-icon-hover: var(--raw-nav-icon-hover);
-  --color-nav-badge: var(--raw-nav-badge);
-  --color-nav-overlay: var(--raw-nav-overlay);
-  --color-surface-light-active: rgb(255 255 255 / 0.08);
-  --color-gradient-sidenav-scrim: linear-gradient(90deg, var(--raw-scrim-game-launch-start) 0%, var(--raw-scrim-game-launch-mid) 45%, var(--raw-scrim-game-launch-end-soft) 100%);
-  --color-gradient-home-dashboard: linear-gradient(180deg, var(--color-surface-base) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-50) 50%, transparent) 100%);
-  --color-payout-panel-bg: var(--mono-0);
-  --color-payout-panel-border: var(--brand-500);
-  --color-payout-panel-shadow: 0 4px 10px rgb(8 59 148 / 0.25);
-  --color-payout-title: var(--raw-payout-title);
-  --color-payout-highlight: var(--raw-payout-highlight);
-  --color-payout-card-bg: var(--raw-gradient-accent-50);
-  --color-payout-amount: var(--raw-payout-amount);
-  --color-cta-start: var(--raw-cta-start);
-  --color-cta-end: var(--raw-cta-end);
-  --color-cta-strong-start: var(--raw-cta-strong-start);
-  --color-cta-strong-end: var(--raw-cta-strong-end);
-  --color-cta-auth-start: var(--raw-cta-auth-start);
-  --color-cta-auth-end: var(--raw-cta-auth-end);
-  --color-cta-border: var(--raw-cta-border);
-  --color-cta-focus: var(--raw-cta-focus);
-  --color-cta-text: var(--raw-cta-text);
-  --color-universal-modal-header-bg: var(--raw-universal-modal-header-bg);
-  --color-universal-modal-header-text: var(--brand-700);
-  --color-universal-modal-game-body-bg: var(--mono-0);
-  --color-universal-modal-card-border: var(--raw-border-brand);
-  --gradient-cta: var(--color-gradient-button-cta);
+  /* Cam88 Web Header — Caelo values on RioCity semantic names (site-wide) */
+  --color-text-sticky-nav-text: var(--mono-0);
+
+  /* Game card RTP — Cam88 semantic names; same resolved colors as pre-migration (§13.11) */
+  --color-surface-rtp-card: var(--color-primary);
+  --color-surface-rtp-secondary-card-text: var(--mono-0);
 }

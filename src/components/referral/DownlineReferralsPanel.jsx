@@ -31,8 +31,8 @@ const KPI_SUB_TABS = [
 function quickRangePillClassName(selected, smMinWidthClass = 'sm:min-w-[96px]') {
     return `max-sm:snap-start shrink-0 whitespace-nowrap rounded-xl border px-3 py-2.5 text-xs font-semibold transition ${smMinWidthClass} sm:px-4 sm:text-sm ${
         selected
-            ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]'
-            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
+            ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
+            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
     }`;
 }
 
@@ -91,7 +91,7 @@ function StatTile({ label, value }) {
     return (
         <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
             <p className="text-sm font-semibold text-[var(--color-text-muted)]">{label}</p>
-            <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-accent-600)] md:text-3xl">{value}</p>
+            <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-button-hover)] md:text-3xl">{value}</p>
         </div>
     );
 }
@@ -101,7 +101,7 @@ function SummaryMetricCard({ label, value }) {
     return (
         <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] p-4 md:p-5">
             <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">{label}</p>
-            <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-accent-600)] md:text-3xl">{value}</p>
+            <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-button-hover)] md:text-3xl">{value}</p>
         </div>
     );
 }
@@ -242,7 +242,7 @@ export default function DownlineReferralsPanel() {
                         <div className="relative">
                             <Search
                                 size={18}
-                                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-accent-600)]"
+                                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-button-hover)]"
                                 aria-hidden
                             />
                             <input
@@ -250,7 +250,7 @@ export default function DownlineReferralsPanel() {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search downline username"
-                                className="h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] py-2 pl-10 pr-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
+                                className="h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] py-2 pl-10 pr-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                             />
                         </div>
                     </label>
@@ -297,7 +297,7 @@ export default function DownlineReferralsPanel() {
                                                     <button
                                                         type="button"
                                                         onClick={() => setSelectedDownlineId(row.id)}
-                                                        className="font-semibold text-[var(--color-text-brand)] underline-offset-2 transition hover:underline"
+                                                        className="font-semibold text-[var(--color-text-primary-card-title)] underline-offset-2 transition hover:underline"
                                                     >
                                                         {row.username}
                                                     </button>

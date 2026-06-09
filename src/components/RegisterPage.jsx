@@ -66,8 +66,8 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                                         <form className="space-y-3" onSubmit={handleRegister} noValidate>
                                             <label className="block">
                                                 <span className="sr-only">Username</span>
-                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                                    <UserRound size={16} className="text-[var(--color-text-brand-soft)]" />
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                    <UserRound size={16} className="text-[var(--color-text-secondary)]" />
                                                     <input
                                                         name="username"
                                                         value={username}
@@ -81,8 +81,8 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">New Password</span>
-                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                                    <Lock size={16} className="text-[var(--color-text-brand-soft)]" />
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                    <Lock size={16} className="text-[var(--color-text-secondary)]" />
                                                     <input
                                                         type={showPassword ? 'text' : 'password'}
                                                         placeholder="New Password *"
@@ -102,15 +102,15 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                                             <div className="grid grid-cols-[84px_1fr] gap-2">
                                                 <label className="block">
                                                     <span className="sr-only">Country code</span>
-                                                    <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
+                                                    <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
                                                         +60
                                                         <ChevronDown size={14} />
                                                     </div>
                                                 </label>
                                                 <label className="block">
                                                     <span className="sr-only">Telephone number</span>
-                                                    <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                                        <Phone size={16} className="text-[var(--color-text-brand-soft)]" />
+                                                    <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                        <Phone size={16} className="text-[var(--color-text-secondary)]" />
                                                         <input
                                                             placeholder="Telephone Number *"
                                                             value={phone}
@@ -125,8 +125,8 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">Full Name</span>
-                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                                    <UserRound size={16} className="text-[var(--color-text-brand-soft)]" />
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                    <UserRound size={16} className="text-[var(--color-text-secondary)]" />
                                                     <input
                                                         placeholder="Full Name *"
                                                         className="w-full bg-transparent text-sm text-[var(--color-text-secondary)] outline-none placeholder:text-[var(--color-text-soft)]"
@@ -136,8 +136,8 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">Email</span>
-                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-3 shadow-[var(--inset-panel)]">
-                                                    <Mail size={16} className="text-[var(--color-text-brand-soft)]" />
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                    <Mail size={16} className="text-[var(--color-text-secondary)]" />
                                                     <input
                                                         placeholder="Email *"
                                                         className="w-full bg-transparent text-sm text-[var(--color-text-secondary)] outline-none placeholder:text-[var(--color-text-soft)]"
@@ -147,7 +147,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">Currency</span>
-                                                <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
+                                                <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
                                                     Malaysian Ringgit (MYR)
                                                     <ChevronDown size={14} />
                                                 </div>
@@ -155,7 +155,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">Affiliate ID</span>
-                                                <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-accent)] bg-[var(--color-surface-base-80)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
+                                                <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
                                                     Affiliate ID / Referral (Optional)
                                                     <ChevronDown size={14} />
                                                 </div>
@@ -179,13 +179,13 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                                             </button>
                                         </p>
 
-                                        <div className="mt-5 flex w-full flex-col items-center border-t border-[var(--color-border-accent)] pt-5 text-center">
+                                        <div className="mt-5 flex w-full flex-col items-center border-t border-[var(--color-border-brand)] pt-5 text-center">
                                             <h2 className="text-xs font-medium leading-snug tracking-tight text-[var(--color-text-soft)] sm:text-sm">
                                                 Register with WhatsApp
                                             </h2>
                                             <button
                                                 type="button"
-                                                className="mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 text-sm font-semibold text-[var(--color-text-card-text)] shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[var(--color-success-hover)] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97]"
+                                                className="mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 text-sm font-semibold text-[var(--color-text-card-text)] shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[var(--color-success-strong)] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97]"
                                             >
                                                 <WhatsAppIcon size={16} className="shrink-0 opacity-95" />
                                                 WhatsApp

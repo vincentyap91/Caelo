@@ -32,7 +32,7 @@ export default function PromotionWarningModal({
                 type="button"
                 aria-label="Close promotion warning"
                 onClick={onClose}
-                className="absolute inset-0 bg-[var(--color-nav-overlay)] backdrop-blur-[1px]"
+                className="absolute inset-0 bg-[var(--color-overlay-strong)] backdrop-blur-[1px]"
             />
 
             <section
@@ -50,7 +50,7 @@ export default function PromotionWarningModal({
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] sm:h-10 sm:w-10"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)] sm:h-10 sm:w-10"
                     >
                         <X size={18} />
                     </button>
@@ -58,7 +58,7 @@ export default function PromotionWarningModal({
 
                 <div className="px-5 py-5 sm:px-6 sm:py-5.5">
                     <div className="mx-auto flex max-w-[500px] flex-col items-center text-center">
-                        <span className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-gradient-cta text-[var(--color-cta-text)] shadow-[0_12px_24px_rgba(255,178,45,0.16)]">
+                        <span className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-gradient-cta text-[var(--color-text-cta-inverse)] shadow-[0_12px_24px_rgba(255,178,45,0.16)]">
                             <AlertTriangle size={30} strokeWidth={2.4} />
                         </span>
 

@@ -8,14 +8,14 @@ const liveActivityCardClass =
 /**
  * Homepage: Live Transactions and Recent Big Wins — each full-width row, stacked.
  */
-export default function HomeLiveActivity() {
+export default function HomeLiveActivity({ onNavigate }) {
     return (
         <div className="flex w-full flex-col gap-5 md:gap-6 xl:gap-8">
             <div className={liveActivityCardClass}>
                 <LiveTransactionsPanel />
             </div>
             <div className={liveActivityCardClass}>
-                <RecentBigWinsSection />
+                <RecentBigWinsSection onNavigate={onNavigate} />
             </div>
         </div>
     );

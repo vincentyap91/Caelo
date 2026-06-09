@@ -60,7 +60,7 @@ export default function ProductBrowseControlPanel({
                                 type="button"
                                 onClick={onOpenFilterModal}
                                 aria-label="Open filters: search games or providers, filter by type, and choose a provider"
-                                className="inline-flex h-10 min-h-10 w-full shrink-0 items-center justify-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/85 px-3 text-sm font-bold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-50)] md:w-auto md:px-4"
+                                className="inline-flex h-10 min-h-10 w-full shrink-0 items-center justify-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/85 px-3 text-sm font-bold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)] md:w-auto md:px-4"
                             >
                                 <SlidersHorizontal size={16} aria-hidden />
                                 Filter

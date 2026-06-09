@@ -83,7 +83,7 @@ function SummaryItem({
                 <button
                     type="button"
                     aria-label={title}
-                    className={`inline-flex items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] ${iconClassName} ${iconBtnClass}`}
+                    className={`inline-flex items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] ${iconClassName} ${iconBtnClass}`}
                 >
                     <Icon size={iconSize} strokeWidth={2} />
                 </button>

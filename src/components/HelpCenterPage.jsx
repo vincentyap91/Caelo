@@ -92,7 +92,7 @@ function AccordionItem({ index, question, answer, isOpen, onToggle }) {
             <button
                 type="button"
                 onClick={onToggle}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-[var(--color-surface-muted)]"
+                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-[var(--color-surface-cool-light)]"
             >
                 <span className="text-base font-bold text-[var(--color-text-primary)]">
                     {index}. {question}
@@ -159,7 +159,7 @@ export default function HelpCenterPage({ navigationState = null, guestLayout = f
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search for help..."
-                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent-400)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
+                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                     />
                     <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-soft)]" />
                 </label>
@@ -178,8 +178,8 @@ export default function HelpCenterPage({ navigationState = null, guestLayout = f
                             onClick={() => setSubTab(id)}
                             className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
                                 subTab === id
-                                    ? 'border-2 border-[var(--color-accent-500)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-sm'
-                                    : 'border border-transparent bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
+                                    ? 'border-2 border-[var(--color-accent)] bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-sm'
+                                    : 'border border-transparent bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                             }`}
                         >
                             {label}
@@ -214,7 +214,7 @@ export default function HelpCenterPage({ navigationState = null, guestLayout = f
                                     <ol className="mt-4 space-y-3">
                                         {section.items.map((item, index) => (
                                             <li key={item} className="flex items-start gap-3">
-                                                <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-50)] text-xs font-bold text-[var(--color-accent-700)]">
+                                                <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-pale)] text-xs font-bold text-[var(--color-button-hover)]">
                                                     {index + 1}
                                                 </span>
                                                 <p className="text-sm font-medium leading-relaxed text-[var(--color-text-muted)]">

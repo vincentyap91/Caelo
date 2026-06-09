@@ -7,13 +7,13 @@ export function GameProviderCard({ provider, active, onSelect }) {
             onClick={() => onSelect?.(provider)}
             className={`relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 bg-[var(--color-surface-base)] px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-[4.5rem] md:min-w-[8.5rem] lg:min-w-[9.5rem] ${active
                 ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-primary)]/25'
-                : 'border-[var(--color-border-subtle)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-surface-subtle)]'
+                : 'border-[var(--color-border-subtle)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-surface-subtle)]'
             }`}
             aria-pressed={active}
         >
             {(provider.featured || provider.new) && (
                 <span
-                    className={`absolute right-1.5 top-1.5 rounded-full px-2 py-0.5 text-[10px] font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-hot)] ${provider.new ? 'bg-[var(--color-accent-500)]' : 'bg-[var(--color-danger)]'}`}
+                    className={`absolute right-1.5 top-1.5 rounded-full px-2 py-0.5 text-[10px] font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-hot)] ${provider.new ? 'bg-[var(--color-accent)]' : 'bg-[var(--color-danger)]'}`}
                 >
                     {provider.new ? 'New' : 'Hot'}
                 </span>

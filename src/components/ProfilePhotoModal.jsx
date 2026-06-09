@@ -87,7 +87,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                 type="button"
                 aria-label="Close profile photo"
                 onClick={onClose}
-                className="absolute inset-0 bg-[var(--color-nav-overlay)] backdrop-blur-[2px]"
+                className="absolute inset-0 bg-[var(--color-overlay-strong)] backdrop-blur-[2px]"
             />
 
             <section
@@ -108,7 +108,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                     >
                         <X size={18} />
                     </button>
@@ -119,11 +119,11 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                         Upload a clear photo of yourself. JPG, PNG, WebP, or GIF up to 2 MB.
                     </p>
 
-                    <div className="mx-auto mt-6 flex h-40 w-40 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--color-accent-200)] bg-[var(--color-accent-50)] shadow-[var(--shadow-subtle)]">
+                    <div className="mx-auto mt-6 flex h-40 w-40 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] shadow-[var(--shadow-subtle)]">
                         {hasPhoto ? (
                             <img src={preview} alt="" className="h-full w-full object-cover" />
                         ) : (
-                            <UserCircle2 size={72} className="text-[var(--color-accent-400)]" strokeWidth={1.25} />
+                            <UserCircle2 size={72} className="text-[var(--color-accent)]" strokeWidth={1.25} />
                         )}
                     </div>
 
@@ -165,7 +165,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                         <button
                             type="button"
                             onClick={onClose}
-                            className="inline-flex min-h-[44px] min-w-[100px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-primary)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)]"
+                            className="inline-flex min-h-[44px] min-w-[100px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-primary)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)]"
                         >
                             Cancel
                         </button>

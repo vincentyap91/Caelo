@@ -70,7 +70,7 @@ export default function FloatingSocials({ authUser, onLiveChatClick, onClaimRewa
                 <div 
                     className={`transition-all duration-500 ease-out flex flex-row-reverse items-center gap-2 ${isRightHovered ? '-translate-x-4' : 'translate-x-[calc(100%-12px)]'}`}
                 >
-                    <div className={`h-12 w-1.5 bg-[var(--color-accent-500)] rounded-full transition-opacity duration-300 ${isRightHovered ? 'opacity-0' : 'opacity-40 animate-pulse'}`} />
+                    <div className={`h-12 w-1.5 bg-[var(--color-accent)] rounded-full transition-opacity duration-300 ${isRightHovered ? 'opacity-0' : 'opacity-40 animate-pulse'}`} />
                     <button
                         type="button"
                         onClick={onLiveChatClick}

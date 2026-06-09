@@ -52,41 +52,56 @@ import useBodyScrollLock from '../hooks/useBodyScrollLock';
 import { NAV_STICKY_SUBHEADER_TOP_CLASS } from '../constants/navStickyOffsets';
 
 const slotsNavDropdownProviders = slotProvidersForNavDropdown();
+
+/** Desktop white nav row — 12WIN reference order. */
 const DESKTOP_MAIN_LINKS = [
-    'Home', 'Casino', 'Slots', 'Sports', 'E-Sports', 'Lottery', 'Hot Games',
-    'Fishing', 'Poker'
+    'Home',
+    'All',
+    'Sports',
+    'Live Casino',
+    'Slots',
+    'Fish Hunt',
+    'Promotion',
+    'Referral',
+    'Membership',
 ];
+
+/** More dropdown — Recent Game, Rebate, E-Sports. */
+const DESKTOP_MORE_LINKS = ['Recent Game', 'Rebate', 'E-Sports'];
+
 const NAV_TARGETS = {
     Home: 'home',
-    Casino: 'live-casino',
-    Slots: 'slots',
+    All: 'all-games',
     Sports: 'sports',
-    'E-Sports': 'e-sports',
-    Lottery: 'lottery',
-    'Hot Games': 'hot-games',
-    Fishing: 'fishing',
-    Poker: 'poker',
+    'Live Casino': 'live-casino',
+    Slots: 'slots',
+    'Fish Hunt': 'fishing',
     Promotion: 'promotion',
     Referral: 'referral',
-    VIP: 'vip',
+    Membership: 'vip',
+    'Recent Game': 'hot-games',
     Rebate: 'rebate',
+    'E-Sports': 'e-sports',
 };
-const DESKTOP_MORE_LINKS = ['Promotion', 'Referral', 'VIP', 'Rebate'];
+
 const NAV_HREFS = {
     Home: '/',
-    Casino: '/casino',
-    Slots: '/slots',
+    All: '/all-games',
     Sports: '/sports',
-    'E-Sports': '/e-sports',
-    Lottery: '/lottery',
-    'Hot Games': '/hot-games',
-    Fishing: '/fishing',
-    Poker: '/poker',
+    'Live Casino': '/casino',
+    Slots: '/slots',
+    'Fish Hunt': '/fishing',
     Promotion: '/promotion',
     Referral: '/referral',
-    VIP: '/vip',
+    Membership: '/vip',
+    'Recent Game': '/hot-games',
     Rebate: '/rebate',
+    'E-Sports': '/e-sports',
 };
+
+function isDesktopMoreActive(activePage) {
+    return DESKTOP_MORE_LINKS.some((link) => NAV_TARGETS[link] === activePage);
+}
 const MOBILE_PRIMARY_ITEMS = [
     { id: 'home', label: 'Home', page: 'home', icon: House },
     { id: 'promotions', label: 'Promotions', page: 'promotion', icon: Megaphone },
@@ -405,7 +420,7 @@ export default function Navbar({
             />
 
 
-            <div className="relative z-[110] hidden h-9 w-full items-center border-b border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-4 text-xs text-[var(--color-text-card-text)] md:flex md:px-10">
+            <div className="top-sticky-nav-bar relative z-[110] hidden h-9 w-full items-center border-b border-[var(--color-border-subtle)] bg-[var(--color-sticky-nav)] px-4 text-xs text-[var(--color-text-sticky-nav-text)] md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between">
                     <div className="flex gap-4 items-center h-full">
                         <button
@@ -413,7 +428,7 @@ export default function Navbar({
                             onClick={() => onDownloadAppClick?.()}
                             className="nav-top-pill nav-top-pill--icon shrink-0"
                         >
-                            <Smartphone size={14} className="shrink-0 text-[var(--color-nav-text-soft)]" />
+                            <Smartphone size={14} className="shrink-0 text-[var(--color-text-sticky-nav-text)]" />
                             <span>Download App</span>
                         </button>
                     </div>
@@ -425,7 +440,7 @@ export default function Navbar({
                                 className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
                             >
                                 <div className="relative">
-                                    <div className="flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg border border-[var(--color-nav-border)] bg-[var(--color-primary)] text-[var(--color-text-card-text)]">
+                                    <div className="flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg border border-[var(--color-border-brand)] bg-[var(--color-surface-high)] text-[var(--color-text-sticky-nav-text)]">
                                         <button
                                             type="button"
                                             onClick={() => {
@@ -445,7 +460,7 @@ export default function Navbar({
                                                 onRefreshBalance?.();
                                             }}
                                             disabled={!onRefreshBalance || balanceRefreshing}
-                                            className="inline-flex h-full w-7 min-w-7 shrink-0 touch-manipulation items-center justify-center border-l border-[var(--color-nav-border)] text-[var(--color-nav-text-soft)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-card-text)] disabled:pointer-events-none disabled:opacity-40"
+                                            className="inline-flex h-full w-7 min-w-7 shrink-0 touch-manipulation items-center justify-center border-l border-[var(--color-border-brand)] text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-sticky-nav-active)] disabled:pointer-events-none disabled:opacity-40"
                                             aria-label="Refresh balance"
                                             title="Refresh balance"
                                         >
@@ -466,14 +481,14 @@ export default function Navbar({
                                         />
                                     )}
                                 </div>
-                                <div className="flex h-8 shrink-0 items-stretch overflow-hidden rounded-lg border border-[var(--color-nav-border)] bg-gradient-side-menu-brand shadow-[var(--inset-highlight-soft)]">
+                                <div className="flex h-8 shrink-0 items-stretch overflow-hidden rounded-lg border border-[var(--color-border-brand)] bg-gradient-side-menu-brand shadow-[var(--inset-highlight-soft)]">
                                     <button
                                         type="button"
                                         onClick={() => {
                                             setProfileMenuOpen(false);
                                             onNavigate?.('profile');
                                         }}
-                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-[var(--color-text-card-text)] transition hover:bg-[var(--color-nav-tile-border)]"
+                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-border-subtle)]"
                                         aria-label="My profile"
                                     >
                                         <img
@@ -481,19 +496,19 @@ export default function Navbar({
                                             alt=""
                                             className="h-5 w-5 shrink-0 object-contain"
                                         />
-                                        <span className="truncate text-xs font-bold text-[var(--color-accent)]">
+                                        <span className="truncate text-xs font-bold text-[var(--color-text-accent-light)]">
                                             {authUser.name}
                                         </span>
-                                        <UserCircle2 size={18} className="shrink-0 text-[var(--color-nav-text-soft)]" />
+                                        <UserCircle2 size={18} className="shrink-0 text-[var(--color-text-sticky-nav-text)]" />
                                     </button>
-                                    <span className="w-px shrink-0 self-stretch bg-[var(--color-nav-border)]" aria-hidden />
+                                    <span className="w-px shrink-0 self-stretch bg-[var(--color-border-brand)]" aria-hidden />
                                     <button
                                         type="button"
                                         onClick={() => {
                                             setProfileMenuOpen((open) => !open);
                                             setBalanceDropdownOpen(false);
                                         }}
-                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-nav-text-soft)] transition hover:bg-[var(--color-nav-tile-border)] hover:text-[var(--color-text-card-text)]"
+                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-border-subtle)] hover:text-[var(--color-text-sticky-nav-active)]"
                                         aria-haspopup="menu"
                                         aria-expanded={profileMenuOpen}
                                         aria-label="Account menu"
@@ -542,8 +557,8 @@ export default function Navbar({
                                         <div className="relative shrink-0">
                                             <div className="relative flex items-start gap-3">
                                                 <div className="relative shrink-0">
-                                                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-nav-border-soft)] bg-gradient-side-menu-brand shadow-[var(--inset-highlight-strong)]">
-                                                        <UserCircle2 size={36} className="text-[var(--color-nav-text-soft)]" />
+                                                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-border-subtle)] bg-gradient-side-menu-brand shadow-[var(--inset-highlight-strong)]">
+                                                        <UserCircle2 size={36} className="text-[var(--color-text-sticky-nav-text)]" />
                                                     </div>
                                                 </div>
 
@@ -571,7 +586,7 @@ export default function Navbar({
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'cashier' ? 'rotate-180' : ''}`}
+                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'cashier' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'cashier' && (
@@ -586,9 +601,9 @@ export default function Navbar({
                                                                     const page = cashierPageById[id];
                                                                     if (page) onNavigate?.(page);
                                                                 }}
-                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
-                                                                <Icon size={18} className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]" />
+                                                                <Icon size={18} className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]" />
                                                                 <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                             </button>
                                                         ))}
@@ -610,7 +625,7 @@ export default function Navbar({
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'account' ? 'rotate-180' : ''}`}
+                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'account' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
 
@@ -629,9 +644,9 @@ export default function Navbar({
                                                                         onNavigate?.(id);
                                                                     }
                                                                 }}
-                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
-                                                                <Icon size={18} className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]" />
+                                                                <Icon size={18} className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]" />
                                                                 <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                             </button>
                                                         ))}
@@ -653,7 +668,7 @@ export default function Navbar({
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'rewards' ? 'rotate-90' : ''}`}
+                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'rewards' ? 'rotate-90' : ''}`}
                                                     />
                                                 </button>
 
@@ -669,11 +684,11 @@ export default function Navbar({
                                                                         setProfileMenuOpen(false);
                                                                         onNavigate?.('loyalty-rewards', { rewardsTab: id });
                                                                     }}
-                                                                    className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                    className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                                 >
                                                                     <NavIcon
                                                                         size={18}
-                                                                        className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]"
+                                                                        className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]"
                                                                     />
                                                                     <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                                 </button>
@@ -697,7 +712,7 @@ export default function Navbar({
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-90' : ''}`}
+                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-90' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'historyRecord' && (
@@ -711,9 +726,9 @@ export default function Navbar({
                                                                     setProfileMenuOpen(false);
                                                                     onNavigate?.(id);
                                                                 }}
-                                                                className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
-                                                                <Icon size={18} className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]" />
+                                                                <Icon size={18} className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]" />
                                                                 <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                             </button>
                                                         ))}
@@ -721,7 +736,7 @@ export default function Navbar({
                                                 )}
                                             </div>
 
-                                            <div className="dark-nav-panel mt-3 rounded-[22px] px-4 py-3 transition hover:border-[var(--color-nav-tile-border-hover)]">
+                                            <div className="dark-nav-panel mt-3 rounded-[22px] px-4 py-3 transition hover:border-[var(--color-border-brand)]">
                                                 <button
                                                     type="button"
                                                     onClick={() => toggleProfileSection('settings')}
@@ -735,7 +750,7 @@ export default function Navbar({
                                                     </span>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-nav-text-soft)] transition-transform ${openProfileSection === 'settings' ? 'rotate-180' : ''}`}
+                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'settings' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'settings' && (
@@ -753,9 +768,9 @@ export default function Navbar({
                                                                         onNavigate?.(id);
                                                                     }
                                                                 }}
-                                                                className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-tile-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
-                                                                <Icon size={18} className="mb-1.5 text-[var(--color-nav-icon)] group-hover:text-[var(--color-nav-icon-hover)]" />
+                                                                <Icon size={18} className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]" />
                                                                 <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
                                                             </button>
                                                         ))}
@@ -814,7 +829,7 @@ export default function Navbar({
             </div>
 
             {/* TWO-TONE HEADER: Main Navigation Row (Lower) */}
-            <div className="relative z-[100] hidden h-16 w-full items-center border-b border-[var(--color-border-subtle)] bg-[var(--surface-base)] px-4 shadow-sm md:flex md:px-10">
+            <div className="top-nav-shell relative z-[100] hidden h-16 w-full items-center px-4 shadow-sm md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between gap-6">
                     <div className="flex items-center gap-2 shrink-0">
                         <button
@@ -827,44 +842,32 @@ export default function Navbar({
                     </div>
 
                     <div className="hidden lg:flex flex-1 justify-end items-center gap-x-1">
-                        {DESKTOP_MAIN_LINKS.map((link, idx) => {
-                            const isActive = (activePage === 'home' && link === 'Home') ||
-                                (activePage === 'live-casino' && link === 'Casino') ||
-                                (activePage === 'slots' && link === 'Slots') ||
-                                (activePage === 'sports' && link === 'Sports') ||
-                                (activePage === 'e-sports' && link === 'E-Sports') ||
-                                (activePage === 'lottery' && link === 'Lottery') ||
-                                (activePage === 'hot-games' && link === 'Hot Games') ||
-                                (activePage === 'fishing' && link === 'Fishing') ||
-                                (activePage === 'poker' && link === 'Poker') ||
-                                (activePage === 'promotion' && link === 'Promotion') ||
-                                (activePage === 'referral' && link === 'Referral') ||
-                                (activePage === 'vip' && link === 'VIP');
+                        {DESKTOP_MAIN_LINKS.map((link) => {
+                            const targetId = NAV_TARGETS[link];
+                            const isActive = activePage === targetId;
                             return (
                                 <a
-                                    key={idx}
+                                    key={link}
                                     href={NAV_HREFS[link] ?? '#'}
                                     onMouseEnter={() => {
-                                        if (link === 'Casino') setNavProviderDropdown('casino');
+                                        if (link === 'Live Casino') setNavProviderDropdown('casino');
                                         else if (link === 'Slots') setNavProviderDropdown('slots');
                                         else setNavProviderDropdown(null);
                                     }}
                                     onFocus={() => {
-                                        if (link === 'Casino') setNavProviderDropdown('casino');
+                                        if (link === 'Live Casino') setNavProviderDropdown('casino');
                                         else if (link === 'Slots') setNavProviderDropdown('slots');
                                         else setNavProviderDropdown(null);
                                     }}
                                     onClick={(event) => {
-                                        const target = NAV_TARGETS[link];
-                                        if (target) {
+                                        if (targetId) {
                                             event.preventDefault();
-                                            onNavigate?.(target);
+                                            onNavigate?.(targetId);
                                         }
                                     }}
-                                    className={`relative rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap transition-all
-                                        ${isActive
-                                            ? 'nav-desktop-link-active'
-                                            : 'text-[var(--color-text-brand)] hover:bg-[var(--color-surface-accent-hover)] hover:text-[var(--color-text-card-text)] hover:shadow-[var(--shadow-nav-top)]'}`}
+                                    className={`top-nav-link relative rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap transition-all ${
+                                        isActive ? 'nav-desktop-link-active' : ''
+                                    }`}
                                 >
                                     {link}
                                 </a>
@@ -873,20 +876,20 @@ export default function Navbar({
 
                         <div
                             className="relative group"
-                            onMouseEnter={() => setNavProviderDropdown('more')}
+                            onMouseEnter={() => setNavProviderDropdown(null)}
                             onMouseLeave={() => setNavProviderDropdown(null)}
                         >
                             <button
-                                className={`relative rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap flex items-center gap-1 transition-all
-                                    ${['promotion', 'referral', 'vip', 'rebate', 'loyalty-rewards'].includes(activePage)
-                                        ? 'nav-desktop-link-active'
-                                        : 'text-[var(--color-text-brand)] hover:bg-[var(--color-surface-accent-hover)] hover:text-[var(--color-text-card-text)] hover:shadow-[var(--shadow-nav-top)]'}`}
+                                type="button"
+                                className={`top-nav-more-trigger relative flex items-center gap-1 rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap transition-all ${
+                                    isDesktopMoreActive(activePage) ? 'nav-desktop-link-active' : ''
+                                }`}
                             >
                                 More <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
                             </button>
 
                             <div className="absolute right-0 top-full pt-1 z-[130] w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--surface-base)] py-2 shadow-[var(--shadow-nav-dropdown)]">
+                                <div className="top-nav-more-menu rounded-xl py-2 shadow-[var(--shadow-nav-dropdown)]">
                                     {DESKTOP_MORE_LINKS.map((subLink) => {
                                         const targetId = NAV_TARGETS[subLink];
                                         return (
@@ -898,37 +901,12 @@ export default function Navbar({
                                                     if (targetId) {
                                                         onNavigate?.(targetId);
                                                     }
-                                                    setNavProviderDropdown(null);
                                                 }}
-                                                className={`block px-5 py-2.5 text-sm font-bold transition-colors ${
-                                                    activePage === targetId
-                                                        ? 'bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
-                                                        : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-brand)]'
+                                                className={`top-nav-more-item block px-5 py-2.5 text-sm font-bold transition-colors ${
+                                                    activePage === targetId ? 'top-nav-more-item--active' : ''
                                                 }`}
                                             >
                                                 {subLink}
-                                            </a>
-                                        );
-                                    })}
-                                    {REWARDS_PROGRAMS.map(({ id, label }) => {
-                                        const isRewardsItemActive =
-                                            activePage === 'loyalty-rewards' && rewardsNavTab === id;
-                                        return (
-                                            <a
-                                                key={id}
-                                                href={`/loyalty-rewards#${id}`}
-                                                onClick={(event) => {
-                                                    event.preventDefault();
-                                                    onNavigate?.('loyalty-rewards', { rewardsTab: id });
-                                                    setNavProviderDropdown(null);
-                                                }}
-                                                className={`block px-5 py-2.5 text-sm font-bold transition-colors ${
-                                                    isRewardsItemActive
-                                                        ? 'bg-[var(--color-accent-50)] text-[var(--color-text-brand)]'
-                                                        : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-brand)]'
-                                                }`}
-                                            >
-                                                {label}
                                             </a>
                                         );
                                     })}
@@ -941,7 +919,7 @@ export default function Navbar({
                     <div className="flex items-center gap-2 lg:hidden">
                         {authUser ? (
                             <>
-                                <div className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-[var(--color-nav-border)] bg-[var(--color-nav-border-soft)] px-3 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-card-soft)]">
+                                <div className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm font-bold text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)]">
                                     <span className="truncate">{authUser.balance}</span>
                                     <CircleDollarSign size={14} className="shrink-0 text-[var(--color-accent)]" />
                                 </div>
@@ -955,10 +933,10 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('profile')}
-                                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-nav-border)] bg-[var(--color-nav-border-soft)] text-[var(--color-text-card-text)] transition hover:bg-[var(--color-nav-border-soft)]"
+                                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] text-[var(--color-text-primary-card-title)] transition hover:bg-[var(--color-surface-cool-light)]"
                                     aria-label="My profile"
                                 >
-                                    <UserCircle2 size={20} className="text-[var(--color-nav-text-soft)]" />
+                                    <UserCircle2 size={20} className="text-[var(--color-text-primary-card-title)]" />
                                 </button>
                             </>
                         ) : (
@@ -966,7 +944,7 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onLoginClick?.()}
-                                    className="inline-flex min-h-10 items-center justify-center rounded-xl border border-[var(--color-nav-tile-border-hover)] bg-[var(--color-nav-tile-border)] px-3.5 text-sm font-semibold text-[var(--color-text-card-text)] transition hover:bg-[var(--color-nav-border-soft)] hover:border-[var(--color-nav-tile-border-hover)]"
+                                    className="inline-flex min-h-10 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3.5 text-sm font-semibold text-[var(--color-text-primary-card-title)] transition hover:bg-[var(--color-surface-cool-light)] hover:border-[var(--color-border-brand)]"
                                 >
                                     Login
                                 </button>
@@ -1004,7 +982,7 @@ export default function Navbar({
 
             <button
                 type="button"
-                className={`fixed inset-x-0 bottom-0 top-0 z-[380] bg-[var(--color-nav-overlay)] backdrop-blur-[1px] transition-opacity duration-300 md:hidden ${mobileMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+                className={`fixed inset-x-0 bottom-0 top-0 z-[380] bg-[var(--color-overlay-strong)] backdrop-blur-[1px] transition-opacity duration-300 md:hidden ${mobileMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
                     }`}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close mobile menu"
@@ -1012,23 +990,23 @@ export default function Navbar({
                 tabIndex={mobileMenuOpen ? 0 : -1}
             />
             <aside
-                className={`fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
+                className={`sidenav-shell fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
                     }`}
                 aria-hidden={!mobileMenuOpen}
             >
-                <div className="relative border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3.5 py-3">
+                <div className="relative border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-3.5 py-3">
                     <div className="min-w-0">
                         {authUser ? (
                             <button
                                 type="button"
                                 onClick={() => handleMobileNavigate('profile')}
-                                className="w-full pr-12 text-left text-2xl font-bold leading-tight text-[var(--color-text-brand-soft)] transition hover:opacity-90"
+                                className="w-full pr-12 text-left text-2xl font-bold leading-tight text-[var(--color-text-secondary)] transition hover:opacity-90"
                             >
                                 Hi, {authUser.name}
                             </button>
                         ) : (
                             <div className="pr-12">
-                                <h2 className="text-xl font-bold leading-tight text-[var(--color-text-brand-soft)]">Play Anywhere</h2>
+                                <h2 className="text-xl font-bold leading-tight text-[var(--color-text-secondary)]">Play Anywhere</h2>
                                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Your essentials stay up top. Everything else is tucked into More.</p>
                             </div>
                         )}
@@ -1039,12 +1017,12 @@ export default function Navbar({
                                 <div className="w-full rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3.5 shadow-[var(--shadow-card-soft)]">
                                     <div className="flex items-center justify-between gap-2.5">
                                         <div>
-                                            <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-brand)]">
+                                            <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-primary-card-title)]">
                                                 Balance
                                             </p>
                                             <p className="mt-0.5 text-base font-bold text-[var(--color-text-primary)]">{authUser.balance}</p>
                                         </div>
-                                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
+                                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                                             <CircleDollarSign size={16} />
                                         </span>
                                     </div>
@@ -1060,7 +1038,7 @@ export default function Navbar({
                                         <button
                                             type="button"
                                             onClick={() => handleMobileNavigate('withdrawal')}
-                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm font-bold text-[var(--color-text-brand)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
+                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm font-bold text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
                                         >
                                             <ArrowUpFromLine size={15} />
                                             Withdraw
@@ -1097,7 +1075,7 @@ export default function Navbar({
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-base-80)] text-[var(--color-text-brand)] shadow-[var(--shadow-input)] transition hover:bg-[var(--surface-base)]"
+                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-base)]/80 text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-input)] transition hover:bg-[var(--surface-base)]"
                         aria-label="Close mobile menu"
                     >
                         <X size={16} />
@@ -1125,8 +1103,8 @@ export default function Navbar({
                                     className={
                                         isGamesRow
                                             ? `overflow-hidden rounded-xl border transition ${isActive
-                                                ? 'border-[var(--color-accent-200)] bg-gradient-brand-soft-panel shadow-[var(--shadow-brand-soft)]'
-                                                : 'border-[var(--color-border-subtle)] bg-[var(--surface-base)]'
+                                                ? 'sidenav-group sidenav-group--active'
+                                                : 'sidenav-group'
                                             }`
                                             : "overflow-hidden rounded-xl"
                                     }
@@ -1147,20 +1125,11 @@ export default function Navbar({
                                         }}
                                         className={`flex min-h-[48px] w-full items-center gap-3 px-3.5 py-2.5 text-left transition ${isGamesRow
                                             ? ''
-                                            : `rounded-xl border ${isActive
-                                                ? 'nav-desktop-link-active'
-                                                : 'border-[var(--color-border-subtle)] bg-[var(--surface-base)] text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-surface-subtle)]'
-                                            }`
+                                            : `rounded-xl ${isActive ? 'sidenav-item sidenav-item--active' : 'sidenav-item'}`
                                             }`}
                                         aria-expanded={isOpen}
                                     >
-                                        <span
-                                            className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${isActive && !isGamesRow
-                                                ? 'border-[var(--color-cta-border)] bg-[var(--color-nav-border)] text-[var(--color-cta-text)]'
-                                                : 'border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--surface-utility-2)]'
-                                                }`}
-
-                                        >
+                                        <span className="sidenav-item__icon inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border">
                                             <Icon size={16} />
                                         </span>
                                         <span className="min-w-0 flex-1 text-base font-bold" style={{ fontFamily: 'var(--base-font-family)' }}>{label}</span>
@@ -1186,18 +1155,13 @@ export default function Navbar({
                                                         key={item.id}
                                                         type="button"
                                                         onClick={() => handleMobileNavigate(item.page)}
-                                                        className={`flex min-h-[42px] w-full items-center gap-2.5 rounded-xl pl-3 pr-3 py-2 text-left transition ${itemActive
-                                                            ? 'bg-gradient-brand-soft-horizontal text-[var(--color-text-brand-soft)] shadow-[var(--shadow-brand-soft)]'
-                                                            : 'bg-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-primary)]'
+                                                        className={`sidenav-subitem flex min-h-[42px] w-full items-center gap-2.5 rounded-xl pl-3 pr-3 py-2 text-left ${itemActive
+                                                            ? 'sidenav-subitem--active'
+                                                            : ''
                                                             }`}
                                                         style={{ fontFamily: 'var(--base-font-family)' }}
                                                     >
-                                                        <span
-                                                            className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${itemActive
-                                                                ? 'bg-[var(--color-surface-base)] text-[var(--surface-utility-2)]'
-                                                                : 'bg-[var(--color-accent-50)] text-[var(--surface-utility-2)]'
-                                                                }`}
-                                                        >
+                                                        <span className="sidenav-subitem__icon inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl">
                                                             <ItemIcon size={14} />
                                                         </span>
                                                         <span className="min-w-0 flex-1 text-sm font-semibold">{item.label}</span>
@@ -1209,7 +1173,7 @@ export default function Navbar({
                                     )}
 
                                     {isMoreRow && mobileMoreOpen && (
-                                        <div className="mt-1.5 space-y-1.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-2">
+                                        <div className="sidenav-more-panel mt-1.5 space-y-1.5 rounded-xl border p-2">
                                             {/* eslint-disable-next-line no-unused-vars */}
                                             {MOBILE_MORE_SECTIONS.map(({ id: sectionId, label: sectionLabel, icon: SectionIcon, items }) => {
                                                 const sectionHasActiveItem = items.some((item) => isMobileMoreItemActive(item));
@@ -1219,8 +1183,8 @@ export default function Navbar({
                                                     <div
                                                         key={sectionId}
                                                         className={`overflow-hidden rounded-xl border transition ${sectionHasActiveItem
-                                                            ? 'border-[var(--color-accent-200)] bg-gradient-brand-soft-panel shadow-[var(--shadow-brand-soft)]'
-                                                            : 'border-[var(--color-border-subtle)] bg-[var(--surface-base)]'
+                                                            ? 'sidenav-group sidenav-group--active'
+                                                            : 'sidenav-group'
                                                             }`}
                                                     >
                                                         <button
@@ -1230,7 +1194,7 @@ export default function Navbar({
                                                             aria-expanded={sectionOpen}
                                                         >
                                                             <span
-                                                                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-50)] text-[var(--surface-utility-2)]"
+                                                                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--surface-utility-2)]"
                                                             >
                                                                 <SectionIcon size={15} />
                                                             </span>
@@ -1254,17 +1218,12 @@ export default function Navbar({
                                                                             key={item.id}
                                                                             type="button"
                                                                             onClick={() => handleMobileMoreItemClick(item)}
-                                                                            className={`flex min-h-[42px] w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left transition ${itemActive
-                                                                                ? 'bg-gradient-brand-soft-panel-alt text-[var(--color-text-brand-soft)] shadow-[var(--shadow-brand-soft)]'
-                                                                                : 'bg-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-primary)]'
+                                                                            className={`sidenav-subitem flex min-h-[42px] w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left ${itemActive
+                                                                                ? 'sidenav-subitem--active'
+                                                                                : ''
                                                                                 }`}
                                                                         >
-                                                                            <span
-                                                                                className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${itemActive
-                                                                                    ? 'bg-[var(--color-surface-base)] text-[var(--surface-utility-2)]'
-                                                                                    : 'bg-[var(--color-accent-50)] text-[var(--surface-utility-2)]'
-                                                                                    }`}
-                                                                            >
+                                                                            <span className="sidenav-subitem__icon inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl">
                                                                                 <ItemIcon size={14} />
                                                                             </span>
                                                                             <span className="min-w-0 flex-1 text-sm font-semibold" style={{ fontFamily: 'var(--base-font-family)' }}>{item.label}</span>
@@ -1284,7 +1243,7 @@ export default function Navbar({
                         })}
                     </div>
                 </div>
-                <div className="border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3.5 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] pt-3">
+                <div className="sidenav-footer border-t px-3.5 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] pt-3">
                     <div className="space-y-2">
                         <button
                             type="button"
@@ -1292,7 +1251,7 @@ export default function Navbar({
                                 setMobileMenuOpen(false);
                                 onLiveChatClick?.();
                             }}
-                            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-accent-200)] bg-gradient-nav-cta px-4 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-brand-card)] transition hover:brightness-105"
+                            className="sidenav-live-chat inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 text-sm font-bold transition"
                         >
                             <Headset size={16} />
                             Live Chat
@@ -1304,7 +1263,7 @@ export default function Navbar({
                                     setMobileMenuOpen(false);
                                     onLogout?.();
                                 }}
-                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-primary)]"
+                                className="sidenav-secondary-action inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold"
                             >
                                 <LogOut size={15} />
                                 Log Out
@@ -1313,7 +1272,7 @@ export default function Navbar({
                             <button
                                 type="button"
                                 onClick={handleMobileDownloadApp}
-                                className="inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-primary)]"
+                                className="sidenav-secondary-action inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold"
                             >
                                 <Smartphone size={15} />
                                 App Download
@@ -1325,7 +1284,7 @@ export default function Navbar({
 
             {navProviderDropdown != null && (
                 <div
-                    className={`fixed inset-x-0 bottom-0 z-[70] bg-[var(--color-nav-overlay)] backdrop-blur-[1px] pointer-events-none ${NAV_STICKY_SUBHEADER_TOP_CLASS}`}
+                    className={`fixed inset-x-0 bottom-0 z-[70] bg-[var(--color-overlay-strong)] backdrop-blur-[1px] pointer-events-none ${NAV_STICKY_SUBHEADER_TOP_CLASS}`}
                 />
             )}
         </nav>

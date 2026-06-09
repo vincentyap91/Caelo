@@ -148,8 +148,8 @@ function createInitialRewardHistory(currency) {
 const tabButtonClasses = (selected) =>
     `inline-flex min-h-[46px] shrink-0 whitespace-nowrap items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-3 text-xs font-bold uppercase transition-colors duration-200 sm:min-h-[44px] sm:px-4 sm:py-2.5 sm:text-xs md:text-sm ${
         selected
-            ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)]'
-            : 'border-transparent bg-transparent text-[var(--color-text-muted)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-primary)]'
+            ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]'
+            : 'border-transparent bg-transparent text-[var(--color-text-muted)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-text-primary)]'
     }`;
 
 function ReferralBenefitPromoCards() {
@@ -158,7 +158,7 @@ function ReferralBenefitPromoCards() {
             title: 'Referral Commission Bonus',
             description: 'Invite friends to receive a commission bonus when your downlines play',
             icon: referralCommissionIcon,
-            accent: 'text-[var(--color-accent-600)]',
+            accent: 'text-[var(--color-button-hover)]',
             surface:
                 'bg-gradient-soft-blue-panel',
             glow: 'bg-gradient-referral-glow-left',
@@ -292,19 +292,19 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                     </p>
                     <div className="flex flex-wrap gap-3 pt-2">
                         <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-2.5">
-                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                                 <Gift size={16} />
                             </span>
                             <span className="text-sm font-medium text-[var(--color-text-primary)]">Commission on deposits</span>
                         </div>
                         <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-2.5">
-                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                                 <Users size={16} />
                             </span>
                             <span className="text-sm font-medium text-[var(--color-text-primary)]">Unlimited referrals</span>
                         </div>
                         <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-2.5">
-                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                                 <Zap size={16} />
                             </span>
                             <span className="text-sm font-medium text-[var(--color-text-primary)]">Earn from game play</span>
@@ -315,22 +315,22 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                     <div>
                         <div className="flex items-center gap-1.5">
                             <span className="text-sm font-semibold text-[var(--color-text-muted)]">Total Referral Commission Bonus</span>
-                            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-accent-100)] text-[var(--color-accent-600)]" title="Commission earned from downline activity">
+                            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]" title="Commission earned from downline activity">
                                 <Info size={12} strokeWidth={2.25} />
                             </span>
                         </div>
-                        <p className="mt-1 text-xl font-bold text-[var(--color-cta-text)] md:text-2xl">
+                        <p className="mt-1 text-xl font-bold text-[var(--color-text-cta-inverse)] md:text-2xl">
                             {totalCommissionBonus}
                         </p>
                     </div>
                     <div>
                         <div className="flex items-center gap-1.5">
                             <span className="text-sm font-semibold text-[var(--color-text-muted)]">Total Referral Deposit Bonus</span>
-                            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-accent-100)] text-[var(--color-accent-600)]" title="Bonus from referred deposits">
+                            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]" title="Bonus from referred deposits">
                                 <Info size={12} strokeWidth={2.25} />
                             </span>
                         </div>
-                        <p className="mt-1 text-xl font-bold text-[var(--color-cta-text)] md:text-2xl">
+                        <p className="mt-1 text-xl font-bold text-[var(--color-text-cta-inverse)] md:text-2xl">
                             {totalDepositBonus}
                         </p>
                     </div>
@@ -348,7 +348,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                 <div className="surface-card flex flex-col rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Copy My Referral Code</h3>
                     <div className="mt-4 flex flex-1 flex-col gap-4">
-                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-muted)] px-4 py-3 shadow-[var(--shadow-input)]">
+                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-cool-light)] px-4 py-3 shadow-[var(--shadow-input)]">
                             <input
                                 type="text"
                                 value={REFERRAL_CODE}
@@ -358,7 +358,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                             <button
                                 type="button"
                                 onClick={handleCopyCode}
-                                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]"
+                                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                                 aria-label="Copy referral code"
                             >
                                 {copiedCode ? <Check size={16} className="text-[var(--color-success)]" /> : <Copy size={16} />}
@@ -367,7 +367,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                         <button
                             type="button"
                             onClick={() => handleShare('code')}
-                            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-200 hover:text-[var(--color-accent-600)]"
+                            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-200 hover:text-[var(--color-button-hover)]"
                         >
                             <Share2 size={14} />
                             Share your code
@@ -378,7 +378,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                 <div className="surface-card flex flex-col rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Copy My Referral Link</h3>
                     <div className="mt-4 flex flex-1 flex-col gap-4">
-                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-muted)] px-4 py-3 shadow-[var(--shadow-input)]">
+                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-cool-light)] px-4 py-3 shadow-[var(--shadow-input)]">
                             <input
                                 type="text"
                                 value={REFERRAL_URL}
@@ -388,7 +388,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                             <button
                                 type="button"
                                 onClick={handleCopyLink}
-                                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition-colors duration-200 hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]"
+                                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition-colors duration-200 hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                                 aria-label="Copy referral link"
                             >
                                 {copiedLink ? <Check size={16} className="text-[var(--color-success)]" /> : <Copy size={16} />}
@@ -397,7 +397,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                         <button
                             type="button"
                             onClick={() => handleShare('link')}
-                            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-200 hover:text-[var(--color-accent-600)]"
+                            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-200 hover:text-[var(--color-button-hover)]"
                         >
                             <Share2 size={14} />
                             Share your link
@@ -418,7 +418,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                         <button
                             type="button"
                             onClick={() => handleShare('qr')}
-                            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-200 hover:text-[var(--color-accent-600)]"
+                            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-200 hover:text-[var(--color-button-hover)]"
                         >
                             <Share2 size={14} />
                             Share your QR code
@@ -490,14 +490,14 @@ function RewardSummaryCard({ reward, onClaim }) {
                 </div>
                 <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Unclaimed</p>
-                    <p className="mt-1.5 text-base font-bold text-[var(--color-accent-600)] sm:text-base md:text-lg">
+                    <p className="mt-1.5 text-base font-bold text-[var(--color-button-hover)] sm:text-base md:text-lg">
                         {formatReferralMoney(reward.currency, reward.unclaimed)}
                     </p>
                 </div>
             </div>
 
             <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-3 text-sm text-[var(--color-text-secondary)]">
-                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
+                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                     <Info size={15} />
                 </span>
                 <span className="leading-6">{reward.note}</span>
@@ -510,7 +510,7 @@ function RewardsLoginRequiredState({ onLoginClick }) {
     return (
         <section className="surface-card rounded-2xl px-5 py-8 text-center shadow-[var(--shadow-card-soft)] md:px-6 md:py-10">
             <div className="mx-auto max-w-[560px]">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-soft-blue-panel text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-soft-blue-panel text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]">
                     <Gift size={24} />
                 </div>
                 <h2 className="mt-4 text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">
@@ -578,7 +578,7 @@ function RewardHistoryTable({ rows, rewardType }) {
                             className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-subtle)]"
                         >
                             <td className="px-4 py-3.5 font-medium text-[var(--color-text-primary)]">{row.date}</td>
-                            <td className="px-4 py-3.5 text-right font-semibold text-[var(--color-accent-600)]">{row.amount}</td>
+                            <td className="px-4 py-3.5 text-right font-semibold text-[var(--color-button-hover)]">{row.amount}</td>
                             <td className="px-4 py-3.5 text-center">
                                 <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${rewardStatusClassName(row.status)}`}>
                                     {row.status}
@@ -707,7 +707,7 @@ function GameCommissionRow({ item, isOpen, onToggle }) {
                 className="flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left transition hover:bg-[var(--color-surface-subtle)]"
             >
                 <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                         <Icon size={18} />
                     </span>
                     <span className="font-medium text-[var(--color-text-primary)]">{item.name}</span>
@@ -749,7 +749,7 @@ function HowItWorksContent() {
                                 key={step.num}
                                 className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-gradient-surface-card shadow-[var(--shadow-subtle)]"
                             >
-                                <span className="absolute left-4 top-4 z-10 rounded-md bg-gradient-cta px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-cta-text)] shadow-sm">
+                                <span className="absolute left-4 top-4 z-10 rounded-md bg-gradient-cta px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-cta-inverse)] shadow-sm">
                                     Step {step.num}
                                 </span>
                                 <div className="flex flex-1 flex-col items-center px-4 pb-7 pt-14 text-center md:px-5 md:pb-8">
@@ -788,7 +788,7 @@ function HowItWorksContent() {
                                 {depositCommissionTiers.map((t) => (
                                     <th
                                         key={t.tier}
-                                        className="border-b border-r border-[var(--color-nav-border)]/25 bg-surface-secondary-table-head px-4 py-3 text-center font-bold text-[var(--color-text-card-text)] last:border-r-0"
+                                        className="border-b border-r border-[var(--color-border-brand)]/25 bg-surface-secondary-table-head px-4 py-3 text-center font-bold text-[var(--color-text-card-text)] last:border-r-0"
                                     >
                                         {t.tier}
                                     </th>
@@ -826,7 +826,7 @@ export default function ReferralPage({ authUser, onLoginClick }) {
     const [activeTab, setActiveTab] = useState('Invite Friends');
 
     return (
-        <main className="w-full bg-[var(--color-page-default)] pb-14">
+        <main className="w-full bg-[var(--color-surface-base)] pb-14">
             {/* Hero — Live Casino layout, no CTA / no provider logo */}
             <section className="w-full pt-5 md:pt-7">
                 <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8">

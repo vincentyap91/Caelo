@@ -28,7 +28,7 @@ export default function GameCategories({ onNavigate }) {
     ];
 
     return (
-        <section className="w-full pt-4">
+        <section className="game-categories-section w-full pt-4">
             <SectionHeader
                 title="Popular Category"
                 icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}
@@ -42,14 +42,14 @@ export default function GameCategories({ onNavigate }) {
                         key={idx}
                         type="button"
                         onClick={() => page && onNavigate?.(page)}
-                        className="group relative flex flex-col rounded-[15px] border border-[var(--color-nav-border)] bg-[var(--color-brand-soft)] p-1.5 shadow-[var(--shadow-brand-soft)] transition-transform hover:-translate-y-1 text-left w-full"
+                        className="game-category-card group relative flex flex-col rounded-[15px] border border-[var(--color-border-brand)] bg-[var(--color-surface-cool-light)] p-1.5 shadow-[var(--shadow-brand-soft)] transition-transform hover:-translate-y-1 text-left w-full"
                     >
                         {/* Title Ribbon - overlaps top edge */}
                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 w-[86%]">
                             <div className="relative w-full">
                                 <div className="absolute inset-x-2 -bottom-1.5 h-2 rounded-full bg-[var(--color-primary)]/35 blur-sm"></div>
-                                <div className="relative overflow-hidden rounded-[10px] border border-[var(--color-brand-soft-border)] bg-[var(--color-primary)] px-2 py-1.5 shadow-[var(--shadow-nav-pill)]">
-                                <div className="pointer-events-none absolute inset-0 bg-gradient-card-shine"></div>
+                                <div className="game-category-ribbon relative overflow-hidden rounded-[10px] border border-[var(--color-border-brand)] bg-[var(--color-primary)] px-2 py-1.5 shadow-[var(--shadow-nav-pill)]">
+                                <div className="game-category-ribbon-shine pointer-events-none absolute inset-0"></div>
                                     <span className="relative block text-center text-[var(--color-text-card-text)] text-xs uppercase font-bold tracking-wide drop-shadow-[var(--shadow-subtle)]">
                                         {cat.name}
                                     </span>
@@ -66,7 +66,7 @@ export default function GameCategories({ onNavigate }) {
                             />
 
                             {/* Center Icon */}
-                            <div className="absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-[var(--color-nav-border)] backdrop-blur-sm rounded-full flex items-center justify-center text-lg md:text-xl shadow-[var(--inset-white-glow)] border border-[var(--color-nav-border)]/40">
+                            <div className="absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-lg md:text-xl shadow-[0_0_15px_rgba(255,255,255,0.4)] border border-white/40">
                                 {cat.icon}
                             </div>
                         </div>

@@ -69,6 +69,21 @@ export function getTopGameFavouriteCategory(page) {
     return TOP_GAME_PAGE_LABELS[page] ? page : 'home-top';
 }
 
+/** Map a featured/top game row to shared ProviderLobbyTile shape (live casino card colors). */
+export function topGameToLobbyProvider(game) {
+    const defaultFit = ['e-sports', 'poker', 'lottery'].includes(game.page) ? 'contain' : 'cover';
+
+    return {
+        id: `${game.name}::${game.provider}`,
+        name: game.name,
+        cardLabel: game.name,
+        src: game.imgUrl,
+        tileImage: game.imgUrl,
+        featured: Boolean(game.hot || game.new),
+        imageFit: game.imageFit ?? defaultFit,
+    };
+}
+
 function stableRtp(name, provider) {
     const key = `${name}|${provider}`;
     let hash = 0;

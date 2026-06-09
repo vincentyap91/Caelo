@@ -44,7 +44,7 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
                 <button
                     type="button"
                     onClick={onClose}
-                    className="absolute right-4 top-4 rounded-lg p-1 text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-primary)]"
+                    className="absolute right-4 top-4 rounded-lg p-1 text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-cool-light)] hover:text-[var(--color-text-primary)]"
                     aria-label="Close"
                 >
                     <X size={20} />
@@ -61,7 +61,7 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
                                 onError={() => setImageError(true)}
                             />
                         ) : (
-                            <div className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-xl bg-[var(--color-surface-muted)] text-center text-[var(--color-text-soft)]">
+                            <div className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-xl bg-[var(--color-surface-cool-light)] text-center text-[var(--color-text-soft)]">
                                 <QrCode size={72} />
                                 <span className="px-4 text-xs font-medium">QR unavailable</span>
                             </div>
@@ -85,7 +85,7 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
                             value={code}
                             onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
                             placeholder="000000"
-                            className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3 text-center text-lg font-mono tracking-code text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
+                            className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3 text-center text-lg font-mono tracking-code text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                         />
                     </label>
                     {error && <p className="text-sm text-[var(--color-danger)]">{error}</p>}

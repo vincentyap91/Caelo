@@ -21,16 +21,16 @@ function PasswordInput({ label, value, onChange, error, showPassword, onToggleSh
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     placeholder="Enter here"
-                    className={`w-full rounded-xl border px-4 py-3 pr-12 text-sm outline-none placeholder:text-[var(--color-text-soft)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20 ${
+                    className={`w-full rounded-xl border px-4 py-3 pr-12 text-sm outline-none placeholder:text-[var(--color-text-soft)] focus:ring-2 focus:ring-[var(--color-accent)]/20 ${
                         error
                             ? 'border-[var(--color-danger)] bg-[var(--color-danger)]/5 text-[var(--color-text-primary)] focus:border-[var(--color-danger)]'
-                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] focus:border-[var(--color-accent-400)]'
+                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] focus:border-[var(--color-accent)]'
                     }`}
                 />
                 <button
                     type="button"
                     onClick={onToggleShow}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}

@@ -47,7 +47,7 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('deposit')}
-                            className="btn-theme-cta-soft absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-[var(--color-nav-border)] text-[var(--color-cta-text)] transition hover:brightness-105 active:scale-95"
+                            className="btn-theme-cta-soft absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-[var(--color-border-brand)] text-[var(--color-text-cta-inverse)] transition hover:brightness-105 active:scale-95"
                             aria-label="Deposit"
                         >
                             <Icon size={30} strokeWidth={3} />

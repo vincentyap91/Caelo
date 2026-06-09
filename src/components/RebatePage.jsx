@@ -60,19 +60,19 @@ const claimButtonClass =
     'btn-theme-primary inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02] md:min-h-11 md:w-auto md:min-w-[120px]';
 
 const tableHeadClassLeft =
-    'px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
+    'px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
 const tableHeadClassRight =
-    'px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
+    'px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
 
 function RebateEarnedSummary() {
     return (
         <div className="flex items-center gap-3 sm:gap-4">
-            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-cta-text)] sm:h-12 sm:w-12">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-text-cta-inverse)] sm:h-12 sm:w-12">
                 <Star className="h-[22px] w-[22px] sm:h-6 sm:w-6" strokeWidth={2} aria-hidden />
             </span>
             <div className="min-w-0 flex-1">
                 <p className="text-xs font-semibold leading-snug text-[var(--color-text-muted)] sm:text-sm">Total Rebate Earned</p>
-                <p className="mt-1 text-lg font-bold tabular-nums text-[var(--color-accent-600)] sm:text-xl md:text-2xl">MYR 0.000</p>
+                <p className="mt-1 text-lg font-bold tabular-nums text-[var(--color-button-hover)] sm:text-xl md:text-2xl">MYR 0.000</p>
             </div>
         </div>
     );
@@ -81,7 +81,7 @@ function RebateEarnedSummary() {
 function EmptyTableNotice({ message, hint, colSpan = 2 }) {
     return (
         <td colSpan={colSpan} className="px-4 py-10 md:py-12">
-            <div className="mx-auto flex flex-col items-center justify-center rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)]/50 px-4 py-6">
+            <div className="mx-auto flex flex-col items-center justify-center rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)]/50 px-4 py-6">
                 <p className="text-center text-sm font-semibold text-[var(--color-text-primary)]">{message}</p>
                 {hint ? <p className="mt-1 text-center text-xs leading-relaxed text-[var(--color-text-muted)]">{hint}</p> : null}
             </div>
@@ -156,12 +156,12 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                             </div>
                             <div className="hidden items-center justify-between gap-4 md:flex">
                                 <div className="flex items-center gap-4">
-                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-cta-text)]">
+                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-text-cta-inverse)]">
                                         <Star size={24} strokeWidth={2} />
                                     </span>
                                     <div>
                                         <p className="text-sm font-semibold text-[var(--color-text-muted)]">Total Rebate Earned</p>
-                                        <p className="mt-1 text-xl font-bold text-[var(--color-accent-600)] md:text-2xl">MYR 0.000</p>
+                                        <p className="mt-1 text-xl font-bold text-[var(--color-button-hover)] md:text-2xl">MYR 0.000</p>
                                     </div>
                                 </div>
                                 <button
@@ -223,8 +223,8 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                                         onClick={() => setHistoryRangeFromQuick(id)}
                                         className={`min-h-11 min-w-0 flex-1 rounded-xl border px-3 py-2.5 text-sm font-semibold transition sm:min-h-0 sm:px-4 ${
                                             historyQuickRange === id
-                                                ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]'
-                                                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
+                                                ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
+                                                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                         }`}
                                     >
                                         {label}
@@ -293,7 +293,7 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                                                     {row.provider}
                                                 </td>
                                                 <td className="px-3 py-3 text-sm text-[var(--color-text-muted)] md:px-4 md:py-3.5">{row.category}</td>
-                                                <td className="px-3 py-3 text-right text-sm font-semibold text-[var(--color-accent-600)] md:px-4 md:py-3.5">
+                                                <td className="px-3 py-3 text-right text-sm font-semibold text-[var(--color-button-hover)] md:px-4 md:py-3.5">
                                                     {row.rebate}
                                                 </td>
                                             </tr>

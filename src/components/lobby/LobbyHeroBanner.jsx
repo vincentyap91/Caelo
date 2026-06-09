@@ -3,10 +3,10 @@ import { NAV_STICKY_QUICK_PLAY_BAR_CLASS } from '../../constants/navStickyOffset
 import { PAGE_BANNER_IMG_FILL } from '../../constants/pageBannerClasses';
 
 const STICKY_CTA_CLASS =
-    'btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base';
+    'btn-theme-cta inline-flex h-10 min-w-[140px] items-center justify-center rounded-[10px] px-5 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-text-cta-inverse)] focus-visible:ring-offset-2 md:h-12 md:min-w-[180px] md:px-8 md:text-base';
 
 const BANNER_CTA_CLASS =
-    'btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface-mid-container)] sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-sm md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl';
+    'btn-theme-cta mt-1 inline-flex h-8 min-w-[118px] items-center justify-center self-center rounded-[9px] px-4 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-text-cta-inverse)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface-mid-container)] sm:mt-2 sm:h-9 sm:min-w-[136px] sm:px-5 sm:text-sm md:mt-6 md:h-14 md:min-w-[260px] md:self-auto md:rounded-[10px] md:px-12 md:text-xl';
 
 const POKER_BANNER_CTA_CLASS = `${BANNER_CTA_CLASS} max-md:self-start`;
 
@@ -17,7 +17,6 @@ const POKER_BANNER_CTA_CLASS = `${BANNER_CTA_CLASS} max-md:self-start`;
 export default function LobbyHeroBanner({
     bannerImage,
     bannerAlt,
-    /** Current provider shown in the hero (name + logo src). */
     provider,
     onPlay,
     ctaLabel,
@@ -71,7 +70,7 @@ export default function LobbyHeroBanner({
                         <img
                             src={bannerImage}
                             alt={bannerAlt}
-                            className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL} ${imageClassName}`}
+                            className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL} ${imageClassName}`.trim()}
                         />
                         {layout === 'poker' ? (
                             <>

@@ -119,7 +119,7 @@ export default function AuthModal({
         type="custom"
         title={view === 'login' ? 'Log in' : 'Register'}
         ariaLabel={view === 'login' ? 'Log in' : 'Register'}
-        containerClassName="auth-modal-container max-w-[760px]"
+        containerClassName={`auth-modal-container auth-modal-shell ${view === 'register' ? 'auth-modal-container--register' : 'auth-modal-container--login'} max-w-[760px]`}
         contentClassName="auth-modal-content"
       >
         <div className={`auth-modal-split ${view === 'login' ? 'auth-modal-split--login' : ''}`}>

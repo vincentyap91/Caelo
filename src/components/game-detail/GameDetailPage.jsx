@@ -9,7 +9,7 @@ import {
 } from '../../utils/gameDetailRoutes';
 
 /**
- * Game detail route — resolves catalog / lobby data by URL slug (`/game/:slug`), merges template tables from demo.
+ * Game detail route ï¿½ resolves catalog / lobby data by URL slug (`/game/:slug`), merges template tables from demo.
  */
 export default function GameDetailPage({ onNavigate, gameDetailSlug }) {
     const resolved = useMemo(() => findGameDetailBySlug(gameDetailSlug), [gameDetailSlug]);
@@ -39,7 +39,7 @@ export default function GameDetailPage({ onNavigate, gameDetailSlug }) {
             <button
                 type="button"
                 onClick={() => onNavigate?.('home')}
-                className="inline-flex min-h-12 min-w-0 flex-1 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3 text-sm font-bold text-[var(--color-text-primary)] shadow-sm transition hover:bg-[var(--color-accent-50)] sm:min-w-[7.5rem]"
+                className="inline-flex min-h-12 min-w-0 flex-1 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-3 text-sm font-bold text-[var(--color-text-primary)] shadow-sm transition hover:bg-[var(--color-accent-pale)] sm:min-w-[7.5rem]"
             >
                 Back To Home
             </button>

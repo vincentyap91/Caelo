@@ -32,13 +32,13 @@ export default function SearchProvider({
     return (
         <div
             role="search"
-            className={`group flex h-11 min-h-[44px] min-w-0 items-center rounded-[var(--radius-control)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-0 pl-3 pr-1.5 shadow-[var(--shadow-input)] transition-all hover:border-[var(--color-accent-200)] focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[var(--color-accent-400)]/20 ${widthClassName} ${className}`.trim()}
+            className={`group flex h-11 min-h-[44px] min-w-0 items-center rounded-[var(--radius-control)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-0 pl-3 pr-1.5 shadow-[var(--shadow-input)] transition-all hover:border-[var(--color-accent-glow)] focus-within:border-[var(--color-accent)] focus-within:ring-2 focus-within:ring-[var(--color-accent)]/20 ${widthClassName} ${className}`.trim()}
         >
             <div className="flex min-w-0 flex-1 items-center gap-2.5 pr-1">
                 <Search
                     size={16}
                     strokeWidth={2.25}
-                    className="shrink-0 text-[var(--color-text-brand)]"
+                    className="shrink-0 text-[var(--color-text-primary-card-title)]"
                     aria-hidden
                 />
                 <input
@@ -59,7 +59,7 @@ export default function SearchProvider({
                             onChange('');
                             inputRef.current?.focus();
                         }}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-[var(--color-text-muted)] transition hover:bg-[var(--color-accent-50)] hover:text-[var(--color-text-primary)]"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-[var(--color-text-muted)] transition hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-text-primary)]"
                         aria-label="Clear search"
                     >
                         <X size={16} strokeWidth={2.25} aria-hidden />

@@ -146,12 +146,12 @@ function UpgradeContent() {
                     <table className="w-full min-w-[640px] border-collapse text-sm">
                         <thead>
                             <tr>
-                                <th className="w-[1%] border-b border-[var(--color-nav-border)]/20 bg-[var(--color-primary)] px-4 py-3" aria-hidden>
+                                <th className="w-[1%] border-b border-[var(--color-border-brand)]/20 bg-[var(--color-primary)] px-4 py-3" aria-hidden>
                                 </th>
                                 {vipTierComparisonTiers.map((t) => (
                                     <th
                                         key={t.tier}
-                                        className="min-w-[110px] border-b border-[var(--color-nav-border)]/20 bg-[var(--color-primary)] px-4 py-5 text-center shadow-[var(--inset-highlight-soft)]"
+                                        className="min-w-[110px] border-b border-[var(--color-border-brand)]/20 bg-[var(--color-primary)] px-4 py-5 text-center shadow-[var(--inset-highlight-soft)]"
                                     >
                                         <div className="flex flex-col items-center gap-3">
                                             <VipMedal src={t.medal} alt={`${t.tier} medal`} className="h-11 w-11 shrink-0 md:h-12 md:w-12" />
@@ -167,7 +167,7 @@ function UpgradeContent() {
                                     <tr>
                                         <td
                                             colSpan={7}
-                                            className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 py-3 text-xs font-bold uppercase tracking-wide text-[var(--color-text-primary)]"
+                                            className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-3 text-xs font-bold uppercase tracking-wide text-[var(--color-text-primary)]"
                                         >
                                             {section.header}
                                         </td>
@@ -175,7 +175,7 @@ function UpgradeContent() {
                                     {section.rows.map((row, rowIdx) => (
                                         <tr
                                             key={row.label}
-                                            className={rowIdx % 2 === 0 ? 'bg-[var(--color-surface-base)]' : 'bg-[var(--color-accent-50)]'}
+                                            className={rowIdx % 2 === 0 ? 'bg-[var(--color-surface-base)]' : 'bg-[var(--color-accent-pale)]'}
                                         >
                                             <td className="border-b border-r border-[var(--color-border-subtle)] px-4 py-3 font-normal text-[var(--color-text-primary)]">
                                                 {row.label}
@@ -238,7 +238,7 @@ function PrivilegesContent() {
                     key={title}
                     className="surface-card rounded-2xl p-6 md:p-7"
                 >
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-vip-badge text-[var(--color-cta-text)] shadow-[var(--shadow-cta-soft)]">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-vip-badge text-[var(--color-text-cta-inverse)] shadow-[var(--shadow-cta-soft)]">
                         <Icon size={20} strokeWidth={2.25} />
                     </span>
                     <h3 className="mt-4 text-lg font-bold text-[var(--color-text-primary)]">{title}</h3>
@@ -297,7 +297,7 @@ export default function VipPage({ authUser }) {
     const showBannerCta = !authUser;
 
     return (
-        <main className="w-full bg-[var(--color-page-default)] pb-14">
+        <main className="w-full bg-[var(--color-surface-base)] pb-14">
             <section className="w-full pt-5 md:pt-7">
                 <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8">
                     <div className="page-hero-banner">
@@ -323,7 +323,7 @@ export default function VipPage({ authUser }) {
                                 {showBannerCta && (
                                     <a
                                         href="/register"
-                                        className="btn-theme-cta mt-2 inline-flex h-9 min-w-[150px] items-center justify-center rounded-[10px] px-5 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-cta-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface-mid-container)] md:mt-6 md:h-14 md:min-w-[240px] md:px-12 md:text-lg"
+                                        className="btn-theme-cta mt-2 inline-flex h-9 min-w-[150px] items-center justify-center rounded-[10px] px-5 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-text-cta-inverse)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface-mid-container)] md:mt-6 md:h-14 md:min-w-[240px] md:px-12 md:text-lg"
                                         aria-label="Join VIP now"
                                     >
                                         JOIN NOW
@@ -338,7 +338,7 @@ export default function VipPage({ authUser }) {
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
                 <div className="soft-blue-panel rounded-[28px] p-4 shadow-[var(--shadow-card-raised)] md:p-6">
                     <div>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)] shadow-[var(--shadow-subtle)]">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]">
                             <Crown size={14} className="text-[var(--color-accent)]" />
                             VIP Group
                         </span>
@@ -354,10 +354,10 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)]">Starting Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">Starting Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">Normal</p>
                                 </div>
-                                <div className="shrink-0 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
+                                <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
                                     <VipMedal src={normalMedal} alt="Normal medal" className="h-12 w-12 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
                                 </div>
                             </div>
@@ -365,10 +365,10 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)]">Top Reward Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">Top Reward Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">Diamond</p>
                                 </div>
-                                <div className="shrink-0 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
+                                <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
                                     <VipMedal src={diamondMedal} alt="Diamond medal" className="h-12 w-12 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
                                 </div>
                             </div>
@@ -376,10 +376,10 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5 sm:col-span-2 lg:col-span-1">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-600)]">Member Support</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">Member Support</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">24 / 7</p>
                                 </div>
-                                <div className="shrink-0 rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-subtle)] p-2 shadow-[var(--shadow-subtle)]">
+                                <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-2 shadow-[var(--shadow-subtle)]">
                                     <img
                                         src={headsetImage}
                                         alt="Headset support"

@@ -20,7 +20,7 @@ export default function GameDetailDataTable({ columns = [], rows = [], striped =
         <div className="overflow-x-auto rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
             <table className="w-full min-w-[520px] border-collapse text-sm">
                 <thead>
-                    <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)]">
+                    <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)]">
                         {columns.map((col) => (
                             <th
                                 key={col.key}
@@ -37,7 +37,7 @@ export default function GameDetailDataTable({ columns = [], rows = [], striped =
                         <tr
                             key={row.id ?? ri}
                             className={`border-b border-[var(--color-border-subtle)] last:border-b-0 ${
-                                striped && ri % 2 === 1 ? 'bg-[var(--color-accent-50)]/60' : ''
+                                striped && ri % 2 === 1 ? 'bg-[var(--color-accent-pale)]/60' : ''
                             }`}
                         >
                             {columns.map((col) => {
@@ -47,7 +47,7 @@ export default function GameDetailDataTable({ columns = [], rows = [], striped =
                                     <td
                                         key={col.key}
                                         className={`px-4 py-3 font-medium leading-snug text-[var(--color-text-secondary)] md:px-5 md:py-3.5 ${alignClass(col.align)} ${
-                                            isHighlight ? 'font-bold text-[var(--color-cta-strong-end)] tabular-nums' : ''
+                                            isHighlight ? 'font-bold text-[var(--color-button-cta-end)] tabular-nums' : ''
                                         }`}
                                     >
                                         {raw}

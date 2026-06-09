@@ -80,7 +80,7 @@ function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
     };
 
     return (
-        <div className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg">
+        <div className="lottery-game-card surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg">
             <button
                 type="button"
                 className="absolute inset-0 z-[5] md:hidden"
@@ -89,7 +89,7 @@ function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
             />
 
             {use93ConnectFill ? (
-            <div className="pointer-events-none relative z-10 h-44 overflow-hidden rounded-t-2xl bg-gradient-lottery-header sm:h-52 xl:h-56">
+            <div className="lottery-game-card__thumb pointer-events-none relative z-10 h-44 overflow-hidden rounded-t-2xl sm:h-52 xl:h-56">
                 <img
                     src={src}
                     alt={game.name}
@@ -112,7 +112,7 @@ function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
                 />
             </div>
             ) : (
-            <div className="pointer-events-none relative z-10 flex h-44 items-center justify-center overflow-hidden rounded-t-2xl bg-gradient-lottery-header p-4 sm:h-52 sm:p-5 xl:h-56">
+            <div className="lottery-game-card__thumb pointer-events-none relative z-10 flex h-44 items-center justify-center overflow-hidden rounded-t-2xl p-4 sm:h-52 sm:p-5 xl:h-56">
                 <img
                     src={src}
                     alt={game.name}
@@ -199,7 +199,7 @@ export default function LotteryPage({ onNavigate }) {
     };
 
     return (
-        <main className="w-full bg-gradient-soft-blue-panel pb-14 font-sans">
+        <main className="lottery-page w-full bg-gradient-soft-blue-panel pb-14 font-sans">
             <section className="w-full pt-5 md:pt-7">
                 <div className={pageContainerClass}>
                     <div className="page-hero-banner">
@@ -232,7 +232,7 @@ export default function LotteryPage({ onNavigate }) {
                                 type="button"
                                 onClick={() => setActiveProvider(provider.name)}
                                 className={`relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 bg-[var(--color-surface-base)] px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
-                                    isActive ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-surface-accent-hover)]/30' : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-accent)]'
+                                    isActive ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-surface-accent-hover)]/30' : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-brand)]'
                                 }`}
                             >
                                 <img

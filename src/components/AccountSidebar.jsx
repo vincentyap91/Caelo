@@ -137,19 +137,19 @@ export default function AccountSidebar({
     return (
         <>
             <aside
-                className="relative flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-y-contain border-r border-[var(--color-accent-100)] bg-[var(--color-surface-base)] p-3.5 text-[var(--color-text-primary)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 lg:sticky lg:top-24 lg:h-auto lg:max-h-none lg:w-[320px] lg:flex-none lg:overflow-visible lg:rounded-[24px] lg:border lg:border-[var(--color-border-subtle)] lg:p-6 lg:shadow-[var(--shadow-card-raised)] w-full max-w-[88vw] lg:max-w-none"
+                className="relative flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-y-contain border-r border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] p-3.5 text-[var(--color-text-primary)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 lg:sticky lg:top-24 lg:h-auto lg:max-h-none lg:w-[320px] lg:flex-none lg:overflow-visible lg:rounded-[24px] lg:border lg:border-[var(--color-border-subtle)] lg:p-6 lg:shadow-[var(--shadow-card-raised)] w-full max-w-[88vw] lg:max-w-none"
             >
                 <div>
                     <div className="flex items-start gap-3 pt-0 lg:gap-4 lg:pt-1">
                         <div className="relative ml-0 mt-0 shrink-0 lg:ml-1 lg:mt-1">
                             <div className="blue-accent-avatar flex aspect-square h-14 w-14 items-center justify-center overflow-hidden rounded-full lg:h-16 lg:w-16">
-                                <UserCircle2 className="block h-8 w-8 text-[var(--color-accent-600)] lg:h-10 lg:w-10" />
+                                <UserCircle2 className="block h-8 w-8 text-[var(--color-button-hover)] lg:h-10 lg:w-10" />
                             </div>
                             {!guestPreview && (
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('profile')}
-                                    className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-sm transition hover:scale-105 hover:bg-[var(--color-accent-50)] lg:h-7 lg:w-7"
+                                    className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-sm transition hover:scale-105 hover:bg-[var(--color-accent-pale)] lg:h-7 lg:w-7"
                                     aria-label="Edit profile"
                                 >
                                     <PencilLine className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
@@ -176,14 +176,14 @@ export default function AccountSidebar({
                 </div>
 
                 <div className="mt-5 space-y-3 lg:mt-8 lg:space-y-5">
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('cashier')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-glow)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
                                     <Wallet className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">Cashier</span>
@@ -203,12 +203,12 @@ export default function AccountSidebar({
                                             onClick={() => handleCashierClick(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]'
+                                                    ? 'border-l-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
+                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-accent-600)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent-500)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent)]'}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -218,14 +218,14 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('account')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-glow)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
                                     <UserRound className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">My Account</span>
@@ -245,12 +245,12 @@ export default function AccountSidebar({
                                             onClick={() => handleNavClick(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]'
+                                                    ? 'border-l-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
+                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-accent-600)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent-500)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent)]'}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -260,14 +260,14 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('loyaltyRewards')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-glow)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
                                     <Trophy className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">Rewards</span>
@@ -289,15 +289,15 @@ export default function AccountSidebar({
                                             onClick={() => onNavigate?.('loyalty-rewards', { rewardsTab: id })}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]'
+                                                    ? 'border-l-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
+                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                             }`}
                                         >
                                             <NavIcon
                                                 className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${
                                                     isActive
-                                                        ? 'text-[var(--color-accent-600)]'
-                                                        : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent-500)]'
+                                                        ? 'text-[var(--color-button-hover)]'
+                                                        : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent)]'
                                                 }`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
@@ -308,14 +308,14 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('historyRecord')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-glow)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
                                     <History className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">History Record</span>
@@ -335,12 +335,12 @@ export default function AccountSidebar({
                                             onClick={() => onNavigate?.(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all hover:scale-[1.02] lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)]'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:border-l-[var(--color-accent-500)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]'
+                                                    ? 'border-l-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
+                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:border-l-[var(--color-accent)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-accent-600)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent-500)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent)]'}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -350,14 +350,14 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('settings')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-glow)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
                                     <Settings className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary)] lg:text-lg">Settings</span>
@@ -384,12 +384,12 @@ export default function AccountSidebar({
                                             }}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all hover:scale-[1.02] lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive && !isLiveChat
-                                                    ? 'border-l-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)]'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:border-l-[var(--color-accent-500)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]'
+                                                    ? 'border-l-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
+                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-muted)] hover:border-l-[var(--color-accent)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive && !isLiveChat ? 'text-[var(--color-accent-600)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent-500)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive && !isLiveChat ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent)]'}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -411,7 +411,7 @@ export default function AccountSidebar({
                         <button
                             type="button"
                             onClick={onLogout}
-                            className="mt-1.5 inline-flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-text-secondary)] shadow-[0_4px_12px_rgba(15,23,42,0.04)] transition-all hover:scale-[1.02] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] lg:mt-2 lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5"
+                            className="mt-1.5 inline-flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-text-secondary)] shadow-[0_4px_12px_rgba(15,23,42,0.04)] transition-all hover:scale-[1.02] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)] lg:mt-2 lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5"
                         >
                             <LogOut className="h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px]" />
                             Log Out

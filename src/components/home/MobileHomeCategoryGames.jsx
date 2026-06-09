@@ -95,7 +95,7 @@ function useCategoryGamesState() {
 
 function CategoryGamesEmpty({ searchQuery }) {
     return (
-        <p className="mt-4 rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 py-6 text-center text-sm font-medium text-[var(--color-text-muted)]">
+        <p className="mt-4 rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-6 text-center text-sm font-medium text-[var(--color-text-muted)]">
             {searchQuery.trim()
                 ? 'No games match your search. Try a different name or provider.'
                 : 'No featured games in this category yet.'}

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProviderLaunchModal from './ProviderLaunchModal';
 import PromotionWarningModal from './PromotionWarningModal';
 import LiveCasinoLobbyHero from './live-casino/LiveCasinoLobbyHero';
@@ -21,9 +21,7 @@ function resolveLaunchConfig(providerId) {
 export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate }) {
     const [providerLaunchOpen, setProviderLaunchOpen] = useState(false);
     const [promotionWarningOpen, setPromotionWarningOpen] = useState(false);
-    const [activeProvider, setActiveProvider] = useState(
-        () => providerLogos.find((p) => p.id === 'evolution') ?? providerLogos[0]
-    );
+    const [activeProvider, setActiveProvider] = useState(null);
 
     useEffect(() => {
         if (selectedProviderIdFromMenu) {
@@ -57,8 +55,9 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
         navigateToGameDetail(onNavigate, launchCfg?.title ?? activeProvider.name, 'Live Casino');
     };
 
-    const launchCfg =
-        resolveLaunchConfig(activeProvider.id) ?? resolveLaunchConfig(EZUGI_PROVIDER_ID);
+    const launchCfg = activeProvider
+        ? resolveLaunchConfig(activeProvider.id) ?? resolveLaunchConfig(EZUGI_PROVIDER_ID)
+        : resolveLaunchConfig(EZUGI_PROVIDER_ID);
     const modalBannerImage = launchCfg?.bannerImage ?? resolveLiveCasinoHeroBanner(activeProvider);
 
     return (
@@ -87,7 +86,6 @@ export default function LiveCasinoPage({ selectedProviderIdFromMenu, onNavigate 
                             key={provider.id}
                             provider={provider}
                             index={index}
-                            selected={activeProvider.id === provider.id}
                             onSelect={handleSelectProvider}
                             onNavigate={onNavigate}
                         />

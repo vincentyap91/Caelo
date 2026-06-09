@@ -61,7 +61,7 @@ export default function PokerPage({ onNavigate }) {
             />
 
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
-                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base-80)] p-4 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:p-5">
+                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-4 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div>
                             <p className="text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">Poker Providers</p>
@@ -69,7 +69,7 @@ export default function PokerPage({ onNavigate }) {
                                 Choose a poker room for tournaments, cash tables, and quick sit-and-go action.
                             </p>
                         </div>
-                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-live)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)] lg:w-[330px]">
+                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)] lg:w-[330px]">
                             <Search size={16} className="text-[var(--color-text-muted)]" />
                             <input
                                 value={query}

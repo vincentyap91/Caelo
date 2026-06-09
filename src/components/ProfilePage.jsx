@@ -61,7 +61,7 @@ function ReadOnlyValue({ label, value, singleLineEllipsis = false }) {
         return (
             <div className="block">
                 <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
-                <div className="flex h-12 min-h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 shadow-[var(--shadow-subtle)]">
+                <div className="flex h-12 min-h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 shadow-[var(--shadow-subtle)]">
                     <input
                         type="text"
                         readOnly
@@ -78,7 +78,7 @@ function ReadOnlyValue({ label, value, singleLineEllipsis = false }) {
     return (
         <div className="block">
             <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
-            <div className="flex h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] select-none">
+            <div className="flex h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] select-none">
                 <span className="min-w-0 break-all">{value || '—'}</span>
             </div>
         </div>
@@ -90,16 +90,16 @@ function Field({ label, value, placeholder, type = 'text', editable, onChange, i
         <label className="block">
             <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
             <div
-                className={`group flex h-12 items-center gap-3 rounded-xl border px-4 shadow-[var(--shadow-subtle)] transition-all focus-within:border-[var(--color-accent-400)] focus-within:ring-2 focus-within:ring-[var(--color-accent-400)]/20 ${
+                className={`group flex h-12 items-center gap-3 rounded-xl border px-4 shadow-[var(--shadow-subtle)] transition-all focus-within:border-[var(--color-accent)] focus-within:ring-2 focus-within:ring-[var(--color-accent)]/20 ${
                     editable
-                        ? 'border-[var(--color-accent-300)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-400)]'
-                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] hover:border-[var(--color-accent-200)]'
+                        ? 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent)]'
+                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] hover:border-[var(--color-accent-glow)]'
                 }`}
             >
                 {Icon && (
                     <Icon
                         size={18}
-                        className={`shrink-0 transition-colors ${editable ? 'text-[var(--color-accent-600)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent-500)]'}`}
+                        className={`shrink-0 transition-colors ${editable ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-soft)] group-hover:text-[var(--color-accent)]'}`}
                     />
                 )}
                 <input
@@ -172,7 +172,7 @@ function ProfileVipProgressSection({ targetTier, progressPercent, tier, showTier
                 </span>
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{progressPercent}%</span>
             </div>
-            <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-[var(--color-accent-100)]">
+            <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-[var(--color-accent-glow)]">
                 <div
                     className="h-full rounded-full bg-gradient-cta"
                     style={{ width: `${progressPercent}%` }}
@@ -333,14 +333,14 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                 <button
                                     type="button"
                                     onClick={() => setProfilePhotoModalOpen(true)}
-                                    className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-400)] focus-visible:ring-offset-2"
+                                    className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2"
                                     aria-label="Change profile photo"
                                 >
                                     <div className="blue-accent-avatar flex h-14 w-14 items-center justify-center overflow-hidden rounded-full sm:h-20 sm:w-20 md:h-24 md:w-24">
                                         {profilePhotoUrl ? (
                                             <img src={profilePhotoUrl} alt="" className="h-full w-full object-cover" />
                                         ) : (
-                                            <UserCircle2 size={48} className="text-[var(--color-accent-600)]" />
+                                            <UserCircle2 size={48} className="text-[var(--color-button-hover)]" />
                                         )}
                                     </div>
                                 </button>
@@ -348,7 +348,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
 
                             <div className="flex min-w-0 flex-1 flex-col gap-1 md:gap-3">
                                 <div className="space-y-0.5 md:space-y-1.5">
-                                    <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent-600)] md:text-xs md:tracking-code">
+                                    <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-button-hover)] md:text-xs md:tracking-code">
                                         Verified Account
                                     </p>
                                     <h2 className="truncate text-lg font-bold tracking-tight text-[var(--color-text-primary)] sm:text-xl md:text-3xl">
@@ -450,7 +450,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                             <button
                                                 type="button"
                                                 onClick={closeBankForm}
-                                                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
+                                                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                                             >
                                                 Cancel
                                             </button>
@@ -477,7 +477,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                             <button
                                                 type="button"
                                                 onClick={() => setBankDropdownOpen((o) => !o)}
-                                                className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                                className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                             >
                                                 {bankForm.bankId && BANKS.find((b) => b.id === bankForm.bankId)?.image ? (
                                                     <span className="flex items-center gap-2.5">
@@ -498,7 +498,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                                                 key={b.id}
                                                                 type="button"
                                                                 onClick={() => { setBankForm((f) => ({ ...f, bankId: b.id })); setBankDropdownOpen(false); }}
-                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-muted)]"
+                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-cool-light)]"
                                                             >
                                                                 {b.image ? <img src={b.image} alt="" className="h-6 w-6 shrink-0 object-contain" /> : null}
                                                                 <span className="font-normal text-[var(--color-text-primary)]">{b.label}</span>
@@ -519,7 +519,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                         {bankAccounts.map((acc) => (
                                             <div
                                                 key={acc.id}
-                                                className="flex items-start gap-3 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] p-4 transition hover:border-[var(--color-accent-200)] sm:gap-4"
+                                                className="flex items-start gap-3 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] p-4 transition hover:border-[var(--color-accent-glow)] sm:gap-4"
                                             >
                                                 <div className="flex min-w-0 flex-1 flex-col gap-1">
                                                     <div className="flex items-center gap-2">
@@ -535,7 +535,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                                         type="button"
                                                         onClick={() => openEditBankForm(acc)}
                                                         aria-label="Edit bank account"
-                                                        className="rounded-lg p-2 text-[var(--color-text-muted)] transition hover:bg-[var(--color-accent-100)]/60 hover:text-[var(--color-accent-600)]"
+                                                        className="rounded-lg p-2 text-[var(--color-text-muted)] transition hover:bg-[var(--color-accent-glow)]/60 hover:text-[var(--color-button-hover)]"
                                                     >
                                                         <PencilLine size={18} />
                                                     </button>
@@ -553,8 +553,8 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                     </div>
                                 </div>
                             ) : (
-                                <div className="flex min-h-[240px] flex-col items-center justify-center rounded-2xl border border-dashed border-[var(--color-accent-200)] bg-[var(--color-accent-50)] p-6 text-center">
-                                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-[var(--shadow-accent-avatar)]">
+                                <div className="flex min-h-[240px] flex-col items-center justify-center rounded-2xl border border-dashed border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] p-6 text-center">
+                                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-[var(--shadow-accent-avatar)]">
                                         <Landmark size={28} />
                                     </div>
                                     <p className="mt-5 text-lg font-bold text-[var(--color-text-primary)]">No bank account added</p>

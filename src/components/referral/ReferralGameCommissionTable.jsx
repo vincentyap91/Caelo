@@ -29,7 +29,7 @@ export default function ReferralGameCommissionTable({
             <div className="overflow-x-auto">
                 <table className="w-full min-w-[640px] border-collapse text-sm">
                     <thead>
-                        <tr className="border-b border-[var(--color-border-accent)] bg-surface-secondary-table-head">
+                        <tr className="border-b border-[var(--color-border-brand)] bg-surface-secondary-table-head">
                             <th
                                 scope="col"
                                 className="px-4 py-3.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)] md:px-5 md:text-sm"

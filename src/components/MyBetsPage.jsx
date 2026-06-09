@@ -31,8 +31,8 @@ export default function MyBetsPage() {
                             onClick={() => setActiveTab(id)}
                             className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                                 activeTab === id
-                                    ? 'bg-[var(--color-accent-600)] text-[var(--color-text-card-text)] shadow-sm'
-                                    : 'bg-[var(--color-surface-base)] text-[var(--color-text-muted)] ring-1 ring-[var(--color-border-subtle)] hover:ring-[var(--color-accent-300)] hover:text-[var(--color-accent-600)]'
+                                    ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
+                                    : 'bg-[var(--color-surface-base)] text-[var(--color-text-muted)] ring-1 ring-[var(--color-border-subtle)] hover:ring-[var(--color-border-subtle)] hover:text-[var(--color-button-hover)]'
                             }`}
                         >
                             {label}
@@ -48,7 +48,7 @@ export default function MyBetsPage() {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="e.g. Real Madrid"
-                            className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent-400)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/20"
+                            className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                         />
                         <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-soft)]" />
                     </label>
@@ -80,7 +80,7 @@ export default function MyBetsPage() {
                                                 setDateDropdownOpen(false);
                                             }}
                                             className={`w-full px-4 py-2.5 text-left text-sm font-medium ${
-                                                dateRange === opt ? 'bg-[var(--color-accent-50)] text-[var(--color-accent-700)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-muted)]'
+                                                dateRange === opt ? 'bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-cool-light)]'
                                             }`}
                                         >
                                             {opt}

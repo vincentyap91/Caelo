@@ -66,18 +66,18 @@ const BadgeSVG = () => (
 const PhoneBack = () => (
     <div className="flex h-full w-full flex-col gap-2 overflow-hidden rounded-[20px] bg-gradient-app-download-phone p-2 pt-8">
         <div className="flex items-center justify-between px-1">
-            <div className="rounded bg-[var(--color-nav-border)] px-2 py-0.5 text-xs font-bold text-[var(--color-text-card-text)]">LOGO</div>
+            <div className="rounded bg-[var(--color-border-brand)] px-2 py-0.5 text-xs font-bold text-[var(--color-text-card-text)]">LOGO</div>
             <div className="flex gap-1">
                 <div className="h-3 w-3 rounded-full bg-[var(--color-surface-base)]/30" />
                 <div className="h-3 w-3 rounded-full bg-[var(--color-surface-base)]/30" />
             </div>
         </div>
-        <div className="flex h-14 w-full items-center justify-center gap-1 rounded-lg border border-[var(--color-nav-border)]/20 bg-[var(--color-surface-base)]/15">
-            {[0, 1, 2].map((item) => <div key={item} className="h-10 w-7 rounded-md bg-[var(--color-nav-border)]" />)}
+        <div className="flex h-14 w-full items-center justify-center gap-1 rounded-lg border border-[var(--color-border-brand)]/20 bg-[var(--color-surface-base)]/15">
+            {[0, 1, 2].map((item) => <div key={item} className="h-10 w-7 rounded-md bg-[var(--color-border-brand)]" />)}
         </div>
         <div className="grid flex-1 grid-cols-3 gap-1">
             {Array.from({ length: 9 }).map((_, index) => (
-                <div key={index} className="rounded-md border border-[var(--color-nav-border)]/20 bg-[var(--color-surface-base)]/15" />
+                <div key={index} className="rounded-md border border-[var(--color-border-brand)]/20 bg-[var(--color-surface-base)]/15" />
             ))}
         </div>
     </div>
@@ -85,28 +85,28 @@ const PhoneBack = () => (
 
 const PhoneFront = () => (
     <div className="flex h-full w-full flex-col gap-1.5 overflow-hidden rounded-[22px] bg-gradient-app-download-preview p-2 pt-9">
-        <div className="flex items-center justify-between rounded-md bg-[var(--color-nav-border-soft)] px-1 py-0.5">
+        <div className="flex items-center justify-between rounded-md bg-[var(--color-border-subtle)] px-1 py-0.5">
             <div className="h-2.5 w-12 rounded-sm bg-[var(--color-surface-base)]/60" />
             <div className="flex gap-0.5">
-                <div className="flex h-3 w-5 items-center justify-center rounded-sm bg-[var(--color-accent-400)] text-xs font-bold text-[var(--color-text-card-text)]">EN</div>
+                <div className="flex h-3 w-5 items-center justify-center rounded-sm bg-[var(--color-accent)] text-xs font-bold text-[var(--color-text-card-text)]">EN</div>
                 <div className="h-3 w-3 rounded-sm bg-[var(--color-surface-base)]/30" />
             </div>
         </div>
-        <div className="flex h-12 w-full items-center justify-around rounded-lg border border-[var(--color-nav-border)]/20 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-surface-accent-hover)] px-1">
-            <div className="h-9 w-7 rounded-md bg-[var(--color-nav-border)]" />
-            <div className="h-9 w-7 rounded-md bg-[var(--color-nav-border)]" />
-            <div className="h-9 w-7 rounded-md bg-[var(--color-nav-border)]" />
+        <div className="flex h-12 w-full items-center justify-around rounded-lg border border-[var(--color-border-brand)]/20 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-surface-accent-hover)] px-1">
+            <div className="h-9 w-7 rounded-md bg-[var(--color-border-brand)]" />
+            <div className="h-9 w-7 rounded-md bg-[var(--color-border-brand)]" />
+            <div className="h-9 w-7 rounded-md bg-[var(--color-border-brand)]" />
         </div>
         <div className="flex gap-1">
             {['ALL', 'HOT', 'NEW'].map((tab) => (
-                <div key={tab} className="flex h-3.5 flex-1 items-center justify-center rounded-full bg-[var(--color-nav-border)]">
+                <div key={tab} className="flex h-3.5 flex-1 items-center justify-center rounded-full bg-[var(--color-border-brand)]">
                     <span className="text-xs font-bold text-[var(--color-text-card-text)]">{tab}</span>
                 </div>
             ))}
         </div>
         <div className="grid flex-1 grid-cols-3 gap-1">
             {Array.from({ length: 12 }).map((_, index) => (
-                <div key={index} className="flex items-center justify-center rounded-md border border-[var(--color-nav-border)]/25 bg-[var(--color-surface-base)]/15">
+                <div key={index} className="flex items-center justify-center rounded-md border border-[var(--color-border-brand)]/25 bg-[var(--color-surface-base)]/15">
                     <div className="h-2 w-2 rounded-sm bg-[var(--color-surface-base)]/30" />
                 </div>
             ))}
@@ -118,17 +118,17 @@ export default function AppDownload() {
     return (
         <section
             id="download-app"
-            className="relative mt-4 scroll-mt-[114px] overflow-hidden rounded-[30px] border border-[var(--color-nav-border)]/80 bg-gradient-app-download-section px-5 py-6 shadow-[var(--shadow-brand-soft)] sm:px-6 sm:py-8 md:scroll-mt-[92px] lg:px-8 lg:py-10"
+            className="app-download-section relative mt-4 scroll-mt-[114px] overflow-hidden rounded-[30px] border border-[var(--color-surface-base)]/80 bg-gradient-app-download-section px-5 py-6 shadow-[var(--shadow-brand-soft)] sm:px-6 sm:py-8 md:scroll-mt-[92px] lg:px-8 lg:py-10"
         >
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-[280px] w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-surface-base)]/45 blur-3xl" />
-            <div className="pointer-events-none absolute right-[-40px] top-12 h-32 w-32 rounded-full bg-[var(--color-brand-soft)] blur-3xl" />
+            <div className="pointer-events-none absolute right-[-40px] top-12 h-32 w-32 rounded-full bg-[var(--color-surface-cool-light)] blur-3xl" />
 
             <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[0.9fr_1fr_0.85fr] lg:gap-10">
                 <div className="w-full max-w-[360px]">
-                    <div className="inline-flex rounded-full border border-[var(--color-nav-border)]/80 bg-[var(--color-surface-base)]/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
+                    <div className="inline-flex rounded-full border border-[var(--color-surface-base)]/80 bg-[var(--color-surface-base)]/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
                         Mobile App
                     </div>
-                    <h2 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--color-text-brand-soft)] sm:text-3xl md:text-4xl">
+                    <h2 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--color-text-secondary)] sm:text-3xl md:text-4xl">
                         Download the <span className="text-[var(--color-primary)]">12WIN APP</span>
                     </h2>
                     <p className="mt-4 text-sm font-medium leading-relaxed text-[var(--color-button-hover)]/85 sm:text-base sm:font-semibold">
@@ -138,7 +138,7 @@ export default function AppDownload() {
                 </div>
 
                 <div className="relative mx-auto flex h-[290px] w-full max-w-[360px] items-center justify-center">
-                    <div className="pointer-events-none absolute left-1/2 top-1/2 h-[210px] w-[250px] -translate-x-1/2 -translate-y-1/2 rounded-[60%] bg-[var(--color-accent-100)]/75 blur-2xl" />
+                    <div className="pointer-events-none absolute left-1/2 top-1/2 h-[210px] w-[250px] -translate-x-1/2 -translate-y-1/2 rounded-[60%] bg-[var(--color-accent-glow)]/75 blur-2xl" />
 
                     <div
                         className="absolute left-[6%] top-1/2 h-14 w-14 -translate-y-1/2 drop-shadow-lg sm:h-16 sm:w-16"
@@ -163,7 +163,7 @@ export default function AppDownload() {
                         className="absolute left-[18%] top-0 z-20"
                         style={{ transform: 'rotate(-10deg)', filter: 'drop-shadow(0 16px 32px rgba(0,100,180,0.28))' }}
                     >
-                        <div className="flex h-[258px] w-[128px] flex-col overflow-hidden rounded-[24px] border-[5px] border-[var(--color-nav-border)] bg-[var(--color-surface-base)]">
+                        <div className="flex h-[258px] w-[128px] flex-col overflow-hidden rounded-[24px] border-[5px] border-[var(--color-surface-base)] bg-[var(--color-surface-base)]">
                             <div className="flex justify-center pt-1.5">
                                 <div className="h-2.5 w-10 rounded-full bg-[var(--color-surface-darkest)]/10" />
                             </div>
@@ -185,14 +185,14 @@ export default function AppDownload() {
 
                 <div className="flex w-full justify-center lg:justify-end">
                     <div className="relative w-full">
-                        <div className="pointer-events-none absolute inset-x-10 bottom-3 h-14 rounded-full bg-[var(--color-brand-soft)] blur-3xl" />
+                        <div className="pointer-events-none absolute inset-x-10 bottom-3 h-14 rounded-full bg-[var(--color-surface-cool-light)] blur-3xl" />
 
-                        <div className="relative overflow-hidden rounded-[30px] border border-[var(--color-nav-border)]/85 bg-gradient-app-download-shell p-4 shadow-[var(--shadow-brand-card)] backdrop-blur-md sm:px-4 sm:py-4">
-                            <div className="pointer-events-none absolute right-[-20px] top-[-20px] h-24 w-24 rounded-full bg-[var(--color-brand-soft)] blur-2xl" />
+                        <div className="relative overflow-hidden rounded-[30px] border border-[var(--color-surface-base)]/85 bg-gradient-app-download-shell p-4 shadow-[var(--shadow-brand-card)] backdrop-blur-md sm:px-4 sm:py-4">
+                            <div className="pointer-events-none absolute right-[-20px] top-[-20px] h-24 w-24 rounded-full bg-[var(--color-surface-cool-light)] blur-2xl" />
                             <div className="pointer-events-none absolute left-[-12px] bottom-8 h-16 w-16 rounded-full bg-[var(--color-surface-base)]/60 blur-2xl" />
 
                             <div className="relative">
-                                <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-nav-border)]/80 bg-[var(--color-surface-base)]/85 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
+                                <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-surface-base)]/80 bg-[var(--color-surface-base)]/85 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
                                     <QrCode size={13} />
                                     Android APK
                                 </div>
@@ -213,14 +213,14 @@ export default function AppDownload() {
                                         </div>
 
                                         <div className="flex min-w-0 flex-1 flex-col items-center text-center sm:items-start sm:text-left">
-                                            <h3 className="text-base font-bold leading-snug tracking-tight text-[var(--color-text-brand-soft)] sm:text-lg">
+                                            <h3 className="text-base font-bold leading-snug tracking-tight text-[var(--color-text-secondary)] sm:text-lg">
                                                 Scan or tap to install
                                             </h3>
                                             <div className="mt-2 flex flex-wrap justify-center gap-1.5 sm:justify-start">
-                                                <span className="rounded-full border border-[var(--color-border-accent)] bg-[var(--color-accent-50)] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-brand-soft)]">
+                                                <span className="app-download-chip rounded-full border border-[var(--color-border-brand)] bg-[var(--color-accent-pale)] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-secondary)]">
                                                     Scan Ready
                                                 </span>
-                                                <span className="rounded-full border border-[var(--color-border-accent)] bg-[var(--color-accent-50)] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-brand-soft)]">
+                                                <span className="app-download-chip rounded-full border border-[var(--color-border-brand)] bg-[var(--color-accent-pale)] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-secondary)]">
                                                     Direct APK
                                                 </span>
                                             </div>

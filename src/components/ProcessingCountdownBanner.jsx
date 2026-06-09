@@ -8,7 +8,7 @@ export default function ProcessingCountdownBanner({ secondsLeft, totalSeconds, t
     const progressPercent = totalSeconds > 0 ? Math.max(0, ((totalSeconds - secondsLeft) / totalSeconds) * 100) : 0;
 
     return (
-        <div className="mb-6 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 py-3 sm:px-5 sm:py-4">
+        <div className="mb-6 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-3 sm:px-5 sm:py-4">
             <div className="flex items-center gap-2">
                 <Loader2 size={18} className="shrink-0 animate-spin text-[var(--color-primary)]" />
                 <span className="text-sm font-semibold text-[var(--color-text-primary)]">

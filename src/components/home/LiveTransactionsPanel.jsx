@@ -47,7 +47,7 @@ function TxRow({ row }) {
     return (
         <li className="flex items-center gap-3 py-3.5 md:gap-4 md:py-4">
             <div
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-brand-soft)] text-[var(--color-button-hover)] ring-2 ring-inset ${avatarRing}`}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] ring-2 ring-inset ${avatarRing}`}
                 aria-hidden
             >
                 <User size={18} strokeWidth={2.25} />
@@ -119,7 +119,7 @@ export default function LiveTransactionsPanel() {
                     <LiveStatusBadge className="max-sm:gap-1 max-sm:py-0.5 max-sm:pl-1.5 max-sm:pr-2" />
                 </div>
 
-                <div className="mb-4 flex w-full flex-wrap items-center gap-1.5 rounded-full bg-[var(--color-surface-muted)]/90 p-1 ring-1 ring-[var(--color-border-subtle)]/60 max-sm:flex-nowrap max-sm:gap-0.5">
+                <div className="mb-4 flex w-full flex-wrap items-center gap-1.5 rounded-full bg-[var(--color-surface-cool-light)]/90 p-1 ring-1 ring-[var(--color-border-subtle)]/60 max-sm:flex-nowrap max-sm:gap-0.5">
                     {TABS.map((t) => {
                         const active = filter === t.id;
                         return (
@@ -130,7 +130,7 @@ export default function LiveTransactionsPanel() {
                                 className={`rounded-full text-xs font-bold transition md:text-sm ${
                                     active
                                         ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
-                                        : 'text-[var(--color-text-brand)] hover:bg-[var(--color-surface-base)]/70'
+                                        : 'text-[var(--color-text-primary-card-title)] hover:bg-[var(--color-surface-base)]/70'
                                 } max-sm:flex max-sm:min-h-[2.375rem] max-sm:min-w-0 max-sm:flex-1 max-sm:basis-0 max-sm:items-center max-sm:justify-center max-sm:px-2 max-sm:py-2 max-sm:leading-none sm:flex-initial sm:px-4 sm:py-2 sm:leading-normal`}
                             >
                                 <span className="block text-center">{t.label}</span>

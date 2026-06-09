@@ -17,7 +17,7 @@ const RECENT_UPDATED = 'riocity-recent-notifications-updated';
 
 function ToggleRow({ label, checked, onChange }) {
     return (
-        <div className="surface-card flex min-h-[56px] items-center justify-between gap-4 rounded-2xl px-4 py-4 transition hover:border-[var(--color-accent-200)] md:px-6">
+        <div className="surface-card flex min-h-[56px] items-center justify-between gap-4 rounded-2xl px-4 py-4 transition hover:border-[var(--color-accent-glow)] md:px-6">
             <span className="text-sm font-medium text-[var(--color-text-primary)] md:text-base">{label}</span>
             <button
                 type="button"
@@ -27,7 +27,7 @@ function ToggleRow({ label, checked, onChange }) {
                 className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${
                     checked
                         ? 'bg-[var(--color-success)]'
-                        : 'bg-[var(--color-border-subtle)] hover:bg-[var(--color-accent-200)]'
+                        : 'bg-[var(--color-border-subtle)] hover:bg-[var(--color-accent-glow)]'
                 }`}
             >
                 <span
@@ -57,8 +57,8 @@ function RecentNotificationCard({ item }) {
               : String(status);
 
     return (
-        <div className="surface-card flex gap-4 rounded-2xl px-4 py-4 transition hover:border-[var(--color-accent-200)] md:px-5 md:py-5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-50)] text-[var(--color-accent-600)]">
+        <div className="surface-card flex gap-4 rounded-2xl px-4 py-4 transition hover:border-[var(--color-accent-glow)] md:px-5 md:py-5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                 <Icon size={20} strokeWidth={2.25} aria-hidden />
             </div>
             <div className="min-w-0 flex-1">
@@ -79,8 +79,8 @@ function RecentNotificationCard({ item }) {
                             : status === 'error'
                               ? 'bg-[var(--color-surface-subtle)] text-[var(--color-danger)]'
                               : status === 'warning'
-                                ? 'bg-[var(--color-accent-50)] text-[var(--color-danger)]'
-                                : 'bg-[var(--color-accent-100)] text-[var(--color-accent-700)]'
+                                ? 'bg-[var(--color-accent-pale)] text-[var(--color-danger)]'
+                                : 'bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]'
                     }`}
                 >
                     {isLive ? <Loader2 size={12} className="animate-spin" aria-hidden /> : null}
@@ -145,7 +145,7 @@ export default function NotificationsPage() {
             <section className="mt-10 md:mt-12" aria-labelledby="recent-notifications-heading">
                 <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
                     <div className="flex items-center gap-2">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-surface-muted)] text-[var(--color-accent-600)]">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)]">
                             <Bell size={18} strokeWidth={2.25} aria-hidden />
                         </span>
                         <h2
@@ -159,7 +159,7 @@ export default function NotificationsPage() {
                         <button
                             type="button"
                             onClick={handleClearRecent}
-                            className="text-sm font-semibold text-[var(--color-accent-600)] transition hover:text-[var(--color-accent-700)]"
+                            className="text-sm font-semibold text-[var(--color-button-hover)] transition hover:text-[var(--color-button-hover)]"
                         >
                             Clear all
                         </button>
@@ -168,7 +168,7 @@ export default function NotificationsPage() {
 
                 {recent.length === 0 ? (
                     <div className="surface-card flex flex-col items-center justify-center rounded-2xl px-6 py-14 text-center md:py-16">
-                        <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-surface-muted)] text-[var(--color-text-soft)]">
+                        <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-surface-cool-light)] text-[var(--color-text-soft)]">
                             <Inbox size={28} strokeWidth={1.75} aria-hidden />
                         </span>
                         <p className="mt-4 text-sm font-semibold text-[var(--color-text-primary)] md:text-base">

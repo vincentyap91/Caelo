@@ -9,7 +9,7 @@ import ProgressBar from './ui/ProgressBar';
 
 function Metric({ label, value, dark = false }) {
     return (
-        <div className={`rounded-xl px-3 py-2 ${dark ? 'bg-[var(--color-surface-base)]/[0.05]' : 'bg-[var(--color-surface-muted)]/90'}`}>
+        <div className={`rounded-xl px-3 py-2 ${dark ? 'bg-[var(--color-surface-base)]/5' : 'bg-[var(--color-surface-cool-light)]/90'}`}>
             <p className={`text-xs font-bold uppercase tracking-wide ${dark ? 'text-[var(--color-text-card-text)]/55' : 'text-[var(--color-text-soft)]'}`}>
                 {label}
             </p>
@@ -24,7 +24,7 @@ function SupportRequestRow({ eligible, dark = false, onRequestSupport }) {
     return (
         <div className={`flex flex-col gap-2 rounded-xl border px-3 py-3 sm:flex-row sm:items-center sm:justify-between ${
             dark
-                ? 'border-[var(--color-nav-border-soft)] bg-[var(--color-surface-base)]/[0.04]'
+                ? 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/4'
                 : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/70'
         }`}>
             <div className="min-w-0">
@@ -40,8 +40,8 @@ function SupportRequestRow({ eligible, dark = false, onRequestSupport }) {
                 onClick={() => onRequestSupport?.()}
                 className={`inline-flex min-h-[36px] shrink-0 items-center justify-center rounded-lg px-3 py-2 text-xs font-bold transition ${
                     dark
-                        ? 'bg-[var(--color-nav-text-accent)] text-[var(--color-nav-surface)] hover:brightness-105'
-                        : 'bg-[var(--color-accent-600)] text-[var(--color-text-card-text)] hover:bg-[var(--color-accent-700)]'
+                        ? 'bg-[var(--color-text-sticky-nav-active)] text-[var(--color-sticky-nav)] hover:brightness-105'
+                        : 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] hover:bg-[var(--color-button-hover)]'
                 }`}
             >
                 Contact Support
@@ -70,12 +70,12 @@ export default function RolloverStatusCard({
             <>
                 <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
-                        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-nav-text-accent)]">
+                        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-sticky-nav-active)]">
                             Rollover Summary
                         </p>
                         <p className="mt-1 truncate text-base font-bold text-[var(--color-text-card-text)]">{title}</p>
                     </div>
-                    <p className="shrink-0 text-xs font-bold text-[var(--color-nav-accent-soft)]">{Math.round(percent)}%</p>
+                    <p className="shrink-0 text-xs font-bold text-[var(--color-accent-yellow)]">{Math.round(percent)}%</p>
                 </div>
 
                 <div className="mt-2">
@@ -93,7 +93,7 @@ export default function RolloverStatusCard({
                                 event.stopPropagation();
                                 setDetailsOpen((open) => !open);
                             }}
-                            className="inline-flex items-center gap-1 rounded-md px-1 py-1 text-xs font-bold text-[var(--color-nav-text-accent)] transition hover:text-[var(--color-text-card-text)]"
+                            className="inline-flex items-center gap-1 rounded-md px-1 py-1 text-xs font-bold text-[var(--color-text-sticky-nav-active)] transition hover:text-[var(--color-text-card-text)]"
                             aria-expanded={detailsOpen}
                         >
                             Details
@@ -113,7 +113,7 @@ export default function RolloverStatusCard({
                 </div>
 
                 {detailsOpen && (
-                    <div className="mt-2 space-y-2 border-t border-[var(--color-nav-border-soft)] pt-2">
+                    <div className="mt-2 space-y-2 border-t border-[var(--color-border-subtle)] pt-2">
                         <div className="grid grid-cols-3 gap-2">
                             <Metric label="Target" value={status?.targetAmount} dark />
                             <Metric label="Done" value={status?.completedAmount} dark />
@@ -160,14 +160,14 @@ export default function RolloverStatusCard({
                     </div>
 
                     <div className="flex items-center justify-between gap-3 md:min-w-[210px] md:justify-end md:gap-4">
-                        <div className="rounded-xl bg-[var(--color-nav-tile-border)]5 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:text-right">
+                        <div className="rounded-xl bg-[var(--color-border-subtle)]5 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:text-right">
                             <p className="text-sm font-bold leading-none text-[var(--color-text-primary)]">{Math.round(percent)}% completed</p>
                             <p className="mt-1 text-xs font-medium text-[var(--color-text-muted)]">{formatRolloverAmount(status?.remainingAmount)} remaining</p>
                         </div>
                         <button
                             type="button"
                             onClick={() => setDetailsOpen((open) => !open)}
-                            className="inline-flex min-h-[34px] items-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[var(--color-accent-700)] transition hover:bg-[var(--color-surface-base)]/40 hover:text-[var(--color-accent-600)]"
+                            className="inline-flex min-h-[34px] items-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-surface-base)]/40 hover:text-[var(--color-button-hover)]"
                             aria-expanded={detailsOpen}
                         >
                             {detailsOpen ? 'Hide Details' : 'View Details'}
@@ -177,7 +177,7 @@ export default function RolloverStatusCard({
                 </div>
 
                 {detailsOpen && (
-                    <div className="border-t border-[var(--color-warning)] bg-[var(--color-scrim-rollover-panel)] px-4 py-3 md:px-5">
+                    <div className="border-t border-[var(--color-warning)] bg-[var(--color-overlay)] px-4 py-3 md:px-5">
                         <div className="space-y-3">
                             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
                                 <Metric label="Target amount" value={status?.targetAmount} />
@@ -200,7 +200,7 @@ export default function RolloverStatusCard({
                         <div className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.38)] ${
                             isComplete
                                 ? 'bg-[color-mix(in_srgb,var(--color-success)_12%,white)] text-[var(--color-success)]'
-                                : 'bg-[color-mix(in_srgb,var(--color-accent-600)_10%,white)] text-[var(--color-accent-600)]'
+                                : 'bg-[color-mix(in_srgb,var(--color-button-hover)_10%,white)] text-[var(--color-button-hover)]'
                         }`}>
                             {isComplete ? <CircleCheckBig size={17} /> : <ShieldAlert size={17} />}
                         </div>
@@ -212,7 +212,7 @@ export default function RolloverStatusCard({
                                 <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-bold ${
                                     isComplete
                                         ? 'bg-[color-mix(in_srgb,var(--color-success)_12%,white)] text-[var(--color-success)]'
-                                        : 'bg-[color-mix(in_srgb,var(--color-accent-600)_10%,white)] text-[var(--color-accent-700)]'
+                                        : 'bg-[color-mix(in_srgb,var(--color-button-hover)_10%,white)] text-[var(--color-button-hover)]'
                                 }`}>
                                     {badgeLabel}
                                 </span>
@@ -228,14 +228,14 @@ export default function RolloverStatusCard({
                     </div>
 
                     <div className="flex items-center justify-between gap-3 md:min-w-[210px] md:justify-end md:gap-4">
-                        <div className="rounded-xl bg-[var(--color-nav-tile-border)]5 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:text-right">
+                        <div className="rounded-xl bg-[var(--color-border-subtle)]5 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:text-right">
                             <p className="text-sm font-bold leading-none text-[var(--color-text-primary)]">{Math.round(percent)}% completed</p>
                             <p className="mt-1 text-xs font-medium text-[var(--color-text-muted)]">{formatRolloverAmount(status?.remainingAmount)} remaining</p>
                         </div>
                         <button
                             type="button"
                             onClick={() => setDetailsOpen((open) => !open)}
-                            className="inline-flex min-h-[34px] items-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[var(--color-accent-700)] transition hover:bg-[var(--color-surface-base)]/40 hover:text-[var(--color-accent-600)]"
+                            className="inline-flex min-h-[34px] items-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-surface-base)]/40 hover:text-[var(--color-button-hover)]"
                             aria-expanded={detailsOpen}
                         >
                             {detailsOpen ? 'Hide Details' : 'View Details'}
@@ -268,12 +268,12 @@ export default function RolloverStatusCard({
                         <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${
                             isComplete
                                 ? 'bg-[color-mix(in_srgb,var(--color-success)_12%,white)] text-[var(--color-success)]'
-                                : 'bg-[color-mix(in_srgb,var(--color-accent-600)_10%,white)] text-[var(--color-accent-600)]'
+                                : 'bg-[color-mix(in_srgb,var(--color-button-hover)_10%,white)] text-[var(--color-button-hover)]'
                         }`}>
                             {isComplete ? <CircleCheckBig size={20} /> : <ShieldAlert size={20} />}
                         </div>
                         <div className="min-w-0">
-                            <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)]">
+                            <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
                                 Wallet / Cashier
                             </p>
                             <h2 className="mt-1 text-lg font-bold text-[var(--color-text-primary)]">{title}</h2>
@@ -287,7 +287,7 @@ export default function RolloverStatusCard({
                     <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold ${
                         isComplete
                             ? 'bg-[color-mix(in_srgb,var(--color-success)_14%,white)] text-[var(--color-success)]'
-                            : 'bg-[color-mix(in_srgb,var(--color-accent-600)_10%,white)] text-[var(--color-accent-700)]'
+                            : 'bg-[color-mix(in_srgb,var(--color-button-hover)_10%,white)] text-[var(--color-button-hover)]'
                     }`}>
                         {badgeLabel}
                     </span>

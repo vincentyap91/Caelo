@@ -2,15 +2,15 @@ import React from 'react';
 
 const VARIANT_STYLES = {
     default: {
-        track: 'bg-[var(--color-surface-muted)]',
+        track: 'bg-[var(--color-surface-cool-light)]',
         fill: 'bg-gradient-progress-fill',
     },
     dark: {
-        track: 'bg-[var(--color-nav-border-soft)]',
+        track: 'bg-[var(--color-border-subtle)]',
         fill: 'bg-gradient-button-cta',
     },
     'slot-promo': {
-        track: 'bg-[var(--color-accent-100)]',
+        track: 'bg-[var(--color-accent-glow)]',
         fill: 'bg-gradient-progress-fill',
     },
 };

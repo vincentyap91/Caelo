@@ -20,13 +20,13 @@ function resolveCategoryTarget(category) {
 
 /** Selected state — mobile sidebar & desktop horizontal tabs (red gradient, white icon/label). */
 export const CATEGORY_NAV_ACTIVE_CLASS =
-    'border border-[var(--color-nav-border-soft)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';
+    'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';
 
 const MOBILE_SIDEBAR_INACTIVE_CLASS =
     'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-sm';
 
 const DESKTOP_TAB_INACTIVE_CLASS =
-    'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-sm hover:border-[var(--color-accent-200)] hover:bg-[var(--color-surface-subtle)]';
+    'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-sm hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-surface-subtle)]';
 
 export function GameCategoryNavItem({
     category,

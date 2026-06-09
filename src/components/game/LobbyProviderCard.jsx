@@ -25,10 +25,10 @@ export default function LobbyProviderCard({
 
     return (
         <div
-            className={`group relative flex min-h-[168px] flex-col overflow-hidden rounded-3xl border bg-[var(--color-page-default)] shadow-[var(--shadow-live-provider)] transition duration-300 md:hover:-translate-y-1 md:hover:shadow-[var(--shadow-live-provider-hover)] md:min-h-0 md:h-[104px] md:flex-row md:items-center md:justify-center ${
+            className={`group relative flex min-h-[168px] flex-col overflow-hidden rounded-3xl border bg-[var(--color-surface-base)] shadow-[var(--shadow-live-provider)] transition duration-300 md:hover:-translate-y-1 md:hover:shadow-[var(--shadow-live-provider-hover)] md:min-h-0 md:h-[104px] md:flex-row md:items-center md:justify-center ${
                 selected
                     ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-primary)]/25'
-                    : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-accent)]'
+                    : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-brand)]'
             }`}
         >
             <button

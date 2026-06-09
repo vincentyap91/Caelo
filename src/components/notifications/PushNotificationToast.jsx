@@ -40,7 +40,7 @@ const variantStyles = {
     },
     [PUSH_VARIANT.warning]: {
         iconWrap:
-            'bg-[var(--color-accent-50)] text-[var(--color-danger)] shadow-[var(--shadow-hot)]',
+            'bg-[var(--color-accent-pale)] text-[var(--color-danger)] shadow-[var(--shadow-hot)]',
         iconRing: 'ring-1 ring-[var(--color-danger)]/14',
         accent: 'bg-[var(--color-danger)]',
         accentSoft: 'bg-[var(--color-danger)]/10',
@@ -48,11 +48,11 @@ const variantStyles = {
     },
     [PUSH_VARIANT.info]: {
         iconWrap:
-            'bg-[var(--color-accent-50)] text-[var(--color-accent-600)] shadow-[var(--shadow-accent)]',
-        iconRing: 'ring-1 ring-[var(--color-accent-500)]/14',
-        accent: 'bg-[var(--color-accent-500)]',
-        accentSoft: 'bg-[var(--color-accent-500)]/10',
-        accentText: 'text-[var(--color-accent-700)]',
+            'bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-[var(--shadow-accent)]',
+        iconRing: 'ring-1 ring-[var(--color-accent)]/14',
+        accent: 'bg-[var(--color-accent)]',
+        accentSoft: 'bg-[var(--color-accent)]/10',
+        accentText: 'text-[var(--color-button-hover)]',
     },
 };
 
@@ -261,7 +261,7 @@ export function PushNotificationToast({
                             <span
                                 className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${
                                     showPending
-                                        ? 'bg-[var(--color-accent-100)] text-[var(--color-accent-700)]'
+                                        ? 'bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]'
                                         : `${vs.accentSoft} ${vs.accentText}`
                                 }`}
                             >
@@ -284,7 +284,7 @@ export function PushNotificationToast({
                     type="button"
                     onClick={onDismiss}
                     disabled={exiting}
-                    className="shrink-0 -mr-1 -mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-300)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                    className="shrink-0 -mr-1 -mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-cool-light)] hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-border-subtle)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                     aria-label="Dismiss notification"
                 >
                     <X size={18} strokeWidth={2.4} />
@@ -292,7 +292,7 @@ export function PushNotificationToast({
             </div>
             <div
                 aria-hidden
-                className="absolute inset-x-0 bottom-0 h-1.5 overflow-hidden bg-[var(--color-surface-muted)]"
+                className="absolute inset-x-0 bottom-0 h-1.5 overflow-hidden bg-[var(--color-surface-cool-light)]"
             >
                 <div
                     ref={progressBarRef}

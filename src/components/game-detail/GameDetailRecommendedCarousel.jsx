@@ -37,7 +37,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                         <button
                             type="button"
                             onClick={() => scrollBy(-1)}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-50)]"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-pale)]"
                             aria-label="Scroll left"
                         >
                             <ChevronLeft size={18} />
@@ -45,7 +45,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                         <button
                             type="button"
                             onClick={() => scrollBy(1)}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-50)]"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-pale)]"
                             aria-label="Scroll right"
                         >
                             <ChevronRight size={18} />
@@ -70,7 +70,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                                 onGameClick?.(g);
                             }
                         }}
-                        className="group relative flex w-[42%] shrink-0 cursor-pointer snap-start flex-col overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-[200px] md:w-[220px]"
+                        className="group relative flex w-[42%] shrink-0 cursor-pointer snap-start flex-col overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-[200px] md:w-[220px]"
                     >
                         <div className="pointer-events-none relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-[var(--color-border-subtle)]">
                             <img

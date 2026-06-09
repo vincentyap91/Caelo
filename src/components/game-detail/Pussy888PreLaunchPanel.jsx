@@ -3,7 +3,7 @@ import pussy888PrelaunchBanner from '../../assets/prelaunch-banner.jpg';
 const LOGO_URL = 'https://pksoftcdn.azureedge.net/media/pussy888-202511050844023196.png';
 
 const inputClass =
-    'w-full rounded-xl border border-[var(--color-border-subtle)]/90 bg-[var(--color-surface-base)] px-3.5 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--inset-panel)] outline-none ring-[var(--color-accent-400)] focus-visible:ring-2';
+    'w-full rounded-xl border border-[var(--color-border-subtle)]/90 bg-[var(--color-surface-base)] px-3.5 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--inset-panel)] outline-none ring-[var(--color-accent)] focus-visible:ring-2';
 
 const primaryBtnClass =
     'btn-theme-cta-soft inline-flex min-h-[44px] w-full items-center justify-center rounded-xl px-2.5 text-center text-xs font-bold leading-tight shadow-[var(--shadow-cta-soft)] transition hover:brightness-[1.05] active:scale-[0.98] sm:text-sm';

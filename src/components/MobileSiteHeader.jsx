@@ -60,7 +60,7 @@ export default function MobileSiteHeader({
                 <button
                     type="button"
                     onClick={onMenuToggle}
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-muted)]"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]"
                     aria-label="Open mobile menu"
                     aria-expanded={mobileMenuOpen}
                 >
@@ -84,12 +84,12 @@ export default function MobileSiteHeader({
                     <>
                         <div
                             ref={containerRef}
-                            className="relative inline-flex h-10 min-w-0 max-w-[min(13.75rem,calc(100vw-9.25rem))] shrink items-stretch rounded-xl border border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] shadow-sm"
+                            className="mobile-sticky-balance relative inline-flex h-10 min-w-0 max-w-[min(13.75rem,calc(100vw-9.25rem))] shrink items-stretch rounded-xl border bg-[var(--color-sticky-nav)] shadow-sm"
                         >
                             <button
                                 type="button"
                                 onClick={() => setBalanceDropdownOpen(!balanceDropdownOpen)}
-                                className={`flex min-w-0 flex-1 touch-manipulation items-center gap-1 rounded-l-xl text-left transition hover:bg-[var(--color-nav-tile-border)] focus-visible:z-10 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-border-subtle)]/70 focus-visible:ring-offset-0 ${balanceLayout?.variant === 'split'
+                                className={`mobile-sticky-balance__toggle flex min-w-0 flex-1 touch-manipulation items-center gap-1 rounded-l-xl text-left transition focus-visible:z-10 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-border-subtle)]/70 focus-visible:ring-offset-0 ${balanceLayout?.variant === 'split'
                                         ? 'justify-center py-0.5 pl-2.5 pr-1.5'
                                         : 'h-full py-0 pl-2.5 pr-1.5'
                                     }`}
@@ -98,21 +98,21 @@ export default function MobileSiteHeader({
                             >
                                 {balanceLayout?.variant === 'split' ? (
                                     <span className="flex min-w-0 flex-1 flex-col justify-center gap-px leading-none">
-                                        <span className="text-[9px] font-semibold leading-none tracking-wide text-[var(--color-nav-text-soft)]">
+                                        <span className="text-[9px] font-semibold leading-none tracking-wide text-[var(--color-text-sticky-nav-text)]">
                                             {balanceLayout.currency}
                                         </span>
-                                        <span className="min-w-0 w-full truncate whitespace-nowrap text-[clamp(10px,2.9vw,12px)] font-extrabold tabular-nums leading-none tracking-tight text-[var(--color-text-card-text)]">
+                                        <span className="min-w-0 w-full truncate whitespace-nowrap text-[clamp(10px,2.9vw,12px)] font-extrabold tabular-nums leading-none tracking-tight text-[var(--color-text-sticky-nav-text)]">
                                             {balanceLayout.amount}
                                         </span>
                                     </span>
                                 ) : (
-                                    <span className="min-w-0 flex-1 truncate whitespace-nowrap text-[clamp(11px,3.15vw,14px)] font-extrabold tabular-nums leading-none tracking-tight text-[var(--color-text-card-text)]">
+                                    <span className="min-w-0 flex-1 truncate whitespace-nowrap text-[clamp(11px,3.15vw,14px)] font-extrabold tabular-nums leading-none tracking-tight text-[var(--color-text-sticky-nav-text)]">
                                         {balanceLayout?.text ?? authUser.balance}
                                     </span>
                                 )}
                                 <ChevronDown
                                     size={13}
-                                    className={`shrink-0 text-[var(--color-nav-text-soft)] transition-transform ${balanceDropdownOpen ? 'rotate-180' : ''}`}
+                                    className={`shrink-0 text-[var(--color-text-sticky-nav-text)] transition-transform ${balanceDropdownOpen ? 'rotate-180' : ''}`}
                                 />
                             </button>
                             <button
@@ -123,7 +123,7 @@ export default function MobileSiteHeader({
                                     onRefreshBalance?.();
                                 }}
                                 disabled={!onRefreshBalance || balanceRefreshing}
-                                className="inline-flex h-full w-10 min-w-10 shrink-0 touch-manipulation items-center justify-center self-stretch rounded-r-xl border-l border-[var(--color-nav-border)] bg-transparent px-0.5 text-[var(--color-nav-text-soft)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-card-text)] disabled:pointer-events-none disabled:opacity-40"
+                                className="mobile-sticky-balance__refresh inline-flex h-full w-10 min-w-10 shrink-0 touch-manipulation items-center justify-center self-stretch rounded-r-xl border-l bg-transparent px-0.5 text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-sticky-nav-active)] disabled:pointer-events-none disabled:opacity-40"
                                 aria-label="Refresh balance"
                                 title="Refresh balance"
                             >
@@ -157,14 +157,14 @@ export default function MobileSiteHeader({
                         <button
                             type="button"
                             onClick={onLoginClick}
-                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 text-xs font-semibold text-[var(--color-text-primary)] shadow-sm transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-muted)]"
+                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 text-xs font-semibold text-[var(--color-text-primary)] shadow-sm transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]"
                         >
                             Login
                         </button>
                         <button
                             type="button"
                             onClick={onRegisterClick}
-                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-gradient-mobile-cta px-3 text-xs font-bold text-[var(--color-cta-text)] shadow-[var(--shadow-cta-soft)] transition hover:border-[var(--color-border-subtle)] hover:brightness-105"
+                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-gradient-mobile-cta px-3 text-xs font-bold text-[var(--color-text-cta-inverse)] shadow-[var(--shadow-cta-soft)] transition hover:border-[var(--color-border-subtle)] hover:brightness-105"
                         >
                             Join
                         </button>

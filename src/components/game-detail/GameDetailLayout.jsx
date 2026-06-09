@@ -166,7 +166,7 @@ export default function GameDetailLayout({
                 <p className="mt-5 hidden text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-6 md:block md:text-base">
                     <span className="font-semibold text-[var(--color-text-primary)]">{gameTitle}</span>
                     {' by '}
-                    <span className="font-bold text-[var(--color-accent-600)] underline decoration-[var(--color-accent-300)] underline-offset-[3px]">
+                    <span className="font-bold text-[var(--color-button-hover)] underline decoration-[var(--color-border-subtle)] underline-offset-[3px]">
                         {providerName}
                     </span>
                 </p>
@@ -174,7 +174,7 @@ export default function GameDetailLayout({
                 {rankingColumns.length > 0 && rankingRows.length > 0 ? (
                     <section className="mt-10 space-y-4 md:mt-12 md:space-y-5 lg:mt-14">
                         <div className="inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)]">
-                            <span className="rounded-lg bg-[var(--color-surface-muted)] px-4 py-2.5 text-sm font-bold text-[var(--color-accent-600)] md:px-5">
+                            <span className="rounded-lg bg-[var(--color-surface-cool-light)] px-4 py-2.5 text-sm font-bold text-[var(--color-button-hover)] md:px-5">
                                 {rankingSectionTitle}
                             </span>
                         </div>

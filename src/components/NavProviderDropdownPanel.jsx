@@ -24,7 +24,7 @@ export default function NavProviderDropdownPanel({ open = false, providers = [],
                                 key={provider.id}
                                 type="button"
                                 onClick={() => onProviderClick?.(provider)}
-                                className="group relative h-[160px] w-[160px] justify-self-center overflow-hidden rounded-2xl border border-[var(--color-nav-border-soft)] bg-[var(--color-surface-mid-color)] text-left transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-[var(--color-nav-icon-hover)]/70 hover:bg-[var(--color-surface-mid-container)] hover:shadow-[0_0_0_1px_rgba(120,178,255,0.45),0_14px_24px_rgba(7,19,44,0.75),0_0_24px_rgba(97,156,255,0.35)]"
+                                className="group relative h-[160px] w-[160px] justify-self-center overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-mid-color)] text-left transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-[var(--color-text-sticky-nav-active)]/70 hover:bg-[var(--color-surface-mid-container)] hover:shadow-[0_0_0_1px_rgba(120,178,255,0.45),0_14px_24px_rgba(7,19,44,0.75),0_0_24px_rgba(97,156,255,0.35)]"
                             >
                                 {img ? (
                                     <img

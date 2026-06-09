@@ -60,9 +60,9 @@ const COLOR_CONTROLS = BASIC_CONTROLS;
 // Fallback quick-insert variable chips (overridden by discovered vars at runtime)
 const FALLBACK_QUICK_VARS = [
     '--color-primary', '--color-button-hover', '--brand-700',
-    '--color-surface-base', '--color-surface-muted',
+    '--color-surface-base', '--color-surface-cool-light',
     '--color-text-primary', '--color-text-secondary',
-    '--color-cta-start', '--color-cta-end',
+    '--color-button-cta-start', '--color-button-cta-end',
     '--color-primary', '--color-accent',
     '--color-success', '--color-danger',
 ];
@@ -881,7 +881,7 @@ function ThemeEditorInner() {
                             autoFocus
                             value={passcodeInput}
                             onChange={(e) => setPasscodeInput(e.target.value)}
-                            className="mb-4 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-4 py-2 text-center text-lg tracking-wide outline-none focus:border-[var(--color-primary)]"
+                            className="mb-4 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-2 text-center text-lg tracking-wide outline-none focus:border-[var(--color-primary)]"
                             placeholder="••••"
                         />
                         <div className="flex gap-2">
@@ -899,7 +899,7 @@ function ThemeEditorInner() {
             >
                 {open && isUnlocked && (
                     <div
-                        className={`rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base-80)] shadow-[var(--shadow-modal)] backdrop-blur-md transition-all ${flashPanel ? 'ring-4 ring-[var(--color-accent-400)]/70' : ''}`}
+                        className={`rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)] backdrop-blur-md transition-all ${flashPanel ? 'ring-4 ring-[var(--color-accent)]/70' : ''}`}
                         style={{ maxHeight: '82vh', display: 'flex', flexDirection: 'column', width: panelWidth, position: 'relative' }}
                     >
                         {/* Header */}
@@ -907,14 +907,14 @@ function ThemeEditorInner() {
                             <div className="flex items-center gap-2">
                                 <Sliders size={14} className="text-[var(--color-primary)]" />
                                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Theme Editor</span>
-                                <span className="rounded-full bg-[var(--color-warning)] px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[var(--color-cta-text)]">DEV</span>
+                                <span className="rounded-full bg-[var(--color-warning)] px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[var(--color-text-cta-inverse)]">DEV</span>
                             </div>
                             <div className="flex items-center gap-1">
                                 <button
                                     type="button"
                                     onClick={() => setInspecting((v) => !v)}
                                     title={inspecting ? 'Disable Inspector' : 'Enable Inspector Mode'}
-                                    className={`rounded-lg p-1.5 transition ${inspecting ? 'bg-[var(--color-accent-500)] text-[var(--color-text-card-text)]' : 'text-[var(--color-text-soft)] hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-secondary)]'}`}
+                                    className={`rounded-lg p-1.5 transition ${inspecting ? 'bg-[var(--color-accent)] text-[var(--color-text-card-text)]' : 'text-[var(--color-text-soft)] hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-secondary)]'}`}
                                 >
                                     <MousePointer size={13} />
                                 </button>
@@ -927,7 +927,7 @@ function ThemeEditorInner() {
                                     <RotateCcw size={13} />
                                 </button>
                                 <button type="button" onClick={handleLock} title="Lock Editor"
-                                    className="rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-accent-50)] hover:text-[var(--color-warning)]">
+                                    className="rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-warning)]">
                                     <Lock size={13} />
                                 </button>
                                 <button type="button" onClick={() => setOpen(false)}
@@ -938,9 +938,9 @@ function ThemeEditorInner() {
                         </div>
 
                         {inspecting && (
-                            <div className="flex items-center gap-2 border-b border-[var(--color-border-subtle)] bg-[var(--color-accent-50)] px-4 py-1.5">
-                                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent-500)]" />
-                                <span className="text-xs font-semibold text-[var(--color-accent-700)]">Inspector active</span>
+                            <div className="flex items-center gap-2 border-b border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] px-4 py-1.5">
+                                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent)]" />
+                                <span className="text-xs font-semibold text-[var(--color-button-hover)]">Inspector active</span>
                             </div>
                         )}
 
@@ -962,7 +962,7 @@ function ThemeEditorInner() {
                                             <button key={m} type="button" onClick={() => setEditorMode(m)}
                                                 style={{
                                                     flex: 1, padding: '7px 0', fontSize: 11, fontWeight: 700, border: 'none', cursor: 'pointer',
-                                                    background: editorMode === m ? 'var(--color-primary)' : 'var(--color-surface-muted)',
+                                                    background: editorMode === m ? 'var(--color-primary)' : 'var(--color-surface-cool-light)',
                                                     color: editorMode === m ? '#fff' : 'var(--color-text-muted)',
                                                     transition: 'all .15s',
                                                 }}>{m === 'basic' ? 'Basic' : 'Advanced'}</button>
@@ -1022,7 +1022,7 @@ function ThemeEditorInner() {
                                                 ref={advTextareaRef}
                                                 value={customCss}
                                                 onChange={e => setCustomCss(e.target.value)}
-                                                placeholder={`:root {\n  --color-primary: #ff0000;\n}\n\n.my-button:hover {\n  background: var(--color-cta-start);\n}`}
+                                                placeholder={`:root {\n  --color-primary: #ff0000;\n}\n\n.my-button:hover {\n  background: var(--color-button-cta-start);\n}`}
                                                 spellCheck={false}
                                                 style={{
                                                     width: '100%', minHeight: 200, flex: 1,
@@ -1066,11 +1066,11 @@ function ThemeEditorInner() {
                                             <BookMarked size={12} /> Save Current
                                         </button>
                                         <button type="button" onClick={handleExportProfiles} disabled={!profiles.length}
-                                            className="flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-muted)] disabled:opacity-40">
+                                            className="flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)] disabled:opacity-40">
                                             <Download size={12} /> Export
                                         </button>
                                         <button type="button" onClick={() => profileFileRef.current?.click()}
-                                            className="flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-muted)]">
+                                            className="flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]">
                                             <Upload size={12} /> Import
                                         </button>
                                         <input ref={profileFileRef} type="file" accept=".json,application/json" onChange={handleImportProfilesFile} className="hidden" />
@@ -1081,7 +1081,7 @@ function ThemeEditorInner() {
                                     ) : (
                                         <div className="space-y-1.5">
                                             {profiles.map((profile) => (
-                                                <div key={profile.name} className={`flex items-center gap-2 rounded-xl border px-3 py-2 transition ${activeProfileName === profile.name ? 'border-[var(--color-primary)]/40 bg-[var(--color-accent-50)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)] hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-muted)]'}`}>
+                                                <div key={profile.name} className={`flex items-center gap-2 rounded-xl border px-3 py-2 transition ${activeProfileName === profile.name ? 'border-[var(--color-primary)]/40 bg-[var(--color-accent-pale)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]'}`}>
                                                     <button type="button" onClick={() => handleApplyProfile(profile)} className="flex-1 truncate text-left text-xs font-semibold text-[var(--color-text-secondary)]">{profile.name}</button>
                                                     <button type="button" onClick={() => handleDeleteProfile(profile.name)} className="text-[var(--color-text-soft)] hover:text-[var(--color-danger)]"><Trash2 size={11} /></button>
                                                 </div>
@@ -1188,7 +1188,7 @@ function ThemeEditorInner() {
                                                     onChange={(e) => { setImportText(e.target.value); setImportFeedback(null); }}
                                                     placeholder=":root { --var: val; }"
                                                     rows={5}
-                                                    className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base-80)] px-3 py-2 font-mono text-[11px] text-[var(--color-text-secondary)] outline-none focus:border-[var(--color-primary)]"
+                                                    className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2 font-mono text-[11px] text-[var(--color-text-secondary)] outline-none focus:border-[var(--color-primary)]"
                                                 />
                                                 {importFeedback && <p className="text-xs font-medium text-[var(--color-success-strong)]">{importFeedback.msg}</p>}
                                                 <button type="button" onClick={handleImport} className="mt-1 w-full rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] hover:bg-[var(--color-button-hover)]">Apply Overrides</button>
@@ -1205,20 +1205,20 @@ function ThemeEditorInner() {
                                             <button
                                                 type="button"
                                                 onClick={() => handleExportSchema('json')}
-                                                className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-muted)]"
+                                                className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                                             >
                                                 <Download size={11} /> Schema JSON
                                             </button>
                                             <button
                                                 type="button"
                                                 onClick={() => handleExportSchema('css')}
-                                                className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-muted)]"
+                                                className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                                             >
                                                 <Download size={11} /> CSS :root
                                             </button>
                                         </div>
                                         <button type="button" onClick={handleCopyTheme}
-                                            className="w-full rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-muted)]"
+                                            className="w-full rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                                         >
                                             <Clipboard size={11} className="inline mr-1.5" />
                                             {copyFeedback ? 'Copied!' : 'Copy Current Overrides'}
@@ -1245,7 +1245,7 @@ function ThemeEditorInner() {
                                         const known = COLOR_CONTROLS.find((c) => c.variable === variable);
                                         const isHex = /^#[0-9a-fA-F]{3,8}$/.test(value);
                                         return (
-                                            <div key={i} className={`rounded-xl border px-3 py-2 ${known ? 'border-[var(--color-border-subtle)] bg-[var(--color-accent-50)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)]'}`}>
+                                            <div key={i} className={`rounded-xl border px-3 py-2 ${known ? 'border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-float)]'}`}>
                                                 <p className="font-mono text-[10px] font-bold text-[var(--color-text-muted)]">{variable}</p>
                                                 <div className="mt-1 flex items-center gap-2">
                                                     {isHex && <span className="h-5 w-5 rounded-md" style={{ background: value }} />}
@@ -1362,7 +1362,7 @@ function ThemeEditorInner() {
                         }
                     }}
                     title="Toggle Theme Editor"
-                    className={`flex h-11 w-11 items-center justify-center rounded-full shadow-xl transition hover:scale-105 active:scale-95 ${inspecting ? 'bg-[var(--color-accent-500)] ring-4 ring-[var(--color-accent-300)]/50' : isUnlocked ? 'bg-[var(--color-primary)] hover:bg-[var(--color-button-hover)]' : 'bg-[var(--color-button-muted)] hover:bg-[var(--color-surface-mid-dark)]'} text-[var(--color-text-card-text)]`}
+                    className={`flex h-11 w-11 items-center justify-center rounded-full shadow-xl transition hover:scale-105 active:scale-95 ${inspecting ? 'bg-[var(--color-accent)] ring-4 ring-[var(--color-border-subtle)]/50' : isUnlocked ? 'bg-[var(--color-primary)] hover:bg-[var(--color-button-hover)]' : 'bg-[var(--color-button-muted)] hover:bg-[var(--color-surface-mid-dark)]'} text-[var(--color-text-card-text)]`}
                 >
                     {isUnlocked ? <Sliders size={18} /> : <Unlock size={18} />}
                 </button>
@@ -1374,7 +1374,7 @@ function ThemeEditorInner() {
 function ColorRow({ label, variable, value, onChange, highlighted }) {
     const isHex = /^#[0-9a-fA-F]{6}$/.test(value);
     return (
-        <div className={`flex items-center justify-between gap-2 rounded-xl border px-3 py-2 transition ${highlighted ? 'border-[var(--color-border-accent)] bg-[var(--color-accent-50)] ring-2 ring-[var(--color-accent-400)]/40' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted-soft)]'}`}>
+        <div className={`flex items-center justify-between gap-2 rounded-xl border px-3 py-2 transition ${highlighted ? 'border-[var(--color-border-brand)] bg-[var(--color-accent-pale)] ring-2 ring-[var(--color-accent)]/40' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-float)]'}`}>
             <div className="min-w-0">
                 <p className="truncate text-xs font-semibold text-[var(--color-text-secondary)]">{label}</p>
                 <p className="truncate font-mono text-[9px] text-[var(--color-text-soft)]">{variable}</p>

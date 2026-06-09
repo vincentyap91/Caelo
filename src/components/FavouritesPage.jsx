@@ -64,7 +64,7 @@ function FavouriteTile({ item, onNavigate }) {
                 />
             )}
             <div
-                className={`pointer-events-none relative z-10 h-40 overflow-hidden bg-[var(--color-surface-muted)] sm:h-44 ${
+                className={`pointer-events-none relative z-10 h-40 overflow-hidden bg-[var(--color-surface-cool-light)] sm:h-44 ${
                     isProviderLogo ? 'flex items-center justify-center px-4 py-5 sm:px-5 sm:py-6' : ''
                 }`}
             >
@@ -134,8 +134,8 @@ export default function FavouritesPage({ onNavigate }) {
                         onClick={() => setCategory('casino')}
                         className={`rounded-lg px-6 py-2.5 text-sm font-semibold transition ${
                             category === 'casino'
-                                ? 'bg-[var(--color-accent-600)] text-[var(--color-text-card-text)] shadow-sm'
-                                : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)]'
+                                ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
+                                : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-cool-light)]'
                         }`}
                     >
                         Live Casino and Slots
@@ -145,8 +145,8 @@ export default function FavouritesPage({ onNavigate }) {
                         onClick={() => setCategory('sports')}
                         className={`rounded-lg px-6 py-2.5 text-sm font-semibold transition ${
                             category === 'sports'
-                                ? 'bg-[var(--color-accent-600)] text-[var(--color-text-card-text)] shadow-sm'
-                                : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)]'
+                                ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
+                                : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-cool-light)]'
                         }`}
                     >
                         Sports
@@ -167,7 +167,7 @@ export default function FavouritesPage({ onNavigate }) {
                         return (
                             <section key={id}>
                                 <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[var(--color-text-primary)]">
-                                    <Trophy size={20} className="text-[var(--color-accent-600)]" />
+                                    <Trophy size={20} className="text-[var(--color-button-hover)]" />
                                     {title}
                                 </h2>
                                 {sectionItems.length === 0 ? (
@@ -189,7 +189,7 @@ export default function FavouritesPage({ onNavigate }) {
                                                             [id]: (prev[id] ?? 2) + 2,
                                                         }))
                                                     }
-                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-accent-300)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                                                 >
                                                     Load more
                                                 </button>
@@ -211,7 +211,7 @@ export default function FavouritesPage({ onNavigate }) {
                         return (
                             <section key={id}>
                                 <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[var(--color-text-primary)]">
-                                    <Icon size={20} className="text-[var(--color-accent-600)]" />
+                                    <Icon size={20} className="text-[var(--color-button-hover)]" />
                                     {title}
                                 </h2>
                                 {sectionItems.length === 0 ? (
@@ -239,7 +239,7 @@ export default function FavouritesPage({ onNavigate }) {
                                                             [id]: (prev[id] ?? 2) + 2,
                                                         }))
                                                     }
-                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-accent-300)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                                                 >
                                                     Load more
                                                 </button>

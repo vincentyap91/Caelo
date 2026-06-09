@@ -14,10 +14,10 @@ export default function RtpLabel({ value, className = '', variant = 'pill', comp
     if (variant === 'footer') {
         return (
             <span
-                className={`inline-flex items-center justify-center gap-1 text-xs font-medium leading-tight text-[var(--color-nav-text-soft)] ${className}`.trim()}
+                className={`inline-flex items-center justify-center gap-1 text-xs font-medium leading-tight text-[var(--color-surface-rtp-secondary-card-text)] ${className}`.trim()}
             >
-                <span className="font-normal text-[var(--color-text-card-text)]/75">RTP:</span>
-                <span className="text-[var(--color-text-card-text)]">{value.toFixed(2)}%</span>
+                <span className="font-normal opacity-75">RTP:</span>
+                <span>{value.toFixed(2)}%</span>
                 <RtpTrendArrow direction={direction} size={compact ? 12 : 13} />
             </span>
         );
@@ -25,7 +25,7 @@ export default function RtpLabel({ value, className = '', variant = 'pill', comp
 
     return (
         <span
-            className={`inline-flex items-center gap-1 rounded-full border border-[var(--color-border-accent)] bg-[var(--color-accent-50)] px-2.5 py-1 text-[11px] font-bold leading-none text-[var(--color-accent-700)] ${className}`.trim()}
+            className={`rtp-label--pill inline-flex items-center gap-1 rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-rtp-secondary-card)] px-2.5 py-1 text-[11px] font-bold leading-none text-[var(--color-surface-rtp-secondary-card-text)] ${className}`.trim()}
         >
             RTP {value.toFixed(2)}%
             <RtpTrendArrow direction={direction} size={13} />

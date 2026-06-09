@@ -19,16 +19,16 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
 
   const basePillClasses = `inline-flex ${flexDir} items-center ${gap} ${header ? 'h-10 rounded-xl' : 'rounded-full'} ${padding} ${textSize} transition-all duration-200 ${header ? 'shrink-0' : ''} ${className}`;
 
-  const lightStyles = 'border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] text-[var(--color-accent-700)]';
-  const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-nav-text-soft)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]';
+  const lightStyles = 'border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]';
+  const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-text-sticky-nav-text)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]';
 
   const headerGlossyPill =
-    'border border-[var(--color-nav-border)] bg-gradient-vip-nav-pill shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-gradient-vip-nav-pill-hover';
+    'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-gradient-vip-nav-pill-hover';
 
   const pillStyles = header && isDark ? headerGlossyPill : isDark ? darkStyles : lightStyles;
 
   const displayText = headerWithUsername ? username : vip.label;
-  const textColor = header && isDark ? 'text-[var(--color-nav-accent-soft)]' : '';
+  const textColor = header && isDark ? 'text-[var(--color-accent-yellow)]' : '';
   const labelText = isColumn ? vip.tier : displayText;
 
   if (isColumn && large && !isDark) {
@@ -42,9 +42,9 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
           />
         </div>
         <div
-          className="-mt-2 inline-flex items-center justify-center rounded-full border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] px-4 py-2 shadow-[0_0_12px_rgba(59_130_246_/_0.25)]"
+          className="-mt-2 inline-flex items-center justify-center rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-4 py-2 shadow-[0_0_12px_rgba(59_130_246_/_0.25)]"
         >
-          <span className="text-sm font-bold text-[var(--color-accent-700)] md:text-base">{labelText}</span>
+          <span className="text-sm font-bold text-[var(--color-button-hover)] md:text-base">{labelText}</span>
         </div>
       </div>
     );

@@ -43,7 +43,7 @@ function ProgressRing({ percent }) {
                     cy={size / 2}
                     r={r}
                     fill="none"
-                    stroke="var(--color-accent-600)"
+                    stroke="var(--color-button-hover)"
                     strokeWidth={stroke}
                     strokeLinecap="round"
                     strokeDasharray={c}
@@ -96,7 +96,7 @@ export default function RolloverRequirementModal({
     const remainingLine = (
         <>
             You have{' '}
-            <span className="font-bold text-[var(--color-accent-600)]">
+            <span className="font-bold text-[var(--color-button-hover)]">
                 {formatDisplay(remainingCurrent)} / {formatDisplay(remainingTarget)}
             </span>{' '}
             to go!
@@ -108,7 +108,7 @@ export default function RolloverRequirementModal({
             <button
                 type="button"
                 aria-label="Dismiss"
-                className="absolute inset-0 bg-[var(--color-nav-overlay)] backdrop-blur-[1px]"
+                className="absolute inset-0 bg-[var(--color-overlay-strong)] backdrop-blur-[1px]"
                 onClick={onClose}
             />
             <div

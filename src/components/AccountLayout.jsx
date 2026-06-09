@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { UserRound } from 'lucide-react';
 import AccountSidebar from './AccountSidebar';
+import AccountTabBar from './nav/AccountTabBar';
 
 export default function AccountLayout({
     activePage,
@@ -23,7 +24,7 @@ export default function AccountLayout({
                     <button
                         type="button"
                         onClick={() => setMobileSidebarOpen((open) => !open)}
-                        className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm font-semibold text-[var(--color-accent-700)] shadow-[var(--shadow-subtle)] transition-all hover:bg-[var(--color-accent-50)] hover:shadow"
+                        className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm font-semibold text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)] transition-all hover:bg-[var(--color-accent-pale)] hover:shadow"
                     >
                         <UserRound size={16} />
                         Account Menu
@@ -33,9 +34,15 @@ export default function AccountLayout({
                     </p>
                 </div>
 
+                <AccountTabBar
+                    activePage={activePage}
+                    onNavigate={onNavigate}
+                    onLiveChatClick={onLiveChatClick}
+                />
+
                 <div className="flex items-start gap-4 xl:gap-0">
                     <div
-                        className={`fixed inset-y-0 left-0 z-[140] flex h-dvh max-h-dvh min-h-0 w-[min(320px,88vw)] flex-col transition-transform duration-300 ease-out will-change-transform lg:relative lg:z-auto lg:h-auto lg:max-h-none lg:w-auto lg:transition-none ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
+                        className={`fixed inset-y-0 left-0 z-[140] flex h-dvh max-h-dvh min-h-0 w-[min(320px,88vw)] flex-col transition-transform duration-300 ease-out will-change-transform lg:hidden ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
                     >
                         <AccountSidebar
                             activePage={activePage}
@@ -69,7 +76,6 @@ export default function AccountLayout({
                         />
                     )}
 
-                    {/* Mobile: shell already uses px-4; neutralize nested .page-container horizontal padding so content aligns with Account Menu. */}
                     <div className="min-w-0 flex-1 max-md:[&_.page-container]:px-0">{children}</div>
                 </div>
             </div>

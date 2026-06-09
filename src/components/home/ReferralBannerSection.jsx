@@ -30,7 +30,7 @@ function ReferralHubCard({
 }) {
     return (
         <div
-            className={`w-full rounded-2xl border border-[var(--color-brand-soft-border)] bg-[var(--color-brand-soft)] p-5 text-center sm:p-6 ${className}`}
+            className={`w-full rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-surface-cool-light)] p-5 text-center sm:p-6 ${className}`}
         >
             <h2 className="text-xl font-bold leading-tight text-[var(--color-text-tertiary)]">
                 Your Unique Referral Hub
@@ -43,7 +43,7 @@ function ReferralHubCard({
                 <p className="mb-1.5 text-xs font-semibold text-[var(--color-text-secondary)]">
                     My Referral Link
                 </p>
-                <div className="flex items-center gap-2 rounded-xl border border-[var(--color-brand-soft-border)] bg-[var(--color-surface-input-light)] px-3 py-2.5">
+                <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 py-2.5">
                     <input
                         type="text"
                         value={REFERRAL_URL}
@@ -55,7 +55,7 @@ function ReferralHubCard({
                         type="button"
                         onClick={onCopy}
                         aria-label="Copy referral link"
-                        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[var(--color-text-tertiary)] transition-colors duration-150 hover:bg-[var(--color-brand-soft-border)]"
+                        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[var(--color-text-tertiary)] transition-colors duration-150 hover:bg-[var(--color-border-brand)]"
                     >
                         {copied ? (
                             <Check size={14} className="text-[var(--color-success)]" />

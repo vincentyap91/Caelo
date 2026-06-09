@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import RtpTrendArrow from './game/RtpTrendArrow';
 import { RTP_HIGH_THRESHOLD } from './game/RtpLabel';
-import slotsBanner from '../assets/slot-banner.jpg';
+import { SLOTS_HERO_BANNER } from '../constants/categoryPageBanners';
 import { PAGE_BANNER_IMG_FILL } from '../constants/pageBannerClasses';
 import { MATCHED_SLOT_PROVIDERS } from '../constants/matchedSlotProviders';
 import { GameCardFavouriteButton, GameCardPlayBar } from './game/GameCardActions';
@@ -124,20 +124,10 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                 <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8">
                     <div className="page-hero-banner">
                         <img
-                            src={slotsBanner}
-                            alt="Slots Banner - Instant Rebate"
-                            className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL}`}
+                            src={SLOTS_HERO_BANNER}
+                            alt="Slots"
+                            className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL} page-hero-banner__img--show-bottom`}
                         />
-                        <div className="absolute inset-y-0 left-0 w-[56%] bg-gradient-hero-fade-left sm:w-[52%] md:w-[50%]" />
-                        <div className="absolute inset-0 flex items-center justify-start">
-                            <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
-                                <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-bold uppercase text-[var(--color-text-primary)] sm:text-2xl md:text-3xl">
-                                        Slots
-                                    </h1>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -152,11 +142,11 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                 type="button"
                                 onClick={() => setActiveProvider(provider.name)}
                                 className={`relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 bg-[var(--color-surface-base)] px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
-                                    isActive ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-surface-accent-hover)]/30' : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-accent)]'
+                                    isActive ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-surface-accent-hover)]/30' : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-brand)]'
                                 }`}
                             >
                                 {(provider.featured || provider.new) && (
-                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-bold text-[var(--color-text-card-text)] ${provider.new ? 'bg-[var(--color-accent-500)]' : 'bg-[var(--color-danger)]'}`}>
+                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-bold text-[var(--color-text-card-text)] ${provider.new ? 'bg-[var(--color-accent)]' : 'bg-[var(--color-danger)]'}`}>
                                         {provider.new ? 'New' : 'Hot'}
                                     </span>
                                 )}
@@ -236,7 +226,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                             <div className="p-2 md:p-3">
                                 <p className="line-clamp-2 text-xs font-bold text-[var(--color-text-primary)] md:text-sm">{game.name}</p>
                                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">{game.provider}</p>
-                                <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-[var(--color-accent-100)] px-2.5 py-1 text-xs font-bold text-[var(--color-accent-700)]">
+                                <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-[var(--color-accent-glow)] px-2.5 py-1 text-xs font-bold text-[var(--color-button-hover)]">
                                     RTP {game.rtp.toFixed(2)}%
                                     <RtpTrendArrow direction={isHighRtp ? 'up' : 'down'} size={14} />
                                 </span>

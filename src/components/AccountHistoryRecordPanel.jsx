@@ -92,7 +92,7 @@ function getStatusPillClassName(value) {
         return `${base} border-[var(--color-danger)]/22 bg-[var(--color-danger)]/10 text-[var(--color-danger-red)]`;
     }
 
-    return `${base} border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)]`;
+    return `${base} border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)]`;
 }
 
 const HISTORY_QUICK_RANGES = [
@@ -166,8 +166,8 @@ export default function AccountHistoryRecordPanel({
             'max-sm:snap-start shrink-0 whitespace-nowrap border px-3 py-2.5 text-xs font-semibold transition sm:min-w-[96px] sm:px-4 sm:text-sm',
             shape,
             selected
-                ? 'border-[var(--color-accent-500)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)]'
-                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]',
+                ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
+                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]',
         ].join(' ');
     };
 

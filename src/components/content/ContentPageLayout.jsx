@@ -19,10 +19,10 @@ export function ContentHighlightList({ items = [], className = '', variant = 'de
             {items.map((item) => (
                 <span
                     key={item}
-                    className={`inline-flex min-w-0 shrink-0 items-center justify-center rounded-full border text-center text-xs font-bold uppercase leading-tight tracking-wide text-[var(--color-accent-700)] ${
+                    className={`inline-flex min-w-0 shrink-0 items-center justify-center rounded-full border text-center text-xs font-bold uppercase leading-tight tracking-wide text-[var(--color-button-hover)] ${
                         heroMobileOverlay
-                            ? 'min-h-[2.5rem] w-full border-[var(--color-accent-100)] bg-[var(--color-surface-base)]/92 px-2 py-2 shadow-[var(--shadow-card-soft)] backdrop-blur-sm'
-                            : 'border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-3.5 py-2 shadow-[var(--shadow-subtle)] sm:px-4'
+                            ? 'min-h-[2.5rem] w-full border-[var(--color-accent-glow)] bg-[var(--color-surface-base)]/92 px-2 py-2 shadow-[var(--shadow-card-soft)] backdrop-blur-sm'
+                            : 'border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3.5 py-2 shadow-[var(--shadow-subtle)] sm:px-4'
                     }`}
                 >
                     {item}
@@ -37,7 +37,7 @@ export function ContentSectionCard({ title, description, icon: Icon, children, c
         <section className={`surface-card rounded-[24px] p-5 md:p-6 ${className}`.trim()}>
             <div className="flex items-start gap-4">
                 {Icon ? (
-                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)]">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]">
                         <Icon size={22} strokeWidth={2.1} />
                     </span>
                 ) : null}
@@ -99,7 +99,7 @@ export default function ContentPageLayout({
                         {heroVisualSrc ? (
                             <div className="w-full max-w-[28rem] max-md:max-w-[58%] max-md:min-w-0 max-md:pb-32 max-md:pr-0 pr-10 sm:max-w-[31rem] sm:pr-16 md:block md:max-w-[57%] md:pb-0 md:pr-8 lg:max-w-[54%]">
                                 {eyebrow ? (
-                                    <p className="text-xs font-bold uppercase tracking-code text-[var(--color-accent-700)]">
+                                    <p className="text-xs font-bold uppercase tracking-code text-[var(--color-button-hover)]">
                                         {eyebrow}
                                     </p>
                                 ) : null}
@@ -118,7 +118,7 @@ export default function ContentPageLayout({
                         ) : (
                             <div className="max-w-4xl">
                                 {eyebrow ? (
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)]">{eyebrow}</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">{eyebrow}</p>
                                 ) : null}
                                 <h1 className="page-title mt-2.5 text-[var(--color-text-primary)] md:mt-3">{title}</h1>
                                 {lead ? (

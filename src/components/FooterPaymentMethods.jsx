@@ -5,7 +5,7 @@ import UsdtIcon from './footerPayments/UsdtIcon';
 function PaymentMethodChip({ children, minWide = false }) {
     return (
         <span
-            className={`inline-flex shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)]/90 backdrop-blur-sm ${
+            className={`inline-flex shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-line)] bg-[var(--color-surface)] backdrop-blur-sm ${
                 minWide
                     ? 'h-9 min-w-[4.25rem] px-2.5 py-0 sm:h-10 sm:min-w-[4.75rem] sm:px-3 md:h-11 md:min-w-[5.25rem]'
                     : 'h-9 w-9 p-0 sm:h-10 sm:w-10 md:h-11 md:w-11'

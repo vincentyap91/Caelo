@@ -153,14 +153,14 @@ export default function VerifyPhoneNumberStep({
                 <button
                     type="button"
                     onClick={onBack}
-                    className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-text-brand)]"
+                    className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-text-primary-card-title)]"
                 >
                     <ArrowLeft size={16} aria-hidden />
                     Back
                 </button>
             ) : null}
 
-            <h2 className="text-center text-xl font-bold tracking-tight text-[var(--color-text-brand)] sm:text-2xl">
+            <h2 className="text-center text-xl font-bold tracking-tight text-[var(--color-text-primary-card-title)] sm:text-2xl">
                 Verify Your Number
             </h2>
             <p className="mt-3 text-center text-sm font-medium leading-relaxed text-[var(--color-text-secondary)] sm:text-base">
@@ -184,7 +184,7 @@ export default function VerifyPhoneNumberStep({
                         onKeyDown={(e) => handleKeyDown(i, e)}
                         onPaste={handlePaste}
                         onFocus={(e) => e.target.select()}
-                        className="h-11 min-w-0 rounded-lg border-2 border-[var(--color-border-accent)] bg-[var(--color-surface-base)] text-center text-lg font-bold tabular-nums text-[var(--color-text-brand)] shadow-[var(--inset-panel)] outline-none transition focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[var(--color-accent-400)]/25 sm:h-12 sm:text-xl"
+                        className="h-11 min-w-0 rounded-lg border-2 border-[var(--color-border-brand)] bg-[var(--color-surface-base)] text-center text-lg font-bold tabular-nums text-[var(--color-text-primary-card-title)] shadow-[var(--inset-panel)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/25 sm:h-12 sm:text-xl"
                     />
                 ))}
             </div>

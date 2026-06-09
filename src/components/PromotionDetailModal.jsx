@@ -53,7 +53,7 @@ export default function PromotionDetailModal({
                 type="button"
                 aria-label="Close promotion details"
                 onClick={onClose}
-                className="absolute inset-0 bg-[var(--color-nav-overlay)] backdrop-blur-[2px]"
+                className="absolute inset-0 bg-[var(--color-overlay-strong)] backdrop-blur-[2px]"
             />
 
             <section
@@ -74,14 +74,14 @@ export default function PromotionDetailModal({
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                     >
                         <X size={18} />
                     </button>
                 </div>
 
                 <div className="overflow-y-auto px-5 py-5 sm:px-7 sm:py-6">
-                    <div className="overflow-hidden rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-subtle)]">
+                    <div className="overflow-hidden rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] shadow-[var(--shadow-subtle)]">
                         <img
                             src={bannerImage}
                             alt={title}
@@ -92,7 +92,7 @@ export default function PromotionDetailModal({
                     <div className="mt-6">
                         <div className="flex flex-wrap items-center justify-between gap-4">
                             {category && (
-                                <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-accent-700)]">
+                                <span className="inline-flex rounded-full bg-[var(--color-accent-pale)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
                                     {category}
                                 </span>
                             )}
@@ -124,7 +124,7 @@ export default function PromotionDetailModal({
                                         key={cell.label}
                                         className="grid grid-cols-[minmax(0,40%)_minmax(0,1fr)] items-stretch"
                                     >
-                                        <dt className="flex items-center bg-gradient-cta border-r border-[var(--color-cta-border)] px-2.5 py-3 text-left text-xs font-bold uppercase leading-snug tracking-wide text-[var(--color-cta-text)]">
+                                        <dt className="flex items-center bg-gradient-cta border-r border-[var(--color-border-brand)] px-2.5 py-3 text-left text-xs font-bold uppercase leading-snug tracking-wide text-[var(--color-text-cta-inverse)]">
                                             {cell.label}
                                         </dt>
                                         <dd className="m-0 flex min-w-0 items-center justify-end bg-[var(--color-surface-base)] px-3 py-3 text-right text-sm font-semibold leading-snug text-[var(--color-text-secondary)] break-words tabular-nums">
@@ -137,11 +137,11 @@ export default function PromotionDetailModal({
 
                         {/* Tablet / desktop: unchanged wide table */}
                         <div className="mt-4 hidden overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] sm:block">
-                            <div className="grid grid-cols-5 border-b border-[var(--color-border-subtle)] bg-gradient-cta text-xs font-bold uppercase tracking-wide text-[var(--color-cta-text)]">
+                            <div className="grid grid-cols-5 border-b border-[var(--color-border-subtle)] bg-gradient-cta text-xs font-bold uppercase tracking-wide text-[var(--color-text-cta-inverse)]">
                                 {detailCells.map((cell) => (
                                     <div
                                         key={cell.label}
-                                        className="border-r border-[var(--color-cta-border)] px-3 py-3 text-center last:border-r-0"
+                                        className="border-r border-[var(--color-border-brand)] px-3 py-3 text-center last:border-r-0"
                                     >
                                         {cell.label}
                                     </div>
@@ -165,7 +165,7 @@ export default function PromotionDetailModal({
                         <ol className="mt-4 space-y-3">
                             {applySteps.map((step, index) => (
                                 <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-[var(--color-text-secondary)] sm:text-base">
-                                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-50)] text-xs font-bold text-[var(--color-accent-700)]">
+                                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-pale)] text-xs font-bold text-[var(--color-button-hover)]">
                                         {index + 1}
                                     </span>
                                     <span>{step}</span>
@@ -181,7 +181,7 @@ export default function PromotionDetailModal({
                                 {providers.map((provider) => (
                                     <span
                                         key={provider}
-                                        className="inline-flex rounded-full border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] px-3.5 py-1.5 text-sm font-semibold text-[var(--color-accent-700)]"
+                                        className="inline-flex rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-3.5 py-1.5 text-sm font-semibold text-[var(--color-button-hover)]"
                                     >
                                         {provider}
                                     </span>

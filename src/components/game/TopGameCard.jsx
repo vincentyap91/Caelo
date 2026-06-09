@@ -1,5 +1,10 @@
 import React from 'react';
 import { GameCardFavouriteButton, GameCardPlayBar } from './GameCardActions';
+import {
+    GAME_CARD_HOVER_CLASS,
+    GAME_CARD_IMAGE_HOVER_CONTAIN_CLASS,
+    GAME_CARD_IMAGE_HOVER_COVER_CLASS,
+} from './gameCardHover';
 import RtpLabel from './RtpLabel';
 import { navigateToGameDetail } from '../../utils/gameDetailRoutes';
 import { getCategoryGameBadgeLabel, getTopGameFavouriteCategory } from '../../constants/topGamesCatalog';
@@ -30,8 +35,8 @@ export default function TopGameCard({
 
     const imageClassName =
         resolvedFit === 'contain'
-            ? 'absolute inset-0 h-full w-full rounded-[inherit] object-contain p-2 transition-transform duration-500 ease-out md:group-hover:scale-[1.03]'
-            : 'absolute inset-0 h-full w-full rounded-[inherit] object-cover object-center transition-transform duration-500 ease-out md:group-hover:scale-[1.05]';
+            ? `absolute inset-0 h-full w-full rounded-[inherit] object-contain p-2 ${GAME_CARD_IMAGE_HOVER_CONTAIN_CLASS}`
+            : `absolute inset-0 h-full w-full rounded-[inherit] object-cover object-center ${GAME_CARD_IMAGE_HOVER_COVER_CLASS}`;
 
     const category = variant === 'category';
     const categoryCompact = category && compact;
@@ -55,16 +60,18 @@ export default function TopGameCard({
         : 'rounded-xl border-b-4 border-[var(--color-primary)] bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-card)]';
 
     const imageStageClass = categoryCompact
-        ? `aspect-square w-full overflow-hidden rounded-t-lg bg-[var(--color-surface-muted)] ${imageStageClassName}`.trim()
-        : `aspect-square w-full overflow-hidden rounded-t-xl bg-[var(--color-surface-muted)] ${imageStageClassName}`.trim();
+        ? `aspect-square w-full overflow-hidden rounded-t-lg bg-[var(--color-surface-cool-light)] ${imageStageClassName}`.trim()
+        : `aspect-square w-full overflow-hidden rounded-t-xl bg-[var(--color-surface-cool-light)] ${imageStageClassName}`.trim();
 
     const showRtpFooter = showRtp && typeof game.rtp === 'number' && !detailed && !category;
     const showCompactProviderBadge = !detailed && !category;
     const showCategoryProviderBadge = category && badgeLabel;
 
+    const rtpFooterClassName = 'bg-[var(--color-surface-rtp-card)]';
+
     return (
         <div
-            className={`group relative flex flex-col overflow-hidden transition-[transform,box-shadow] duration-300 ease-out will-change-transform md:hover:-translate-y-0.5 md:hover:shadow-[var(--shadow-card-hover)] ${cardClassName} ${className}`.trim()}
+            className={`group relative flex flex-col overflow-hidden ${GAME_CARD_HOVER_CLASS} ${cardClassName} ${className}`.trim()}
         >
             <button
                 type="button"
@@ -72,7 +79,7 @@ export default function TopGameCard({
                 className="absolute inset-0 z-[5] md:hidden"
                 aria-label={`Open ${game.name}`}
             />
-            <div className={`pointer-events-none relative z-10 isolate overflow-hidden bg-[var(--color-surface-muted)] ${imageStageClass}`.trim()}>
+            <div className={`pointer-events-none relative z-10 isolate overflow-hidden bg-[var(--color-surface-cool-light)] ${imageStageClass}`.trim()}>
                 <img
                     src={game.imgUrl}
                     alt={game.name}
@@ -127,13 +134,13 @@ export default function TopGameCard({
             <div
                 className={category
                     ? categoryCompact
-                        ? 'flex w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-1.5 py-2'
-                        : 'flex min-h-[4rem] w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-2 py-2.5'
+                        ? `flex w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-border-subtle)] ${rtpFooterClassName} px-1.5 py-2`
+                        : `flex min-h-[4rem] w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-border-subtle)] ${rtpFooterClassName} px-2 py-2.5`
                     : detailed
                         ? 'flex min-h-[4.6rem] w-full shrink-0 flex-col justify-center border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-2.5 py-2 md:px-3'
                         : showRtpFooter
-                            ? 'flex w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-2 py-2'
-                            : 'flex h-11 w-full shrink-0 items-center justify-center border-t border-[var(--color-nav-border-soft)] bg-[var(--color-primary)] px-2 py-1'
+                            ? `flex w-full shrink-0 flex-col items-center justify-center gap-1 border-t border-[var(--color-border-subtle)] ${rtpFooterClassName} px-2 py-2`
+                            : `flex h-11 w-full shrink-0 items-center justify-center border-t border-[var(--color-border-subtle)] ${rtpFooterClassName} px-2 py-1`
                 }
             >
                 <span className={titleClassName}>{game.name}</span>

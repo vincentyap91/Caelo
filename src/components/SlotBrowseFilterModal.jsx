@@ -135,7 +135,7 @@ export default function SlotBrowseFilterModal({
                 type="button"
                 aria-label="Close modal"
                 onClick={onClose}
-                className="absolute inset-0 bg-[var(--color-nav-overlay)] backdrop-blur-[1px]"
+                className="absolute inset-0 bg-[var(--color-overlay-strong)] backdrop-blur-[1px]"
             />
 
             <section
@@ -158,7 +158,7 @@ export default function SlotBrowseFilterModal({
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-11 min-h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)] lg:h-10 lg:min-h-0 lg:w-10"
+                        className="inline-flex h-11 min-h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)] lg:h-10 lg:min-h-0 lg:w-10"
                     >
                         <X size={18} />
                     </button>
@@ -222,7 +222,7 @@ export default function SlotBrowseFilterModal({
                                         Select one provider or browse across all providers.
                                     </p>
                                 </div>
-                                <span className="shrink-0 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-accent-50)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--color-text-soft)] sm:px-2.5 sm:py-1 sm:text-[11px]">
+                                <span className="shrink-0 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--color-text-soft)] sm:px-2.5 sm:py-1 sm:text-[11px]">
                                     {visibleProviders.length}
                                 </span>
                             </div>
@@ -245,7 +245,7 @@ export default function SlotBrowseFilterModal({
                                                         onClick={() => setDraftProvider(allProvidersValue)}
                                                         className={`col-span-full w-full min-w-0 rounded-xl border px-3 py-2 text-center text-sm font-semibold transition sm:text-left ${draftProvider === allProvidersValue
                                                             ? 'btn-theme-tab-selected'
-                                                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-50)]'
+                                                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)]'
                                                             }`}
                                                     >
                                                         <span className="block text-[13px] sm:text-sm">All Providers</span>
@@ -263,8 +263,8 @@ export default function SlotBrowseFilterModal({
                                                                 type="button"
                                                                 onClick={() => setDraftProvider(provider.name)}
                                                                 className={`flex min-h-[90px] w-full min-w-0 flex-col items-center justify-center rounded-xl border px-2 py-2 text-center transition lg:min-h-[120px] lg:px-3 lg:py-2.5 ${selected
-                                                                    ? 'border-[var(--color-primary)] bg-[var(--color-accent-50)] text-[var(--color-surface-accent-hover)] shadow-[var(--shadow-brand-soft)]'
-                                                                    : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-50)]'
+                                                                    ? 'border-[var(--color-primary)] bg-[var(--color-accent-pale)] text-[var(--color-surface-accent-hover)] shadow-[var(--shadow-brand-soft)]'
+                                                                    : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)]'
                                                                     }`}
                                                             >
                                                                 {providerLogo && (
@@ -294,7 +294,7 @@ export default function SlotBrowseFilterModal({
                                                     <button
                                                         type="button"
                                                         onClick={() => setProvidersExpanded((prev) => !prev)}
-                                                        className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-50)] lg:hidden"
+                                                        className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)] lg:hidden"
                                                     >
                                                         {isExpanded ? (
                                                             <>
@@ -324,7 +324,7 @@ export default function SlotBrowseFilterModal({
                                         Browse the games that match your current search and provider filter.
                                     </p>
                                 </div>
-                                <span className="shrink-0 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-accent-50)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--color-text-soft)] sm:px-2.5 sm:py-1 sm:text-[11px]">
+                                <span className="shrink-0 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--color-text-soft)] sm:px-2.5 sm:py-1 sm:text-[11px]">
                                     {visibleGames.length}
                                 </span>
                             </div>
@@ -369,7 +369,7 @@ export default function SlotBrowseFilterModal({
                                 </>
                             ) : (
                                 <div className="mt-3 sm:mt-4 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:overflow-hidden">
-                                    <div className="flex min-h-0 flex-1 items-center justify-center overflow-y-auto rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-accent-50)] px-3 py-6 text-center sm:rounded-2xl sm:px-4 sm:py-8">
+                                    <div className="flex min-h-0 flex-1 items-center justify-center overflow-y-auto rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] px-3 py-6 text-center sm:rounded-2xl sm:px-4 sm:py-8">
                                         <div>
                                             <p className="text-sm font-bold text-[var(--color-text-primary)]">
                                                 No games or providers found
@@ -389,7 +389,7 @@ export default function SlotBrowseFilterModal({
                     <button
                         type="button"
                         onClick={handleReset}
-                        className="inline-flex h-12 min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-bold text-[var(--color-text-secondary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-50)] lg:h-11 lg:min-h-0 lg:w-auto"
+                        className="inline-flex h-12 min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-bold text-[var(--color-text-secondary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)] lg:h-11 lg:min-h-0 lg:w-auto"
                     >
                         <RotateCcw size={16} />
                         Reset

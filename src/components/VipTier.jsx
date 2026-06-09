@@ -13,8 +13,8 @@ function VipLevelCard({ vp, className }) {
     return (
         <div className={className}>
             <div className="flex flex-col items-center justify-center px-3 py-4">
-                <div className="mb-3 flex w-full items-center justify-center gap-2 border-b border-[var(--color-nav-border-soft)] pb-3">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[var(--color-nav-border)] bg-gradient-vip-tier-avatar shadow-[var(--shadow-subtle)]">
+                <div className="mb-3 flex w-full items-center justify-center gap-2 border-b border-[var(--color-border-subtle)] pb-3">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[var(--color-border-brand)] bg-gradient-vip-tier-avatar shadow-[var(--shadow-subtle)]">
                         <img
                             src={vp.medal}
                             alt={`VIP ${vp.tier} medal`}
@@ -61,7 +61,7 @@ export default function VipTier({ onNavigate }) {
                 onNavigate={onNavigate}
             />
 
-            <p className="mt-4 mb-8 max-w-[1000px] text-xs font-medium leading-relaxed text-[var(--color-text-brand-soft)] md:text-sm">
+            <p className="mt-4 mb-8 max-w-[1000px] text-xs font-medium leading-relaxed text-[var(--color-text-secondary)] md:text-sm">
                 Join the 12WIN VIP member group, you will receive many special privileges such as promotion bonus, monthly red envelope bonus, birthday bonus. All of these are special privileges for 12WIN VIP customers only.
             </p>
 
@@ -83,7 +83,7 @@ export default function VipTier({ onNavigate }) {
                             <VipLevelCard
                                 key={vp.level}
                                 vp={vp}
-                                className="surface-card min-w-[288px] snap-center overflow-hidden rounded-[22px] border border-[var(--color-nav-border)]/70 bg-[var(--color-surface-base)]/90 shadow-[0_8px_20px_rgba(0,114,188,0.06)]"
+                                className="surface-card min-w-[288px] snap-center overflow-hidden rounded-[22px] border border-[var(--color-border-brand)]/70 bg-[var(--color-surface-base)]/90 shadow-[0_8px_20px_rgba(0,114,188,0.06)]"
                             />
                         ))}
                     </div>
@@ -95,7 +95,7 @@ export default function VipTier({ onNavigate }) {
                         <VipLevelCard
                             key={vp.level}
                             vp={vp}
-                            className="surface-card overflow-hidden rounded-[22px] border border-[var(--color-nav-border)]/70 bg-[var(--color-surface-base)]/90 transition-all hover:border-[var(--color-primary)] hover:shadow-[var(--shadow-card-hover)]"
+                            className="surface-card overflow-hidden rounded-[22px] border border-[var(--color-border-brand)]/70 bg-[var(--color-surface-base)]/90 transition-all hover:border-[var(--color-primary)] hover:shadow-[var(--shadow-card-hover)]"
                         />
                     ))}
                 </div>

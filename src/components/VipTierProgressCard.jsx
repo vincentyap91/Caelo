@@ -32,7 +32,7 @@ export default function VipTierProgressCard({
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{safeProgress}%</span>
             </div>
 
-            <div className="mt-3 h-3 overflow-hidden rounded-full bg-[var(--color-accent-100)]">
+            <div className="mt-3 h-3 overflow-hidden rounded-full bg-[var(--color-accent-glow)]">
                 <div
                     className="h-full rounded-full bg-gradient-cta"
                     style={{ width: `${safeProgress}%` }}
