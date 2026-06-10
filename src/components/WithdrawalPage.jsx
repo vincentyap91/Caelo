@@ -4,6 +4,7 @@ import PaymentConfirmModal from './PaymentConfirmModal';
 import RolloverRequirementModal from './RolloverRequirementModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
 import RolloverStatusCard from './RolloverStatusCard';
+import CashierModeTabs from './payment/CashierModeTabs';
 import PaymentFlowStepper from './payment/PaymentFlowStepper';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
 import { PUSH_EVENT } from '../constants/pushNotificationCopy';
@@ -147,7 +148,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
     }, [navigationState, isRolloverRequirementMet]);
 
     return (
-        <div className="page-container">
+        <div className="page-container cashier-flow-page">
             <PaymentConfirmModal
                 open={confirmModalOpen}
                 onClose={handleCloseConfirmModal}
@@ -163,17 +164,15 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 remainingCurrent={rolloverStatus.remainingAmount}
                 remainingTarget={rolloverStatus.targetAmount}
             />
-            <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                    <h1 className="page-title">Withdrawal</h1>
-                    <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
-                        Complete your withdrawal in a few simple steps.
-                    </p>
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0 flex-1 space-y-4">
+                    <h1 className="page-title">Deposit / Withdrawal</h1>
+                    <CashierModeTabs activeMode="withdrawal" onNavigate={onNavigate} />
                 </div>
                 <button
                     type="button"
                     onClick={() => onNavigate?.('help-center')}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-button-hover)] transition hover:text-[var(--color-button-hover)]"
+                    className="cashier-help-link inline-flex shrink-0 items-center gap-2 text-sm font-semibold transition"
                 >
                     <HelpCircle size={18} />
                     How to withdraw?
@@ -195,7 +194,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
             ) : (
             <>
             <div className="mb-3 sm:mb-4">
-                <PaymentFlowStepper step={step} steps={WITHDRAWAL_STEPS} />
+                <PaymentFlowStepper variant="cashier" className="cashier-flow-stepper" step={step} steps={WITHDRAWAL_STEPS} />
             </div>
 
             <div className="surface-card overflow-visible rounded-2xl shadow-[var(--shadow-card-soft)]">
@@ -203,11 +202,9 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 {step === 1 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-sm font-bold text-[var(--color-text-card-text)]">
-                                1
-                            </span>
+                            <span className="cashier-step-badge">1</span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Withdrawal Method <span className="text-[var(--color-danger)]">*</span></h2>
+                                <h2 className="cashier-section-title text-base md:text-lg">Withdrawal Method <span className="text-[var(--color-danger)]">*</span></h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Select E-Wallet or Bank Transfer.</p>
                             </div>
                         </div>
@@ -218,10 +215,8 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                     key={id}
                                     type="button"
                                     onClick={() => setWithdrawalMethod(id)}
-                                    className={`flex h-full min-h-[7.25rem] flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6 ${
-                                        withdrawalMethod === id
-                                            ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)]'
-                                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-glow)]'
+                                    className={`cashier-option-card flex h-full min-h-[7.25rem] flex-col items-center justify-center gap-2 rounded-xl p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6${
+                                        withdrawalMethod === id ? ' is-selected' : ''
                                     }`}
                                 >
                                     <img
@@ -229,7 +224,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         alt={label}
                                         className="h-12 w-auto max-w-full object-contain sm:h-14"
                                     />
-                                    <p className="text-sm font-bold leading-tight text-[var(--color-text-primary)] sm:text-base">{label}</p>
+                                    <p className="cashier-option-label text-sm leading-tight sm:text-base">{label}</p>
                                 </button>
                             ))}
                         </div>
@@ -250,11 +245,9 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 {step === 2 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-sm font-bold text-[var(--color-text-card-text)]">
-                                2
-                            </span>
+                            <span className="cashier-step-badge">2</span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Account & Amount</h2>
+                                <h2 className="cashier-section-title text-base md:text-lg">Account & Amount</h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
                                     {withdrawalMethod === 'ewallet' ? 'Select E-Wallet, enter phone number and amount.' : 'Enter your bank account details and amount.'}
                                 </p>
@@ -459,11 +452,9 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 {step === 3 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-sm font-bold text-[var(--color-text-card-text)]">
-                                3
-                            </span>
+                            <span className="cashier-step-badge">3</span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Confirm & Withdraw</h2>
+                                <h2 className="cashier-section-title text-base md:text-lg">Confirm & Withdraw</h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Review your withdrawal details before confirming.</p>
                             </div>
                         </div>

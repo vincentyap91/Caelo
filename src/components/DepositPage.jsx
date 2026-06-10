@@ -7,6 +7,7 @@ import CopyInputField from './security/CopyInputField';
 import PaymentConfirmModal from './PaymentConfirmModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
 import RolloverStatusCard from './RolloverStatusCard';
+import CashierModeTabs from './payment/CashierModeTabs';
 import PaymentFlowStepper from './payment/PaymentFlowStepper';
 import ReceiptUploadField, { ReceiptPreviewModal, ReceiptFileCard } from './payment/ReceiptUploadField';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
@@ -239,18 +240,16 @@ export default function DepositPage({ onNavigate }) {
     const selectedChannelDesc = CHANNELS.find((c) => c.id === selectedChannel)?.desc ?? '';
 
     return (
-        <div className="page-container">
-            <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                    <h1 className="page-title">Deposit</h1>
-                    <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] md:text-sm">
-                        Complete your deposit in just a few simple steps.
-                    </p>
+        <div className="page-container cashier-flow-page">
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0 flex-1 space-y-4">
+                    <h1 className="page-title">Deposit / Withdrawal</h1>
+                    <CashierModeTabs activeMode="deposit" onNavigate={onNavigate} />
                 </div>
                 <button
                     type="button"
                     onClick={() => onNavigate?.('help-center')}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-button-hover)] transition hover:text-[var(--color-button-hover)]"
+                    className="cashier-help-link inline-flex shrink-0 items-center gap-2 text-sm font-semibold transition"
                 >
                     <HelpCircle size={18} />
                     How to deposit?
@@ -271,6 +270,8 @@ export default function DepositPage({ onNavigate }) {
             <>
             <div className="mb-3 sm:mb-4">
                 <PaymentFlowStepper
+                    variant="cashier"
+                    className="cashier-flow-stepper"
                     step={step}
                     steps={DEPOSIT_STEPS.map((s) => ({
                         id: s.id,
@@ -291,19 +292,13 @@ export default function DepositPage({ onNavigate }) {
                                         key={id}
                                         type="button"
                                         onClick={() => setDepositSpeedTab(id)}
-                                        className={`min-w-0 flex-1 px-3 py-2.5 text-center transition sm:px-6 sm:py-4 ${
+                                        className={`cashier-speed-tab min-w-0 flex-1 px-3 py-2.5 text-center transition sm:px-6 sm:py-4 ${
                                             idx === 0 ? 'rounded-tl-2xl' : 'rounded-tr-2xl'
-                                        } ${
-                                            isActive
-                                                ? 'bg-gradient-to-b from-[var(--color-accent)] to-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-none sm:shadow-sm'
-                                                : 'bg-[var(--color-surface-cool-light)] text-[var(--color-text-primary)] hover:bg-[var(--color-surface-subtle)]'
-                                        }`}
+                                        }${isActive ? ' is-active' : ''}`}
                                     >
                                         <p className="text-sm font-bold leading-tight sm:text-base sm:leading-normal">{label}</p>
                                         <p
-                                            className={`mt-0.5 flex items-center justify-center gap-0.5 text-xs leading-tight sm:mt-1 sm:gap-1 sm:leading-normal ${
-                                                isActive ? 'text-[var(--color-text-sticky-nav-text)]' : 'text-[var(--color-text-muted)]'
-                                            }`}
+                                            className="cashier-speed-tab-sub mt-0.5 flex items-center justify-center gap-0.5 text-xs leading-tight text-[var(--color-text-muted)] sm:mt-1 sm:gap-1 sm:leading-normal"
                                         >
                                             <Clock className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" strokeWidth={2} aria-hidden />
                                             {time}
@@ -314,11 +309,9 @@ export default function DepositPage({ onNavigate }) {
                         </div>
                         <div className="space-y-4 p-5 sm:space-y-6 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-sm font-bold text-[var(--color-text-card-text)]">
-                                1
-                            </span>
+                            <span className="cashier-step-badge">1</span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Deposit Options <span className="text-[var(--color-danger)]">*</span></h2>
+                                <h2 className="cashier-section-title text-base md:text-lg">Deposit Options <span className="text-[var(--color-danger)]">*</span></h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Select your preferred deposit method.</p>
                             </div>
                         </div>
@@ -327,14 +320,14 @@ export default function DepositPage({ onNavigate }) {
                             <div className="flex justify-center md:justify-start">
                                 <button
                                     type="button"
-                                    className="relative flex h-full min-h-[7.25rem] w-full flex-col items-center justify-center gap-2 rounded-xl border-2 border-[var(--color-accent)] bg-[var(--color-accent-pale)] p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6 md:w-1/2"
+                                    className="cashier-option-card is-selected relative flex h-full min-h-[7.25rem] w-full flex-col items-center justify-center gap-2 rounded-xl p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6 md:w-1/2"
                                 >
                                     <img
                                         src={instantDepositImg}
                                         alt="Normal Deposit"
                                         className="h-12 w-auto max-w-full object-contain sm:h-14"
                                     />
-                                    <p className="line-clamp-2 text-sm font-bold leading-tight text-[var(--color-text-primary)] sm:text-base">
+                                    <p className="cashier-option-label line-clamp-2 text-sm leading-tight sm:text-base">
                                         Normal Deposit
                                     </p>
                                 </button>
@@ -346,10 +339,8 @@ export default function DepositPage({ onNavigate }) {
                                         key={id}
                                         type="button"
                                         onClick={() => setDepositOptionType(id)}
-                                        className={`relative flex h-full min-h-[7.25rem] flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6 ${
-                                            depositOptionType === id
-                                                ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)]'
-                                                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-glow)]'
+                                        className={`cashier-option-card relative flex h-full min-h-[7.25rem] flex-col items-center justify-center gap-2 rounded-xl p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6${
+                                            depositOptionType === id ? ' is-selected' : ''
                                         }`}
                                     >
                                         {badge && (
@@ -363,7 +354,7 @@ export default function DepositPage({ onNavigate }) {
                                             alt={label}
                                             className="h-12 w-auto max-w-full object-contain sm:h-14"
                                         />
-                                        <p className="line-clamp-2 text-sm font-bold leading-tight text-[var(--color-text-primary)] sm:text-base">
+                                        <p className="cashier-option-label line-clamp-2 text-sm leading-tight sm:text-base">
                                             {label}
                                         </p>
                                     </button>
@@ -478,11 +469,9 @@ export default function DepositPage({ onNavigate }) {
                 {step === 2 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-sm font-bold text-[var(--color-text-card-text)]">
-                                2
-                            </span>
+                            <span className="cashier-step-badge">2</span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">
+                                <h2 className="cashier-section-title text-base md:text-lg">
                                     {isNormal ? 'Bank Account & Amount' : 'Bank, Provider & Amount'}
                                 </h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
@@ -777,11 +766,9 @@ export default function DepositPage({ onNavigate }) {
                 {step === 3 && (
                     <div className="space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-sm font-bold text-[var(--color-text-card-text)]">
-                                3
-                            </span>
+                            <span className="cashier-step-badge">3</span>
                             <div>
-                                <h2 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">
+                                <h2 className="cashier-section-title text-base md:text-lg">
                                     {isNormal ? 'Confirm & Submit' : 'Transaction Summary'}
                                 </h2>
                                 <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">

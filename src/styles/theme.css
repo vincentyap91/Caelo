@@ -1,11 +1,11 @@
 :root {
-  /* Typography tokens – use these instead of hardcoded font-family */
+  /* Typography tokens ? use these instead of hardcoded font-family */
   --font-family-primary: "Poppins", sans-serif;
   --base-font-family: var(--font-family-primary);
   --font-family-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --font-family-multilingual: "Poppins", "Noto Sans SC", "Noto Sans TC", "Noto Sans Thai", "Noto Sans KR", "Noto Sans Devanagari", "Noto Sans Myanmar", "Noto Sans JP", "Segoe UI", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Yu Gothic UI", "Leelawadee UI", "Nirmala UI", "Myanmar Text", sans-serif;
 
-  /* Layout aliases → Figma semantics (colors defined in src/theme.css) */
+  /* Layout aliases ? Figma semantics (colors defined in src/theme.css) */
   --surface-base: var(--color-surface-base);
   --border-default: var(--color-border-subtle);
   --text-muted: var(--color-text-muted);
@@ -93,7 +93,7 @@
 
   --text-page-title: 1.5rem;
   --text-page-title-md: 1.875rem;
-  /* Letter-spacing — 3 tiers (+ code for mono OTP inputs). */
+  /* Letter-spacing ? 3 tiers (+ code for mono OTP inputs). */
   --tracking-normal: 0;
   --tracking-tight: -0.025em;
   --tracking-wide: 0.08em;
@@ -112,6 +112,18 @@
   /* Hero announcement bar: faster scroll + start in view (no long off-screen lead-in). */
   --animate-marquee: marquee 11s linear infinite;
   --animate-home-big-wins-reveal: home-big-wins-reveal 0.45s ease-out both;
+
+  /* Caelo legacy scale ? account sidebar tokens (src/theme.css has no numbered accent scale) */
+  --color-brand-primary: #123b94;
+  --color-text-brand: #123b94;
+  --color-text-strong: var(--color-text-primary);
+  --color-border-default: var(--color-border-subtle);
+  --color-accent-50: #eff6ff;
+  --color-accent-100: #dbeafe;
+  --color-accent-400: #60a5fa;
+  --color-accent-500: #3b82f6;
+  --color-accent-600: #2563eb;
+  --color-accent-700: #1d4ed8;
 }
 
 @keyframes scan {
@@ -198,8 +210,8 @@
   }
 
   /**
-   * Recent Payout — Cam88 semantic names; Caelo resolved colors via scoped aliases.
-   * See VARIABLE-RULES.en.md §13.10 / §13.11.
+   * Recent Payout ? Cam88 semantic names; Caelo resolved colors via scoped aliases.
+   * See VARIABLE-RULES.en.md ?13.10 / ?13.11.
    */
   .recent-payout-section {
     --color-border-brand: var(--color-primary);
@@ -215,8 +227,8 @@
   }
 
   /**
-   * App Download (12WIN) — Cam88 semantic names; Caelo resolved colors via scoped aliases.
-   * Gradients use `--color-gradient-home-highlight` per VARIABLE-RULES.en.md §13.6.
+   * App Download (12WIN) ? Cam88 semantic names; Caelo resolved colors via scoped aliases.
+   * Gradients use `--color-gradient-home-highlight` per VARIABLE-RULES.en.md ?13.6.
    */
   .app-download-section {
     --color-button-hover: var(--brand-630);
@@ -232,9 +244,9 @@
   }
 
   /**
-   * App shell page backgrounds — Cam88 surface roles; Caelo page tints via `--raw-page-*`.
-   * home/register/account → `--color-surface-cool-light`; default → `--color-surface-base`.
-   * See VARIABLE-RULES.en.md §13.11.
+   * App shell page backgrounds ? Cam88 surface roles; Caelo page tints via `--raw-page-*`.
+   * home/register/account ? `--color-surface-cool-light`; default ? `--color-surface-base`.
+   * See VARIABLE-RULES.en.md ?13.11.
    */
   .app-shell[data-app-shell-bg="home"] {
     background-color: var(--raw-page-home);
@@ -253,7 +265,7 @@
   }
 
   /**
-   * Site footer — Cam88 `--color-surface-low` + `--color-border-line`; Caelo blue shell.
+   * Site footer ? Cam88 `--color-surface-low` + `--color-border-line`; Caelo blue shell.
    */
   .site-footer {
     --color-border-line: rgb(168 226 251);
@@ -272,7 +284,7 @@
     --color-border-brand: var(--raw-border-brand);
   }
 
-  /** Logged-in profile tier chip on dark sticky bar (§13.11) */
+  /** Logged-in profile tier chip on dark sticky bar (?13.11) */
   .top-sticky-profile-badge {
     border: 1px solid var(--color-accent-yellow);
     background-color: transparent;
@@ -280,8 +292,8 @@
   }
 
   /**
-   * Lottery game cards — Cam88 `--color-gradient-card-brand`; Caelo dark navy thumb (riocity-v2 lottery).
-   * See VARIABLE-RULES.en.md §13.11.
+   * Lottery game cards ? Cam88 `--color-gradient-card-brand`; Caelo dark navy thumb (riocity-v2 lottery).
+   * See VARIABLE-RULES.en.md ?13.11.
    */
   .lottery-page .lottery-game-card__thumb {
     --color-gradient-card-brand: linear-gradient(
@@ -293,7 +305,7 @@
   }
 
   /**
-   * Shared provider lobby tile — sports thumb uses Cam88 sports gradient (§13.11).
+   * Shared provider lobby tile ? sports thumb uses Cam88 sports gradient (?13.11).
    */
   .sports-page .provider-lobby-card__thumb {
     --color-surface-mid-color: transparent;
@@ -305,7 +317,7 @@
   }
 
   /**
-   * Web_Slot - Cam88 (903:25656) — Cam88 semantic names in JSX; Caelo look via scoped aliases (§13.11).
+   * Web_Slot - Cam88 (903:25656) ? Cam88 semantic names in JSX; Caelo look via scoped aliases (?13.11).
    */
   .slots-page {
     --color-surface: var(--color-surface-base);
@@ -373,7 +385,7 @@
     --color-border-brand: var(--raw-border-accent);
   }
 
-  /** Favourite + game-card utilities share Riocity `--color-gradient-sports-card` — preserve Caelo scrims. */
+  /** Favourite + game-card utilities share Riocity `--color-gradient-sports-card` ? preserve Caelo scrims. */
   .bg-gradient-favourite-inactive {
     --color-gradient-sports-card: linear-gradient(
       180deg,
@@ -490,8 +502,8 @@
   }
 
   /**
-   * Recent Big Wins — Cam88 semantic names in JSX; Caelo resolved colors via scoped aliases.
-   * See VARIABLE-RULES.en.md §13.10 / §13.11.
+   * Recent Big Wins ? Cam88 semantic names in JSX; Caelo resolved colors via scoped aliases.
+   * See VARIABLE-RULES.en.md ?13.10 / ?13.11.
    */
   .recent-big-wins-section {
     --color-border-line: var(--color-border-subtle);
@@ -500,7 +512,7 @@
   }
 
   /**
-   * Homepage mobile header — Web - Sidenav shell semantics (Cam88 1324:11385); Caelo light bar (§13.11).
+   * Homepage mobile header ? Web - Sidenav shell semantics (Cam88 1324:11385); Caelo light bar (?13.11).
    */
   .mobile-site-header {
     --color-border: var(--color-border-subtle);
@@ -509,7 +521,7 @@
   }
 
   /**
-   * Mobile home bottom sticky nav — Cam88 --color-sticky-nav; Caelo brand-500 bar (§13.11).
+   * Mobile home bottom sticky nav ? Cam88 --color-sticky-nav; Caelo brand-500 bar (?13.11).
    */
   .mobile-home-bottom-nav {
     --color-sticky-nav: var(--brand-500);
@@ -519,7 +531,7 @@
   }
 
   /**
-   * Homepage category tabs — Category Tabs (Cam88 1395:13359); Caelo card/tab look via scoped aliases (§13.11).
+   * Homepage category tabs ? Category Tabs (Cam88 1395:13359); Caelo card/tab look via scoped aliases (?13.11).
    */
   .home-category-tabs {
     --color-surface-cat-navigation: transparent;
@@ -537,8 +549,8 @@
   }
 
   /**
-   * Popular Category (GameCategories) — Cam88 semantic names; Caelo blue card tints via scoped aliases.
-   * See VARIABLE-RULES.en.md §13.11.
+   * Popular Category (GameCategories) ? Cam88 semantic names; Caelo blue card tints via scoped aliases.
+   * See VARIABLE-RULES.en.md ?13.11.
    */
   .game-categories-section {
     --color-surface-cool-light: var(--raw-brand-soft);
@@ -559,8 +571,8 @@
   }
 
   /**
-   * Home promo banners (Promos) — Riocity --color-gradient-* semantics; Caelo formulas in src/theme.css.
-   * See VARIABLE-RULES.en.md §6.1, §13.6, §13.11.
+   * Home promo banners (Promos) ? Riocity --color-gradient-* semantics; Caelo formulas in src/theme.css.
+   * See VARIABLE-RULES.en.md ?6.1, ?13.6, ?13.11.
    */
   .home-promos-section {
     --color-border-brand: var(--mono-0);
@@ -754,8 +766,8 @@
   }
 
   /**
-   * Web_Login / Web_Register / Web_Register_Done — Cam88 (919:20636, 919:20708, 919:20803)
-   * §13.11: Cam88 semantic names only; Caelo resolved colors via scoped aliases below.
+   * Web_Login / Web_Register / Web_Register_Done ? Cam88 (919:20636, 919:20708, 919:20803)
+   * ?13.11: Cam88 semantic names only; Caelo resolved colors via scoped aliases below.
    */
   .auth-modal-shell {
     --color-popup-body: var(--color-surface-base);
@@ -766,11 +778,11 @@
     --color-button-cta-primary: var(--color-text-cta-inverse);
     --color-button-muted: var(--color-surface-cool-light);
     --color-button-muted-text: var(--color-text-secondary);
-    /* Login footer links — Caelo blue (§13.11) */
+    /* Login footer links ? Caelo blue (?13.11) */
     --color-text-link-danger: var(--color-button-hover);
   }
 
-  /** Web_Register — Cam88 919:20708 field errors + footer link (§13.11) */
+  /** Web_Register ? Cam88 919:20708 field errors + footer link (?13.11) */
   .auth-modal-container--register {
     --color-text-secondary: var(--color-danger);
     --color-text-link-danger: var(--color-danger);
@@ -805,7 +817,7 @@
     background-color: var(--color-popup-body);
   }
 
-  /* Login has fewer fields — avoid a tall empty bottom area */
+  /* Login has fewer fields ? avoid a tall empty bottom area */
   .auth-modal-split--login {
     min-height: unset;
   }
@@ -1139,7 +1151,7 @@
     color: var(--color-success);
   }
 
-  /** Web_Register_Done — same shell tokens; Caelo values from pre-migration modal */
+  /** Web_Register_Done ? same shell tokens; Caelo values from pre-migration modal */
   .auth-modal-register-done-root {
     --color-overlay-strong: var(--raw-nav-overlay);
   }
@@ -1175,7 +1187,7 @@
     background-color: var(--color-surface-input-light);
   }
 
-  /** Legacy LoginModal — Cam88 semantics; Caelo gradient panel + field tokens */
+  /** Legacy LoginModal ? Cam88 semantics; Caelo gradient panel + field tokens */
   .login-modal-root {
     --color-overlay-strong: color-mix(in srgb, var(--color-surface-darkest) 70%, transparent);
   }
@@ -1293,7 +1305,7 @@
     filter: brightness(1.03);
   }
 
-  /* Press feedback on the icon only — :active transform on the link would override
+  /* Press feedback on the icon only ? :active transform on the link would override
      Tailwind centering (-translate-x/y-1/2) and jump the disc on mousedown/right-click. */
   .game-card-play-button:active svg {
     transform: scale(0.94);
@@ -1356,7 +1368,7 @@
     color: var(--color-danger-red);
   }
 
-  /* Game card RTP pill — Cam88 names; Caelo values from legacy accent tokens (§13.11) */
+  /* Game card RTP pill ? Cam88 names; Caelo values from legacy accent tokens (?13.11) */
   .rtp-label--pill {
     --color-surface-rtp-secondary-card: var(--color-accent-pale);
     --color-surface-rtp-secondary-card-text: var(--color-button-hover);
@@ -1542,15 +1554,15 @@
     text-align: center;
   }
 
-  /* Balance Modal Refactor Variables & Classes */
+  /* Balance Detail dropdown ? Caelo navy shell (matches profile-menu-dropdown) */
   .balance-modal-container {
-    --balance-modal-bg: var(--color-primary);
-    --balance-modal-radius: 20px;
-    --balance-item-bg: var(--color-button-hover);
+    --balance-modal-bg: #123b94;
+    --balance-modal-radius: 24px;
+    --balance-item-bg: #0d2a6a;
     --balance-text-primary: #ffffff;
-    --balance-text-secondary: var(--color-accent);
-    --balance-icon-bg: var(--color-primary);
-    --balance-border-color: var(--color-border-subtle);
+    --balance-text-secondary: #ffd84d;
+    --balance-icon-bg: #2c66c3;
+    --balance-border-color: rgb(106 200 255 / 0.12);
 
     background-color: var(--balance-modal-bg);
     border-radius: var(--balance-modal-radius);
@@ -1561,21 +1573,46 @@
   .balance-modal-item {
     background-color: var(--balance-item-bg);
     border: 1px solid var(--balance-border-color);
-    box-shadow: var(--inset-highlight-soft);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+  }
+
+  .balance-modal-item:hover {
+    border-color: rgb(102 203 255 / 0.22);
   }
 
   .balance-modal-text-primary {
     color: var(--balance-text-primary);
   }
 
+  .balance-modal-text-muted {
+    color: rgb(255 255 255 / 0.7);
+  }
+
   .balance-modal-text-secondary {
     color: var(--balance-text-secondary);
   }
 
+  .balance-modal-chevron {
+    color: #ffffff;
+  }
+
   .balance-modal-icon-box {
+    background-image: linear-gradient(180deg, #3b82f6 0%, #123b94 100%);
     background-color: var(--balance-icon-bg);
-    color: var(--balance-text-secondary);
+    color: #ffd84d;
     box-shadow: var(--shadow-nav-pill);
+  }
+
+  .balance-modal-refresh-btn {
+    border: 1px solid rgb(255 255 255 / 0.35);
+    background-image: none;
+    background-color: transparent;
+    color: #ffd84d;
+  }
+
+  .balance-modal-refresh-btn:hover:not(:disabled) {
+    border-color: rgb(255 255 255 / 0.5);
+    background-color: rgb(255 255 255 / 0.06);
   }
 
   .balance-modal-divider {
@@ -1585,11 +1622,11 @@
   .balance-modal-promo {
     background-color: var(--balance-item-bg);
     border: 1px solid var(--balance-border-color);
-    box-shadow: var(--inset-highlight-soft);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
   }
 
   .balance-modal-promo__eyebrow {
-    color: var(--color-text-sticky-nav-active);
+    color: #8ad4ff;
   }
 
   .balance-modal-promo__metrics {
@@ -1674,7 +1711,7 @@
     animation: home-marquee-horizontal-x-reverse var(--home-marquee-duration, 36s) linear infinite;
   }
 
-  /* Pause only for real desktop hover / keyboard focus — avoid touch “sticky hover” freezing the feed */
+  /* Pause only for real desktop hover / keyboard focus ? avoid touch ?sticky hover? freezing the feed */
   @media (hover: hover) and (pointer: fine) {
 
     .home-marquee-pausable:hover .animate-home-marquee-vertical-y,
@@ -1701,7 +1738,7 @@
       animation: none !important;
     }
 
-    /* Keep the ticker moving (system “reduce motion” must not make the homepage feeds look broken). */
+    /* Keep the ticker moving (system ?reduce motion? must not make the homepage feeds look broken). */
     .animate-home-marquee-vertical-y,
     .animate-home-marquee-horizontal-x,
     .animate-home-marquee-horizontal-x-reverse {
@@ -1716,7 +1753,7 @@
     }
   }
 
-  /* In-app push toasts: enter / exit (keyframes global — avoid per-mount <style> duplication / flash) */
+  /* In-app push toasts: enter / exit (keyframes global ? avoid per-mount <style> duplication / flash) */
   @keyframes push-notification-enter {
     from {
       opacity: 0;
@@ -2132,7 +2169,7 @@
     );
   }
 
-  /* Caelo banner left scrim — preserve horizontal fade via --raw-* (not --color-gradient-home-muted). */
+  /* Caelo banner left scrim ? preserve horizontal fade via --raw-* (not --color-gradient-home-muted). */
   .bg-gradient-hero-fade-left {
     background-image: linear-gradient(
       90deg,
@@ -2222,7 +2259,7 @@
     box-shadow: var(--shadow-cta-soft);
   }
 
-  /** Web_Slot promo panel — End Promo (Cam88 919:20508) */
+  /** Web_Slot promo panel ? End Promo (Cam88 919:20508) */
   .btn-theme-cta-fourth {
     color: var(--color-button-cta-fourth-text);
     background-color: var(--color-button-cta-fourth);
@@ -2259,13 +2296,13 @@
     padding-right: 0.75rem;
   }
 
-  /** Web Header — upper utility bar on dark sticky nav (Cam88 --color-sticky-nav) */
+  /** Web Header ? upper utility bar on dark sticky nav (Cam88 --color-sticky-nav) */
   .top-sticky-nav-bar {
     border-bottom-color: var(--raw-nav-border-soft);
   }
 
   /**
-   * Logged-in balance + profile pills — screenshot fills, LOGOUT glass family (§13.11).
+   * Logged-in balance + profile pills ? screenshot fills, LOGOUT glass family (?13.11).
    * No outer border; sheen + shadow only (same tokens as `.nav-top-pill`).
    */
   .top-sticky-nav-bar .top-sticky-balance-chip,
@@ -2297,7 +2334,7 @@
     background-color: var(--raw-nav-border);
   }
 
-  /** Mobile logged-in balance chip — same Caelo dark bar look via --color-sticky-nav */
+  /** Mobile logged-in balance chip ? same Caelo dark bar look via --color-sticky-nav */
   .mobile-sticky-balance {
     border-color: var(--raw-nav-border-soft);
   }
@@ -2311,7 +2348,7 @@
   }
 
   /**
-   * Web - Sidenav (Cam88 1324:11385) — mobile drawer; Caelo light menu skin (§13.11).
+   * Web - Sidenav (Cam88 1324:11385) ? mobile drawer; Caelo light menu skin (?13.11).
    */
   .sidenav-shell {
     --color-button-nav: var(--color-surface-base);
@@ -2339,7 +2376,7 @@
     color: var(--color-text-primary-card-title);
   }
 
-  /** Sidenav balance pill — same fill + glass as `.top-sticky-balance-chip` (§13.11) */
+  /** Sidenav balance pill ? same fill + glass as `.top-sticky-balance-chip` (?13.11) */
   .sidenav-shell .sidenav-balance-pill {
     --color-surface-high: var(--brand-400);
     border: none;
@@ -2492,7 +2529,7 @@
     letter-spacing: var(--tracking-wide);
   }
 
-  /** Desktop main nav: current page (Web - Sidenav active row — `--color-button-hover`) */
+  /** Desktop main nav: current page (Web - Sidenav active row ? `--color-button-hover`) */
   .nav-desktop-link-active {
     border: 1px solid var(--color-border-brand);
     background-color: var(--color-button-hover);
@@ -2507,7 +2544,7 @@
   }
 
   /**
-   * Top nav + account tabs — Web - Sidenav semantics, Caelo values scoped (§13.11).
+   * Top nav + account tabs ? Web - Sidenav semantics, Caelo values scoped (?13.11).
    */
   .top-nav-shell {
     --color-button-nav-text: var(--color-text-primary-card-title);
@@ -2560,7 +2597,7 @@
     color: var(--color-button-hover-text);
   }
 
-  /** Promotion cards — status pill on banner image (12WIN reference). */
+  /** Promotion cards ? status pill on banner image (12WIN reference). */
   .promotion-page .promotion-card-image-tag {
     border-radius: 6px;
     padding: 0.2rem 0.55rem;
@@ -2573,7 +2610,7 @@
     color: var(--color-text-card-text);
   }
 
-  /** Account horizontal tabs — matches AccountSidebar accent styling */
+  /** Account horizontal tabs ? matches AccountSidebar accent styling */
   .account-tab-bar {
     border-bottom: 1px solid var(--color-border-subtle);
     background-color: var(--color-surface-float);
@@ -2655,7 +2692,268 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
-  /** Profile dropdown — logout (light default, red gradient on hover) */
+  /** Profile dropdown (navbar) ? Caelo dark navy + gold section icons + cyan grid icons */
+  .profile-menu-dropdown.dark-nav-shell {
+    background-color: #123b94;
+    color: #ffffff;
+  }
+
+  .profile-menu-dropdown .dark-nav-panel {
+    border: 1px solid rgb(106 200 255 / 0.12);
+    background-color: #0d2a6a;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+  }
+
+  .profile-menu-dropdown .dark-nav-panel:hover {
+    border-color: rgb(102 203 255 / 0.22);
+  }
+
+  .profile-menu-dropdown .dark-nav-tile {
+    border: 1px solid rgb(87 181 255 / 0.1);
+    background-color: #01206c;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+  }
+
+  .profile-menu-dropdown .dark-nav-tile:hover {
+    border-color: rgb(102 203 255 / 0.3);
+  }
+
+  .profile-menu-dropdown .profile-menu-avatar {
+    border-color: rgb(106 200 255 / 0.2);
+  }
+
+  .profile-menu-dropdown .profile-menu-avatar-icon {
+    color: #ffffff;
+  }
+
+  .profile-menu-dropdown .profile-menu-username {
+    color: #ffffff;
+  }
+
+  .profile-menu-dropdown .profile-menu-vip-pill {
+    border: 1px solid #ffd84d;
+    background: #123b94 !important;
+    background-image: none !important;
+    color: #ffd84d;
+    box-shadow: none;
+  }
+
+  .profile-menu-dropdown .profile-menu-vip-pill img {
+    display: none;
+  }
+
+  .profile-menu-dropdown .profile-menu-vip-pill span {
+    color: #ffd84d;
+  }
+
+  .profile-menu-dropdown .profile-menu-section-icon {
+    color: #ffd84d;
+  }
+
+  .profile-menu-dropdown .profile-menu-section-label,
+  .profile-menu-dropdown .profile-menu-tile-label {
+    color: #ffffff;
+  }
+
+  .profile-menu-dropdown .profile-menu-chevron {
+    color: #ffffff;
+  }
+
+  .profile-menu-dropdown .profile-menu-tile-icon {
+    color: #5cc4ff;
+  }
+
+  .profile-menu-dropdown .dark-nav-tile:hover .profile-menu-tile-icon {
+    color: #8ad4ff;
+  }
+
+  /**
+   * Cashier flow ? deposit / withdrawal pages only (.cashier-flow-page wrapper).
+   * Caelo blues from CAELO_THEME_REFERENCE; does not affect header, home, or other routes.
+   */
+  .cashier-flow-page {
+    --cashier-brand: #123b94;
+    --cashier-accent-600: #2563eb;
+    --cashier-accent-500: #3b82f6;
+    --cashier-accent-200: #bfdbfe;
+    --cashier-accent-100: #dbeafe;
+    --cashier-accent-50: #eff6ff;
+    --cashier-border: #e2e8f0;
+    --cashier-text-muted: #64748b;
+  }
+
+  .cashier-flow-page .page-title {
+    color: var(--cashier-brand);
+  }
+
+  .cashier-flow-page .cashier-help-link {
+    color: var(--cashier-accent-600);
+  }
+
+  .cashier-flow-page .cashier-help-link:hover {
+    color: var(--cashier-brand);
+  }
+
+  .cashier-mode-tabs {
+    display: flex;
+    width: 100%;
+    max-width: 28rem;
+    gap: 0.25rem;
+    border-radius: 9999px;
+    border: 1px solid var(--cashier-border);
+    background: #ffffff;
+    padding: 0.25rem;
+  }
+
+  .cashier-mode-tab {
+    flex: 1;
+    min-height: 2.75rem;
+    border-radius: 9999px;
+    border: none;
+    background: transparent;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--cashier-text-muted);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+
+  .cashier-mode-tab.is-active {
+    background: var(--cashier-brand);
+    color: #ffffff;
+    box-shadow: var(--shadow-nav-pill);
+  }
+
+  .cashier-mode-tab:not(.is-active):hover {
+    color: var(--cashier-brand);
+  }
+
+  .cashier-flow-page .cashier-speed-tab.is-active {
+    background: var(--cashier-brand) !important;
+    color: #ffffff !important;
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .cashier-flow-page .cashier-speed-tab.is-active .cashier-speed-tab-sub {
+    color: rgb(255 255 255 / 0.85) !important;
+  }
+
+  .cashier-flow-page .cashier-speed-tab:not(.is-active) {
+    background: #ffffff;
+    color: var(--cashier-text-muted);
+  }
+
+  .cashier-flow-page .cashier-speed-tab:not(.is-active):hover {
+    color: var(--cashier-brand);
+  }
+
+  .cashier-step-badge {
+    display: flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: var(--cashier-accent-600);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .cashier-section-title {
+    font-weight: 700;
+    color: var(--cashier-brand);
+  }
+
+  .cashier-option-card {
+    border: 2px solid var(--cashier-border);
+    background: #ffffff;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .cashier-option-card:hover {
+    border-color: var(--cashier-accent-200);
+  }
+
+  .cashier-option-card.is-selected {
+    border-color: var(--cashier-accent-500);
+    background: var(--cashier-accent-50);
+  }
+
+  .cashier-option-card .cashier-option-label {
+    font-weight: 700;
+    color: var(--cashier-brand);
+  }
+
+  .cashier-flow-stepper .cashier-stepper-dot {
+    display: flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid var(--cashier-border);
+    background: var(--cashier-accent-50);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cashier-text-muted);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  @media (min-width: 640px) {
+    .cashier-flow-stepper .cashier-stepper-dot {
+      height: 2.5rem;
+      width: 2.5rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .cashier-flow-stepper .cashier-stepper-dot.is-active,
+  .cashier-flow-stepper .cashier-stepper-dot.is-completed {
+    border-color: transparent;
+    background: var(--cashier-accent-600);
+    color: #ffffff;
+  }
+
+  .cashier-flow-stepper .cashier-stepper-dot.is-active {
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.18), var(--shadow-accent);
+  }
+
+  .cashier-flow-stepper .cashier-stepper-label.is-active {
+    color: var(--cashier-accent-600);
+  }
+
+  .cashier-flow-stepper .cashier-stepper-label.is-completed {
+    color: var(--cashier-brand);
+  }
+
+  .cashier-flow-stepper .cashier-stepper-label.is-pending {
+    color: var(--cashier-text-muted);
+  }
+
+  .cashier-flow-stepper .cashier-stepper-connector.is-done {
+    background: var(--cashier-accent-600);
+  }
+
+  .cashier-flow-stepper .cashier-stepper-connector.is-pending {
+    background: var(--cashier-border);
+  }
+
+  .account-layout-cashier .profile-menu-logout {
+    background: #fee2e2;
+    border-color: rgb(248 113 113 / 0.28);
+    color: #dc2626;
+  }
+
+  .account-layout-cashier .profile-menu-logout:hover {
+    background: linear-gradient(180deg, #fecaca 0%, #fca5a5 100%);
+    border-color: rgb(220 38 38 / 0.35);
+    color: #991b1b;
+    box-shadow: 0 4px 12px rgb(220 38 38 / 0.12);
+  }
+
+  /** Profile dropdown ? logout (light default, red gradient on hover) */
   .profile-menu-logout {
     display: flex;
     width: 100%;
@@ -2671,7 +2969,7 @@
     font-size: 1rem;
     line-height: 1.25rem;
     font-weight: 700;
-    color: rgb(232, 23, 47);
+    color: #ffffff;
     transition:
       background 0.2s,
       border-color 0.2s,
@@ -2688,7 +2986,7 @@
     transform: translateY(-1px);
   }
 
-  /** Slots browse — active promotion block (matches soft-blue / wallet browse panel) */
+  /** Slots browse ? active promotion block (matches soft-blue / wallet browse panel) */
   .slot-current-promo {
     border-color: var(--color-border-brand);
     box-shadow: var(--shadow-subtle);
@@ -2698,7 +2996,7 @@
     border-color: var(--color-border-subtle);
   }
 
-  /** Profile dashboard — reuses CurrentPromoSection with account page tokens */
+  /** Profile dashboard ? reuses CurrentPromoSection with account page tokens */
   .profile-current-promo {
     background-color: var(--base-paper);
     border-color: var(--color-border-subtle);

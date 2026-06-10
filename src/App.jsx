@@ -704,11 +704,11 @@ function AppInner() {
           <ReferralCommissionPage onNavigate={handleNavigate} />
         </AccountLayout>
       ) : page === 'deposit' ? (
-        <AccountLayout activePage="deposit" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => handleNavigate('live-chat')}>
+        <AccountLayout variant="cashier" activePage="deposit" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => handleNavigate('live-chat')}>
           <DepositPage onNavigate={handleNavigate} />
         </AccountLayout>
       ) : page === 'withdrawal' ? (
-        <AccountLayout activePage="withdrawal" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => handleNavigate('live-chat')}>
+        <AccountLayout variant="cashier" activePage="withdrawal" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => handleNavigate('live-chat')}>
           <WithdrawalPage onNavigate={handleNavigate} navigationState={pageNavigationState} />
         </AccountLayout>
       ) : page === 'live-chat' ? (

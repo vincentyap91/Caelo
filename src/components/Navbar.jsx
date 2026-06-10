@@ -544,22 +544,22 @@ export default function Navbar({
                                 />
 
                                 {profileMenuOpen && (
-                                    <div className="dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] flex max-h-[calc(100vh-5rem)] w-[280px] flex-col overflow-hidden rounded-[24px] p-2.5 text-[var(--color-text-card-text)]">
+                                    <div className="profile-menu-dropdown dark-nav-shell absolute right-25 top-[calc(100%+10px)] z-[120] flex max-h-[calc(100vh-5rem)] w-[280px] flex-col overflow-hidden rounded-[24px] p-2.5">
                                         <div className="absolute inset-x-0 top-0 h-20 bg-gradient-nav-radial-top pointer-events-none" />
 
                                         <div className="relative shrink-0">
                                             <div className="relative flex items-start gap-3">
                                                 <div className="relative shrink-0">
-                                                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-border-subtle)] bg-gradient-menu-brand shadow-[var(--inset-highlight-strong)]">
-                                                        <UserCircle2 size={36} className="text-[var(--color-text-sticky-nav-text)]" />
+                                                    <div className="profile-menu-avatar flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-border-subtle)] bg-gradient-menu-brand shadow-[var(--inset-highlight-strong)]">
+                                                        <UserCircle2 size={36} className="profile-menu-avatar-icon" />
                                                     </div>
                                                 </div>
 
                                                 <div className="min-w-0 pt-1">
-                                                    <p className="truncate text-xl font-bold leading-none text-[var(--color-text-card-text)]">
+                                                    <p className="profile-menu-username truncate text-xl font-bold leading-none">
                                                         Hi, {authUser.name}
                                                     </p>
-                                                    <VipStatusPill level={vipLevel} theme="dark" className="mt-2" />
+                                                    <VipStatusPill level={vipLevel} theme="dark" className="profile-menu-vip-pill mt-2" />
                                                 </div>
                                             </div>
                                         </div>
@@ -572,14 +572,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand profile-menu-section-icon shadow-[var(--shadow-nav-pill)]">
                                                             <Wallet size={14} />
                                                         </div>
-                                                        <span className="text-lg font-bold text-[var(--color-text-card-text)]">Cashier</span>
+                                                        <span className="profile-menu-section-label text-lg font-bold">Cashier</span>
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'cashier' ? 'rotate-180' : ''}`}
+                                                        className={`profile-menu-chevron transition-transform ${openProfileSection === 'cashier' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'cashier' && (
@@ -596,8 +596,8 @@ export default function Navbar({
                                                                 }}
                                                                 className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
-                                                                <Icon size={18} className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]" />
-                                                                <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
+                                                                <Icon size={18} className="profile-menu-tile-icon mb-1.5" />
+                                                                <span className="profile-menu-tile-label text-xs font-bold leading-tight">{label}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -611,14 +611,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand profile-menu-section-icon shadow-[var(--shadow-nav-pill)]">
                                                             <UserRound size={14} />
                                                         </div>
-                                                        <span className="text-lg font-bold text-[var(--color-text-card-text)]">My Account</span>
+                                                        <span className="profile-menu-section-label text-lg font-bold">My Account</span>
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'account' ? 'rotate-180' : ''}`}
+                                                        className={`profile-menu-chevron transition-transform ${openProfileSection === 'account' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
 
@@ -639,8 +639,8 @@ export default function Navbar({
                                                                 }}
                                                                 className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
-                                                                <Icon size={18} className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]" />
-                                                                <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
+                                                                <Icon size={18} className="profile-menu-tile-icon mb-1.5" />
+                                                                <span className="profile-menu-tile-label text-xs font-bold leading-tight">{label}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -654,14 +654,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand profile-menu-section-icon shadow-[var(--shadow-nav-pill)]">
                                                             <Trophy size={14} />
                                                         </div>
-                                                        <span className="text-lg font-bold text-[var(--color-text-card-text)]">Rewards</span>
+                                                        <span className="profile-menu-section-label text-lg font-bold">Rewards</span>
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'rewards' ? 'rotate-90' : ''}`}
+                                                        className={`profile-menu-chevron transition-transform ${openProfileSection === 'rewards' ? 'rotate-90' : ''}`}
                                                     />
                                                 </button>
 
@@ -681,9 +681,9 @@ export default function Navbar({
                                                                 >
                                                                     <NavIcon
                                                                         size={18}
-                                                                        className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]"
+                                                                        className="profile-menu-tile-icon mb-1.5"
                                                                     />
-                                                                    <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
+                                                                    <span className="profile-menu-tile-label text-xs font-bold leading-tight">{label}</span>
                                                                 </button>
                                                             );
                                                         })}
@@ -698,14 +698,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between transition hover:opacity-90"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand profile-menu-section-icon shadow-[var(--shadow-nav-pill)]">
                                                             <History size={14} />
                                                         </div>
-                                                        <span className="text-lg font-bold text-[var(--color-text-card-text)]">History Record</span>
+                                                        <span className="profile-menu-section-label text-lg font-bold">History Record</span>
                                                     </div>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-90' : ''}`}
+                                                        className={`profile-menu-chevron transition-transform ${openProfileSection === 'historyRecord' ? 'rotate-90' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'historyRecord' && (
@@ -721,8 +721,8 @@ export default function Navbar({
                                                                 }}
                                                                 className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
-                                                                <Icon size={18} className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]" />
-                                                                <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
+                                                                <Icon size={18} className="profile-menu-tile-icon mb-1.5" />
+                                                                <span className="profile-menu-tile-label text-xs font-bold leading-tight">{label}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -736,14 +736,14 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between text-left"
                                                 >
                                                     <span className="flex items-center gap-3">
-                                                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand profile-menu-section-icon shadow-[var(--shadow-nav-pill)]">
                                                             <Settings size={14} />
                                                         </span>
-                                                        <span className="text-base font-bold text-[var(--color-text-card-text)]">Settings</span>
+                                                        <span className="profile-menu-section-label text-base font-bold">Settings</span>
                                                     </span>
                                                     <ChevronDown
                                                         size={16}
-                                                        className={`text-[var(--color-text-sticky-nav-text)] transition-transform ${openProfileSection === 'settings' ? 'rotate-180' : ''}`}
+                                                        className={`profile-menu-chevron transition-transform ${openProfileSection === 'settings' ? 'rotate-180' : ''}`}
                                                     />
                                                 </button>
                                                 {openProfileSection === 'settings' && (
@@ -763,8 +763,8 @@ export default function Navbar({
                                                                 }}
                                                                 className="dark-nav-tile group flex min-h-[64px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
-                                                                <Icon size={18} className="mb-1.5 text-[var(--color-text-sticky-nav-text)] group-hover:text-[var(--color-text-sticky-nav-active)]" />
-                                                                <span className="text-xs font-bold leading-tight text-[var(--color-text-card-text)]">{label}</span>
+                                                                <Icon size={18} className="profile-menu-tile-icon mb-1.5" />
+                                                                <span className="profile-menu-tile-label text-xs font-bold leading-tight">{label}</span>
                                                             </button>
                                                         ))}
                                                     </div>

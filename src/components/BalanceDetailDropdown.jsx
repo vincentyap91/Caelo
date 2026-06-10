@@ -27,7 +27,7 @@ export default function BalanceDetailDropdown({
                         onRefreshBalance?.();
                     }}
                     disabled={!onRefreshBalance || balanceRefreshing}
-                    className="balance-modal-icon-box inline-flex h-6 w-6 items-center justify-center rounded-[7px] border border-[var(--balance-border-color)] shadow-[var(--shadow-nav-pill)] transition hover:brightness-110 disabled:opacity-50"
+                    className="balance-modal-icon-box balance-modal-refresh-btn inline-flex h-6 w-6 items-center justify-center rounded-full transition hover:brightness-110 disabled:opacity-50"
                 >
                     <RefreshCw size={12} className={balanceRefreshing ? 'animate-spin' : ''} />
                 </button>
@@ -48,13 +48,13 @@ export default function BalanceDetailDropdown({
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="balance-modal-text-secondary text-xs font-bold tracking-wide">10.00</span>
-                            <ChevronDown size={14} className={`balance-modal-text-primary/60 transition-transform ${expandedMainWallet ? 'rotate-180' : ''}`} />
+                            <ChevronDown size={14} className={`balance-modal-chevron transition-transform ${expandedMainWallet ? 'rotate-180' : ''}`} />
                         </div>
                     </button>
                     {expandedMainWallet && (
                         <div className="pl-8 pr-[22px] pt-1.5 animate-in fade-in slide-in-from-top-1 duration-200">
                             <div className="flex items-center justify-between text-xs">
-                                <span className="font-medium balance-modal-text-primary/70">Royal Slot Gaming :</span>
+                                <span className="balance-modal-text-muted font-medium">Royal Slot Gaming :</span>
                                 <span className="font-bold tracking-wide balance-modal-text-secondary">10.00</span>
                             </div>
                         </div>
@@ -75,13 +75,13 @@ export default function BalanceDetailDropdown({
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="balance-modal-text-secondary text-xs font-bold tracking-wide">5.00</span>
-                            <ChevronDown size={14} className={`balance-modal-text-primary/60 transition-transform ${expandedGameWallet ? 'rotate-180' : ''}`} />
+                            <ChevronDown size={14} className={`balance-modal-chevron transition-transform ${expandedGameWallet ? 'rotate-180' : ''}`} />
                         </div>
                     </button>
                     {expandedGameWallet && (
                         <div className="pl-8 pr-[22px] pt-1.5 animate-in fade-in slide-in-from-top-1 duration-200">
                             <div className="flex items-center justify-between text-xs">
-                                <span className="font-medium balance-modal-text-primary/70">Pragmatic Play :</span>
+                                <span className="balance-modal-text-muted font-medium">Pragmatic Play :</span>
                                 <span className="font-bold tracking-wide balance-modal-text-secondary">5.00</span>
                             </div>
                         </div>

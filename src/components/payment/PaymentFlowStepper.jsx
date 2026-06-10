@@ -5,9 +5,11 @@ import { Check } from 'lucide-react';
  * Horizontal payment flow stepper (deposit / withdrawal).
  * Labels show on all breakpoints; compact on mobile, roomier on sm+.
  */
-export default function PaymentFlowStepper({ step, steps }) {
+export default function PaymentFlowStepper({ step, steps, variant = 'default', className = '' }) {
+    const isCashier = variant === 'cashier';
+
     return (
-        <nav aria-label="Progress" className="w-full">
+        <nav aria-label="Progress" className={`w-full${className ? ` ${className}` : ''}`}>
             <ol className="mx-auto flex w-full max-w-3xl list-none flex-wrap items-stretch justify-center gap-y-2 p-0 sm:flex-nowrap sm:items-center sm:gap-y-0">
                 {steps.map((s, idx) => {
                     const isCompleted = step > s.id;
@@ -18,13 +20,17 @@ export default function PaymentFlowStepper({ step, steps }) {
                         <React.Fragment key={s.id}>
                             <li className="flex min-w-0 flex-1 basis-[28%] flex-col items-center gap-1 sm:basis-auto sm:gap-1.5 md:min-w-[6.5rem] md:max-w-[11rem]">
                                 <div
-                                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition sm:h-10 sm:w-10 sm:text-sm ${
-                                        isCompleted
-                                            ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)]'
-                                            : isActive
-                                              ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] ring-[3px] ring-[var(--color-accent)]/22 shadow-[var(--shadow-accent)]'
-                                              : 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)]'
-                                    }`}
+                                    className={
+                                        isCashier
+                                            ? `cashier-stepper-dot${isCompleted ? ' is-completed' : ''}${isActive ? ' is-active' : ''}`
+                                            : `flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition sm:h-10 sm:w-10 sm:text-sm ${
+                                                  isCompleted
+                                                      ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)]'
+                                                      : isActive
+                                                        ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] ring-[3px] ring-[var(--color-accent)]/22 shadow-[var(--shadow-accent)]'
+                                                        : 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)]'
+                                              }`
+                                    }
                                 >
                                     {isCompleted ? (
                                         <Check size={18} strokeWidth={2.5} className="sm:h-5 sm:w-5" aria-hidden />
@@ -33,13 +39,19 @@ export default function PaymentFlowStepper({ step, steps }) {
                                     )}
                                 </div>
                                 <span
-                                    className={`w-full max-w-[7.5rem] text-center text-xs font-semibold leading-snug sm:max-w-none sm:text-sm ${
-                                        isActive
-                                            ? 'text-[var(--color-button-hover)]'
-                                            : isCompleted
-                                              ? 'text-[var(--color-text-primary)]'
-                                              : 'text-[var(--color-text-muted)]'
-                                    }`}
+                                    className={
+                                        isCashier
+                                            ? `cashier-stepper-label w-full max-w-[7.5rem] text-center text-xs font-semibold leading-snug sm:max-w-none sm:text-sm${
+                                                  isActive ? ' is-active' : isCompleted ? ' is-completed' : ' is-pending'
+                                              }`
+                                            : `w-full max-w-[7.5rem] text-center text-xs font-semibold leading-snug sm:max-w-none sm:text-sm ${
+                                                  isActive
+                                                      ? 'text-[var(--color-button-hover)]'
+                                                      : isCompleted
+                                                        ? 'text-[var(--color-text-primary)]'
+                                                        : 'text-[var(--color-text-muted)]'
+                                              }`
+                                    }
                                 >
                                     {s.label}
                                 </span>
@@ -50,9 +62,13 @@ export default function PaymentFlowStepper({ step, steps }) {
                                     aria-hidden
                                 >
                                     <div
-                                        className={`h-1 w-full rounded-full ${
-                                            step > s.id ? 'bg-[var(--color-button-hover)]' : 'bg-[var(--color-border-subtle)]'
-                                        }`}
+                                        className={
+                                            isCashier
+                                                ? `cashier-stepper-connector h-1 w-full rounded-full${step > s.id ? ' is-done' : ' is-pending'}`
+                                                : `h-1 w-full rounded-full ${
+                                                      step > s.id ? 'bg-[var(--color-button-hover)]' : 'bg-[var(--color-border-subtle)]'
+                                                  }`
+                                        }
                                     />
                                 </li>
                             )}
