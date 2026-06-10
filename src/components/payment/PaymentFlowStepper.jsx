@@ -20,10 +20,10 @@ export default function PaymentFlowStepper({ step, steps }) {
                                 <div
                                     className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition sm:h-10 sm:w-10 sm:text-sm ${
                                         isCompleted
-                                            ? 'bg-[var(--color-accent-600)] text-white'
+                                            ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)]'
                                             : isActive
-                                              ? 'bg-[var(--color-accent-600)] text-white ring-[3px] ring-[rgb(96_165_250_/_0.22)] shadow-[0_6px_14px_rgba(37,99,235,0.18)]'
-                                              : 'border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-text-muted)]'
+                                              ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] ring-[3px] ring-[var(--color-accent)]/22 shadow-[var(--shadow-accent)]'
+                                              : 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)]'
                                     }`}
                                 >
                                     {isCompleted ? (
@@ -35,9 +35,9 @@ export default function PaymentFlowStepper({ step, steps }) {
                                 <span
                                     className={`w-full max-w-[7.5rem] text-center text-xs font-semibold leading-snug sm:max-w-none sm:text-sm ${
                                         isActive
-                                            ? 'text-[var(--color-accent-600)]'
+                                            ? 'text-[var(--color-button-hover)]'
                                             : isCompleted
-                                              ? 'text-[var(--color-text-strong)]'
+                                              ? 'text-[var(--color-text-primary)]'
                                               : 'text-[var(--color-text-muted)]'
                                     }`}
                                 >
@@ -51,7 +51,7 @@ export default function PaymentFlowStepper({ step, steps }) {
                                 >
                                     <div
                                         className={`h-1 w-full rounded-full ${
-                                            step > s.id ? 'bg-[var(--color-accent-600)]' : 'bg-[var(--color-border-default)]'
+                                            step > s.id ? 'bg-[var(--color-button-hover)]' : 'bg-[var(--color-border-subtle)]'
                                         }`}
                                     />
                                 </li>

@@ -1,0 +1,1750 @@
+{
+  "generatedAt": "2026-06-09T08:04:15.140Z",
+  "summary": {
+    "filesScanned": 213,
+    "filesWithIssues": 87,
+    "filesClean": 56,
+    "filesWithSemanticUsage": 114,
+    "allowedSemanticTokens": 317,
+    "totalSemanticRefs": 3273,
+    "issueCountsByCategory": {
+      "gradientUtility": 386,
+      "arbitraryColor": 32,
+      "shadowRgba": 26,
+      "hex": 367,
+      "rgb": 141,
+      "named": 11,
+      "tailwindPalette": 9,
+      "ringWhite": 5,
+      "primitiveDirect": 64,
+      "disallowedSemantic": 1
+    }
+  },
+  "topOffenders": [
+    {
+      "file": "src/styles/theme.css",
+      "issues": 398,
+      "semanticRefs": 315
+    },
+    {
+      "file": "src/components/ThemeEditor.jsx",
+      "issues": 120,
+      "semanticRefs": 117
+    },
+    {
+      "file": "src/components/FeaturesRow.jsx",
+      "issues": 73,
+      "semanticRefs": 6
+    },
+    {
+      "file": "src/components/theme-editor/ThemeEditorConfig.js",
+      "issues": 67,
+      "semanticRefs": 0
+    },
+    {
+      "file": "src/components/ReferralStep3dIcons.jsx",
+      "issues": 52,
+      "semanticRefs": 0
+    },
+    {
+      "file": "src/components/AppDownload.jsx",
+      "issues": 32,
+      "semanticRefs": 62
+    },
+    {
+      "file": "src/components/referral.jsx",
+      "issues": 14,
+      "semanticRefs": 152
+    },
+    {
+      "file": "src/components/RewardsSection.jsx",
+      "issues": 13,
+      "semanticRefs": 116
+    },
+    {
+      "file": "src/components/ErrorBoundary.jsx",
+      "issues": 12,
+      "semanticRefs": 3
+    },
+    {
+      "file": "src/components/theme-editor/ThemeEditorShowcase.jsx",
+      "issues": 11,
+      "semanticRefs": 40
+    },
+    {
+      "file": "src/components/LanguageSwitcher.jsx",
+      "issues": 10,
+      "semanticRefs": 23
+    },
+    {
+      "file": "src/components/RolloverStatusCard.jsx",
+      "issues": 10,
+      "semanticRefs": 76
+    },
+    {
+      "file": "src/components/LiveChatModal.jsx",
+      "issues": 9,
+      "semanticRefs": 104
+    },
+    {
+      "file": "src/components/VipStatusPill.jsx",
+      "issues": 9,
+      "semanticRefs": 10
+    },
+    {
+      "file": "src/constants/navStickyOffsets.js",
+      "issues": 9,
+      "semanticRefs": 0
+    },
+    {
+      "file": "src/components/content/ContentPageLayout.jsx",
+      "issues": 8,
+      "semanticRefs": 18
+    },
+    {
+      "file": "src/components/footerPayments/EeziePayIcon.jsx",
+      "issues": 8,
+      "semanticRefs": 0
+    },
+    {
+      "file": "src/components/Navbar.jsx",
+      "issues": 8,
+      "semanticRefs": 107
+    },
+    {
+      "file": "src/components/footerPayments/TouchNGoIcon.jsx",
+      "issues": 6,
+      "semanticRefs": 0
+    },
+    {
+      "file": "src/components/Promos.jsx",
+      "issues": 6,
+      "semanticRefs": 6
+    },
+    {
+      "file": "src/components/RegisterPage.jsx",
+      "issues": 6,
+      "semanticRefs": 51
+    },
+    {
+      "file": "src/components/ui/CountdownTimer.jsx",
+      "issues": 6,
+      "semanticRefs": 6
+    },
+    {
+      "file": "src/components/VipPage.jsx",
+      "issues": 6,
+      "semanticRefs": 78
+    },
+    {
+      "file": "src/constants/pageBannerClasses.js",
+      "issues": 6,
+      "semanticRefs": 1
+    },
+    {
+      "file": "src/index.css",
+      "issues": 6,
+      "semanticRefs": 0
+    }
+  ],
+  "byCategory": {
+    "gradientUtility": [
+      {
+        "file": "src/App.jsx",
+        "line": 677,
+        "match": "bg-gradient-account-shell",
+        "snippet": "<main className=\"w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8\">"
+      },
+      {
+        "file": "src/App.jsx",
+        "line": 694,
+        "match": "bg-gradient-account-shell",
+        "snippet": "<main className=\"w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8\">"
+      },
+      {
+        "file": "src/components/AccountLayout.jsx",
+        "line": 20,
+        "match": "bg-gradient-account-shell",
+        "snippet": "className=\"w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8\""
+      },
+      {
+        "file": "src/components/AllGamesPage.jsx",
+        "line": 11,
+        "match": "bg-gradient-live-page",
+        "snippet": "<main className=\"all-games-page w-full bg-gradient-live-page pb-14\">"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 67,
+        "match": "bg-gradient-app-download-phone",
+        "snippet": "<div className=\"flex h-full w-full flex-col gap-2 overflow-hidden rounded-[20px] bg-gradient-app-download-phone p-2 pt-8\">"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 87,
+        "match": "bg-gradient-app-download-preview",
+        "snippet": "<div className=\"flex h-full w-full flex-col gap-1.5 overflow-hidden rounded-[22px] bg-gradient-app-download-preview p-2 pt-9\">"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 95,
+        "match": "bg-gradient-to-r",
+        "snippet": "<div className=\"flex h-12 w-full items-center justify-around rounded-lg border border-[var(--color-border-brand)]/20 bg-gradient-to-r from-["
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 121,
+        "match": "bg-gradient-app-download-section",
+        "snippet": "className=\"app-download-section relative mt-4 scroll-mt-[114px] overflow-hidden rounded-[30px] border border-[var(--color-surface-base)]/80 "
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 190,
+        "match": "bg-gradient-app-download-shell",
+        "snippet": "<div className=\"relative overflow-hidden rounded-[30px] border border-[var(--color-surface-base)]/85 bg-gradient-app-download-shell p-4 shad"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 200,
+        "match": "bg-gradient-app-download-inner",
+        "snippet": "<div className=\"mt-3 rounded-[24px] border border-[var(--color-border-subtle)] bg-gradient-app-download-inner px-3 py-3 shadow-[var(--inset-"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 204,
+        "match": "bg-gradient-app-download-qr",
+        "snippet": "<div className=\"flex h-[102px] w-[102px] items-center justify-center rounded-[14px] border border-dashed border-[var(--color-border-subtle)]"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 232,
+        "match": "bg-gradient-app-download-button",
+        "snippet": "className=\"mt-2.5 flex min-h-9 w-full items-center justify-center gap-2 rounded-full bg-gradient-app-download-button px-4 py-2 text-sm font-"
+      },
+      {
+        "file": "src/components/BalanceDetailDropdown.jsx",
+        "line": 18,
+        "match": "bg-gradient-nav-radial-top",
+        "snippet": "<div className=\"absolute inset-x-0 top-0 h-16 bg-gradient-nav-radial-top pointer-events-none\" />"
+      },
+      {
+        "file": "src/components/content/ContentPageLayout.jsx",
+        "line": 70,
+        "match": "bg-gradient-live-page-content",
+        "snippet": "<main className=\"w-full bg-gradient-live-page-content pb-14 md:pb-20\">"
+      },
+      {
+        "file": "src/components/content/ContentPageLayout.jsx",
+        "line": 73,
+        "match": "bg-gradient-content-hero-top",
+        "snippet": "<div className=\"pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-content-hero-top\" />"
+      },
+      {
+        "file": "src/components/content/ContentPageLayout.jsx",
+        "line": 74,
+        "match": "bg-gradient-content-hero-blob",
+        "snippet": "<div className=\"pointer-events-none absolute bottom-[-5rem] left-[-3rem] h-40 w-56 rounded-full bg-gradient-content-hero-blob blur-3xl md:bo"
+      },
+      {
+        "file": "src/components/content/ContentPageLayout.jsx",
+        "line": 89,
+        "match": "bg-gradient-content-hero-scrim",
+        "snippet": "<div className=\"pointer-events-none absolute inset-x-0 inset-y-0 bg-gradient-content-hero-scrim md:bg-gradient-content-hero-scrim-md\" />"
+      },
+      {
+        "file": "src/components/content/ContentPageLayout.jsx",
+        "line": 89,
+        "match": "bg-gradient-content-hero-scrim-md",
+        "snippet": "<div className=\"pointer-events-none absolute inset-x-0 inset-y-0 bg-gradient-content-hero-scrim md:bg-gradient-content-hero-scrim-md\" />"
+      },
+      {
+        "file": "src/components/content/ContentPageLayout.jsx",
+        "line": 90,
+        "match": "bg-gradient-content-hero-bottom",
+        "snippet": "<div className=\"pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-content-hero-bottom md:hidden\" />"
+      },
+      {
+        "file": "src/components/content/ContentPageLayout.jsx",
+        "line": 92,
+        "match": "bg-gradient-content-hero-spotlight",
+        "snippet": "className=\"pointer-events-none absolute left-[14%] top-[3%] h-[6rem] w-[7rem] bg-gradient-content-hero-spotlight blur-[46px] sm:left-[22%] s"
+      },
+      {
+        "file": "src/components/content/ContentPageLayout.jsx",
+        "line": 135,
+        "match": "bg-gradient-content-hero-mobile-fade",
+        "snippet": "<div className=\"bg-gradient-content-hero-mobile-fade px-7 pb-7 pt-12\">"
+      },
+      {
+        "file": "src/components/DepositPage.jsx",
+        "line": 298,
+        "match": "bg-gradient-to-b",
+        "snippet": "? 'bg-gradient-to-b from-[var(--color-accent)] to-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-none sm:shadow-sm'"
+      },
+      {
+        "file": "src/components/DepositPage.jsx",
+        "line": 356,
+        "match": "bg-gradient-to-r",
+        "snippet": "<span className=\"absolute left-2 top-2 inline-flex max-w-[calc(100%-1rem)] items-center gap-0.5 truncate rounded bg-gradient-to-r from-[var("
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 58,
+        "match": "gradient-home-muted",
+        "snippet": "background: 'var(--color-gradient-home-muted)',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 79,
+        "match": "gradient-home-muted",
+        "snippet": "background: 'var(--color-gradient-home-muted)',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 141,
+        "match": "gradient-button-cta",
+        "snippet": "background: 'var(--color-gradient-button-cta)',"
+      },
+      {
+        "file": "src/components/EsportsPage.jsx",
+        "line": 16,
+        "match": "bg-gradient-live-page",
+        "snippet": "<main className=\"w-full bg-gradient-live-page pb-14\">"
+      },
+      {
+        "file": "src/components/FishingPage.jsx",
+        "line": 91,
+        "match": "bg-gradient-soft-blue-panel",
+        "snippet": "<main className=\"w-full bg-gradient-soft-blue-panel pb-14 font-sans\">"
+      },
+      {
+        "file": "src/components/FloatingSocials.jsx",
+        "line": 77,
+        "match": "bg-gradient-floating-social",
+        "snippet": "className=\"relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-floating-social text-[var(--color-text-card-t"
+      },
+      {
+        "file": "src/components/game/GameCardFavouriteButton.jsx",
+        "line": 34,
+        "match": "bg-gradient-favourite-inactive",
+        "snippet": "const inactiveClasses = `${TRANSITION} game-fav-btn-inactive border border-[var(--color-border-brand)]/20 bg-gradient-favourite-inactive tex"
+      },
+      {
+        "file": "src/components/game/GameCardFavouriteButton.jsx",
+        "line": 34,
+        "match": "bg-gradient-favourite-inactive-hover",
+        "snippet": "const inactiveClasses = `${TRANSITION} game-fav-btn-inactive border border-[var(--color-border-brand)]/20 bg-gradient-favourite-inactive tex"
+      },
+      {
+        "file": "src/components/game/GameCardFavouriteButton.jsx",
+        "line": 36,
+        "match": "bg-gradient-favourite-active",
+        "snippet": "const activeClasses = `${TRANSITION} game-fav-btn-active scale-[1.02] border-2 border-[var(--color-border-brand)]/95 bg-gradient-favourite-a"
+      },
+      {
+        "file": "src/components/game/GameCardFavouriteButton.jsx",
+        "line": 36,
+        "match": "bg-gradient-favourite-active-hover",
+        "snippet": "const activeClasses = `${TRANSITION} game-fav-btn-active scale-[1.02] border-2 border-[var(--color-border-brand)]/95 bg-gradient-favourite-a"
+      },
+      {
+        "file": "src/components/game/GameCardFavouriteButton.jsx",
+        "line": 36,
+        "match": "bg-gradient-favourite-active-hover",
+        "snippet": "const activeClasses = `${TRANSITION} game-fav-btn-active scale-[1.02] border-2 border-[var(--color-border-brand)]/95 bg-gradient-favourite-a"
+      },
+      {
+        "file": "src/components/game/GameCategoryNavigation.jsx",
+        "line": 23,
+        "match": "bg-gradient-tag",
+        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';"
+      },
+      {
+        "file": "src/components/game-detail/GameDetailLayout.jsx",
+        "line": 90,
+        "match": "bg-gradient-live-page-content",
+        "snippet": "<main className=\"w-full bg-gradient-live-page-content pb-14 font-sans md:pb-20 lg:pb-24\">"
+      },
+      {
+        "file": "src/components/game-detail/GameDetailMobileInfoCard.jsx",
+        "line": 32,
+        "match": "bg-gradient-to-br",
+        "snippet": "<div className=\"flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--color-accent-pale)] to-[var(--color-accent-glow"
+      },
+      {
+        "file": "src/components/game-detail/Pussy888PreLaunchPanel.jsx",
+        "line": 31,
+        "match": "bg-gradient-game-card-overlay",
+        "snippet": "className=\"absolute inset-0 bg-gradient-game-card-overlay md:bg-gradient-sidenav-scrim\""
+      },
+      {
+        "file": "src/components/game-detail/Pussy888PreLaunchPanel.jsx",
+        "line": 31,
+        "match": "bg-gradient-sidenav-scrim",
+        "snippet": "className=\"absolute inset-0 bg-gradient-game-card-overlay md:bg-gradient-sidenav-scrim\""
+      },
+      {
+        "file": "src/components/HomeLiveActivity.jsx",
+        "line": 6,
+        "match": "bg-gradient-home-dashboard",
+        "snippet": "'w-full overflow-hidden rounded-2xl border border-[var(--color-border-brand)] bg-gradient-home-dashboard p-6 shadow-[var(--shadow-card-soft)"
+      }
+    ],
+    "arbitraryColor": [
+      {
+        "file": "src/components/AccountSidebar.jsx",
+        "line": 414,
+        "match": "shadow-[0_4px_12px_rgba(15,23,42,0.04)]",
+        "snippet": "className=\"mt-1.5 inline-flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color"
+      },
+      {
+        "file": "src/components/FavouritesPage.jsx",
+        "line": 131,
+        "match": "shadow-[0_4px_12px_rgba(15,23,42,0.04)]",
+        "snippet": "<div className=\"inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[0_4px_12px_rgba"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 249,
+        "match": "shadow-[0_5px_15px_rgba(0,174,239,0.05)]",
+        "snippet": "className=\"group flex h-full min-h-[7.5rem] min-w-0 flex-col items-center justify-center gap-2.5 rounded-xl border border-[var(--color-borde"
+      },
+      {
+        "file": "src/components/GameCategories.jsx",
+        "line": 69,
+        "match": "shadow-[0_0_15px_rgba(255,255,255,0.4)]",
+        "snippet": "<div className=\"absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center "
+      },
+      {
+        "file": "src/components/HeroSection.jsx",
+        "line": 26,
+        "match": "shadow-[0_4px_12px_rgba(0,0,0,0.1)]",
+        "snippet": "<div className=\"relative z-20 flex min-h-9 w-full items-center border-t border-[var(--color-border-brand)]/5 bg-[var(--color-primary)] py-1."
+      },
+      {
+        "file": "src/components/LanguageSwitcher.jsx",
+        "line": 47,
+        "match": "shadow-[0_6px_14px_rgba(15,23,42,0.08)]",
+        "snippet": "? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,"
+      },
+      {
+        "file": "src/components/LoginModal.jsx",
+        "line": 199,
+        "match": "shadow-[0_1px_2px_rgb(0_0_0_/_10%)]",
+        "snippet": "className=\"inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 "
+      },
+      {
+        "file": "src/components/LoginModal.jsx",
+        "line": 199,
+        "match": "shadow-[0_2px_5px_rgb(37_211_102_/_28%)]",
+        "snippet": "className=\"inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 "
+      },
+      {
+        "file": "src/components/NavProviderDropdownPanel.jsx",
+        "line": 27,
+        "match": "shadow-[0_0_0_1px_rgba(120,178,255,0.45),0_14px_24px_rgba(7,19,44,0.75),0_0_24px_rgba(97,156,255,0.35)]",
+        "snippet": "className=\"group relative h-[160px] w-[160px] justify-self-center overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-"
+      },
+      {
+        "file": "src/components/PromotionWarningModal.jsx",
+        "line": 61,
+        "match": "shadow-[0_12px_24px_rgba(255,178,45,0.16)]",
+        "snippet": "<span className=\"inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-gradient-cta text-[var(--color-text-cta-inverse"
+      },
+      {
+        "file": "src/components/referral.jsx",
+        "line": 165,
+        "match": "shadow-[0_10px_20px_rgb(37_99_235_/_0.12)]",
+        "snippet": "iconShadow: 'drop-shadow-[0_10px_20px_rgb(37_99_235_/_0.12)]',"
+      },
+      {
+        "file": "src/components/referral.jsx",
+        "line": 175,
+        "match": "shadow-[0_10px_20px_rgb(242_154_0_/_0.15)]",
+        "snippet": "iconShadow: 'drop-shadow-[0_10px_20px_rgb(242_154_0_/_0.15)]',"
+      },
+      {
+        "file": "src/components/RegisterPage.jsx",
+        "line": 188,
+        "match": "shadow-[0_1px_2px_rgb(0_0_0_/_10%)]",
+        "snippet": "className=\"mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] "
+      },
+      {
+        "file": "src/components/RegisterPage.jsx",
+        "line": 188,
+        "match": "shadow-[0_2px_5px_rgb(37_211_102_/_28%)]",
+        "snippet": "className=\"mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] "
+      },
+      {
+        "file": "src/components/RewardsSection.jsx",
+        "line": 147,
+        "match": "bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgb(255_255_255_/_0.06)_2px,rgb(255_255_255_/_0.06)_4px)]",
+        "snippet": "<div className=\"absolute inset-0 flex items-center justify-center bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgb(255_25"
+      },
+      {
+        "file": "src/components/RolloverStatusCard.jsx",
+        "line": 140,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.38)]",
+        "snippet": "<div className=\"mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-accent-pale)] text-[var(--color-text-su"
+      },
+      {
+        "file": "src/components/RolloverStatusCard.jsx",
+        "line": 163,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]",
+        "snippet": "<div className=\"rounded-xl bg-[var(--color-border-subtle)]5 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:text-right\">"
+      },
+      {
+        "file": "src/components/RolloverStatusCard.jsx",
+        "line": 200,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.38)]",
+        "snippet": "<div className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.38)] ${"
+      },
+      {
+        "file": "src/components/RolloverStatusCard.jsx",
+        "line": 231,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]",
+        "snippet": "<div className=\"rounded-xl bg-[var(--color-border-subtle)]5 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:text-right\">"
+      },
+      {
+        "file": "src/components/SlotBrowseFilterModal.jsx",
+        "line": 170,
+        "match": "shadow-[0_2px_10px_rgba(15,23,42,0.04)]",
+        "snippet": "<label className=\"flex h-11 min-h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)]/90 bg-[var(--color-surf"
+      },
+      {
+        "file": "src/components/ui/ScrollToTop.jsx",
+        "line": 42,
+        "match": "shadow-[0_8px_16px_rgba(0,114,188,0.24)]",
+        "snippet": "className={`fixed ${mobilePositionClass} z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-br"
+      },
+      {
+        "file": "src/components/VipStatusPill.jsx",
+        "line": 23,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
+        "snippet": "const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-text-sticky-nav-text)] shadow-[inse"
+      },
+      {
+        "file": "src/components/VipStatusPill.jsx",
+        "line": 26,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
+        "snippet": "'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-gradient-vip-nav-"
+      },
+      {
+        "file": "src/components/VipStatusPill.jsx",
+        "line": 45,
+        "match": "shadow-[0_0_12px_rgba(59_130_246_/_0.25)]",
+        "snippet": "className=\"-mt-2 inline-flex items-center justify-center rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)]"
+      },
+      {
+        "file": "src/components/VipTier.jsx",
+        "line": 86,
+        "match": "shadow-[0_8px_20px_rgba(0,114,188,0.06)]",
+        "snippet": "className=\"surface-card min-w-[288px] snap-center overflow-hidden rounded-[22px] border border-[var(--color-border-brand)]/70 bg-[var(--colo"
+      },
+      {
+        "file": "src/constants/navStickyOffsets.js",
+        "line": 9,
+        "match": "bg-[rgb(255_255_255_/_0.98)]",
+        "snippet": "export const NAV_STICKY_QUICK_PLAY_BAR_CLASS = `fixed left-0 right-0 z-40 ${NAV_STICKY_SUBHEADER_TOP_CLASS} border-b border-slate-200/90 bg-"
+      },
+      {
+        "file": "src/constants/navStickyOffsets.js",
+        "line": 9,
+        "match": "shadow-[0_6px_18px_rgba(16,32,72,0.08)]",
+        "snippet": "export const NAV_STICKY_QUICK_PLAY_BAR_CLASS = `fixed left-0 right-0 z-40 ${NAV_STICKY_SUBHEADER_TOP_CLASS} border-b border-slate-200/90 bg-"
+      },
+      {
+        "file": "src/constants/navStickyOffsets.js",
+        "line": 9,
+        "match": "bg-[rgb(255_255_255_/_0.95)]",
+        "snippet": "export const NAV_STICKY_QUICK_PLAY_BAR_CLASS = `fixed left-0 right-0 z-40 ${NAV_STICKY_SUBHEADER_TOP_CLASS} border-b border-slate-200/90 bg-"
+      },
+      {
+        "file": "src/constants/navStickyOffsets.js",
+        "line": 9,
+        "match": "shadow-[0_8px_24px_rgba(16,32,72,0.12)]",
+        "snippet": "export const NAV_STICKY_QUICK_PLAY_BAR_CLASS = `fixed left-0 right-0 z-40 ${NAV_STICKY_SUBHEADER_TOP_CLASS} border-b border-slate-200/90 bg-"
+      },
+      {
+        "file": "src/constants/pageBannerClasses.js",
+        "line": 19,
+        "match": "bg-[rgb(221_232_248)]",
+        "snippet": "'block w-full bg-[rgb(221_232_248)] max-md:h-full max-md:min-h-0 max-md:object-cover max-md:object-center md:h-auto md:w-full md:object-cove"
+      },
+      {
+        "file": "src/constants/pageBannerClasses.js",
+        "line": 25,
+        "match": "bg-[rgb(221_232_248)]",
+        "snippet": "'block h-full w-full bg-[rgb(221_232_248)] object-cover object-center';"
+      },
+      {
+        "file": "src/constants/pageBannerClasses.js",
+        "line": 29,
+        "match": "bg-[rgb(216_227_242)]",
+        "snippet": "'block w-full bg-[rgb(216_227_242)] max-md:h-full max-md:min-h-0 max-md:object-cover max-md:object-[22%_center] md:h-auto md:w-full md:objec"
+      }
+    ],
+    "shadowRgba": [
+      {
+        "file": "src/components/AccountSidebar.jsx",
+        "line": 414,
+        "match": "shadow-[0_4px_12px_rgba(15,23,42,0.04)]",
+        "snippet": "className=\"mt-1.5 inline-flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color"
+      },
+      {
+        "file": "src/components/FavouritesPage.jsx",
+        "line": 131,
+        "match": "shadow-[0_4px_12px_rgba(15,23,42,0.04)]",
+        "snippet": "<div className=\"inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[0_4px_12px_rgba"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 249,
+        "match": "shadow-[0_5px_15px_rgba(0,174,239,0.05)]",
+        "snippet": "className=\"group flex h-full min-h-[7.5rem] min-w-0 flex-col items-center justify-center gap-2.5 rounded-xl border border-[var(--color-borde"
+      },
+      {
+        "file": "src/components/GameCategories.jsx",
+        "line": 69,
+        "match": "shadow-[0_0_15px_rgba(255,255,255,0.4)]",
+        "snippet": "<div className=\"absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center "
+      },
+      {
+        "file": "src/components/HeroSection.jsx",
+        "line": 26,
+        "match": "shadow-[0_4px_12px_rgba(0,0,0,0.1)]",
+        "snippet": "<div className=\"relative z-20 flex min-h-9 w-full items-center border-t border-[var(--color-border-brand)]/5 bg-[var(--color-primary)] py-1."
+      },
+      {
+        "file": "src/components/LanguageSwitcher.jsx",
+        "line": 47,
+        "match": "shadow-[0_6px_14px_rgba(15,23,42,0.08)]",
+        "snippet": "? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,"
+      },
+      {
+        "file": "src/components/LoginModal.jsx",
+        "line": 199,
+        "match": "shadow-[0_1px_2px_rgb(0_0_0_/_10%)]",
+        "snippet": "className=\"inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 "
+      },
+      {
+        "file": "src/components/LoginModal.jsx",
+        "line": 199,
+        "match": "shadow-[0_2px_5px_rgb(37_211_102_/_28%)]",
+        "snippet": "className=\"inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 "
+      },
+      {
+        "file": "src/components/NavProviderDropdownPanel.jsx",
+        "line": 27,
+        "match": "shadow-[0_0_0_1px_rgba(120,178,255,0.45),0_14px_24px_rgba(7,19,44,0.75),0_0_24px_rgba(97,156,255,0.35)]",
+        "snippet": "className=\"group relative h-[160px] w-[160px] justify-self-center overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-"
+      },
+      {
+        "file": "src/components/PromotionWarningModal.jsx",
+        "line": 61,
+        "match": "shadow-[0_12px_24px_rgba(255,178,45,0.16)]",
+        "snippet": "<span className=\"inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-gradient-cta text-[var(--color-text-cta-inverse"
+      },
+      {
+        "file": "src/components/referral.jsx",
+        "line": 165,
+        "match": "shadow-[0_10px_20px_rgb(37_99_235_/_0.12)]",
+        "snippet": "iconShadow: 'drop-shadow-[0_10px_20px_rgb(37_99_235_/_0.12)]',"
+      },
+      {
+        "file": "src/components/referral.jsx",
+        "line": 175,
+        "match": "shadow-[0_10px_20px_rgb(242_154_0_/_0.15)]",
+        "snippet": "iconShadow: 'drop-shadow-[0_10px_20px_rgb(242_154_0_/_0.15)]',"
+      },
+      {
+        "file": "src/components/RegisterPage.jsx",
+        "line": 188,
+        "match": "shadow-[0_1px_2px_rgb(0_0_0_/_10%)]",
+        "snippet": "className=\"mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] "
+      },
+      {
+        "file": "src/components/RegisterPage.jsx",
+        "line": 188,
+        "match": "shadow-[0_2px_5px_rgb(37_211_102_/_28%)]",
+        "snippet": "className=\"mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] "
+      },
+      {
+        "file": "src/components/RolloverStatusCard.jsx",
+        "line": 140,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.38)]",
+        "snippet": "<div className=\"mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-accent-pale)] text-[var(--color-text-su"
+      },
+      {
+        "file": "src/components/RolloverStatusCard.jsx",
+        "line": 163,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]",
+        "snippet": "<div className=\"rounded-xl bg-[var(--color-border-subtle)]5 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:text-right\">"
+      },
+      {
+        "file": "src/components/RolloverStatusCard.jsx",
+        "line": 200,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.38)]",
+        "snippet": "<div className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.38)] ${"
+      },
+      {
+        "file": "src/components/RolloverStatusCard.jsx",
+        "line": 231,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]",
+        "snippet": "<div className=\"rounded-xl bg-[var(--color-border-subtle)]5 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:text-right\">"
+      },
+      {
+        "file": "src/components/SlotBrowseFilterModal.jsx",
+        "line": 170,
+        "match": "shadow-[0_2px_10px_rgba(15,23,42,0.04)]",
+        "snippet": "<label className=\"flex h-11 min-h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)]/90 bg-[var(--color-surf"
+      },
+      {
+        "file": "src/components/ui/ScrollToTop.jsx",
+        "line": 42,
+        "match": "shadow-[0_8px_16px_rgba(0,114,188,0.24)]",
+        "snippet": "className={`fixed ${mobilePositionClass} z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-br"
+      },
+      {
+        "file": "src/components/VipStatusPill.jsx",
+        "line": 23,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
+        "snippet": "const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-text-sticky-nav-text)] shadow-[inse"
+      },
+      {
+        "file": "src/components/VipStatusPill.jsx",
+        "line": 26,
+        "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
+        "snippet": "'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-gradient-vip-nav-"
+      },
+      {
+        "file": "src/components/VipStatusPill.jsx",
+        "line": 45,
+        "match": "shadow-[0_0_12px_rgba(59_130_246_/_0.25)]",
+        "snippet": "className=\"-mt-2 inline-flex items-center justify-center rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)]"
+      },
+      {
+        "file": "src/components/VipTier.jsx",
+        "line": 86,
+        "match": "shadow-[0_8px_20px_rgba(0,114,188,0.06)]",
+        "snippet": "className=\"surface-card min-w-[288px] snap-center overflow-hidden rounded-[22px] border border-[var(--color-border-brand)]/70 bg-[var(--colo"
+      },
+      {
+        "file": "src/constants/navStickyOffsets.js",
+        "line": 9,
+        "match": "shadow-[0_6px_18px_rgba(16,32,72,0.08)]",
+        "snippet": "export const NAV_STICKY_QUICK_PLAY_BAR_CLASS = `fixed left-0 right-0 z-40 ${NAV_STICKY_SUBHEADER_TOP_CLASS} border-b border-slate-200/90 bg-"
+      },
+      {
+        "file": "src/constants/navStickyOffsets.js",
+        "line": 9,
+        "match": "shadow-[0_8px_24px_rgba(16,32,72,0.12)]",
+        "snippet": "export const NAV_STICKY_QUICK_PLAY_BAR_CLASS = `fixed left-0 right-0 z-40 ${NAV_STICKY_SUBHEADER_TOP_CLASS} border-b border-slate-200/90 bg-"
+      }
+    ],
+    "hex": [
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 11,
+        "match": "#FFE066",
+        "snippet": "<stop offset=\"0%\" stopColor=\"#FFE066\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 12,
+        "match": "#FFB800",
+        "snippet": "<stop offset=\"45%\" stopColor=\"#FFB800\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 13,
+        "match": "#B87800",
+        "snippet": "<stop offset=\"100%\" stopColor=\"#B87800\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 16,
+        "match": "#FFB80066",
+        "snippet": "<feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"4\" floodColor=\"#FFB80066\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 28,
+        "match": "#E09000",
+        "snippet": "<circle cx=\"40\" cy=\"42\" r=\"12\" fill=\"#E09000\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 29,
+        "match": "#FFD740",
+        "snippet": "<circle cx=\"40\" cy=\"42\" r=\"9\" fill=\"#FFD740\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 38,
+        "match": "#6FE4FF",
+        "snippet": "<stop offset=\"0%\" stopColor=\"#6FE4FF\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 39,
+        "match": "#00AEEF",
+        "snippet": "<stop offset=\"50%\" stopColor=\"#00AEEF\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 40,
+        "match": "#005FA0",
+        "snippet": "<stop offset=\"100%\" stopColor=\"#005FA0\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 53,
+        "match": "#FF9A80",
+        "snippet": "<stop offset=\"0%\" stopColor=\"#FF9A80\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 54,
+        "match": "#F44336",
+        "snippet": "<stop offset=\"50%\" stopColor=\"#F44336\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 55,
+        "match": "#A00000",
+        "snippet": "<stop offset=\"100%\" stopColor=\"#A00000\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 58,
+        "match": "#bd1",
+        "snippet": "<rect x=\"4\" y=\"4\" width=\"56\" height=\"56\" rx=\"16\" fill=\"url(#bd1)\" stroke=\"rgba(255,255,255,0.35)\" strokeWidth=\"2\" />"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 65,
+        "match": "#fff",
+        "snippet": "background: '#fff',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 68,
+        "match": "#e2e8f0",
+        "snippet": "border: '1px solid #e2e8f0',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 95,
+        "match": "#0f172a",
+        "snippet": "color: '#0f172a',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 105,
+        "match": "#64748b",
+        "snippet": "color: '#64748b',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 122,
+        "match": "#cbd5e1",
+        "snippet": "border: '1px solid #cbd5e1',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 123,
+        "match": "#f8fafc",
+        "snippet": "background: '#f8fafc',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 124,
+        "match": "#334155",
+        "snippet": "color: '#334155',"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 142,
+        "match": "#fff",
+        "snippet": "color: '#fff',"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 10,
+        "match": "#7AD9FF",
+        "snippet": "<stop offset=\"0%\" stopColor=\"#7AD9FF\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 11,
+        "match": "#00AEEF",
+        "snippet": "<stop offset=\"55%\" stopColor=\"#00AEEF\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 12,
+        "match": "#0070C0",
+        "snippet": "<stop offset=\"100%\" stopColor=\"#0070C0\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 15,
+        "match": "#8ADEFF",
+        "snippet": "<stop offset=\"0%\" stopColor=\"#8ADEFF\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 16,
+        "match": "#29B6F6",
+        "snippet": "<stop offset=\"55%\" stopColor=\"#29B6F6\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 17,
+        "match": "#0277BD",
+        "snippet": "<stop offset=\"100%\" stopColor=\"#0277BD\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 20,
+        "match": "#FFFFFF",
+        "snippet": "<stop offset=\"0%\" stopColor=\"#FFFFFF\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 21,
+        "match": "#C8E9FF",
+        "snippet": "<stop offset=\"100%\" stopColor=\"#C8E9FF\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 24,
+        "match": "#00AEEF55",
+        "snippet": "<feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"4\" floodColor=\"#00AEEF55\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 34,
+        "match": "#90CAF9",
+        "snippet": "<rect x=\"44\" y=\"32\" width=\"22\" height=\"28\" rx=\"4\" fill=\"url(#pb-doc)\" stroke=\"#90CAF9\" strokeWidth=\"1.5\" filter=\"url(#pb-shadow)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 36,
+        "match": "#90CAF9",
+        "snippet": "<rect x=\"48\" y=\"38\" width=\"13\" height=\"2\" rx=\"1\" fill=\"#90CAF9\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 37,
+        "match": "#90CAF9",
+        "snippet": "<rect x=\"48\" y=\"43\" width=\"10\" height=\"2\" rx=\"1\" fill=\"#90CAF9\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 38,
+        "match": "#90CAF9",
+        "snippet": "<rect x=\"48\" y=\"48\" width=\"13\" height=\"2\" rx=\"1\" fill=\"#90CAF9\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 39,
+        "match": "#90CAF9",
+        "snippet": "<rect x=\"48\" y=\"53\" width=\"8\" height=\"2\" rx=\"1\" fill=\"#90CAF9\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 42,
+        "match": "#FFB800",
+        "snippet": "fill=\"#FFB800\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 44,
+        "match": "#00AEEF",
+        "snippet": "<path d=\"M44 46 Q40 44 44 38\" stroke=\"#00AEEF\" strokeWidth=\"5\" strokeLinecap=\"round\" fill=\"none\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 53,
+        "match": "#6FE4FF",
+        "snippet": "<stop offset=\"0%\" stopColor=\"#6FE4FF\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 54,
+        "match": "#00AEEF",
+        "snippet": "<stop offset=\"100%\" stopColor=\"#00AEEF\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 57,
+        "match": "#00AEEF",
+        "snippet": "<stop offset=\"0%\" stopColor=\"#00AEEF\" />"
+      }
+    ],
+    "rgb": [
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 30,
+        "match": "rgba(255,255,255,0.30)",
+        "snippet": "<ellipse cx=\"34\" cy=\"34\" rx=\"7\" ry=\"4\" fill=\"rgba(255,255,255,0.30)\" transform=\"rotate(-25 34 34)\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 45,
+        "match": "rgba(255,255,255,0.28)",
+        "snippet": "<ellipse cx=\"22\" cy=\"17\" rx=\"7\" ry=\"3.5\" fill=\"rgba(255,255,255,0.28)\" transform=\"rotate(-20 22 17)\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 58,
+        "match": "rgba(255,255,255,0.35)",
+        "snippet": "<rect x=\"4\" y=\"4\" width=\"56\" height=\"56\" rx=\"16\" fill=\"url(#bd1)\" stroke=\"rgba(255,255,255,0.35)\" strokeWidth=\"2\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 60,
+        "match": "rgba(255,255,255,0.45)",
+        "snippet": "<line x1=\"14\" y1=\"37\" x2=\"50\" y2=\"37\" stroke=\"rgba(255,255,255,0.45)\" strokeWidth=\"1.5\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 61,
+        "match": "rgba(255,255,255,0.85)",
+        "snippet": "<text x=\"32\" y=\"50\" textAnchor=\"middle\" fill=\"rgba(255,255,255,0.85)\" fontSize=\"9\" fontWeight=\"700\" style={{ fontFamily: 'var(--font-family-"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 62,
+        "match": "rgba(255,255,255,0.22)",
+        "snippet": "<ellipse cx=\"22\" cy=\"14\" rx=\"9\" ry=\"4\" fill=\"rgba(255,255,255,0.22)\" transform=\"rotate(-15 22 14)\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 152,
+        "match": "rgba(0,100,180,0.22)",
+        "snippet": "style={{ transform: 'rotate(10deg)', filter: 'drop-shadow(0 12px 24px rgba(0,100,180,0.22))' }}"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 164,
+        "match": "rgba(0,100,180,0.28)",
+        "snippet": "style={{ transform: 'rotate(-10deg)', filter: 'drop-shadow(0 16px 32px rgba(0,100,180,0.28))' }}"
+      },
+      {
+        "file": "src/components/ErrorBoundary.jsx",
+        "line": 67,
+        "match": "rgba(15,23,42,0.10)",
+        "snippet": "boxShadow: '0 8px 32px rgba(15,23,42,0.10)',"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 32,
+        "match": "rgba(255,255,255,0.30)",
+        "snippet": "<ellipse cx=\"29\" cy=\"25\" rx=\"5\" ry=\"3\" fill=\"rgba(255,255,255,0.30)\" transform=\"rotate(-25 29 25)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 97,
+        "match": "rgba(255,255,255,0.18)",
+        "snippet": "<polygon points=\"18,0 36,9 18,18 0,9\" fill=\"rgba(255,255,255,0.18)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 105,
+        "match": "rgba(255,255,255,0.20)",
+        "snippet": "<polygon points=\"18,0 36,9 18,18 0,9\" fill=\"rgba(255,255,255,0.20)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 113,
+        "match": "rgba(255,255,255,0.18)",
+        "snippet": "<polygon points=\"18,0 36,9 18,18 0,9\" fill=\"rgba(255,255,255,0.18)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 138,
+        "match": "rgba(255,255,255,0.4)",
+        "snippet": "fill=\"url(#sh-outer)\" filter=\"url(#sh-shadow)\" stroke=\"rgba(255,255,255,0.4)\" strokeWidth=\"1.5\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 145,
+        "match": "rgba(255,255,255,0.28)",
+        "snippet": "<ellipse cx=\"32\" cy=\"22\" rx=\"10\" ry=\"5\" fill=\"rgba(255,255,255,0.28)\" transform=\"rotate(-18 32 22)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 189,
+        "match": "rgba(255,255,255,0.30)",
+        "snippet": "<rect x=\"11\" y=\"51\" width=\"4\" height=\"4\" rx=\"1.5\" fill=\"rgba(255,255,255,0.30)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 192,
+        "match": "rgba(255,255,255,0.30)",
+        "snippet": "<rect x=\"26\" y=\"41\" width=\"4\" height=\"5\" rx=\"1.5\" fill=\"rgba(255,255,255,0.30)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 195,
+        "match": "rgba(255,255,255,0.30)",
+        "snippet": "<rect x=\"41\" y=\"29\" width=\"4\" height=\"6\" rx=\"1.5\" fill=\"rgba(255,255,255,0.30)\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 198,
+        "match": "rgba(255,255,255,0.30)",
+        "snippet": "<rect x=\"56\" y=\"17\" width=\"4\" height=\"7\" rx=\"1.5\" fill=\"rgba(255,255,255,0.30)\" />"
+      },
+      {
+        "file": "src/components/referral/DownlineDetailModal.jsx",
+        "line": 191,
+        "match": "rgba(0,0,0,0.55)",
+        "snippet": "style={{ background: 'rgba(0,0,0,0.55)' }}"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 41,
+        "match": "rgba(255,255,255,0.28)",
+        "snippet": "<ellipse cx=\"34\" cy=\"49\" rx=\"8\" ry=\"5\" fill=\"rgba(255,255,255,0.28)\" transform=\"rotate(-16 34 49)\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 43,
+        "match": "rgba(255,255,255,0.32)",
+        "snippet": "<ellipse cx=\"19\" cy=\"23\" rx=\"4\" ry=\"2.5\" fill=\"rgba(255,255,255,0.32)\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 45,
+        "match": "rgba(255,255,255,0.28)",
+        "snippet": "<ellipse cx=\"55\" cy=\"23\" rx=\"4\" ry=\"2.5\" fill=\"rgba(255,255,255,0.28)\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 72,
+        "match": "rgba(255,255,255,0.45)",
+        "snippet": "<rect x=\"10\" y=\"18\" width=\"48\" height=\"44\" rx=\"11\" fill={`url(#${u}-card)`} stroke=\"rgba(255,255,255,0.45)\" strokeWidth=\"1.2\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 73,
+        "match": "rgba(255,255,255,0.18)",
+        "snippet": "<rect x=\"14\" y=\"22\" width=\"40\" height=\"34\" rx=\"7\" fill=\"rgba(255,255,255,0.18)\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 77,
+        "match": "rgba(255,255,255,0.4)",
+        "snippet": "<ellipse cx=\"52\" cy=\"25\" rx=\"6\" ry=\"3.5\" fill=\"rgba(255,255,255,0.4)\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 112,
+        "match": "rgba(255,255,255,0.35)",
+        "snippet": "stroke=\"rgba(255,255,255,0.35)\""
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 119,
+        "match": "rgba(255,255,255,0.45)",
+        "snippet": "<ellipse cx=\"22\" cy=\"17\" rx=\"4.5\" ry=\"2.8\" fill=\"rgba(255,255,255,0.45)\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 122,
+        "match": "rgba(255,255,255,0.42)",
+        "snippet": "<ellipse cx=\"59\" cy=\"16\" rx=\"3.5\" ry=\"2.2\" fill=\"rgba(255,255,255,0.42)\" />"
+      },
+      {
+        "file": "src/components/RewardsSection.jsx",
+        "line": 147,
+        "match": "rgb(255_255_255_/_0.06)",
+        "snippet": "<div className=\"absolute inset-0 flex items-center justify-center bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgb(255_25"
+      },
+      {
+        "file": "src/components/RewardsSection.jsx",
+        "line": 147,
+        "match": "rgb(255_255_255_/_0.06)",
+        "snippet": "<div className=\"absolute inset-0 flex items-center justify-center bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgb(255_25"
+      },
+      {
+        "file": "src/components/theme-editor/ThemeEditorShowcase.jsx",
+        "line": 63,
+        "match": "rgba(255,255,255,0.15)",
+        "snippet": "background: i === 0 ? 'rgba(255,255,255,0.15)' : 'transparent',"
+      },
+      {
+        "file": "src/components/theme-editor/ThemeEditorShowcase.jsx",
+        "line": 116,
+        "match": "rgba(57,181,74,0.12)",
+        "snippet": "background: s === 'Completed' ? 'rgba(57,181,74,0.12)' : 'rgba(255,91,46,0.12)',"
+      },
+      {
+        "file": "src/components/theme-editor/ThemeEditorShowcase.jsx",
+        "line": 116,
+        "match": "rgba(255,91,46,0.12)",
+        "snippet": "background: s === 'Completed' ? 'rgba(57,181,74,0.12)' : 'rgba(255,91,46,0.12)',"
+      },
+      {
+        "file": "src/components/theme-editor/ThemeEditorShowcase.jsx",
+        "line": 148,
+        "match": "rgba(57,181,74,0.1)",
+        "snippet": "{ type: 'success', bg: 'rgba(57,181,74,0.1)', border: 'var(--color-success)', color: 'var(--color-success)', text: 'Deposit successful! Fund"
+      },
+      {
+        "file": "src/components/theme-editor/ThemeEditorShowcase.jsx",
+        "line": 149,
+        "match": "rgba(255,91,46,0.1)",
+        "snippet": "{ type: 'error', bg: 'rgba(255,91,46,0.1)', border: 'var(--color-danger)', color: 'var(--color-danger)', text: 'Withdrawal failed. Please tr"
+      },
+      {
+        "file": "src/components/ThemeEditor.jsx",
+        "line": 127,
+        "match": "rgba(r,g,b,a)",
+        "snippet": "/** Normalize any CSS color (hex, rgb, rgba, named) to canonical \"rgba(r,g,b,a)\" string */"
+      },
+      {
+        "file": "src/components/ThemeEditor.jsx",
+        "line": 129,
+        "match": "rgba(0, 0, 0, 0)",
+        "snippet": "if (!raw || raw === 'transparent' || raw === 'rgba(0, 0, 0, 0)') return null;"
+      },
+      {
+        "file": "src/components/ThemeEditor.jsx",
+        "line": 136,
+        "match": "rgb(r, g, b)",
+        "snippet": "// Computed is always \"rgb(r, g, b)\" or \"rgba(r, g, b, a)\""
+      },
+      {
+        "file": "src/components/ThemeEditor.jsx",
+        "line": 136,
+        "match": "rgba(r, g, b, a)",
+        "snippet": "// Computed is always \"rgb(r, g, b)\" or \"rgba(r, g, b, a)\""
+      }
+    ],
+    "named": [
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 43,
+        "match": "stroke=\"white\"",
+        "snippet": "<path d=\"M28 3L4 13v16c0 14.3 10.3 27.7 24 31C41.7 56.7 52 43.3 52 29V13L28 3z\" fill=\"url(#sh1)\" stroke=\"white\" strokeWidth=\"2.5\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 44,
+        "match": "stroke=\"white\"",
+        "snippet": "<path d=\"M17 30l7 7 15-14\" stroke=\"white\" strokeWidth=\"4\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />"
+      },
+      {
+        "file": "src/components/AppDownload.jsx",
+        "line": 59,
+        "match": "fill=\"white\"",
+        "snippet": "<text x=\"32\" y=\"31\" textAnchor=\"middle\" fill=\"white\" fontSize=\"18\" fontWeight=\"900\" style={{ fontFamily: 'var(--font-family-sans)' }}>13</te"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 143,
+        "match": "stroke=\"white\"",
+        "snippet": "<path d=\"M27 42 L35 52 L55 30\" stroke=\"white\" strokeWidth=\"5.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />"
+      },
+      {
+        "file": "src/components/FeaturesRow.jsx",
+        "line": 213,
+        "match": "fill=\"white\"",
+        "snippet": "<circle cx=\"60\" cy=\"16\" r=\"2.5\" fill=\"white\" stroke=\"#00E676\" strokeWidth=\"2\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 74,
+        "match": "fill=\"white\"",
+        "snippet": "<circle cx=\"34\" cy=\"40\" r=\"8\" fill=\"white\" fillOpacity=\"0.95\" />"
+      },
+      {
+        "file": "src/components/ReferralStep3dIcons.jsx",
+        "line": 75,
+        "match": "fill=\"white\"",
+        "snippet": "<path d=\"M34 49c-4.5 0-8 2.5-8 6h16c0-3.5-3.5-6-8-6z\" fill=\"white\" fillOpacity=\"0.92\" />"
+      },
+      {
+        "file": "src/components/ui/CasinoChipIcon.jsx",
+        "line": 33,
+        "match": "fill=\"white\"",
+        "snippet": "<rect width=\"18\" height=\"18\" fill=\"white\" />"
+      },
+      {
+        "file": "src/components/ui/RebateIcon.jsx",
+        "line": 47,
+        "match": "fill=\"white\"",
+        "snippet": "<rect width=\"14\" height=\"14\" fill=\"white\" />"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 1295,
+        "match": "filter: gray",
+        "snippet": "filter: grayscale(100%);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 2238,
+        "match": "color: white",
+        "snippet": "color: white;"
+      }
+    ],
+    "tailwindPalette": [
+      {
+        "file": "src/components/game/GameCategoryNavigation.jsx",
+        "line": 23,
+        "match": "ring-white/10",
+        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';"
+      },
+      {
+        "file": "src/components/GameCategories.jsx",
+        "line": 69,
+        "match": "bg-white/20",
+        "snippet": "<div className=\"absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center "
+      },
+      {
+        "file": "src/components/GameCategories.jsx",
+        "line": 69,
+        "match": "border-white/40",
+        "snippet": "<div className=\"absolute bottom-3 left-3 w-9 h-9 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center "
+      },
+      {
+        "file": "src/components/home/MobileHomeBottomNav.jsx",
+        "line": 96,
+        "match": "ring-white",
+        "snippet": "<span className=\"absolute -right-1.5 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[var(--color-danger)] px-0.5 t"
+      },
+      {
+        "file": "src/components/LanguageSwitcher.jsx",
+        "line": 118,
+        "match": "ring-white/10",
+        "snippet": "className=\"h-5 w-7 shrink-0 rounded-[4px] object-cover ring-1 ring-white/10\""
+      },
+      {
+        "file": "src/components/notifications/PushNotificationToast.jsx",
+        "line": 240,
+        "match": "ring-white/70",
+        "snippet": "className={`${animClass} relative w-full overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-border-subtle)] bg-gradien"
+      },
+      {
+        "file": "src/components/ui/CountdownTimer.jsx",
+        "line": 31,
+        "match": "to-yellow",
+        "snippet": "/** Gold-to-yellow gradient matching the CTA button */"
+      },
+      {
+        "file": "src/components/ui/ScrollToTop.jsx",
+        "line": 42,
+        "match": "ring-white/20",
+        "snippet": "className={`fixed ${mobilePositionClass} z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-br"
+      },
+      {
+        "file": "src/constants/navStickyOffsets.js",
+        "line": 9,
+        "match": "border-slate-200/90",
+        "snippet": "export const NAV_STICKY_QUICK_PLAY_BAR_CLASS = `fixed left-0 right-0 z-40 ${NAV_STICKY_SUBHEADER_TOP_CLASS} border-b border-slate-200/90 bg-"
+      }
+    ],
+    "ringWhite": [
+      {
+        "file": "src/components/game/GameCategoryNavigation.jsx",
+        "line": 23,
+        "match": "ring-white/10",
+        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';"
+      },
+      {
+        "file": "src/components/home/MobileHomeBottomNav.jsx",
+        "line": 96,
+        "match": "ring-white",
+        "snippet": "<span className=\"absolute -right-1.5 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[var(--color-danger)] px-0.5 t"
+      },
+      {
+        "file": "src/components/LanguageSwitcher.jsx",
+        "line": 118,
+        "match": "ring-white/10",
+        "snippet": "className=\"h-5 w-7 shrink-0 rounded-[4px] object-cover ring-1 ring-white/10\""
+      },
+      {
+        "file": "src/components/notifications/PushNotificationToast.jsx",
+        "line": 240,
+        "match": "ring-white/70",
+        "snippet": "className={`${animClass} relative w-full overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-border-subtle)] bg-gradien"
+      },
+      {
+        "file": "src/components/ui/ScrollToTop.jsx",
+        "line": 42,
+        "match": "ring-white/20",
+        "snippet": "className={`fixed ${mobilePositionClass} z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-br"
+      }
+    ],
+    "primitiveDirect": [
+      {
+        "file": "src/styles/theme.css",
+        "line": 222,
+        "match": "var(--brand-630",
+        "snippet": "--color-button-hover: var(--brand-630);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 223,
+        "match": "var(--raw-text-brand-soft",
+        "snippet": "--color-text-secondary: var(--raw-text-brand-soft);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 240,
+        "match": "var(--raw-page-home",
+        "snippet": "background-color: var(--raw-page-home);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 244,
+        "match": "var(--raw-page-register",
+        "snippet": "background-color: var(--raw-page-register);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 248,
+        "match": "var(--raw-page-account",
+        "snippet": "background-color: var(--raw-page-account);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 252,
+        "match": "var(--raw-page-default",
+        "snippet": "background-color: var(--raw-page-default);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 260,
+        "match": "var(--brand-500",
+        "snippet": "--color-surface-low: var(--brand-500);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 261,
+        "match": "var(--mono-0",
+        "snippet": "--color-text-light: var(--mono-0);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 265,
+        "match": "var(--mono-0",
+        "snippet": "--color-border-line: var(--mono-0);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 269,
+        "match": "var(--brand-500",
+        "snippet": "--color-sticky-nav: var(--brand-500);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 270,
+        "match": "var(--brand-500",
+        "snippet": "--color-surface-high: var(--brand-500);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 280,
+        "match": "var(--raw-gradient-lottery-header-start",
+        "snippet": "var(--raw-gradient-lottery-header-start) 0%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 281,
+        "match": "var(--raw-gradient-lottery-header-end",
+        "snippet": "var(--raw-gradient-lottery-header-end) 100%"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 302,
+        "match": "var(--raw-scrim-fav-inactive-start",
+        "snippet": "var(--raw-scrim-fav-inactive-start) 0%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 303,
+        "match": "var(--raw-scrim-fav-inactive-end",
+        "snippet": "var(--raw-scrim-fav-inactive-end) 100%"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 310,
+        "match": "var(--raw-scrim-fav-hover-start",
+        "snippet": "var(--raw-scrim-fav-hover-start) 0%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 311,
+        "match": "var(--raw-scrim-fav-hover-end",
+        "snippet": "var(--raw-scrim-fav-hover-end) 100%"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 318,
+        "match": "var(--raw-scrim-fav-active-start",
+        "snippet": "var(--raw-scrim-fav-active-start) 0%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 319,
+        "match": "var(--raw-scrim-fav-active-mid",
+        "snippet": "var(--raw-scrim-fav-active-mid) 48%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 320,
+        "match": "var(--raw-scrim-fav-active-end",
+        "snippet": "var(--raw-scrim-fav-active-end) 100%"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 327,
+        "match": "var(--raw-scrim-fav-active-hover-start",
+        "snippet": "var(--raw-scrim-fav-active-hover-start) 0%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 328,
+        "match": "var(--raw-scrim-fav-active-hover-mid",
+        "snippet": "var(--raw-scrim-fav-active-hover-mid) 48%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 329,
+        "match": "var(--raw-scrim-fav-active-hover-end",
+        "snippet": "var(--raw-scrim-fav-active-hover-end) 100%"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 336,
+        "match": "var(--raw-scrim-game-overlay-start",
+        "snippet": "var(--raw-scrim-game-overlay-start) 0%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 337,
+        "match": "var(--raw-scrim-game-overlay-mid",
+        "snippet": "var(--raw-scrim-game-overlay-mid) 36%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 338,
+        "match": "var(--raw-scrim-game-overlay-end",
+        "snippet": "var(--raw-scrim-game-overlay-end) 100%"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 345,
+        "match": "var(--raw-scrim-game-glow-soft",
+        "snippet": "var(--raw-scrim-game-glow-soft) 0%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 346,
+        "match": "var(--raw-scrim-game-glow-faint",
+        "snippet": "var(--raw-scrim-game-glow-faint) 48%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 354,
+        "match": "var(--raw-scrim-game-glow-strong",
+        "snippet": "var(--raw-scrim-game-glow-strong) 0%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 355,
+        "match": "var(--raw-scrim-game-glow-mid",
+        "snippet": "var(--raw-scrim-game-glow-mid) 46%,"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 361,
+        "match": "var(--raw-gradient-app-download-section-start",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(180deg, var(--raw-gradient-app-download-section-start) 0%, var(--raw-gradient-app-download-"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 361,
+        "match": "var(--raw-gradient-app-download-section-end",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(180deg, var(--raw-gradient-app-download-section-start) 0%, var(--raw-gradient-app-download-"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 366,
+        "match": "var(--raw-gradient-app-download-phone-start",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(180deg, var(--raw-gradient-app-download-phone-start) 0%, var(--raw-gradient-app-download-ph"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 366,
+        "match": "var(--raw-gradient-app-download-phone-end",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(180deg, var(--raw-gradient-app-download-phone-start) 0%, var(--raw-gradient-app-download-ph"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 371,
+        "match": "var(--brand-500",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(180deg, var(--brand-500) 0%, var(--raw-gradient-app-download-preview-end) 100%);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 371,
+        "match": "var(--raw-gradient-app-download-preview-end",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(180deg, var(--brand-500) 0%, var(--raw-gradient-app-download-preview-end) 100%);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 376,
+        "match": "var(--raw-gradient-app-download-button-start",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(90deg, var(--raw-gradient-app-download-button-start) 0%, var(--brand-500) 100%);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 376,
+        "match": "var(--brand-500",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(90deg, var(--raw-gradient-app-download-button-start) 0%, var(--brand-500) 100%);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 381,
+        "match": "var(--mono-0",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(180deg, var(--mono-0) 0%, var(--raw-gradient-app-download-qr-end) 100%);"
+      },
+      {
+        "file": "src/styles/theme.css",
+        "line": 381,
+        "match": "var(--raw-gradient-app-download-qr-end",
+        "snippet": "--color-gradient-home-highlight: linear-gradient(180deg, var(--mono-0) 0%, var(--raw-gradient-app-download-qr-end) 100%);"
+      }
+    ],
+    "disallowedSemantic": [
+      {
+        "file": "src/styles/theme.css",
+        "line": 1994,
+        "match": "--color-accent-200",
+        "snippet": "border-color: var(--color-accent-200);"
+      }
+    ]
+  },
+  "cleanFilesSample": [
+    "src/components/AccountHistoryRecordPanel.jsx",
+    "src/components/CalendarDateInput.jsx",
+    "src/components/FeedbackPage.jsx",
+    "src/components/Footer.jsx",
+    "src/components/FooterPaymentMethods.jsx",
+    "src/components/game/GameProviderRail.jsx",
+    "src/components/game/LobbyProviderCard.jsx",
+    "src/components/game/ProviderLobbyTile.jsx",
+    "src/components/game/RtpLabel.jsx",
+    "src/components/game/TopGameCard.jsx",
+    "src/components/game-detail/GameDetailBreadcrumb.jsx",
+    "src/components/game-detail/GameDetailDataTable.jsx",
+    "src/components/game-detail/GameDetailFallbackPanel.jsx",
+    "src/components/game-detail/GameDetailPage.jsx",
+    "src/components/game-detail/GameDetailPlayer.jsx",
+    "src/components/game-detail/GameDetailPlayModal.jsx",
+    "src/components/game-detail/GameDetailRecommendedCarousel.jsx",
+    "src/components/HelpCenterPage.jsx",
+    "src/components/home/LiveTransactionsPanel.jsx",
+    "src/components/home/MobileHomeCategoryGames.jsx",
+    "src/components/home/PayoutCard.jsx",
+    "src/components/home/ProviderShowcaseSection.jsx",
+    "src/components/home/RecentBigWinsSection.jsx",
+    "src/components/home/RecentPayoutSection.jsx",
+    "src/components/home/ReferralBannerSection.jsx",
+    "src/components/HotGamesPage.jsx",
+    "src/components/LiveChatPage.jsx",
+    "src/components/MyBetsPage.jsx",
+    "src/components/NotificationsPage.jsx",
+    "src/components/payment/PaymentFlowStepper.jsx"
+  ],
+  "svgCandidateFiles": [
+    {
+      "file": "src/components/AppDownload.jsx",
+      "issues": 32
+    },
+    {
+      "file": "src/components/FeaturesRow.jsx",
+      "issues": 73
+    },
+    {
+      "file": "src/components/footerPayments/BoostIcon.jsx",
+      "issues": 2
+    },
+    {
+      "file": "src/components/footerPayments/BtcIcon.jsx",
+      "issues": 2
+    },
+    {
+      "file": "src/components/footerPayments/DuitNowIcon.jsx",
+      "issues": 5
+    },
+    {
+      "file": "src/components/footerPayments/EasyPaisaIcon.jsx",
+      "issues": 3
+    },
+    {
+      "file": "src/components/footerPayments/EeziePayIcon.jsx",
+      "issues": 8
+    },
+    {
+      "file": "src/components/footerPayments/EthereumIcon.jsx",
+      "issues": 2
+    },
+    {
+      "file": "src/components/footerPayments/GrabPayIcon.jsx",
+      "issues": 2
+    },
+    {
+      "file": "src/components/footerPayments/JazzCashIcon.jsx",
+      "issues": 2
+    },
+    {
+      "file": "src/components/footerPayments/LitecoinIcon.jsx",
+      "issues": 3
+    },
+    {
+      "file": "src/components/footerPayments/MaybankIcon.jsx",
+      "issues": 4
+    },
+    {
+      "file": "src/components/footerPayments/RhbIcon.jsx",
+      "issues": 4
+    },
+    {
+      "file": "src/components/footerPayments/ShopeePayIcon.jsx",
+      "issues": 2
+    },
+    {
+      "file": "src/components/footerPayments/SurePayIcon.jsx",
+      "issues": 4
+    },
+    {
+      "file": "src/components/footerPayments/TouchNGoIcon.jsx",
+      "issues": 6
+    },
+    {
+      "file": "src/components/footerPayments/TruePayIcon.jsx",
+      "issues": 5
+    },
+    {
+      "file": "src/components/footerPayments/UsdtIcon.jsx",
+      "issues": 2
+    },
+    {
+      "file": "src/components/GameCategories.jsx",
+      "issues": 4
+    },
+    {
+      "file": "src/components/ReferralStep3dIcons.jsx",
+      "issues": 52
+    }
+  ]
+}

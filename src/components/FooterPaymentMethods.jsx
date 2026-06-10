@@ -5,7 +5,7 @@ import UsdtIcon from './footerPayments/UsdtIcon';
 function PaymentMethodChip({ children, minWide = false }) {
     return (
         <span
-            className={`inline-flex shrink-0 items-center justify-center rounded-xl border border-[rgb(168_226_251)] bg-white/90 backdrop-blur-sm ${
+            className={`inline-flex shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-line)] bg-[var(--color-surface)] backdrop-blur-sm ${
                 minWide
                     ? 'h-9 min-w-[4.25rem] px-2.5 py-0 sm:h-10 sm:min-w-[4.75rem] sm:px-3 md:h-11 md:min-w-[5.25rem]'
                     : 'h-9 w-9 p-0 sm:h-10 sm:w-10 md:h-11 md:w-11'
@@ -27,9 +27,9 @@ const BANK_OPTIONS = [
 ].filter(Boolean);
 
 const wideIconClass =
-    'h-6 w-auto max-h-6 object-contain drop-shadow-[0_1px_2px_rgba(15,23,42,0.12)] sm:h-7 sm:max-h-7 md:h-8 md:max-h-8';
+    'h-6 w-auto max-h-6 object-contain drop-shadow-[var(--shadow-subtle)] sm:h-7 sm:max-h-7 md:h-8 md:max-h-8';
 const squareIconClass =
-    'h-6 w-6 shrink-0 object-contain drop-shadow-[0_1px_2px_rgba(15,23,42,0.12)] sm:h-7 sm:w-7 md:h-8 md:w-8';
+    'h-6 w-6 shrink-0 object-contain drop-shadow-[var(--shadow-subtle)] sm:h-7 sm:w-7 md:h-8 md:w-8';
 
 export default function FooterPaymentMethods() {
     return (

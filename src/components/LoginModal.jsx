@@ -103,26 +103,26 @@ export default function LoginModal({
     };
 
     return (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6">
+        <div className="login-modal-root fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6">
             <button
                 type="button"
                 aria-label="Close login modal"
                 onClick={onClose}
-                className="absolute inset-0 bg-black/70 backdrop-blur-[1px]"
+                className="absolute inset-0 bg-[var(--color-overlay-strong)] backdrop-blur-[1px]"
             />
 
             <section
                 role="dialog"
                 aria-modal="true"
                 aria-label="Login"
-                className="relative z-[1] w-full max-w-[600px] rounded-2xl border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
+                className="login-modal-shell login-modal-panel relative z-[1] w-full max-w-[600px] rounded-2xl px-5 pb-6 pt-8 sm:px-8 sm:pb-8 sm:pt-10"
                 onClick={(event) => event.stopPropagation()}
             >
                 <button
                     type="button"
                     aria-label="Close"
                     onClick={onClose}
-                    className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-brand-deep)] text-white transition hover:brightness-95"
+                    className="login-modal-close absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full transition hover:brightness-95"
                 >
                     <X size={18} strokeWidth={3} />
                 </button>
@@ -132,22 +132,22 @@ export default function LoginModal({
                 </div>
 
                 <form onSubmit={handleSubmit} className="mx-auto mt-6 w-full max-w-[420px]">
-                    <label className="flex items-center gap-3 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 py-2 shadow-[var(--inset-panel)]">
-                        <span className="inline-flex h-8 w-9 items-center justify-center rounded-full bg-[var(--color-brand-deep)] text-white">
+                    <label className="login-modal-field">
+                        <span className="login-modal-field__icon">
                             <UserRound size={16} />
                         </span>
                         <input
                             value={username}
                             onChange={(event) => setUsername(event.target.value)}
                             placeholder="Username"
-                            className="w-full bg-transparent text-lg font-semibold text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
+                            className="login-modal-input"
                             autoComplete="username"
                         />
                     </label>
 
                     <div className="mt-4">
-                        <label className="flex items-center gap-3 rounded-md border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-3 py-2 shadow-[var(--inset-panel)]">
-                            <span className="inline-flex h-8 w-9 items-center justify-center rounded-full bg-[var(--color-brand-deep)] text-white">
+                        <label className="login-modal-field">
+                            <span className="login-modal-field__icon">
                                 <Lock size={16} />
                             </span>
                             <input
@@ -155,22 +155,22 @@ export default function LoginModal({
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                                 placeholder="Password"
-                                className="w-full bg-transparent text-lg font-semibold text-[rgb(35_64_106)] outline-none placeholder:text-[rgb(111_133_168)]"
+                                className="login-modal-input"
                                 autoComplete="current-password"
                             />
                         </label>
                         {loginError && (
-                            <p className="mt-2 text-sm font-medium text-[var(--color-danger-main)]">{loginError}</p>
+                            <p className="mt-2 text-sm font-medium text-[var(--color-danger)]">{loginError}</p>
                         )}
                         <div className="mt-2 flex items-center justify-between gap-3">
-                            <button type="button" className="text-sm font-semibold text-[rgb(53_91_143)] hover:underline sm:text-base">
+                            <button type="button" className="text-sm font-semibold text-[var(--color-text-primary-card-title)] hover:underline sm:text-base">
                                 Forgot Password?
                             </button>
 
                             <button
                                 type="submit"
                                 disabled={loginLoading}
-                                className="btn-theme-cta-soft inline-flex h-10 min-w-[100px] items-center justify-center rounded-xl px-5 text-sm font-bold tracking-[0.03em] transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70 sm:text-base"
+                                className="btn-theme-cta-soft inline-flex h-10 min-w-[100px] items-center justify-center rounded-xl px-5 text-sm font-bold transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70 sm:text-base"
                             >
                                 {loginLoading ? 'Logging in...' : 'LOGIN'}
                             </button>
@@ -185,10 +185,10 @@ export default function LoginModal({
                     verifyCode={(code, trustDevice) => verify2FALogin(sessionId, code, trustDevice)}
                 />
 
-                <div className="mx-auto mt-7 flex w-full max-w-[420px] items-center gap-4 text-base font-medium text-[var(--color-text-muted)] sm:text-lg">
-                    <div className="h-px flex-1 bg-[rgb(171_204_235)]" />
+                <div className="mx-auto mt-7 flex w-full max-w-[420px] items-center gap-4 text-base font-medium login-modal-footer-text sm:text-lg">
+                    <div className="login-modal-divider h-px flex-1" />
                     <span>or</span>
-                    <div className="h-px flex-1 bg-[rgb(171_204_235)]" />
+                    <div className="login-modal-divider h-px flex-1" />
                 </div>
 
                 <div className="mt-6 flex justify-center">
@@ -196,14 +196,14 @@ export default function LoginModal({
                         type="button"
                         onClick={handleWhatsAppLogin}
                         disabled={whatsappLoading}
-                        className="inline-flex h-10 items-center gap-2 rounded-md border border-[#1da851] bg-[#25D366] px-4 text-sm font-semibold text-white shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[#20bd5a] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97] disabled:cursor-not-allowed disabled:opacity-70"
+                        className="inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 text-sm font-semibold text-[var(--color-text-card-text)] shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[var(--color-success-strong)] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97] disabled:cursor-not-allowed disabled:opacity-70"
                     >
                         <WhatsAppIcon size={16} className="shrink-0 opacity-95" />
                         {whatsappLoading ? 'Connecting...' : 'WhatsApp'}
                     </button>
                 </div>
 
-                <p className="mx-auto mt-8 max-w-[480px] text-center text-sm font-medium text-[rgb(80_105_141)] sm:text-base">
+                <p className="mx-auto mt-8 max-w-[480px] text-center text-sm font-medium login-modal-footer-text sm:text-base">
                     Don't have an account yet? Click{' '}
                     <button
                         type="button"
@@ -211,23 +211,23 @@ export default function LoginModal({
                             onClose?.();
                             onRegisterClick?.();
                         }}
-                        className="text-[rgb(255_82_0)] hover:underline"
+                        className="login-modal-link font-semibold"
                     >
                         here
                     </button>{' '}
                     to register now!
                 </p>
 
-                <div className="mx-auto mt-4 h-px w-full max-w-[520px] bg-[rgb(171_204_235)]" />
+                <div className="login-modal-divider mx-auto mt-4 h-px w-full max-w-[520px]" />
 
-                <p className="mx-auto mt-4 max-w-[520px] text-center text-sm font-medium leading-snug text-[rgb(80_105_141)] sm:text-base">
+                <p className="mx-auto mt-4 max-w-[520px] text-center text-sm font-medium leading-snug login-modal-footer-text sm:text-base">
                     If you encounter any issues while logging in,
                     <br />
                     Please contact our{' '}
                     <button
                         type="button"
                         onClick={onCustomerServiceClick}
-                        className="text-[rgb(255_82_0)] hover:underline"
+                        className="login-modal-link font-semibold"
                     >
                         Customer Service
                     </button>{' '}

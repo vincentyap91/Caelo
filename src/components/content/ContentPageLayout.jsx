@@ -19,10 +19,10 @@ export function ContentHighlightList({ items = [], className = '', variant = 'de
             {items.map((item) => (
                 <span
                     key={item}
-                    className={`inline-flex min-w-0 shrink-0 items-center justify-center rounded-full border text-center text-xs font-bold uppercase leading-tight tracking-[0.14em] text-[var(--color-accent-700)] ${
+                    className={`inline-flex min-w-0 shrink-0 items-center justify-center rounded-full border text-center text-xs font-bold uppercase leading-tight tracking-wide text-[var(--color-button-hover)] ${
                         heroMobileOverlay
-                            ? 'min-h-[2.5rem] w-full border-[var(--color-accent-100)] bg-white/92 px-2 py-2 shadow-[0_2px_12px_rgba(15,23,42,0.1)] backdrop-blur-sm'
-                            : 'border-[var(--color-accent-100)] bg-white px-3.5 py-2 shadow-[var(--shadow-subtle)] sm:px-4'
+                            ? 'min-h-[2.5rem] w-full border-[var(--color-accent-glow)] bg-[var(--color-surface-base)]/92 px-2 py-2 shadow-[var(--shadow-card-soft)] backdrop-blur-sm'
+                            : 'border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3.5 py-2 shadow-[var(--shadow-subtle)] sm:px-4'
                     }`}
                 >
                     {item}
@@ -37,12 +37,12 @@ export function ContentSectionCard({ title, description, icon: Icon, children, c
         <section className={`surface-card rounded-[24px] p-5 md:p-6 ${className}`.trim()}>
             <div className="flex items-start gap-4">
                 {Icon ? (
-                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[var(--color-accent-100)] bg-[var(--color-accent-50)] text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)]">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]">
                         <Icon size={22} strokeWidth={2.1} />
                     </span>
                 ) : null}
                 <div className="min-w-0 flex-1">
-                    <h2 className="text-base font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">{title}</h2>
+                    <h2 className="text-base font-bold tracking-tight text-[var(--color-text-primary)] md:text-xl">{title}</h2>
                     {description ? (
                         <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)] md:text-base">{description}</p>
                     ) : null}
@@ -67,11 +67,11 @@ export default function ContentPageLayout({
         : 'rounded-[28px] border-[var(--color-border-brand)] px-5 py-5 shadow-[var(--shadow-card-raised)] sm:px-6 sm:py-6 md:px-8 md:py-7 lg:px-9 lg:py-8';
 
     return (
-        <main className="w-full bg-[linear-gradient(180deg,var(--gradient-live-page-start)_0%,var(--gradient-live-page-mid)_42%,var(--gradient-live-page-end)_100%)] pb-14 md:pb-20">
+        <main className="w-full bg-gradient-live-page-content pb-14 md:pb-20">
             <div className="page-container pt-6 md:pt-8">
                 <section className={`surface-card soft-blue-panel relative overflow-hidden ${heroCardClass}`}>
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(96,165,250,0.16)_0%,transparent_72%)]" />
-                    <div className="pointer-events-none absolute bottom-[-5rem] left-[-3rem] h-40 w-56 rounded-full bg-[radial-gradient(circle,rgba(224,235,255,0.72)_0%,rgba(224,235,255,0.26)_48%,rgba(224,235,255,0)_76%)] blur-3xl md:bottom-[-4rem] md:left-[-1rem] md:h-48 md:w-72" />
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-content-hero-top" />
+                    <div className="pointer-events-none absolute bottom-[-5rem] left-[-3rem] h-40 w-56 rounded-full bg-gradient-content-hero-blob blur-3xl md:bottom-[-4rem] md:left-[-1rem] md:h-48 md:w-72" />
                     {heroVisualSrc ? (
                         <>
                             {/* Mobile: large right column (~56% w), full height; md+: unchanged rail. */}
@@ -86,10 +86,10 @@ export default function ContentPageLayout({
                                     </div>
                                 </div>
                             </div>
-                            <div className="pointer-events-none absolute inset-x-0 inset-y-0 bg-[linear-gradient(90deg,#fff_0%,#fff_12%,rgba(255,255,255,0.99)_24%,rgba(255,255,255,0.96)_38%,rgba(255,255,255,0.82)_52%,rgba(255,255,255,0.35)_72%,rgba(255,255,255,0.06)_88%,rgba(255,255,255,0)_100%)] md:bg-[linear-gradient(90deg,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.96)_26%,rgba(255,255,255,0.74)_50%,rgba(255,255,255,0.20)_56%,rgba(255,255,255,0)_100%)]" />
-                            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(0deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.5)_42%,transparent_100%)] md:hidden" />
+                            <div className="pointer-events-none absolute inset-x-0 inset-y-0 bg-gradient-content-hero-scrim md:bg-gradient-content-hero-scrim-md" />
+                            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-content-hero-bottom md:hidden" />
                             <div
-                                className="pointer-events-none absolute left-[14%] top-[3%] h-[6rem] w-[7rem] bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0.88)_38%,rgba(255,255,255,0.18)_64%,rgba(255,255,255,0)_92%)] blur-[46px] sm:left-[22%] sm:top-[5%] md:left-[31%] md:top-[6%] md:h-28 md:w-32 lg:left-[34%]"
+                                className="pointer-events-none absolute left-[14%] top-[3%] h-[6rem] w-[7rem] bg-gradient-content-hero-spotlight blur-[46px] sm:left-[22%] sm:top-[5%] md:left-[31%] md:top-[6%] md:h-28 md:w-32 lg:left-[34%]"
                             />
                         </>
                     ) : null}
@@ -99,11 +99,11 @@ export default function ContentPageLayout({
                         {heroVisualSrc ? (
                             <div className="w-full max-w-[28rem] max-md:max-w-[58%] max-md:min-w-0 max-md:pb-32 max-md:pr-0 pr-10 sm:max-w-[31rem] sm:pr-16 md:block md:max-w-[57%] md:pb-0 md:pr-8 lg:max-w-[54%]">
                                 {eyebrow ? (
-                                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-accent-700)]">
+                                    <p className="text-xs font-bold uppercase tracking-code text-[var(--color-button-hover)]">
                                         {eyebrow}
                                     </p>
                                 ) : null}
-                                <h1 className="page-title mt-2.5 text-[var(--color-text-strong)] max-md:mt-2 md:mt-3">
+                                <h1 className="page-title mt-2.5 text-[var(--color-text-primary)] max-md:mt-2 md:mt-3">
                                     {title}
                                 </h1>
                                 {lead ? (
@@ -118,9 +118,9 @@ export default function ContentPageLayout({
                         ) : (
                             <div className="max-w-4xl">
                                 {eyebrow ? (
-                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent-700)]">{eyebrow}</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">{eyebrow}</p>
                                 ) : null}
-                                <h1 className="page-title mt-2.5 text-[var(--color-text-strong)] md:mt-3">{title}</h1>
+                                <h1 className="page-title mt-2.5 text-[var(--color-text-primary)] md:mt-3">{title}</h1>
                                 {lead ? (
                                     <p className="mt-3 max-w-[34rem] text-sm leading-7 text-[var(--color-text-muted)] md:mt-4 md:max-w-[32rem] md:text-base">
                                         {lead}
@@ -132,7 +132,7 @@ export default function ContentPageLayout({
                     </div>
                     {heroVisualSrc && highlights.length ? (
                         <div className="absolute inset-x-0 bottom-0 z-[4] md:hidden">
-                            <div className="bg-[linear-gradient(180deg,transparent_0%,rgba(255,255,255,0.65)_32%,rgba(255,255,255,0.96)_100%)] px-7 pb-7 pt-12">
+                            <div className="bg-gradient-content-hero-mobile-fade px-7 pb-7 pt-12">
                                 <ContentHighlightList items={highlights} variant="heroMobileOverlay" />
                             </div>
                         </div>

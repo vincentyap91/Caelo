@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { AlertCircle, AlertTriangle } from 'lucide-react';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
@@ -9,7 +9,7 @@ function formatPercent(value) {
 }
 
 function formatDisplay(value) {
-    if (value == null) return '—';
+    if (value == null) return '�';
     if (typeof value === 'number' && Number.isFinite(value)) return value.toFixed(2);
     return String(value);
 }
@@ -35,7 +35,7 @@ function ProgressRing({ percent }) {
                     cy={size / 2}
                     r={r}
                     fill="none"
-                    stroke="var(--color-border-default)"
+                    stroke="var(--color-border-subtle)"
                     strokeWidth={stroke}
                 />
                 <circle
@@ -43,7 +43,7 @@ function ProgressRing({ percent }) {
                     cy={size / 2}
                     r={r}
                     fill="none"
-                    stroke="var(--color-accent-600)"
+                    stroke="var(--color-button-hover)"
                     strokeWidth={stroke}
                     strokeLinecap="round"
                     strokeDasharray={c}
@@ -52,7 +52,7 @@ function ProgressRing({ percent }) {
                 />
             </svg>
             <div className="relative z-[1] text-center leading-none">
-                <span className="text-base font-bold tabular-nums text-[var(--color-text-strong)]">
+                <span className="text-base font-bold tabular-nums text-[var(--color-text-primary)]">
                     {formatPercent(p)}
                 </span>
                 <span className="text-xs font-bold text-[var(--color-text-muted)]">%</span>
@@ -62,7 +62,7 @@ function ProgressRing({ percent }) {
 }
 
 /**
- * Rollover / turnover requirement not met — blocks withdraw or similar actions until OK.
+ * Rollover / turnover requirement not met � blocks withdraw or similar actions until OK.
  * Shell matches TacErrorModal: overlay, panel radius, shadow, primary OK CTA.
  */
 export default function RolloverRequirementModal({
@@ -96,7 +96,7 @@ export default function RolloverRequirementModal({
     const remainingLine = (
         <>
             You have{' '}
-            <span className="font-bold text-[var(--color-accent-600)]">
+            <span className="font-bold text-[var(--color-button-hover)]">
                 {formatDisplay(remainingCurrent)} / {formatDisplay(remainingTarget)}
             </span>{' '}
             to go!
@@ -108,21 +108,21 @@ export default function RolloverRequirementModal({
             <button
                 type="button"
                 aria-label="Dismiss"
-                className="absolute inset-0 bg-[var(--color-nav-overlay)] backdrop-blur-[1px]"
+                className="absolute inset-0 bg-[var(--color-overlay-strong)] backdrop-blur-[1px]"
                 onClick={onClose}
             />
             <div
                 role="alertdialog"
                 aria-modal="true"
                 aria-labelledby={titleId}
-                className="relative z-[1] flex max-h-[min(92vh,calc(100vh-2rem))] w-full max-w-[420px] flex-col rounded-2xl border border-[var(--color-border-brand)] bg-white px-6 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
+                className="relative z-[1] flex max-h-[min(92vh,calc(100vh-2rem))] w-full max-w-[420px] flex-col rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-6 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="min-h-0 flex-1 overflow-y-auto">
                     <div className="flex flex-col items-center text-center">
-                        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-danger-main)_30%,var(--color-border-brand))] bg-[color-mix(in_srgb,var(--color-danger-main)_10%,var(--color-surface-base))] shadow-[var(--shadow-subtle)]">
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-danger)_30%,var(--color-border-brand))] bg-[color-mix(in_srgb,var(--color-danger)_10%,var(--color-surface-base))] shadow-[var(--shadow-subtle)]">
                             <AlertTriangle
-                                className="text-[var(--color-danger-main)]"
+                                className="text-[var(--color-danger)]"
                                 size={44}
                                 strokeWidth={1.7}
                                 aria-hidden
@@ -130,20 +130,20 @@ export default function RolloverRequirementModal({
                         </div>
                         <p
                             id={titleId}
-                            className="mt-5 max-w-[20rem] text-base font-bold leading-snug text-[var(--color-text-strong)] sm:max-w-[22rem] sm:text-lg"
+                            className="mt-5 max-w-[20rem] text-base font-bold leading-snug text-[var(--color-text-primary)] sm:max-w-[22rem] sm:text-lg"
                         >
                             {mainMessage}
                         </p>
                     </div>
 
                     <div className="mt-6 text-left">
-                        <h2 className="text-sm font-bold text-[var(--color-text-strong)] sm:text-base">
+                        <h2 className="text-sm font-bold text-[var(--color-text-primary)] sm:text-base">
                             {progressSectionTitle}
                         </h2>
                         <div className="surface-card soft-blue-panel mt-3 flex gap-4 rounded-2xl p-4 sm:gap-5 sm:p-5">
                             <ProgressRing percent={progressPercent} />
                             <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 text-sm">
-                                <p className="font-bold leading-tight text-[var(--color-text-strong)]">
+                                <p className="font-bold leading-tight text-[var(--color-text-primary)]">
                                     Latest Top-Up/Bonus :{' '}
                                     <span className="tabular-nums">{formatDisplay(latestTopUpBonus)}</span>
                                 </p>
@@ -152,7 +152,7 @@ export default function RolloverRequirementModal({
                                         {latestEventAt}
                                     </p>
                                 ) : null}
-                                <p className="text-sm font-semibold leading-snug text-[var(--color-text-main)]">
+                                <p className="text-sm font-semibold leading-snug text-[var(--color-text-secondary)]">
                                     {remainingLine}
                                 </p>
                             </div>
@@ -160,15 +160,15 @@ export default function RolloverRequirementModal({
                     </div>
 
                     <div
-                        className="mt-5 flex gap-3 rounded-2xl border border-[color-mix(in_srgb,var(--color-danger-main)_32%,var(--color-border-brand))] bg-[color-mix(in_srgb,var(--color-danger-main)_8%,var(--color-surface-base))] px-4 py-3.5 shadow-[var(--shadow-subtle)] sm:px-5"
+                        className="mt-5 flex gap-3 rounded-2xl border border-[color-mix(in_srgb,var(--color-danger)_32%,var(--color-border-brand))] bg-[color-mix(in_srgb,var(--color-danger)_8%,var(--color-surface-base))] px-4 py-3.5 shadow-[var(--shadow-subtle)] sm:px-5"
                         role="status"
                     >
                         <AlertCircle
-                            className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-danger-main)]"
+                            className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-danger)]"
                             strokeWidth={2}
                             aria-hidden
                         />
-                        <p className="text-left text-sm font-medium leading-snug text-[var(--color-text-main)]">
+                        <p className="text-left text-sm font-medium leading-snug text-[var(--color-text-secondary)]">
                             {warningMessage}
                         </p>
                     </div>
@@ -177,7 +177,7 @@ export default function RolloverRequirementModal({
                 <button
                     type="button"
                     onClick={onClose}
-                    className="btn-theme-cta mt-7 min-w-[160px] shrink-0 self-center rounded-xl px-10 py-3 text-center text-sm font-bold uppercase tracking-wide transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0"
+                    className="btn-theme-cta mt-7 min-w-[160px] shrink-0 self-center rounded-xl px-10 py-3 text-center text-sm font-bold uppercase transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0"
                 >
                     OK
                 </button>

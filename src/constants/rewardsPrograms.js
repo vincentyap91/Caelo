@@ -18,5 +18,13 @@ export const REWARDS_PROGRAMS = [
 
 export const REWARDS_PROGRAM_IDS = REWARDS_PROGRAMS.map((p) => p.id);
 
+/** Active rewards tab from `/loyalty-rewards#…` (sidebar, More menu, in-page tabs). */
+export function parseRewardsTabFromHash() {
+    if (typeof window === 'undefined') return 'daily-bonus';
+    if (window.location.pathname !== '/loyalty-rewards') return 'daily-bonus';
+    const hash = window.location.hash.slice(1);
+    return REWARDS_PROGRAM_IDS.includes(hash) ? hash : 'daily-bonus';
+}
+
 /** Spin / scratch / prize — for Rewards “Record” activity filter (excludes Daily Bonus). */
 export const REWARDS_ACTIVITY_RECORD_TYPES = REWARDS_PROGRAMS.filter((p) => p.id !== 'daily-bonus');

@@ -47,10 +47,10 @@ export default function GameDetailPlayer({
     return (
         <div
             ref={wrapRef}
-            className={`relative w-full overflow-hidden bg-slate-950 ${
+            className={`relative w-full overflow-hidden bg-[var(--color-surface-start)] ${
                 isFullscreen
                     ? 'flex h-full min-h-0 flex-1 flex-col rounded-none shadow-none ring-0'
-                    : `rounded-2xl shadow-[var(--shadow-card-raised)] ring-1 ring-[var(--color-border-default)] ${
+                    : `rounded-2xl shadow-[var(--shadow-card-raised)] ring-1 ring-[var(--color-border-subtle)] ${
                           fs ? 'rounded-none ring-0 shadow-none' : ''
                       }`
             }`}
@@ -61,7 +61,7 @@ export default function GameDetailPlayer({
                 }
             >
                 {children && !showIframe ? (
-                    <div className="absolute inset-0 flex items-center justify-center bg-slate-950">{children}</div>
+                    <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface-start)]">{children}</div>
                 ) : null}
 
                 {showIframe ? (
@@ -75,7 +75,7 @@ export default function GameDetailPlayer({
                 ) : null}
 
                 {showFallback ? (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/88 p-4 sm:p-6">
+                    <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface-darkest)]/88 p-4 sm:p-6">
                         <GameDetailFallbackPanel message={fallbackMessage} actions={fallbackActions} />
                     </div>
                 ) : null}
@@ -84,7 +84,7 @@ export default function GameDetailPlayer({
                     <button
                         type="button"
                         onClick={toggleFullscreen}
-                        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70"
+                        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-brand)]/20 bg-[var(--color-surface-darkest)]/50 text-[var(--color-text-card-text)] backdrop-blur-sm transition hover:bg-[var(--color-surface-darkest)]/70"
                         aria-label={fs ? 'Exit fullscreen' : 'Enter fullscreen'}
                     >
                         <Maximize2 size={18} />

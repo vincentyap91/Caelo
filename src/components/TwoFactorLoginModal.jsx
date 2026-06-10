@@ -77,73 +77,75 @@ export default function TwoFactorLoginModal({
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 z-[201] flex items-center justify-center p-4 sm:p-6">
+        <div className="login-modal-root fixed inset-0 z-[201] flex items-center justify-center p-4 sm:p-6">
             <button
                 type="button"
                 aria-label="Close"
                 onClick={onClose}
-                className="absolute inset-0 bg-black/70 backdrop-blur-[1px]"
+                className="absolute inset-0 bg-[var(--color-overlay-strong)] backdrop-blur-[1px]"
             />
             <section
                 role="dialog"
                 aria-modal="true"
                 aria-label={title}
-                className="relative z-[1] w-full max-w-[420px] rounded-2xl border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
+                className="auth-modal-shell login-modal-panel relative z-[1] w-full max-w-[420px] rounded-2xl px-5 pb-6 pt-8 sm:px-8 sm:pb-8 sm:pt-10"
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
                     type="button"
                     aria-label="Close"
                     onClick={onClose}
-                    className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-brand-deep)] text-white transition hover:brightness-95"
+                    className="login-modal-close absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full transition hover:brightness-95"
                 >
                     <X size={18} strokeWidth={3} />
                 </button>
 
-                <h2 className="text-center text-xl font-bold tracking-tight text-[rgb(18_63_128)] sm:text-2xl">
+                <h2 className="auth-modal-register-done__title text-center text-xl font-bold tracking-tight sm:text-2xl">
                     {title}
                 </h2>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                     <div className="flex gap-2">
-                        <input
-                            type="text"
-                            inputMode="numeric"
-                            maxLength={6}
-                            value={code}
-                            onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
-                            placeholder="e.g. 123456"
-                            className="flex-1 rounded-xl border border-[rgb(159_201_238)] bg-[var(--color-surface-base-80)] px-4 py-3 text-center text-lg font-mono tracking-[0.2em] text-[rgb(35_64_106)] shadow-[var(--inset-panel)] outline-none placeholder:text-[rgb(111_133_168)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
-                        />
+                        <label className="auth-modal-field flex-1 rounded-xl">
+                            <input
+                                type="text"
+                                inputMode="numeric"
+                                maxLength={6}
+                                value={code}
+                                onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
+                                placeholder="e.g. 123456"
+                                className="auth-modal-input text-center text-lg font-mono tracking-code"
+                            />
+                        </label>
                         <button
                             type="button"
                             onClick={handlePaste}
-                            className="rounded-xl border border-[rgb(159_201_238)] bg-[var(--color-brand-deep)] px-4 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+                            className="auth-modal-btn auth-modal-btn--secondary rounded-xl px-4 py-3 text-sm"
                         >
                             Paste
                         </button>
                     </div>
 
-                    <label className="flex cursor-pointer items-center gap-3">
+                    <label className="auth-modal-remember flex cursor-pointer items-center gap-3">
                         <input
                             type="checkbox"
                             checked={trustDevice}
                             onChange={(e) => setTrustDevice(e.target.checked)}
-                            className="h-4 w-4 rounded border-2 border-[var(--color-success-main)] text-[var(--color-success-main)] focus:ring-[var(--color-success-main)]"
+                            className="auth-modal-checkbox h-4 w-4 rounded border-2 border-[var(--color-success)] text-[var(--color-success)] focus:ring-[var(--color-success)]"
                         />
-                        <span className="text-sm font-medium text-[rgb(35_64_106)]">
+                        <span className="text-sm font-medium text-[var(--color-text-secondary)]">
                             Trust this device for future logins
                         </span>
                     </label>
 
                     {error && (
-                        <p className="text-sm font-medium text-[var(--color-danger-main)]">{error}</p>
+                        <p className="auth-modal-error">{error}</p>
                     )}
 
                     <button
                         type="submit"
                         disabled={loading}
-                        className="btn-theme-cta w-full rounded-xl py-3.5 text-base font-bold shadow-[var(--shadow-cta)] transition hover:-translate-y-0.5 hover:brightness-105 disabled:opacity-70 disabled:hover:translate-y-0"
+                        className="auth-modal-btn auth-modal-btn--primary w-full py-3.5 text-base disabled:opacity-70"
                     >
                         {loading ? 'Verifying...' : 'Confirm'}
                     </button>

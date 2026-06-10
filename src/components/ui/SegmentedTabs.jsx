@@ -12,7 +12,7 @@ export default function SegmentedTabs({ items, value, onChange, layout = 'equal'
 
     return (
         <div
-            className={`flex gap-1 overflow-x-auto rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isEqual ? 'w-full' : 'w-fit'
+            className={`flex gap-1 overflow-x-auto rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isEqual ? 'w-full' : 'w-fit'
                 } ${className}`}
         >
             {items.map((item) => {
@@ -28,7 +28,7 @@ export default function SegmentedTabs({ items, value, onChange, layout = 'equal'
                         className={`inline-flex items-center justify-center whitespace-nowrap rounded-lg px-2 py-3 text-xs font-bold transition sm:px-4 sm:py-2.5 sm:text-sm ${isEqual ? 'flex-1 min-w-0' : 'px-4'
                             } ${active
                                 ? 'btn-theme-primary shadow-sm'
-                                : 'bg-[var(--color-surface-muted)] text-[var(--color-text-muted)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]'
+                                : 'bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                             }`}
                     >
                         <span className="line-clamp-2 w-full text-center leading-tight">

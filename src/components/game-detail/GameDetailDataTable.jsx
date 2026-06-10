@@ -17,15 +17,15 @@ export default function GameDetailDataTable({ columns = [], rows = [], striped =
     if (columns.length === 0) return null;
 
     return (
-        <div className="overflow-x-auto rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
+        <div className="overflow-x-auto rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
             <table className="w-full min-w-[520px] border-collapse text-sm">
                 <thead>
-                    <tr className="border-b border-[var(--color-border-default)] bg-[var(--color-surface-muted)]">
+                    <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)]">
                         {columns.map((col) => (
                             <th
                                 key={col.key}
                                 scope="col"
-                                className={`px-4 py-3.5 text-sm font-bold text-[var(--color-text-strong)] md:px-5 md:py-4 ${alignClass(col.align)}`}
+                                className={`px-4 py-3.5 text-sm font-bold text-[var(--color-text-primary)] md:px-5 md:py-4 ${alignClass(col.align)}`}
                             >
                                 {col.label}
                             </th>
@@ -36,8 +36,8 @@ export default function GameDetailDataTable({ columns = [], rows = [], striped =
                     {rows.map((row, ri) => (
                         <tr
                             key={row.id ?? ri}
-                            className={`border-b border-[var(--color-border-default)] last:border-b-0 ${
-                                striped && ri % 2 === 1 ? 'bg-[var(--color-accent-50)]/60' : ''
+                            className={`border-b border-[var(--color-border-subtle)] last:border-b-0 ${
+                                striped && ri % 2 === 1 ? 'bg-[var(--color-accent-pale)]/60' : ''
                             }`}
                         >
                             {columns.map((col) => {
@@ -46,8 +46,8 @@ export default function GameDetailDataTable({ columns = [], rows = [], striped =
                                 return (
                                     <td
                                         key={col.key}
-                                        className={`px-4 py-3 font-medium leading-snug text-[var(--color-text-main)] md:px-5 md:py-3.5 ${alignClass(col.align)} ${
-                                            isHighlight ? 'font-bold text-[var(--color-cta-strong-end)] tabular-nums' : ''
+                                        className={`px-4 py-3 font-medium leading-snug text-[var(--color-text-secondary)] md:px-5 md:py-3.5 ${alignClass(col.align)} ${
+                                            isHighlight ? 'font-bold text-[var(--color-button-cta-end)] tabular-nums' : ''
                                         }`}
                                     >
                                         {raw}

@@ -13,6 +13,11 @@ import instantCashRebateImage from '../assets/promotion/instant-cash-rebate.jpg'
 const promotionCategories = ['All', 'Slots', 'Casino', 'Sports', 'Fishing', 'RNG', 'Lottery', 'Others'];
 const MOBILE_BATCH_SIZE = 6;
 
+const PROMOTION_IMAGE_TAG_LABELS = {
+    'conditions-required': 'Conditions Required',
+    available: 'Available',
+};
+
 const promotions = [
     {
         id: 'welcome-288',
@@ -21,6 +26,7 @@ const promotions = [
         title: 'Welcome Bonus 288%',
         description: 'Kickstart your first deposit with a boosted welcome package made for casino players.',
         image: welcomeBonusImage,
+        imageTag: 'conditions-required',
         endDate: '2026-06-15T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 50',
@@ -44,6 +50,7 @@ const promotions = [
         title: 'Welcome Bonus 500%',
         description: 'Spin into your first slot session with a high-value new member bonus and extra credits.',
         image: welcome500Image,
+        imageTag: 'conditions-required',
         endDate: '2026-05-31T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 30',
@@ -67,6 +74,7 @@ const promotions = [
         title: 'Daily Unlimited Reload',
         description: 'Reload daily and keep the momentum going with extra value on every qualifying top up.',
         image: dailyReloadImage,
+        imageTag: 'conditions-required',
         endDate: '2026-05-12T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 20',
@@ -90,6 +98,7 @@ const promotions = [
         title: 'Free Spin Weekend',
         description: 'Unlock weekend rewards with bonus spins and more chances to land standout wins.',
         image: freeSpinImage,
+        imageTag: 'conditions-required',
         endDate: '2026-05-18T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 30',
@@ -113,6 +122,7 @@ const promotions = [
         title: 'Exclusive Sports Offer',
         description: 'Back the big fixtures with exclusive odds support and limited-time sports rewards.',
         image: exclusiveOfferImage,
+        imageTag: 'available',
         endDate: '2026-05-20T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 50',
@@ -136,6 +146,7 @@ const promotions = [
         title: 'Instant Cash Rebate',
         description: 'Enjoy instant rebate returns across selected RNG games to keep every session moving.',
         image: instantCashRebateImage,
+        imageTag: 'available',
         endDate: '2026-07-01T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 20',
@@ -159,6 +170,7 @@ const promotions = [
         title: 'Daily Pick Bonus',
         description: 'Get more value on eligible daily picks with a simple lottery-focused extra reward.',
         image: welcomeBonusImage,
+        imageTag: 'conditions-required',
         endDate: '2026-05-14T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 10',
@@ -182,6 +194,7 @@ const promotions = [
         title: 'Special Member Deal',
         description: 'A flexible all-round promotion crafted for members looking for extra value beyond core games.',
         image: exclusiveOfferImage,
+        imageTag: 'available',
         endDate: '2026-05-25T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 50',
@@ -254,7 +267,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
     }, [hasMorePromotions, filteredPromotions.length]);
 
     return (
-        <main className="w-full bg-[var(--color-page-default)] pb-14">
+        <main className="promotion-page w-full bg-[var(--color-surface-base)] pb-14">
             <div className="mx-auto w-full max-w-screen-2xl px-4 py-4 md:px-8 md:py-6">
                 <h1 className="page-title">Promotion</h1>
 
@@ -277,9 +290,14 @@ export default function PromotionPage({ authUser, onNavigate }) {
                         return !(isLoggedIn && isExpired) ? (
                             <article
                                 key={promotion.id}
-                                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-[rgb(228_234_243)] bg-[var(--color-surface-base)] shadow-[0_4px_16px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(15,23,42,0.08)] ${isExpired ? 'card-muted' : ''}`}
+                                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-subtle)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-soft)] ${isExpired ? 'card-muted' : ''}`}
                             >
-                                <div className="relative w-full shrink-0 overflow-hidden border-b border-[rgb(228_234_243)]">
+                                <div className="relative w-full shrink-0 overflow-hidden border-b border-[var(--color-border-subtle)]">
+                                    {promotion.imageTag ? (
+                                        <span className="promotion-card-image-tag pointer-events-none absolute right-2 top-2 z-10 max-w-[calc(100%-1rem)]">
+                                            {PROMOTION_IMAGE_TAG_LABELS[promotion.imageTag]}
+                                        </span>
+                                    ) : null}
                                     <img
                                         src={promotion.image}
                                         alt={promotion.title}
@@ -289,7 +307,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                 <div className="flex min-h-0 flex-1 flex-col justify-between gap-4 px-4 py-4 md:px-5 md:py-5">
                                     <div className="flex flex-col gap-3">
                                         <div className="flex items-center justify-between gap-2">
-                                            <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-accent-700)]">
+                                            <span className="inline-flex rounded-full bg-[var(--color-accent-pale)] px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
                                                 {promotion.category}
                                             </span>
                                             {promotion.endDate && (
@@ -297,7 +315,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                             )}
                                         </div>
                                         <div className="space-y-1.5">
-                                            <h2 className="text-lg font-bold leading-tight tracking-tight text-[var(--color-text-strong)] md:text-xl">
+                                            <h2 className="text-lg font-bold leading-tight tracking-tight text-[var(--color-text-primary)] md:text-xl">
                                                 {promotion.title}
                                             </h2>
                                             <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -310,7 +328,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                         <button
                                             type="button"
                                             onClick={() => setSelectedPromotion(promotion)}
-                                            className="btn-more-info inline-flex h-10 min-w-[100px] flex-1 items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-white px-4 text-sm font-bold text-[var(--color-text-main)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                                            className="btn-more-info inline-flex h-10 min-w-[100px] flex-1 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-bold text-[var(--color-text-secondary)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                                         >
                                             More Info
                                         </button>
@@ -331,7 +349,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                         <button
                             type="button"
                             onClick={loadMorePromotions}
-                            className="btn-theme-cta inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm font-bold tracking-wide shadow-[0_6px_14px_rgba(242,154,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm font-bold shadow-[var(--shadow-cta-soft)] transition hover:-translate-y-0.5 hover:brightness-105"
                         >
                             Load More
                         </button>
@@ -340,7 +358,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
 
                 {filteredPromotions.length === 0 && (
                     <div className="surface-card mt-8 rounded-2xl px-6 py-12 text-center">
-                        <p className="text-lg font-bold text-[var(--color-text-strong)]">No promotions in this category yet.</p>
+                        <p className="text-lg font-bold text-[var(--color-text-primary)]">No promotions in this category yet.</p>
                         <p className="mt-2 text-sm text-[var(--color-text-muted)]">Try another category to view available offers.</p>
                     </div>
                 )}

@@ -10,7 +10,7 @@ export const PAGE_BANNER_WRAP =
 export const PAGE_BANNER_WRAP_ASPECT = `${PAGE_BANNER_WRAP} md:aspect-[67/15]`;
 
 /** Sports top strip keeps its border */
-export const PAGE_BANNER_WRAP_SPORTS = `${PAGE_BANNER_WRAP} border border-[var(--color-border-live)]`;
+export const PAGE_BANNER_WRAP_SPORTS = `${PAGE_BANNER_WRAP} border border-[var(--color-border-subtle)]`;
 
 /**
  * Default banner image: cover in fixed mobile strip; natural/intrinsic height from md+.

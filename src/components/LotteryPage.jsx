@@ -80,7 +80,7 @@ function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
     };
 
     return (
-        <div className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg">
+        <div className="lottery-game-card surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg">
             <button
                 type="button"
                 className="absolute inset-0 z-[5] md:hidden"
@@ -89,7 +89,7 @@ function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
             />
 
             {use93ConnectFill ? (
-            <div className="pointer-events-none relative z-10 h-44 overflow-hidden rounded-t-2xl bg-[linear-gradient(180deg,rgb(13_33_71)_0%,rgb(10_28_63)_100%)] sm:h-52 xl:h-56">
+            <div className="lottery-game-card__thumb pointer-events-none relative z-10 h-44 overflow-hidden rounded-t-2xl sm:h-52 xl:h-56">
                 <img
                     src={src}
                     alt={game.name}
@@ -112,7 +112,7 @@ function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
                 />
             </div>
             ) : (
-            <div className="pointer-events-none relative z-10 flex h-44 items-center justify-center overflow-hidden rounded-t-2xl bg-[linear-gradient(180deg,rgb(13_33_71)_0%,rgb(10_28_63)_100%)] p-4 sm:h-52 sm:p-5 xl:h-56">
+            <div className="lottery-game-card__thumb pointer-events-none relative z-10 flex h-44 items-center justify-center overflow-hidden rounded-t-2xl p-4 sm:h-52 sm:p-5 xl:h-56">
                 <img
                     src={src}
                     alt={game.name}
@@ -137,8 +137,8 @@ function LotteryGameCard({ game, providerName, providerId, onNavigate }) {
             )}
 
             <div className="p-2 md:p-3">
-                <p className="line-clamp-2 text-xs font-bold text-slate-800 md:text-sm">{game.name}</p>
-                <p className="mt-1 text-xs text-slate-500">{providerName}</p>
+                <p className="line-clamp-2 text-xs font-bold text-[var(--color-text-primary)] md:text-sm">{game.name}</p>
+                <p className="mt-1 text-xs text-[var(--color-text-muted)]">{providerName}</p>
             </div>
         </div>
     );
@@ -199,7 +199,7 @@ export default function LotteryPage({ onNavigate }) {
     };
 
     return (
-        <main className="w-full bg-gradient-to-b from-blue-50 via-slate-50 to-slate-100 pb-14 font-sans">
+        <main className="lottery-page w-full bg-gradient-soft-blue-panel pb-14 font-sans">
             <section className="w-full pt-5 md:pt-7">
                 <div className={pageContainerClass}>
                     <div className="page-hero-banner">
@@ -208,11 +208,11 @@ export default function LotteryPage({ onNavigate }) {
                             alt="Lottery Banner"
                             className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL}`}
                         />
-                        <div className="absolute inset-y-0 left-0 w-[56%] bg-[linear-gradient(90deg,rgb(234_244_255_/_0.96)_0%,rgb(234_244_255_/_0.86)_45%,transparent_100%)] sm:w-[52%] md:w-[50%]" />
+                        <div className="absolute inset-y-0 left-0 w-[56%] bg-gradient-hero-fade-left sm:w-[52%] md:w-[50%]" />
                         <div className="absolute inset-0 flex items-center justify-start">
                             <div className="w-[50%] max-md:pl-8 max-md:pr-3 sm:w-[50%] md:w-[50%] md:pl-[18%] md:pr-0">
                                 <div className="w-full max-w-[420px] text-center max-md:text-center">
-                                    <h1 className="text-xl font-bold uppercase tracking-[0.03em] text-[rgb(25_41_71)] sm:text-2xl md:text-3xl">
+                                    <h1 className="text-xl font-bold uppercase text-[var(--color-text-primary)] sm:text-2xl md:text-3xl">
                                         Lottery
                                     </h1>
                                 </div>
@@ -232,7 +232,7 @@ export default function LotteryPage({ onNavigate }) {
                                 type="button"
                                 onClick={() => setActiveProvider(provider.name)}
                                 className={`relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 bg-[var(--color-surface-base)] px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
-                                    isActive ? 'border-[var(--color-brand-deep)] ring-2 ring-[var(--color-brand-deep)]/30' : 'border-[rgb(209_216_229)] hover:border-[rgb(183_194_215)]'
+                                    isActive ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-surface-accent-hover)]/30' : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-brand)]'
                                 }`}
                             >
                                 <img
@@ -276,8 +276,8 @@ export default function LotteryPage({ onNavigate }) {
 
                 {filteredGames.length === 0 && (
                     <div className="surface-card mt-6 rounded-2xl px-4 py-7 text-center">
-                        <p className="text-base font-bold text-slate-800">No games match your search.</p>
-                        <p className="mt-1 text-xs text-slate-500">Try a different keyword or switch provider.</p>
+                        <p className="text-base font-bold text-[var(--color-text-primary)]">No games match your search.</p>
+                        <p className="mt-1 text-xs text-[var(--color-text-muted)]">Try a different keyword or switch provider.</p>
                     </div>
                 )}
                 {filteredGames.length > gamesToShow && (
@@ -285,7 +285,7 @@ export default function LotteryPage({ onNavigate }) {
                         <button
                             type="button"
                             onClick={() => setGamesToShow(filteredGames.length)}
-                            className="btn-theme-cta inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-bold tracking-wide transition hover:-translate-y-0.5 hover:brightness-105"
+                            className="btn-theme-cta inline-flex h-12 items-center justify-center rounded-lg px-8 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105"
                         >
                             SEE MORE
                         </button>

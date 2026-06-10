@@ -187,7 +187,6 @@ const PROTECTED_PAGE_IDS = new Set([
   'verification',
   'favourites',
   'my-bets',
-  'loyalty-rewards',
   'feedback',
   'security',
   'notifications',
@@ -199,6 +198,32 @@ const PROTECTED_PAGE_IDS = new Set([
 
 function isProtectedPage(pageId) {
   return PROTECTED_PAGE_IDS.has(pageId);
+}
+
+/** Cam88 shell background role → Caelo page tint (see styles/theme.css `.app-shell[data-app-shell-bg]`). */
+function resolveAppShellBg(pageId, authUser) {
+  if (pageId === 'home') return 'home';
+  if (pageId === 'register') return 'register';
+  if (pageId === 'rebate' && !authUser) return 'default';
+  if (
+    pageId === 'profile'
+    || pageId === 'verification'
+    || pageId === 'favourites'
+    || pageId === 'my-bets'
+    || pageId === 'loyalty-rewards'
+    || pageId === 'feedback'
+    || pageId === 'help-center'
+    || pageId === 'security'
+    || pageId === 'notifications'
+    || pageId === 'referral-commission'
+    || pageId === 'deposit'
+    || pageId === 'withdrawal'
+    || pageId === 'rebate'
+    || HISTORY_RECORD_PAGE_IDS.includes(pageId)
+  ) {
+    return 'account';
+  }
+  return 'default';
 }
 
 /** Inactivity-based sign-out (demo client guard). Session storage expiry is separate. */
@@ -507,37 +532,10 @@ function AppInner() {
   };
 
   return (
-    <div className={`relative min-h-screen w-full overflow-x-hidden font-sans ${
-      page === 'home'
-        ? 'bg-[var(--color-page-home)]'
-        : page === 'register'
-          ? 'bg-[var(--color-page-register)]'
-          : page === 'slots' || page === 'game-detail'
-            ? 'bg-[var(--color-page-default)]'
-            : page === 'sports'
-              ? 'bg-[var(--color-page-default)]'
-              : page === 'e-sports'
-                ? 'bg-[var(--color-page-default)]'
-            : page === 'lottery'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'fishing'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'poker'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'promotion'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'vip'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'referral'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'about'
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'rebate' && !authUser
-              ? 'bg-[var(--color-page-default)]'
-            : page === 'profile' || page === 'verification' || page === 'favourites' || page === 'my-bets' || page === 'loyalty-rewards' || page === 'feedback' || page === 'help-center' || page === 'security' || page === 'notifications' || page === 'rebate' || page === 'referral-commission' || page === 'deposit' || page === 'withdrawal' || HISTORY_RECORD_PAGE_IDS.includes(page)
-              ? 'bg-[var(--color-page-account)]'
-              : 'bg-[var(--color-page-default)]'
-    }`}>
+    <div
+      data-app-shell-bg={resolveAppShellBg(page, authUser)}
+      className="app-shell relative min-h-screen w-full overflow-x-hidden font-sans"
+    >
       <ScrollToTop authUser={authUser} />
       <FloatingSocials
         authUser={authUser}
@@ -593,7 +591,7 @@ function AppInner() {
             <VipTier onNavigate={handleNavigate} />
             <MobileHomeCategoryGames onNavigate={handleNavigate} variant="desktop" />
             {authUser && <ReferralBannerSection onNavigate={handleNavigate} />}
-            <HomeLiveActivity />
+            <HomeLiveActivity onNavigate={handleNavigate} />
             <AppDownload />
             <ProviderShowcaseSection
               onSlotsProviderSelect={(menuProvider) => {
@@ -641,8 +639,16 @@ function AppInner() {
       ) : page === 'profile' ? (
         <ProfilePage authUser={authUser} onLogout={handleLogout} onNavigate={handleNavigate} onLiveChatClick={() => handleNavigate('live-chat')} />
       ) : page === 'loyalty-rewards' ? (
-        <AccountLayout activePage="loyalty-rewards" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => handleNavigate('live-chat')}>
-          <RewardsPage />
+        <AccountLayout
+          activePage="loyalty-rewards"
+          authUser={authUser}
+          guestPreview={!authUser}
+          onNavigate={handleNavigate}
+          onLogout={handleLogout}
+          onLoginClick={() => setLoginModalOpen(true)}
+          onLiveChatClick={() => handleNavigate('live-chat')}
+        >
+          <RewardsPage guestPreview={!authUser} onLoginClick={() => setLoginModalOpen(true)} />
         </AccountLayout>
       ) : page === 'verification' ? (
         <AccountLayout activePage="verification" authUser={authUser} onNavigate={handleNavigate} onLogout={handleLogout} onLiveChatClick={() => handleNavigate('live-chat')}>
@@ -668,7 +674,7 @@ function AppInner() {
             <HelpCenterPage navigationState={pageNavigationState} />
           </AccountLayout>
         ) : (
-          <main className="w-full bg-[linear-gradient(180deg,var(--gradient-account-shell-start)_0%,var(--gradient-account-shell-mid)_38%,var(--gradient-account-shell-end)_100%)] pb-16 pt-6 md:pt-8">
+          <main className="w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8">
             <HelpCenterPage navigationState={pageNavigationState} guestLayout />
           </main>
         )
@@ -685,7 +691,7 @@ function AppInner() {
           <HistoryRecordPage activePage={page} />
         </AccountLayout>
       ) : page === 'rebate' ? (
-        <main className="w-full bg-[linear-gradient(180deg,var(--gradient-account-shell-start)_0%,var(--gradient-account-shell-mid)_38%,var(--gradient-account-shell-end)_100%)] pb-16 pt-6 md:pt-8">
+        <main className="w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8">
           <RebatePage 
             authUser={authUser} 
             onNavigate={handleNavigate} 

@@ -8,7 +8,7 @@ function ProviderLogoTile({ provider, onSelect }) {
         <button
             type="button"
             onClick={() => onSelect?.(provider)}
-            className="group flex h-14 w-[5.5rem] shrink-0 items-center justify-center px-1 transition duration-300 ease-out hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-primary)] sm:w-24 md:h-16 md:w-28 lg:w-32"
+            className="group flex h-14 w-[5.5rem] shrink-0 items-center justify-center px-1 transition duration-300 ease-out hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] sm:w-24 md:h-16 md:w-28 lg:w-32"
             aria-label={provider.name}
         >
             <img
@@ -43,7 +43,7 @@ export default function ProviderShowcaseSection({ onSlotsProviderSelect, onNavig
 
     return (
         <section aria-label="Hot providers" className="w-full pt-4">
-            <h2 className="mb-4 text-base font-bold tracking-tight text-[var(--color-brand-primary)] md:text-lg">
+            <h2 className="mb-4 text-base font-bold tracking-tight text-[var(--color-primary)] md:text-lg">
                 Hot Providers
             </h2>
 

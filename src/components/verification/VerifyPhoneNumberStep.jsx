@@ -153,17 +153,17 @@ export default function VerifyPhoneNumberStep({
                 <button
                     type="button"
                     onClick={onBack}
-                    className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-[rgb(35_64_106)] transition hover:text-[rgb(18_63_128)]"
+                    className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-text-primary-card-title)]"
                 >
                     <ArrowLeft size={16} aria-hidden />
                     Back
                 </button>
             ) : null}
 
-            <h2 className="text-center text-xl font-bold tracking-tight text-[rgb(18_63_128)] sm:text-2xl">
+            <h2 className="text-center text-xl font-bold tracking-tight text-[var(--color-text-primary-card-title)] sm:text-2xl">
                 Verify Your Number
             </h2>
-            <p className="mt-3 text-center text-sm font-medium leading-relaxed text-[rgb(35_64_106)] sm:text-base">
+            <p className="mt-3 text-center text-sm font-medium leading-relaxed text-[var(--color-text-secondary)] sm:text-base">
                 {instruction}
             </p>
 
@@ -184,25 +184,25 @@ export default function VerifyPhoneNumberStep({
                         onKeyDown={(e) => handleKeyDown(i, e)}
                         onPaste={handlePaste}
                         onFocus={(e) => e.target.select()}
-                        className="h-11 min-w-0 rounded-lg border-2 border-[rgb(159_201_238)] bg-white text-center text-lg font-bold tabular-nums text-[rgb(18_63_128)] shadow-[var(--inset-panel)] outline-none transition focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.25)] sm:h-12 sm:text-xl"
+                        className="h-11 min-w-0 rounded-lg border-2 border-[var(--color-border-brand)] bg-[var(--color-surface-base)] text-center text-lg font-bold tabular-nums text-[var(--color-text-primary-card-title)] shadow-[var(--inset-panel)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/25 sm:h-12 sm:text-xl"
                     />
                 ))}
             </div>
 
             {!timerExpired ? (
-                <p className="mt-5 text-center text-sm font-bold text-[rgb(255_185_104)] sm:text-base">
+                <p className="mt-5 text-center text-sm font-bold text-[var(--color-warning)] sm:text-base">
                     TAC Code Sent. {secondsLeft}s
                 </p>
             ) : (
                 <div className="mt-5 flex flex-col items-center gap-4">
-                    <p className="text-center text-sm font-bold text-[rgb(255_185_104)] sm:text-base">
+                    <p className="text-center text-sm font-bold text-[var(--color-warning)] sm:text-base">
                         Didn&apos;t receive a code? Try another method.
                     </p>
                     {onContactCustomerService ? (
                         <button
                             type="button"
                             onClick={onContactCustomerService}
-                            className="h-12 w-full max-w-sm rounded-xl bg-[#39FF88] px-4 text-center text-base font-bold text-black shadow-[0_10px_24px_rgba(57_255_136_0.35)] transition hover:brightness-95 active:scale-[0.99]"
+                            className="h-12 w-full max-w-sm rounded-xl bg-[var(--color-success-vivid)] px-4 text-center text-base font-bold text-[var(--color-text-primary)] shadow-[var(--shadow-success)] transition hover:brightness-95 active:scale-[0.99]"
                         >
                             Contact Customer Service
                         </button>

@@ -21,22 +21,22 @@ function PasswordInput({ label, value, onChange, error, showPassword, onToggleSh
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     placeholder="Enter here"
-                    className={`w-full rounded-xl border px-4 py-3 pr-12 text-sm outline-none placeholder:text-[var(--color-text-soft)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)] ${
+                    className={`w-full rounded-xl border px-4 py-3 pr-12 text-sm outline-none placeholder:text-[var(--color-text-soft)] focus:ring-2 focus:ring-[var(--color-accent)]/20 ${
                         error
-                            ? 'border-[var(--color-danger-main)] bg-[rgb(255_91_46_/_0.05)] text-[var(--color-text-strong)] focus:border-[var(--color-danger-main)]'
-                            : 'border-[var(--color-border-default)] bg-[var(--color-surface-base)] text-[var(--color-text-strong)] shadow-[var(--shadow-subtle)] focus:border-[var(--color-accent-400)]'
+                            ? 'border-[var(--color-danger)] bg-[var(--color-danger)]/5 text-[var(--color-text-primary)] focus:border-[var(--color-danger)]'
+                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] focus:border-[var(--color-accent)]'
                     }`}
                 />
                 <button
                     type="button"
                     onClick={onToggleShow}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-600)]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
             </div>
-            {error && <p className="mt-1.5 text-xs text-[var(--color-danger-main)]">{error}</p>}
+            {error && <p className="mt-1.5 text-xs text-[var(--color-danger)]">{error}</p>}
         </label>
     );
 }
@@ -88,7 +88,7 @@ export default function PasswordResetPanel() {
     if (success) {
         return (
             <div className="surface-card rounded-2xl p-6 shadow-[var(--shadow-card-soft)]">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-success-main)] bg-[rgb(57_181_74_/_0.12)] px-4 py-2 text-sm font-semibold text-[var(--color-success-main)]">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-success)] bg-[var(--color-success)]/12 px-4 py-2 text-sm font-semibold text-[var(--color-success)]">
                     Password changed successfully
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">
@@ -101,7 +101,7 @@ export default function PasswordResetPanel() {
     return (
         <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
             <div className="surface-card rounded-2xl p-6 shadow-[var(--shadow-card-soft)]">
-                <h2 className="mb-6 text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">Reset Password</h2>
+                <h2 className="mb-6 text-lg font-bold tracking-tight text-[var(--color-text-primary)] md:text-xl">Reset Password</h2>
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <PasswordInput
                         label="Current Password"

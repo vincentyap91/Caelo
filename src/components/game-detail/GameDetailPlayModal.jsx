@@ -54,18 +54,18 @@ export default function GameDetailPlayModal({
             role="dialog"
             aria-modal="true"
             aria-label={gameTitle ? `Play ${gameTitle}` : 'Game player'}
-            className={`fixed inset-0 z-[240] flex flex-col bg-black transition-opacity duration-200 ease-out ${
+            className={`fixed inset-0 z-[240] flex flex-col bg-[var(--color-surface-darkest)] transition-opacity duration-200 ease-out ${
                 visible ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ maxHeight: '100dvh', height: '100dvh' }}
         >
-            <header className="flex shrink-0 items-center justify-between gap-3 border-b border-[var(--color-nav-border)] bg-[var(--color-nav-top)] px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))] shadow-[0_1px_0_rgba(255,255,255,0.08)_inset]">
-                <h2 className="min-w-0 flex-1 truncate text-sm font-bold tracking-tight text-white md:text-base">{gameTitle}</h2>
+            <header className="flex shrink-0 items-center justify-between gap-3 border-b border-[var(--color-border-brand)] bg-[var(--color-primary)] px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))] shadow-[var(--inset-highlight-soft)]">
+                <h2 className="min-w-0 flex-1 truncate text-sm font-bold tracking-tight text-[var(--color-text-card-text)] md:text-base">{gameTitle}</h2>
                 <button
                     type="button"
                     onClick={onClose}
                     aria-label="Close game"
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)]/25 bg-[var(--color-border-subtle)] text-[var(--color-text-card-text)] transition hover:bg-[var(--color-surface-base)]/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
                 >
                     <X size={20} strokeWidth={2.25} />
                 </button>

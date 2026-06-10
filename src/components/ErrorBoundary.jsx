@@ -55,7 +55,7 @@ export default class ErrorBoundary extends React.Component {
                     justifyContent: 'center',
                     padding: '2rem',
                     fontFamily: 'Poppins, system-ui, sans-serif',
-                    background: 'linear-gradient(160deg, #f0f5ff 0%, #e8f0fe 100%)',
+                    background: 'var(--color-gradient-home-muted)',
                 }}
             >
                 <div
@@ -76,7 +76,7 @@ export default class ErrorBoundary extends React.Component {
                             width: '64px',
                             height: '64px',
                             borderRadius: '50%',
-                            background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
+                            background: 'var(--color-gradient-home-muted)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -138,7 +138,7 @@ export default class ErrorBoundary extends React.Component {
                                 padding: '0.75rem 1.25rem',
                                 borderRadius: '0.75rem',
                                 border: 'none',
-                                background: 'linear-gradient(180deg, #1d4ed8 0%, #1e40af 100%)',
+                                background: 'var(--color-gradient-button-cta)',
                                 color: '#fff',
                                 fontSize: '0.875rem',
                                 fontWeight: '700',

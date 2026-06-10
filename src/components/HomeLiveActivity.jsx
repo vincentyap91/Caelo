@@ -3,19 +3,19 @@ import LiveTransactionsPanel from './home/LiveTransactionsPanel';
 import RecentBigWinsSection from './home/RecentBigWinsSection';
 
 const liveActivityCardClass =
-    'w-full overflow-hidden rounded-2xl border border-[var(--color-border-brand-soft)] bg-gradient-to-b from-white via-[var(--color-surface-subtle)] to-[var(--color-accent-50)]/50 p-6 shadow-[var(--shadow-card-soft)] md:p-8 lg:p-9';
+    'w-full overflow-hidden rounded-2xl border border-[var(--color-border-brand)] bg-gradient-home-dashboard p-6 shadow-[var(--shadow-card-soft)] md:p-8 lg:p-9';
 
 /**
- * Homepage: two matching cards — stacked on small screens, live transactions left / big wins right from lg.
+ * Homepage: Live Transactions and Recent Big Wins — each full-width row, stacked.
  */
-export default function HomeLiveActivity() {
+export default function HomeLiveActivity({ onNavigate }) {
     return (
-        <div className="flex w-full flex-col gap-5 md:gap-6 lg:flex-row lg:items-stretch lg:gap-6 xl:gap-8">
-            <div className={`min-w-0 flex-1 ${liveActivityCardClass}`}>
+        <div className="flex w-full flex-col gap-5 md:gap-6 xl:gap-8">
+            <div className={liveActivityCardClass}>
                 <LiveTransactionsPanel />
             </div>
-            <div className={`min-w-0 flex-1 ${liveActivityCardClass}`}>
-                <RecentBigWinsSection />
+            <div className={liveActivityCardClass}>
+                <RecentBigWinsSection onNavigate={onNavigate} />
             </div>
         </div>
     );

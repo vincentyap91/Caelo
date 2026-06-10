@@ -88,7 +88,7 @@ export default function VerificationPage() {
                     <button
                         type="button"
                         onClick={() => setView('main')}
-                        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-main)] transition hover:text-[var(--color-accent-600)]"
+                        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-button-hover)]"
                     >
                         <ChevronLeft size={18} />
                         Add Bank Account
@@ -98,11 +98,11 @@ export default function VerificationPage() {
                         <div className="space-y-6">
                             <form onSubmit={handleBankSubmit} className="space-y-6">
                                 <section className="surface-card rounded-2xl p-6">
-                                    <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Bank Account Information</h2>
+                                    <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Bank Account Information</h2>
                                     <div className="mt-4 space-y-4">
                                         <label className="block">
                                             <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Select the Bank</span>
-                                            <div className="flex h-12 items-center justify-between rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] px-4 text-[var(--color-text-muted)]">
+                                            <div className="flex h-12 items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] px-4 text-[var(--color-text-muted)]">
                                                 <span>Select the Bank</span>
                                                 <ChevronDown size={18} />
                                             </div>
@@ -114,14 +114,14 @@ export default function VerificationPage() {
                                                 value={bankForm.accountNumber}
                                                 onChange={(e) => setBankForm((p) => ({ ...p, accountNumber: e.target.value }))}
                                                 placeholder="e.g. 0123456789"
-                                                className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] px-4 text-sm text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                                             />
                                         </label>
                                     </div>
                                 </section>
 
                                 <section className="surface-card rounded-2xl p-6">
-                                    <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Account Holder Information</h2>
+                                    <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Account Holder Information</h2>
                                     <div className="mt-4 grid gap-4 sm:grid-cols-2">
                                         <label className="block">
                                             <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">First Name</span>
@@ -130,7 +130,7 @@ export default function VerificationPage() {
                                                 value={bankForm.firstName}
                                                 onChange={(e) => setBankForm((p) => ({ ...p, firstName: e.target.value }))}
                                                 placeholder="e.g. John"
-                                                className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] px-4 text-sm text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                                             />
                                         </label>
                                         <label className="block">
@@ -140,20 +140,20 @@ export default function VerificationPage() {
                                                 value={bankForm.lastName}
                                                 onChange={(e) => setBankForm((p) => ({ ...p, lastName: e.target.value }))}
                                                 placeholder="e.g. Smith"
-                                                className="h-12 w-full rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted-soft)] px-4 text-sm text-[var(--color-text-strong)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent-400)] focus:ring-2 focus:ring-[rgb(96_165_250_/_0.2)]"
+                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                                             />
                                         </label>
                                     </div>
                                 </section>
 
                                 <section className="surface-card rounded-2xl p-6">
-                                    <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Bank Statement</h2>
-                                    <label className="mt-4 flex min-h-[160px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-200)] bg-[rgb(239_246_255_/_0.5)] p-6 transition hover:border-[var(--color-accent-300)] hover:bg-[rgb(239_246_255_/_0.8)]">
-                                        <CloudUpload size={36} className="text-[var(--color-accent-500)]" />
-                                        <span className="mt-3 text-sm font-medium text-[var(--color-text-main)]">
+                                    <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Bank Statement</h2>
+                                    <label className="mt-4 flex min-h-[160px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)]/50 p-6 transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)]/80">
+                                        <CloudUpload size={36} className="text-[var(--color-accent)]" />
+                                        <span className="mt-3 text-sm font-medium text-[var(--color-text-secondary)]">
                                             Drop or click to upload a file
                                         </span>
-                                        <span className="mt-1 text-sm text-[var(--color-accent-600)] underline">Browse</span>
+                                        <span className="mt-1 text-sm text-[var(--color-button-hover)] underline">Browse</span>
                                         <span className="mt-2 text-xs text-[var(--color-text-muted)]">(JPG, PDF or PNG) File size limit: 5MB</span>
                                         <input
                                             type="file"
@@ -175,16 +175,16 @@ export default function VerificationPage() {
 
                         <div className="space-y-6">
                             <section className="surface-card rounded-2xl p-6">
-                                <h2 className="text-lg font-bold text-[var(--color-text-strong)]">Bank Statement Instructions</h2>
+                                <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Bank Statement Instructions</h2>
                                 <p className="mt-3 text-sm text-[var(--color-text-muted)]">
                                     Please upload a copy of your bank statement that meets the stated requirements.
                                 </p>
-                                <div className="mt-4 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] p-6">
-                                    <div className="rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-4 text-center shadow-sm">
-                                        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-accent-100)] text-[var(--color-accent-600)]">
+                                <div className="mt-4 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] p-6">
+                                    <div className="rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-4 text-center shadow-sm">
+                                        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]">
                                             <Landmark size={24} />
                                         </div>
-                                        <p className="text-sm font-bold text-[var(--color-text-main)]">STATEMENT OF ACCOUNT</p>
+                                        <p className="text-sm font-bold text-[var(--color-text-secondary)]">STATEMENT OF ACCOUNT</p>
                                         <div className="mt-4 space-y-2 text-left text-xs text-[var(--color-text-muted)]">
                                             <p>ACCOUNT NUMBER: 123456789-0</p>
                                             <p>STATEMENT DATE: September 4, 2024</p>
@@ -196,36 +196,36 @@ export default function VerificationPage() {
                             </section>
 
                             <section className="surface-card rounded-2xl p-6">
-                                <h2 className="flex items-center gap-2 text-lg font-bold text-[var(--color-text-strong)]">
+                                <h2 className="flex items-center gap-2 text-lg font-bold text-[var(--color-text-primary)]">
                                     Requirements
                                     <ChevronDown size={18} className="text-[var(--color-text-soft)]" />
                                 </h2>
                                 <ul className="mt-4 space-y-3">
                                     {bankRequirements.map((item, i) => (
                                         <li key={i} className="flex gap-3 text-sm text-[var(--color-text-muted)]">
-                                            <FileText size={16} className="mt-0.5 shrink-0 text-[var(--color-accent-500)]" />
-                                            <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-800">$1</strong>') }} />
+                                            <FileText size={16} className="mt-0.5 shrink-0 text-[var(--color-accent)]" />
+                                            <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong class="text-[var(--color-text-primary)]">$1</strong>') }} />
                                         </li>
                                     ))}
                                 </ul>
                             </section>
 
                             <section className="surface-card rounded-2xl p-6">
-                                <h2 className="flex items-center gap-2 text-lg font-bold text-[var(--color-text-strong)]">
+                                <h2 className="flex items-center gap-2 text-lg font-bold text-[var(--color-text-primary)]">
                                     Important
                                     <ChevronDown size={18} className="text-[var(--color-text-soft)]" />
                                 </h2>
                                 <ul className="mt-4 space-y-3 text-sm text-[var(--color-text-muted)]">
                                     <li className="flex gap-3">
-                                        <AlertTriangle size={18} className="shrink-0 text-amber-500" />
+                                        <AlertTriangle size={18} className="shrink-0 text-[var(--color-warning)]" />
                                         An invalid or blurry bank statement may delay your verification or lead to unsuccessful verification.
                                     </li>
                                     <li className="flex gap-3">
-                                        <Clock size={18} className="shrink-0 text-blue-500" />
+                                        <Clock size={18} className="shrink-0 text-[var(--color-accent)]" />
                                         Bank account verification will take approximately 15-30 minutes after uploading your bank statement.
                                     </li>
                                     <li className="flex gap-3">
-                                        <Info size={18} className="shrink-0 text-blue-500" />
+                                        <Info size={18} className="shrink-0 text-[var(--color-accent)]" />
                                         Credit card images and statements are not allowed.
                                     </li>
                                 </ul>
@@ -243,20 +243,20 @@ export default function VerificationPage() {
                     <button
                         type="button"
                         onClick={() => setView('main')}
-                        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-main)] transition hover:text-[var(--color-accent-600)]"
+                        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-button-hover)]"
                     >
                         <ChevronLeft size={18} />
                         Identity Verification
                     </button>
 
-                    <div className="mb-6 flex gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-1">
+                    <div className="mb-6 flex gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1">
                         <button
                             type="button"
                             onClick={() => setDocType('id')}
                             className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition ${
                                 docType === 'id'
-                                    ? 'bg-[var(--color-accent-600)] text-white shadow-sm'
-                                    : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)]'
+                                    ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
+                                    : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-cool-light)]'
                             }`}
                         >
                             ID
@@ -266,8 +266,8 @@ export default function VerificationPage() {
                             onClick={() => setDocType('passport')}
                             className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition ${
                                 docType === 'passport'
-                                    ? 'bg-[var(--color-accent-600)] text-white shadow-sm'
-                                    : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)]'
+                                    ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
+                                    : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-cool-light)]'
                             }`}
                         >
                             Passport
@@ -282,18 +282,18 @@ export default function VerificationPage() {
                                         <>
                                             <label className="block">
                                                 <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Front side of ID</span>
-                                                <div className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-200)] bg-[rgb(239_246_255_/_0.5)] p-6 transition hover:border-[var(--color-accent-300)] hover:bg-[rgb(239_246_255_/_0.8)]">
-                                                    <FolderPlus size={32} className="text-[var(--color-accent-500)]" />
-                                                    <span className="mt-2 text-sm font-medium text-[var(--color-text-main)]">Front side of ID</span>
+                                                <div className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)]/50 p-6 transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)]/80">
+                                                    <FolderPlus size={32} className="text-[var(--color-accent)]" />
+                                                    <span className="mt-2 text-sm font-medium text-[var(--color-text-secondary)]">Front side of ID</span>
                                                     <span className="mt-1 text-xs text-[var(--color-text-muted)]">(JPG, PDF or PNG) File size limit: 5MB</span>
                                                     <input type="file" accept=".jpg,.jpeg,.png,.pdf" className="hidden" onChange={(e) => setIdFront(e.target.files?.[0])} />
                                                 </div>
                                             </label>
                                             <label className="mt-4 block">
                                                 <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Back side of ID</span>
-                                                <div className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-200)] bg-[rgb(239_246_255_/_0.5)] p-6 transition hover:border-[var(--color-accent-300)] hover:bg-[rgb(239_246_255_/_0.8)]">
-                                                    <FolderPlus size={32} className="text-[var(--color-accent-500)]" />
-                                                    <span className="mt-2 text-sm font-medium text-[var(--color-text-main)]">Back side of ID</span>
+                                                <div className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)]/50 p-6 transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)]/80">
+                                                    <FolderPlus size={32} className="text-[var(--color-accent)]" />
+                                                    <span className="mt-2 text-sm font-medium text-[var(--color-text-secondary)]">Back side of ID</span>
                                                     <span className="mt-1 text-xs text-[var(--color-text-muted)]">(JPG, PDF or PNG) File size limit: 5MB</span>
                                                     <input type="file" accept=".jpg,.jpeg,.png,.pdf" className="hidden" onChange={(e) => setIdBack(e.target.files?.[0])} />
                                                 </div>
@@ -301,9 +301,9 @@ export default function VerificationPage() {
                                         </>
                                     ) : (
                                         <label className="block">
-                                            <div className="flex min-h-[180px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-200)] bg-[rgb(239_246_255_/_0.5)] p-6 transition hover:border-[var(--color-accent-300)] hover:bg-[rgb(239_246_255_/_0.8)]">
-                                                <FolderPlus size={40} className="text-[var(--color-accent-500)]" />
-                                                <span className="mt-3 text-sm font-medium text-[var(--color-text-main)]">Drop or click to upload a file</span>
+                                            <div className="flex min-h-[180px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)]/50 p-6 transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)]/80">
+                                                <FolderPlus size={40} className="text-[var(--color-accent)]" />
+                                                <span className="mt-3 text-sm font-medium text-[var(--color-text-secondary)]">Drop or click to upload a file</span>
                                                 <span className="mt-1 text-xs text-[var(--color-text-muted)]">(JPG, PDF or PNG) File size limit: 5MB</span>
                                                 <input type="file" accept=".jpg,.jpeg,.png,.pdf" className="hidden" onChange={(e) => setPassportFile(e.target.files?.[0])} />
                                             </div>
@@ -311,7 +311,7 @@ export default function VerificationPage() {
                                     )}
 
                                     <p className="mt-4 flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                                        <Clock size={16} className="text-[var(--color-accent-500)]" />
+                                        <Clock size={16} className="text-[var(--color-accent)]" />
                                         Please be aware that your ID verification will take approximately 15-30 minutes.
                                     </p>
 
@@ -326,13 +326,13 @@ export default function VerificationPage() {
                         </div>
 
                         <section className="surface-card rounded-2xl p-6">
-                            <h2 className="text-lg font-bold text-[var(--color-text-strong)]">
+                            <h2 className="text-lg font-bold text-[var(--color-text-primary)]">
                                 Proof of Identity - Copy of {docType === 'id' ? 'ID Card' : 'Passport'}.
                             </h2>
                             <ul className="mt-4 space-y-3">
                                 {requirements.map((item, i) => (
                                     <li key={i} className="flex gap-3 text-sm text-[var(--color-text-muted)]">
-                                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent-500)]" />
+                                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent)]" />
                                         {item}
                                     </li>
                                 ))}
@@ -354,24 +354,24 @@ export default function VerificationPage() {
                             className="surface-card flex flex-col rounded-2xl p-6 transition hover:shadow-[var(--shadow-card-hover)]"
                         >
                             <div className="flex items-start justify-between">
-                                <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent-200)] bg-[var(--color-accent-50)] px-3 py-1 text-xs font-semibold text-[var(--color-accent-700)]">
+                                <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-3 py-1 text-xs font-semibold text-[var(--color-button-hover)]">
                                     <Info size={12} />
                                     {status}
                                 </span>
                             </div>
                             <div className="mt-4 flex items-start gap-4">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-100)] text-[var(--color-accent-600)]">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]">
                                     <Icon size={24} />
                                 </div>
                                 <div>
-                                    <h2 className="text-lg font-bold text-[var(--color-text-strong)]">{title}</h2>
+                                    <h2 className="text-lg font-bold text-[var(--color-text-primary)]">{title}</h2>
                                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
                                 </div>
                             </div>
                             <button
                                 type="button"
                                 onClick={() => setView(id)}
-                                className="mt-6 inline-flex w-fit items-center justify-center rounded-full border-2 border-[var(--color-accent-500)] bg-[var(--color-surface-base)] px-5 py-2.5 text-sm font-bold text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-50)]"
+                                className="mt-6 inline-flex w-fit items-center justify-center rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-surface-base)] px-5 py-2.5 text-sm font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-pale)]"
                             >
                                 {actionLabel}
                             </button>

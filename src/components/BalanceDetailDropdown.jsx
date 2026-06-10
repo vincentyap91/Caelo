@@ -15,7 +15,7 @@ export default function BalanceDetailDropdown({
 
     return (
         <div className={`balance-modal-container flex w-[280px] flex-col overflow-hidden p-3 animate-in fade-in slide-in-from-top-2 duration-200 ${className}`}>
-            <div className="absolute inset-x-0 top-0 h-16 bg-[radial-gradient(circle_at_top,var(--color-nav-border)_0%,transparent_72%)] pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-nav-radial-top pointer-events-none" />
             
             <div className="relative z-10 mb-3 flex items-center justify-between px-1 balance-modal-text-primary">
                 <span className="text-sm font-bold tracking-wide">Balance Detail</span>

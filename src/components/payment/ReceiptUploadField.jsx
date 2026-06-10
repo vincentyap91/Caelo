@@ -57,18 +57,18 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                 type="button"
                 aria-label="Close preview"
                 onClick={onClose}
-                className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+                className="absolute inset-0 bg-[var(--color-surface-darkest)]/70 backdrop-blur-sm"
             />
             <div
                 role="dialog"
                 aria-modal="true"
                 aria-label="Receipt preview"
-                className="relative z-[1] flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] shadow-2xl"
+                className="relative z-[1] flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex items-center justify-between gap-3 border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 py-3 sm:px-5">
+                <div className="flex items-center justify-between gap-3 border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-3 sm:px-5">
                     <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-semibold text-[var(--color-text-strong)]" title={file.name}>
+                        <p className="truncate text-sm font-semibold text-[var(--color-text-primary)]" title={file.name}>
                             {file.name}
                         </p>
                         <p className="text-xs text-[var(--color-text-muted)]">{formatFileSize(file.size)}</p>
@@ -78,7 +78,7 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                             <button
                                 type="button"
                                 onClick={openExternal}
-                                className="rounded-xl border border-[var(--color-accent-400)] bg-[var(--color-accent-50)] px-3 py-2 text-xs font-bold text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-100)] sm:text-sm"
+                                className="rounded-xl border border-[var(--color-accent)] bg-[var(--color-accent-pale)] px-3 py-2 text-xs font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-glow)] sm:text-sm"
                             >
                                 Open file
                             </button>
@@ -86,14 +86,14 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                         <button
                             type="button"
                             onClick={onClose}
-                            className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-surface-muted)] text-[var(--color-text-strong)] transition hover:bg-[var(--color-surface-subtle)]"
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             aria-label="Close"
                         >
                             <X size={20} />
                         </button>
                     </div>
                 </div>
-                <div className="flex min-h-0 flex-1 items-center justify-center bg-[var(--color-surface-muted)] p-4 sm:p-6">
+                <div className="flex min-h-0 flex-1 items-center justify-center bg-[var(--color-surface-cool-light)] p-4 sm:p-6">
                     {isImage && !imageBroken ? (
                         <img
                             src={previewUrl}
@@ -103,11 +103,11 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                         />
                     ) : (
                         <div className="flex max-w-sm flex-col items-center gap-4 text-center">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-surface-base)] text-[var(--color-accent-600)] shadow-[var(--shadow-card-soft)]">
+                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-[var(--shadow-card-soft)]">
                                 <FileText size={36} strokeWidth={1.75} />
                             </div>
                             <div>
-                                <p className="text-sm font-semibold text-[var(--color-text-strong)]">
+                                <p className="text-sm font-semibold text-[var(--color-text-primary)]">
                                     {imageBroken ? 'Could not load image preview' : 'Preview not available for this file type'}
                                 </p>
                                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">
@@ -117,7 +117,7 @@ export function ReceiptPreviewModal({ open, onClose, file, previewUrl }) {
                             <button
                                 type="button"
                                 onClick={openExternal}
-                                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-accent-600)] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-[var(--color-accent-500)]"
+                                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-button-hover)] px-5 py-2.5 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:bg-[var(--color-accent)]"
                             >
                                 <Eye size={18} />
                                 Open file
@@ -154,12 +154,12 @@ export function ReceiptFileCard({
 
     return (
         <div
-            className={`flex flex-col gap-3 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-base)] p-3 shadow-[var(--shadow-card-soft)] sm:flex-row sm:items-center sm:gap-4 sm:p-4 ${className}`}
+            className={`flex flex-col gap-3 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3 shadow-[var(--shadow-card-soft)] sm:flex-row sm:items-center sm:gap-4 sm:p-4 ${className}`}
         >
             <button
                 type="button"
                 onClick={onPreview}
-                className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] text-[var(--color-accent-600)] transition hover:border-[var(--color-accent-300)] hover:shadow-md focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-accent-400)] sm:h-20 sm:w-20"
+                className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] transition hover:border-[var(--color-border-subtle)] hover:shadow-md focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] sm:h-20 sm:w-20"
                 aria-label="Preview receipt"
             >
                 {showThumb ? (
@@ -178,7 +178,7 @@ export function ReceiptFileCard({
                 <button
                     type="button"
                     onClick={onPreview}
-                    className="w-full truncate text-left text-sm font-semibold text-[var(--color-text-strong)] underline-offset-2 hover:text-[var(--color-accent-600)] hover:underline focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-accent-400)] rounded-sm"
+                    className="w-full truncate text-left text-sm font-semibold text-[var(--color-text-primary)] underline-offset-2 hover:text-[var(--color-button-hover)] hover:underline focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded-sm"
                     title={file.name}
                 >
                     {file.name}
@@ -190,7 +190,7 @@ export function ReceiptFileCard({
                 <button
                     type="button"
                     onClick={onPreview}
-                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl border-2 border-[var(--color-accent-400)] bg-[var(--color-accent-50)] px-4 py-2 text-sm font-bold text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-100)] sm:flex-initial"
+                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl border-2 border-[var(--color-accent)] bg-[var(--color-accent-pale)] px-4 py-2 text-sm font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-glow)] sm:flex-initial"
                 >
                     <Eye size={16} strokeWidth={2.25} />
                     Preview
@@ -199,7 +199,7 @@ export function ReceiptFileCard({
                     <button
                         type="button"
                         onClick={onRemove}
-                        className="inline-flex flex-1 items-center justify-center rounded-xl px-4 py-2 text-sm font-bold text-[var(--color-danger-main)] transition hover:bg-[var(--color-danger-main)]/5 hover:underline sm:flex-initial"
+                        className="inline-flex flex-1 items-center justify-center rounded-xl px-4 py-2 text-sm font-bold text-[var(--color-danger)] transition hover:bg-[var(--color-danger)]/5 hover:underline sm:flex-initial"
                     >
                         Remove
                     </button>
@@ -248,7 +248,7 @@ export default function ReceiptUploadField({
                 <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border-2 border-[var(--color-accent-400)] bg-[var(--color-accent-50)] px-5 text-sm font-bold text-[var(--color-accent-600)] transition hover:bg-[var(--color-accent-100)] sm:w-auto sm:justify-start"
+                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border-2 border-[var(--color-accent)] bg-[var(--color-accent-pale)] px-5 text-sm font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-glow)] sm:w-auto sm:justify-start"
                 >
                     <Upload size={18} strokeWidth={2.25} />
                     {uploadButtonLabel}
@@ -261,21 +261,21 @@ export default function ReceiptUploadField({
             ) : null}
 
             {error ? (
-                <p className="flex items-start gap-2 text-sm font-medium text-[var(--color-danger-main)]">
+                <p className="flex items-start gap-2 text-sm font-medium text-[var(--color-danger)]">
                     <AlertCircle size={16} className="mt-0.5 shrink-0" />
                     {error}
                 </p>
             ) : null}
 
-            <p className="flex items-start gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)]/80 px-3 py-2.5 text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm">
-                <Info size={16} className="mt-0.5 shrink-0 text-[var(--color-accent-600)]" strokeWidth={2.25} />
+            <p className="flex items-start gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)]/80 px-3 py-2.5 text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm">
+                <Info size={16} className="mt-0.5 shrink-0 text-[var(--color-button-hover)]" strokeWidth={2.25} />
                 <span>
-                    {helperText} <span className="font-medium text-[var(--color-text-strong)]">{maxSizeNote}</span>
+                    {helperText} <span className="font-medium text-[var(--color-text-primary)]">{maxSizeNote}</span>
                 </span>
             </p>
 
             {!file && requiredMessage ? (
-                <p className="flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger-main)]">
+                <p className="flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger)]">
                     <AlertCircle size={14} className="shrink-0" />
                     {requiredMessage}
                 </p>

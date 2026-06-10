@@ -95,7 +95,7 @@ function useCategoryGamesState() {
 
 function CategoryGamesEmpty({ searchQuery }) {
     return (
-        <p className="mt-4 rounded-xl border border-dashed border-[var(--color-border-default)] bg-[var(--color-surface-muted)] px-4 py-6 text-center text-sm font-medium text-[var(--color-text-muted)]">
+        <p className="mt-4 rounded-xl border border-dashed border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-6 text-center text-sm font-medium text-[var(--color-text-muted)]">
             {searchQuery.trim()
                 ? 'No games match your search. Try a different name or provider.'
                 : 'No featured games in this category yet.'}
@@ -125,7 +125,7 @@ function MobileCategoryBrowse({ onNavigate, state }) {
         <div className="mx-auto flex max-w-screen-2xl gap-3 px-3 pb-8 pt-3">
             <nav
                 aria-label="Game categories"
-                className="sticky top-14 z-10 flex w-[4.5rem] shrink-0 flex-col gap-2 self-start"
+                className="home-category-tabs sticky top-14 z-10 flex w-[4.5rem] shrink-0 flex-col gap-2 self-start"
             >
                 {CATEGORIES.map((category) => (
                     <GameCategoryNavItem
@@ -186,12 +186,12 @@ function DesktopCategoryBrowse({ onNavigate, state }) {
         <section className="w-full pt-4">
             <SectionHeader
                 title="Category Games"
-                icon={<LayoutGrid size={22} className="text-[var(--color-brand-secondary)]" strokeWidth={2.25} />}
+                icon={<LayoutGrid size={22} className="text-[var(--color-button-hover)]" strokeWidth={2.25} />}
             />
 
             <nav
                 aria-label="Game category tabs"
-                className="mb-3 min-w-0 overflow-x-auto pb-1"
+                className="home-category-tabs mb-3 min-w-0 overflow-x-auto pb-1"
             >
                 <div className="flex min-w-max gap-2.5">
                     {CATEGORIES.map((category) => (

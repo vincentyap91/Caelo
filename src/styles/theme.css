@@ -5,89 +5,16 @@
   --font-family-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --font-family-multilingual: "Poppins", "Noto Sans SC", "Noto Sans TC", "Noto Sans Thai", "Noto Sans KR", "Noto Sans Devanagari", "Noto Sans Myanmar", "Noto Sans JP", "Segoe UI", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Yu Gothic UI", "Leelawadee UI", "Nirmala UI", "Myanmar Text", sans-serif;
 
-  --color-brand-primary: #123B94;
-  --color-brand-secondary: #0d2a6a;
-  --color-brand-deep: #01206C;
-  --color-brand-soft: #E5F6FF;
-  --color-brand-soft-border: #CCEEFF;
-  --color-brand-line: #7AD0F5;
-
-  --color-page-home: #e6f4fd;
-  --color-page-register: #edf4ff;
-  --color-page-account: #eaf1fb;
-  --color-page-default: #f2f4f8;
-
-  --color-surface-base: #ffffff;
-  --color-surface-base-80: rgb(255 255 255 / 0.8);
-  --color-surface-base-85: rgb(255 255 255 / 0.85);
-  --color-surface-muted: #f8fafc;
-  --color-surface-muted-soft: rgb(248 250 252 / 0.8);
-  --color-surface-subtle: #f8fbff;
-  --color-surface-panel: #f0f9ff;
-
-  /* Caelo Brand Tokens */
+  /* Layout aliases → Figma semantics (colors defined in src/theme.css) */
   --surface-base: var(--color-surface-base);
-  --border-default: var(--color-border-default);
+  --border-default: var(--color-border-subtle);
   --text-muted: var(--color-text-muted);
   --ref-10: #f1f5f9;
   --ref-30: #cbd5e1;
-  --surface-utility-2: var(--color-brand-primary);
+  --surface-utility-2: var(--color-primary);
   --nav-side-promo-icon-size: 1.125rem;
 
-  --color-text-strong: #0f172a;
-  --color-text-main: #334155;
-  --color-text-subtle: #475569;
-  --color-text-muted: #64748b;
-  --color-text-soft: #94a3b8;
-  --color-text-brand: #123B94;
-  --color-text-brand-soft: #004C80;
-
-  --color-border-default: #e2e8f0;
-  --color-border-accent: #dbeafe;
-  --color-border-brand: #cfe0f9;
-  --color-border-brand-soft: #CCEEFF;
-  --color-border-live: #d5deef;
-
-  --color-accent-50: #eff6ff;
-  --color-accent-100: #dbeafe;
-  --color-accent-200: #bfdbfe;
-  --color-accent-300: #93c5fd;
-  --color-accent-400: #60a5fa;
-  --color-accent-500: #3b82f6;
-  --color-accent-600: #2563eb;
-  --color-accent-700: #1d4ed8;
-
-  --color-nav-top: #123B94;
-  --color-nav-main: #123B94;
-  --color-nav-border: rgb(106 200 255 / 0.18);
-  --color-nav-border-soft: rgb(106 200 255 / 0.12);
-  --color-nav-tile-border: rgb(87 181 255 / 0.1);
-  --color-nav-tile-border-hover: rgb(102 203 255 / 0.3);
-  --color-nav-text-soft: #d3eaff;
-  --color-nav-text-accent: #8ad4ff;
-  --color-nav-accent: #ffd84d;
-  --color-nav-accent-soft: #ffe27d;
-  --color-nav-icon: #1f83ff;
-  --color-nav-icon-hover: #5cc4ff;
-  --color-nav-badge: #2c66c3;
-  --color-nav-overlay: rgb(2 11 31 / 0.75);
-
-  --color-success-main: #39B54A;
-  --color-success-hover: #2e9e3c;
-  --color-danger-main: #ff5b2e;
-  --color-hot-main: #ff4d00;
-
-  /* 01 Primitives — neutral wash (payout tiles, soft panels) */
-  --color-wash-400: #eceff8;
-
-  /* 01 Primitives — Recent Payout (staging.riocity9.com / caelo theme) */
-  --color-payout-panel-bg: #ffffff;
-  --color-payout-panel-border: var(--color-brand-primary);
-  --color-payout-panel-shadow: 0 4px 10px rgb(8 59 148 / 0.25);
-  --color-payout-title: #0c162f;
-  --color-payout-highlight: #123b94;
-  --color-payout-card-bg: var(--color-accent-50);
-  --color-payout-amount: #dd6044;
+  /* Recent Payout layout tokens */
   --radius-payout-panel: 12px;
   --radius-payout-card: 8px;
   --size-payout-card-w: 12.5rem;
@@ -101,48 +28,12 @@
   --space-payout-card-pad: 0.9375rem;
   --space-payout-card-gap: 0.9375rem;
 
-  /* 02 Semantic — use in components instead of legacy color-* where specified */
+  /* Semantic aliases */
   --base-paper: var(--color-surface-base);
-  --base-ink: var(--color-text-strong);
-  --mono-300: var(--color-border-default);
-  --wash-400: var(--color-wash-400);
-  --state-danger-soft: var(--color-hot-main);
-  --payout-panel-bg: var(--color-payout-panel-bg);
-  --payout-panel-border: var(--color-payout-panel-border);
-  --payout-panel-shadow: var(--color-payout-panel-shadow);
-  --payout-title: var(--color-payout-title);
-  --payout-highlight: var(--color-payout-highlight);
-  --payout-card-bg: var(--color-payout-card-bg);
-  --payout-amount: var(--color-payout-amount);
-
-  --color-cta-start: #ffcf4a;
-  --color-cta-end: #ffb22d;
-  --color-cta-strong-start: #ffcc33;
-  --color-cta-strong-end: #f29a00;
-  --color-cta-auth-start: #ffb255;
-  --color-cta-auth-end: #ff8e24;
-  --color-cta-border: #f0bb3d;
-  --color-cta-focus: #ffd166;
-  --color-cta-text: #0c4a8e;
-  --gradient-cta: linear-gradient(180deg, var(--color-cta-start) 0%, var(--color-cta-end) 100%);
-
-  --gradient-soft-panel-start: #ffffff;
-  --gradient-soft-panel-end: #f8fbff;
-  --gradient-blue-panel-start: #f8fbff;
-  --gradient-blue-panel-end: #eff6ff;
-  --gradient-account-shell-start: #f8fafc;
-  --gradient-account-shell-mid: #f0f9ff;
-  --gradient-account-shell-end: #ffffff;
-  --gradient-live-page-start: #eaf0ff;
-  --gradient-live-page-mid: #f6f9ff;
-  --gradient-live-page-end: #ecf1f9;
-  --gradient-register-page-start: #e8f4ff;
-  --gradient-register-page-mid: #f3f7ff;
-  --gradient-register-page-end: #ecf3ff;
-  --gradient-register-panel-mid: #d9ecff;
-  --gradient-register-panel-end: #c9e5ff;
-  --gradient-footer-start: #123B94;
-  --gradient-footer-end: #123B94;
+  --base-ink: var(--color-text-primary);
+  --mono-300: var(--color-border-subtle);
+  --wash-400: var(--color-surface-cool-light);
+  --state-danger-soft: var(--color-danger);
 
   --radius-control-xs: 9px;
   --radius-control-sm: 10px;
@@ -179,15 +70,15 @@
   --shadow-nav-top: 0 8px 16px rgba(0, 73, 156, 0.2);
   --shadow-nav-dropdown: 0 20px 44px rgba(0, 16, 56, 0.4);
   --shadow-nav-pill: 0 8px 16px rgba(1, 22, 63, 0.25);
+  --nav-top-pill-border: rgba(255, 255, 255, 0.16);
+  --nav-top-pill-border-hover: rgba(255, 255, 255, 0.24);
+  --nav-top-pill-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+  --nav-top-pill-bg-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --nav-top-pill-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 10px rgba(0, 0, 0, 0.06);
   --shadow-nav-tile-hover: 0 14px 24px rgba(3, 22, 58, 0.34);
   --shadow-success: 0 0 8px rgba(57, 181, 74, 0.6);
   --shadow-scan: 0 0 8px #00a8e8;
   --shadow-modal: 0 24px 50px rgba(10, 42, 97, 0.22);
-  /* Universal modal — pale header + navy type; game body / wallet shell use global brand tokens */
-  --color-universal-modal-header-bg: #e8eef6;
-  --color-universal-modal-header-text: var(--color-brand-deep);
-  --color-universal-modal-game-body-bg: var(--color-surface-base);
-  --color-universal-modal-card-border: var(--color-border-brand);
   --radius-universal-modal: 14px;
   --shadow-register-card: 0 18px 35px rgba(10, 42, 97, 0.14);
 
@@ -202,12 +93,19 @@
 
   --text-page-title: 1.5rem;
   --text-page-title-md: 1.875rem;
-  --tracking-page-title: -0.025em;
+  /* Letter-spacing — 3 tiers (+ code for mono OTP inputs). */
+  --tracking-normal: 0;
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.08em;
+  --tracking-code: 0.25em;
+
+  /** @deprecated use --tracking-tight */
+  --tracking-page-title: var(--tracking-tight);
 
   /* Former Tailwind `@theme` tokens (must be real CSS vars). */
   --font-sans: var(--font-family-sans);
-  --color-prime-light: #123B94;
-  --color-prime-dark: #0d2a6a;
+  --color-prime-light: var(--color-primary);
+  --color-prime-dark: var(--color-button-hover);
 
   --animate-scan: scan 1.5s linear infinite;
   --animate-float: float 5s ease-in-out infinite;
@@ -272,9 +170,6 @@
     width: 100%;
     margin-top: 1.5rem;
     border-radius: var(--radius-payout-panel);
-    border: 1px solid var(--color-brand-primary);
-    background-color: var(--payout-panel-bg);
-    box-shadow: var(--payout-panel-shadow);
     --payout-carousel-gap: var(--space-payout-card-gap);
     --payout-card-step: calc(var(--size-payout-card-w) + var(--payout-carousel-gap));
   }
@@ -299,12 +194,401 @@
     font-style: italic;
     line-height: 1.2;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
-    color: var(--payout-title);
+    letter-spacing: var(--tracking-tight);
   }
 
-  .recent-payout-header__title span {
-    color: var(--payout-highlight);
+  /**
+   * Recent Payout — Cam88 semantic names; Caelo resolved colors via scoped aliases.
+   * See VARIABLE-RULES.en.md §13.10 / §13.11.
+   */
+  .recent-payout-section {
+    --color-border-brand: var(--color-primary);
+    --color-surface-panel: var(--color-accent-pale);
+  }
+
+  .recent-payout-section .recent-payout-header__title-recent {
+    color: var(--color-text-primary-card-title);
+  }
+
+  .recent-payout-section .recent-payout-header__title-payout {
+    color: var(--color-text-primary);
+  }
+
+  /**
+   * App Download (12WIN) — Cam88 semantic names; Caelo resolved colors via scoped aliases.
+   * Gradients use `--color-gradient-home-highlight` per VARIABLE-RULES.en.md §13.6.
+   */
+  .app-download-section {
+    --color-button-hover: var(--brand-630);
+    --color-text-secondary: var(--raw-text-brand-soft);
+    --color-surface-cool-light: rgb(0 174 239 / 0.12);
+    --color-accent-glow: #c6eeff;
+  }
+
+  .app-download-section .app-download-chip {
+    --color-border-brand: rgb(202 227 244);
+    --color-accent-pale: rgb(244 251 255);
+    --color-text-secondary: rgb(77 114 145);
+  }
+
+  /**
+   * App shell page backgrounds — Cam88 surface roles; Caelo page tints via `--raw-page-*`.
+   * home/register/account → `--color-surface-cool-light`; default → `--color-surface-base`.
+   * See VARIABLE-RULES.en.md §13.11.
+   */
+  .app-shell[data-app-shell-bg="home"] {
+    background-color: var(--raw-page-home);
+  }
+
+  .app-shell[data-app-shell-bg="register"] {
+    background-color: var(--raw-page-register);
+  }
+
+  .app-shell[data-app-shell-bg="account"] {
+    background-color: var(--raw-page-account);
+  }
+
+  .app-shell[data-app-shell-bg="default"] {
+    background-color: var(--raw-page-default);
+  }
+
+  /**
+   * Site footer — Cam88 `--color-surface-low` + `--color-border-line`; Caelo blue shell.
+   */
+  .site-footer {
+    --color-border-line: rgb(168 226 251);
+    --color-surface-low: var(--brand-500);
+    --color-text-light: var(--mono-0);
+  }
+
+  .site-footer .site-footer__menu-divider {
+    --color-border-line: var(--mono-0);
+  }
+
+  .top-sticky-nav-bar {
+    --color-sticky-nav: var(--brand-500);
+    --color-text-sticky-nav-text: var(--mono-0);
+    --color-text-sticky-nav-active: var(--raw-nav-text-accent);
+    --color-border-brand: var(--raw-border-brand);
+  }
+
+  /** Logged-in profile tier chip on dark sticky bar (§13.11) */
+  .top-sticky-profile-badge {
+    border: 1px solid var(--color-accent-yellow);
+    background-color: transparent;
+    color: var(--color-accent-yellow);
+  }
+
+  /**
+   * Lottery game cards — Cam88 `--color-gradient-card-brand`; Caelo dark navy thumb (riocity-v2 lottery).
+   * See VARIABLE-RULES.en.md §13.11.
+   */
+  .lottery-page .lottery-game-card__thumb {
+    --color-gradient-card-brand: linear-gradient(
+      180deg,
+      var(--raw-gradient-lottery-header-start) 0%,
+      var(--raw-gradient-lottery-header-end) 100%
+    );
+    background-image: var(--color-gradient-card-brand);
+  }
+
+  /**
+   * Shared provider lobby tile — sports thumb uses Cam88 sports gradient (§13.11).
+   */
+  .sports-page .provider-lobby-card__thumb {
+    --color-surface-mid-color: transparent;
+    background-image: var(--color-gradient-sports-card);
+  }
+
+  .sports-page .provider-lobby-card .game-card-play-overlay {
+    background-color: var(--color-overlay-sports-card);
+  }
+
+  /**
+   * Web_Slot - Cam88 (903:25656) — Cam88 semantic names in JSX; Caelo look via scoped aliases (§13.11).
+   */
+  .slots-page {
+    --color-surface: var(--color-surface-base);
+    --color-button-tabs: var(--color-surface-base);
+    --color-border-tabs: var(--color-border-subtle);
+  }
+
+  .slots-page .slots-provider-tab--active {
+    --color-button-tabs: var(--color-surface-base);
+    --color-border-tabs: var(--color-surface-accent-hover);
+  }
+
+  .slots-page .slots-browse-panel {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .slots-page .slots-browse-summary-label {
+    --color-primary: var(--color-text-secondary);
+  }
+
+  .slots-page .slots-browse-summary-value {
+    --color-text-primary: var(--color-surface-accent-hover);
+  }
+
+  .slots-page .slots-browse-summary-card,
+  .slots-page .slot-current-promo__card {
+    --color-surface: var(--color-surface-base);
+    background-image: var(--color-gradient-wallet-panel);
+  }
+
+  .slots-page .slot-current-promo {
+    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-fill: var(--brand-500);
+  }
+
+  .slots-page .slot-current-promo__eyebrow {
+    --color-text-primary: var(--color-text-muted);
+  }
+
+  .slots-page .slot-current-promo__card {
+    --color-primary: var(--color-surface-accent-hover);
+  }
+
+  .slots-page .slot-current-promo .btn-theme-cta-fourth {
+    color: var(--color-text-cta-inverse);
+    background-color: transparent;
+    background-image: var(--color-gradient-button-cta);
+    border: 1px solid var(--color-border-brand);
+    box-shadow: var(--shadow-cta-soft);
+  }
+
+  .slots-page .slots-browse-search {
+    --color-surface-input-inverse: var(--color-surface-base);
+    --color-info-icon: var(--color-text-muted);
+  }
+
+  .slots-page .slots-game-card__thumb {
+    --color-border-danger: transparent;
+  }
+
+  .slots-page .slots-game-card__rtp.rtp-label--pill,
+  .slots-page .slots-game-card .rtp-label--pill {
+    --color-surface-rtp-secondary-card: var(--color-accent-glow);
+    --color-surface-rtp-secondary-card-text: var(--color-button-hover);
+    --color-border-brand: var(--raw-border-accent);
+  }
+
+  /** Favourite + game-card utilities share Riocity `--color-gradient-sports-card` — preserve Caelo scrims. */
+  .bg-gradient-favourite-inactive {
+    --color-gradient-sports-card: linear-gradient(
+      180deg,
+      var(--raw-scrim-fav-inactive-start) 0%,
+      var(--raw-scrim-fav-inactive-end) 100%
+    );
+  }
+
+  .bg-gradient-favourite-inactive-hover {
+    --color-gradient-sports-card: linear-gradient(
+      180deg,
+      var(--raw-scrim-fav-hover-start) 0%,
+      var(--raw-scrim-fav-hover-end) 100%
+    );
+  }
+
+  .bg-gradient-favourite-active {
+    --color-gradient-sports-card: linear-gradient(
+      135deg,
+      var(--raw-scrim-fav-active-start) 0%,
+      var(--raw-scrim-fav-active-mid) 48%,
+      var(--raw-scrim-fav-active-end) 100%
+    );
+  }
+
+  .bg-gradient-favourite-active-hover {
+    --color-gradient-sports-card: linear-gradient(
+      135deg,
+      var(--raw-scrim-fav-active-hover-start) 0%,
+      var(--raw-scrim-fav-active-hover-mid) 48%,
+      var(--raw-scrim-fav-active-hover-end) 100%
+    );
+  }
+
+  .bg-gradient-game-card-overlay {
+    --color-gradient-sports-card: linear-gradient(
+      180deg,
+      var(--raw-scrim-game-overlay-start) 0%,
+      var(--raw-scrim-game-overlay-mid) 36%,
+      var(--raw-scrim-game-overlay-end) 100%
+    );
+  }
+
+  @media (min-width: 768px) {
+    .bg-gradient-game-card-overlay {
+      --color-gradient-sports-card: linear-gradient(
+        90deg,
+        var(--raw-scrim-game-launch-start) 0%,
+        var(--raw-scrim-game-launch-mid) 45%,
+        var(--raw-scrim-game-launch-end-soft) 100%
+      );
+    }
+  }
+
+  .bg-gradient-game-card-glow-soft {
+    --color-gradient-sports-card: radial-gradient(
+      circle,
+      var(--raw-scrim-game-glow-soft) 0%,
+      var(--raw-scrim-game-glow-faint) 48%,
+      transparent 78%
+    );
+  }
+
+  .bg-gradient-game-card-glow-strong {
+    --color-gradient-sports-card: radial-gradient(
+      circle,
+      var(--raw-scrim-game-glow-strong) 0%,
+      var(--raw-scrim-game-glow-mid) 46%,
+      transparent 76%
+    );
+  }
+
+  .bg-gradient-promo-bottom-glow-soft {
+    --color-gradient-nav-highlight: linear-gradient(
+      180deg,
+      transparent 0%,
+      var(--raw-scrim-brand-mid-06) 100%
+    );
+  }
+
+  .bg-gradient-app-download-section {
+    --color-gradient-home-highlight: linear-gradient(180deg, var(--raw-gradient-app-download-section-start) 0%, var(--raw-gradient-app-download-section-end) 100%);
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-phone {
+    --color-gradient-home-highlight: linear-gradient(180deg, var(--raw-gradient-app-download-phone-start) 0%, var(--raw-gradient-app-download-phone-end) 100%);
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-preview {
+    --color-gradient-home-highlight: linear-gradient(180deg, var(--brand-500) 0%, var(--raw-gradient-app-download-preview-end) 100%);
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-button {
+    --color-gradient-home-highlight: linear-gradient(90deg, var(--raw-gradient-app-download-button-start) 0%, var(--brand-500) 100%);
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-qr {
+    --color-gradient-home-highlight: linear-gradient(180deg, var(--mono-0) 0%, var(--raw-gradient-app-download-qr-end) 100%);
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-shell {
+    --color-gradient-home-highlight: linear-gradient(180deg, var(--raw-scrim-app-shell-start) 0%, var(--raw-scrim-app-shell-end) 100%);
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-inner {
+    --color-gradient-home-highlight: linear-gradient(180deg, var(--raw-scrim-app-inner-start) 0%, var(--raw-scrim-app-inner-end) 100%);
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  /**
+   * Recent Big Wins — Cam88 semantic names in JSX; Caelo resolved colors via scoped aliases.
+   * See VARIABLE-RULES.en.md §13.10 / §13.11.
+   */
+  .recent-big-wins-section {
+    --color-border-line: var(--color-border-subtle);
+    --color-surface-panel: var(--raw-surface-muted);
+    --color-text-recent-amount: var(--color-button-hover);
+  }
+
+  /**
+   * Homepage mobile header — Web - Sidenav shell semantics (Cam88 1324:11385); Caelo light bar (§13.11).
+   */
+  .mobile-site-header {
+    --color-border: var(--color-border-subtle);
+    --color-button-nav: var(--color-surface-base);
+    --color-button-nav-text: var(--color-text-primary);
+  }
+
+  /**
+   * Mobile home bottom sticky nav — Cam88 --color-sticky-nav; Caelo brand-500 bar (§13.11).
+   */
+  .mobile-home-bottom-nav {
+    --color-sticky-nav: var(--brand-500);
+    --color-primary: var(--brand-500);
+    --color-text-sticky-nav-text: var(--mono-0);
+    --color-text-sticky-nav-active: var(--color-accent);
+  }
+
+  /**
+   * Homepage category tabs — Category Tabs (Cam88 1395:13359); Caelo card/tab look via scoped aliases (§13.11).
+   */
+  .home-category-tabs {
+    --color-surface-cat-navigation: transparent;
+    --color-button-nav: var(--color-surface-base);
+    --color-button-nav-text: var(--color-text-primary);
+    --color-button-hover: var(--color-surface-subtle);
+    --color-button-hover-text: var(--color-text-primary);
+    --color-surface-input-light: var(--color-primary);
+    --color-surface-menu-active: transparent;
+    --color-text-tertiary: var(--color-text-card-text);
+  }
+
+  .home-category-tabs .category-tab-item--active {
+    background-image: var(--color-gradient-tag);
+  }
+
+  /**
+   * Popular Category (GameCategories) — Cam88 semantic names; Caelo blue card tints via scoped aliases.
+   * See VARIABLE-RULES.en.md §13.11.
+   */
+  .game-categories-section {
+    --color-surface-cool-light: var(--raw-brand-soft);
+    --color-button-hover: var(--brand-630);
+    --shadow-brand-soft: 0 5px 15px rgba(0, 174, 239, 0.1);
+  }
+
+  .game-categories-section .game-category-card {
+    --color-border-brand: var(--mono-0);
+  }
+
+  .game-categories-section .game-category-ribbon {
+    --color-border-brand: var(--raw-brand-soft-border);
+  }
+
+  .game-categories-section .game-category-ribbon-shine {
+    background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 45%);
+  }
+
+  /**
+   * Home promo banners (Promos) — Riocity --color-gradient-* semantics; Caelo formulas in src/theme.css.
+   * See VARIABLE-RULES.en.md §6.1, §13.6, §13.11.
+   */
+  .home-promos-section {
+    --color-border-brand: var(--mono-0);
+    --color-button-hover: var(--brand-630);
+  }
+
+  .home-promos-section .home-promo-card--mobile {
+    --shadow-brand-soft: 0 8px 20px rgba(0, 114, 188, 0.08);
+  }
+
+  .home-promos-section .home-promo-card--mobile:hover {
+    box-shadow: 0 10px 24px rgba(0, 114, 188, 0.12);
+  }
+
+  .home-promos-section .home-promo-card__image-glow {
+    background-color: var(--raw-scrim-brand-cyan-16);
+  }
+
+  .home-promos-section .home-promo-card__image {
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.22));
+  }
+
+  .recent-big-wins-section .recent-big-wins-title-highlight {
+    color: var(--color-primary);
+  }
+
+  .recent-big-wins-section .recent-big-wins-thumb {
+    --color-border-brand: var(--raw-border-accent);
   }
 
   .recent-payout-carousel-wrap {
@@ -320,7 +604,7 @@
     bottom: 0;
     width: 2.5rem;
     pointer-events: none;
-    background: linear-gradient(to left, var(--payout-panel-bg) 0%, transparent 100%);
+    background: linear-gradient(to left, var(--color-surface-base) 0%, transparent 100%);
     z-index: 1;
   }
 
@@ -366,7 +650,6 @@
     flex-direction: column;
     align-items: center;
     border-radius: var(--radius-payout-card);
-    background-color: var(--payout-card-bg);
     padding: var(--space-payout-card-pad);
     text-align: center;
   }
@@ -403,7 +686,6 @@
     font-size: var(--text-payout-title);
     font-weight: 700;
     line-height: 1.3;
-    color: inherit;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -416,7 +698,6 @@
     font-size: var(--text-payout-user);
     font-weight: 400;
     line-height: 1.3;
-    color: inherit;
   }
 
   .recent-payout-card__amount {
@@ -425,7 +706,6 @@
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     line-height: 1.2;
-    color: var(--payout-amount);
   }
 
   @media (max-width: 767px) {
@@ -473,14 +753,45 @@
     }
   }
 
+  /**
+   * Web_Login / Web_Register / Web_Register_Done — Cam88 (919:20636, 919:20708, 919:20803)
+   * §13.11: Cam88 semantic names only; Caelo resolved colors via scoped aliases below.
+   */
+  .auth-modal-shell {
+    --color-popup-body: var(--color-surface-base);
+    --color-surface-input-light: var(--color-surface-base);
+    --color-surface-input-muted: var(--color-surface-cool-light);
+    --color-text-placeholder: var(--color-text-soft);
+    --color-text-dim: var(--color-text-primary);
+    --color-button-cta-primary: var(--color-text-cta-inverse);
+    --color-button-muted: var(--color-surface-cool-light);
+    --color-button-muted-text: var(--color-text-secondary);
+    /* Login footer links — Caelo blue (§13.11) */
+    --color-text-link-danger: var(--color-button-hover);
+  }
+
+  /** Web_Register — Cam88 919:20708 field errors + footer link (§13.11) */
+  .auth-modal-container--register {
+    --color-text-secondary: var(--color-danger);
+    --color-text-link-danger: var(--color-danger);
+  }
+
+  .auth-modal-container--register .auth-modal-links,
+  .auth-modal-container--register .auth-modal-link-text {
+    color: var(--color-text-primary);
+  }
+
+  .auth-modal-shell.universal-modal-container {
+    background-color: var(--color-popup-body);
+  }
+
   .auth-modal-container {
     max-width: 760px;
   }
 
   .auth-modal-content {
-    /* No “box in box” — let content sit on modal surface */
     padding: 0;
-    background-color: var(--color-surface-base);
+    background-color: var(--color-popup-body);
   }
 
   .auth-modal-split {
@@ -491,6 +802,7 @@
     border: 0;
     border-radius: 0;
     overflow: hidden;
+    background-color: var(--color-popup-body);
   }
 
   /* Login has fewer fields — avoid a tall empty bottom area */
@@ -526,8 +838,8 @@
   .auth-modal-title {
     font-size: 13px;
     font-weight: 800;
-    letter-spacing: 0.02em;
-    color: var(--color-text-strong);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-primary);
   }
 
   .auth-modal-title--spaced {
@@ -537,10 +849,31 @@
   .auth-modal-field {
     display: flex;
     align-items: center;
-    border: 1px solid var(--color-border-default);
-    background-color: var(--color-surface-base);
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-input-light);
     border-radius: var(--radius-control);
     box-shadow: var(--shadow-input);
+  }
+
+  .auth-modal-field.is-invalid {
+    border-color: var(--color-danger);
+  }
+
+  .auth-modal-field-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text-secondary);
+  }
+
+  .auth-modal-field-error__icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--color-text-secondary);
   }
 
   .auth-modal-field--password {
@@ -557,7 +890,7 @@
     min-height: 44px;
     padding: 10px 14px;
     background: transparent;
-    color: var(--color-text-strong);
+    color: var(--color-text-dim);
     font-size: 14px;
     font-weight: 600;
     outline: none;
@@ -565,12 +898,12 @@
   }
 
   .auth-modal-input::placeholder {
-    color: var(--color-text-soft);
+    color: var(--color-text-placeholder);
     font-weight: 600;
   }
 
   .auth-modal-input--muted {
-    background-color: var(--color-surface-muted);
+    background-color: var(--color-surface-input-muted);
   }
 
   .auth-modal-icon-btn {
@@ -585,8 +918,8 @@
   }
 
   .auth-modal-icon-btn:hover {
-    background-color: var(--color-accent-50);
-    color: var(--color-text-strong);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary);
   }
 
   .auth-modal-hint {
@@ -603,22 +936,22 @@
     gap: 10px;
     font-size: 13px;
     font-weight: 700;
-    color: var(--color-text-main);
+    color: var(--color-text-secondary);
   }
 
   .auth-modal-checkbox {
     height: 14px;
     width: 14px;
     border-radius: 3px;
-    border: 1px solid var(--color-border-default);
-    accent-color: var(--color-brand-primary);
+    border: 1px solid var(--color-border-subtle);
+    accent-color: var(--color-primary);
   }
 
   .auth-modal-error {
     margin-top: 10px;
     font-size: 12px;
     font-weight: 700;
-    color: var(--color-danger-main);
+    color: var(--color-danger);
   }
 
   .auth-modal-actions {
@@ -637,15 +970,16 @@
     border-radius: var(--radius-control);
     font-weight: 800;
     font-size: 14px;
-    letter-spacing: 0.01em;
+    letter-spacing: var(--tracking-normal);
     transition: transform 0.15s ease, filter 0.15s ease, background-color 0.15s ease;
     font-family: var(--font-family-sans);
   }
 
   .auth-modal-btn--primary {
-    color: #ffffff;
-    background-image: var(--gradient-cta);
-    border: 1px solid var(--color-cta-border);
+    color: var(--color-button-cta-primary);
+    background-color: var(--color-button-cta);
+    background-image: var(--color-gradient-button-cta);
+    border: 1px solid var(--color-border-brand);
     box-shadow: var(--shadow-cta);
   }
 
@@ -655,15 +989,15 @@
   }
 
   .auth-modal-btn--secondary {
-    color: var(--color-text-main);
-    background-color: var(--color-surface-muted);
-    border: 1px solid var(--color-border-default);
+    color: var(--color-button-muted-text);
+    background-color: var(--color-button-muted);
+    border: 1px solid var(--color-border-subtle);
   }
 
   .auth-modal-btn--secondary:hover {
-    background-color: var(--color-brand-deep);
-    border-color: var(--color-brand-deep);
-    color: #ffffff;
+    background-color: var(--color-surface-accent-hover);
+    border-color: var(--color-surface-accent-hover);
+    color: var(--color-surface-input-light);
     filter: none;
     transform: translateY(-1px);
   }
@@ -673,19 +1007,19 @@
     text-align: center;
     font-size: 13px;
     font-weight: 700;
-    color: var(--color-text-main);
+    color: var(--color-text-secondary);
   }
 
   .auth-modal-link {
     font-weight: 900;
-    color: var(--color-accent-700);
+    color: var(--color-text-link-danger);
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: color 0.15s ease;
   }
 
   .auth-modal-link:hover {
-    color: var(--color-accent-600);
+    color: var(--color-accent);
   }
 
   .auth-modal-divider {
@@ -705,7 +1039,7 @@
 
   .auth-modal-support__link {
     font-weight: 900;
-    color: var(--color-accent-700);
+    color: var(--color-text-link-danger);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
@@ -731,12 +1065,12 @@
     gap: 8px;
     padding: 10px 12px;
     border-radius: var(--radius-control);
-    border: 1px solid var(--color-border-default);
-    background-color: var(--color-surface-base);
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-input-light);
     box-shadow: var(--shadow-input);
     font-size: 14px;
     font-weight: 800;
-    color: var(--color-text-strong);
+    color: var(--color-text-dim);
   }
 
   .auth-modal-phone__menu {
@@ -745,8 +1079,8 @@
     top: calc(100% + 6px);
     width: 100%;
     border-radius: var(--radius-control);
-    border: 1px solid var(--color-border-default);
-    background-color: var(--color-surface-base);
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-input-light);
     box-shadow: var(--shadow-card-soft);
     overflow: hidden;
     z-index: 5;
@@ -758,13 +1092,13 @@
     text-align: left;
     font-size: 14px;
     font-weight: 800;
-    color: var(--color-text-strong);
-    background-color: var(--color-surface-base);
+    color: var(--color-text-dim);
+    background-color: var(--color-surface-input-light);
     transition: background-color 0.15s ease;
   }
 
   .auth-modal-phone__menu-item:hover {
-    background-color: var(--color-accent-50);
+    background-color: var(--color-accent-pale);
   }
 
   .auth-modal-rules {
@@ -790,11 +1124,133 @@
   }
 
   .auth-modal-rule.is-ok {
-    color: var(--color-text-main);
+    color: var(--color-success);
+  }
+
+  .auth-modal-rule.is-invalid {
+    color: var(--color-text-muted);
+  }
+
+  .auth-modal-rule.is-invalid.is-ok {
+    color: var(--color-success);
   }
 
   .auth-modal-rule.is-ok .auth-modal-rule__icon {
-    color: var(--color-success-main);
+    color: var(--color-success);
+  }
+
+  /** Web_Register_Done — same shell tokens; Caelo values from pre-migration modal */
+  .auth-modal-register-done-root {
+    --color-overlay-strong: var(--raw-nav-overlay);
+  }
+
+  .auth-modal-register-done {
+    --color-popup-body: var(--color-surface-base);
+    --color-text-primary: var(--color-text-primary-card-title);
+    --color-text-muted: var(--color-text-soft);
+    --color-surface-input-light: var(--color-surface-base);
+  }
+
+  .auth-modal-register-done__panel {
+    border: 1px solid var(--color-border-brand);
+    background-color: var(--color-popup-body);
+    background-image: var(--color-gradient-referral-panel);
+    box-shadow: var(--shadow-modal);
+  }
+
+  .auth-modal-register-done__title {
+    color: var(--color-text-primary);
+  }
+
+  .auth-modal-register-done__message {
+    color: var(--color-text-secondary);
+  }
+
+  .auth-modal-register-done__countdown {
+    color: var(--color-text-muted);
+  }
+
+  .auth-modal-register-done__icon-ring {
+    border-color: var(--color-border-brand);
+    background-color: var(--color-surface-input-light);
+  }
+
+  /** Legacy LoginModal — Cam88 semantics; Caelo gradient panel + field tokens */
+  .login-modal-root {
+    --color-overlay-strong: color-mix(in srgb, var(--color-surface-darkest) 70%, transparent);
+  }
+
+  .login-modal-shell {
+    --color-popup-body: var(--color-surface-base);
+    --color-surface-input-light: var(--raw-surface-base-80);
+    --color-text-placeholder: var(--color-text-soft);
+    --color-text-dim: var(--color-text-secondary);
+    --color-button-cta-primary: var(--color-text-cta-inverse);
+    --color-text-link-danger: var(--color-danger);
+    --color-border-brand: var(--raw-border-accent);
+  }
+
+  .login-modal-panel {
+    border: 1px solid var(--color-border-brand);
+    background-color: var(--color-popup-body);
+    background-image: var(--color-gradient-referral-panel);
+    box-shadow: var(--shadow-modal);
+  }
+
+  .login-modal-field {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid var(--color-border-brand);
+    background-color: var(--color-surface-input-light);
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    box-shadow: var(--shadow-input);
+  }
+
+  .login-modal-field__icon {
+    display: inline-flex;
+    height: 2rem;
+    width: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: var(--color-surface-accent-hover);
+    color: var(--color-text-card-text);
+  }
+
+  .login-modal-input {
+    width: 100%;
+    background: transparent;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-dim);
+    outline: none;
+  }
+
+  .login-modal-input::placeholder {
+    color: var(--color-text-placeholder);
+  }
+
+  .login-modal-close {
+    background-color: var(--color-surface-accent-hover);
+    color: var(--color-text-card-text);
+  }
+
+  .login-modal-link {
+    color: var(--color-text-link-danger);
+  }
+
+  .login-modal-link:hover {
+    text-decoration: underline;
+  }
+
+  .login-modal-footer-text {
+    color: var(--color-text-muted);
+  }
+
+  .login-modal-divider {
+    background-color: var(--color-border-brand);
   }
 
   @media (max-width: 860px) {
@@ -813,9 +1269,45 @@
   }
 
   /**
-   * Slot / lobby game tiles: blue tint + “Play Now” only while the card (.group) is hovered or focused.
+   * Game tiles: dark scrim + white play disc while the card (.group) is hovered or focused.
    * (Tailwind `md:group-hover:opacity-*` alone can lose against `md:opacity-0` in the cascade.)
    */
+  .game-card-play-overlay {
+    background-color: var(--color-overlay);
+  }
+
+  .game-card-play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 9999px;
+    background-color: var(--color-surface-base);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-card-soft);
+    transition: filter 150ms ease-out;
+  }
+
+  .game-card-play-button:hover {
+    filter: brightness(1.03);
+  }
+
+  /* Press feedback on the icon only — :active transform on the link would override
+     Tailwind centering (-translate-x/y-1/2) and jump the disc on mousedown/right-click. */
+  .game-card-play-button:active svg {
+    transform: scale(0.94);
+  }
+
+  .game-card-play-button svg {
+    transition: transform 150ms ease-out;
+  }
+
+  .game-card-play-button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
   @media (min-width: 768px) {
     .game-card-play-hover {
       opacity: 0;
@@ -841,6 +1333,34 @@
     .game-card-play-hover {
       transition: none;
     }
+
+    .game-card-play-button,
+    .game-card-play-button svg {
+      transition: none;
+    }
+  }
+
+  /* Game-card footer RTP trend arrows (stem + chevron, 12WIN reference) */
+  .rtp-trend-arrow {
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .rtp-trend-arrow--up {
+    color: var(--color-success);
+  }
+
+  .rtp-trend-arrow--down {
+    color: var(--color-danger-red);
+  }
+
+  /* Game card RTP pill — Cam88 names; Caelo values from legacy accent tokens (§13.11) */
+  .rtp-label--pill {
+    --color-surface-rtp-secondary-card: var(--color-accent-pale);
+    --color-surface-rtp-secondary-card-text: var(--color-button-hover);
+    --color-border-brand: var(--raw-border-accent);
   }
 
   /* ==========================================================================
@@ -851,7 +1371,7 @@
     inset: 0;
     z-index: 100;
     overflow-y: auto;
-    background-color: var(--color-nav-overlay);
+    background-color: var(--color-overlay-strong);
     backdrop-filter: blur(2px);
   }
 
@@ -884,17 +1404,17 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    background-color: var(--color-universal-modal-header-bg);
+    background-color: var(--color-popup-head);
     padding: 0.875rem 1.25rem;
-    color: var(--color-universal-modal-header-text);
-    border-bottom: 1px solid var(--color-universal-modal-card-border);
+    color: var(--color-text-primary-card-title);
+    border-bottom: 1px solid var(--color-border-brand);
   }
 
   .universal-modal-title {
     font-size: 1.125rem;
     font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--color-universal-modal-header-text);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-primary-card-title);
   }
 
   .universal-modal-close-btn {
@@ -905,12 +1425,12 @@
     justify-content: center;
     border-radius: 9999px;
     transition: all 0.2s ease;
-    color: var(--color-universal-modal-header-text);
+    color: var(--color-text-primary-card-title);
   }
 
 
   .universal-modal-close-btn:focus-visible {
-    outline: 2px solid var(--color-brand-primary);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 
@@ -919,12 +1439,12 @@
   }
 
   .universal-modal-content--game {
-    background-color: var(--color-universal-modal-game-body-bg);
+    background-color: var(--color-popup-body);
   }
 
   .universal-modal-banner-wrapper {
     overflow: hidden;
-    border: 1px solid var(--color-universal-modal-card-border);
+    border: 1px solid var(--color-border-brand);
     background-color: var(--color-surface-base);
     box-shadow: var(--shadow-subtle);
   }
@@ -949,7 +1469,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-    background-color: var(--color-brand-primary);
+    background-color: var(--color-primary);
     padding: 0 2rem;
     font-size: 0.875rem;
     font-weight: 700;
@@ -975,8 +1495,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 0.875rem;
-    background-image: var(--gradient-cta);
-    border: 1px solid var(--color-cta-border);
+    background-image: var(--color-gradient-button-cta);
+    border: 1px solid var(--color-border-brand);
     color: #ffffff;
     font-size: 0.875rem;
     font-weight: 700;
@@ -1000,7 +1520,7 @@
     gap: 0.75rem;
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--color-text-main);
+    color: var(--color-text-secondary);
     user-select: none;
   }
 
@@ -1010,7 +1530,7 @@
     cursor: pointer;
     border-radius: 0.25rem;
     border: 1px solid var(--color-border-brand);
-    color: var(--color-brand-primary);
+    color: var(--color-primary);
   }
 
   .universal-modal-message {
@@ -1018,19 +1538,19 @@
     margin-bottom: 1.25rem;
     font-size: 0.9375rem;
     line-height: 1.6;
-    color: var(--color-text-main);
+    color: var(--color-text-secondary);
     text-align: center;
   }
 
   /* Balance Modal Refactor Variables & Classes */
   .balance-modal-container {
-    --balance-modal-bg: var(--color-brand-primary);
+    --balance-modal-bg: var(--color-primary);
     --balance-modal-radius: 20px;
-    --balance-item-bg: var(--color-brand-secondary);
+    --balance-item-bg: var(--color-button-hover);
     --balance-text-primary: #ffffff;
-    --balance-text-secondary: var(--color-nav-accent);
-    --balance-icon-bg: var(--color-nav-badge);
-    --balance-border-color: var(--color-nav-border-soft);
+    --balance-text-secondary: var(--color-accent);
+    --balance-icon-bg: var(--color-primary);
+    --balance-border-color: var(--color-border-subtle);
 
     background-color: var(--balance-modal-bg);
     border-radius: var(--balance-modal-radius);
@@ -1069,7 +1589,7 @@
   }
 
   .balance-modal-promo__eyebrow {
-    color: var(--color-nav-text-accent);
+    color: var(--color-text-sticky-nav-active);
   }
 
   .balance-modal-promo__metrics {
@@ -1247,8 +1767,8 @@
     font-family: var(--font-family-sans);
     font-size: var(--text-page-title);
     font-weight: 700;
-    letter-spacing: var(--tracking-page-title);
-    color: var(--color-text-strong);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-primary);
   }
 
   .font-primary {
@@ -1260,61 +1780,821 @@
   }
 
   .surface-card {
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--color-border-subtle);
     background: var(--color-surface-base);
     box-shadow: var(--shadow-card-soft);
   }
 
   .surface-panel {
-    border: 1px solid var(--color-border-default);
-    background: var(--color-surface-base-80);
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
     box-shadow: var(--shadow-card-raised);
     backdrop-filter: blur(12px);
   }
 
   .soft-blue-panel {
-    border: 1px solid var(--color-accent-100);
-    background-image: linear-gradient(180deg, var(--gradient-soft-panel-start) 0%, var(--gradient-soft-panel-end) 100%);
+    border: 1px solid var(--color-accent-glow);
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-menu-brand {
+    background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-nav-cta {
+    background-image: var(--color-gradient-home-cta);
+  }
+
+  .bg-gradient-register-page {
+    background-image: var(--color-gradient-referral-panel);
+  }
+
+  .bg-gradient-register-panel {
+    background-image: var(--color-gradient-referral-panel);
+  }
+
+  .bg-gradient-live-page {
+    background-image: var(--color-gradient-card-brand);
+  }
+
+  .bg-gradient-live-page-content {
+    background-image: var(--color-gradient-card-brand);
+  }
+
+  .bg-gradient-account-shell {
+    background-image: var(--color-gradient-home-dashboard);
+  }
+
+  .bg-gradient-cta {
+    background-image: var(--color-gradient-button-cta);
+  }
+
+  .bg-gradient-soft-panel {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-blue-panel {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-soft-blue-panel {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-promo-card {
+    background-image: var(--color-gradient-referral-card);
+  }
+
+  .bg-gradient-promo-card-desktop {
+    background-image: var(--color-gradient-referral-commission);
+  }
+
+  .bg-gradient-app-download-phone {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-section {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-button {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-vip-nav-pill {
+    background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-vip-nav-pill-hover {
+    background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-language-nav {
+    background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-mobile-cta {
+    background-image: var(--color-gradient-home-cta);
+  }
+
+  .bg-gradient-vip-badge {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-vip-tier-muted {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-vip-tier-avatar {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-rewards-scratch {
+    background-image: var(--color-gradient-card-brand);
+  }
+
+  .bg-gradient-brand-soft-panel {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-brand-soft-panel-alt {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-brand-soft-horizontal {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-surface-secondary-table-head {
+    background-color: var(--color-surface-secondary-table-head);
+  }
+
+  .bg-gradient-card-shine {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-promo-overlay {
+    background-image: var(--color-gradient-referral-icon);
+  }
+
+  .bg-gradient-promo-bottom-glow {
+    background-image: var(--color-gradient-referral-deposit);
+  }
+
+  .bg-gradient-promo-bottom-glow-soft {
+    background-image: var(--color-gradient-nav-highlight);
+  }
+
+  .bg-gradient-language-panel-top {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-language-panel-top-light {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-language-panel-radial {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-language-panel-radial-light {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-language-option-active {
+    background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-app-download-shell {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-app-download-inner {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-success-icon {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-progress-fill {
+    background-image: var(--color-gradient-home-cta);
+  }
+
+  .bg-gradient-content-hero-top {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-content-hero-blob {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-content-hero-scrim {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  @media (min-width: 768px) {
+    .md\:bg-gradient-content-hero-scrim-md {
+      background-image: var(--color-gradient-home-card);
+    }
+  }
+
+  .bg-gradient-content-hero-bottom {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-content-hero-spotlight {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-content-hero-mobile-fade {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-referral-glow-left {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-referral-glow-right {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-referral-glow-top {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-live-chat-header {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-nav-radial-top {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-notification-shine {
+    background-image: var(--color-gradient-home-card);
+  }
+
+  .bg-gradient-favourite-inactive {
+    background-image: var(--color-gradient-sports-card);
+  }
+
+  .bg-gradient-favourite-inactive-hover {
+    background-image: var(--color-gradient-sports-card);
+  }
+
+  .bg-gradient-favourite-active {
+    background-image: var(--color-gradient-sports-card);
+  }
+
+  .bg-gradient-favourite-active-hover {
+    background-image: var(--color-gradient-sports-card);
+  }
+
+  .bg-gradient-game-card-overlay {
+    background-image: var(--color-gradient-sports-card);
+  }
+
+  .bg-gradient-game-card-glow-soft {
+    background-image: var(--color-gradient-sports-card);
+  }
+
+  .bg-gradient-game-card-glow-strong {
+    background-image: var(--color-gradient-sports-card);
+  }
+
+  .bg-scrim-rollover-panel {
+    background-color: var(--color-overlay);
+  }
+
+  .bg-gradient-tag {
+    background-image: var(--color-gradient-tag);
+  }
+
+  .bg-gradient-referral-panel {
+    background-image: var(--color-gradient-referral-panel);
+  }
+
+  .bg-gradient-floating-social {
+    --color-gradient-menu-brand: linear-gradient(180deg, var(--brand-500) 0%, var(--brand-700) 100%);
+    background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-footer {
+    background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-accent-avatar {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-surface-card {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-surface-muted {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-surface-accent {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-accent-tab {
+    background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-cta-strong {
+    background-image: var(--color-gradient-button-cta);
+  }
+
+  .bg-gradient-scroll-top {
+    background-image: var(--color-gradient-home-cta);
+  }
+
+  .bg-gradient-rollover-warn {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-wallet-glass {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-wallet-panel {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-wallet-shell {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-rewards-accent-footer {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-rewards-highlight {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-rewards-footer {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-app-download-qr {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-lottery-header {
+    background-image: linear-gradient(
+      180deg,
+      var(--raw-gradient-lottery-header-start) 0%,
+      var(--raw-gradient-lottery-header-end) 100%
+    );
+  }
+
+  /* Caelo banner left scrim — preserve horizontal fade via --raw-* (not --color-gradient-home-muted). */
+  .bg-gradient-hero-fade-left {
+    background-image: linear-gradient(
+      90deg,
+      var(--raw-gradient-hero-fade-left-start) 0%,
+      var(--raw-gradient-hero-fade-left-mid) 45%,
+      transparent 100%
+    );
+  }
+
+  .bg-gradient-game-stage {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-modal-shell {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-app-download-preview {
+    background-image: var(--color-gradient-home-highlight);
+  }
+
+  .bg-gradient-home-dashboard {
+    background-image: var(--color-gradient-home-dashboard);
   }
 
   .blue-accent-avatar {
-    border: 4px solid var(--color-accent-100);
-    background-image: linear-gradient(180deg, var(--color-accent-50) 0%, var(--color-accent-100) 100%);
+    border: 4px solid var(--color-accent-glow);
+    background-image: var(--color-gradient-home-muted);
     box-shadow: var(--shadow-accent-avatar);
     border-radius: 9999px;
     overflow: hidden;
     background-clip: padding-box;
   }
 
+  .referral-glass-card {
+    background: color-mix(in srgb, var(--color-surface-base) 14%, transparent);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--color-border-brand);
+    box-shadow: var(--shadow-nav-dropdown);
+  }
+
+  .referral-glass-field {
+    background: color-mix(in srgb, var(--color-surface-base) 18%, transparent);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .game-fav-btn-inactive {
+    box-shadow: var(--shadow-nav-dropdown), var(--inset-highlight-soft);
+  }
+
+  .game-fav-btn-inactive:hover,
+  .group:hover .game-fav-btn-inactive {
+    box-shadow: var(--shadow-nav-tile-hover), 0 0 0 1px color-mix(in srgb, var(--color-text-sticky-nav-active) 18%, transparent),
+      var(--inset-highlight-soft);
+  }
+
+  .game-fav-btn-active {
+    box-shadow: var(--shadow-hot), var(--inset-highlight-strong), 0 0 20px color-mix(in srgb, var(--color-danger) 45%, transparent);
+  }
+
+  .game-fav-btn-active:hover,
+  .group:hover .game-fav-btn-active {
+    box-shadow: var(--shadow-hot), var(--inset-highlight-strong), 0 0 26px color-mix(in srgb, var(--color-danger) 55%, transparent);
+  }
+
   .btn-theme-primary {
-    background: var(--color-brand-primary);
-    color: white;
+    background: var(--color-primary);
+    color: var(--color-text-card-text);
   }
 
   .btn-theme-primary:hover {
-    background: #1546b1;
+    background: var(--color-button-hover);
   }
 
   .btn-theme-cta {
-    border: 1px solid var(--color-cta-border);
-    color: #ffffff;
-    background-image: var(--gradient-cta);
+    border: 1px solid var(--color-border-brand);
+    color: var(--color-text-card-text);
+    background-image: var(--color-gradient-button-cta);
     box-shadow: var(--shadow-cta);
   }
 
   .btn-theme-cta-soft {
-    color: var(--color-cta-text);
-    background-image: var(--gradient-cta);
-    border: 1px solid var(--color-cta-border);
+    color: var(--color-text-cta-inverse);
+    background-image: var(--color-gradient-button-cta);
+    border: 1px solid var(--color-border-brand);
     box-shadow: var(--shadow-cta-soft);
   }
 
-  /** Desktop main nav: current page */
+  /** Web_Slot promo panel — End Promo (Cam88 919:20508) */
+  .btn-theme-cta-fourth {
+    color: var(--color-button-cta-fourth-text);
+    background-color: var(--color-button-cta-fourth);
+    border: 1px solid transparent;
+  }
+
+  /** Desktop announcement bar: secondary actions (guest + logged-in) */
+  .nav-top-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    height: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--nav-top-pill-border);
+    background-image: var(--nav-top-pill-bg);
+    box-shadow: var(--nav-top-pill-shadow);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 700;
+    color: var(--color-text-sticky-nav-text);
+    transition: border-color 0.2s, background-image 0.2s, box-shadow 0.2s;
+  }
+
+  .nav-top-pill:hover {
+    border-color: var(--nav-top-pill-border-hover);
+    background-image: var(--nav-top-pill-bg-hover);
+  }
+
+  .nav-top-pill--icon {
+    padding-left: 0.625rem;
+    padding-right: 0.75rem;
+  }
+
+  /** Web Header — upper utility bar on dark sticky nav (Cam88 --color-sticky-nav) */
+  .top-sticky-nav-bar {
+    border-bottom-color: var(--raw-nav-border-soft);
+  }
+
+  /**
+   * Logged-in balance + profile pills — screenshot fills, LOGOUT glass family (§13.11).
+   * No outer border; sheen + shadow only (same tokens as `.nav-top-pill`).
+   */
+  .top-sticky-nav-bar .top-sticky-balance-chip,
+  .top-sticky-nav-bar .top-sticky-profile-chip {
+    border: none;
+    box-shadow: var(--nav-top-pill-shadow);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .top-sticky-nav-bar .top-sticky-balance-chip {
+    --color-surface-high: var(--brand-400);
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+  }
+
+  .top-sticky-nav-bar .top-sticky-balance-chip__refresh {
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+    border-left: 1px solid var(--raw-nav-border);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .top-sticky-nav-bar .top-sticky-profile-chip {
+    background-color: transparent;
+    background-image: var(--nav-top-pill-bg), var(--color-gradient-menu-brand);
+  }
+
+  .top-sticky-nav-bar .top-sticky-profile-chip__divider {
+    background-color: var(--raw-nav-border);
+  }
+
+  /** Mobile logged-in balance chip — same Caelo dark bar look via --color-sticky-nav */
+  .mobile-sticky-balance {
+    border-color: var(--raw-nav-border-soft);
+  }
+
+  .mobile-sticky-balance__toggle:hover {
+    background-color: var(--raw-nav-tile-border);
+  }
+
+  .mobile-sticky-balance__refresh {
+    border-left-color: var(--raw-nav-border);
+  }
+
+  /**
+   * Web - Sidenav (Cam88 1324:11385) — mobile drawer; Caelo light menu skin (§13.11).
+   */
+  .sidenav-shell {
+    --color-button-nav: var(--color-surface-base);
+    --color-button-nav-text: var(--color-text-primary-card-title);
+    --color-button-hover-text: var(--color-text-primary-card-title);
+    --color-border-line: var(--color-border-subtle);
+    --color-sticky-nav: var(--brand-500);
+    --color-primary: var(--brand-500);
+    --color-text-sticky-nav-text: var(--mono-0);
+    background-color: var(--color-surface-base);
+    border-color: var(--color-border-subtle);
+    color: var(--color-button-nav-text);
+  }
+
+  .sidenav-shell .sidenav-header {
+    background-color: var(--color-surface-base);
+    border-color: var(--color-border-subtle);
+  }
+
+  .sidenav-shell .sidenav-tier-badge {
+    --color-accent-pale: var(--accent-pale-100);
+    --color-accent-glow: var(--raw-cta-border);
+    border: 1px solid var(--color-accent-glow);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary-card-title);
+  }
+
+  /** Sidenav balance pill — same fill + glass as `.top-sticky-balance-chip` (§13.11) */
+  .sidenav-shell .sidenav-balance-pill {
+    --color-surface-high: var(--brand-400);
+    border: none;
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+    box-shadow: var(--nav-top-pill-shadow);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .sidenav-shell .sidenav-balance-pill__refresh {
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+    border-left: 1px solid var(--raw-nav-border);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .sidenav-shell .sidenav-body {
+    background-color: var(--color-surface-subtle);
+  }
+
+  .sidenav-item {
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-button-nav);
+    color: var(--color-button-nav-text);
+    box-shadow: var(--shadow-input);
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .sidenav-item:hover:not(.sidenav-item--active) {
+    border-color: var(--color-accent-glow);
+    background-color: var(--color-surface-subtle);
+    color: var(--color-button-nav-text);
+  }
+
+  .sidenav-item--active {
+    border: 1px solid var(--color-border-brand);
+    background-color: var(--color-surface-base);
+    color: var(--color-button-nav-text);
+    box-shadow: var(--shadow-input);
+  }
+
+  .sidenav-shell .sidenav-item--active {
+    background-image: none;
+  }
+
+  .sidenav-item__icon {
+    --color-accent-pale: var(--raw-surface-panel);
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary-card-title);
+  }
+
+  .sidenav-item--active .sidenav-item__icon {
+    --color-accent-pale: var(--raw-surface-panel);
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary-card-title);
+  }
+
+  .sidenav-group {
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-button-nav);
+  }
+
+  .sidenav-group--active {
+    border-color: var(--color-accent-glow);
+    background-image: var(--color-gradient-home-muted);
+    box-shadow: var(--shadow-brand-soft);
+  }
+
+  .sidenav-subitem {
+    background-color: transparent;
+    color: var(--color-button-nav-text);
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .sidenav-subitem:hover {
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary);
+  }
+
+  .sidenav-subitem--active {
+    background-image: var(--color-gradient-home-muted);
+    color: var(--color-button-nav-text);
+    box-shadow: var(--shadow-brand-soft);
+  }
+
+  .sidenav-subitem__icon {
+    --color-accent-pale: var(--raw-surface-panel);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary-card-title);
+  }
+
+  .sidenav-subitem--active .sidenav-subitem__icon {
+    --color-accent-pale: var(--raw-surface-panel);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary-card-title);
+  }
+
+  .sidenav-more-panel {
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-surface-float);
+  }
+
+  .sidenav-footer {
+    border-color: var(--color-border-line);
+    background-color: var(--color-surface-base);
+  }
+
+  .sidenav-shell .sidenav-live-chat {
+    --color-button-nav-text: var(--mono-0);
+    border: 1px solid var(--color-sticky-nav);
+    background-color: var(--color-sticky-nav);
+    background-image: none;
+    color: var(--color-button-nav-text);
+    box-shadow: var(--nav-top-pill-shadow);
+  }
+
+  .sidenav-shell .sidenav-live-chat:hover {
+    filter: brightness(1.05);
+  }
+
+  .sidenav-secondary-action {
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-base);
+    color: var(--color-text-primary-card-title);
+    box-shadow: var(--shadow-input);
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  .sidenav-secondary-action:hover {
+    background-color: var(--color-surface-subtle);
+    color: var(--color-text-primary-card-title);
+  }
+
+  .type-heading {
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .type-label {
+    letter-spacing: var(--tracking-wide);
+  }
+
+  /** Desktop main nav: current page (Web - Sidenav active row — `--color-button-hover`) */
   .nav-desktop-link-active {
-    border: 1px solid var(--color-cta-border);
-    background-image: var(--gradient-cta);
-    color: var(--color-cta-text);
+    border: 1px solid var(--color-border-brand);
+    background-color: var(--color-button-hover);
+    color: var(--color-button-hover-text);
     box-shadow: var(--shadow-cta-soft);
+  }
+
+  .top-nav-shell .nav-desktop-link-active {
+    --color-button-hover-text: var(--color-text-cta-inverse);
+    background-color: transparent;
+    background-image: var(--color-gradient-button-cta);
+  }
+
+  /**
+   * Top nav + account tabs — Web - Sidenav semantics, Caelo values scoped (§13.11).
+   */
+  .top-nav-shell {
+    --color-button-nav-text: var(--color-text-primary-card-title);
+    --color-button-hover: var(--color-surface-accent-hover);
+    --color-button-hover-text: var(--color-text-card-text);
+    background-color: var(--color-surface-base);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .top-nav-link {
+    color: var(--color-button-nav-text);
+  }
+
+  .top-nav-link:hover:not(.nav-desktop-link-active) {
+    background-color: var(--color-button-hover);
+    color: var(--color-button-hover-text);
+    box-shadow: var(--shadow-nav-top);
+  }
+
+  .top-nav-more-trigger {
+    color: var(--color-button-nav-text);
+  }
+
+  .top-nav-more-trigger:hover:not(.nav-desktop-link-active) {
+    background-color: var(--color-button-hover);
+    color: var(--color-button-hover-text);
+    box-shadow: var(--shadow-nav-top);
+  }
+
+  .top-nav-more-menu {
+    --color-button-nav: var(--color-surface-base);
+    --color-button-nav-text: var(--color-text-secondary);
+    --color-button-hover: var(--color-accent-pale);
+    --color-button-hover-text: var(--color-text-primary-card-title);
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-base);
+  }
+
+  .top-nav-more-item {
+    color: var(--color-button-nav-text);
+  }
+
+  .top-nav-more-item:hover {
+    background-color: var(--color-surface-cool-light);
+    color: var(--color-text-primary-card-title);
+  }
+
+  .top-nav-more-item--active {
+    background-color: var(--color-button-hover);
+    color: var(--color-button-hover-text);
+  }
+
+  /** Promotion cards — status pill on banner image (12WIN reference). */
+  .promotion-page .promotion-card-image-tag {
+    border-radius: 6px;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    background-color: var(--color-overlay);
+    color: var(--color-text-card-text);
+  }
+
+  /** Account horizontal tabs — matches AccountSidebar accent styling */
+  .account-tab-bar {
+    border-bottom: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-float);
+  }
+
+  .account-tab {
+    color: var(--color-text-muted);
+    background-color: var(--color-surface-base);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .account-tab:hover:not(.account-tab--active) {
+    background-color: var(--color-accent-pale);
+    color: var(--color-button-hover);
+  }
+
+  .account-tab--active {
+    background-color: var(--color-accent-pale);
+    color: var(--color-button-hover);
+    border-color: var(--color-accent-glow);
+    box-shadow: var(--shadow-subtle);
   }
 
   /** Shared hero banner wrapper (Hot Games proportions) */
@@ -1326,7 +2606,7 @@
     overflow: hidden;
     border-radius: var(--radius-hero-banner);
     background-color: var(--color-surface-base);
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--color-border-subtle);
     box-shadow: var(--shadow-live-banner);
   }
 
@@ -1346,9 +2626,9 @@
 
   /** Selected filter / category tab (PromotionStyleTabs, browse scope, etc.) */
   .btn-theme-tab-selected {
-    border: 1px solid var(--color-cta-border);
-    background-image: var(--gradient-cta);
-    color: var(--color-cta-text);
+    border: 1px solid var(--color-border-brand);
+    background-image: var(--color-gradient-button-cta);
+    color: var(--color-text-cta-inverse);
     box-shadow: var(--shadow-cta-soft);
   }
 
@@ -1359,20 +2639,53 @@
   }
 
   .dark-nav-shell {
-    background-color: var(--color-brand-primary);
+    background-color: var(--color-primary);
     box-shadow: var(--shadow-nav-dropdown);
   }
 
   .dark-nav-panel {
-    border: 1px solid var(--color-nav-border-soft);
-    background-color: var(--color-brand-secondary);
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-button-hover);
     box-shadow: var(--inset-highlight-soft);
   }
 
   .dark-nav-tile {
-    border: 1px solid var(--color-nav-tile-border);
-    background-color: var(--color-brand-deep);
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-accent-hover);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /** Profile dropdown — logout (light default, red gradient on hover) */
+  .profile-menu-logout {
+    display: flex;
+    width: 100%;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border-radius: 22px;
+    border: 1px solid rgba(248, 48, 77, 0.22);
+    background: var(--color-gradient-tag);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    color: rgb(232, 23, 47);
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s,
+      box-shadow 0.2s,
+      transform 0.2s;
+  }
+
+  .profile-menu-logout:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: var(--color-gradient-tag);
+    color: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
   }
 
   /** Slots browse — active promotion block (matches soft-blue / wallet browse panel) */
@@ -1382,13 +2695,13 @@
   }
 
   .slot-current-promo__card {
-    border-color: var(--color-border-default);
+    border-color: var(--color-border-subtle);
   }
 
   /** Profile dashboard — reuses CurrentPromoSection with account page tokens */
   .profile-current-promo {
     background-color: var(--base-paper);
-    border-color: var(--color-border-default);
+    border-color: var(--color-border-subtle);
     box-shadow: var(--shadow-card-soft);
   }
 
@@ -1397,17 +2710,17 @@
   }
 
   .profile-current-promo__name {
-    color: var(--color-brand-primary);
+    color: var(--color-primary);
   }
 
   .profile-current-promo__card {
-    border-color: var(--color-border-default);
-    background-color: var(--color-surface-muted);
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-surface-cool-light);
   }
 
   .profile-menu-scroll {
     scrollbar-width: thin;
-    scrollbar-color: #5a8fcb #0a2c57;
+    scrollbar-color: var(--raw-gradient-scrollbar-thumb-mid) var(--raw-gradient-scrollbar-track-start);
   }
 
   .profile-menu-scroll::-webkit-scrollbar {
@@ -1418,7 +2731,7 @@
     border-radius: 9999px;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%),
-      linear-gradient(180deg, #0a315f 0%, #08264b 100%);
+      var(--color-gradient-table);
     box-shadow:
       inset 0 0 0 1px rgba(137, 197, 255, 0.08),
       inset 0 6px 12px rgba(0, 0, 0, 0.18);
@@ -1429,7 +2742,7 @@
     border-radius: 9999px;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 100%),
-      linear-gradient(180deg, #78b8ff 0%, #4d88d3 45%, #356fb7 100%);
+      var(--color-gradient-table);
     background-clip: padding-box, border-box;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.22),
@@ -1439,14 +2752,14 @@
   .profile-menu-scroll::-webkit-scrollbar-thumb:hover {
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.08) 100%),
-      linear-gradient(180deg, #8ac6ff 0%, #5b97e0 48%, #3f7dc7 100%);
+      var(--color-gradient-table);
     background-clip: padding-box, border-box;
   }
 
   .profile-menu-scroll::-webkit-scrollbar-thumb:active {
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 100%),
-      linear-gradient(180deg, #6caef6 0%, #467fc8 55%, #3266aa 100%);
+      var(--color-gradient-table);
     background-clip: padding-box, border-box;
   }
 
@@ -1455,7 +2768,7 @@
   }
 
   .section-header-theme {
-    border-bottom: 2px solid var(--color-brand-line);
+    border-bottom: 2px solid var(--color-border-brand);
   }
 
   @media (min-width: 768px) {

@@ -79,7 +79,7 @@ const supportTags = ['Deposit', 'Withdrawal', 'Bonus', 'Verification', 'Technica
 function Avatar({ small = false }) {
     return (
         <span
-            className={`inline-flex shrink-0 overflow-hidden rounded-full border border-[rgb(59_130_246_/_0.22)] bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-soft)] ${small ? 'h-10 w-10' : 'h-12 w-12'
+            className={`inline-flex shrink-0 overflow-hidden rounded-full border border-[var(--color-accent)]/22 bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-soft)] ${small ? 'h-10 w-10' : 'h-12 w-12'
                 }`}
         >
             <img
@@ -94,7 +94,7 @@ function Avatar({ small = false }) {
 
 function BottomNav({ activeTab, onChange }) {
     const navBtn = 'flex min-w-[72px] flex-col items-center gap-1.5 py-1';
-    const active = 'text-[var(--color-brand-primary)] font-semibold';
+    const active = 'text-[var(--color-primary)] font-semibold';
     const inactive = 'text-[var(--color-text-muted)] font-medium';
 
     return (
@@ -105,7 +105,7 @@ function BottomNav({ activeTab, onChange }) {
             </button>
             <button type="button" onClick={() => onChange('messages')} className={`relative ${navBtn} ${activeTab === 'messages' ? active : inactive}`}>
                 <MessageCircle size={20} strokeWidth={2} />
-                <span className="absolute right-4 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--color-danger-main)] px-1 text-xs font-bold text-white">
+                <span className="absolute right-4 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--color-danger)] px-1 text-xs font-bold text-[var(--color-text-card-text)]">
                     2
                 </span>
                 <span className="text-sm">Messages</span>
@@ -218,19 +218,19 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                     type="button"
                     aria-label="Close"
                     onClick={onClose}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                 >
                     <X size={18} strokeWidth={3} />
                 </button>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-5">
-                <div className="rounded-[24px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 pb-6 pt-7 shadow-[var(--inset-panel)]">
-                    <div className="border-b border-[rgb(171_204_235)] pb-5">
-                        <p className="text-2xl font-bold leading-tight text-[var(--color-text-strong)]">
+                <div className="rounded-[24px] border border-[var(--color-border-brand)] bg-gradient-register-panel px-5 pb-6 pt-7 shadow-[var(--inset-panel)]">
+                    <div className="border-b border-[var(--color-border-brand)] pb-5">
+                        <p className="text-2xl font-bold leading-tight text-[var(--color-text-primary)]">
                             Hi {username},
                             <span className="ml-2 inline-block">👋</span>
                         </p>
-                        <p className="mt-1 text-2xl font-bold leading-tight text-[var(--color-brand-secondary)]">
+                        <p className="mt-1 text-2xl font-bold leading-tight text-[var(--color-button-hover)]">
                             How can we help you?
                         </p>
                     </div>
@@ -252,12 +252,12 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                     >
                                         <Avatar small />
                                         <div className="min-w-0 flex-1">
-                                            <p className="text-base font-semibold text-[var(--color-text-strong)]">{recentChat.title}</p>
+                                            <p className="text-base font-semibold text-[var(--color-text-primary)]">{recentChat.title}</p>
                                             <p className="mt-1 truncate text-base leading-6 text-[var(--color-text-muted)]">{recentChat.preview}</p>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <span className="text-sm text-[var(--color-text-muted)]">{recentChat.time}</span>
-                                            {recentChat.unread && <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--color-danger-main)]" />}
+                                            {recentChat.unread && <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--color-danger)]" />}
                                         </div>
                                     </button>
                                 </div>
@@ -272,8 +272,8 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                             }}
                             className="surface-card flex w-full items-center justify-between rounded-2xl px-4 py-4 text-left"
                         >
-                            <span className="text-base font-semibold text-[var(--color-text-strong)]">Send us a message</span>
-                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-brand-soft)] text-[var(--color-brand-primary)]">
+                            <span className="text-base font-semibold text-[var(--color-text-primary)]">Send us a message</span>
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-primary)]">
                                 <Send size={16} />
                             </span>
                         </button>
@@ -287,7 +287,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                 markRecentChat('luna-bonus');
                             }}
                         >
-                            <h2 className="text-xl font-semibold leading-snug text-[var(--color-text-strong)]">
+                            <h2 className="text-xl font-semibold leading-snug text-[var(--color-text-primary)]">
                                 How Do I Claim The Welcome Bonus MYR?
                             </h2>
                             <p className="mt-2 text-base leading-6 text-[var(--color-text-muted)]">
@@ -296,9 +296,9 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                         </button>
 
                         <div className="surface-card rounded-2xl px-4 py-4">
-                            <label className="flex items-center gap-3 rounded-xl bg-[var(--color-surface-muted)] px-4 py-3">
-                                <span className="text-base font-semibold text-[var(--color-text-strong)]">Search for help</span>
-                                <Search size={18} className="ml-auto text-[var(--color-brand-primary)]" />
+                            <label className="flex items-center gap-3 rounded-xl bg-[var(--color-surface-cool-light)] px-4 py-3">
+                                <span className="text-base font-semibold text-[var(--color-text-primary)]">Search for help</span>
+                                <Search size={18} className="ml-auto text-[var(--color-primary)]" />
                             </label>
 
                             <div className="mt-3 space-y-1">
@@ -306,10 +306,10 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                     <button
                                         key={topic}
                                         type="button"
-                                        className="flex w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left transition hover:bg-[var(--color-surface-muted)]"
+                                        className="flex w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left transition hover:bg-[var(--color-surface-cool-light)]"
                                     >
                                         <span className="flex-1 text-base leading-6 text-[var(--color-text-muted)]">{topic}</span>
-                                        <ChevronRight size={18} className="mt-1 shrink-0 text-[var(--color-brand-primary)]" />
+                                        <ChevronRight size={18} className="mt-1 shrink-0 text-[var(--color-primary)]" />
                                     </button>
                                 ))}
                             </div>
@@ -323,13 +323,13 @@ export default function LiveChatModal({ open, onClose, authUser }) {
 
     const renderMessages = () => (
         <>
-            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 py-4">
+            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-gradient-register-panel px-5 py-4">
                 <div className="flex items-center justify-between">
-                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-brand-secondary)]">Messages</h2>
+                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-button-hover)]">Messages</h2>
                     <button
                         type="button"
                         onClick={onClose}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <X size={18} strokeWidth={3} />
                     </button>
@@ -345,17 +345,17 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                 setActiveThreadId(thread.id);
                                 markRecentChat(thread.id);
                             }}
-                            className="surface-card flex w-full items-start gap-3 rounded-2xl px-4 py-4 text-left transition hover:border-[var(--color-accent-200)] hover:shadow-[var(--shadow-card-raised)]"
+                            className="surface-card flex w-full items-start gap-3 rounded-2xl px-4 py-4 text-left transition hover:border-[var(--color-accent-glow)] hover:shadow-[var(--shadow-card-raised)]"
                         >
                             <Avatar small />
                             <div className="min-w-0 flex-1">
                                 <div className="flex items-start justify-between gap-3">
-                                    <p className="text-base font-semibold text-[var(--color-text-strong)]">{thread.title}</p>
+                                    <p className="text-base font-semibold text-[var(--color-text-primary)]">{thread.title}</p>
                                     <span className="text-sm text-[var(--color-text-muted)]">{thread.time}</span>
                                 </div>
                                 <p className="mt-1 truncate text-base leading-6 text-[var(--color-text-muted)]">{thread.preview}</p>
                             </div>
-                            <span className="mt-3 h-2.5 w-2.5 rounded-full bg-[var(--color-danger-main)]" />
+                            <span className="mt-3 h-2.5 w-2.5 rounded-full bg-[var(--color-danger)]" />
                         </button>
                     ))}
                 </div>
@@ -379,13 +379,13 @@ export default function LiveChatModal({ open, onClose, authUser }) {
 
     const renderHelp = () => (
         <>
-            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 py-4">
+            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-gradient-register-panel px-5 py-4">
                 <div className="flex items-center justify-between">
-                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-brand-secondary)]">Help</h2>
+                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-button-hover)]">Help</h2>
                     <button
                         type="button"
                         onClick={onClose}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <X size={18} strokeWidth={3} />
                     </button>
@@ -394,28 +394,28 @@ export default function LiveChatModal({ open, onClose, authUser }) {
             <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-5 pt-4">
                 <div className="surface-card rounded-2xl px-4 py-3">
                     <label className="flex items-center gap-3">
-                        <span className="text-base font-semibold text-[var(--color-text-strong)]">Search for help</span>
-                        <Search size={18} className="ml-auto text-[var(--color-brand-primary)]" />
+                        <span className="text-base font-semibold text-[var(--color-text-primary)]">Search for help</span>
+                        <Search size={18} className="ml-auto text-[var(--color-primary)]" />
                     </label>
                 </div>
 
                 <div className="mt-4">
-                    <p className="text-xl font-bold text-[var(--color-text-strong)]">7 collections</p>
+                    <p className="text-xl font-bold text-[var(--color-text-primary)]">7 collections</p>
                     <div className="mt-3 space-y-2">
                         {helpCollections.map((collection) => (
                             <button
                                 key={collection.title}
                                 type="button"
-                                className="surface-card flex w-full items-start gap-4 rounded-2xl px-4 py-4 text-left transition hover:border-[var(--color-accent-200)] hover:shadow-[var(--shadow-card-raised)]"
+                                className="surface-card flex w-full items-start gap-4 rounded-2xl px-4 py-4 text-left transition hover:border-[var(--color-accent-glow)] hover:shadow-[var(--shadow-card-raised)]"
                             >
                                 <div className="min-w-0 flex-1">
-                                    <p className="text-lg font-semibold text-[var(--color-text-strong)]">{collection.title}</p>
+                                    <p className="text-lg font-semibold text-[var(--color-text-primary)]">{collection.title}</p>
                                     {collection.description && (
-                                        <p className="mt-1 text-base leading-6 text-[var(--color-text-main)]">{collection.description}</p>
+                                        <p className="mt-1 text-base leading-6 text-[var(--color-text-secondary)]">{collection.description}</p>
                                     )}
                                     <p className={`text-sm text-[var(--color-text-muted)] ${collection.description ? 'mt-1' : 'mt-2'}`}>{collection.count}</p>
                                 </div>
-                                <ChevronRight size={18} className="mt-1 shrink-0 text-[var(--color-brand-primary)]" />
+                                <ChevronRight size={18} className="mt-1 shrink-0 text-[var(--color-primary)]" />
                             </button>
                         ))}
                     </div>
@@ -427,33 +427,33 @@ export default function LiveChatModal({ open, onClose, authUser }) {
 
     const renderArticleThread = (thread) => (
         <>
-            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 py-3.5">
+            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-gradient-register-panel px-5 py-3.5">
                 <div className="flex items-start gap-3">
                     <button
                         type="button"
                         onClick={() => setActiveThreadId(null)}
-                        className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <ChevronLeft size={18} strokeWidth={3} />
                     </button>
                     <Avatar small />
                     <div className="min-w-0 flex-1">
-                        <p className="text-base font-semibold text-[var(--color-brand-secondary)]">{thread.name}</p>
+                        <p className="text-base font-semibold text-[var(--color-button-hover)]">{thread.name}</p>
                         <div className="flex items-center gap-2">
-                            <span className="inline-flex h-2 w-2 rounded-full bg-[rgb(255_211_74)]" />
+                            <span className="inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
                             <span className="text-sm text-[var(--color-text-muted)]">{thread.status}</span>
                         </div>
                     </div>
                     <button
                         type="button"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <MoreHorizontal size={18} />
                     </button>
                     <button
                         type="button"
                         onClick={onClose}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <X size={18} strokeWidth={3} />
                     </button>
@@ -466,8 +466,8 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                         <Avatar small />
                         <span className="text-sm text-[var(--color-text-muted)]">{thread.name}</span>
                     </div>
-                    <h3 className="mt-4 text-2xl font-semibold leading-tight text-[var(--color-text-strong)]">{thread.articleTitle}</h3>
-                    <div className="mt-4 space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
+                    <h3 className="mt-4 text-2xl font-semibold leading-tight text-[var(--color-text-primary)]">{thread.articleTitle}</h3>
+                    <div className="mt-4 space-y-4 text-base leading-7 text-[var(--color-text-primary)]">
                         {thread.articleBody.map((paragraph) => (
                             <p key={paragraph}>{paragraph}</p>
                         ))}
@@ -479,30 +479,30 @@ export default function LiveChatModal({ open, onClose, authUser }) {
 
     const renderAssistantThread = (thread) => (
         <>
-            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 py-3.5">
+            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-gradient-register-panel px-5 py-3.5">
                 <div className="flex items-start gap-3">
                     <button
                         type="button"
                         onClick={() => setActiveThreadId(null)}
-                        className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <ChevronLeft size={18} strokeWidth={3} />
                     </button>
                     <Avatar small />
                     <div className="min-w-0 flex-1">
-                        <p className="text-base font-semibold text-[var(--color-brand-secondary)]">{thread.name}</p>
+                        <p className="text-base font-semibold text-[var(--color-button-hover)]">{thread.name}</p>
                         <p className="text-sm text-[var(--color-text-muted)]">{thread.title}</p>
                     </div>
                     <button
                         type="button"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <MoreHorizontal size={18} />
                     </button>
                     <button
                         type="button"
                         onClick={onClose}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <X size={18} strokeWidth={3} />
                     </button>
@@ -511,7 +511,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
             <div className="flex-1 overflow-y-auto px-5 pb-5 pt-5">
                 <p className="text-center text-sm text-[var(--color-text-muted)]">Ask us anything, or share your feedback.</p>
                 <article className="surface-card soft-blue-panel mt-5 w-[86%] rounded-[24px] px-4 py-4 text-left">
-                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
+                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-primary)]">
                         <p>Hello there. 🌟 Welcome to 12WIN Support. 👋</p>
                         <p>Want extra ong this CNY? Better join GemChat early!</p>
                         <p>How can we assist you today?</p>
@@ -531,9 +531,9 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                     setActiveThreadId('rory');
                                     markRecentChat('rory', { title: 'Chat with Rory', preview: 'Nora: Rate your conversation', time: '17m', unread: true });
                                 }}
-                                className={`rounded-full border border-[var(--color-border-default)] px-4 py-2.5 text-base font-medium shadow-[var(--shadow-card-soft)] transition ${isSelected
-                                        ? 'bg-[var(--color-brand-primary)] text-white'
-                                        : 'bg-[var(--color-surface-base)] text-[var(--color-brand-secondary)]'
+                                className={`rounded-full border border-[var(--color-border-subtle)] px-4 py-2.5 text-base font-medium shadow-[var(--shadow-card-soft)] transition ${isSelected
+                                        ? 'bg-[var(--color-primary)] text-[var(--color-text-card-text)]'
+                                        : 'bg-[var(--color-surface-base)] text-[var(--color-button-hover)]'
                                     }`}
                             >
                                 {tag}
@@ -547,33 +547,33 @@ export default function LiveChatModal({ open, onClose, authUser }) {
 
     const renderSupportThread = (thread) => (
         <>
-            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-panel-mid)_52%,var(--gradient-register-panel-end)_100%)] px-5 py-3.5">
+            <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-gradient-register-panel px-5 py-3.5">
                 <div className="flex items-start gap-3">
                     <button
                         type="button"
                         onClick={() => setActiveThreadId('nora')}
-                        className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <ChevronLeft size={18} strokeWidth={3} />
                     </button>
                     <Avatar small />
                     <div className="min-w-0 flex-1">
-                        <p className="text-base font-semibold text-[var(--color-brand-secondary)]">{thread.name}</p>
+                        <p className="text-base font-semibold text-[var(--color-button-hover)]">{thread.name}</p>
                         <div className="flex items-center gap-2">
-                            <span className="inline-flex h-2 w-2 rounded-full bg-[var(--color-success-main)]" />
+                            <span className="inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
                             <span className="text-sm text-[var(--color-text-muted)]">Active</span>
                         </div>
                     </div>
                     <button
                         type="button"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <MoreHorizontal size={18} />
                     </button>
                     <button
                         type="button"
                         onClick={onClose}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-main)] transition hover:bg-[rgb(0_174_239_/_0.1)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     >
                         <X size={18} strokeWidth={3} />
                     </button>
@@ -581,7 +581,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
             </div>
             <div className="flex-1 overflow-y-auto px-5 pb-5 pt-5">
                 <article className="surface-card soft-blue-panel w-[86%] rounded-[24px] px-4 py-4 text-left">
-                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
+                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-primary)]">
                         <p>Please select a topic related to your inquiry. 🙏</p>
                     </div>
                 </article>
@@ -596,21 +596,21 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                 </div>
 
                 <article className="surface-card soft-blue-panel mt-6 w-[86%] rounded-[24px] px-4 py-4 text-left">
-                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-strong)]">
+                    <div className="space-y-4 text-base leading-7 text-[var(--color-text-primary)]">
                         <p>Thank you for selecting the topic. 🌟</p>
                         <p>We will connect you with our Support Agent shortly.</p>
                         <p>If you have a screenshot of the issue, it will help us resolve it quickly. 💎</p>
                     </div>
                 </article>
 
-                <div className="mt-5 flex items-center justify-center gap-3 text-base text-[var(--color-text-main)]">
+                <div className="mt-5 flex items-center justify-center gap-3 text-base text-[var(--color-text-secondary)]">
                     <Avatar small />
                     <span className="font-medium">{thread.name} joined the conversation</span>
                 </div>
             </div>
 
             <div className="surface-card border-x-0 border-b-0 rounded-none px-4 py-3">
-                <div className="rounded-[20px] border border-[var(--color-border-default)] bg-[var(--color-surface-base)] px-4 py-3">
+                <div className="rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3">
                     <p className="text-base text-[var(--color-text-muted)]">Message...</p>
                     <div className="mt-4 flex items-center gap-4 text-[var(--color-text-muted)]">
                         <span>📎</span>
@@ -619,7 +619,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                         <span>🎤</span>
                         <button
                             type="button"
-                            className="ml-auto inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-surface-muted)] text-[var(--color-text-soft)]"
+                            className="ml-auto inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-text-soft)]"
                         >
                             <ChevronRight size={18} className="-rotate-90" />
                         </button>
@@ -631,7 +631,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
 
     const modalContent = (
         <>
-            <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_80%_80%_at_50%_0%,rgb(0_174_239_/_0.12)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-live-chat-header pointer-events-none" />
             {activeThread
                 ? activeThread.type === 'article'
                     ? renderArticleThread(activeThread)
@@ -653,7 +653,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                 className="fixed inset-0 z-[200] flex items-center justify-center p-4 transition-opacity duration-300 sm:p-6 md:hidden pointer-events-auto opacity-100"
             >
                 <div
-                    className="absolute inset-0 bg-black/70 backdrop-blur-[2px]"
+                    className="absolute inset-0 bg-[var(--color-surface-darkest)]/70 backdrop-blur-[2px]"
                     onClick={onClose}
                     aria-hidden="true"
                 />
@@ -661,7 +661,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                     role="dialog"
                     aria-modal="true"
                     aria-label="Live Chat"
-                    className="relative z-[10] flex h-[min(85vh,760px)] w-full max-w-[420px] flex-col overflow-hidden rounded-[28px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] shadow-[var(--shadow-modal)] transition-all duration-300 translate-y-0 scale-100 opacity-100"
+                    className="relative z-[10] flex h-[min(85vh,760px)] w-full max-w-[420px] flex-col overflow-hidden rounded-[28px] border border-[var(--color-border-brand)] bg-gradient-register-page shadow-[var(--shadow-modal)] transition-all duration-300 translate-y-0 scale-100 opacity-100"
                 >
                     {modalContent}
                 </section>
@@ -675,7 +675,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                     role="dialog"
                     aria-modal="true"
                     aria-label="Live Chat"
-                    className="pointer-events-auto absolute bottom-[calc(1.5rem+3.5rem+0.75rem)] right-6 flex h-[min(85vh,760px)] w-full max-w-[420px] flex-col overflow-hidden rounded-[28px] border border-[var(--color-border-brand)] bg-[linear-gradient(180deg,var(--gradient-register-page-start)_0%,var(--gradient-register-page-mid)_45%,var(--gradient-register-page-end)_100%)] shadow-[var(--shadow-modal)] transition-all duration-300 translate-y-0 scale-100 opacity-100"
+                    className="pointer-events-auto absolute bottom-[calc(1.5rem+3.5rem+0.75rem)] right-6 flex h-[min(85vh,760px)] w-full max-w-[420px] flex-col overflow-hidden rounded-[28px] border border-[var(--color-border-brand)] bg-gradient-register-page shadow-[var(--shadow-modal)] transition-all duration-300 translate-y-0 scale-100 opacity-100"
                 >
                     {modalContent}
                 </section>

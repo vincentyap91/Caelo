@@ -96,7 +96,7 @@ export default function RecentPayoutSection({ onNavigate, payouts = MOCK_RECENT_
     return (
         <section aria-label="Recent payout" className="w-full">
             <div
-                className={`${RECENT_PAYOUT_PANEL_CLASS} p-6`}
+                className={`recent-payout-section ${RECENT_PAYOUT_PANEL_CLASS} border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] p-6 [box-shadow:var(--color-effect-glow)]`}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
                 onFocusCapture={() => setIsPaused(true)}
@@ -109,20 +109,22 @@ export default function RecentPayoutSection({ onNavigate, payouts = MOCK_RECENT_
                 <header className={RECENT_PAYOUT_HEADER_CLASS}>
                     <Trophy
                         size={18}
-                        className="recent-payout-header__icon shrink-0 text-[var(--color-nav-accent)] md:hidden"
+                        className="recent-payout-header__icon shrink-0 text-[var(--color-accent)] md:hidden"
                         fill="currentColor"
                         strokeWidth={1.75}
                         aria-hidden
                     />
                     <Trophy
                         size={20}
-                        className="recent-payout-header__icon hidden shrink-0 text-[var(--color-nav-accent)] md:block"
+                        className="recent-payout-header__icon hidden shrink-0 text-[var(--color-accent)] md:block"
                         fill="currentColor"
                         strokeWidth={1.75}
                         aria-hidden
                     />
                     <h2 className="recent-payout-header__title">
-                        <span>RECENT</span> PAYOUT
+                        <span className="text-[var(--color-text-primary)] recent-payout-header__title-recent">RECENT</span>
+                        {' '}
+                        <span className="text-[var(--color-text-recent-amount)] recent-payout-header__title-payout">PAYOUT</span>
                     </h2>
                 </header>
 

@@ -45,7 +45,7 @@ export default function PokerPage({ onNavigate }) {
 
     return (
         <main
-            className="w-full pb-14 bg-[linear-gradient(180deg,var(--gradient-live-page-start)_0%,var(--gradient-live-page-mid)_36%,var(--gradient-live-page-end)_100%)]"
+            className="w-full pb-14 bg-gradient-live-page"
         >
             <LobbyHeroBanner
                 layout="poker"
@@ -61,26 +61,26 @@ export default function PokerPage({ onNavigate }) {
             />
 
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
-                <div className="rounded-2xl border border-[rgb(219_228_243)] bg-[var(--color-surface-base-80)] p-4 shadow-[0_6px_18px_rgba(20,43,87,0.09)] backdrop-blur-sm md:p-5">
+                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-4 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-xl font-bold tracking-[0.02em] text-[rgb(28_40_65)] md:text-2xl">Poker Providers</p>
-                            <p className="mt-1 text-xs text-[rgb(93_103_128)] md:text-sm">
+                            <p className="text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">Poker Providers</p>
+                            <p className="mt-1 text-xs text-[var(--color-text-muted)] md:text-sm">
                                 Choose a poker room for tournaments, cash tables, and quick sit-and-go action.
                             </p>
                         </div>
-                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-live)] bg-[var(--color-surface-base)] px-3 shadow-[inset_0_1px_2px_rgba(9,30,66,0.06)] lg:w-[330px]">
-                            <Search size={16} className="text-[rgb(95_110_139)]" />
+                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)] lg:w-[330px]">
+                            <Search size={16} className="text-[var(--color-text-muted)]" />
                             <input
                                 value={query}
                                 onChange={(event) => setQuery(event.target.value)}
                                 placeholder="Search provider"
-                                className="w-full bg-transparent text-sm font-semibold text-[rgb(42_58_88)] outline-none placeholder:text-[rgb(139_151_174)]"
+                                className="w-full bg-transparent text-sm font-semibold text-[var(--color-text-secondary)] outline-none placeholder:text-[var(--color-text-soft)]"
                             />
                         </label>
                     </div>
 
-                    <p className="mt-4 text-xs font-bold uppercase tracking-[0.08em] text-[rgb(106_117_144)] md:text-xs">
+                    <p className="mt-4 text-xs font-bold uppercase tracking-wide text-[var(--color-text-soft)] md:text-xs">
                         {filteredProviders.length} provider{filteredProviders.length === 1 ? '' : 's'} found
                     </p>
                 </div>
@@ -103,9 +103,9 @@ export default function PokerPage({ onNavigate }) {
                     ))}
                 </div>
                 {filteredProviders.length === 0 && (
-                    <div className="mt-6 rounded-2xl border border-[rgb(220_228_242)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
-                        <p className="text-base font-bold text-[rgb(43_58_87)]">No providers match your search.</p>
-                        <p className="mt-1 text-xs text-[rgb(106_117_144)]">Try a different keyword.</p>
+                    <div className="mt-6 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
+                        <p className="text-base font-bold text-[var(--color-text-secondary)]">No providers match your search.</p>
+                        <p className="mt-1 text-xs text-[var(--color-text-soft)]">Try a different keyword.</p>
                     </div>
                 )}
             </section>

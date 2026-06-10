@@ -30,7 +30,7 @@ function pad(n) {
 
 /** Gold-to-yellow gradient matching the CTA button */
 const GOLD_GRADIENT =
-    'linear-gradient(180deg, var(--color-cta-start) 0%, var(--color-cta-strong-end) 100%)';
+    'linear-gradient(180deg, var(--color-button-cta-start) 0%, var(--color-button-cta-end) 100%)';
 
 /** Thin vertical rule between time units */
 const DIVIDER = (
@@ -168,7 +168,7 @@ export default function CountdownTimer({ endDate, size = 'card', align = 'center
                                         WebkitTextFillColor: 'transparent',
                                         backgroundClip: 'text',
                                         /* Fallback for browsers without background-clip */
-                                        color: 'var(--color-cta-strong-end)',
+                                        color: 'var(--color-button-cta-end)',
                                         /* Ensure the gradient wrapper is inline-block */
                                         display: 'inline-block',
                                         filter: 'drop-shadow(0 1px 2px rgba(242,154,0,0.30))',

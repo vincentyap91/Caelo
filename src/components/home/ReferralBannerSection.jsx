@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Copy, Check, Share2, Users } from 'lucide-react';
-import referralBg from '../../assets/referral-image.jpg';
-import mobileReferralBg from '../../assets/mobile-referral.jpg';
+import referralBanner from '../../assets/home/referral-banner-1544x451.webp';
 
 const REFERRAL_CODE = '024555';
 const REFERRAL_URL =
@@ -9,194 +8,148 @@ const REFERRAL_URL =
         ? `${window.location.origin}/en/register?code=${REFERRAL_CODE}`
         : `https://staging.riocity9.com/en/register?code=${REFERRAL_CODE}`;
 
-/* ─── Shared button styles ─────────────────────── */
-const THEME_CTA_BTN = {
-    background: 'var(--gradient-cta)',
-    color: 'var(--color-cta-text)',
-    boxShadow: 'var(--shadow-cta-soft)',
+const SHARE_BTN = {
+    background: 'var(--color-danger)',
+    color: 'var(--color-text-card-text)',
+    boxShadow: 'var(--shadow-hot)',
 };
 
-const THEME_BLUE_BTN = {
-    background: 'var(--color-accent-600)',
-    color: '#ffffff',
+const NAVY_BTN = {
+    background: 'var(--color-primary)',
+    color: 'var(--color-text-card-text)',
     boxShadow: 'var(--shadow-accent)',
 };
 
-/* ─── Sub-components ────────────────────────────── */
+function ReferralHubCard({
+    onNavigate,
+    onShare,
+    copied,
+    onCopy,
+    className = '',
+    idPrefix = 'referral-banner',
+}) {
+    return (
+        <div
+            className={`w-full rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-surface-cool-light)] p-5 text-center sm:p-6 ${className}`}
+        >
+            <h2 className="text-xl font-bold leading-tight text-[var(--color-text-tertiary)]">
+                Your Unique Referral Hub
+            </h2>
+            <p className="mt-1 text-base font-bold text-[var(--color-text-card-text)]">
+                Share &amp; Grow Your Network
+            </p>
 
-/** Mobile layout: image header + theme-matched button strip */
+            <div className="mt-4 text-left">
+                <p className="mb-1.5 text-xs font-semibold text-[var(--color-text-secondary)]">
+                    My Referral Link
+                </p>
+                <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 py-2.5">
+                    <input
+                        type="text"
+                        value={REFERRAL_URL}
+                        readOnly
+                        aria-label="Referral link"
+                        className="min-w-0 flex-1 bg-transparent text-[11px] font-mono text-[var(--color-text-tertiary)] outline-none"
+                    />
+                    <button
+                        type="button"
+                        onClick={onCopy}
+                        aria-label="Copy referral link"
+                        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[var(--color-text-tertiary)] transition-colors duration-150 hover:bg-[var(--color-border-brand)]"
+                    >
+                        {copied ? (
+                            <Check size={14} className="text-[var(--color-success)]" />
+                        ) : (
+                            <Copy size={14} />
+                        )}
+                    </button>
+                </div>
+            </div>
+
+            <div className="mt-3 grid grid-cols-2 gap-2">
+                <button
+                    type="button"
+                    id={`${idPrefix}-share-btn`}
+                    onClick={onShare}
+                    className="flex items-center justify-center gap-1.5 rounded-xl py-3 text-sm font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
+                    style={SHARE_BTN}
+                >
+                    <Share2 size={14} />
+                    Share
+                </button>
+                <button
+                    type="button"
+                    id={`${idPrefix}-downlines-btn`}
+                    onClick={() => onNavigate?.('referral')}
+                    className="flex items-center justify-center gap-1.5 rounded-xl py-3 text-sm font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
+                    style={NAVY_BTN}
+                >
+                    <Users size={14} />
+                    Downlines
+                </button>
+            </div>
+
+            <button
+                type="button"
+                id={`${idPrefix}-more-info-btn`}
+                onClick={() => onNavigate?.('referral')}
+                className="mt-2.5 w-full rounded-xl py-3 text-sm font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
+                style={NAVY_BTN}
+            >
+                More Info
+            </button>
+        </div>
+    );
+}
+
 function MobileLayout({ onNavigate, onShare, copied, onCopy }) {
     return (
         <div className="flex flex-col overflow-hidden rounded-2xl md:hidden">
-            {/* Top: mobile referral image */}
             <img
-                src={mobileReferralBg}
+                src={referralBanner}
                 alt="Referral – Invite friends and earn"
-                className="w-full h-auto block object-cover object-center"
+                className="block h-auto w-full object-cover object-center"
                 draggable={false}
             />
-
-            {/* Bottom: themed action strip */}
-            <div
-                className="w-full px-4 py-5 flex flex-col gap-3"
-                style={{ background: 'var(--color-brand-deep)' }}
-            >
-                {/* Share + Downlines row */}
-                <div className="grid grid-cols-2 gap-3">
-                    <button
-                        type="button"
-                        id="mob-referral-share-btn"
-                        onClick={onShare}
-                        className="flex items-center justify-center gap-2 rounded-xl py-3.5 text-base font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
-                        style={THEME_BLUE_BTN}
-                    >
-                        <Share2 size={16} />
-                        Share
-                    </button>
-                    <button
-                        type="button"
-                        id="mob-referral-downlines-btn"
-                        onClick={() => onNavigate?.('referral')}
-                        className="flex items-center justify-center gap-2 rounded-xl py-3.5 text-base font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
-                        style={THEME_CTA_BTN}
-                    >
-                        <Users size={16} />
-                        Downlines
-                    </button>
-                </div>
-
-                {/* More Info full-width */}
-                <button
-                    type="button"
-                    id="mob-referral-more-info-btn"
-                    onClick={() => onNavigate?.('referral')}
-                    className="w-full rounded-xl py-3.5 text-base font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
-                    style={THEME_CTA_BTN}
-                >
-                    More Info
-                </button>
+            <div className="w-full px-4 py-4">
+                <ReferralHubCard
+                    onNavigate={onNavigate}
+                    onShare={onShare}
+                    copied={copied}
+                    onCopy={onCopy}
+                    idPrefix="mob-referral"
+                />
             </div>
         </div>
     );
 }
 
-/** Desktop layout: full background image with glassmorphism card overlay */
 function DesktopLayout({ onNavigate, onShare, copied, onCopy }) {
     return (
         <div className="relative hidden w-full overflow-hidden rounded-2xl md:block">
-            {/* Background image defines height */}
             <img
-                src={referralBg}
+                src={referralBanner}
                 alt=""
                 aria-hidden="true"
                 draggable={false}
-                className="w-full h-auto block object-cover object-center"
+                className="block h-auto w-full object-cover object-center"
             />
 
-            {/* Dark overlay for card readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/0 to-transparent" />
-
-            {/* Content overlay */}
             <div className="absolute inset-0 z-10 flex items-center p-4">
                 <div className="mx-auto w-full max-w-screen-2xl px-4 md:px-8">
-                    {/* Glassmorphism card */}
-                    <div
-                        className="w-full shrink-0 rounded-2xl p-6 md:max-w-[360px] lg:max-w-[380px] lg:ml-[2%]"
-                        style={{
-                            background: 'rgba(255,255,255,0.14)',
-                            backdropFilter: 'blur(18px)',
-                            WebkitBackdropFilter: 'blur(18px)',
-                            border: '1px solid rgba(255,255,255,0.28)',
-                            boxShadow: '0 8px 32px rgba(0,0,0,0.22)',
-                        }}
-                    >
-                        <h2 className="text-lg font-bold leading-tight text-white lg:text-xl">
-                            Your Unique Referral Hub
-                        </h2>
-                        <p className="mt-1 text-sm font-semibold text-[#7dd3fc]">
-                            Share &amp; Grow Your Network
-                        </p>
-
-                        {/* Referral link field */}
-                        <div className="mt-4">
-                            <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
-                                My Referral Link
-                            </p>
-                            <div
-                                className="flex items-center gap-2 rounded-xl px-3 py-2"
-                                style={{
-                                    background: 'rgba(255,255,255,0.18)',
-                                    border: '1px solid rgba(255,255,255,0.3)',
-                                }}
-                            >
-                                <input
-                                    type="text"
-                                    value={REFERRAL_URL}
-                                    readOnly
-                                    aria-label="Referral link"
-                                    className="min-w-0 flex-1 bg-transparent text-[11px] font-mono text-white outline-none"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={onCopy}
-                                    aria-label="Copy referral link"
-                                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors duration-150"
-                                    style={{
-                                        background: 'rgba(255,255,255,0.2)',
-                                        border: '1px solid rgba(255,255,255,0.3)',
-                                    }}
-                                >
-                                    {copied ? (
-                                        <Check size={14} className="text-emerald-300" />
-                                    ) : (
-                                        <Copy size={14} className="text-white" />
-                                    )}
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Share + Downlines row */}
-                        <div className="mt-3 grid grid-cols-2 gap-2">
-                            <button
-                                type="button"
-                                id="referral-banner-share-btn"
-                                onClick={onShare}
-                                className="flex items-center justify-center gap-1.5 rounded-xl py-3 text-sm font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
-                                style={THEME_BLUE_BTN}
-                            >
-                                <Share2 size={14} />
-                                Share
-                            </button>
-                            <button
-                                type="button"
-                                id="referral-banner-downlines-btn"
-                                onClick={() => onNavigate?.('referral')}
-                                className="flex items-center justify-center gap-1.5 rounded-xl py-3 text-sm font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
-                                style={THEME_CTA_BTN}
-                            >
-                                <Users size={14} />
-                                Downlines
-                            </button>
-                        </div>
-
-                        {/* More Info full-width */}
-                        <button
-                            type="button"
-                            id="referral-banner-more-info-btn"
-                            onClick={() => onNavigate?.('referral')}
-                            className="mt-2.5 w-full rounded-xl py-3 text-sm font-bold transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
-                            style={THEME_CTA_BTN}
-                        >
-                            More Info
-                        </button>
-                    </div>
+                    <ReferralHubCard
+                        onNavigate={onNavigate}
+                        onShare={onShare}
+                        copied={copied}
+                        onCopy={onCopy}
+                        className="w-full shrink-0 md:max-w-[360px] lg:max-w-[380px] lg:ml-[2%]"
+                    />
                 </div>
             </div>
         </div>
     );
 }
 
-/* ─── Main export ───────────────────────────────── */
 export default function ReferralBannerSection({ onNavigate }) {
     const [copied, setCopied] = useState(false);
 

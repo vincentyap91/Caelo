@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { XCircle } from 'lucide-react';
 
 /**
@@ -21,30 +21,30 @@ export default function TacErrorModal({ open, onConfirm, titleId = 'tac-error-ti
             <button
                 type="button"
                 aria-label="Dismiss"
-                className="absolute inset-0 bg-black/65 backdrop-blur-[2px]"
+                className="absolute inset-0 bg-[var(--color-surface-darkest)]/65 backdrop-blur-[2px]"
                 onClick={onConfirm}
             />
             <div
                 role="alertdialog"
                 aria-modal="true"
                 aria-labelledby={titleId}
-                className="relative z-[1] w-full max-w-[340px] rounded-[22px] bg-[#222222] px-8 pb-8 pt-10 shadow-[0_24px_60px_rgba(0_0_0_0.45)] sm:max-w-[360px] sm:rounded-[24px] sm:px-10 sm:pt-12 sm:pb-10"
+                className="relative z-[1] w-full max-w-[340px] rounded-[22px] bg-[var(--color-surface-card-container)] px-8 pb-8 pt-10 shadow-[var(--shadow-modal)] sm:max-w-[360px] sm:rounded-[24px] sm:px-10 sm:pt-12 sm:pb-10"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex flex-col items-center text-center">
                     <XCircle
-                        className="text-[var(--color-danger-main)]"
+                        className="text-[var(--color-danger)]"
                         size={72}
                         strokeWidth={1.35}
                         aria-hidden
                     />
-                    <p id={titleId} className="mt-6 text-base font-medium leading-snug text-white sm:text-lg">
+                    <p id={titleId} className="mt-6 text-base font-medium leading-snug text-[var(--color-text-card-text)] sm:text-lg">
                         TAC Is Incorrect Or Has Expired.
                     </p>
                     <button
                         type="button"
                         onClick={onConfirm}
-                        className="mt-8 min-w-[140px] rounded-xl bg-[#39FF88] px-10 py-3 text-center text-sm font-bold uppercase tracking-wide text-black shadow-[0_10px_24px_rgba(57_255_136_0.35)] transition hover:brightness-95 active:scale-[0.99]"
+                        className="mt-8 min-w-[140px] rounded-xl bg-[var(--color-success-vivid)] px-10 py-3 text-center text-sm font-bold uppercase tracking-wide text-[var(--color-text-primary)] shadow-[var(--shadow-success)] transition hover:brightness-95 active:scale-[0.99]"
                     >
                         OK
                     </button>

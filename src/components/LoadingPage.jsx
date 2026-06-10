@@ -24,7 +24,7 @@ export default function LoadingPage({ message = 'Loading...', fullPage = true, m
 
     const content = (
         <div className="flex flex-col items-center justify-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-accent-50)] text-[var(--color-brand-primary)]">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-accent-pale)] text-[var(--color-primary)]">
                 <Loader2 size={32} className="animate-spin" strokeWidth={2} />
             </div>
             <p className="text-sm font-semibold text-[var(--color-text-muted)]">{message}</p>
@@ -39,7 +39,7 @@ export default function LoadingPage({ message = 'Loading...', fullPage = true, m
                 aria-live="polite"
                 aria-label={message}
             >
-                <div className="surface-card flex min-h-[200px] min-w-[200px] items-center justify-center rounded-2xl border border-[var(--color-border-default)] p-8 shadow-[var(--shadow-card-soft)]">
+                <div className="surface-card flex min-h-[200px] min-w-[200px] items-center justify-center rounded-2xl border border-[var(--color-border-subtle)] p-8 shadow-[var(--shadow-card-soft)]">
                     {content}
                 </div>
             </div>
@@ -49,7 +49,7 @@ export default function LoadingPage({ message = 'Loading...', fullPage = true, m
     if (fullPage) {
         return (
             <div
-                className="flex min-h-[min(400px,50vh)] w-full items-center justify-center rounded-2xl border border-[var(--color-border-default)] bg-[linear-gradient(180deg,var(--gradient-account-shell-start)_0%,var(--gradient-account-shell-mid)_38%,var(--gradient-account-shell-end)_100%)] p-8 shadow-[var(--shadow-card-soft)]"
+                className="flex min-h-[min(400px,50vh)] w-full items-center justify-center rounded-2xl border border-[var(--color-border-subtle)] bg-gradient-account-shell p-8 shadow-[var(--shadow-card-soft)]"
                 role="status"
                 aria-live="polite"
                 aria-label={message}
@@ -61,7 +61,7 @@ export default function LoadingPage({ message = 'Loading...', fullPage = true, m
 
     return (
         <div
-            className="flex min-h-[120px] w-full items-center justify-center rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-muted)] p-6"
+            className="flex min-h-[120px] w-full items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] p-6"
             role="status"
             aria-live="polite"
             aria-label={message}

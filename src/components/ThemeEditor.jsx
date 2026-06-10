@@ -59,12 +59,12 @@ const COLOR_CONTROLS = BASIC_CONTROLS;
 
 // Fallback quick-insert variable chips (overridden by discovered vars at runtime)
 const FALLBACK_QUICK_VARS = [
-    '--color-brand-primary', '--color-brand-secondary', '--color-brand-deep',
-    '--color-surface-base', '--color-surface-muted',
-    '--color-text-strong', '--color-text-main',
-    '--color-cta-start', '--color-cta-end',
-    '--color-nav-top', '--color-nav-accent',
-    '--color-success-main', '--color-danger-main',
+    '--color-primary', '--color-button-hover', '--brand-700',
+    '--color-surface-base', '--color-surface-cool-light',
+    '--color-text-primary', '--color-text-secondary',
+    '--color-button-cta-start', '--color-button-cta-end',
+    '--color-primary', '--color-accent',
+    '--color-success', '--color-danger',
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -870,23 +870,23 @@ function ThemeEditorInner() {
 
             {/* Passcode Modal */}
             {showPasscodeModal && (
-                <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                    <form onSubmit={handleUnlock} className="w-64 rounded-2xl border border-white/40 bg-white/80 p-6 shadow-2xl backdrop-blur-md">
+                <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] backdrop-blur-sm">
+                    <form onSubmit={handleUnlock} className="w-64 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-6 shadow-[var(--shadow-modal)]">
                         <div className="mb-4 flex flex-col items-center gap-2">
-                            <Lock className="text-[#123B94]" size={24} />
-                            <h3 className="text-sm font-bold text-slate-800">Enter Passcode</h3>
+                            <Lock className="text-[var(--color-primary)]" size={24} />
+                            <h3 className="text-sm font-bold text-[var(--color-text-primary)]">Enter Passcode</h3>
                         </div>
                         <input
                             type="password"
                             autoFocus
                             value={passcodeInput}
                             onChange={(e) => setPasscodeInput(e.target.value)}
-                            className="mb-4 w-full rounded-xl border border-slate-200 bg-white/50 px-4 py-2 text-center text-lg tracking-widest outline-none focus:border-[#123B94]"
+                            className="mb-4 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-2 text-center text-lg tracking-wide outline-none focus:border-[var(--color-primary)]"
                             placeholder="••••"
                         />
                         <div className="flex gap-2">
-                            <button type="button" onClick={() => setShowPasscodeModal(false)} className="flex-1 rounded-xl py-2 text-xs font-semibold text-slate-500 hover:bg-slate-100 transition">Cancel</button>
-                            <button type="submit" className="flex-1 rounded-xl bg-[#123B94] py-2 text-xs font-bold text-white hover:bg-[#0d2a6a] transition">Unlock</button>
+                            <button type="button" onClick={() => setShowPasscodeModal(false)} className="flex-1 rounded-xl py-2 text-xs font-semibold text-[var(--color-text-muted)] hover:bg-[var(--color-surface-subtle)] transition">Cancel</button>
+                            <button type="submit" className="flex-1 rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] hover:bg-[var(--color-button-hover)] transition">Unlock</button>
                         </div>
                     </form>
                 </div>
@@ -899,55 +899,55 @@ function ThemeEditorInner() {
             >
                 {open && isUnlocked && (
                     <div
-                        className={`rounded-2xl border border-white/40 bg-white/85 shadow-2xl backdrop-blur-md transition-all ${flashPanel ? 'ring-4 ring-blue-400/70' : ''}`}
+                        className={`rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)] backdrop-blur-md transition-all ${flashPanel ? 'ring-4 ring-[var(--color-accent)]/70' : ''}`}
                         style={{ maxHeight: '82vh', display: 'flex', flexDirection: 'column', width: panelWidth, position: 'relative' }}
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between rounded-t-2xl border-b border-slate-100 bg-white/60 px-4 py-2.5">
+                        <div className="flex items-center justify-between rounded-t-2xl border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-2.5">
                             <div className="flex items-center gap-2">
-                                <Sliders size={14} className="text-[#123B94]" />
-                                <span className="text-sm font-bold text-slate-800">Theme Editor</span>
-                                <span className="rounded-full bg-amber-400 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-amber-900">DEV</span>
+                                <Sliders size={14} className="text-[var(--color-primary)]" />
+                                <span className="text-sm font-bold text-[var(--color-text-primary)]">Theme Editor</span>
+                                <span className="rounded-full bg-[var(--color-warning)] px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[var(--color-text-cta-inverse)]">DEV</span>
                             </div>
                             <div className="flex items-center gap-1">
                                 <button
                                     type="button"
                                     onClick={() => setInspecting((v) => !v)}
                                     title={inspecting ? 'Disable Inspector' : 'Enable Inspector Mode'}
-                                    className={`rounded-lg p-1.5 transition ${inspecting ? 'bg-blue-500 text-white' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-700'}`}
+                                    className={`rounded-lg p-1.5 transition ${inspecting ? 'bg-[var(--color-accent)] text-[var(--color-text-card-text)]' : 'text-[var(--color-text-soft)] hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-secondary)]'}`}
                                 >
                                     <MousePointer size={13} />
                                 </button>
                                 <button type="button" onClick={handleCopyTheme} title="Copy theme CSS"
-                                    className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
-                                    {copyFeedback ? <span className="text-[10px] font-semibold text-emerald-600">Copied!</span> : <Clipboard size={13} />}
+                                    className="rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-secondary)]">
+                                    {copyFeedback ? <span className="text-[10px] font-semibold text-[var(--color-success)]">Copied!</span> : <Clipboard size={13} />}
                                 </button>
                                 <button type="button" onClick={handleReset} title="Reset to defaults"
-                                    className="rounded-lg p-1.5 text-slate-400 transition hover:bg-red-50 hover:text-red-500">
+                                    className="rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-danger)]">
                                     <RotateCcw size={13} />
                                 </button>
                                 <button type="button" onClick={handleLock} title="Lock Editor"
-                                    className="rounded-lg p-1.5 text-slate-400 transition hover:bg-amber-50 hover:text-amber-600">
+                                    className="rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-warning)]">
                                     <Lock size={13} />
                                 </button>
                                 <button type="button" onClick={() => setOpen(false)}
-                                    className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                                    className="rounded-lg p-1.5 text-[var(--color-text-soft)] transition hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-secondary)]">
                                     <X size={13} />
                                 </button>
                             </div>
                         </div>
 
                         {inspecting && (
-                            <div className="flex items-center gap-2 border-b border-blue-100 bg-blue-50 px-4 py-1.5">
-                                <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
-                                <span className="text-xs font-semibold text-blue-700">Inspector active</span>
+                            <div className="flex items-center gap-2 border-b border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] px-4 py-1.5">
+                                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent)]" />
+                                <span className="text-xs font-semibold text-[var(--color-button-hover)]">Inspector active</span>
                             </div>
                         )}
 
-                        <div className="flex border-b border-slate-100">
+                        <div className="flex border-b border-[var(--color-border-subtle)]">
                             {TABS.filter((t) => !t.hidden).map(({ id, label }) => (
                                 <button key={id} type="button" onClick={() => setActiveTab(id)}
-                                    className={`flex-1 py-2 text-xs font-semibold transition ${activeTab === id ? 'border-b-2 border-[#123B94] text-[#123B94]' : 'text-slate-400 hover:text-slate-600'}`}>
+                                    className={`flex-1 py-2 text-xs font-semibold transition ${activeTab === id ? 'border-b-2 border-[var(--color-primary)] text-[var(--color-primary)]' : 'text-[var(--color-text-soft)] hover:text-[var(--color-text-secondary)]'}`}>
                                     {label}
                                 </button>
                             ))}
@@ -957,12 +957,12 @@ function ThemeEditorInner() {
                             {activeTab === 'controls' && (
                                 <div className="space-y-2">
                                     {/* Mode Toggle */}
-                                    <div style={{ display: 'flex', borderRadius: 10, border: '1px solid var(--color-border-default)', overflow: 'hidden', marginBottom: 8 }}>
+                                    <div style={{ display: 'flex', borderRadius: 10, border: '1px solid var(--color-border-subtle)', overflow: 'hidden', marginBottom: 8 }}>
                                         {['basic', 'advanced'].map(m => (
                                             <button key={m} type="button" onClick={() => setEditorMode(m)}
                                                 style={{
                                                     flex: 1, padding: '7px 0', fontSize: 11, fontWeight: 700, border: 'none', cursor: 'pointer',
-                                                    background: editorMode === m ? 'var(--color-brand-primary)' : 'var(--color-surface-muted)',
+                                                    background: editorMode === m ? 'var(--color-primary)' : 'var(--color-surface-cool-light)',
                                                     color: editorMode === m ? '#fff' : 'var(--color-text-muted)',
                                                     transition: 'all .15s',
                                                 }}>{m === 'basic' ? 'Basic' : 'Advanced'}</button>
@@ -1022,7 +1022,7 @@ function ThemeEditorInner() {
                                                 ref={advTextareaRef}
                                                 value={customCss}
                                                 onChange={e => setCustomCss(e.target.value)}
-                                                placeholder={`:root {\n  --color-brand-primary: #ff0000;\n}\n\n.my-button:hover {\n  background: var(--color-cta-start);\n}`}
+                                                placeholder={`:root {\n  --color-primary: #ff0000;\n}\n\n.my-button:hover {\n  background: var(--color-button-cta-start);\n}`}
                                                 spellCheck={false}
                                                 style={{
                                                     width: '100%', minHeight: 200, flex: 1,
@@ -1062,28 +1062,28 @@ function ThemeEditorInner() {
                                 <div className="space-y-3">
                                     <div className="flex gap-2">
                                         <button type="button" onClick={handleSaveProfile}
-                                            className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[#123B94] py-2 text-xs font-bold text-white transition hover:bg-[#0d2a6a]">
+                                            className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] transition hover:bg-[var(--color-button-hover)]">
                                             <BookMarked size={12} /> Save Current
                                         </button>
                                         <button type="button" onClick={handleExportProfiles} disabled={!profiles.length}
-                                            className="flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 disabled:opacity-40">
+                                            className="flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)] disabled:opacity-40">
                                             <Download size={12} /> Export
                                         </button>
                                         <button type="button" onClick={() => profileFileRef.current?.click()}
-                                            className="flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50">
+                                            className="flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]">
                                             <Upload size={12} /> Import
                                         </button>
                                         <input ref={profileFileRef} type="file" accept=".json,application/json" onChange={handleImportProfilesFile} className="hidden" />
                                     </div>
 
                                     {profiles.length === 0 ? (
-                                        <div className="rounded-xl border border-dashed border-slate-200 py-8 text-center text-xs text-slate-400">No profiles saved.</div>
+                                        <div className="rounded-xl border border-dashed border-[var(--color-border-subtle)] py-8 text-center text-xs text-[var(--color-text-soft)]">No profiles saved.</div>
                                     ) : (
                                         <div className="space-y-1.5">
                                             {profiles.map((profile) => (
-                                                <div key={profile.name} className={`flex items-center gap-2 rounded-xl border px-3 py-2 transition ${activeProfileName === profile.name ? 'border-[#123B94]/40 bg-blue-50' : 'border-slate-100 bg-white/70 hover:border-slate-200 hover:bg-slate-50'}`}>
-                                                    <button type="button" onClick={() => handleApplyProfile(profile)} className="flex-1 truncate text-left text-xs font-semibold text-slate-700">{profile.name}</button>
-                                                    <button type="button" onClick={() => handleDeleteProfile(profile.name)} className="text-slate-300 hover:text-red-500"><Trash2 size={11} /></button>
+                                                <div key={profile.name} className={`flex items-center gap-2 rounded-xl border px-3 py-2 transition ${activeProfileName === profile.name ? 'border-[var(--color-primary)]/40 bg-[var(--color-accent-pale)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]'}`}>
+                                                    <button type="button" onClick={() => handleApplyProfile(profile)} className="flex-1 truncate text-left text-xs font-semibold text-[var(--color-text-secondary)]">{profile.name}</button>
+                                                    <button type="button" onClick={() => handleDeleteProfile(profile.name)} className="text-[var(--color-text-soft)] hover:text-[var(--color-danger)]"><Trash2 size={11} /></button>
                                                 </div>
                                             ))}
                                         </div>
@@ -1110,7 +1110,7 @@ function ThemeEditorInner() {
                                     <button
                                         type="button"
                                         onClick={handleSyncSite}
-                                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#123B94] py-2.5 text-xs font-bold text-white transition hover:bg-[#0d2a6a]"
+                                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] py-2.5 text-xs font-bold text-[var(--color-text-card-text)] transition hover:bg-[var(--color-button-hover)]"
                                     >
                                         <RefreshCw size={12} /> Sync with Site
                                     </button>
@@ -1141,8 +1141,8 @@ function ThemeEditorInner() {
                                                 <textarea
                                                     value={importNamesText}
                                                     onChange={e => setImportNamesText(e.target.value)}
-                                                    placeholder={`--color-brand-primary
---color-brand-secondary: #0d2a6a;
+                                                    placeholder={`--color-primary
+--color-button-hover: #0d2a6a;
 --my-custom-var`}
                                                     rows={4}
                                                     style={{
@@ -1155,7 +1155,7 @@ function ThemeEditorInner() {
                                                 <button
                                                     type="button"
                                                     onClick={handleImportNames}
-                                                    className="mt-2 w-full rounded-xl bg-[#123B94] py-2 text-xs font-bold text-white transition hover:bg-[#0d2a6a]"
+                                                    className="mt-2 w-full rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] transition hover:bg-[var(--color-button-hover)]"
                                                 >
                                                     Parse & Import
                                                 </button>
@@ -1188,10 +1188,10 @@ function ThemeEditorInner() {
                                                     onChange={(e) => { setImportText(e.target.value); setImportFeedback(null); }}
                                                     placeholder=":root { --var: val; }"
                                                     rows={5}
-                                                    className="w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 font-mono text-[11px] text-slate-700 outline-none focus:border-[#123B94]"
+                                                    className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2 font-mono text-[11px] text-[var(--color-text-secondary)] outline-none focus:border-[var(--color-primary)]"
                                                 />
-                                                {importFeedback && <p className="text-xs font-medium text-emerald-700">{importFeedback.msg}</p>}
-                                                <button type="button" onClick={handleImport} className="mt-1 w-full rounded-xl bg-[#123B94] py-2 text-xs font-bold text-white hover:bg-[#0d2a6a]">Apply Overrides</button>
+                                                {importFeedback && <p className="text-xs font-medium text-[var(--color-success-strong)]">{importFeedback.msg}</p>}
+                                                <button type="button" onClick={handleImport} className="mt-1 w-full rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] hover:bg-[var(--color-button-hover)]">Apply Overrides</button>
                                             </div>
                                         )}
                                     </div>
@@ -1205,20 +1205,20 @@ function ThemeEditorInner() {
                                             <button
                                                 type="button"
                                                 onClick={() => handleExportSchema('json')}
-                                                className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-slate-200 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50"
+                                                className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                                             >
                                                 <Download size={11} /> Schema JSON
                                             </button>
                                             <button
                                                 type="button"
                                                 onClick={() => handleExportSchema('css')}
-                                                className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-slate-200 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50"
+                                                className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                                             >
                                                 <Download size={11} /> CSS :root
                                             </button>
                                         </div>
                                         <button type="button" onClick={handleCopyTheme}
-                                            className="w-full rounded-xl border border-slate-200 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                                            className="w-full rounded-xl border border-[var(--color-border-subtle)] py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-surface-cool-light)]"
                                         >
                                             <Clipboard size={11} className="inline mr-1.5" />
                                             {copyFeedback ? 'Copied!' : 'Copy Current Overrides'}
@@ -1245,11 +1245,11 @@ function ThemeEditorInner() {
                                         const known = COLOR_CONTROLS.find((c) => c.variable === variable);
                                         const isHex = /^#[0-9a-fA-F]{3,8}$/.test(value);
                                         return (
-                                            <div key={i} className={`rounded-xl border px-3 py-2 ${known ? 'border-blue-200 bg-blue-50' : 'border-slate-100 bg-white/70'}`}>
-                                                <p className="font-mono text-[10px] font-bold text-slate-500">{variable}</p>
+                                            <div key={i} className={`rounded-xl border px-3 py-2 ${known ? 'border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-float)]'}`}>
+                                                <p className="font-mono text-[10px] font-bold text-[var(--color-text-muted)]">{variable}</p>
                                                 <div className="mt-1 flex items-center gap-2">
                                                     {isHex && <span className="h-5 w-5 rounded-md" style={{ background: value }} />}
-                                                    <span className="flex-1 font-mono text-xs text-slate-700 truncate">{value}</span>
+                                                    <span className="flex-1 font-mono text-xs text-[var(--color-text-secondary)] truncate">{value}</span>
                                                     {isHex && <input type="color" value={value} onChange={(e) => { applyVar(variable, e.target.value); if (known) handleColorChange(variable, e.target.value); }} className="h-7 w-9 p-0.5 bg-transparent" />}
                                                 </div>
                                             </div>
@@ -1362,7 +1362,7 @@ function ThemeEditorInner() {
                         }
                     }}
                     title="Toggle Theme Editor"
-                    className={`flex h-11 w-11 items-center justify-center rounded-full shadow-xl transition hover:scale-105 active:scale-95 ${inspecting ? 'bg-blue-500 ring-4 ring-blue-300/50' : isUnlocked ? 'bg-[#123B94] hover:bg-[#0d2a6a]' : 'bg-slate-600 hover:bg-slate-700'} text-white`}
+                    className={`flex h-11 w-11 items-center justify-center rounded-full shadow-xl transition hover:scale-105 active:scale-95 ${inspecting ? 'bg-[var(--color-accent)] ring-4 ring-[var(--color-border-subtle)]/50' : isUnlocked ? 'bg-[var(--color-primary)] hover:bg-[var(--color-button-hover)]' : 'bg-[var(--color-button-muted)] hover:bg-[var(--color-surface-mid-dark)]'} text-[var(--color-text-card-text)]`}
                 >
                     {isUnlocked ? <Sliders size={18} /> : <Unlock size={18} />}
                 </button>
@@ -1374,10 +1374,10 @@ function ThemeEditorInner() {
 function ColorRow({ label, variable, value, onChange, highlighted }) {
     const isHex = /^#[0-9a-fA-F]{6}$/.test(value);
     return (
-        <div className={`flex items-center justify-between gap-2 rounded-xl border px-3 py-2 transition ${highlighted ? 'border-blue-300 bg-blue-50 ring-2 ring-blue-400/40' : 'border-slate-100 bg-white/70'}`}>
+        <div className={`flex items-center justify-between gap-2 rounded-xl border px-3 py-2 transition ${highlighted ? 'border-[var(--color-border-brand)] bg-[var(--color-accent-pale)] ring-2 ring-[var(--color-accent)]/40' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-float)]'}`}>
             <div className="min-w-0">
-                <p className="truncate text-xs font-semibold text-slate-700">{label}</p>
-                <p className="truncate font-mono text-[9px] text-slate-400">{variable}</p>
+                <p className="truncate text-xs font-semibold text-[var(--color-text-secondary)]">{label}</p>
+                <p className="truncate font-mono text-[9px] text-[var(--color-text-soft)]">{variable}</p>
             </div>
             <div className="flex shrink-0 items-center gap-1.5">
                 <input type="color" value={isHex ? value : '#000000'} onChange={(e) => onChange(variable, e.target.value)} className="h-7 w-9 p-0.5 bg-transparent cursor-pointer" />
@@ -1421,7 +1421,7 @@ function VisualVariablePicker({ variables, value, onChange, inspectedEl, inspect
         );
         const groups = {};
         filtered.forEach(v => {
-            // Extract group: --color-brand-primary → "brand"
+            // Extract group: --color-primary → "brand"
             const parts = v.replace(/^--color-/, '').split('-');
             const group = parts[0] || 'other';
             if (!groups[group]) groups[group] = [];

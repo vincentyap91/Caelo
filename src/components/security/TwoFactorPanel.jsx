@@ -41,8 +41,8 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
     if (enabled) {
         return (
             <div className="surface-card rounded-2xl p-6 shadow-[var(--shadow-card-soft)]">
-                <h2 className="mb-2 text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">Two-Factor Authentication</h2>
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-success-main)] bg-[rgb(57_181_74_/_0.12)] px-4 py-2 text-sm font-semibold text-[var(--color-success-main)]">
+                <h2 className="mb-2 text-lg font-bold tracking-tight text-[var(--color-text-primary)] md:text-xl">Two-Factor Authentication</h2>
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-success)] bg-[var(--color-success)]/12 px-4 py-2 text-sm font-semibold text-[var(--color-success)]">
                     2FA Enabled
                 </div>
                 <p className="mb-6 text-sm text-[var(--color-text-muted)]">
@@ -51,7 +51,7 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
                 <button
                     type="button"
                     onClick={() => setEnabled(false)}
-                    className="rounded-xl border border-[var(--color-danger-main)] px-4 py-2.5 text-sm font-semibold text-[var(--color-danger-main)] transition hover:bg-[rgb(255_91_46_/_0.08)]"
+                    className="rounded-xl border border-[var(--color-danger)] px-4 py-2.5 text-sm font-semibold text-[var(--color-danger)] transition hover:bg-[var(--color-danger)]/8"
                 >
                     Disable 2FA
                 </button>
@@ -62,7 +62,7 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
     if (!toggleOn) {
         return (
             <div className="surface-card rounded-2xl p-6 shadow-[var(--shadow-card-soft)]">
-                <h2 className="mb-2 text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">Two-Factor Authentication</h2>
+                <h2 className="mb-2 text-lg font-bold tracking-tight text-[var(--color-text-primary)] md:text-xl">Two-Factor Authentication</h2>
                 <div className="mb-4 flex items-center justify-between">
                     <span className="text-sm font-medium text-[var(--color-text-muted)]">Enable Authentication App</span>
                     <button
@@ -70,9 +70,9 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
                         role="switch"
                         aria-checked={false}
                         onClick={handleToggleOn}
-                        className="relative h-6 w-11 shrink-0 rounded-full bg-[var(--color-border-default)] transition-colors hover:bg-[var(--color-accent-200)]"
+                        className="relative h-6 w-11 shrink-0 rounded-full bg-[var(--color-border-subtle)] transition-colors hover:bg-[var(--color-accent-glow)]"
                     >
-                        <span className="absolute left-1 top-1 h-4 w-4 rounded-full bg-white shadow transition-transform" />
+                        <span className="absolute left-1 top-1 h-4 w-4 rounded-full bg-[var(--color-surface-base)] shadow transition-transform" />
                     </button>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">
@@ -87,7 +87,7 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
             <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
                 <div className="space-y-6">
                     <div className="surface-card rounded-2xl p-6 shadow-[var(--shadow-card-soft)]">
-                        <h2 className="mb-2 text-lg font-bold tracking-tight text-[var(--color-text-strong)] md:text-xl">Two-Factor Authentication</h2>
+                        <h2 className="mb-2 text-lg font-bold tracking-tight text-[var(--color-text-primary)] md:text-xl">Two-Factor Authentication</h2>
                         <p className="mb-6 text-sm text-[var(--color-text-muted)]">
                             Add an extra layer of security to your account:
                         </p>
@@ -96,7 +96,7 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
                             <button
                                 type="button"
                                 onClick={() => setQrModalOpen(true)}
-                                className="flex items-center gap-2 text-sm font-semibold text-[var(--color-accent-600)] transition hover:text-[var(--color-accent-700)]"
+                                className="flex items-center gap-2 text-sm font-semibold text-[var(--color-button-hover)] transition hover:text-[var(--color-button-hover)]"
                             >
                                 <QrCode size={18} />
                                 View QR Code
@@ -111,7 +111,7 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
                             <button
                                 type="button"
                                 onClick={handleCancelSetup}
-                                className="w-full rounded-xl border border-[var(--color-border-default)] py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-200)] hover:bg-[var(--color-accent-50)] hover:text-[var(--color-accent-700)]"
+                                className="w-full rounded-xl border border-[var(--color-border-subtle)] py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
                             >
                                 Cancel
                             </button>

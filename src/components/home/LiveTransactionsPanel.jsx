@@ -12,8 +12,8 @@ import {
 function LiveDot() {
     return (
         <span className="relative flex h-1.5 w-1.5 shrink-0">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success-main)] opacity-40" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-success-main)]" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success)] opacity-40" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-success)]" />
         </span>
     );
 }
@@ -21,7 +21,7 @@ function LiveDot() {
 function LiveStatusBadge({ className = '' }) {
     return (
         <div
-            className={`inline-flex items-center gap-1.5 rounded-full bg-white/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-default)]/50 ${className}`}
+            className={`inline-flex items-center gap-1.5 rounded-full bg-[var(--color-surface-base)]/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-subtle)]/50 ${className}`}
             role="status"
             aria-label="Live feed"
         >
@@ -41,19 +41,19 @@ const TABS = [
 
 function TxRow({ row }) {
     const isDeposit = row.kind === 'deposit';
-    const amountClass = isDeposit ? 'text-[var(--color-success-main)]' : 'text-[var(--color-brand-secondary)]';
-    const avatarRing = isDeposit ? 'ring-[rgb(57_181_74_/_0.35)]' : 'ring-[rgb(0_114_188_/_0.35)]';
+    const amountClass = isDeposit ? 'text-[var(--color-success)]' : 'text-[var(--color-button-hover)]';
+    const avatarRing = isDeposit ? 'ring-[var(--color-success)]/35' : 'ring-[var(--color-primary)]/35';
 
     return (
         <li className="flex items-center gap-3 py-3.5 md:gap-4 md:py-4">
             <div
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[rgb(0_174_239_/_0.1)] text-[var(--color-brand-secondary)] ring-2 ring-inset ${avatarRing}`}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] ring-2 ring-inset ${avatarRing}`}
                 aria-hidden
             >
                 <User size={18} strokeWidth={2.25} />
             </div>
             <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-bold text-[var(--color-text-strong)] md:text-base">
+                <p className="truncate text-sm font-bold text-[var(--color-text-primary)] md:text-base">
                     {maskUsername(row.user)}
                 </p>
                 <p className="mt-0.5 text-xs font-medium text-[var(--color-text-soft)]">{row.timeAgo}</p>
@@ -66,14 +66,14 @@ function TxRow({ row }) {
                     <ArrowDownToLine
                         size={17}
                         strokeWidth={2.35}
-                        className="shrink-0 text-[var(--color-success-main)]"
+                        className="shrink-0 text-[var(--color-success)]"
                         aria-hidden
                     />
                 ) : (
                     <ArrowUpFromLine
                         size={17}
                         strokeWidth={2.35}
-                        className="shrink-0 text-[var(--color-brand-secondary)]"
+                        className="shrink-0 text-[var(--color-button-hover)]"
                         aria-hidden
                     />
                 )}
@@ -85,7 +85,7 @@ function TxRow({ row }) {
 
 function TxTrack({ rows }) {
     return (
-        <ul className="m-0 list-none divide-y divide-[var(--color-border-default)]/90 p-0">
+        <ul className="m-0 list-none divide-y divide-[var(--color-border-subtle)]/90 p-0">
             {rows.map((row) => (
                 <TxRow key={row.id} row={row} />
             ))}
@@ -106,11 +106,11 @@ export default function LiveTransactionsPanel() {
     }, [filter]);
 
     return (
-        <div className="flex min-h-0 w-full min-w-0 flex-col lg:h-full lg:min-h-0">
+        <div className="flex w-full min-w-0 flex-col">
             <div className="shrink-0">
                 <SectionHeader
                     title="Live Transactions"
-                    icon={<Radio size={22} className="text-[var(--color-brand-secondary)]" strokeWidth={2.25} />}
+                    icon={<Radio size={22} className="text-[var(--color-button-hover)]" strokeWidth={2.25} />}
                 />
                 <div className="-mt-1 mb-3 flex flex-row items-center justify-between gap-2 sm:gap-3 md:mb-4">
                     <p className="min-w-0 flex-1 pr-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] sm:pr-2 md:text-sm">
@@ -119,7 +119,7 @@ export default function LiveTransactionsPanel() {
                     <LiveStatusBadge className="max-sm:gap-1 max-sm:py-0.5 max-sm:pl-1.5 max-sm:pr-2" />
                 </div>
 
-                <div className="mb-4 flex w-full flex-wrap items-center gap-1.5 rounded-full bg-[var(--color-surface-muted)]/90 p-1 ring-1 ring-[var(--color-border-default)]/60 max-sm:flex-nowrap max-sm:gap-0.5">
+                <div className="mb-4 flex w-full flex-wrap items-center gap-1.5 rounded-full bg-[var(--color-surface-cool-light)]/90 p-1 ring-1 ring-[var(--color-border-subtle)]/60 max-sm:flex-nowrap max-sm:gap-0.5">
                     {TABS.map((t) => {
                         const active = filter === t.id;
                         return (
@@ -127,10 +127,10 @@ export default function LiveTransactionsPanel() {
                                 key={t.id}
                                 type="button"
                                 onClick={() => setFilter(t.id)}
-                                className={`rounded-full text-xs font-bold tracking-wide transition md:text-sm ${
+                                className={`rounded-full text-xs font-bold transition md:text-sm ${
                                     active
-                                        ? 'bg-[var(--color-brand-secondary)] text-white shadow-sm'
-                                        : 'text-[var(--color-text-brand)] hover:bg-white/70'
+                                        ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
+                                        : 'text-[var(--color-text-primary-card-title)] hover:bg-[var(--color-surface-base)]/70'
                                 } max-sm:flex max-sm:min-h-[2.375rem] max-sm:min-w-0 max-sm:flex-1 max-sm:basis-0 max-sm:items-center max-sm:justify-center max-sm:px-2 max-sm:py-2 max-sm:leading-none sm:flex-initial sm:px-4 sm:py-2 sm:leading-normal`}
                             >
                                 <span className="block text-center">{t.label}</span>
