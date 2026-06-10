@@ -12,6 +12,8 @@
     "build:offline": "vite build --mode offline && node scripts/inline-dist.cjs",
     "lint": "eslint .",
     "audit:tokens": "node scripts/audit-figma-semantic-usage.mjs",
+    "figma:parse-theme": "node scripts/parse-theme-css-for-figma.mjs",
+    "figma:gen-batches": "node scripts/generate-figma-migration-batches.mjs",
     "migrate:palette": "node scripts/migrate-tailwind-palette-to-semantic.mjs",
     "migrate:hex": "node scripts/migrate-hex-to-semantic.mjs",
     "migrate:colors": "node scripts/migrate-remaining-colors-to-semantic.mjs",

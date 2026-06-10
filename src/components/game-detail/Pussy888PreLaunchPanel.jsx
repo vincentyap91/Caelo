@@ -28,7 +28,7 @@ export default function Pussy888PreLaunchPanel({ onLaunchWebsite }) {
                 decoding="async"
             />
             <div
-                className="absolute inset-0 bg-gradient-game-card-overlay md:bg-gradient-sidenav-scrim"
+                className="absolute inset-0 bg-gradient-game-card-overlay"
                 aria-hidden
             />
 

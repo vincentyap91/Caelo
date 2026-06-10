@@ -1,11 +1,15 @@
 import React from 'react';
 import { SlidersHorizontal } from 'lucide-react';
 import { BROWSE_MEMBERSHIP_REBATE, BROWSE_WALLET_BALANCE } from '../constants/browseWalletSummary';
-import WalletRebateSummaryBar, { WALLET_REBATE_BROWSE_PANEL_CLASS } from './WalletRebateSummaryBar';
+import WalletRebateSummaryBar, {
+    WALLET_REBATE_BROWSE_PANEL_CLASS,
+    SLOTS_BROWSE_PANEL_CLASS,
+} from './WalletRebateSummaryBar';
 import SearchProvider from './SearchProvider';
 
 export default function ProductBrowseControlPanel({
     category,
+    browseSemantics = 'default',
     searchPlaceholder = 'Search games or providers',
     query,
     onQueryChange,
@@ -18,9 +22,12 @@ export default function ProductBrowseControlPanel({
     promoSection = null,
     showWalletSummary = true,
 }) {
+    const isSlotsBrowse = browseSemantics === 'slots';
+    const panelClass = isSlotsBrowse ? SLOTS_BROWSE_PANEL_CLASS : WALLET_REBATE_BROWSE_PANEL_CLASS;
+
     return (
         <section className="mt-1.5 md:mt-3">
-            <div className={WALLET_REBATE_BROWSE_PANEL_CLASS}>
+            <div className={panelClass}>
                 {showWalletSummary ? (
                     <WalletRebateSummaryBar
                         wallet={BROWSE_WALLET_BALANCE}
@@ -28,6 +35,7 @@ export default function ProductBrowseControlPanel({
                         compact
                         bare
                         denseMobile
+                        browseSemantics={browseSemantics}
                     />
                 ) : null}
 
@@ -53,6 +61,8 @@ export default function ProductBrowseControlPanel({
                                 placeholder={searchPlaceholder}
                                 ariaLabel={`Search ${searchScope === 'all' ? 'games or providers' : searchScope}`}
                                 widthClassName="w-full"
+                                className={isSlotsBrowse ? 'slots-browse-search' : ''}
+                                searchSemantics={isSlotsBrowse ? 'slots' : 'default'}
                             />
                         </div>
                         <div className="flex w-full flex-col gap-1.5 md:flex-row md:w-auto md:items-center md:gap-3">

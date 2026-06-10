@@ -1,5 +1,4 @@
 import React from 'react';
-import { BROWSE_SUMMARY_LABEL_COMPACT_CLASS } from '../WalletRebateSummaryBar';
 import ProgressBar from '../ui/ProgressBar';
 
 /**
@@ -49,13 +48,13 @@ export default function PromoProgressRow({
         ? 'text-xs font-bold balance-modal-text-primary'
         : isProfile
           ? 'font-semibold leading-tight text-[var(--base-ink)] text-xs sm:text-sm'
-          : BROWSE_SUMMARY_LABEL_COMPACT_CLASS;
+          : 'font-semibold leading-tight text-[var(--color-text-primary)] text-xs sm:text-sm';
 
     const valueClass = isBalance
         ? 'font-bold tabular-nums balance-modal-text-secondary'
         : isProfile
           ? 'font-bold tabular-nums text-[var(--base-ink)]'
-          : 'font-bold tabular-nums text-[var(--color-surface-accent-hover)]';
+          : 'font-bold tabular-nums text-[var(--color-primary)]';
 
     const percentClass = isBalance
         ? 'shrink-0 text-xs font-bold tabular-nums balance-modal-text-primary'

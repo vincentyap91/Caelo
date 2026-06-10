@@ -55,12 +55,12 @@ export default function MobileSiteHeader({
     }, [balanceDropdownOpen]);
 
     return (
-        <div className="relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-1.5 text-[var(--color-text-primary)] md:hidden">
+        <div className="mobile-site-header relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-[var(--color-border)] bg-[var(--color-surface-base)] px-3 py-1.5 text-[var(--color-button-nav-text)] md:hidden">
             <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
                 <button
                     type="button"
                     onClick={onMenuToggle}
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-button-nav)] text-[var(--color-button-nav-text)] transition hover:bg-[var(--color-surface-cool-light)]"
                     aria-label="Open mobile menu"
                     aria-expanded={mobileMenuOpen}
                 >
@@ -157,16 +157,16 @@ export default function MobileSiteHeader({
                         <button
                             type="button"
                             onClick={onLoginClick}
-                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 text-xs font-semibold text-[var(--color-text-primary)] shadow-sm transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]"
+                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-button-nav)] px-3 text-xs font-semibold text-[var(--color-button-nav-text)] shadow-sm transition hover:bg-[var(--color-surface-cool-light)]"
                         >
-                            Login
+                            Log In
                         </button>
                         <button
                             type="button"
                             onClick={onRegisterClick}
-                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-gradient-mobile-cta px-3 text-xs font-bold text-[var(--color-text-cta-inverse)] shadow-[var(--shadow-cta-soft)] transition hover:border-[var(--color-border-subtle)] hover:brightness-105"
+                            className="btn-theme-cta-soft inline-flex h-10 shrink-0 items-center justify-center rounded-xl px-3 text-xs font-bold transition hover:brightness-105"
                         >
-                            Join
+                            Join Now
                         </button>
                         <LanguageSwitcher
                             value={language}

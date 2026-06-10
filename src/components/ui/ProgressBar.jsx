@@ -10,8 +10,8 @@ const VARIANT_STYLES = {
         fill: 'bg-gradient-button-cta',
     },
     'slot-promo': {
-        track: 'bg-[var(--color-accent-glow)]',
-        fill: 'bg-gradient-progress-fill',
+        track: 'bg-[var(--color-progress-bar-bg)]',
+        fill: 'bg-[var(--color-progress-bar-fill)]',
     },
 };
 

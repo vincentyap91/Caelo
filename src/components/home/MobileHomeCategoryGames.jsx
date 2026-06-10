@@ -125,7 +125,7 @@ function MobileCategoryBrowse({ onNavigate, state }) {
         <div className="mx-auto flex max-w-screen-2xl gap-3 px-3 pb-8 pt-3">
             <nav
                 aria-label="Game categories"
-                className="sticky top-14 z-10 flex w-[4.5rem] shrink-0 flex-col gap-2 self-start"
+                className="home-category-tabs sticky top-14 z-10 flex w-[4.5rem] shrink-0 flex-col gap-2 self-start"
             >
                 {CATEGORIES.map((category) => (
                     <GameCategoryNavItem
@@ -191,7 +191,7 @@ function DesktopCategoryBrowse({ onNavigate, state }) {
 
             <nav
                 aria-label="Game category tabs"
-                className="mb-3 min-w-0 overflow-x-auto pb-1"
+                className="home-category-tabs mb-3 min-w-0 overflow-x-auto pb-1"
             >
                 <div className="flex min-w-max gap-2.5">
                     {CATEGORIES.map((category) => (

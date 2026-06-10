@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
-import RtpTrendArrow from './game/RtpTrendArrow';
-import { RTP_HIGH_THRESHOLD } from './game/RtpLabel';
+import RtpLabel from './game/RtpLabel';
 import { SLOTS_HERO_BANNER } from '../constants/categoryPageBanners';
 import { PAGE_BANNER_IMG_FILL } from '../constants/pageBannerClasses';
 import { MATCHED_SLOT_PROVIDERS } from '../constants/matchedSlotProviders';
@@ -119,7 +118,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
     };
 
     return (
-        <main className="w-full bg-gradient-soft-blue-panel pb-14 font-sans">
+        <main className="slots-page w-full bg-gradient-soft-blue-panel pb-14 font-sans">
             <section className="w-full pt-5 md:pt-7">
                 <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8">
                     <div className="page-hero-banner">
@@ -141,8 +140,10 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                 key={provider.name}
                                 type="button"
                                 onClick={() => setActiveProvider(provider.name)}
-                                className={`relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 bg-[var(--color-surface-base)] px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
-                                    isActive ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-surface-accent-hover)]/30' : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-brand)]'
+                                className={`slots-provider-tab relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
+                                    isActive
+                                        ? 'slots-provider-tab--active border-[var(--color-border-tabs)] bg-[var(--color-button-tabs)] ring-2 ring-[var(--color-border-tabs)]/30'
+                                        : 'border-[var(--color-border-tabs)] bg-[var(--color-surface)] hover:border-[var(--color-border-brand)]'
                                 }`}
                             >
                                 {(provider.featured || provider.new) && (
@@ -159,6 +160,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
 
             <section className={pageContainerClass}>
                 <ProductBrowseControlPanel
+                    browseSemantics="slots"
                     category="slots"
                     query={query}
                     onQueryChange={setQuery}
@@ -182,13 +184,10 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
 
             <section className={`${pageContainerClass} mt-5 md:mt-6`}>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
-                    {filteredGames.slice(0, gamesToShow).map((game, idx) => {
-                        const isHighRtp = game.rtp >= RTP_HIGH_THRESHOLD;
-
-                        return (
+                    {filteredGames.slice(0, gamesToShow).map((game, idx) => (
                         <div
                             key={idx}
-                            className="surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg"
+                            className="slots-game-card surface-card group relative flex flex-col overflow-hidden rounded-2xl transition md:hover:-translate-y-1 md:hover:shadow-lg"
                         >
                             <button
                                 type="button"
@@ -201,7 +200,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                     {game.hot ? 'HOT' : 'NEW'}
                                 </span>
                             )}
-                            <div className="pointer-events-none relative z-10 h-44 overflow-hidden rounded-t-2xl sm:h-52 xl:h-56">
+                            <div className="slots-game-card__thumb pointer-events-none relative z-10 h-44 overflow-hidden rounded-t-2xl border border-[var(--color-border-danger)] sm:h-52 xl:h-56">
                                 <img
                                     src={game.imgUrl}
                                     alt=""
@@ -225,15 +224,11 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                             </div>
                             <div className="p-2 md:p-3">
                                 <p className="line-clamp-2 text-xs font-bold text-[var(--color-text-primary)] md:text-sm">{game.name}</p>
-                                <p className="mt-1 text-xs text-[var(--color-text-muted)]">{game.provider}</p>
-                                <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-[var(--color-accent-glow)] px-2.5 py-1 text-xs font-bold text-[var(--color-button-hover)]">
-                                    RTP {game.rtp.toFixed(2)}%
-                                    <RtpTrendArrow direction={isHighRtp ? 'up' : 'down'} size={14} />
-                                </span>
+                                <p className="mt-1 text-xs text-[var(--color-text-secondary)]">{game.provider}</p>
+                                <RtpLabel value={game.rtp} className="slots-game-card__rtp mt-2 text-xs" compact />
                             </div>
                         </div>
-                        );
-                    })}
+                    ))}
                 </div>
                 {filteredGames.length === 0 && (
                     <div className="surface-card mt-6 rounded-2xl px-4 py-7 text-center">

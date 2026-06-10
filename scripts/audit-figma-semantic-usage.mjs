@@ -63,7 +63,7 @@ function localExtras(figma) {
 }
 
 const MIGRATED_ALIASES = {
-  '--color-gradient-nav-brand': '--color-gradient-side-menu-brand',
+  '--color-gradient-nav-brand': '--color-gradient-menu-brand',
   '--color-gradient-table-head': '--color-surface-secondary-table-head',
   '--color-hot-main': '--color-danger',
   '--color-border-brand-soft': '--color-border-brand',

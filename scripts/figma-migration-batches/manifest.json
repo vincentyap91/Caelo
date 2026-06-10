@@ -1,0 +1,106 @@
+[
+  {
+    "name": "00-setup-collections",
+    "size": 1377
+  },
+  {
+    "name": "01-primitives-01",
+    "size": 9918
+  },
+  {
+    "name": "01-primitives-02",
+    "size": 10610
+  },
+  {
+    "name": "01-primitives-03",
+    "size": 10776
+  },
+  {
+    "name": "01-primitives-04",
+    "size": 12687
+  },
+  {
+    "name": "01-primitives-05",
+    "size": 11531
+  },
+  {
+    "name": "01-primitives-06",
+    "size": 4629
+  },
+  {
+    "name": "02-semantics-01",
+    "size": 11333
+  },
+  {
+    "name": "02-semantics-02",
+    "size": 12304
+  },
+  {
+    "name": "02-semantics-03",
+    "size": 12099
+  },
+  {
+    "name": "02-semantics-04",
+    "size": 12143
+  },
+  {
+    "name": "02-semantics-05",
+    "size": 2736
+  },
+  {
+    "name": "03-gradient-stops-01",
+    "size": 11701
+  },
+  {
+    "name": "07-sync-web-code-syntax-01",
+    "size": 4201
+  },
+  {
+    "name": "07-sync-web-code-syntax-02",
+    "size": 5177
+  },
+  {
+    "name": "07-sync-web-code-syntax-03",
+    "size": 6375
+  },
+  {
+    "name": "07-sync-web-code-syntax-04",
+    "size": 7537
+  },
+  {
+    "name": "07-sync-web-code-syntax-05",
+    "size": 6117
+  },
+  {
+    "name": "07-sync-web-code-syntax-06",
+    "size": 5893
+  },
+  {
+    "name": "07-sync-web-code-syntax-07",
+    "size": 6403
+  },
+  {
+    "name": "07-sync-web-code-syntax-08",
+    "size": 6159
+  },
+  {
+    "name": "07-sync-web-code-syntax-09",
+    "size": 6161
+  },
+  {
+    "name": "07-sync-web-code-syntax-10",
+    "size": 6861
+  },
+  {
+    "name": "07-sync-web-code-syntax-11",
+    "size": 2550
+  },
+  {
+    "name": "04-pages",
+    "size": 4576
+  },
+  {
+    "name": "05-audit",
+    "size": 1828
+  }
+]

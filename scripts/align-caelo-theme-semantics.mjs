@@ -66,8 +66,9 @@ const gradientMerge = {
     caeloAll.get('--color-gradient-nav-cta') ||
     caeloAll.get('--color-gradient-home-cta') ||
     'linear-gradient(90deg, var(--brand-630) 0%, var(--brand-500) 100%)',
-  '--color-gradient-side-menu-brand':
+  '--color-gradient-menu-brand':
     caeloAll.get('--color-gradient-vip-nav-pill') ||
+    caeloAll.get('--color-gradient-menu-brand') ||
     caeloAll.get('--color-gradient-side-menu-brand') ||
     'linear-gradient(180deg, var(--raw-gradient-vip-nav-pill-start) 0%, var(--raw-gradient-vip-nav-pill-end) 100%)',
   '--color-gradient-home-highlight':
@@ -134,8 +135,6 @@ const legacyValue = {
   '--color-thumbnail': 'var(--mono-950)',
   '--color-gradient-button-cta':
     'linear-gradient(180deg, var(--raw-cta-start) 0%, var(--raw-cta-end) 100%)',
-  '--color-gradient-sidenav-scrim':
-    'linear-gradient(90deg, var(--raw-scrim-game-launch-start) 0%, var(--raw-scrim-game-launch-mid) 45%, var(--raw-scrim-game-launch-end-soft) 100%)',
 };
 
 function resolveValue(name, rioDefault) {

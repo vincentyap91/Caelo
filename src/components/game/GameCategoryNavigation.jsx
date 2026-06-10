@@ -18,15 +18,15 @@ function resolveCategoryTarget(category) {
     return category.page ?? 'all-games';
 }
 
-/** Selected state — mobile sidebar & desktop horizontal tabs (red gradient, white icon/label). */
+/** Selected state — Category Tabs active pill (Cam88 1395:13359). */
 export const CATEGORY_NAV_ACTIVE_CLASS =
-    'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';
+    'category-tab-item--active border border-[var(--color-border-subtle)] bg-[var(--color-surface-menu-active)] text-[var(--color-text-tertiary)] ring-1 ring-white/10';
 
 const MOBILE_SIDEBAR_INACTIVE_CLASS =
-    'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-sm';
+    'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-button-nav)] text-[var(--color-button-nav-text)] shadow-sm';
 
 const DESKTOP_TAB_INACTIVE_CLASS =
-    'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-sm hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-surface-subtle)]';
+    'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-button-nav)] text-[var(--color-button-nav-text)] shadow-sm hover:bg-[var(--color-button-hover)] hover:text-[var(--color-button-hover-text)]';
 
 export function GameCategoryNavItem({
     category,
@@ -37,7 +37,6 @@ export function GameCategoryNavItem({
     const Icon = category.icon;
     const vertical = orientation === 'vertical';
 
-    const activeClass = CATEGORY_NAV_ACTIVE_CLASS;
     const inactiveClass = vertical ? MOBILE_SIDEBAR_INACTIVE_CLASS : DESKTOP_TAB_INACTIVE_CLASS;
 
     return (
@@ -45,15 +44,15 @@ export function GameCategoryNavItem({
             type="button"
             onClick={() => onSelect?.(category)}
             className={`${vertical
-                ? 'flex min-h-11 flex-col items-center justify-center gap-1 rounded-xl px-1 py-2 text-center'
-                : 'flex shrink-0 flex-row items-center justify-center gap-2 rounded-xl px-3 py-2 text-left'
-                } transition-all ${active ? activeClass : inactiveClass}`}
+                    ? 'flex min-h-11 flex-col items-center justify-center gap-1 rounded-xl px-1 py-2 text-center'
+                    : 'flex shrink-0 flex-row items-center justify-center gap-2 rounded-xl px-3 py-2 text-left'
+                } transition-all ${active ? CATEGORY_NAV_ACTIVE_CLASS : inactiveClass}`}
             aria-pressed={active}
         >
             <Icon
                 size={vertical ? 18 : 20}
                 strokeWidth={active ? 2.5 : 2}
-                className={`shrink-0 ${active ? 'text-[var(--color-text-card-text)]' : 'text-[var(--color-primary)]'}`}
+                className={`shrink-0 ${active ? 'text-[var(--color-text-tertiary)]' : 'text-[var(--color-surface-input-light)]'}`}
                 aria-hidden
             />
             <span

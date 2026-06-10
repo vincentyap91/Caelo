@@ -236,6 +236,7 @@ export default function Navbar({
     balanceRefreshing = false,
 }) {
     const vipLevel = authUser?.vipLevel || 'Diamond';
+    const profileTierLabel = String(authUser?.vipTier ?? authUser?.vipLevel ?? 'Normal');
     /** `null` | `'casino'` | `'slots'` ΓÇö shared mega-menu pattern */
     const [navProviderDropdown, setNavProviderDropdown] = useState(null);
     const [profileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -437,10 +438,10 @@ export default function Navbar({
                         {authUser ? (
                             <div
                                 ref={profileMenuRef}
-                                className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5 shadow-[var(--shadow-nav-top)]"
+                                className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5"
                             >
                                 <div className="relative">
-                                    <div className="flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg border border-[var(--color-border-brand)] bg-[var(--color-surface-high)] text-[var(--color-text-sticky-nav-text)]">
+                                    <div className="top-sticky-balance-chip flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg text-[var(--color-text-sticky-nav-text)]">
                                         <button
                                             type="button"
                                             onClick={() => {
@@ -460,7 +461,7 @@ export default function Navbar({
                                                 onRefreshBalance?.();
                                             }}
                                             disabled={!onRefreshBalance || balanceRefreshing}
-                                            className="inline-flex h-full w-7 min-w-7 shrink-0 touch-manipulation items-center justify-center border-l border-[var(--color-border-brand)] text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-sticky-nav-active)] disabled:pointer-events-none disabled:opacity-40"
+                                            className="top-sticky-balance-chip__refresh inline-flex h-full w-7 min-w-7 shrink-0 touch-manipulation items-center justify-center transition hover:brightness-110 disabled:pointer-events-none disabled:opacity-40"
                                             aria-label="Refresh balance"
                                             title="Refresh balance"
                                         >
@@ -481,34 +482,32 @@ export default function Navbar({
                                         />
                                     )}
                                 </div>
-                                <div className="flex h-8 shrink-0 items-stretch overflow-hidden rounded-lg border border-[var(--color-border-brand)] bg-gradient-side-menu-brand shadow-[var(--inset-highlight-soft)]">
+                                <div className="top-sticky-profile-chip flex h-8 shrink-0 items-stretch overflow-hidden rounded-lg">
                                     <button
                                         type="button"
                                         onClick={() => {
                                             setProfileMenuOpen(false);
                                             onNavigate?.('profile');
                                         }}
-                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-border-subtle)]"
+                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)]"
                                         aria-label="My profile"
                                     >
-                                        <img
-                                            src={getVipStatus(vipLevel).medal}
-                                            alt=""
-                                            className="h-5 w-5 shrink-0 object-contain"
-                                        />
-                                        <span className="truncate text-xs font-bold text-[var(--color-text-accent-light)]">
+                                        <UserRound size={16} className="shrink-0 text-[var(--color-text-sticky-nav-text)]" strokeWidth={2.25} />
+                                        <span className="truncate text-xs font-bold text-[var(--color-accent-yellow)]">
                                             {authUser.name}
                                         </span>
-                                        <UserCircle2 size={18} className="shrink-0 text-[var(--color-text-sticky-nav-text)]" />
+                                        <span className="top-sticky-profile-badge shrink-0 rounded px-1 py-0.5 text-[9px] font-bold leading-none uppercase">
+                                            {profileTierLabel}
+                                        </span>
                                     </button>
-                                    <span className="w-px shrink-0 self-stretch bg-[var(--color-border-brand)]" aria-hidden />
+                                    <span className="top-sticky-profile-chip__divider w-px shrink-0 self-stretch" aria-hidden />
                                     <button
                                         type="button"
                                         onClick={() => {
                                             setProfileMenuOpen((open) => !open);
                                             setBalanceDropdownOpen(false);
                                         }}
-                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-border-subtle)] hover:text-[var(--color-text-sticky-nav-active)]"
+                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-sticky-nav-active)]"
                                         aria-haspopup="menu"
                                         aria-expanded={profileMenuOpen}
                                         aria-label="Account menu"
@@ -532,22 +531,16 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onLogout?.()}
-                                    className="nav-top-pill shrink-0"
+                                    className="nav-top-pill shrink-0 uppercase"
                                 >
                                     LOGOUT
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => (onTopLiveChatClick ?? onLiveChatClick)?.()}
-                                    className="nav-top-pill nav-top-pill--icon shrink-0 uppercase"
-                                >
-                                    <Headset size={14} />
-                                    <span>Live Chat</span>
                                 </button>
                                 <LanguageSwitcher
                                     value={language}
                                     onChange={setLanguage}
-                                    buttonClassName="nav-top-pill nav-top-pill--icon shrink-0 uppercase"
+                                    buttonClassName="nav-top-pill nav-top-pill--icon shrink-0"
+                                    showShortLabel={false}
+                                    showFullLabel
                                 />
 
                                 {profileMenuOpen && (
@@ -557,7 +550,7 @@ export default function Navbar({
                                         <div className="relative shrink-0">
                                             <div className="relative flex items-start gap-3">
                                                 <div className="relative shrink-0">
-                                                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-border-subtle)] bg-gradient-side-menu-brand shadow-[var(--inset-highlight-strong)]">
+                                                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-border-subtle)] bg-gradient-menu-brand shadow-[var(--inset-highlight-strong)]">
                                                         <UserCircle2 size={36} className="text-[var(--color-text-sticky-nav-text)]" />
                                                     </div>
                                                 </div>
@@ -579,7 +572,7 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <Wallet size={14} />
                                                         </div>
                                                         <span className="text-lg font-bold text-[var(--color-text-card-text)]">Cashier</span>
@@ -618,7 +611,7 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <UserRound size={14} />
                                                         </div>
                                                         <span className="text-lg font-bold text-[var(--color-text-card-text)]">My Account</span>
@@ -661,7 +654,7 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <Trophy size={14} />
                                                         </div>
                                                         <span className="text-lg font-bold text-[var(--color-text-card-text)]">Rewards</span>
@@ -705,7 +698,7 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between transition hover:opacity-90"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <div className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <History size={14} />
                                                         </div>
                                                         <span className="text-lg font-bold text-[var(--color-text-card-text)]">History Record</span>
@@ -743,7 +736,7 @@ export default function Navbar({
                                                     className="flex w-full items-center justify-between text-left"
                                                 >
                                                     <span className="flex items-center gap-3">
-                                                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-side-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
+                                                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-[8px] bg-gradient-menu-brand text-[var(--color-accent)] shadow-[var(--shadow-nav-pill)]">
                                                             <Settings size={14} />
                                                         </span>
                                                         <span className="text-base font-bold text-[var(--color-text-card-text)]">Settings</span>
@@ -994,37 +987,57 @@ export default function Navbar({
                     }`}
                 aria-hidden={!mobileMenuOpen}
             >
-                <div className="relative border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-3.5 py-3">
+                <div className="sidenav-header relative border-b px-3.5 py-3">
                     <div className="min-w-0">
                         {authUser ? (
                             <button
                                 type="button"
                                 onClick={() => handleMobileNavigate('profile')}
-                                className="w-full pr-12 text-left text-2xl font-bold leading-tight text-[var(--color-text-secondary)] transition hover:opacity-90"
+                                className="w-full pr-12 text-left text-2xl font-bold leading-tight text-[var(--color-text-primary-card-title)] transition hover:opacity-90"
                             >
                                 Hi, {authUser.name}
                             </button>
                         ) : (
                             <div className="pr-12">
-                                <h2 className="text-xl font-bold leading-tight text-[var(--color-text-secondary)]">Play Anywhere</h2>
+                                <h2 className="text-xl font-bold leading-tight text-[var(--color-text-primary-card-title)]">Play Anywhere</h2>
                                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Your essentials stay up top. Everything else is tucked into More.</p>
                             </div>
                         )}
 
                         {authUser ? (
                             <div className="mt-2.5 space-y-2.5">
-                                <VipStatusPill level={vipLevel} size="compact" className="rounded-full shadow-[var(--shadow-brand-soft)]" />
+                                <span className="sidenav-tier-badge inline-flex rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">
+                                    {profileTierLabel}
+                                </span>
                                 <div className="w-full rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3.5 shadow-[var(--shadow-card-soft)]">
-                                    <div className="flex items-center justify-between gap-2.5">
-                                        <div>
-                                            <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-primary-card-title)]">
-                                                Balance
-                                            </p>
-                                            <p className="mt-0.5 text-base font-bold text-[var(--color-text-primary)]">{authUser.balance}</p>
-                                        </div>
-                                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
-                                            <CircleDollarSign size={16} />
+                                    <div className="flex items-center justify-between gap-3">
+                                        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">
+                                            Balance
+                                        </p>
+                                        <div className="sidenav-balance-pill flex h-9 shrink-0 items-stretch overflow-hidden rounded-xl">
+                                        <span className="flex min-w-0 items-center px-3 text-sm font-bold tabular-nums">
+                                            {authUser.balance}
                                         </span>
+                                        <button
+                                            type="button"
+                                            onClick={(event) => {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                                onRefreshBalance?.();
+                                            }}
+                                            disabled={!onRefreshBalance || balanceRefreshing}
+                                            className="sidenav-balance-pill__refresh inline-flex w-10 shrink-0 items-center justify-center transition hover:brightness-110 disabled:pointer-events-none disabled:opacity-40"
+                                            aria-label="Refresh balance"
+                                            title="Refresh balance"
+                                        >
+                                            <RefreshCw
+                                                size={15}
+                                                strokeWidth={2.25}
+                                                className={balanceRefreshing ? 'animate-spin' : ''}
+                                                aria-hidden
+                                            />
+                                        </button>
+                                        </div>
                                     </div>
                                     <div className="mt-3 grid grid-cols-2 gap-2.5">
                                         <button
@@ -1038,10 +1051,10 @@ export default function Navbar({
                                         <button
                                             type="button"
                                             onClick={() => handleMobileNavigate('withdrawal')}
-                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm font-bold text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
+                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 text-sm font-bold text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
                                         >
                                             <ArrowUpFromLine size={15} />
-                                            Withdraw
+                                            Withdrawal
                                         </button>
                                     </div>
                                 </div>
@@ -1075,7 +1088,7 @@ export default function Navbar({
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-base)]/80 text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-input)] transition hover:bg-[var(--surface-base)]"
+                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)] transition hover:bg-[var(--color-surface-subtle)]"
                         aria-label="Close mobile menu"
                     >
                         <X size={16} />
@@ -1083,7 +1096,7 @@ export default function Navbar({
 
                 </div>
 
-                <div className="min-h-0 flex-1 overflow-y-auto px-3.5 py-3">
+                <div className="sidenav-body min-h-0 flex-1 overflow-y-auto px-3.5 py-3">
                     <div className="space-y-2">
                         {/* eslint-disable-next-line no-unused-vars */}
                         {MOBILE_PRIMARY_ITEMS.map(({ id, label, page, icon: Icon }) => {
@@ -1135,7 +1148,7 @@ export default function Navbar({
                                         <span className="min-w-0 flex-1 text-base font-bold" style={{ fontFamily: 'var(--base-font-family)' }}>{label}</span>
                                         <ChevronRight
                                             size={17}
-                                            className={`shrink-0 transition-transform ${(isMoreRow || isGamesRow) && isOpen ? 'rotate-90' : ''}`}
+                                            className={`shrink-0 text-[var(--color-text-primary-card-title)] transition-transform ${(isMoreRow || isGamesRow) && isOpen ? 'rotate-90' : ''}`}
                                         />
                                     </button>
 
@@ -1194,7 +1207,7 @@ export default function Navbar({
                                                             aria-expanded={sectionOpen}
                                                         >
                                                             <span
-                                                                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--surface-utility-2)]"
+                                                                className="sidenav-item__icon inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border"
                                                             >
                                                                 <SectionIcon size={15} />
                                                             </span>
@@ -1266,7 +1279,7 @@ export default function Navbar({
                                 className="sidenav-secondary-action inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold"
                             >
                                 <LogOut size={15} />
-                                Log Out
+                                Logout
                             </button>
                         ) : (
                             <button

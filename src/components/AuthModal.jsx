@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Check, ChevronDown, Eye, EyeOff } from 'lucide-react';
+import { Check, ChevronDown, CircleAlert, Eye, EyeOff } from 'lucide-react';
 import UniversalModal from './ui/UniversalModal';
 import TwoFactorLoginModal from './TwoFactorLoginModal';
 import { verify2FALogin, verifyLogin } from '../services/authService';
 
 const ILLUSTRATION_URL =
   'https://pksoftcdn.azureedge.net/media/350x250px_login-202507070842148822.png';
+
+const REQUIRED_MESSAGE = 'This field is required';
 
 function onlyAlphaNum(value) {
   return (value ?? '').replace(/[^a-zA-Z0-9]/g, '');
@@ -21,7 +23,18 @@ function buildPasswordRules(passwordRaw) {
     hasMin,
     hasLetterNumber: hasLetter && hasNumber,
     onlyAllowed,
+    isValid: hasMin && hasLetter && hasNumber && onlyAllowed,
   };
+}
+
+function AuthFieldError({ message }) {
+  if (!message) return null;
+  return (
+    <p className="auth-modal-field-error" role="alert">
+      <CircleAlert size={18} className="auth-modal-field-error__icon" aria-hidden />
+      {message}
+    </p>
+  );
 }
 
 export default function AuthModal({
@@ -50,9 +63,21 @@ export default function AuthModal({
   const [regPassword, setRegPassword] = useState('');
   const [regReferral, setRegReferral] = useState('');
   const [countryOpen, setCountryOpen] = useState(false);
+  const [regSubmitted, setRegSubmitted] = useState(false);
   const countryCode = '+855';
 
   const rules = useMemo(() => buildPasswordRules(regPassword), [regPassword]);
+
+  const regErrors = useMemo(() => {
+    const username = regUsername.trim();
+    const phone = onlyAlphaNum(regPhone.trim());
+    return {
+      username: !username ? REQUIRED_MESSAGE : '',
+      phone: !phone ? REQUIRED_MESSAGE : '',
+      password: !regPassword ? REQUIRED_MESSAGE : '',
+      passwordRules: regPassword && !rules.isValid,
+    };
+  }, [regPhone, regPassword, regUsername, rules.isValid]);
 
   useEffect(() => {
     if (!open) return;
@@ -66,6 +91,7 @@ export default function AuthModal({
       setShow2FA(false);
       setSessionId(null);
       setCountryOpen(false);
+      setRegSubmitted(false);
     }
   }, [open]);
 
@@ -101,15 +127,19 @@ export default function AuthModal({
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
-    // Demo client: accept valid-looking values and treat as successful auth.
+    setRegSubmitted(true);
+
     const username = regUsername.trim();
     const phone = onlyAlphaNum(regPhone.trim());
-    if (!username) return;
-    if (!phone) return;
-    if (!rules.hasMin || !rules.hasLetterNumber || !rules.onlyAllowed) return;
+    if (!username || !phone || !regPassword || !rules.isValid) {
+      return;
+    }
+
     onAuthSuccess?.(username);
     close();
   };
+
+  const showRegError = (field) => regSubmitted && regErrors[field];
 
   return (
     <>
@@ -192,17 +222,21 @@ export default function AuthModal({
                 </button>
               </form>
             ) : (
-              <form onSubmit={handleRegisterSubmit} className="auth-modal-form__inner">
+              <form onSubmit={handleRegisterSubmit} className="auth-modal-form__inner" noValidate>
                 <h2 className="auth-modal-title">Enter Username</h2>
-                <label className="auth-modal-field">
+                <label
+                  className={`auth-modal-field ${showRegError('username') ? 'is-invalid' : ''}`}
+                >
                   <input
                     value={regUsername}
                     onChange={(e) => setRegUsername(e.target.value)}
-                    placeholder=""
+                    placeholder="Enter Username"
                     className="auth-modal-input"
                     autoComplete="username"
+                    aria-invalid={Boolean(showRegError('username'))}
                   />
                 </label>
+                <AuthFieldError message={showRegError('username') ? regErrors.username : ''} />
 
                 <h2 className="auth-modal-title auth-modal-title--spaced">Mobile Number</h2>
                 <div className="auth-modal-phone">
@@ -229,27 +263,38 @@ export default function AuthModal({
                       </div>
                     ) : null}
                   </div>
-                  <label className="auth-modal-field auth-modal-field--phone">
-                    <input
-                      value={regPhone}
-                      onChange={(e) => setRegPhone(onlyAlphaNum(e.target.value))}
-                      className="auth-modal-input"
-                      inputMode="numeric"
-                      placeholder=""
-                      autoComplete="tel"
-                    />
-                  </label>
+                  <div>
+                    <label
+                      className={`auth-modal-field auth-modal-field--phone ${showRegError('phone') ? 'is-invalid' : ''}`}
+                    >
+                      <input
+                        value={regPhone}
+                        onChange={(e) => setRegPhone(onlyAlphaNum(e.target.value))}
+                        className="auth-modal-input"
+                        inputMode="numeric"
+                        placeholder="Mobile Number"
+                        autoComplete="tel"
+                        aria-invalid={Boolean(showRegError('phone'))}
+                      />
+                    </label>
+                    <AuthFieldError message={showRegError('phone') ? regErrors.phone : ''} />
+                  </div>
                 </div>
 
                 <h2 className="auth-modal-title auth-modal-title--spaced">Enter Your Password</h2>
-                <label className="auth-modal-field auth-modal-field--password">
+                <label
+                  className={`auth-modal-field auth-modal-field--password ${
+                    showRegError('password') || (regSubmitted && regErrors.passwordRules) ? 'is-invalid' : ''
+                  }`}
+                >
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={regPassword}
                     onChange={(e) => setRegPassword(onlyAlphaNum(e.target.value))}
                     className="auth-modal-input"
-                    placeholder=""
+                    placeholder="Enter Your Password"
                     autoComplete="new-password"
+                    aria-invalid={Boolean(showRegError('password') || (regSubmitted && regErrors.passwordRules))}
                   />
                   <button
                     type="button"
@@ -260,17 +305,33 @@ export default function AuthModal({
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                 </label>
+                <AuthFieldError message={showRegError('password') ? regErrors.password : ''} />
 
-                <ul className="auth-modal-rules" aria-label="Password rules">
-                  <li className={`auth-modal-rule ${rules.hasMin ? 'is-ok' : ''}`}>
+                <ul
+                  className={`auth-modal-rules ${regSubmitted && regErrors.passwordRules ? 'auth-modal-rules--invalid' : ''}`}
+                  aria-label="Password rules"
+                >
+                  <li
+                    className={`auth-modal-rule ${rules.hasMin ? 'is-ok' : ''} ${
+                      regSubmitted && regErrors.passwordRules ? 'is-invalid' : ''
+                    }`}
+                  >
                     <Check size={16} className="auth-modal-rule__icon" />
                     Include at least 8 characters, containing both a letter and a number, with no symbols allowed.
                   </li>
-                  <li className={`auth-modal-rule ${rules.hasLetterNumber ? 'is-ok' : ''}`}>
+                  <li
+                    className={`auth-modal-rule ${rules.hasLetterNumber ? 'is-ok' : ''} ${
+                      regSubmitted && regErrors.passwordRules ? 'is-invalid' : ''
+                    }`}
+                  >
                     <Check size={16} className="auth-modal-rule__icon" />
                     Only letters (A-z, a-z) and numbers (0-9).
                   </li>
-                  <li className={`auth-modal-rule ${rules.onlyAllowed ? 'is-ok' : ''}`}>
+                  <li
+                    className={`auth-modal-rule ${rules.onlyAllowed ? 'is-ok' : ''} ${
+                      regSubmitted && regErrors.passwordRules ? 'is-invalid' : ''
+                    }`}
+                  >
                     <Check size={16} className="auth-modal-rule__icon" />
                     No special characters / symbols.
                   </li>
@@ -282,7 +343,7 @@ export default function AuthModal({
                     value={regReferral}
                     onChange={(e) => setRegReferral(onlyAlphaNum(e.target.value))}
                     className="auth-modal-input auth-modal-input--muted"
-                    placeholder=""
+                    placeholder="Input Referral Code"
                   />
                 </label>
 
@@ -316,4 +377,3 @@ export default function AuthModal({
     </>
   );
 }
-

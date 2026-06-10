@@ -22,6 +22,7 @@ export default function LanguageSwitcher({
     buttonClassName = 'nav-top-pill nav-top-pill--icon shrink-0',
     tone = 'dark',
     showShortLabel = true,
+    showFullLabel = false,
 }) {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
@@ -42,7 +43,7 @@ export default function LanguageSwitcher({
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className={`flex items-center ${showShortLabel ? 'gap-1.5' : 'gap-1'} ${buttonClassName} ${
+                className={`flex items-center ${showShortLabel || showFullLabel ? 'gap-1.5' : 'gap-1'} ${buttonClassName} ${
                     isLightTone
                         ? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,42,0.08)] transition-all hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]'
                         : ''
@@ -56,7 +57,11 @@ export default function LanguageSwitcher({
                     alt=""
                     className="h-4 w-6 shrink-0 rounded-sm object-cover"
                 />
-                {showShortLabel ? <span className="text-xs font-bold uppercase">{current.short}</span> : null}
+                {showShortLabel ? (
+                    <span className="text-xs font-bold uppercase">{current.short}</span>
+                ) : showFullLabel ? (
+                    <span className="text-xs font-bold">{current.label}</span>
+                ) : null}
                 <ChevronDown
                     size={12}
                     className={`transition-transform ${isLightTone ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-text-sticky-nav-text)]/75'} ${open ? 'rotate-180' : ''}`}

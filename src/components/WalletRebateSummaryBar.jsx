@@ -6,9 +6,17 @@ import { BROWSE_MEMBERSHIP_REBATE, BROWSE_WALLET_BALANCE } from '../constants/br
 export const WALLET_REBATE_BROWSE_PANEL_CLASS =
     'rounded-[24px] border border-[var(--color-border-subtle)] bg-gradient-wallet-glass px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
 
+/** Web_Slot - Cam88 (903:25656) wallet / promo shell — semantic surface-base (§13.11). */
+export const SLOTS_BROWSE_PANEL_CLASS =
+    'slots-browse-panel rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
+
 /** Shared inner card shell for slots browse summary tiles (wallet, promo, etc.). */
 export const BROWSE_SUMMARY_CARD_SHELL_CLASS =
     'surface-card rounded-[var(--radius-panel)] border-[var(--color-border-subtle)] bg-gradient-wallet-panel shadow-[var(--shadow-subtle)]';
+
+/** Cam88 Web_Slot inner summary tiles — `--color-surface` card shell (§13.11). */
+export const SLOTS_BROWSE_SUMMARY_CARD_SHELL_CLASS =
+    'slots-browse-summary-card rounded-[var(--radius-panel)] border border-[var(--color-border-subtle)] bg-[var(--color-surface)] shadow-[var(--shadow-subtle)]';
 
 export const BROWSE_SUMMARY_CARD_COMPACT_CLASS =
     'min-h-[56px] px-2.5 py-2.5 sm:min-h-[68px] sm:px-3.5 sm:py-3';
@@ -17,8 +25,14 @@ export const BROWSE_SUMMARY_CARD_COMPACT_CLASS =
 export const BROWSE_SUMMARY_LABEL_COMPACT_CLASS =
     'font-semibold tracking-tight leading-tight text-[var(--color-text-secondary)] text-xs sm:text-sm';
 
+export const SLOTS_BROWSE_SUMMARY_LABEL_COMPACT_CLASS =
+    'slots-browse-summary-label font-semibold tracking-tight leading-tight text-[var(--color-primary)] text-xs sm:text-sm';
+
 export const BROWSE_SUMMARY_VALUE_COMPACT_CLASS =
     'tabular-nums font-bold leading-tight tracking-tight text-[var(--color-surface-accent-hover)] text-base sm:text-lg md:text-xl';
+
+export const SLOTS_BROWSE_SUMMARY_VALUE_COMPACT_CLASS =
+    'slots-browse-summary-value tabular-nums font-bold leading-tight tracking-tight text-[var(--color-text-primary)] text-base sm:text-lg md:text-xl';
 
 function SummaryItem({
     title,
@@ -29,8 +43,11 @@ function SummaryItem({
     emphasis = 'default',
     compact = false,
     denseMobile = false,
+    browseSemantics = 'default',
 }) {
+    const isSlotsBrowse = browseSemantics === 'slots';
     const isPrimary = emphasis === 'primary';
+    const cardShellClass = isSlotsBrowse ? SLOTS_BROWSE_SUMMARY_CARD_SHELL_CLASS : BROWSE_SUMMARY_CARD_SHELL_CLASS;
 
     const compactLayoutClass = denseMobile
         ? 'min-h-[56px] gap-1.5 px-2.5 py-1.5 sm:min-h-[68px] sm:gap-2 sm:px-3.5 sm:py-2.5'
@@ -55,24 +72,31 @@ function SummaryItem({
         : 'h-9 w-9 sm:h-10 sm:w-10';
 
     const iconSize = compact ? (denseMobile ? 13 : 14) : 17;
+    const labelClass =
+        compact && denseMobile
+            ? isSlotsBrowse
+                ? SLOTS_BROWSE_SUMMARY_LABEL_COMPACT_CLASS
+                : BROWSE_SUMMARY_LABEL_COMPACT_CLASS
+            : isSlotsBrowse
+              ? `slots-browse-summary-label font-semibold tracking-tight text-[var(--color-primary)] ${compact ? 'text-xs sm:text-sm' : 'text-sm'}`
+              : `font-semibold tracking-tight text-[var(--color-text-secondary)] ${compact ? 'text-xs sm:text-sm' : 'text-sm'}`;
+    const resolvedValueClassName = isSlotsBrowse ? 'text-[var(--color-text-primary)]' : valueClassName;
+    const compactValueClass =
+        compact && denseMobile
+            ? isSlotsBrowse
+                ? SLOTS_BROWSE_SUMMARY_VALUE_COMPACT_CLASS
+                : BROWSE_SUMMARY_VALUE_COMPACT_CLASS
+            : valueSizeClass;
 
     return (
         <article
-            className={`${BROWSE_SUMMARY_CARD_SHELL_CLASS} flex h-full min-w-0 items-center justify-between ${compact ? compactLayoutClass : 'min-h-[86px] gap-3 px-4 py-3 sm:min-h-[92px] sm:px-4.5 sm:py-3.5'
+            className={`${cardShellClass} flex h-full min-w-0 items-center justify-between ${compact ? compactLayoutClass : 'min-h-[86px] gap-3 px-4 py-3 sm:min-h-[92px] sm:px-4.5 sm:py-3.5'
                 }`}
         >
             <div className="min-w-0 flex-1">
+                <p className={labelClass}>{title}</p>
                 <p
-                    className={
-                        compact && denseMobile
-                            ? BROWSE_SUMMARY_LABEL_COMPACT_CLASS
-                            : `font-semibold tracking-tight text-[var(--color-text-secondary)] ${compact ? 'text-xs sm:text-sm' : 'text-sm'}`
-                    }
-                >
-                    {title}
-                </p>
-                <p
-                    className={`tabular-nums leading-tight tracking-tight sm:leading-none ${valueClassName} ${compact && denseMobile ? BROWSE_SUMMARY_VALUE_COMPACT_CLASS : valueSizeClass}`}
+                    className={`tabular-nums leading-tight tracking-tight sm:leading-none ${resolvedValueClassName} ${compactValueClass}`}
                 >
                     {value}
                 </p>
@@ -99,6 +123,7 @@ export default function WalletRebateSummaryBar({
     compact = false,
     bare = false,
     denseMobile = false,
+    browseSemantics = 'default',
 }) {
     const panelPad = compact
         ? denseMobile
@@ -130,6 +155,7 @@ export default function WalletRebateSummaryBar({
                     emphasis="primary"
                     compact={compact}
                     denseMobile={denseMobile}
+                    browseSemantics={browseSemantics}
                 />
                 <SummaryItem
                     title="Membership Rebate"
@@ -138,6 +164,7 @@ export default function WalletRebateSummaryBar({
                     iconClassName="text-[var(--color-text-soft)]"
                     compact={compact}
                     denseMobile={denseMobile}
+                    browseSemantics={browseSemantics}
                 />
             </div>
         </section>

@@ -267,7 +267,16 @@
 
   .top-sticky-nav-bar {
     --color-sticky-nav: var(--brand-500);
-    --color-surface-high: var(--brand-500);
+    --color-text-sticky-nav-text: var(--mono-0);
+    --color-text-sticky-nav-active: var(--raw-nav-text-accent);
+    --color-border-brand: var(--raw-border-brand);
+  }
+
+  /** Logged-in profile tier chip on dark sticky bar (§13.11) */
+  .top-sticky-profile-badge {
+    border: 1px solid var(--color-accent-yellow);
+    background-color: transparent;
+    color: var(--color-accent-yellow);
   }
 
   /**
@@ -293,6 +302,75 @@
 
   .sports-page .provider-lobby-card .game-card-play-overlay {
     background-color: var(--color-overlay-sports-card);
+  }
+
+  /**
+   * Web_Slot - Cam88 (903:25656) — Cam88 semantic names in JSX; Caelo look via scoped aliases (§13.11).
+   */
+  .slots-page {
+    --color-surface: var(--color-surface-base);
+    --color-button-tabs: var(--color-surface-base);
+    --color-border-tabs: var(--color-border-subtle);
+  }
+
+  .slots-page .slots-provider-tab--active {
+    --color-button-tabs: var(--color-surface-base);
+    --color-border-tabs: var(--color-surface-accent-hover);
+  }
+
+  .slots-page .slots-browse-panel {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .slots-page .slots-browse-summary-label {
+    --color-primary: var(--color-text-secondary);
+  }
+
+  .slots-page .slots-browse-summary-value {
+    --color-text-primary: var(--color-surface-accent-hover);
+  }
+
+  .slots-page .slots-browse-summary-card,
+  .slots-page .slot-current-promo__card {
+    --color-surface: var(--color-surface-base);
+    background-image: var(--color-gradient-wallet-panel);
+  }
+
+  .slots-page .slot-current-promo {
+    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-fill: var(--brand-500);
+  }
+
+  .slots-page .slot-current-promo__eyebrow {
+    --color-text-primary: var(--color-text-muted);
+  }
+
+  .slots-page .slot-current-promo__card {
+    --color-primary: var(--color-surface-accent-hover);
+  }
+
+  .slots-page .slot-current-promo .btn-theme-cta-fourth {
+    color: var(--color-text-cta-inverse);
+    background-color: transparent;
+    background-image: var(--color-gradient-button-cta);
+    border: 1px solid var(--color-border-brand);
+    box-shadow: var(--shadow-cta-soft);
+  }
+
+  .slots-page .slots-browse-search {
+    --color-surface-input-inverse: var(--color-surface-base);
+    --color-info-icon: var(--color-text-muted);
+  }
+
+  .slots-page .slots-game-card__thumb {
+    --color-border-danger: transparent;
+  }
+
+  .slots-page .slots-game-card__rtp.rtp-label--pill,
+  .slots-page .slots-game-card .rtp-label--pill {
+    --color-surface-rtp-secondary-card: var(--color-accent-glow);
+    --color-surface-rtp-secondary-card-text: var(--color-button-hover);
+    --color-border-brand: var(--raw-border-accent);
   }
 
   /** Favourite + game-card utilities share Riocity `--color-gradient-sports-card` — preserve Caelo scrims. */
@@ -339,6 +417,17 @@
     );
   }
 
+  @media (min-width: 768px) {
+    .bg-gradient-game-card-overlay {
+      --color-gradient-sports-card: linear-gradient(
+        90deg,
+        var(--raw-scrim-game-launch-start) 0%,
+        var(--raw-scrim-game-launch-mid) 45%,
+        var(--raw-scrim-game-launch-end-soft) 100%
+      );
+    }
+  }
+
   .bg-gradient-game-card-glow-soft {
     --color-gradient-sports-card: radial-gradient(
       circle,
@@ -354,6 +443,14 @@
       var(--raw-scrim-game-glow-strong) 0%,
       var(--raw-scrim-game-glow-mid) 46%,
       transparent 76%
+    );
+  }
+
+  .bg-gradient-promo-bottom-glow-soft {
+    --color-gradient-nav-highlight: linear-gradient(
+      180deg,
+      transparent 0%,
+      var(--raw-scrim-brand-mid-06) 100%
     );
   }
 
@@ -400,6 +497,43 @@
     --color-border-line: var(--color-border-subtle);
     --color-surface-panel: var(--raw-surface-muted);
     --color-text-recent-amount: var(--color-button-hover);
+  }
+
+  /**
+   * Homepage mobile header — Web - Sidenav shell semantics (Cam88 1324:11385); Caelo light bar (§13.11).
+   */
+  .mobile-site-header {
+    --color-border: var(--color-border-subtle);
+    --color-button-nav: var(--color-surface-base);
+    --color-button-nav-text: var(--color-text-primary);
+  }
+
+  /**
+   * Mobile home bottom sticky nav — Cam88 --color-sticky-nav; Caelo brand-500 bar (§13.11).
+   */
+  .mobile-home-bottom-nav {
+    --color-sticky-nav: var(--brand-500);
+    --color-primary: var(--brand-500);
+    --color-text-sticky-nav-text: var(--mono-0);
+    --color-text-sticky-nav-active: var(--color-accent);
+  }
+
+  /**
+   * Homepage category tabs — Category Tabs (Cam88 1395:13359); Caelo card/tab look via scoped aliases (§13.11).
+   */
+  .home-category-tabs {
+    --color-surface-cat-navigation: transparent;
+    --color-button-nav: var(--color-surface-base);
+    --color-button-nav-text: var(--color-text-primary);
+    --color-button-hover: var(--color-surface-subtle);
+    --color-button-hover-text: var(--color-text-primary);
+    --color-surface-input-light: var(--color-primary);
+    --color-surface-menu-active: transparent;
+    --color-text-tertiary: var(--color-text-card-text);
+  }
+
+  .home-category-tabs .category-tab-item--active {
+    background-image: var(--color-gradient-tag);
   }
 
   /**
@@ -632,8 +766,19 @@
     --color-button-cta-primary: var(--color-text-cta-inverse);
     --color-button-muted: var(--color-surface-cool-light);
     --color-button-muted-text: var(--color-text-secondary);
-    /* AuthModal footer links were accent-700 / accent-600 (Caelo blue), not danger red */
+    /* Login footer links — Caelo blue (§13.11) */
     --color-text-link-danger: var(--color-button-hover);
+  }
+
+  /** Web_Register — Cam88 919:20708 field errors + footer link (§13.11) */
+  .auth-modal-container--register {
+    --color-text-secondary: var(--color-danger);
+    --color-text-link-danger: var(--color-danger);
+  }
+
+  .auth-modal-container--register .auth-modal-links,
+  .auth-modal-container--register .auth-modal-link-text {
+    color: var(--color-text-primary);
   }
 
   .auth-modal-shell.universal-modal-container {
@@ -708,6 +853,27 @@
     background-color: var(--color-surface-input-light);
     border-radius: var(--radius-control);
     box-shadow: var(--shadow-input);
+  }
+
+  .auth-modal-field.is-invalid {
+    border-color: var(--color-danger);
+  }
+
+  .auth-modal-field-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text-secondary);
+  }
+
+  .auth-modal-field-error__icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--color-text-secondary);
   }
 
   .auth-modal-field--password {
@@ -958,7 +1124,15 @@
   }
 
   .auth-modal-rule.is-ok {
-    color: var(--color-text-secondary);
+    color: var(--color-success);
+  }
+
+  .auth-modal-rule.is-invalid {
+    color: var(--color-text-muted);
+  }
+
+  .auth-modal-rule.is-invalid.is-ok {
+    color: var(--color-success);
   }
 
   .auth-modal-rule.is-ok .auth-modal-rule__icon {
@@ -1623,8 +1797,8 @@
     background-image: var(--color-gradient-home-muted);
   }
 
-  .bg-gradient-side-menu-brand {
-    background-image: var(--color-gradient-side-menu-brand);
+  .bg-gradient-menu-brand {
+    background-image: var(--color-gradient-menu-brand);
   }
 
   .bg-gradient-nav-cta {
@@ -1688,15 +1862,15 @@
   }
 
   .bg-gradient-vip-nav-pill {
-    background-image: var(--color-gradient-side-menu-brand);
+    background-image: var(--color-gradient-menu-brand);
   }
 
   .bg-gradient-vip-nav-pill-hover {
-    background-image: var(--color-gradient-side-menu-brand);
+    background-image: var(--color-gradient-menu-brand);
   }
 
   .bg-gradient-language-nav {
-    background-image: var(--color-gradient-side-menu-brand);
+    background-image: var(--color-gradient-menu-brand);
   }
 
   .bg-gradient-mobile-cta {
@@ -1748,7 +1922,7 @@
   }
 
   .bg-gradient-promo-bottom-glow-soft {
-    background-image: var(--color-gradient-sidenav-highlight);
+    background-image: var(--color-gradient-nav-highlight);
   }
 
   .bg-gradient-language-panel-top {
@@ -1768,7 +1942,7 @@
   }
 
   .bg-gradient-language-option-active {
-    background-image: var(--color-gradient-side-menu-brand);
+    background-image: var(--color-gradient-menu-brand);
   }
 
   .bg-gradient-app-download-shell {
@@ -1882,11 +2056,12 @@
   }
 
   .bg-gradient-floating-social {
-    background-image: var(--color-gradient-side-menu-brand);
+    --color-gradient-menu-brand: linear-gradient(180deg, var(--brand-500) 0%, var(--brand-700) 100%);
+    background-image: var(--color-gradient-menu-brand);
   }
 
   .bg-gradient-footer {
-    background-image: var(--color-gradient-side-menu-brand);
+    background-image: var(--color-gradient-menu-brand);
   }
 
   .bg-gradient-accent-avatar {
@@ -1906,7 +2081,7 @@
   }
 
   .bg-gradient-accent-tab {
-    background-image: var(--color-gradient-side-menu-brand);
+    background-image: var(--color-gradient-menu-brand);
   }
 
   .bg-gradient-cta-strong {
@@ -1979,12 +2154,6 @@
     background-image: var(--color-gradient-home-highlight);
   }
 
-  @media (min-width: 768px) {
-    .md\:bg-gradient-sidenav-scrim {
-      background-image: var(--color-gradient-sidenav-scrim);
-    }
-  }
-
   .bg-gradient-home-dashboard {
     background-image: var(--color-gradient-home-dashboard);
   }
@@ -2053,6 +2222,13 @@
     box-shadow: var(--shadow-cta-soft);
   }
 
+  /** Web_Slot promo panel — End Promo (Cam88 919:20508) */
+  .btn-theme-cta-fourth {
+    color: var(--color-button-cta-fourth-text);
+    background-color: var(--color-button-cta-fourth);
+    border: 1px solid transparent;
+  }
+
   /** Desktop announcement bar: secondary actions (guest + logged-in) */
   .nav-top-pill {
     display: inline-flex;
@@ -2088,6 +2264,39 @@
     border-bottom-color: var(--raw-nav-border-soft);
   }
 
+  /**
+   * Logged-in balance + profile pills — screenshot fills, LOGOUT glass family (§13.11).
+   * No outer border; sheen + shadow only (same tokens as `.nav-top-pill`).
+   */
+  .top-sticky-nav-bar .top-sticky-balance-chip,
+  .top-sticky-nav-bar .top-sticky-profile-chip {
+    border: none;
+    box-shadow: var(--nav-top-pill-shadow);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .top-sticky-nav-bar .top-sticky-balance-chip {
+    --color-surface-high: var(--brand-400);
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+  }
+
+  .top-sticky-nav-bar .top-sticky-balance-chip__refresh {
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+    border-left: 1px solid var(--raw-nav-border);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .top-sticky-nav-bar .top-sticky-profile-chip {
+    background-color: transparent;
+    background-image: var(--nav-top-pill-bg), var(--color-gradient-menu-brand);
+  }
+
+  .top-sticky-nav-bar .top-sticky-profile-chip__divider {
+    background-color: var(--raw-nav-border);
+  }
+
   /** Mobile logged-in balance chip — same Caelo dark bar look via --color-sticky-nav */
   .mobile-sticky-balance {
     border-color: var(--raw-nav-border-soft);
@@ -2102,22 +2311,59 @@
   }
 
   /**
-   * Web - Sidenav (Cam88 1324:11385) — mobile drawer + header nav rows (§13.11 rename only)
+   * Web - Sidenav (Cam88 1324:11385) — mobile drawer; Caelo light menu skin (§13.11).
    */
   .sidenav-shell {
     --color-button-nav: var(--color-surface-base);
-    --color-button-sidenav-text: var(--color-text-secondary);
-    --color-button-hover-text: var(--color-text-cta-inverse);
+    --color-button-nav-text: var(--color-text-primary-card-title);
+    --color-button-hover-text: var(--color-text-primary-card-title);
     --color-border-line: var(--color-border-subtle);
+    --color-sticky-nav: var(--brand-500);
+    --color-primary: var(--brand-500);
+    --color-text-sticky-nav-text: var(--mono-0);
     background-color: var(--color-surface-base);
     border-color: var(--color-border-subtle);
-    color: var(--color-button-sidenav-text);
+    color: var(--color-button-nav-text);
+  }
+
+  .sidenav-shell .sidenav-header {
+    background-color: var(--color-surface-base);
+    border-color: var(--color-border-subtle);
+  }
+
+  .sidenav-shell .sidenav-tier-badge {
+    --color-accent-pale: var(--accent-pale-100);
+    --color-accent-glow: var(--raw-cta-border);
+    border: 1px solid var(--color-accent-glow);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary-card-title);
+  }
+
+  /** Sidenav balance pill — same fill + glass as `.top-sticky-balance-chip` (§13.11) */
+  .sidenav-shell .sidenav-balance-pill {
+    --color-surface-high: var(--brand-400);
+    border: none;
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+    box-shadow: var(--nav-top-pill-shadow);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .sidenav-shell .sidenav-balance-pill__refresh {
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+    border-left: 1px solid var(--raw-nav-border);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .sidenav-shell .sidenav-body {
+    background-color: var(--color-surface-subtle);
   }
 
   .sidenav-item {
     border: 1px solid var(--color-border-subtle);
     background-color: var(--color-button-nav);
-    color: var(--color-button-sidenav-text);
+    color: var(--color-button-nav-text);
     box-shadow: var(--shadow-input);
     transition:
       background-color 0.2s,
@@ -2127,28 +2373,34 @@
   }
 
   .sidenav-item:hover:not(.sidenav-item--active) {
-    border-color: var(--color-accent-200);
+    border-color: var(--color-accent-glow);
     background-color: var(--color-surface-subtle);
-    color: var(--color-button-sidenav-text);
+    color: var(--color-button-nav-text);
   }
 
   .sidenav-item--active {
     border: 1px solid var(--color-border-brand);
-    background-image: var(--color-gradient-button-cta);
-    color: var(--color-button-hover-text);
-    box-shadow: var(--shadow-cta-soft);
+    background-color: var(--color-surface-base);
+    color: var(--color-button-nav-text);
+    box-shadow: var(--shadow-input);
+  }
+
+  .sidenav-shell .sidenav-item--active {
+    background-image: none;
   }
 
   .sidenav-item__icon {
-    border-color: var(--color-border-brand);
+    --color-accent-pale: var(--raw-surface-panel);
+    border-color: var(--color-border-subtle);
     background-color: var(--color-accent-pale);
-    color: var(--surface-utility-2);
+    color: var(--color-text-primary-card-title);
   }
 
   .sidenav-item--active .sidenav-item__icon {
-    border-color: var(--color-border-brand);
-    background-color: var(--color-surface-base);
-    color: var(--surface-utility-2);
+    --color-accent-pale: var(--raw-surface-panel);
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary-card-title);
   }
 
   .sidenav-group {
@@ -2164,7 +2416,7 @@
 
   .sidenav-subitem {
     background-color: transparent;
-    color: var(--color-button-sidenav-text);
+    color: var(--color-button-nav-text);
     transition:
       background-color 0.2s,
       color 0.2s,
@@ -2178,18 +2430,20 @@
 
   .sidenav-subitem--active {
     background-image: var(--color-gradient-home-muted);
-    color: var(--color-button-sidenav-text);
+    color: var(--color-button-nav-text);
     box-shadow: var(--shadow-brand-soft);
   }
 
   .sidenav-subitem__icon {
+    --color-accent-pale: var(--raw-surface-panel);
     background-color: var(--color-accent-pale);
-    color: var(--surface-utility-2);
+    color: var(--color-text-primary-card-title);
   }
 
   .sidenav-subitem--active .sidenav-subitem__icon {
-    background-color: var(--color-surface-base);
-    color: var(--surface-utility-2);
+    --color-accent-pale: var(--raw-surface-panel);
+    background-color: var(--color-accent-pale);
+    color: var(--color-text-primary-card-title);
   }
 
   .sidenav-more-panel {
@@ -2203,11 +2457,12 @@
   }
 
   .sidenav-shell .sidenav-live-chat {
-    --color-button-sidenav-text: var(--color-text-card-text);
-    border: 1px solid var(--color-accent-glow);
-    background-image: var(--color-gradient-home-cta);
-    color: var(--color-button-sidenav-text);
-    box-shadow: var(--shadow-brand-card);
+    --color-button-nav-text: var(--mono-0);
+    border: 1px solid var(--color-sticky-nav);
+    background-color: var(--color-sticky-nav);
+    background-image: none;
+    color: var(--color-button-nav-text);
+    box-shadow: var(--nav-top-pill-shadow);
   }
 
   .sidenav-shell .sidenav-live-chat:hover {
@@ -2215,9 +2470,9 @@
   }
 
   .sidenav-secondary-action {
-    border: 1px solid var(--color-border-brand);
-    background-color: var(--color-button-nav);
-    color: var(--color-button-sidenav-text);
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-base);
+    color: var(--color-text-primary-card-title);
     box-shadow: var(--shadow-input);
     transition:
       background-color 0.2s,
@@ -2226,7 +2481,7 @@
 
   .sidenav-secondary-action:hover {
     background-color: var(--color-surface-subtle);
-    color: var(--color-text-primary);
+    color: var(--color-text-primary-card-title);
   }
 
   .type-heading {
@@ -2237,47 +2492,54 @@
     letter-spacing: var(--tracking-wide);
   }
 
-  /** Desktop main nav: current page (Web - Sidenav active row semantics) */
+  /** Desktop main nav: current page (Web - Sidenav active row — `--color-button-hover`) */
   .nav-desktop-link-active {
     border: 1px solid var(--color-border-brand);
-    background-image: var(--color-gradient-button-cta);
+    background-color: var(--color-button-hover);
     color: var(--color-button-hover-text);
     box-shadow: var(--shadow-cta-soft);
+  }
+
+  .top-nav-shell .nav-desktop-link-active {
+    --color-button-hover-text: var(--color-text-cta-inverse);
+    background-color: transparent;
+    background-image: var(--color-gradient-button-cta);
   }
 
   /**
    * Top nav + account tabs — Web - Sidenav semantics, Caelo values scoped (§13.11).
    */
   .top-nav-shell {
-    --color-button-sidenav-text: var(--color-text-primary-card-title);
-    --color-button-hover-text: var(--color-text-cta-inverse);
+    --color-button-nav-text: var(--color-text-primary-card-title);
+    --color-button-hover: var(--color-surface-accent-hover);
+    --color-button-hover-text: var(--color-text-card-text);
     background-color: var(--color-surface-base);
     border-bottom: 1px solid var(--color-border-subtle);
   }
 
   .top-nav-link {
-    color: var(--color-button-sidenav-text);
+    color: var(--color-button-nav-text);
   }
 
   .top-nav-link:hover:not(.nav-desktop-link-active) {
-    background-color: var(--color-surface-accent-hover);
-    color: var(--color-text-card-text);
+    background-color: var(--color-button-hover);
+    color: var(--color-button-hover-text);
     box-shadow: var(--shadow-nav-top);
   }
 
   .top-nav-more-trigger {
-    color: var(--color-button-sidenav-text);
+    color: var(--color-button-nav-text);
   }
 
   .top-nav-more-trigger:hover:not(.nav-desktop-link-active) {
-    background-color: var(--color-surface-accent-hover);
-    color: var(--color-text-card-text);
+    background-color: var(--color-button-hover);
+    color: var(--color-button-hover-text);
     box-shadow: var(--shadow-nav-top);
   }
 
   .top-nav-more-menu {
     --color-button-nav: var(--color-surface-base);
-    --color-button-sidenav-text: var(--color-text-secondary);
+    --color-button-nav-text: var(--color-text-secondary);
     --color-button-hover: var(--color-accent-pale);
     --color-button-hover-text: var(--color-text-primary-card-title);
     border: 1px solid var(--color-border-subtle);
@@ -2285,7 +2547,7 @@
   }
 
   .top-nav-more-item {
-    color: var(--color-button-sidenav-text);
+    color: var(--color-button-nav-text);
   }
 
   .top-nav-more-item:hover {

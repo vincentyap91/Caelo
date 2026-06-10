@@ -22,7 +22,7 @@ const TABS = [
     { id: 'home', label: 'Home', page: 'home', icon: House },
     { id: 'promotion', label: 'Promotion', page: 'promotion', icon: Gift },
     { id: 'deposit', label: 'Deposit', page: 'deposit', icon: Plus },
-    { id: 'contact', label: 'Contact', action: 'liveChat', icon: Headset },
+    { id: 'contact', label: 'Livechat', action: 'liveChat', icon: Headset },
     { id: 'account', label: 'Account', page: 'profile', icon: UserCircle2 },
 ];
 
@@ -32,7 +32,7 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
     return (
         <nav
             aria-label="Home quick navigation"
-            className="mobile-home-bottom-nav fixed inset-x-0 bottom-0 z-[85] bg-[var(--color-primary)] shadow-[var(--shadow-nav-dropdown)] transition duration-200 md:hidden"
+            className="mobile-home-bottom-nav fixed inset-x-0 bottom-0 z-[85] bg-[var(--color-sticky-nav)] shadow-[var(--shadow-nav-dropdown)] transition duration-200 md:hidden"
         >
             <div className="mx-auto flex w-full max-w-screen-2xl items-stretch pb-[max(0.375rem,env(safe-area-inset-bottom,0px))] pt-1">
                 {TABS.map(({ id, label, page, action, icon: Icon }) => {
@@ -47,13 +47,13 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('deposit')}
-                            className="btn-theme-cta-soft absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-[var(--color-border-brand)] text-[var(--color-text-cta-inverse)] transition hover:brightness-105 active:scale-95"
+                            className="btn-theme-cta-soft absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-[var(--color-sticky-nav)] text-[var(--color-text-cta-inverse)] transition hover:brightness-105 active:scale-95"
                             aria-label="Deposit"
                         >
                             <Icon size={30} strokeWidth={3} />
                         </button>
                         <div className="mt-auto flex flex-col items-center pb-1">
-                            <span className={`text-[10px] font-medium tracking-tight ${activePage === 'deposit' ? 'text-[var(--color-accent)]' : 'text-[var(--color-text-card-text)]/60'
+                            <span className={`text-[10px] font-medium tracking-tight ${activePage === 'deposit' ? 'text-[var(--color-text-sticky-nav-active)]' : 'text-[var(--color-text-sticky-nav-text)]'
                                 }`}>
                                 {label}
                             </span>
@@ -80,8 +80,8 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                                 }
                             }}
                             className={`flex min-h-11 min-w-0 flex-1 flex-col items-center justify-center gap-1 px-0.5 py-1.5 transition select-none active:opacity-85 ${isActive
-                                ? 'text-[var(--color-accent)]'
-                                : 'text-[var(--color-text-card-text)]/60'
+                                ? 'text-[var(--color-text-sticky-nav-active)]'
+                                : 'text-[var(--color-text-sticky-nav-text)]'
                                 }`}
                         >
                             <div className="relative">

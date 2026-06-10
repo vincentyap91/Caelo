@@ -600,7 +600,7 @@
   --color-button-pagination-disabled:        var(--mono-666);
   --color-button-referral-cta:               var(--support-warning);
   --color-button-referral-cta-text:          var(--accent-brown-800);
-  --color-button-sidenav-text:               var(--brand-500);
+  --color-button-nav-text:                   var(--brand-500);
   --color-button-sports:                     var(--raw-surface-sports-button);
   --color-button-tabs:                       var(--mono-660);
   --color-button-tabs-muted:                 var(--mono-800);
@@ -734,12 +734,11 @@
   --color-gradient-referral-deposit:         linear-gradient(90deg, var(--accent-brown-700) 0%, var(--support-danger-maroon) 100%);
   --color-gradient-referral-icon:            linear-gradient(90deg, var(--accent-340) 0%, var(--accent-310) 100%);
   --color-gradient-referral-panel:           linear-gradient(180deg, var(--raw-gradient-register-page-start) 0%, var(--raw-gradient-register-page-mid) 45%, var(--raw-gradient-register-page-end) 100%);
-  --color-gradient-side-menu-brand:          linear-gradient(180deg, var(--raw-gradient-vip-nav-pill-start) 0%, var(--raw-gradient-vip-nav-pill-end) 100%);
-  --color-gradient-side-menu-warm:           linear-gradient(90deg, var(--accent-brown-800) 0%, var(--accent-brown-700) 100%);
-  --color-gradient-sidenav-daily-bonus:      linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);
-  --color-gradient-sidenav-highlight:        linear-gradient(90deg, var(--accent-340) 0%, var(--accent-310) 100%);
-  --color-gradient-sidenav-info:             linear-gradient(90deg, var(--support-navy-deep) 0%, var(--support-navy-mid) 100%);
-  --color-gradient-sidenav-scrim:            linear-gradient(90deg, var(--raw-scrim-game-launch-start) 0%, var(--raw-scrim-game-launch-mid) 45%, var(--raw-scrim-game-launch-end-soft) 100%);
+  --color-gradient-menu-brand:               linear-gradient(180deg, var(--raw-gradient-vip-nav-pill-start) 0%, var(--raw-gradient-vip-nav-pill-end) 100%);
+  --color-gradient-menu-warm:                linear-gradient(90deg, var(--accent-brown-800) 0%, var(--accent-brown-700) 100%);
+  --color-gradient-nav-daily-bonus:          linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);
+  --color-gradient-nav-highlight:            linear-gradient(90deg, var(--accent-340) 0%, var(--accent-310) 100%);
+  --color-gradient-nav-info:                 linear-gradient(90deg, var(--support-navy-deep) 0%, var(--support-navy-mid) 100%);
   --color-gradient-slot-panel:               linear-gradient(90deg, var(--mono-750) 0%, var(--mono-750) 100%);
   --color-gradient-sports-button:            linear-gradient(90deg, var(--raw-gradient-sports-button-start) 0%, var(--raw-gradient-sports-button-end) 100%);
   --color-gradient-sports-card:              linear-gradient(90deg, var(--raw-gradient-sports-card-start) 0%, var(--raw-gradient-sports-card-end) 100%);
@@ -869,7 +868,6 @@
   --color-gradient-referral-commission: linear-gradient(180deg, var(--raw-gradient-promo-card-desktop-start) 0%, var(--raw-gradient-promo-card-desktop-end) 100%);
   --color-gradient-referral-icon: radial-gradient(circle at top left, var(--raw-scrim-white-55) 0%, transparent 48%), linear-gradient(135deg, var(--raw-scrim-brand-cyan-12) 0%, transparent 58%);
   --color-gradient-referral-deposit: linear-gradient(180deg, transparent 0%, var(--raw-scrim-brand-deep-08) 100%);
-  --color-gradient-sidenav-highlight: linear-gradient(180deg, transparent 0%, var(--raw-scrim-brand-mid-06) 100%);
   --raw-gradient-app-download-phone-start: #48c8f0;
   --raw-gradient-app-download-phone-end: #006eb5;
   --raw-gradient-app-download-section-start: #edf8ff;
