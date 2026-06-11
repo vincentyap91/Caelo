@@ -151,6 +151,7 @@ function MobileCategoryBrowse({ onNavigate, state }) {
                     {previewGames.map((game) => (
                         <TopGameCard
                             key={`${game.name}-${game.provider}-${activeId}`}
+                            className="category-game-card"
                             game={enrichGameRtp(game)}
                             showRtp
                             onNavigate={onNavigate}
@@ -183,7 +184,7 @@ function DesktopCategoryBrowse({ onNavigate, state }) {
     }, [filteredGames, searchQuery]);
 
     return (
-        <section className="w-full pt-4">
+        <section className="home-category-games-section w-full pt-4">
             <SectionHeader
                 title="Category Games"
                 icon={<LayoutGrid size={22} className="text-[var(--color-button-hover)]" strokeWidth={2.25} />}
@@ -220,6 +221,7 @@ function DesktopCategoryBrowse({ onNavigate, state }) {
                 {previewGames.map((game) => (
                     <TopGameCard
                         key={`${game.name}-${game.provider}-${activeId}-desktop`}
+                        className="category-game-card"
                         game={enrichGameRtp(game)}
                         showRtp
                         onNavigate={onNavigate}

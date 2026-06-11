@@ -1095,6 +1095,87 @@
     --color-border-brand: var(--raw-border-accent);
   }
 
+  /**
+   * Web_Home (After Login) - Cam88 (838:19383)
+   * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
+   *
+   * Section titles (Live Transactions 838:19394, Hot Providers 838:19887, SectionHeader rows):
+   * Cam88 color/text/third-title → --color-text-third-title (Caelo navy via --color-primary).
+   * Recent Big Wins keeps split title per VARIABLE-RULES §13.11 (974:29007).
+   */
+  .home-page .section-header-theme,
+  .home-page .home-section-title {
+    --color-text-third-title: var(--color-primary);
+    --color-border-brand: var(--color-primary);
+  }
+
+  .home-page .home-features-section {
+    --color-surface-cool-light: var(--raw-brand-soft);
+    --color-button-hover: var(--brand-630);
+  }
+
+  .home-page .home-vip-tier-section {
+    --color-button-hover: var(--brand-630);
+  }
+
+  /* Live Transactions + Recent Big Wins shells — borderless Caelo panels (§13.11). */
+  .home-page .home-live-activity-card {
+    --color-gradient-home-dashboard: linear-gradient(
+      180deg,
+      var(--color-surface-base) 0%,
+      var(--color-surface-subtle) 45%,
+      color-mix(in srgb, var(--color-accent-pale) 50%, transparent) 100%
+    );
+  }
+
+  .home-page .live-transactions-panel {
+    --color-surface-cool-light: var(--raw-brand-soft);
+    --color-button-hover: var(--brand-630);
+  }
+
+  /**
+   * Homepage referral hub — Cam88 Team / Referral (838:20142)
+   * §13.11: Cam88 semantic names in JSX; Caelo screenshot palette via scoped aliases.
+   *
+   * | Cam88 semantic | Caelo screenshot value |
+   * |--color-surface-referral-card| --raw-surface-referral-hub (#b0baed) |
+   * |--color-border-brand| soft card edge (#cceeff) |
+   * |--color-text-sub-title| charcoal title (--color-text-tertiary) |
+   * |--color-text-card-text| white subtitle + button labels |
+   * |--color-text-primary| charcoal link label + URL |
+   * |--color-surface-referral-input| #f1f1f1 off-white field |
+   * |--color-text-tertiary| dark copy icon |
+   * |--color-button-referral-cta| navy primary (Downlines / More Info) |
+   * |--color-button-referral-cta (share)| vibrant red (--color-danger) |
+   */
+  .home-page .referral-banner-section .referral-hub-card {
+    --color-border-brand: var(--raw-brand-soft-border);
+    --color-surface-referral-input: #f1f1f1;
+    --color-text-sub-title: var(--color-text-tertiary);
+    --color-text-primary: var(--color-text-tertiary);
+    --color-button-referral-cta: var(--color-primary);
+    --color-button-referral-cta-text: var(--color-text-card-text);
+  }
+
+  .home-page .referral-banner-section .referral-hub-card__link-field {
+    --color-border-brand: var(--raw-border-brand);
+  }
+
+  .home-page .referral-hub-card__btn {
+    background: var(--color-button-referral-cta);
+    color: var(--color-button-referral-cta-text);
+  }
+
+  .home-page .referral-hub-card__btn-share {
+    --color-button-referral-cta: var(--color-danger);
+    --color-danger: var(--support-error-warm);
+    box-shadow: var(--shadow-hot);
+  }
+
+  .home-page .referral-hub-card__btn-cta {
+    box-shadow: var(--shadow-accent);
+  }
+
   .recent-payout-carousel-wrap {
     position: relative;
     overflow: hidden;
@@ -3326,6 +3407,16 @@
   }
 
   /**
+   * Cashier primary CTA (Next / Confirm & Pay / Confirm & Withdraw) — Web_User Dashboard - 3
+   * §13.11: borderless gold gradient; scoped transparent --color-border-brand (not global btn-theme-cta).
+   */
+  .cashier-flow-page .btn-theme-cta,
+  .cashier-payment-confirm-modal .btn-theme-cta {
+    --color-border-brand: transparent;
+    border-color: var(--color-border-brand);
+  }
+
+  /**
    * Deposit / Withdrawal tabs — Web_User Dashboard - 1/2 (957:15602).
    * Semantic names only; Caelo values preserved via §13.11 scoped aliases on this block.
    */
@@ -3405,30 +3496,102 @@
   }
 
   /**
-   * Deposit step 1 — Web_User Dashboard (957:15617). Semantic names; Caelo values via §13.11.
+   * Cashier steps — Web_User Dashboard - 3 (deposit/withdrawal step 2 & 3) + step 1 (957:15617).
+   * §13.11: Cam88 semantic names in JSX; Caelo cashier blues via scoped aliases.
    */
-  .cashier-deposit-step1 {
+  .cashier-deposit-step1,
+  .cashier-flow-step {
     --color-border-subtle: var(--cashier-border);
     --color-border-brand: var(--cashier-accent-500);
     --color-text-primary-card-title: var(--cashier-brand);
     --color-text-muted: var(--cashier-text-muted);
     --color-text-small: var(--cashier-text-muted);
     --color-accent-pale: var(--cashier-accent-50);
+    --color-accent-glow: var(--cashier-accent-100);
     --color-button-hover: var(--cashier-accent-600);
     --color-surface-accent-hover: var(--cashier-accent-600);
+    --color-surface-cool-light: var(--cashier-accent-100);
+    --color-surface-input-light: var(--cashier-accent-100);
+    --color-button-cta: var(--cashier-accent-500);
+    --color-button-cta-primary: var(--color-text-card-text);
+    --color-surface-subtle: var(--cashier-accent-50);
+    --color-surface-elevated: var(--cashier-accent-50);
   }
 
+  .cashier-flow-step .cashier-step-badge,
   .cashier-deposit-step1 .cashier-step-badge {
     background: var(--color-surface-accent-hover);
     color: var(--color-text-card-text);
   }
 
+  .cashier-flow-step .cashier-section-title,
   .cashier-deposit-step1 .cashier-section-title {
     color: var(--color-text-primary-card-title);
   }
 
+  .cashier-flow-step .cashier-section-subtitle,
   .cashier-deposit-step1 .cashier-section-subtitle {
     color: var(--color-text-muted);
+  }
+
+  .cashier-flow-step .cashier-summary-card__header {
+    border-color: var(--color-border-subtle);
+    background: var(--color-surface-subtle);
+  }
+
+  .cashier-flow-step .cashier-summary-card__header-label {
+    color: var(--color-text-muted);
+  }
+
+  .cashier-flow-step .cashier-summary-card__row-label {
+    color: var(--color-text-muted);
+  }
+
+  .cashier-flow-step .cashier-summary-card__row-value {
+    color: var(--color-text-primary);
+  }
+
+  .cashier-flow-step .cashier-summary-card__total {
+    border-color: var(--color-border-subtle);
+    background: var(--color-accent-pale);
+  }
+
+  .cashier-flow-step .cashier-summary-card__total-label {
+    color: var(--color-text-primary);
+  }
+
+  .cashier-flow-step .cashier-summary-card__total-value {
+    color: var(--color-button-hover);
+  }
+
+  .cashier-flow-step .cashier-preset-chip.is-active {
+    border-color: var(--color-button-cta);
+    background: var(--color-button-cta);
+    color: var(--color-button-cta-primary);
+  }
+
+  .cashier-flow-step .cashier-preset-chip:not(.is-active) {
+    border-color: var(--color-border-subtle);
+    background: var(--color-surface-base);
+    color: var(--color-button-hover);
+  }
+
+  .cashier-flow-step .cashier-preset-chip:not(.is-active):hover {
+    background: var(--color-accent-pale);
+  }
+
+  .cashier-flow-step .cashier-channel-card.is-selected {
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
+  }
+
+  .cashier-flow-step .cashier-channel-card:not(.is-selected) {
+    border-color: var(--color-border-subtle);
+    background: var(--color-surface-base);
+  }
+
+  .cashier-flow-step .cashier-channel-card:not(.is-selected):hover {
+    border-color: var(--color-accent-glow);
   }
 
   .cashier-deposit-step1 .cashier-method-section {
@@ -3892,18 +4055,34 @@
    * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
    *
    * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/surface/base → sidebar shell + menu cards (white)
    * color/surface/card-light → account header + VIP card shell (was --color-surface-base)
-   * color/text/primary → username, promo labels, progress % (unchanged)
-   * color/text/small → verified badge, email, progress caption (was --color-text-muted / secondary)
+   * color/surface/cool-light → section icon tile bg (was --color-accent-100 #dbeafe)
+   * color/accent/glow → sidebar edge + edit ring (was --color-accent-100)
+   * color/accent/pale → active/hover sub-link bg (was --color-accent-50 #eff6ff)
+   * color/border/subtle → menu card outline (was --color-border-default)
+   * color/border/brand → active sub-link rail (was --color-accent-500 #3b82f6)
+   * color/text/primary → sidebar base text (was --color-text-strong)
+   * color/text/primary-card-title → username + section titles (was --color-text-brand #123b94)
+   * color/text/small → phone, guest copy, inactive sub-links (was --color-text-muted)
+   * color/text/muted → chevrons + inactive icons (was --color-text-soft)
+   * color/button/hover → icons + active sub-link text (was --color-accent-600 #2563eb)
    * color/progress/bar/bg → track (was --color-accent-glow / pale blue)
    * color/progress/bar/fill → fill (was --color-primary navy; not Cam88 green)
    * color/text/title → promo name + rollover values (was --color-primary / base-ink)
    * color/surface/elevated → promo rollover inner card (was --color-surface-cool-light)
    */
+  .account-layout,
   .profile-page,
   .user-dashboard-sidebar {
+    --color-accent-glow: #dbeafe;
+    --color-surface-cool-light: #dbeafe;
+    --color-accent-pale: #eff6ff;
+    --color-border-brand: #3b82f6;
+    --color-button-hover: #2563eb;
     --color-surface-card-light: var(--color-surface-base);
     --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-fill: var(--color-primary);
     --color-text-small: var(--color-text-secondary);
   }
 

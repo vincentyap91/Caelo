@@ -419,7 +419,7 @@ export default function DepositPage({ onNavigate }) {
                                 type="checkbox"
                                 checked={claimBonus}
                                 onChange={(e) => setClaimBonus(e.target.checked)}
-                                className="h-5 w-5 rounded border-[var(--color-border-subtle)] text-[var(--color-button-hover)] focus:ring-[var(--color-accent)]"
+                                className="h-5 w-5 rounded border-[var(--color-border-subtle)] text-[var(--color-button-hover)] focus:ring-[var(--color-border-brand)]"
                             />
                             <span className="text-sm font-semibold text-[var(--color-text-primary)]">Do you want to claim bonus?</span>
                         </label>
@@ -433,7 +433,7 @@ export default function DepositPage({ onNavigate }) {
                                         onClick={() => setBonusDropdownOpen((o) => !o)}
                                         className="flex h-12 w-full items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                     >
-                                        <span className={selectedBonus ? 'font-medium text-[var(--color-text-primary)]' : 'text-[var(--color-text-soft)]'}>
+                                        <span className={selectedBonus ? 'font-medium text-[var(--color-text-primary)]' : 'text-[var(--color-text-muted)]'}>
                                             {selectedBonus ? BONUS_OPTIONS.find((b) => b.id === selectedBonus)?.label ?? 'Select Bonus' : 'Select Bonus'}
                                         </span>
                                         <ChevronDown size={18} className={`text-[var(--color-text-muted)] transition ${bonusDropdownOpen ? 'rotate-180' : ''}`} />
@@ -518,14 +518,14 @@ export default function DepositPage({ onNavigate }) {
 
                 {/* Step 2: Bank & Amount (combined) */}
                 {step === 2 && (
-                    <div className="space-y-6 p-5 md:p-6">
+                    <div className="cashier-flow-step space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
                             <span className="cashier-step-badge">2</span>
                             <div>
                                 <h2 className="cashier-section-title text-base md:text-lg">
                                     {isNormal ? 'Bank Account & Amount' : 'Bank, Provider & Amount'}
                                 </h2>
-                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
+                                <p className="cashier-section-subtitle text-xs leading-snug md:text-sm">
                                     {isNormal ? 'Choose your bank account and enter the amount.' : 'Choose your bank, provider and enter the amount.'}
                                 </p>
                             </div>
@@ -553,7 +553,7 @@ export default function DepositPage({ onNavigate }) {
                                                     <span className="font-medium text-[var(--color-text-primary)]">{selectedNormalAccount.label}</span>
                                                 </span>
                                             ) : (
-                                                <span className="text-[var(--color-text-soft)]">Select Bank Account</span>
+                                                <span className="text-[var(--color-text-muted)]">Select Bank Account</span>
                                             )}
                                             <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${normalBankDropdownOpen ? 'rotate-180' : ''}`} />
                                         </button>
@@ -624,7 +624,7 @@ export default function DepositPage({ onNavigate }) {
                                                     <span className="font-medium text-[var(--color-text-primary)]">{selectedBankLabel}</span>
                                                 </span>
                                             ) : (
-                                                <span className="text-[var(--color-text-soft)]">Select Bank Account</span>
+                                                <span className="text-[var(--color-text-muted)]">Select Bank Account</span>
                                             )}
                                             <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${bankDropdownOpen ? 'rotate-180' : ''}`} />
                                         </button>
@@ -683,10 +683,8 @@ export default function DepositPage({ onNavigate }) {
                                                 type="button"
                                                 disabled={!canSelectChannel}
                                                 onClick={() => canSelectChannel && setSelectedChannel(id)}
-                                                className={`relative flex min-h-[8.5rem] flex-col items-center gap-2 rounded-xl border p-3 text-center transition sm:min-h-0 sm:flex-row sm:items-center sm:gap-4 sm:p-4 sm:text-left ${
-                                                    selectedChannel === id
-                                                        ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)]'
-                                                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent-glow)]'
+                                                className={`cashier-channel-card relative flex min-h-[8.5rem] flex-col items-center gap-2 rounded-xl border p-3 text-center transition sm:min-h-0 sm:flex-row sm:items-center sm:gap-4 sm:p-4 sm:text-left ${
+                                                    selectedChannel === id ? 'is-selected' : ''
                                                 } ${!canSelectChannel ? 'cursor-not-allowed' : ''}`}
                                             >
                                                 {selectedChannel === id && (
@@ -728,7 +726,7 @@ export default function DepositPage({ onNavigate }) {
                                         placeholder="0"
                                         min={minAmount}
                                         max={maxAmount}
-                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)]"
+                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)]"
                                     />
                                 </div>
                                 <div className="flex flex-wrap gap-2">
@@ -739,10 +737,8 @@ export default function DepositPage({ onNavigate }) {
                                                 key={val}
                                                 type="button"
                                                 onClick={() => (isNormal ? setPresetAmount(val) : addPreset(val))}
-                                                className={`rounded-xl border-2 px-4 py-2.5 text-sm font-bold transition ${
-                                                    isActive
-                                                        ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-text-card-text)]'
-                                                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-button-hover)] hover:bg-[var(--color-accent-pale)]'
+                                                className={`cashier-preset-chip rounded-xl border-2 px-4 py-2.5 text-sm font-bold transition ${
+                                                    isActive ? 'is-active' : ''
                                                 }`}
                                             >
                                                 +{val}
@@ -786,7 +782,7 @@ export default function DepositPage({ onNavigate }) {
                                         value={remark}
                                         onChange={(e) => setRemark(e.target.value)}
                                         placeholder="Optional remark"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
                                     />
                                 </div>
                             </>
@@ -815,33 +811,33 @@ export default function DepositPage({ onNavigate }) {
 
                 {/* Step 3: Transaction Summary */}
                 {step === 3 && (
-                    <div className="space-y-6 p-5 md:p-6">
+                    <div className="cashier-flow-step space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
                             <span className="cashier-step-badge">3</span>
                             <div>
                                 <h2 className="cashier-section-title text-base md:text-lg">
                                     {isNormal ? 'Confirm & Submit' : 'Transaction Summary'}
                                 </h2>
-                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
+                                <p className="cashier-section-subtitle text-xs leading-snug md:text-sm">
                                     {isNormal ? 'Review your deposit details and submit.' : 'Review your deposit details before confirming.'}
                                 </p>
                             </div>
                         </div>
 
-                        <div className="overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
-                            <div className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-5 py-3">
-                                <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Payment Details</p>
+                        <div className="cashier-summary-card overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
+                            <div className="cashier-summary-card__header border-b px-5 py-3">
+                                <p className="cashier-summary-card__header-label text-xs font-bold uppercase tracking-wide">Payment Details</p>
                             </div>
                             <div className="divide-y divide-[var(--color-border-subtle)]">
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                    <span className="text-sm font-medium text-[var(--color-text-muted)]">Deposit Type</span>
-                                    <span className="text-sm font-semibold text-[var(--color-text-primary)]">
+                                    <span className="cashier-summary-card__row-label text-sm font-medium">Deposit Type</span>
+                                    <span className="cashier-summary-card__row-value text-sm font-semibold">
                                         {reloadSelection === 'bank' ? 'Bank' : reloadSelection === 'ewallet' ? 'E-Wallet' : '—'}
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                    <span className="text-sm font-medium text-[var(--color-text-muted)]">Deposit Option</span>
-                                    <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
+                                    <span className="cashier-summary-card__row-label text-sm font-medium">Deposit Option</span>
+                                    <span className="cashier-summary-card__row-value flex items-center gap-2.5 text-sm font-semibold">
                                         {reloadSelection === 'bank' && selectedReloadBankOption?.image && (
                                             <img src={selectedReloadBankOption.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
@@ -856,8 +852,8 @@ export default function DepositPage({ onNavigate }) {
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                    <span className="text-sm font-medium text-[var(--color-text-muted)]">{isNormal ? 'Bank Account' : 'Bank'}</span>
-                                    <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
+                                    <span className="cashier-summary-card__row-label text-sm font-medium">{isNormal ? 'Bank Account' : 'Bank'}</span>
+                                    <span className="cashier-summary-card__row-value flex items-center gap-2.5 text-sm font-semibold">
                                         {isNormal && selectedNormalAccount?.image && (
                                             <img src={selectedNormalAccount.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
@@ -876,8 +872,8 @@ export default function DepositPage({ onNavigate }) {
                                 </div>
                                 {!isNormal && (
                                     <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                        <span className="text-sm font-medium text-[var(--color-text-muted)]">Channel</span>
-                                        <span className="text-right text-sm font-semibold text-[var(--color-text-primary)]">
+                                        <span className="cashier-summary-card__row-label text-sm font-medium">Channel</span>
+                                        <span className="cashier-summary-card__row-value text-right text-sm font-semibold">
                                             {selectedChannelLabel}
                                             <span className="block text-xs font-normal text-[var(--color-text-muted)]">{selectedChannelDesc}</span>
                                         </span>
@@ -885,7 +881,7 @@ export default function DepositPage({ onNavigate }) {
                                 )}
                                 {claimBonus && selectedBonus && (
                                     <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                        <span className="text-sm font-medium text-[var(--color-text-muted)]">Bonus</span>
+                                        <span className="cashier-summary-card__row-label text-sm font-medium">Bonus</span>
                                         <span className="text-sm font-semibold text-[var(--color-success)]">
                                             {BONUS_OPTIONS.find((b) => b.id === selectedBonus)?.label ?? 'Selected'}
                                         </span>
@@ -893,13 +889,13 @@ export default function DepositPage({ onNavigate }) {
                                 )}
                                 {isNormal && remark && (
                                     <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                        <span className="text-sm font-medium text-[var(--color-text-muted)]">Remark</span>
-                                        <span className="text-sm font-semibold text-[var(--color-text-primary)]">{remark}</span>
+                                        <span className="cashier-summary-card__row-label text-sm font-medium">Remark</span>
+                                        <span className="cashier-summary-card__row-value text-sm font-semibold">{remark}</span>
                                     </div>
                                 )}
                                 {isNormal && uploadedReceipt && receiptPreviewUrl && (
                                     <div className="px-5 py-4">
-                                        <span className="mb-3 block text-sm font-medium text-[var(--color-text-muted)]">Upload receipt</span>
+                                        <span className="cashier-summary-card__row-label mb-3 block text-sm font-medium">Upload receipt</span>
                                         <ReceiptFileCard
                                             file={uploadedReceipt}
                                             previewUrl={receiptPreviewUrl}
@@ -910,10 +906,10 @@ export default function DepositPage({ onNavigate }) {
                                     </div>
                                 )}
                             </div>
-                            <div className="border-t-2 border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] px-5 py-4">
+                            <div className="cashier-summary-card__total border-t-2 px-5 py-4">
                                 <div className="flex items-center justify-between gap-4">
-                                    <span className="text-sm font-bold text-[var(--color-text-primary)]">Total Amount</span>
-                                    <span className="text-xl font-bold text-[var(--color-button-hover)]">
+                                    <span className="cashier-summary-card__total-label text-sm font-bold">Total Amount</span>
+                                    <span className="cashier-summary-card__total-value text-xl font-bold">
                                         RM {amountNum.toLocaleString()}
                                     </span>
                                 </div>

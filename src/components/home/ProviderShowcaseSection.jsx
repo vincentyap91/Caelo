@@ -42,8 +42,8 @@ export default function ProviderShowcaseSection({ onSlotsProviderSelect, onNavig
     const trackItems = [...providers, ...providers];
 
     return (
-        <section aria-label="Hot providers" className="w-full pt-4">
-            <h2 className="mb-4 text-base font-bold tracking-tight text-[var(--color-primary)] md:text-lg">
+        <section aria-label="Hot providers" className="home-hot-providers-section w-full pt-4">
+            <h2 className="home-section-title mb-4 text-base font-bold tracking-tight text-[var(--color-text-third-title)] md:text-lg">
                 Hot Providers
             </h2>
 

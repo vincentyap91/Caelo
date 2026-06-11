@@ -249,7 +249,8 @@
   --raw-gradient-register-panel-mid: #333333;
   --raw-gradient-register-panel-end: #3e3e3e;
   --raw-gradient-promo-card-start: #e9f3fc;
-  --raw-gradient-promo-card-end: #b0baed;
+  --raw-surface-referral-hub: #b0baed;
+  --raw-gradient-promo-card-end: var(--raw-surface-referral-hub);
   --raw-gradient-promo-card-desktop-start: #e9eff4;
   --raw-gradient-promo-card-desktop-end: #99a4b0;
   --raw-gradient-app-download-phone-start: #4bc3ef;
@@ -956,4 +957,7 @@
   /* Game card RTP — Cam88 semantic names; same resolved colors as pre-migration (§13.11) */
   --color-surface-rtp-card: var(--color-primary);
   --color-surface-rtp-secondary-card-text: var(--mono-0);
+
+  /* Homepage referral hub — Cam88 color/surface/referral-card; Caelo lavender panel */
+  --color-surface-referral-card: var(--raw-surface-referral-hub);
 }

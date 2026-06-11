@@ -9,7 +9,7 @@ export default function TopGames({ onNavigate }) {
     const visibleGames = TOP_GAMES.slice(0, TOP_GAMES_DEFAULT_VISIBLE);
 
     return (
-        <section className="w-full pt-4">
+        <section className="home-top-games-section w-full pt-4">
             <SectionHeader
                 title="Top Games"
                 icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}

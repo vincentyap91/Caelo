@@ -106,7 +106,7 @@ export default function LiveTransactionsPanel() {
     }, [filter]);
 
     return (
-        <div className="flex w-full min-w-0 flex-col">
+        <div className="live-transactions-panel flex w-full min-w-0 flex-col">
             <div className="shrink-0">
                 <SectionHeader
                     title="Live Transactions"

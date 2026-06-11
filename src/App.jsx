@@ -579,28 +579,30 @@ function AppInner() {
         <>
           <HeroSection />
 
-          <MobileHomeCategoryGames onNavigate={handleNavigate} variant="mobile" />
+          <div className={authUser ? 'home-page home-page--logged-in' : 'home-page'}>
+            <MobileHomeCategoryGames onNavigate={handleNavigate} variant="mobile" />
 
-          <div className="mx-auto hidden w-full max-w-screen-2xl flex-col gap-8 px-4 pb-10 md:flex md:px-8">
-            <FeaturesRow />
-            <GameCategories onNavigate={handleNavigate} />
-            <TopGames onNavigate={handleNavigate} />
-          </div>
+            <div className="mx-auto hidden w-full max-w-screen-2xl flex-col gap-8 px-4 pb-10 md:flex md:px-8">
+              <FeaturesRow />
+              <GameCategories onNavigate={handleNavigate} />
+              <TopGames onNavigate={handleNavigate} />
+            </div>
 
-          <div className="mx-auto flex w-full max-w-screen-2xl max-md:pb-24 flex-col gap-8 px-4 pb-10 md:px-8">
-            <VipTier onNavigate={handleNavigate} />
-            <MobileHomeCategoryGames onNavigate={handleNavigate} variant="desktop" />
-            {authUser && <ReferralBannerSection onNavigate={handleNavigate} />}
-            <HomeLiveActivity onNavigate={handleNavigate} />
-            <AppDownload />
-            <ProviderShowcaseSection
-              onSlotsProviderSelect={(menuProvider) => {
-                setSelectedSlotsProviderIdFromMenu(menuProvider?.id ?? null);
-                handleNavigate('slots');
-              }}
-            />
-            <RecentPayoutSection onNavigate={handleNavigate} />
-            <Promos onNavigate={handleNavigate} />
+            <div className="mx-auto flex w-full max-w-screen-2xl max-md:pb-24 flex-col gap-8 px-4 pb-10 md:px-8">
+              <VipTier onNavigate={handleNavigate} />
+              <MobileHomeCategoryGames onNavigate={handleNavigate} variant="desktop" />
+              {authUser && <ReferralBannerSection onNavigate={handleNavigate} />}
+              <HomeLiveActivity onNavigate={handleNavigate} />
+              <AppDownload />
+              <ProviderShowcaseSection
+                onSlotsProviderSelect={(menuProvider) => {
+                  setSelectedSlotsProviderIdFromMenu(menuProvider?.id ?? null);
+                  handleNavigate('slots');
+                }}
+              />
+              <RecentPayoutSection onNavigate={handleNavigate} />
+              <Promos onNavigate={handleNavigate} />
+            </div>
           </div>
 
         </>

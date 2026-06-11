@@ -244,12 +244,12 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
 
                 {/* Step 2: Account info & Amount (combined) */}
                 {step === 2 && (
-                    <div className="space-y-6 p-5 md:p-6">
+                    <div className="cashier-flow-step space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
                             <span className="cashier-step-badge">2</span>
                             <div>
                                 <h2 className="cashier-section-title text-base md:text-lg">Account & Amount</h2>
-                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
+                                <p className="cashier-section-subtitle text-xs leading-snug md:text-sm">
                                     {withdrawalMethod === 'ewallet' ? 'Select E-Wallet, enter phone number and amount.' : 'Enter your bank account details and amount.'}
                                 </p>
                             </div>
@@ -273,7 +273,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                                     </span>
                                                 </span>
                                             ) : (
-                                                <span className="text-[var(--color-text-soft)]">Select E-Wallet</span>
+                                                <span className="text-[var(--color-text-muted)]">Select E-Wallet</span>
                                             )}
                                             <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${ewalletDropdownOpen ? 'rotate-180' : ''}`} />
                                         </button>
@@ -307,7 +307,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         value={phoneNumber}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                         placeholder="Enter your phone number"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
                                     />
                                 </div>
                             </>
@@ -327,7 +327,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                                     <span className="font-medium text-[var(--color-text-primary)]">{selectedBankLabel}</span>
                                                 </span>
                                             ) : (
-                                                <span className="text-[var(--color-text-soft)]">Select Bank</span>
+                                                <span className="text-[var(--color-text-muted)]">Select Bank</span>
                                             )}
                                             <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${bankDropdownOpen ? 'rotate-180' : ''}`} />
                                         </button>
@@ -361,7 +361,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         value={bankAccountName}
                                         onChange={(e) => setBankAccountName(e.target.value)}
                                         placeholder="Enter account holder name"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
                                     />
                                 </div>
                                 <div>
@@ -371,7 +371,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         value={bankAccountNumber}
                                         onChange={(e) => setBankAccountNumber(e.target.value)}
                                         placeholder="Enter account number"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
                                     />
                                 </div>
                             </>
@@ -391,7 +391,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         placeholder="0"
                                         min={minAmount}
                                         max={maxAmount}
-                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)]"
+                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)]"
                                     />
                                 </div>
                                 <div className="flex flex-wrap gap-2">
@@ -402,10 +402,8 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                                 key={val}
                                                 type="button"
                                                 onClick={() => setPresetAmount(val)}
-                                                className={`rounded-xl border-2 px-4 py-2.5 text-sm font-bold transition ${
-                                                    isActive
-                                                        ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-text-card-text)]'
-                                                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-button-hover)] hover:bg-[var(--color-accent-pale)]'
+                                                className={`cashier-preset-chip rounded-xl border-2 px-4 py-2.5 text-sm font-bold transition ${
+                                                    isActive ? 'is-active' : ''
                                                 }`}
                                             >
                                                 +{val}
@@ -451,31 +449,31 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
 
                 {/* Step 3: Transaction Summary */}
                 {step === 3 && (
-                    <div className="space-y-6 p-5 md:p-6">
+                    <div className="cashier-flow-step space-y-6 p-5 md:p-6">
                         <div className="flex items-center gap-3">
                             <span className="cashier-step-badge">3</span>
                             <div>
                                 <h2 className="cashier-section-title text-base md:text-lg">Confirm & Withdraw</h2>
-                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Review your withdrawal details before confirming.</p>
+                                <p className="cashier-section-subtitle text-xs leading-snug md:text-sm">Review your withdrawal details before confirming.</p>
                             </div>
                         </div>
 
-                        <div className="overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
-                            <div className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-5 py-3">
-                                <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Withdrawal Details</p>
+                        <div className="cashier-summary-card overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
+                            <div className="cashier-summary-card__header border-b px-5 py-3">
+                                <p className="cashier-summary-card__header-label text-xs font-bold uppercase tracking-wide">Withdrawal Details</p>
                             </div>
                             <div className="divide-y divide-[var(--color-border-subtle)]">
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                    <span className="text-sm font-medium text-[var(--color-text-muted)]">Method</span>
-                                    <span className="text-sm font-semibold text-[var(--color-text-primary)]">
+                                    <span className="cashier-summary-card__row-label text-sm font-medium">Method</span>
+                                    <span className="cashier-summary-card__row-value text-sm font-semibold">
                                         {withdrawalMethod === 'ewallet' ? 'E-Wallet' : 'Bank Transfer'}
                                     </span>
                                 </div>
                                 {withdrawalMethod === 'ewallet' ? (
                                     <>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                            <span className="text-sm font-medium text-[var(--color-text-muted)]">E-Wallet</span>
-                                            <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
+                                            <span className="cashier-summary-card__row-label text-sm font-medium">E-Wallet</span>
+                                            <span className="cashier-summary-card__row-value flex items-center gap-2.5 text-sm font-semibold">
                                                 {selectedEwalletOption?.image && (
                                                     <img src={selectedEwalletOption.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                                 )}
@@ -483,15 +481,15 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                            <span className="text-sm font-medium text-[var(--color-text-muted)]">Phone Number</span>
-                                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">{phoneNumber}</span>
+                                            <span className="cashier-summary-card__row-label text-sm font-medium">Phone Number</span>
+                                            <span className="cashier-summary-card__row-value text-sm font-semibold">{phoneNumber}</span>
                                         </div>
                                     </>
                                 ) : (
                                     <>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                            <span className="text-sm font-medium text-[var(--color-text-muted)]">Bank</span>
-                                            <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
+                                            <span className="cashier-summary-card__row-label text-sm font-medium">Bank</span>
+                                            <span className="cashier-summary-card__row-value flex items-center gap-2.5 text-sm font-semibold">
                                                 {selectedBank && BANKS.find((b) => b.id === selectedBank)?.image && (
                                                     <img src={BANKS.find((b) => b.id === selectedBank)?.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                                 )}
@@ -499,20 +497,20 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                            <span className="text-sm font-medium text-[var(--color-text-muted)]">Account Name</span>
-                                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">{bankAccountName}</span>
+                                            <span className="cashier-summary-card__row-label text-sm font-medium">Account Name</span>
+                                            <span className="cashier-summary-card__row-value text-sm font-semibold">{bankAccountName}</span>
                                         </div>
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                            <span className="text-sm font-medium text-[var(--color-text-muted)]">Account Number</span>
-                                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">{bankAccountNumber}</span>
+                                            <span className="cashier-summary-card__row-label text-sm font-medium">Account Number</span>
+                                            <span className="cashier-summary-card__row-value text-sm font-semibold">{bankAccountNumber}</span>
                                         </div>
                                     </>
                                 )}
                             </div>
-                            <div className="border-t-2 border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] px-5 py-4">
+                            <div className="cashier-summary-card__total border-t-2 px-5 py-4">
                                 <div className="flex items-center justify-between gap-4">
-                                    <span className="text-sm font-bold text-[var(--color-text-primary)]">Total Amount</span>
-                                    <span className="text-xl font-bold text-[var(--color-button-hover)]">
+                                    <span className="cashier-summary-card__total-label text-sm font-bold">Total Amount</span>
+                                    <span className="cashier-summary-card__total-value text-xl font-bold">
                                         RM {amountNum.toLocaleString()}
                                     </span>
                                 </div>

@@ -52,7 +52,7 @@ export default function VipTier({ onNavigate }) {
     ];
 
     return (
-        <section className="w-full pt-4 relative">
+        <section className="home-vip-tier-section w-full pt-4 relative">
             <SectionHeader
                 title="VIP Group"
                 icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}

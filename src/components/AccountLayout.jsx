@@ -18,14 +18,14 @@ export default function AccountLayout({
 
     return (
         <main
-            className={`w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8${isCashier ? ' account-layout-cashier' : ''}`}
+            className={`account-layout w-full bg-gradient-account-shell pb-16 pt-6 md:pt-8${isCashier ? ' account-layout-cashier' : ''}`}
         >
             <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-5 px-4 md:px-6 xl:px-8">
                 <div className="flex items-center justify-between gap-3 lg:hidden">
                     <button
                         type="button"
                         onClick={() => setMobileSidebarOpen((open) => !open)}
-                        className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-accent-100)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm font-semibold text-[var(--color-accent-600)] shadow-[var(--shadow-subtle)] transition-all hover:bg-[var(--color-accent-50)] hover:shadow"
+                        className="account-layout__menu-trigger inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm font-semibold text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)] transition-all hover:bg-[var(--color-accent-pale)] hover:shadow"
                     >
                         <UserRound size={16} />
                         Account Menu

@@ -85,7 +85,10 @@ export default function RecentBigWinsSection({ onNavigate }) {
                 <SectionHeader
                     title={
                         <>
-                            <span className="text-[var(--color-primary)]">Recent Big Wins</span>
+                            <span className="text-[var(--color-text-primary)]">Recent </span>
+                            <span className="text-[var(--color-text-recent-amount)] recent-big-wins-title-highlight">
+                                Big Wins
+                            </span>
                         </>
                     }
                     icon={<Trophy size={22} className="text-[var(--color-accent)]" fill="currentColor" strokeWidth={1.75} />}

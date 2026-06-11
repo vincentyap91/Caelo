@@ -33,7 +33,7 @@ export default function PaymentConfirmModal({ open, onClose, type = 'deposit' })
                 role="dialog"
                 aria-modal="true"
                 aria-label="Payment submitted"
-                className="relative z-[1] w-full max-w-[420px] rounded-2xl border border-[var(--color-border-brand)] bg-gradient-register-panel px-6 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
+                className="cashier-payment-confirm-modal relative z-[1] w-full max-w-[420px] rounded-2xl border border-[var(--color-border-brand)] bg-gradient-register-panel px-6 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
                 onClick={(e) => e.stopPropagation()}
             >
                 <button

@@ -236,7 +236,7 @@ const features = [
 
 export default function FeaturesRow() {
     return (
-        <section className="w-full pt-8">
+        <section className="home-features-section w-full pt-8">
             <SectionHeader
                 title="Outstanding Functions"
                 icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}
