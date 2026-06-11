@@ -4246,6 +4246,54 @@
       "cssValue": "#ffc83c80"
     },
     {
+      "cssName": "--raw-gradient-countdown-panel-start",
+      "figmaPath": "raw/gradient/countdown/panel/start",
+      "rgba": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0.72
+      },
+      "hex": null,
+      "cssValue": "rgb(255 255 255 / 0.72)"
+    },
+    {
+      "cssName": "--raw-gradient-countdown-panel-end",
+      "figmaPath": "raw/gradient/countdown/panel/end",
+      "rgba": {
+        "r": 1,
+        "g": 0.9725490196078431,
+        "b": 0.9019607843137255,
+        "a": 0.55
+      },
+      "hex": null,
+      "cssValue": "rgb(255 248 230 / 0.55)"
+    },
+    {
+      "cssName": "--raw-gradient-button-chat-start",
+      "figmaPath": "raw/gradient/button/chat/start",
+      "rgba": {
+        "r": 0.23137254901960785,
+        "g": 0.5098039215686274,
+        "b": 0.9647058823529412,
+        "a": 1
+      },
+      "hex": "#3b82f6",
+      "cssValue": "#3b82f6"
+    },
+    {
+      "cssName": "--raw-gradient-button-chat-end",
+      "figmaPath": "raw/gradient/button/chat/end",
+      "rgba": {
+        "r": 0.5450980392156862,
+        "g": 0.3607843137254902,
+        "b": 0.9647058823529412,
+        "a": 1
+      },
+      "hex": "#8b5cf6",
+      "cssValue": "#8b5cf6"
+    },
+    {
       "cssName": "--raw-wash-400",
       "figmaPath": "raw/wash/400",
       "rgba": {
@@ -7726,6 +7774,17 @@
       "resolvedHex": "#1d22251a"
     },
     {
+      "cssName": "--color-effect-shadow-card-soft",
+      "figmaPath": "color/effect/shadow/card/soft",
+      "aliasCss": "--mono-950",
+      "aliasFigma": "mono/950",
+      "aliasCollection": "01 Primitives",
+      "scopes": [
+        "EFFECT_COLOR"
+      ],
+      "resolvedHex": "#0f172a"
+    },
+    {
       "cssName": "--color-icon-action",
       "figmaPath": "color/icon/action",
       "aliasCss": "--mono-580",
@@ -7978,6 +8037,28 @@
       "resolvedHex": "#01206c"
     },
     {
+      "cssName": "--color-nav-border",
+      "figmaPath": "color/nav/border",
+      "aliasCss": "--raw-nav-border",
+      "aliasFigma": "raw/nav/border",
+      "aliasCollection": "01 Primitives",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "resolvedHex": "#ffffff26"
+    },
+    {
+      "cssName": "--color-nav-border-soft",
+      "figmaPath": "color/nav/border/soft",
+      "aliasCss": "--raw-nav-border-soft",
+      "aliasFigma": "raw/nav/border/soft",
+      "aliasCollection": "01 Primitives",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "resolvedHex": "#ffffff1a"
+    },
+    {
       "cssName": "--color-thumbnail",
       "figmaPath": "color/thumbnail",
       "aliasCss": "--mono-950",
@@ -8038,6 +8119,36 @@
       "endFigma": "raw/cta/end",
       "startSemantic": "color/gradient/button/cta/start",
       "endSemantic": "color/gradient/button/cta/end"
+    },
+    {
+      "cssName": "--color-gradient-countdown",
+      "figmaPath": "color/gradient/countdown",
+      "startCss": "--raw-cta-start",
+      "endCss": "--raw-cta-end",
+      "startFigma": "raw/cta/start",
+      "endFigma": "raw/cta/end",
+      "startSemantic": "color/gradient/countdown/start",
+      "endSemantic": "color/gradient/countdown/end"
+    },
+    {
+      "cssName": "--color-gradient-countdown-panel",
+      "figmaPath": "color/gradient/countdown/panel",
+      "startCss": "--raw-gradient-countdown-panel-start",
+      "endCss": "--raw-gradient-countdown-panel-end",
+      "startFigma": "raw/gradient/countdown/panel/start",
+      "endFigma": "raw/gradient/countdown/panel/end",
+      "startSemantic": "color/gradient/countdown/panel/start",
+      "endSemantic": "color/gradient/countdown/panel/end"
+    },
+    {
+      "cssName": "--color-gradient-button-chat",
+      "figmaPath": "color/gradient/button/chat",
+      "startCss": "--raw-gradient-button-chat-start",
+      "endCss": "--raw-gradient-button-chat-end",
+      "startFigma": "raw/gradient/button/chat/start",
+      "endFigma": "raw/gradient/button/chat/end",
+      "startSemantic": "color/gradient/button/chat/start",
+      "endSemantic": "color/gradient/button/chat/end"
     },
     {
       "cssName": "--color-gradient-card-brand",

@@ -6,6 +6,7 @@ import CountdownTimer from './ui/CountdownTimer';
 export default function PromotionDetailModal({
     open,
     onClose,
+    onChatClick,
     bannerImage,
     title,
     category,
@@ -189,6 +190,14 @@ export default function PromotionDetailModal({
                             </div>
                         </div>
                     )}
+
+                    <button
+                        type="button"
+                        onClick={onChatClick}
+                        className="btn-promotion-chat mt-6 flex min-h-12 w-full items-center justify-center rounded-full px-6 text-base font-bold transition hover:brightness-105"
+                    >
+                        Chat with Us
+                    </button>
                 </div>
             </section>
         </div>

@@ -113,19 +113,32 @@ function textOf(node) {
 }
 
 function isMoneyValue(text) {
-  return /^[$€£]?\s*[\d,.]+$/.test((text || "").trim());
+  const t = (text || "").trim();
+  return /^[$€£]?\s*[\d,.]+$/.test(t) || /^[A-Za-z]{3}\s+[\d,.]+$/.test(t);
 }
 
-async function bindSectionTab(node) {
+async function bindSectionTab(node, activeLabel = /invite friends/i) {
   if (!node || node.type !== "FRAME") return;
   if (!/Button|referral-section-tab/.test(node.name)) return;
   const label = node.findOne((n) => n.type === "TEXT");
-  const selected = /invite friends/i.test(label?.characters || "");
+  const selected = activeLabel.test(label?.characters || "");
   node.name = selected ? "referral-section-tab--active" : "referral-section-tab";
   if (selected) {
     await bindSolidFillPath(node, "color/surface/base");
     await bindStrokePath(node, "color/border/brand", 1);
-    if (label) await bindTextPath(label, "color/text/sub/title");
+    if (label) {
+      await bindTextPath(label, "color/surface/menu/active");
+    } else {
+      for (const vector of node.findAll((n) => n.type === "VECTOR")) {
+        const variable = await getVar("color/surface/menu/active");
+        if (!variable || !vector.fills?.length) continue;
+        const paint = vector.fills[0];
+        if (paint.type !== "SOLID") continue;
+        vector.fills = [
+          figma.variables.setBoundVariableForPaint(paint, "color", variable),
+        ];
+      }
+    }
   } else {
     node.fills = [];
     if (label) await bindTextPath(label, "color/text/muted");
@@ -138,11 +151,10 @@ async function bindBenefitChip(node) {
   await bindSolidFillPath(node, "color/surface/subtle");
   await bindStrokePath(node, "color/border/subtle", 1);
   for (const child of node.children) {
-    if (child.name === "Background") {
+    if (child.name === "Background" || child.name === "referral-benefit-chip__icon") {
       child.name = "referral-benefit-chip__icon";
       await bindSolidFillPath(child, "color/accent/pale");
-      const sym = child.findOne((n) => n.type === "TEXT");
-      if (sym) await bindTextPath(sym, "color/button/hover");
+      await bindIconSubtree(child, "color/button/hover");
     }
     if (child.type === "TEXT" && child.name !== "Symbol") {
       await bindTextPath(child, "color/text/primary");
@@ -161,13 +173,21 @@ async function bindBonusSidebar(node) {
       if (/total referral/i.test(t)) await bindTextPath(child, "color/text/muted");
       else if (isMoneyValue(t)) await bindTextPath(child, "color/primary");
     }
-    if (child.type === "RECTANGLE" || (child.name === "Symbol" && child.type === "TEXT")) {
+    if (
+      child.type === "RECTANGLE" ||
+      child.name === "referral-info-icon" ||
+      (child.name === "Symbol" && child.type === "TEXT")
+    ) {
       if (child.type === "RECTANGLE") {
         child.name = "referral-info-icon";
         await bindSolidFillPath(child, "color/accent/glow");
       } else {
         await bindTextPath(child, "color/button/hover");
       }
+    }
+    if (child.name === "referral-info-icon" && child.type !== "RECTANGLE") {
+      await bindSolidFillPath(child, "color/accent/glow");
+      await bindIconSubtree(child, "color/button/hover");
     }
     if (child.name === "Button") {
       const label = textOf(child);

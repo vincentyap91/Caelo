@@ -89,6 +89,66 @@ async function bindTextPath(node, path) {
   node.setRangeFills(0, node.characters.length, [paint]);
 }
 
+async function bindCountdownNumberGradient(node) {
+  if (!node || node.type !== "TEXT") return;
+  const startVar = await getVar("color/gradient/countdown/start");
+  const endVar = await getVar("color/gradient/countdown/end");
+  if (!startVar || !endVar) return;
+  node.name = "countdown-timer__value";
+  node.setRangeFills(0, node.characters.length, [
+    {
+      type: "GRADIENT_LINEAR",
+      gradientTransform: [
+        [1, 0, 0],
+        [0, 1, 0],
+      ],
+      gradientStops: [
+        {
+          color: { r: 0, g: 0, b: 0, a: 1 },
+          position: 0,
+          boundVariables: { color: { type: "VARIABLE_ALIAS", id: startVar.id } },
+        },
+        {
+          color: { r: 0, g: 0, b: 0, a: 1 },
+          position: 1,
+          boundVariables: { color: { type: "VARIABLE_ALIAS", id: endVar.id } },
+        },
+      ],
+    },
+  ]);
+}
+
+const COUNTDOWN_PANEL_GRADIENT_TRANSFORM = [
+  [0.8333575129508972, 0.16664251685142517, 0],
+  [-3.5361487865448, 0.7071067690849304, 1.9145209789276123],
+];
+
+async function bindCountdownPanelGradient(node) {
+  if (!node) return;
+  const startVar = await getVar("color/gradient/countdown/panel/start");
+  const endVar = await getVar("color/gradient/countdown/panel/end");
+  if (!startVar || !endVar) return;
+  node.name = "countdown-timer__shell";
+  node.fills = [
+    {
+      type: "GRADIENT_LINEAR",
+      gradientTransform: COUNTDOWN_PANEL_GRADIENT_TRANSFORM,
+      gradientStops: [
+        {
+          color: { r: 0, g: 0, b: 0, a: 1 },
+          position: 0,
+          boundVariables: { color: { type: "VARIABLE_ALIAS", id: startVar.id } },
+        },
+        {
+          color: { r: 0, g: 0, b: 0, a: 1 },
+          position: 1,
+          boundVariables: { color: { type: "VARIABLE_ALIAS", id: endVar.id } },
+        },
+      ],
+    },
+  ];
+}
+
 function isPromotionCard(node) {
   return (
     node?.type === "FRAME" &&
@@ -168,13 +228,13 @@ async function bindPromotionCard(node) {
 
           const timerShell = bodyChild.findOne((n) => n.name?.includes("Background+Border"));
           if (timerShell) {
-            timerShell.name = "countdown-timer__shell";
+            await bindCountdownPanelGradient(timerShell);
             await bindStrokePath(timerShell, "color/border/countdown", 1);
           }
 
           for (const t of bodyChild.findAll((n) => n.type === "TEXT")) {
             const chars = (t.characters || "").trim();
-            if (isCountdownNumber(chars)) await bindTextPath(t, "color/button/cta/end");
+            if (isCountdownNumber(chars)) await bindCountdownNumberGradient(t);
             else if (isCountdownUnitLabel(chars)) await bindTextPath(t, "color/text/subtle");
             else if (/promotion ended/i.test(chars)) await bindTextPath(t, "color/text/muted");
           }
@@ -347,6 +407,7 @@ return {
     "color/primary-tag(+text) (Conditions Required banner)",
     "color/secondary-tag(+text) (Available banner + category chip)",
     "color/gradient/button/cta + color/border/brand (selected tab + CTA)",
-    "color/button/cta/end (countdown numbers)",
+    "color/gradient/countdown/start+end (countdown numbers)",
+    "color/gradient/countdown/panel/start+end (countdown shell)",
   ],
 };

@@ -148,7 +148,7 @@ function createInitialRewardHistory(currency) {
 const tabButtonClasses = (selected) =>
     `inline-flex min-h-[46px] shrink-0 whitespace-nowrap items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-3 text-xs font-bold uppercase transition-colors duration-200 sm:min-h-[44px] sm:px-4 sm:py-2.5 sm:text-xs md:text-sm ${
         selected
-            ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-text-sub-title)] shadow-[var(--shadow-subtle)]'
+            ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-surface-menu-active)] shadow-referral-subtle'
             : 'border-transparent bg-transparent text-[var(--color-text-muted)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-text-primary)]'
     }`;
 
@@ -183,7 +183,7 @@ function ReferralBenefitPromoCards() {
                             <img
                                 src={card.icon}
                                 alt=""
-                                className="h-full w-full object-contain drop-shadow-[var(--shadow-subtle)]"
+                                className="h-full w-full object-contain drop-shadow-referral-subtle"
                                 loading="lazy"
                                 draggable={false}
                             />
@@ -305,7 +305,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                         </div>
                     </div>
                 </div>
-                <div className="surface-card flex flex-col gap-4 rounded-2xl p-5 shadow-[var(--shadow-card-soft)]">
+                <div className="surface-card flex flex-col gap-4 rounded-2xl p-5 shadow-card-soft">
                     <div>
                         <div className="flex items-center gap-1.5">
                             <span className="text-sm font-semibold text-[var(--color-text-muted)]">Total Referral Commission Bonus</span>
@@ -339,10 +339,10 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
-                <div className="surface-card flex flex-col rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+                <div className="surface-card flex flex-col rounded-2xl p-5 shadow-card-soft md:p-6">
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Copy My Referral Code</h3>
                     <div className="mt-4 flex flex-1 flex-col gap-4">
-                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-input-color)] px-4 py-3 shadow-[var(--shadow-input)]">
+                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-input-color)] px-4 py-3 shadow-referral-input">
                             <input
                                 type="text"
                                 value={REFERRAL_CODE}
@@ -369,10 +369,10 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                     </div>
                 </div>
 
-                <div className="surface-card flex flex-col rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+                <div className="surface-card flex flex-col rounded-2xl p-5 shadow-card-soft md:p-6">
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Copy My Referral Link</h3>
                     <div className="mt-4 flex flex-1 flex-col gap-4">
-                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-input-color)] px-4 py-3 shadow-[var(--shadow-input)]">
+                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-input-color)] px-4 py-3 shadow-referral-input">
                             <input
                                 type="text"
                                 value={REFERRAL_URL}
@@ -399,10 +399,10 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                     </div>
                 </div>
 
-                <div className="surface-card flex flex-col rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:col-span-2 md:p-6 lg:col-span-1">
+                <div className="surface-card flex flex-col rounded-2xl p-5 shadow-card-soft md:col-span-2 md:p-6 lg:col-span-1">
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Scan my Referral QR Code</h3>
                     <div className="mt-4 flex flex-1 flex-col gap-4">
-                        <div className="flex items-center justify-center rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] p-4 shadow-[var(--shadow-subtle)]">
+                        <div className="flex items-center justify-center rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] p-4 shadow-referral-subtle">
                             <img
                                 src={qrCodeUrl}
                                 alt="Referral QR Code"
@@ -432,10 +432,10 @@ function RewardSummaryCard({ reward, onClaim }) {
     const claimDisabled = reward.unclaimed <= 0;
 
     return (
-        <article className="surface-card rounded-2xl p-4 shadow-[var(--shadow-card-soft)] sm:p-5 md:p-6">
+        <article className="surface-card rounded-2xl p-4 shadow-card-soft sm:p-5 md:p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-5">
                 <div className="flex min-w-0 items-start gap-3.5">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-promo-card p-2.5 shadow-[var(--shadow-subtle)] sm:h-12 sm:w-12">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-promo-card p-2.5 shadow-referral-subtle sm:h-12 sm:w-12">
                         <img
                             src={reward.icon}
                             alt=""
@@ -502,9 +502,9 @@ function RewardSummaryCard({ reward, onClaim }) {
 
 function RewardsLoginRequiredState({ onLoginClick }) {
     return (
-        <section className="surface-card rounded-2xl px-5 py-8 text-center shadow-[var(--shadow-card-soft)] md:px-6 md:py-10">
+        <section className="surface-card rounded-2xl px-5 py-8 text-center shadow-card-soft md:px-6 md:py-10">
             <div className="mx-auto max-w-[560px]">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-promo-card text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-promo-card text-[var(--color-button-hover)] shadow-referral-subtle">
                     <Gift size={24} />
                 </div>
                 <h2 className="mt-4 text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">
@@ -665,7 +665,7 @@ function MyRewardsContent({ authUser, onLoginClick }) {
                 <RewardSummaryCard reward={rewardSummaries.deposit} onClaim={() => handleClaimReward('deposit')} />
             </div>
 
-            <section className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
+            <section className="surface-card overflow-hidden rounded-2xl shadow-card-soft">
                 <div className="border-b border-[var(--color-border-subtle)] px-5 py-4 md:px-6">
                     <h3 className="text-lg font-bold text-[var(--color-text-primary)] md:text-xl">Reward History</h3>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -741,7 +741,7 @@ function HowItWorksContent() {
                     {steps.map((step) => (
                             <div
                                 key={step.num}
-                                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-gradient-surface-card shadow-[var(--shadow-subtle)]"
+                                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-gradient-surface-card shadow-referral-subtle"
                             >
                                 <span className="absolute left-4 top-4 z-10 rounded-md bg-gradient-cta px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-cta-inverse)] shadow-sm">
                                     Step {step.num}
@@ -770,7 +770,7 @@ function HowItWorksContent() {
                 </div>
             </div>
 
-            <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
+            <div className="surface-card overflow-hidden rounded-2xl shadow-card-soft">
                 <div className="border-b border-[var(--color-border-subtle)] px-5 py-4 md:px-6">
                     <h3 className="text-lg font-bold text-[var(--color-text-primary)] md:text-xl">Deposit Commission Rate</h3>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">Minimum Deposit PKR 30.00</p>
@@ -800,7 +800,7 @@ function HowItWorksContent() {
                 </div>
             </div>
 
-            <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
+            <div className="surface-card overflow-hidden rounded-2xl shadow-card-soft">
                 <div className="border-b border-[var(--color-border-subtle)] px-5 py-4 md:px-6">
                     <h3 className="text-lg font-bold text-[var(--color-text-primary)] md:text-xl">Game Commission Rate</h3>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">Listing of commission rates you earn from your downlines&apos; bets by game type and provider.</p>
@@ -836,7 +836,7 @@ export default function ReferralPage({ authUser, onLoginClick }) {
 
             {/* Main content with tabs */}
             <section className="mx-auto mt-6 w-full max-w-screen-2xl px-[var(--space-page-x)] md:mt-8 md:px-[var(--space-page-x-md)]">
-                <div className="soft-blue-panel overflow-hidden rounded-[var(--radius-shell)] shadow-[var(--shadow-card-raised)]">
+                <div className="soft-blue-panel overflow-hidden rounded-[var(--radius-shell)] shadow-referral-panel">
                     {/* Tab bar */}
                     <div className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 pt-4 md:px-6">
                         <HorizontalScrollTabRow

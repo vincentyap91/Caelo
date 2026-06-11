@@ -195,6 +195,10 @@
   --raw-scrim-gold-12: rgb(255 207 112 / 0.12);
   --raw-scrim-panel-45: rgb(255 255 255 / 0.45);
   --raw-scrim-panel-65: rgb(255 255 255 / 0.65);
+  --raw-gradient-countdown-panel-start: rgb(255 255 255 / 0.72);
+  --raw-gradient-countdown-panel-end: rgb(255 248 230 / 0.55);
+  --raw-gradient-button-chat-start: #3b82f6;
+  --raw-gradient-button-chat-end: #8b5cf6;
   --raw-scrim-panel-96: rgb(255 255 255 / 0.96);
   --raw-scrim-panel-98: rgb(255 255 255 / 0.98);
   --raw-scrim-panel-50: rgb(255 255 255 / 0.5);
@@ -565,6 +569,10 @@
   --color-border-tabs:                       var(--raw-border-tabs);
   --color-border-countdown:                  var(--raw-border-countdown);
 
+  /* nav */
+  --color-nav-border:                        var(--raw-nav-border);
+  --color-nav-border-soft:                   var(--raw-nav-border-soft);
+
   /* accent */
   --color-accent:                            var(--accent-400);
   --color-accent-check-in-reward:            var(--accent-470);
@@ -683,6 +691,7 @@
   --color-effect-glow:                       var(--brand-500-soft);
   --color-effect-header-shadow:              var(--mono-950-a25);
   --color-effect-shadow-soft:                var(--overlay-shadow-soft);
+  --color-effect-shadow-card-soft:           var(--mono-950);
 
   /* icon */
   --color-icon-action:                       var(--mono-580);
@@ -732,6 +741,15 @@
 
   /* gradient */
   --color-gradient-button-cta:               linear-gradient(180deg, var(--raw-cta-start) 0%, var(--raw-cta-end) 100%);
+  --color-gradient-countdown-start:          var(--raw-cta-start);
+  --color-gradient-countdown-end:            var(--raw-cta-end);
+  --color-gradient-countdown:              linear-gradient(180deg, var(--color-gradient-countdown-start) 0%, var(--color-gradient-countdown-end) 100%);
+  --color-gradient-countdown-panel-start:  var(--raw-gradient-countdown-panel-start);
+  --color-gradient-countdown-panel-end:    var(--raw-gradient-countdown-panel-end);
+  --color-gradient-countdown-panel:      linear-gradient(135deg, var(--color-gradient-countdown-panel-start) 0%, var(--color-gradient-countdown-panel-end) 100%);
+  --color-gradient-button-chat-start:  var(--raw-gradient-button-chat-start);
+  --color-gradient-button-chat-end:    var(--raw-gradient-button-chat-end);
+  --color-gradient-button-chat:        linear-gradient(90deg, var(--color-gradient-button-chat-start) 0%, var(--color-gradient-button-chat-end) 100%);
   --color-gradient-card-brand:               linear-gradient(180deg, var(--raw-gradient-live-page-start) 0%, var(--raw-gradient-live-page-mid) 36%, var(--raw-gradient-live-page-end) 100%);
   --color-gradient-check-in-card:            linear-gradient(90deg, var(--support-success-strong) 0%, var(--brand-700) 100%);
   --color-gradient-check-in-day:             linear-gradient(90deg, var(--brand-500) 0%, var(--brand-630) 100%);

@@ -20,7 +20,7 @@ export default function ReferralGameCommissionTable({
     return (
         <div
             className={[
-                'overflow-hidden rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]',
+                'overflow-hidden rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] shadow-referral-subtle',
                 className,
             ]
                 .filter(Boolean)

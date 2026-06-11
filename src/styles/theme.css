@@ -50,7 +50,7 @@
 
   --shadow-subtle: 0 1px 2px rgba(15, 23, 42, 0.04);
   --shadow-input: 0 1px 2px rgba(15, 23, 42, 0.03);
-  --shadow-card-soft: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-card-soft: 0 8px 24px color-mix(in srgb, var(--color-effect-shadow-card-soft) 6%, transparent);
   --shadow-card-raised: 0 10px 30px rgba(15, 23, 42, 0.08);
   --shadow-card-hover: 0 12px 32px rgba(15, 23, 42, 0.1);
   --shadow-sidebar: 0 24px 48px rgba(15, 23, 42, 0.14);
@@ -438,6 +438,9 @@
    * color/secondary-tag(+text) → banner status (available)
    * color/border-subtle, color/surface/base → More Info outline button
    * color/border/countdown → CountdownTimer shell + unit dividers
+   * color/gradient/countdown → CountdownTimer digit gradient (start/end)
+   * color/gradient/countdown/panel → CountdownTimer shell background (start/end)
+   * color/gradient/button/chat → Promotion Details “Chat with Us” (btn-promotion-chat utility)
    * color/button/cta → Join Now / Claim Now / Load More (btn-theme-cta utility)
    */
   .promotion-page {
@@ -483,22 +486,40 @@
    * Figma role → scoped alias (preserves pre-migration Caelo):
    * color/surface/base → page + tab active surface
    * color/gradient/referral/panel|card|commission|deposit|icon → existing Caelo gradient utilities
-   * color/text/sub-title → active section tab label
+   * color/surface/menu/active → active section tab label (Invite Friends | My Referrals | …)
    * color/text/accent → unclaimed amounts, history commission/deposit values
    * color/primary → bonus sidebar totals, KPI stat values
    * color/surface/input-color → referral code/link copy fields
    * color/surface/filter → quick-range date pills (inactive shell)
    * color/surface/notify → reward history filter bar (PromotionStyleTabs panel)
+   * color/effect/shadow/card/soft → shadow-card-soft tint (.shadow-card-soft utility)
    */
   .referral-page {
     --color-surface-base: var(--raw-app-surface-base);
-    --color-text-sub-title: var(--color-button-hover);
+    --color-surface-menu-active: var(--brand-500);
     --color-text-accent: var(--color-button-hover);
     --color-primary: var(--raw-cta-text);
     --color-surface-input-color: var(--raw-surface-muted);
     --color-surface-filter: var(--color-surface-cool-light);
     --color-surface-secondary-chip: var(--color-accent-pale);
     --color-surface-notify: var(--color-surface-subtle);
+    --color-effect-shadow-card-soft: var(--mono-950);
+  }
+
+  .shadow-referral-subtle {
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--color-effect-shadow-card-soft) 4%, transparent);
+  }
+
+  .drop-shadow-referral-subtle {
+    filter: drop-shadow(0 1px 2px color-mix(in srgb, var(--color-effect-shadow-card-soft) 4%, transparent));
+  }
+
+  .shadow-referral-input {
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--color-effect-shadow-card-soft) 3%, transparent);
+  }
+
+  .shadow-referral-panel {
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--color-effect-shadow-card-soft) 8%, transparent);
   }
 
   .referral-page .soft-blue-panel {
@@ -988,7 +1009,7 @@
     --color-button-hover-text: var(--color-text-primary);
     --color-surface-input-light: var(--color-primary);
     --color-surface-menu-active: transparent;
-    --color-text-tertiary: var(--color-text-card-text);
+    --color-button-cta-tertiary-text: var(--color-text-card-text);
   }
 
   .home-category-tabs .category-tab-item--active {
@@ -2441,6 +2462,10 @@
     font-family: var(--font-family-multilingual);
   }
 
+  .shadow-card-soft {
+    box-shadow: var(--shadow-card-soft);
+  }
+
   .surface-card {
     border: 1px solid var(--color-border-subtle);
     background: var(--color-surface-base);
@@ -3033,6 +3058,13 @@
     box-shadow: var(--shadow-cta-soft);
   }
 
+  /** Web_Promotion Details — Chat with Us (Cam88 color/gradient/button/chat) */
+  .btn-promotion-chat {
+    color: var(--color-text-cta-inverse);
+    background-image: var(--color-gradient-button-chat);
+    border: 1px solid transparent;
+  }
+
   /** Web_Slot promo panel ? End Promo (Cam88 919:20508) */
   .btn-theme-cta-fourth {
     color: var(--color-button-cta-fourth-text);
@@ -3072,7 +3104,7 @@
 
   /** Web Header ? upper utility bar on dark sticky nav (Cam88 --color-sticky-nav) */
   .top-sticky-nav-bar {
-    border-bottom-color: var(--raw-nav-border-soft);
+    border-bottom-color: var(--color-nav-border-soft);
   }
 
   /**
@@ -3095,7 +3127,7 @@
   .top-sticky-nav-bar .top-sticky-balance-chip__refresh {
     background-color: var(--color-surface-high);
     background-image: var(--nav-top-pill-bg);
-    border-left: 1px solid var(--raw-nav-border);
+    border-left: 1px solid var(--color-nav-border);
     color: var(--color-text-sticky-nav-text);
   }
 
@@ -3105,12 +3137,12 @@
   }
 
   .top-sticky-nav-bar .top-sticky-profile-chip__divider {
-    background-color: var(--raw-nav-border);
+    background-color: var(--color-nav-border);
   }
 
   /** Mobile logged-in balance chip ? same Caelo dark bar look via --color-sticky-nav */
   .mobile-sticky-balance {
-    border-color: var(--raw-nav-border-soft);
+    border-color: var(--color-nav-border-soft);
   }
 
   .mobile-sticky-balance__toggle:hover {
@@ -3118,7 +3150,7 @@
   }
 
   .mobile-sticky-balance__refresh {
-    border-left-color: var(--raw-nav-border);
+    border-left-color: var(--color-nav-border);
   }
 
   /**
@@ -3163,7 +3195,7 @@
   .sidenav-shell .sidenav-balance-pill__refresh {
     background-color: var(--color-surface-high);
     background-image: var(--nav-top-pill-bg);
-    border-left: 1px solid var(--raw-nav-border);
+    border-left: 1px solid var(--color-nav-border);
     color: var(--color-text-sticky-nav-text);
   }
 

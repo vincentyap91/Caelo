@@ -28,9 +28,8 @@ function pad(n) {
 
 /* ─── Inline styles shared across renders ─────────────────────────────────── */
 
-/** Gold-to-yellow gradient matching the CTA button */
-const GOLD_GRADIENT =
-    'linear-gradient(180deg, var(--color-button-cta-start) 0%, var(--color-button-cta-end) 100%)';
+/** Promotion countdown digits — Cam88 color/gradient/countdown */
+const COUNTDOWN_NUMBER_GRADIENT = 'var(--color-gradient-countdown)';
 
 /** Thin vertical rule between time units */
 const DIVIDER = (
@@ -126,11 +125,12 @@ export default function CountdownTimer({ endDate, size = 'card', align = 'center
             ) : (
                 /* ── Live countdown ──────────────────────────────────────── */
                 <div
+                    className="countdown-timer__shell"
                     style={{
                         display: 'flex',
                         alignItems: 'stretch',
                         gap: unitGap,
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.72) 0%, rgba(255,248,230,0.55) 100%)',
+                        background: 'var(--color-gradient-countdown-panel)',
                         border: '1px solid var(--color-border-countdown)',
                         borderRadius: '10px',
                         padding: isModal ? '5px 12px' : '4px 10px',
@@ -163,12 +163,12 @@ export default function CountdownTimer({ endDate, size = 'card', align = 'center
                                         letterSpacing: '-0.03em',
                                         fontVariantNumeric: 'tabular-nums',
                                         /* Gold gradient via background-clip trick */
-                                        background: GOLD_GRADIENT,
+                                        background: COUNTDOWN_NUMBER_GRADIENT,
                                         WebkitBackgroundClip: 'text',
                                         WebkitTextFillColor: 'transparent',
                                         backgroundClip: 'text',
                                         /* Fallback for browsers without background-clip */
-                                        color: 'var(--color-button-cta-end)',
+                                        color: 'var(--color-gradient-countdown-end)',
                                         /* Ensure the gradient wrapper is inline-block */
                                         display: 'inline-block',
                                         filter: 'drop-shadow(0 1px 2px rgba(242,154,0,0.30))',

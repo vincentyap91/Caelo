@@ -83,7 +83,7 @@ function applySummaryQuickRange(id, setStart, setEnd, setQuickId) {
 
 function StatTile({ label, value }) {
     return (
-        <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+        <div className="surface-card rounded-2xl p-5 shadow-card-soft md:p-6">
             <p className="text-sm font-semibold text-[var(--color-text-muted)]">{label}</p>
             <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-primary)] md:text-3xl">{value}</p>
         </div>
@@ -146,7 +146,7 @@ export default function DownlineReferralsPanel() {
             <div className="space-y-6">
             {view === 'summary' && (
                 <>
-                    <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+                    <div className="surface-card rounded-2xl p-5 shadow-card-soft md:p-6">
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <CalendarDateInput
                                 label="Start Date"
@@ -194,7 +194,7 @@ export default function DownlineReferralsPanel() {
                         </div>
                     </div>
 
-                    <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+                    <div className="surface-card rounded-2xl p-5 shadow-card-soft md:p-6">
                         <p className="mb-3 text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Selected period</p>
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                             <SummaryMetricCard label="New Downline L1" value="0" />
@@ -244,12 +244,12 @@ export default function DownlineReferralsPanel() {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search downline username"
-                                className="h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] py-2 pl-10 pr-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                className="h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] py-2 pl-10 pr-4 text-sm font-medium text-[var(--color-text-primary)] shadow-referral-subtle outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                             />
                         </div>
                     </label>
 
-                    <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
+                    <div className="surface-card overflow-hidden rounded-2xl shadow-card-soft">
                         <div className="overflow-x-auto">
                             <table className="w-full min-w-[640px] border-collapse text-sm">
                                 <thead>
