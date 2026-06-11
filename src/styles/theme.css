@@ -399,7 +399,7 @@
   }
 
   .slots-page .slots-browse-search {
-    --color-surface-input-inverse: var(--color-surface-base);
+    --color-surface-input-inverse: var(--raw-surface-muted);
     --color-info-icon: var(--color-text-muted);
     --color-primary: var(--color-surface-accent-hover);
   }
@@ -476,7 +476,7 @@
    * color/text/accent → unclaimed amounts, history commission/deposit values
    * color/primary → bonus sidebar totals, KPI stat values
    * color/surface/input-color → referral code/link copy fields
-   * color/surface/secondary-chip → quick-range pills (Downline Summary)
+   * color/surface/filter → quick-range date pills (inactive shell)
    * color/surface/notify → reward history filter bar (PromotionStyleTabs panel)
    */
   .referral-page {
@@ -484,7 +484,8 @@
     --color-text-sub-title: var(--color-button-hover);
     --color-text-accent: var(--color-button-hover);
     --color-primary: var(--raw-cta-text);
-    --color-surface-input-color: var(--color-surface-cool-light);
+    --color-surface-input-color: var(--raw-surface-muted);
+    --color-surface-filter: var(--color-surface-cool-light);
     --color-surface-secondary-chip: var(--color-accent-pale);
     --color-surface-notify: var(--color-surface-subtle);
   }
@@ -544,7 +545,7 @@
     --color-surface-table: var(--color-surface-subtle);
     --color-text-sub-title: var(--color-button-hover);
     --color-success-vivid: var(--color-success);
-    --color-surface-input-light: var(--color-surface-cool-light);
+    --color-surface-input-light: var(--raw-surface-muted);
     --color-text-fourth: var(--color-text-primary);
     --color-surface-deep: var(--color-surface-subtle);
     --color-button-cta-primary: var(--color-text-card-text);
@@ -579,34 +580,6 @@
     background-color: var(--color-popup-body);
   }
 
-  .history-record-page .history-record-type-tabs button:not(.btn-theme-primary) {
-    background-color: var(--color-surface-filter);
-    color: var(--color-text-muted);
-  }
-
-  .history-record-page .history-record-type-tabs button:not(.btn-theme-primary):hover {
-    background-color: var(--color-surface-filter-active);
-    color: var(--color-text-sub-title);
-  }
-
-  .history-record-page .history-record-quick-range--inactive {
-    border-color: var(--color-border-subtle);
-    background-color: var(--color-surface-filter);
-    color: var(--color-text-muted);
-  }
-
-  .history-record-page .history-record-quick-range--inactive:hover {
-    border-color: var(--color-border-subtle);
-    background-color: var(--color-surface-filter-active);
-    color: var(--color-text-sub-title);
-  }
-
-  .history-record-page .history-record-quick-range--active {
-    border-color: var(--color-button-tabs);
-    background-color: var(--color-button-tabs);
-    color: var(--color-button-tabs-text);
-  }
-
   .history-record-page .history-record-table thead tr {
     background-color: var(--color-surface-table);
   }
@@ -632,12 +605,14 @@
    */
   .history-record-panel {
     --color-popup-body: var(--color-surface-base);
+    --color-button-tabs: var(--color-primary);
+    --color-button-tabs-text: var(--color-text-card-text);
     --color-surface-filter: var(--color-surface-cool-light);
     --color-surface-filter-active: var(--color-accent-pale);
     --color-surface-table: var(--color-surface-subtle);
     --color-text-sub-title: var(--color-button-hover);
     --color-success-vivid: var(--color-success);
-    --color-surface-input-light: var(--color-surface-cool-light);
+    --color-surface-input-light: var(--raw-surface-muted);
     --color-text-fourth: var(--color-text-primary);
     --color-surface-deep: var(--color-surface-subtle);
     --color-button-cta-primary: var(--color-text-card-text);
@@ -676,24 +651,6 @@
     --color-text-primary: var(--color-text-muted);
   }
 
-  .history-record-panel .history-record-quick-range--inactive {
-    border-color: var(--color-border-subtle);
-    background-color: var(--color-surface-filter);
-    color: var(--color-text-muted);
-  }
-
-  .history-record-panel .history-record-quick-range--inactive:hover {
-    border-color: var(--color-accent-glow);
-    background-color: var(--color-surface-filter-active);
-    color: var(--color-text-sub-title);
-  }
-
-  .history-record-panel .history-record-quick-range--active {
-    border-color: var(--color-accent);
-    background-color: var(--color-surface-filter-active);
-    color: var(--color-text-sub-title);
-  }
-
   /**
    * Web_Claim Record (Spin Wheel) — Cam88 (781:13837 / 957:49550)
    * §13.11: modal shell + inner filter/table content; Caelo look via scoped aliases.
@@ -712,25 +669,12 @@
   .claim-record-modal {
     --color-popup-body: var(--color-surface-base);
     --color-popup-head: var(--color-surface-subtle);
-    --color-surface-input-light: var(--color-surface-cool-light);
+    --color-surface-input-light: var(--raw-surface-muted);
     --color-surface-filter-active: var(--color-accent-pale);
     --color-text-sub-title: var(--color-button-hover);
     --color-text-fourth: var(--color-text-primary);
     --color-info-icon: var(--color-button-hover);
     --color-surface-deep: var(--color-surface-subtle);
-  }
-
-  /**
-   * Transaction Record type tabs — color/button/tabs(+text) on active segment.
-   */
-  .history-record-page .history-record-type-tabs .btn-theme-primary {
-    background: var(--color-button-tabs);
-    color: var(--color-button-tabs-text);
-  }
-
-  .history-record-page .history-record-type-tabs .btn-theme-primary:hover {
-    background: var(--color-button-hover);
-    color: var(--color-button-tabs-text);
   }
 
   /**
@@ -1143,14 +1087,14 @@
    * |--color-text-sub-title| charcoal title (--color-text-tertiary) |
    * |--color-text-card-text| white subtitle + button labels |
    * |--color-text-primary| charcoal link label + URL |
-   * |--color-surface-referral-input| #f1f1f1 off-white field |
+   * |--color-surface-referral-input| muted field shell (--raw-surface-muted) |
    * |--color-text-tertiary| dark copy icon |
    * |--color-button-referral-cta| navy primary (Downlines / More Info) |
    * |--color-button-referral-cta (share)| vibrant red (--color-danger) |
    */
   .home-page .referral-banner-section .referral-hub-card {
     --color-border-brand: var(--raw-brand-soft-border);
-    --color-surface-referral-input: #f1f1f1;
+    --color-surface-referral-input: var(--raw-surface-muted);
     --color-text-sub-title: var(--color-text-tertiary);
     --color-text-primary: var(--color-text-tertiary);
     --color-button-referral-cta: var(--color-primary);
@@ -1357,8 +1301,8 @@
   .auth-modal-shell {
     --color-popup-body: var(--raw-app-surface-base);
     --color-popup-head: var(--raw-universal-modal-header-bg);
-    --color-surface-input-light: var(--color-surface-base);
-    --color-surface-input-muted: var(--color-surface-cool-light);
+    --color-surface-input-light: var(--raw-surface-muted);
+    --color-surface-input-muted: var(--raw-surface-muted);
     --color-text-placeholder: var(--color-text-soft);
     --color-text-dim: var(--color-text-primary);
     --color-button-cta-primary: var(--color-text-card-text);
@@ -1755,7 +1699,7 @@
     --color-popup-body: var(--color-surface-base);
     --color-text-primary: var(--color-text-primary-card-title);
     --color-text-muted: var(--color-text-soft);
-    --color-surface-input-light: var(--color-surface-base);
+    --color-surface-input-light: var(--raw-surface-muted);
   }
 
   .auth-modal-register-done__panel {
@@ -1789,7 +1733,7 @@
 
   .login-modal-shell {
     --color-popup-body: var(--raw-app-surface-base);
-    --color-surface-input-light: var(--raw-surface-base-80);
+    --color-surface-input-light: var(--raw-surface-muted);
     --color-text-placeholder: var(--color-text-soft);
     --color-text-dim: var(--color-text-secondary);
     --color-button-cta-primary: var(--color-text-card-text);
@@ -2852,6 +2796,135 @@
     background: var(--color-button-hover);
   }
 
+  /**
+   * Segmented tabs — Web_Rebate / Web_History Record type tabs (Cam88 color/button/tabs).
+   * §13.11: Cam88 semantic names; Caelo navy active pill + muted inactive labels (rebate system look).
+   */
+  .caelo-segmented-tabs {
+    --color-button-tabs: var(--color-primary);
+    --color-button-tabs-text: var(--color-text-card-text);
+    --color-surface-filter-active: var(--color-accent-pale);
+    --color-text-sub-title: var(--color-button-hover);
+    display: flex;
+    gap: 0.25rem;
+    overflow-x: auto;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-base);
+    padding: 0.25rem;
+    box-shadow: var(--shadow-subtle);
+    scrollbar-width: none;
+  }
+
+  .caelo-segmented-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .caelo-segmented-tabs--equal {
+    width: 100%;
+  }
+
+  .caelo-segmented-tabs--fit {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .caelo-segmented-tabs__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.25;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    background-color: transparent;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 640px) {
+    .caelo-segmented-tabs__tab {
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .caelo-segmented-tabs__tab--equal {
+    flex: 1 1 0%;
+  }
+
+  .caelo-segmented-tabs__tab--fit {
+    flex: 0 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .caelo-segmented-tabs__label {
+    display: -webkit-box;
+    width: 100%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .caelo-segmented-tabs__tab--active {
+    background-color: var(--color-button-tabs);
+    color: var(--color-button-tabs-text);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .caelo-segmented-tabs__tab--active:hover {
+    background-color: var(--color-button-hover);
+    color: var(--color-button-tabs-text);
+  }
+
+  .caelo-segmented-tabs__tab:not(.caelo-segmented-tabs__tab--active):hover {
+    background-color: var(--color-surface-filter-active);
+    color: var(--color-text-sub-title);
+  }
+
+  /**
+   * Filter / date quick-range pills — Web_History Record (957:40377)
+   * §13.11: color/surface/filter (inactive) + color/button/tabs (active navy + white).
+   */
+  .caelo-filter-pill {
+    --color-button-tabs: var(--color-primary);
+    --color-button-tabs-text: var(--color-text-card-text);
+    --color-surface-filter: var(--color-surface-cool-light);
+    --color-surface-filter-active: var(--color-accent-pale);
+    --color-text-sub-title: var(--color-button-hover);
+  }
+
+  .caelo-filter-pill--inactive {
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-surface-filter);
+    color: var(--color-text-muted);
+  }
+
+  .caelo-filter-pill--inactive:hover {
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-surface-filter-active);
+    color: var(--color-text-sub-title);
+  }
+
+  .caelo-filter-pill--active {
+    border-color: var(--color-button-tabs);
+    background-color: var(--color-button-tabs);
+    color: var(--color-button-tabs-text);
+  }
+
+  .caelo-filter-pill--active:hover {
+    border-color: var(--color-button-tabs);
+    background-color: var(--color-button-hover);
+    color: var(--color-button-tabs-text);
+  }
+
   .btn-theme-cta {
     border: 1px solid var(--color-border-brand);
     color: var(--color-text-card-text);
@@ -3511,7 +3584,7 @@
     --color-button-hover: var(--cashier-accent-600);
     --color-surface-accent-hover: var(--cashier-accent-600);
     --color-surface-cool-light: var(--cashier-accent-100);
-    --color-surface-input-light: var(--cashier-accent-100);
+    --color-surface-input-light: var(--raw-surface-muted);
     --color-button-cta: var(--cashier-accent-500);
     --color-button-cta-primary: var(--color-text-card-text);
     --color-surface-subtle: var(--cashier-accent-50);
@@ -4070,16 +4143,24 @@
    * color/progress/bar/bg → track (was --color-accent-glow / pale blue)
    * color/progress/bar/fill → fill (was --color-primary navy; not Cam88 green)
    * color/text/title → promo name + rollover values (was --color-primary / base-ink)
-   * color/surface/elevated → promo rollover inner card (was --color-surface-cool-light)
+   * color/surface/elevated → promo rollover inner card (scoped → --color-accent-pale #eff6ff; lighter than accent-100 track shell)
    */
   .account-layout,
-  .profile-page,
   .user-dashboard-sidebar {
     --color-accent-glow: #dbeafe;
     --color-surface-cool-light: #dbeafe;
     --color-accent-pale: #eff6ff;
     --color-border-brand: #3b82f6;
     --color-button-hover: #2563eb;
+    --color-surface-card-light: var(--color-surface-base);
+    --color-surface-input-light: var(--raw-surface-muted);
+    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-fill: var(--color-primary);
+    --color-text-small: var(--color-text-secondary);
+  }
+
+  /** Profile shell — progress + header tokens only; do not override surface-cool-light (sidebar blue bleeds into read-only fields). */
+  .profile-page {
     --color-surface-card-light: var(--color-surface-base);
     --color-progress-bar-bg: var(--color-accent-glow);
     --color-progress-bar-fill: var(--color-primary);
@@ -4102,8 +4183,9 @@
   .profile-current-promo {
     --color-surface-card-light: var(--base-paper);
     --color-text-title: var(--color-primary);
-    --color-surface-elevated: var(--color-surface-cool-light);
-    --color-progress-bar-bg: var(--color-accent-glow);
+    /* Promo rollover inner card — Caelo accent-pale (#eff6ff); lighter shell + matching track (§13.11). */
+    --color-surface-elevated: var(--color-accent-pale);
+    --color-progress-bar-bg: var(--color-accent-pale);
     --color-progress-bar-fill: var(--color-primary);
     background-color: var(--color-surface-card-light);
     border-color: var(--color-border-subtle);
@@ -4111,7 +4193,8 @@
   }
 
   .profile-current-promo .profile-current-promo__card {
-    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-surface-elevated: var(--color-accent-pale);
+    --color-progress-bar-bg: var(--color-accent-pale);
     --color-progress-bar-fill: var(--color-primary);
   }
 
@@ -4136,6 +4219,16 @@
   .profile-current-promo__card {
     border-color: var(--color-border-subtle);
     background-color: var(--color-surface-elevated);
+  }
+
+  /**
+   * Verification hub — card outline actions (Add Bank Account / Add ID Card or Passport).
+   * §13.11: Cam88 color/border/brand + color/button/hover; Caelo blue ring + navy label (was accent-500/600).
+   */
+  .verification-page .verification-card__action {
+    --color-border-brand: var(--color-accent-500);
+    --color-button-hover: var(--color-accent-600);
+    --color-accent-pale: var(--color-accent-50);
   }
 
   .profile-menu-scroll {

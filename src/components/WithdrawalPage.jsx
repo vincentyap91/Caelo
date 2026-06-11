@@ -263,7 +263,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         <button
                                             type="button"
                                             onClick={() => setEwalletDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                         >
                                             {selectedEwallet && selectedEwalletOption ? (
                                                 <span className="flex items-center gap-2.5">
@@ -289,7 +289,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                                                 setSelectedEwallet(opt.id);
                                                                 setEwalletDropdownOpen(false);
                                                             }}
-                                                            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-cool-light)]"
+                                                            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
                                                         >
                                                             <img src={opt.image} alt={opt.label} className="h-6 w-6 shrink-0 object-contain" />
                                                             <span className="font-normal text-[var(--color-text-primary)]">{opt.label} ({opt.min} - {opt.max.toLocaleString()})</span>
@@ -307,7 +307,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         value={phoneNumber}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                         placeholder="Enter your phone number"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
                                     />
                                 </div>
                             </>
@@ -319,7 +319,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         <button
                                             type="button"
                                             onClick={() => setBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                         >
                                             {selectedBank && BANKS.find((b) => b.id === selectedBank)?.image ? (
                                                 <span className="flex items-center gap-2.5">
@@ -343,7 +343,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                                                 setSelectedBank(b.id);
                                                                 setBankDropdownOpen(false);
                                                             }}
-                                                            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-cool-light)]"
+                                                            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
                                                         >
                                                             <img src={b.image} alt={b.label} className="h-6 w-6 shrink-0 object-contain" />
                                                             <span className="font-normal text-[var(--color-text-primary)]">{b.label}</span>
@@ -361,7 +361,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         value={bankAccountName}
                                         onChange={(e) => setBankAccountName(e.target.value)}
                                         placeholder="Enter account holder name"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
                                     />
                                 </div>
                                 <div>
@@ -371,7 +371,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         value={bankAccountNumber}
                                         onChange={(e) => setBankAccountNumber(e.target.value)}
                                         placeholder="Enter account number"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
                                     />
                                 </div>
                             </>
@@ -380,7 +380,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                         <div>
                             <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Amount <span className="text-[var(--color-danger)]">*</span></p>
                             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] shadow-[var(--shadow-subtle)]">
+                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] shadow-[var(--shadow-subtle)]">
                                     <span className="flex items-center justify-center bg-[var(--color-accent-glow)] px-4 text-sm font-bold text-[var(--color-button-hover)]">
                                         MYR
                                     </span>
@@ -430,7 +430,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                             <button
                                 type="button"
                                 onClick={() => setStep(1)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
+                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             >
                                 Back
                             </button>
@@ -521,7 +521,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                             <button
                                 type="button"
                                 onClick={() => setStep(2)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
+                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             >
                                 Back
                             </button>

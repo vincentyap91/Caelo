@@ -159,7 +159,7 @@ export default function HelpCenterPage({ navigationState = null, guestLayout = f
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search for help..."
-                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                     />
                     <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-soft)]" />
                 </label>
@@ -170,22 +170,12 @@ export default function HelpCenterPage({ navigationState = null, guestLayout = f
                     onChange={setMainTab}
                 />
 
-                <div className="flex flex-wrap gap-2">
-                    {subCategoryTabs.map(({ id, label }) => (
-                        <button
-                            key={id}
-                            type="button"
-                            onClick={() => setSubTab(id)}
-                            className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
-                                subTab === id
-                                    ? 'border-2 border-[var(--color-accent)] bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-sm'
-                                    : 'border border-transparent bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
-                            }`}
-                        >
-                            {label}
-                        </button>
-                    ))}
-                </div>
+                <SegmentedTabs
+                    items={subCategoryTabs}
+                    value={subTab}
+                    onChange={setSubTab}
+                    layout="fit"
+                />
 
                 <div className="space-y-3">
                     {mainTab === 'faq' && filteredFaq.length > 0 &&

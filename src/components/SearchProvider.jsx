@@ -3,7 +3,7 @@ import { Search, X } from 'lucide-react';
 
 /** Web_Slot - Cam88 (781:13837 / 903:25656) search field semantics (§13.11). */
 export const SLOTS_BROWSE_SEARCH_CLASS =
-    'slots-browse-search border-[var(--color-border-subtle)] bg-[var(--color-surface-input-inverse)] focus-within:border-[var(--color-primary)] focus-within:ring-[var(--color-primary)]/20 hover:border-[var(--color-border-brand)]';
+    'slots-browse-search border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] focus-within:border-[var(--color-primary)] focus-within:ring-[var(--color-primary)]/20 hover:border-[var(--color-border-brand)]';
 
 /**
  * Controlled provider/game search field with clear (X).
@@ -37,7 +37,7 @@ export default function SearchProvider({
     const isSlotsSearch = searchSemantics === 'slots' || className.includes('slots-browse-search');
     const shellClass = isSlotsSearch
         ? `group flex h-11 min-h-[44px] min-w-0 items-center rounded-[var(--radius-control)] border py-0 pl-3 pr-1.5 shadow-[var(--shadow-input)] transition-all focus-within:ring-2 ${SLOTS_BROWSE_SEARCH_CLASS}`
-        : `group flex h-11 min-h-[44px] min-w-0 items-center rounded-[var(--radius-control)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-0 pl-3 pr-1.5 shadow-[var(--shadow-input)] transition-all hover:border-[var(--color-accent-glow)] focus-within:border-[var(--color-accent)] focus-within:ring-2 focus-within:ring-[var(--color-accent)]/20`;
+        : `group flex h-11 min-h-[44px] min-w-0 items-center rounded-[var(--radius-control)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] py-0 pl-3 pr-1.5 shadow-[var(--shadow-input)] transition-all hover:border-[var(--color-accent-glow)] focus-within:border-[var(--color-accent)] focus-within:ring-2 focus-within:ring-[var(--color-accent)]/20`;
     const iconClass = isSlotsSearch
         ? 'shrink-0 text-[var(--color-info-icon)]'
         : 'shrink-0 text-[var(--color-text-primary-card-title)]';

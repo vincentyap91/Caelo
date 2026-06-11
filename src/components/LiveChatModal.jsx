@@ -296,7 +296,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                         </button>
 
                         <div className="surface-card rounded-2xl px-4 py-4">
-                            <label className="flex items-center gap-3 rounded-xl bg-[var(--color-surface-cool-light)] px-4 py-3">
+                            <label className="flex items-center gap-3 rounded-xl bg-[var(--color-surface-input-light)] px-4 py-3">
                                 <span className="text-base font-semibold text-[var(--color-text-primary)]">Search for help</span>
                                 <Search size={18} className="ml-auto text-[var(--color-primary)]" />
                             </label>
@@ -610,7 +610,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
             </div>
 
             <div className="surface-card border-x-0 border-b-0 rounded-none px-4 py-3">
-                <div className="rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3">
+                <div className="rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 py-3">
                     <p className="text-base text-[var(--color-text-muted)]">Message...</p>
                     <div className="mt-4 flex items-center gap-4 text-[var(--color-text-muted)]">
                         <span>📎</span>

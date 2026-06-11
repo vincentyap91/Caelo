@@ -167,7 +167,7 @@ export default function SlotBrowseFilterModal({
                 <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-4 py-3 pb-4 sm:px-6 sm:py-5 lg:overflow-hidden">
                     <div className="shrink-0 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/80 p-3 shadow-[var(--shadow-live-card)] max-lg:rounded-[20px] sm:rounded-[24px] sm:p-4">
                         <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-2.5">
-                            <label className="flex h-11 min-h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)]/90 bg-[var(--color-surface-base)] px-3 shadow-[0_2px_10px_rgba(15,23,42,0.04)] lg:h-10 lg:min-h-0 lg:flex-1">
+                            <label className="flex h-11 min-h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)]/90 bg-[var(--color-surface-input-light)] px-3 shadow-[0_2px_10px_rgba(15,23,42,0.04)] lg:h-10 lg:min-h-0 lg:flex-1">
                                 <Search size={16} className="shrink-0 text-[var(--color-text-muted)]" />
                                 <input
                                     value={draftQuery}

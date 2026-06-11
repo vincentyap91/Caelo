@@ -130,7 +130,7 @@ function EditMode({ downline, onBack, onSave }) {
                         value={remark}
                         onChange={(e) => setRemark(e.target.value)}
                         placeholder=""
-                        className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none transition focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]"
+                        className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none transition focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]"
                     />
                 </div>
 

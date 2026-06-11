@@ -431,7 +431,7 @@ export default function DepositPage({ onNavigate }) {
                                     <button
                                         type="button"
                                         onClick={() => setBonusDropdownOpen((o) => !o)}
-                                        className="flex h-12 w-full items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                        className="flex h-12 w-full items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                     >
                                         <span className={selectedBonus ? 'font-medium text-[var(--color-text-primary)]' : 'text-[var(--color-text-muted)]'}>
                                             {selectedBonus ? BONUS_OPTIONS.find((b) => b.id === selectedBonus)?.label ?? 'Select Bonus' : 'Select Bonus'}
@@ -450,7 +450,7 @@ export default function DepositPage({ onNavigate }) {
                                                             setSelectedBonus(b.id);
                                                             setBonusDropdownOpen(false);
                                                         }}
-                                                        className="flex w-full px-4 py-2.5 text-left text-sm font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-surface-cool-light)]"
+                                                        className="flex w-full px-4 py-2.5 text-left text-sm font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-surface-input-light)]"
                                                     >
                                                         {b.label}
                                                     </button>
@@ -539,7 +539,7 @@ export default function DepositPage({ onNavigate }) {
                                         <button
                                             type="button"
                                             onClick={() => setNormalBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                         >
                                             {selectedNormalAccount ? (
                                                 <span className="flex items-center gap-2.5">
@@ -569,7 +569,7 @@ export default function DepositPage({ onNavigate }) {
                                                                 setSelectedNormalBankAccount(a.id);
                                                                 setNormalBankDropdownOpen(false);
                                                             }}
-                                                            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-cool-light)]"
+                                                            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
                                                         >
                                                             {a.image ? (
                                                                 <img src={a.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
@@ -601,7 +601,7 @@ export default function DepositPage({ onNavigate }) {
                                         <button
                                             type="button"
                                             onClick={() => setBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                         >
                                             {depositOptionType === 'ewallet' && selectedTng ? (
                                                 <span className="flex items-center gap-2.5">
@@ -641,7 +641,7 @@ export default function DepositPage({ onNavigate }) {
                                                                     setSelectedTng(t.id);
                                                                     setBankDropdownOpen(false);
                                                                 }}
-                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-cool-light)]"
+                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
                                                             >
                                                                 <img src={t.image} alt={t.label} className="h-6 w-6 shrink-0 object-contain" />
                                                                 <span className="font-normal text-[var(--color-text-primary)]">{t.label}</span>
@@ -656,7 +656,7 @@ export default function DepositPage({ onNavigate }) {
                                                                     setSelectedBank(b.id);
                                                                     setBankDropdownOpen(false);
                                                                 }}
-                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-cool-light)]"
+                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
                                                             >
                                                                 <img src={b.image} alt={b.label} className="h-6 w-6 shrink-0 object-contain" />
                                                                 <span className="font-normal text-[var(--color-text-primary)]">{b.label}</span>
@@ -715,7 +715,7 @@ export default function DepositPage({ onNavigate }) {
                         <div>
                             <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Amount <span className="text-[var(--color-danger)]">*</span></p>
                             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] shadow-[var(--shadow-subtle)]">
+                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] shadow-[var(--shadow-subtle)]">
                                     <span className="flex items-center justify-center bg-[var(--color-accent-glow)] px-4 text-sm font-bold text-[var(--color-button-hover)]">
                                         MYR
                                     </span>
@@ -782,7 +782,7 @@ export default function DepositPage({ onNavigate }) {
                                         value={remark}
                                         onChange={(e) => setRemark(e.target.value)}
                                         placeholder="Optional remark"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
+                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
                                     />
                                 </div>
                             </>
@@ -792,7 +792,7 @@ export default function DepositPage({ onNavigate }) {
                             <button
                                 type="button"
                                 onClick={() => setStep(1)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
+                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             >
                                 Back
                             </button>
@@ -901,7 +901,7 @@ export default function DepositPage({ onNavigate }) {
                                             previewUrl={receiptPreviewUrl}
                                             onPreview={() => setReceiptPreviewOpen(true)}
                                             showRemove={false}
-                                            className="border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)]/50"
+                                            className="border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)]/50"
                                         />
                                     </div>
                                 )}
@@ -920,7 +920,7 @@ export default function DepositPage({ onNavigate }) {
                             <button
                                 type="button"
                                 onClick={() => setStep(2)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
+                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                             >
                                 Back
                             </button>

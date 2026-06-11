@@ -4,6 +4,7 @@ import CalendarDateInput from '../CalendarDateInput';
 import SegmentedTabs from '../ui/SegmentedTabs';
 import PromotionStyleTabs from '../PromotionStyleTabs';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from '../HorizontalScrollTabRow';
+import { filterPillClassName } from '../ui/filterPillClasses';
 import DownlineDetailModal from './DownlineDetailModal';
 import { useReferralData } from '../../context/ReferralDataContext';
 
@@ -27,14 +28,7 @@ const KPI_SUB_TABS = [
     { id: 'inactive', label: 'Inactive Downlines' },
 ];
 
-/** Same chrome as summary “Today / Yesterday / …” quick range buttons (`HorizontalScrollTabRow` on mobile). */
-function quickRangePillClassName(selected, smMinWidthClass = 'sm:min-w-[96px]') {
-    return `max-sm:snap-start shrink-0 whitespace-nowrap rounded-xl border px-3 py-2.5 text-xs font-semibold transition ${smMinWidthClass} sm:px-4 sm:text-sm ${
-        selected
-            ? 'border-[var(--color-accent)] bg-[var(--color-surface-secondary-chip)] text-[var(--color-text-sub-title)]'
-            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-surface-secondary-chip)] hover:text-[var(--color-text-sub-title)]'
-    }`;
-}
+/** Same chrome as History Record quick-range pills (Cam88 color/surface/filter + color/button/tabs). */
 
 function formatDateForInput(d) {
     const y = d.getFullYear();
@@ -184,7 +178,7 @@ export default function DownlineReferralsPanel() {
                                         onSummaryQuickClick(id);
                                         scrollTabIntoViewSmooth(summaryQuickTabRefs.current[id]);
                                     }}
-                                    className={quickRangePillClassName(summaryQuickId === id)}
+                                    className={filterPillClassName(summaryQuickId === id)}
                                 >
                                     {label}
                                 </button>
@@ -250,7 +244,7 @@ export default function DownlineReferralsPanel() {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search downline username"
-                                className="h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] py-2 pl-10 pr-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                className="h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] py-2 pl-10 pr-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                             />
                         </div>
                     </label>

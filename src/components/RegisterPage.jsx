@@ -66,7 +66,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                                         <form className="space-y-3" onSubmit={handleRegister} noValidate>
                                             <label className="block">
                                                 <span className="sr-only">Username</span>
-                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 shadow-[var(--inset-panel)]">
                                                     <UserRound size={16} className="text-[var(--color-text-secondary)]" />
                                                     <input
                                                         name="username"
@@ -81,7 +81,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">New Password</span>
-                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 shadow-[var(--inset-panel)]">
                                                     <Lock size={16} className="text-[var(--color-text-secondary)]" />
                                                     <input
                                                         type={showPassword ? 'text' : 'password'}
@@ -102,14 +102,14 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                                             <div className="grid grid-cols-[84px_1fr] gap-2">
                                                 <label className="block">
                                                     <span className="sr-only">Country code</span>
-                                                    <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
+                                                    <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
                                                         +60
                                                         <ChevronDown size={14} />
                                                     </div>
                                                 </label>
                                                 <label className="block">
                                                     <span className="sr-only">Telephone number</span>
-                                                    <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                    <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 shadow-[var(--inset-panel)]">
                                                         <Phone size={16} className="text-[var(--color-text-secondary)]" />
                                                         <input
                                                             placeholder="Telephone Number *"
@@ -125,7 +125,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">Full Name</span>
-                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 shadow-[var(--inset-panel)]">
                                                     <UserRound size={16} className="text-[var(--color-text-secondary)]" />
                                                     <input
                                                         placeholder="Full Name *"
@@ -136,7 +136,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">Email</span>
-                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)]">
+                                                <div className="flex h-11 items-center gap-2 rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 shadow-[var(--inset-panel)]">
                                                     <Mail size={16} className="text-[var(--color-text-secondary)]" />
                                                     <input
                                                         placeholder="Email *"
@@ -147,7 +147,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">Currency</span>
-                                                <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
+                                                <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
                                                     Malaysian Ringgit (MYR)
                                                     <ChevronDown size={14} />
                                                 </div>
@@ -155,7 +155,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
 
                                             <label className="block">
                                                 <span className="sr-only">Affiliate ID</span>
-                                                <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
+                                                <div className="flex h-11 items-center justify-between rounded-md border border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] px-3 text-sm text-[var(--color-text-secondary)] shadow-[var(--inset-panel)]">
                                                     Affiliate ID / Referral (Optional)
                                                     <ChevronDown size={14} />
                                                 </div>

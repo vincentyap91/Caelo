@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import RewardsActivityRecordModal from './RewardsActivityRecordModal';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from './HorizontalScrollTabRow';
+import { filterPillClassName } from './ui/filterPillClasses';
 import { REWARDS_ACTIVITY_RECORD_TYPES, REWARDS_PROGRAM_IDS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
@@ -795,7 +796,7 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
                                     value={activeProgram}
                                     onChange={(e) => setProgramHash(e.target.value)}
                                     aria-label="Rewards programme"
-                                    className="h-11 w-full cursor-pointer appearance-none rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] pl-4 pr-10 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                    className="h-11 w-full cursor-pointer appearance-none rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] pl-4 pr-10 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                                 >
                                     {REWARDS_PROGRAMS.map(({ id, label }) => (
                                         <option key={id} value={id}>
@@ -833,11 +834,10 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
                                         setProgramHash(id);
                                         scrollTabIntoViewSmooth(programTabRefs.current[id]);
                                     }}
-                                    className={`max-lg:snap-start min-h-[44px] shrink-0 whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold transition ${
-                                        selected
-                                            ? 'border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] text-[var(--color-accent)] shadow-sm ring-1 ring-[var(--color-accent-glow)]'
-                                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:text-[var(--color-text-primary)]'
-                                    }`}
+                                    className={filterPillClassName(selected, {
+                                        shape: 'rounded-full',
+                                        extraClass: 'max-lg:snap-start min-h-[44px]',
+                                    })}
                                 >
                                     {label}
                                 </button>

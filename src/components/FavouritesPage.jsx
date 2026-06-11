@@ -7,6 +7,12 @@ import {
     isSportsFavouriteCategory,
 } from '../utils/favouriteGames';
 import { useFavourites } from '../context/FavouritesContext';
+import SegmentedTabs from './ui/SegmentedTabs';
+
+const FAVOURITE_CATEGORY_TABS = [
+    { id: 'casino', label: 'Live Casino and Slots' },
+    { id: 'sports', label: 'Sports' },
+];
 
 const sportsSections = [
     { id: 'games', title: 'Favourite Games', emptyText: 'No favourite games' },
@@ -128,30 +134,12 @@ export default function FavouritesPage({ onNavigate }) {
             <h1 className="page-title">Favourites</h1>
 
             <div className="mb-8 mt-8 flex justify-center">
-                <div className="inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[0_4px_12px_rgba(15,23,42,0.04)]">
-                    <button
-                        type="button"
-                        onClick={() => setCategory('casino')}
-                        className={`rounded-lg px-6 py-2.5 text-sm font-semibold transition ${
-                            category === 'casino'
-                                ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
-                                : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-cool-light)]'
-                        }`}
-                    >
-                        Live Casino and Slots
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => setCategory('sports')}
-                        className={`rounded-lg px-6 py-2.5 text-sm font-semibold transition ${
-                            category === 'sports'
-                                ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
-                                : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-cool-light)]'
-                        }`}
-                    >
-                        Sports
-                    </button>
-                </div>
+                <SegmentedTabs
+                    items={FAVOURITE_CATEGORY_TABS}
+                    value={category}
+                    onChange={setCategory}
+                    layout="fit"
+                />
             </div>
 
             <div className="space-y-8">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, ChevronDown, Check, ReceiptText, Search } from 'lucide-react';
+import SegmentedTabs from './ui/SegmentedTabs';
 
 const betStatusTabs = [
     { id: 'pending', label: 'Pending' },
@@ -23,21 +24,8 @@ export default function MyBetsPage() {
         <div className="page-container">
                 <h1 className="page-title">My Bets</h1>
 
-                <div className="mb-6 mt-8 flex flex-wrap gap-3">
-                    {betStatusTabs.map(({ id, label }) => (
-                        <button
-                            key={id}
-                            type="button"
-                            onClick={() => setActiveTab(id)}
-                            className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                                activeTab === id
-                                    ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
-                                    : 'bg-[var(--color-surface-base)] text-[var(--color-text-muted)] ring-1 ring-[var(--color-border-subtle)] hover:ring-[var(--color-border-subtle)] hover:text-[var(--color-button-hover)]'
-                            }`}
-                        >
-                            {label}
-                        </button>
-                    ))}
+                <div className="mb-6 mt-8">
+                    <SegmentedTabs items={betStatusTabs} value={activeTab} onChange={setActiveTab} />
                 </div>
 
                 <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
@@ -48,7 +36,7 @@ export default function MyBetsPage() {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="e.g. Real Madrid"
-                            className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                            className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] pl-4 pr-12 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                         />
                         <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-soft)]" />
                     </label>
@@ -57,7 +45,7 @@ export default function MyBetsPage() {
                         <button
                             type="button"
                             onClick={() => setDateDropdownOpen((o) => !o)}
-                            className="flex h-12 min-w-[160px] items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-medium text-[var(--color-text-secondary)] shadow-[var(--shadow-subtle)]"
+                            className="flex h-12 min-w-[160px] items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm font-medium text-[var(--color-text-secondary)] shadow-[var(--shadow-subtle)]"
                         >
                             <Calendar size={18} className="text-[var(--color-text-muted)]" />
                             {dateRange}

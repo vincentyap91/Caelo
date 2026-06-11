@@ -881,7 +881,7 @@ function ThemeEditorInner() {
                             autoFocus
                             value={passcodeInput}
                             onChange={(e) => setPasscodeInput(e.target.value)}
-                            className="mb-4 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-2 text-center text-lg tracking-wide outline-none focus:border-[var(--color-primary)]"
+                            className="mb-4 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 py-2 text-center text-lg tracking-wide outline-none focus:border-[var(--color-primary)]"
                             placeholder="••••"
                         />
                         <div className="flex gap-2">
@@ -1188,7 +1188,7 @@ function ThemeEditorInner() {
                                                     onChange={(e) => { setImportText(e.target.value); setImportFeedback(null); }}
                                                     placeholder=":root { --var: val; }"
                                                     rows={5}
-                                                    className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2 font-mono text-[11px] text-[var(--color-text-secondary)] outline-none focus:border-[var(--color-primary)]"
+                                                    className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-3 py-2 font-mono text-[11px] text-[var(--color-text-secondary)] outline-none focus:border-[var(--color-primary)]"
                                                 />
                                                 {importFeedback && <p className="text-xs font-medium text-[var(--color-success-strong)]">{importFeedback.msg}</p>}
                                                 <button type="button" onClick={handleImport} className="mt-1 w-full rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] hover:bg-[var(--color-button-hover)]">Apply Overrides</button>

@@ -69,7 +69,7 @@ export default function PokerPage({ onNavigate }) {
                                 Choose a poker room for tournaments, cash tables, and quick sit-and-go action.
                             </p>
                         </div>
-                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 shadow-[var(--inset-panel)] lg:w-[330px]">
+                        <label className="flex h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-3 shadow-[var(--inset-panel)] lg:w-[330px]">
                             <Search size={16} className="text-[var(--color-text-muted)]" />
                             <input
                                 value={query}

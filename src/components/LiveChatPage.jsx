@@ -202,7 +202,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                                 onChange={(e) => setInputValue(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                                 placeholder="Type your message here..."
-                                className="w-full bg-[var(--color-surface-cool-light)] border-none rounded-xl focus:ring-1 focus:ring-[var(--color-primary)]/20 text-[14px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-soft)] py-3 px-5"
+                                className="w-full bg-[var(--color-surface-input-light)] border-none rounded-xl focus:ring-1 focus:ring-[var(--color-primary)]/20 text-[14px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-soft)] py-3 px-5"
                             />
                         </div>
                         <button 

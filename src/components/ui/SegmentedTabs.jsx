@@ -1,8 +1,8 @@
 import React from 'react';
 
 /**
- * A shared Segmented Control / Tab component used for main navigation tabs
- * such as FAQ, T&C, Bet Rules, etc.
+ * Rebate-style segmented control (Cam88 color/button/tabs + color/surface/filter).
+ * Active: navy pill + white label. Inactive: transparent on shell, muted label.
  *
  * @param {'equal' | 'fit'} [layout] - 'equal': all tabs same width; 'fit': tabs fit content width.
  * @param {string} [className] - Optional extra classes for the container
@@ -12,8 +12,8 @@ export default function SegmentedTabs({ items, value, onChange, layout = 'equal'
 
     return (
         <div
-            className={`flex gap-1 overflow-x-auto rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[var(--shadow-subtle)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isEqual ? 'w-full' : 'w-fit'
-                } ${className}`}
+            role="tablist"
+            className={`caelo-segmented-tabs ${isEqual ? 'caelo-segmented-tabs--equal' : 'caelo-segmented-tabs--fit'} ${className}`.trim()}
         >
             {items.map((item) => {
                 const id = typeof item === 'string' ? item : item.id;
@@ -24,16 +24,14 @@ export default function SegmentedTabs({ items, value, onChange, layout = 'equal'
                     <button
                         key={id}
                         type="button"
+                        role="tab"
+                        aria-selected={active}
                         onClick={() => onChange(id)}
-                        className={`inline-flex items-center justify-center whitespace-nowrap rounded-lg px-2 py-3 text-xs font-bold transition sm:px-4 sm:py-2.5 sm:text-sm ${isEqual ? 'flex-1 min-w-0' : 'px-4'
-                            } ${active
-                                ? 'btn-theme-primary shadow-sm'
-                                : 'bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
-                            }`}
+                        className={`caelo-segmented-tabs__tab ${active ? 'caelo-segmented-tabs__tab--active' : ''} ${
+                            isEqual ? 'caelo-segmented-tabs__tab--equal' : 'caelo-segmented-tabs__tab--fit'
+                        }`.trim()}
                     >
-                        <span className="line-clamp-2 w-full text-center leading-tight">
-                            {label}
-                        </span>
+                        <span className="caelo-segmented-tabs__label">{label}</span>
                     </button>
                 );
             })}

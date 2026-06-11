@@ -64,7 +64,7 @@ export default function FeedbackPage() {
                                     onClick={() => setCategoryOpen((o) => !o)}
                                     aria-expanded={categoryOpen}
                                     aria-haspopup="listbox"
-                                    className="flex h-12 w-full items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-left text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                    className="flex h-12 w-full items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                                 >
                                     <span className={category ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-soft)]'}>
                                         {category || 'Select category'}
@@ -111,7 +111,7 @@ export default function FeedbackPage() {
                                 onChange={(e) => setComments(e.target.value)}
                                 placeholder="Write your comments"
                                 rows={5}
-                                className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 py-3 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] ring-[var(--color-accent)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                             />
                         </label>
 

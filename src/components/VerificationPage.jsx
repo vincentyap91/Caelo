@@ -11,6 +11,7 @@ import {
     ShieldCheck,
     Clock,
 } from 'lucide-react';
+import SegmentedTabs from './ui/SegmentedTabs';
 
 const verificationOptions = [
     {
@@ -102,7 +103,7 @@ export default function VerificationPage() {
                                     <div className="mt-4 space-y-4">
                                         <label className="block">
                                             <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">Select the Bank</span>
-                                            <div className="flex h-12 items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] px-4 text-[var(--color-text-muted)]">
+                                            <div className="flex h-12 items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-[var(--color-text-muted)]">
                                                 <span>Select the Bank</span>
                                                 <ChevronDown size={18} />
                                             </div>
@@ -114,7 +115,7 @@ export default function VerificationPage() {
                                                 value={bankForm.accountNumber}
                                                 onChange={(e) => setBankForm((p) => ({ ...p, accountNumber: e.target.value }))}
                                                 placeholder="e.g. 0123456789"
-                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                                             />
                                         </label>
                                     </div>
@@ -130,7 +131,7 @@ export default function VerificationPage() {
                                                 value={bankForm.firstName}
                                                 onChange={(e) => setBankForm((p) => ({ ...p, firstName: e.target.value }))}
                                                 placeholder="e.g. John"
-                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                                             />
                                         </label>
                                         <label className="block">
@@ -140,7 +141,7 @@ export default function VerificationPage() {
                                                 value={bankForm.lastName}
                                                 onChange={(e) => setBankForm((p) => ({ ...p, lastName: e.target.value }))}
                                                 placeholder="e.g. Smith"
-                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-float)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                                             />
                                         </label>
                                     </div>
@@ -249,30 +250,15 @@ export default function VerificationPage() {
                         Identity Verification
                     </button>
 
-                    <div className="mb-6 flex gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1">
-                        <button
-                            type="button"
-                            onClick={() => setDocType('id')}
-                            className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition ${
-                                docType === 'id'
-                                    ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
-                                    : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-cool-light)]'
-                            }`}
-                        >
-                            ID
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setDocType('passport')}
-                            className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition ${
-                                docType === 'passport'
-                                    ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
-                                    : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-cool-light)]'
-                            }`}
-                        >
-                            Passport
-                        </button>
-                    </div>
+                    <SegmentedTabs
+                        items={[
+                            { id: 'id', label: 'ID' },
+                            { id: 'passport', label: 'Passport' },
+                        ]}
+                        value={docType}
+                        onChange={setDocType}
+                        className="mb-6"
+                    />
 
                     <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
                         <div className="space-y-6">
@@ -344,14 +330,14 @@ export default function VerificationPage() {
     }
 
     return (
-        <div className="page-container">
+        <div className="verification-page page-container">
                 <h1 className="page-title">Verification</h1>
 
                 <div className="mt-8 grid gap-6 sm:grid-cols-2">
                     {verificationOptions.map(({ id, title, description, icon: Icon, status, actionLabel }) => (
                         <article
                             key={id}
-                            className="surface-card flex flex-col rounded-2xl p-6 transition hover:shadow-[var(--shadow-card-hover)]"
+                            className="verification-card surface-card flex flex-col rounded-2xl p-6 transition hover:shadow-[var(--shadow-card-hover)]"
                         >
                             <div className="flex items-start justify-between">
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-3 py-1 text-xs font-semibold text-[var(--color-button-hover)]">
@@ -371,7 +357,7 @@ export default function VerificationPage() {
                             <button
                                 type="button"
                                 onClick={() => setView(id)}
-                                className="mt-6 inline-flex w-fit items-center justify-center rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-surface-base)] px-5 py-2.5 text-sm font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-pale)]"
+                                className="verification-card__action mt-6 inline-flex w-fit items-center justify-center rounded-full border-2 border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-5 py-2.5 text-sm font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-pale)]"
                             >
                                 {actionLabel}
                             </button>

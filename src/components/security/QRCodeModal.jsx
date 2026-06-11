@@ -85,7 +85,7 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
                             value={code}
                             onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
                             placeholder="000000"
-                            className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3 text-center text-lg font-mono tracking-code text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
+                            className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 py-3 text-center text-lg font-mono tracking-code text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] outline-none placeholder:text-[var(--color-text-soft)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20"
                         />
                     </label>
                     {error && <p className="text-sm text-[var(--color-danger)]">{error}</p>}

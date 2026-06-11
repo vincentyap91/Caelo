@@ -184,7 +184,7 @@ export default function VerifyPhoneNumberStep({
                         onKeyDown={(e) => handleKeyDown(i, e)}
                         onPaste={handlePaste}
                         onFocus={(e) => e.target.select()}
-                        className="h-11 min-w-0 rounded-lg border-2 border-[var(--color-border-brand)] bg-[var(--color-surface-base)] text-center text-lg font-bold tabular-nums text-[var(--color-text-primary-card-title)] shadow-[var(--inset-panel)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/25 sm:h-12 sm:text-xl"
+                        className="h-11 min-w-0 rounded-lg border-2 border-[var(--color-border-brand)] bg-[var(--color-surface-input-light)] text-center text-lg font-bold tabular-nums text-[var(--color-text-primary-card-title)] shadow-[var(--inset-panel)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/25 sm:h-12 sm:text-xl"
                     />
                 ))}
             </div>

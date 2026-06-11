@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import CalendarDateInput from './CalendarDateInput';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from './HorizontalScrollTabRow';
+import { filterPillClassName } from './ui/filterPillClasses';
 
 function formatDateForInput(d) {
     const y = d.getFullYear();
@@ -160,14 +161,8 @@ export default function AccountHistoryRecordPanel({
         return rowTime >= startDate.getTime() && rowTime <= endDate.getTime();
     });
 
-    const quickRangeButtonClass = (selected) => {
-        const shape = pillQuickRanges ? 'rounded-full' : 'rounded-xl';
-        return [
-            'history-record-quick-range max-sm:snap-start shrink-0 whitespace-nowrap border px-3 py-2.5 text-xs font-semibold transition sm:min-w-[96px] sm:px-4 sm:text-sm',
-            shape,
-            selected ? 'history-record-quick-range--active' : 'history-record-quick-range--inactive',
-        ].join(' ');
-    };
+    const quickRangeButtonClass = (selected) =>
+        filterPillClassName(selected, { shape: pillQuickRanges ? 'rounded-full' : 'rounded-xl' });
 
     return (
         <div className="history-record-panel space-y-6">

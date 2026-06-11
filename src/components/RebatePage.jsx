@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 import CalendarDateInput from './CalendarDateInput';
 import SegmentedTabs from './ui/SegmentedTabs';
+import { filterPillClassName } from './ui/filterPillClasses';
 
 function formatDateForInput(d) {
     const y = d.getFullYear();
@@ -221,11 +222,9 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                                         key={id}
                                         type="button"
                                         onClick={() => setHistoryRangeFromQuick(id)}
-                                        className={`min-h-11 min-w-0 flex-1 rounded-xl border px-3 py-2.5 text-sm font-semibold transition sm:min-h-0 sm:px-4 ${
-                                            historyQuickRange === id
-                                                ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
-                                                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
-                                        }`}
+                                        className={filterPillClassName(historyQuickRange === id, {
+                                            extraClass: 'min-h-11 min-w-0 flex-1 sm:min-h-0 sm:flex-initial',
+                                        })}
                                     >
                                         {label}
                                     </button>

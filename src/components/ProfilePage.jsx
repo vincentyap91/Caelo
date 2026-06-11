@@ -62,7 +62,7 @@ function ReadOnlyValue({ label, value, singleLineEllipsis = false }) {
         return (
             <div className="block">
                 <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
-                <div className="flex h-12 min-h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 shadow-[var(--shadow-subtle)]">
+                <div className="flex h-12 min-h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 shadow-[var(--shadow-subtle)]">
                     <input
                         type="text"
                         readOnly
@@ -79,7 +79,7 @@ function ReadOnlyValue({ label, value, singleLineEllipsis = false }) {
     return (
         <div className="block">
             <span className="mb-2 block text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{label}</span>
-            <div className="flex h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] select-none">
+            <div className="flex h-12 items-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm font-medium text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] select-none">
                 <span className="min-w-0 break-all">{value || '—'}</span>
             </div>
         </div>
@@ -93,8 +93,8 @@ function Field({ label, value, placeholder, type = 'text', editable, onChange, i
             <div
                 className={`group flex h-12 items-center gap-3 rounded-xl border px-4 shadow-[var(--shadow-subtle)] transition-all focus-within:border-[var(--color-accent)] focus-within:ring-2 focus-within:ring-[var(--color-accent)]/20 ${
                     editable
-                        ? 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] hover:border-[var(--color-accent)]'
-                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] hover:border-[var(--color-accent-glow)]'
+                        ? 'border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] hover:border-[var(--color-accent)]'
+                        : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] hover:border-[var(--color-accent-glow)]'
                 }`}
             >
                 {Icon && (
@@ -445,7 +445,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                             <button
                                                 type="button"
                                                 onClick={closeBankForm}
-                                                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
+                                                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
                                             >
                                                 Cancel
                                             </button>
@@ -472,7 +472,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                             <button
                                                 type="button"
                                                 onClick={() => setBankDropdownOpen((o) => !o)}
-                                                className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                                className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
                                             >
                                                 {bankForm.bankId && BANKS.find((b) => b.id === bankForm.bankId)?.image ? (
                                                     <span className="flex items-center gap-2.5">
@@ -493,7 +493,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                                                 key={b.id}
                                                                 type="button"
                                                                 onClick={() => { setBankForm((f) => ({ ...f, bankId: b.id })); setBankDropdownOpen(false); }}
-                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-cool-light)]"
+                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
                                                             >
                                                                 {b.image ? <img src={b.image} alt="" className="h-6 w-6 shrink-0 object-contain" /> : null}
                                                                 <span className="font-normal text-[var(--color-text-primary)]">{b.label}</span>
@@ -514,7 +514,7 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
                                         {bankAccounts.map((acc) => (
                                             <div
                                                 key={acc.id}
-                                                className="flex items-start gap-3 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] p-4 transition hover:border-[var(--color-accent-glow)] sm:gap-4"
+                                                className="flex items-start gap-3 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] p-4 transition hover:border-[var(--color-accent-glow)] sm:gap-4"
                                             >
                                                 <div className="flex min-w-0 flex-1 flex-col gap-1">
                                                     <div className="flex items-center gap-2">

@@ -484,12 +484,12 @@
   --color-surface-info:                      var(--support-info);
   --color-surface-info-deep:                 var(--support-info-strong);
   --color-surface-info-warning:              var(--support-warning-surface);
-  --color-surface-input:                     var(--mono-905);
-  --color-surface-input-color:               var(--brand-700);
-  --color-surface-input-inverse:             var(--mono-330);
-  --color-surface-input-light:               var(--mono-0);
+  --color-surface-input:                     var(--raw-surface-muted);
+  --color-surface-input-color:               var(--raw-surface-muted);
+  --color-surface-input-inverse:             var(--raw-surface-muted);
+  --color-surface-input-light:               var(--raw-surface-muted);
   --color-surface-input-light-border:        var(--mono-0);
-  --color-surface-input-muted:               var(--mono-565);
+  --color-surface-input-muted:               var(--raw-surface-muted);
   --color-surface-input-muted-border:        var(--mono-565);
   --color-surface-inset:                     var(--mono-950);
   --color-surface-light:                     var(--mono-108);
@@ -514,7 +514,7 @@
   --color-surface-primary-shape:             var(--support-success-strong);
   --color-surface-qrcode:                    var(--mono-0);
   --color-surface-referral-card:             var(--brand-500);
-  --color-surface-referral-input:            var(--brand-630);
+  --color-surface-referral-input:            var(--raw-surface-muted);
   --color-surface-rtp-card:                  var(--mono-750);
   --color-surface-rtp-secondary-card:        var(--accent-450);
   --color-surface-rtp-secondary-card-text:   var(--raw-app-text-secondary);
