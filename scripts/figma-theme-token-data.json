@@ -4234,6 +4234,18 @@
       "cssValue": "#d5deef"
     },
     {
+      "cssName": "--raw-border-countdown",
+      "figmaPath": "raw/border/countdown",
+      "rgba": {
+        "r": 1,
+        "g": 0.7843137254901961,
+        "b": 0.23529411764705882,
+        "a": 0.5019607843137255
+      },
+      "hex": "#ffc83c80",
+      "cssValue": "#ffc83c80"
+    },
+    {
       "cssName": "--raw-wash-400",
       "figmaPath": "raw/wash/400",
       "rgba": {
@@ -6561,6 +6573,17 @@
         "STROKE_COLOR"
       ],
       "resolvedHex": "#ffffff00"
+    },
+    {
+      "cssName": "--color-border-countdown",
+      "figmaPath": "color/border/countdown",
+      "aliasCss": "--raw-border-countdown",
+      "aliasFigma": "raw/border/countdown",
+      "aliasCollection": "01 Primitives",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "resolvedHex": "#ffc83c80"
     },
     {
       "cssName": "--color-accent",

@@ -40,7 +40,7 @@ const DIVIDER = (
             display: 'block',
             width: '1px',
             alignSelf: 'stretch',
-            background: 'rgba(0,0,0,0.10)',
+            background: 'var(--color-border-countdown)',
             borderRadius: '1px',
             flexShrink: 0,
             margin: '2px 0',
@@ -131,7 +131,7 @@ export default function CountdownTimer({ endDate, size = 'card', align = 'center
                         alignItems: 'stretch',
                         gap: unitGap,
                         background: 'linear-gradient(135deg, rgba(255,255,255,0.72) 0%, rgba(255,248,230,0.55) 100%)',
-                        border: '1px solid rgba(255,200,60,0.5)',
+                        border: '1px solid var(--color-border-countdown)',
                         borderRadius: '10px',
                         padding: isModal ? '5px 12px' : '4px 10px',
                     }}

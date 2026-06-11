@@ -232,7 +232,7 @@
    */
   .app-download-section {
     --color-button-hover: var(--brand-630);
-    --color-text-secondary: var(--raw-text-brand-soft);
+    /* color/text/secondary → raw/app/text/secondary (global semantic; no override) */
     --color-text-muted: rgb(77 114 145 / 0.85);
     --color-border-brand: var(--raw-border-brand);
     --color-border-subtle: var(--raw-border-brand);
@@ -241,9 +241,8 @@
   }
 
   .app-download-section .app-download-chip {
-    --color-border-brand: rgb(202 227 244);
-    --color-accent-pale: rgb(244 251 255);
-    --color-text-secondary: rgb(77 114 145);
+    --color-border-brand: var(--pale-200);
+    --color-accent-pale: var(--pale-300);
   }
 
   .app-download-section .app-download-apk-button {
@@ -346,7 +345,7 @@
    *
    * Figma role → scoped alias (preserves pre-migration Caelo):
    * color/surface/base, color/gradient/slot/panel → soft wallet shell gradient
-   * color/button/tabs, color/border/tabs, color/surface → provider tabs (white active + blue ring)
+   * color/button/tabs, color/border/tabs (raw/border/tabs #d1d8e5), color/surface → provider tabs
    * color/primary, color/text-primary → wallet/promo labels & values
    * color/progress/bar/bg|fill → promo progress track & fill
    * color/button/cta-fourth(+text) → End Promo gold CTA
@@ -354,17 +353,18 @@
    * color/surface/rtp-secondary-card → RTP pill
    * color/border/danger → game thumb (transparent on Caelo)
    */
-  .slots-page {
+  .slots-page,
+  .fishing-page {
     --color-surface-base: var(--raw-app-surface-base);
     --color-surface: var(--color-surface-base);
     --color-button-tabs: var(--color-surface-base);
-    --color-border-tabs: var(--color-border-subtle);
+    --color-border-tabs: var(--raw-border-tabs);
     --color-gradient-slot-panel: var(--color-gradient-home-muted);
   }
 
-  .slots-page .slots-provider-tab--active {
+  .slots-page .slots-provider-tab--active,
+  .fishing-page .slots-provider-tab--active {
     --color-button-tabs: var(--color-surface-base);
-    --color-border-tabs: var(--color-surface-accent-hover);
   }
 
   .slots-page .slots-browse-panel {
@@ -437,6 +437,7 @@
    * color/primary-tag(+text) → banner status (conditions required)
    * color/secondary-tag(+text) → banner status (available)
    * color/border-subtle, color/surface/base → More Info outline button
+   * color/border/countdown → CountdownTimer shell + unit dividers
    * color/button/cta → Join Now / Claim Now / Load More (btn-theme-cta utility)
    */
   .promotion-page {
@@ -1093,29 +1094,72 @@
   }
 
   /**
-   * Homepage Live Sports — dark stadium cards + gold CTAs (§13.11).
-   * Cam88 semantic names in Figma; Caelo screenshot palette via scoped aliases.
+   * Homepage Live Sports — match cards (Figma Home - Live Sports section - 1, §13.11).
+   * Semantics: color/gradient/sports/card, color/overlay/sports/card, color/accent/yellow,
+   * color/surface/scrim/dark, color/text/sticky-nav-active, color/text/sports/*.
    */
   .home-page .home-live-sports-section {
-    --color-text-third-title: var(--raw-nav-text-accent);
     --color-text-card-text: #ffffff;
-    --color-text-muted: var(--raw-text-soft);
+    --color-text-muted: var(--raw-app-text-muted);
     --color-text-sports-primary: #ffffff;
-    --color-text-sports-muted: var(--raw-text-soft);
+    --color-text-sports-muted: var(--raw-text-sports-odds-label);
+    --color-text-sticky-nav-active: var(--raw-text-sports-tournament);
     --color-button-cta-fourth: var(--accent-400);
     --color-button-cta-fourth-text: var(--mono-950);
-    --color-accent-yellow: var(--accent-400);
+    --color-accent-yellow: var(--raw-accent-yellow-sports-odds);
+    --color-surface-inset: var(--raw-surface-sports-odds-pill);
+    --color-surface-scrim-dark: var(--raw-surface-sports-odds-label);
     --color-border-line: rgb(255 255 255 / 0.12);
-    --color-border-sports-card: rgb(255 255 255 / 0.12);
-    --color-border-sports-market: rgb(0 0 0 / 0.12);
-    --color-overlay-sports-card: rgb(7 13 24 / 0.35);
-    --raw-gradient-sports-card-start: #19387e;
-    --raw-gradient-sports-card-end: #17274b;
+    --color-overlay-sports-card: var(--overlay-sports-card);
+    --raw-gradient-sports-card-start: var(--raw-surface-sports-card);
+    --raw-gradient-sports-card-end: var(--raw-surface-sports-card);
     --color-gradient-sports-card: linear-gradient(
       90deg,
       var(--raw-gradient-sports-card-start) 0%,
       var(--raw-gradient-sports-card-end) 100%
     );
+  }
+
+  .home-page .home-live-sports-section .sports-match-card {
+    background-color: var(--raw-surface-sports-card);
+    background-image: none;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.45);
+  }
+
+  .home-page .home-live-sports-section .sports-match-card.bg-gradient-sports-card,
+  .home-page .home-live-sports-section .sports-match-card[class*='bg-gradient-sports'] {
+    background-image: none;
+    background-color: var(--raw-surface-sports-card);
+  }
+
+  .home-page .home-live-sports-section .sports-match-card__overlay {
+    background-color: var(--color-overlay-sports-card);
+    color: var(--color-text-sticky-nav-active);
+  }
+
+  .home-page .home-live-sports-section .sports-odds-cell {
+    background-color: var(--color-accent-yellow);
+    border: none;
+  }
+
+  .home-page .home-live-sports-section .sports-odds-pill {
+    background-color: var(--color-surface-inset);
+    border: none;
+    color: var(--color-text-sports-primary);
+  }
+
+  .home-page .home-live-sports-section .sports-odds-label {
+    background-color: var(--color-surface-scrim-dark);
+    color: var(--color-text-sports-muted);
+  }
+
+  .home-page .home-live-sports-section .sports-bet-now-button,
+  .home-page .home-live-sports-section .home-live-sports-next {
+    background-color: var(--color-button-cta-fourth);
+    color: var(--color-button-cta-fourth-text);
+    box-shadow: 0 4px 6px rgb(244 197 66 / 0.35);
   }
 
   /**

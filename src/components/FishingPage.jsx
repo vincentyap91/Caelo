@@ -88,7 +88,7 @@ export default function FishingPage({ onNavigate }) {
     };
 
     return (
-        <main className="w-full bg-gradient-soft-blue-panel pb-14 font-sans">
+        <main className="fishing-page w-full bg-gradient-soft-blue-panel pb-14 font-sans">
             <section className="w-full pt-5 md:pt-7">
                 <div className={pageContainerClass}>
                     <div className="page-hero-banner">
@@ -110,8 +110,10 @@ export default function FishingPage({ onNavigate }) {
                                 key={provider.name}
                                 type="button"
                                 onClick={() => setActiveProvider(provider.name)}
-                                className={`relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 bg-[var(--color-surface-base)] px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
-                                    isActive ? 'border-[var(--color-surface-accent-hover)] ring-2 ring-[var(--color-surface-accent-hover)]/30' : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-brand)]'
+                                className={`slots-provider-tab relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
+                                    isActive
+                                        ? 'slots-provider-tab--active border-[var(--color-border-tabs)] bg-[var(--color-button-tabs)] ring-2 ring-[var(--color-primary)]/30'
+                                        : 'border-[var(--color-border-tabs)] bg-[var(--color-surface)] hover:border-[var(--color-border-brand)]'
                                 }`}
                             >
                                 {(provider.featured || provider.new) && (

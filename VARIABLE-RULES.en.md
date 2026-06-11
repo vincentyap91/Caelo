@@ -769,7 +769,7 @@ Section CSS may **re-alias** `--color-*` values (§13.11). It must **not** redef
 | Pattern | Component / classes | Tokens (already wired in `styles/theme.css`) |
 |---------|---------------------|-----------------------------------------------|
 | Game hover overlay | [`GameCardPlayBar`](src/components/game/GameCardActions.jsx), `.game-card-play-overlay`, `.game-card-play-button`, `.group` + `.game-card-play-hover` | `--color-overlay`, `--color-surface-base`, `--color-primary`, `--shadow-card-soft` |
-| Lobby provider tile | [`ProviderLobbyTile`](src/components/game/ProviderLobbyTile.jsx), `.provider-lobby-card__*` | `--color-surface-mid-color`, `--color-border-subtle`, `--color-surface-input-light`, `--color-text-tertiary` |
+| Lobby provider tile | [`ProviderLobbyTile`](src/components/game/ProviderLobbyTile.jsx), `.provider-lobby-card__*` | `--color-surface-mid-color`, `--color-border-subtle`, `--color-surface-cool-light` (label bar), `--color-text-tertiary` |
 | Card hover lift | [`GAME_CARD_HOVER_CLASS`](src/components/game/gameCardHover.js) | `--shadow-card-hover` |
 
 **Do**

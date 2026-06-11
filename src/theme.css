@@ -124,6 +124,10 @@
   --accent-orange-700: #923f03;
   --accent-pale-100: #fffd90;
 
+  /* pale (12WIN Home — app download chips) */
+  --pale-200: #cae3f4;
+  --pale-300: #f4fbff;
+
   /* support */
   --support-danger: #c8102e;
   --support-danger-maroon: #532320;
@@ -163,7 +167,7 @@
   /* overlay */
   --overlay-default: #00000099;
   --overlay-shadow-soft: #1d22251a;
-  --overlay-sports-card: #070d1866;
+  --overlay-sports-card: #0f1424a6;
   --overlay-sports-event: #07180966;
   --overlay-strong: #000000cc;
   --raw-scrim-shine-start: rgb(255 255 255 / 0.2);
@@ -415,6 +419,7 @@
   --color-text-primary-card-title:           var(--raw-text-brand);
   --color-text-recent-amount:                var(--raw-payout-amount);
   --color-text-referral-accent:              var(--accent-420);
+  /* Figma: color/text/secondary → raw/app/text/secondary */
   --color-text-secondary:                    var(--raw-app-text-secondary);
   --color-text-secondary-card-title:         var(--accent-450);
   --color-text-small:                        var(--mono-400);
@@ -557,7 +562,8 @@
   --color-border-sports-market:              var(--raw-border-sports-market);
   --color-border-strong:                     var(--mono-650);
   --color-border-subtle:                     var(--raw-app-border);
-  --color-border-tabs:                       var(--mono-0909);
+  --color-border-tabs:                       var(--raw-border-tabs);
+  --color-border-countdown:                  var(--raw-border-countdown);
 
   /* accent */
   --color-accent:                            var(--accent-400);
@@ -798,6 +804,19 @@
   --mono-510: #334155;
   --mono-950: #0f172a;
 
+  /* pale (12WIN Home — Figma pale/200, pale/300) */
+  --pale-200: #cae3f4;
+  --pale-300: #f4fbff;
+
+  /* Home Live Sports — match card shell (Figma Home - Live Sports section - 1) */
+  --raw-surface-sports-card: #1a2744;
+  --raw-border-sports-card-edge: #1a2744;
+  --raw-text-sports-tournament: #6bc5e8;
+  --raw-accent-yellow-sports-odds: #d4af37;
+  --raw-surface-sports-odds-pill: #000000;
+  --raw-surface-sports-odds-label: #1a1a1a;
+  --raw-text-sports-odds-label: #b3b3b3;
+
   /* Caelo site primitives (shared names) */
   --raw-brand-soft: #e5f6ff;
   --raw-brand-soft-border: #cceeff;
@@ -818,6 +837,8 @@
   --raw-border-accent: #dbeafe;
   --raw-border-brand: #cfe0f9;
   --raw-border-live: #d5deef;
+  --raw-border-tabs: #d1d8e5;
+  --raw-border-countdown: #ffc83c80;
   --raw-wash-400: #eceff8;
   --raw-payout-title: #0c162f;
   --raw-payout-highlight: #123b94;
@@ -956,7 +977,8 @@
   --raw-app-surface: var(--mono-0);
   --raw-app-surface-base: var(--mono-0);
   --raw-app-text-primary: var(--mono-950);
-  --raw-app-text-secondary: var(--mono-510);
+  /* Figma: raw/app/text/secondary (#334155) */
+  --raw-app-text-secondary: #334155;
   --raw-app-text-subtle: var(--mono-500);
   --raw-app-text-muted: var(--mono-400);
   --raw-app-text-soft: var(--raw-text-soft);

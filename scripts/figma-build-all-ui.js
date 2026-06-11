@@ -157,7 +157,7 @@ for (let i = 1; i <= 8; i++) {
   label.paddingLeft = label.paddingRight = 8;
   label.paddingTop = label.paddingBottom = 8;
   label.resize(200, 60);
-  await bindFillPath(label, "color/surface/input-light");
+  await bindFillPath(label, "color/surface/cool/light");
   await bindStrokePath(label, "color/border/subtle");
   label.strokeTopWeight = 1;
   label.strokeBottomWeight = label.strokeLeftWeight = label.strokeRightWeight = 0;
