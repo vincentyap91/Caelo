@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertCircle, ArrowRight, Building2, Check, ChevronDown, HelpCircle, Info, Wallet } from 'lucide-react';
+import { AlertCircle, ArrowRight, Building2, Check, ChevronDown, Clock, HelpCircle, Info, Wallet } from 'lucide-react';
 import fpxLogo from '../assets/fpx-logo.svg';
 import eWalletImg from '../assets/e-wallet.png';
 import instantDepositImg from '../assets/instant-deposit.png';
@@ -101,6 +101,12 @@ const CHANNELS = [
     { id: 'fpx2', label: 'FPX Channel 2', desc: 'Online Banking Payments' },
 ];
 
+/** Instant vs normal deposit — top tabs on step 1 (Caelo cashier-speed-tab). */
+const DEPOSIT_SPEED_TABS = [
+    { id: 'fast', label: 'Instant Payment', time: '~1 Mins' },
+    { id: 'normal', label: 'Normal Deposit', time: '~5 Mins' },
+];
+
 const NORMAL_BANK_ACCOUNTS = [
     { id: 'demo1', label: 'First Deposit Account demo - 188818881887', accountName: 'First Deposit Account demo', accountNumber: '188818881887', image: BANKS[0]?.image },
     { id: 'demo2', label: 'Maybank Deposit Account - 123456789012', accountName: 'Maybank Deposit Account', accountNumber: '123456789012', image: BANKS.find((b) => b.id === 'maybank')?.image },
@@ -118,9 +124,9 @@ const MAX_AMOUNT_NORMAL = 10000;
 export default function DepositPage({ onNavigate }) {
     const { showTransactionNotification, showPushNotification } = useActionNotifications();
     const [step, setStep] = useState(1);
-    const [depositSpeedTab, setDepositSpeedTab] = useState('normal');
+    const [depositSpeedTab, setDepositSpeedTab] = useState('fast');
     const [depositOptionType, setDepositOptionType] = useState('ewallet');
-    const [reloadSelection, setReloadSelection] = useState('');
+    const [reloadSelection, setReloadSelection] = useState('ewallet');
     const [selectedReloadBank, setSelectedReloadBank] = useState('');
     const [selectedNormalBankAccount, setSelectedNormalBankAccount] = useState('');
     const [remark, setRemark] = useState('');
@@ -210,6 +216,18 @@ export default function DepositPage({ onNavigate }) {
         setSelectedReloadBank('');
         setDepositSpeedTab('fast');
         setDepositOptionType('ewallet');
+    };
+
+    const selectDepositSpeedTab = (id) => {
+        setDepositSpeedTab(id);
+        if (id === 'normal') {
+            setReloadSelection('bank');
+            setSelectedReloadBank('');
+        } else {
+            setReloadSelection('ewallet');
+            setSelectedReloadBank('');
+            setDepositOptionType('ewallet');
+        }
     };
 
     const handleFileChange = (e) => {
@@ -332,6 +350,31 @@ export default function DepositPage({ onNavigate }) {
             <div className="surface-card overflow-visible rounded-2xl shadow-[var(--shadow-card-soft)]">
                 {/* Step 1: Choose deposit type */}
                 {step === 1 && (
+                    <div>
+                        <div className="flex border-b border-[var(--color-border-subtle)]" role="tablist" aria-label="Deposit speed">
+                            {DEPOSIT_SPEED_TABS.map(({ id, label, time }, idx) => {
+                                const isActive = depositSpeedTab === id;
+                                return (
+                                    <button
+                                        key={id}
+                                        type="button"
+                                        role="tab"
+                                        aria-selected={isActive}
+                                        onClick={() => selectDepositSpeedTab(id)}
+                                        className={`cashier-speed-tab min-w-0 flex-1 px-3 py-2.5 text-center transition sm:px-6 sm:py-4 ${
+                                            idx === 0 ? 'rounded-tl-2xl' : 'rounded-tr-2xl'
+                                        }${isActive ? ' is-active' : ''}`}
+                                    >
+                                        <p className="text-sm font-bold leading-tight sm:text-base sm:leading-normal">{label}</p>
+                                        <p className="cashier-speed-tab-sub mt-0.5 flex items-center justify-center gap-0.5 text-xs leading-tight sm:mt-1 sm:gap-1 sm:leading-normal">
+                                            <Clock className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" strokeWidth={2} aria-hidden />
+                                            {time}
+                                        </p>
+                                    </button>
+                                );
+                            })}
+                        </div>
+
                     <div className="cashier-deposit-step1 space-y-4 p-5 md:p-6">
                         <div className="flex items-start gap-3">
                             <span className="cashier-step-badge">1</span>
@@ -345,6 +388,7 @@ export default function DepositPage({ onNavigate }) {
                             </div>
                         </div>
 
+                        {depositSpeedTab === 'normal' && (
                         <div
                             className={`cashier-method-section${reloadSelection === 'bank' ? ' is-selected is-expanded' : ''}`}
                         >
@@ -389,7 +433,9 @@ export default function DepositPage({ onNavigate }) {
                                 </>
                             )}
                         </div>
+                        )}
 
+                        {depositSpeedTab === 'fast' && (
                         <button
                             type="button"
                             onClick={toggleReloadEwalletSection}
@@ -413,6 +459,7 @@ export default function DepositPage({ onNavigate }) {
                                 />
                             </div>
                         </button>
+                        )}
 
                         <label className="flex cursor-pointer items-center gap-3">
                             <input
@@ -513,6 +560,7 @@ export default function DepositPage({ onNavigate }) {
                             Next
                             <ArrowRight size={18} />
                         </button>
+                    </div>
                     </div>
                 )}
 
@@ -832,7 +880,7 @@ export default function DepositPage({ onNavigate }) {
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
                                     <span className="cashier-summary-card__row-label text-sm font-medium">Deposit Type</span>
                                     <span className="cashier-summary-card__row-value text-sm font-semibold">
-                                        {reloadSelection === 'bank' ? 'Bank' : reloadSelection === 'ewallet' ? 'E-Wallet' : '—'}
+                                        {DEPOSIT_SPEED_TABS.find((t) => t.id === depositSpeedTab)?.label ?? depositSpeedTab}
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">

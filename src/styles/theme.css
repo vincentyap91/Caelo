@@ -3542,6 +3542,10 @@
 
   .cashier-flow-page .cashier-speed-tab:not(.is-active) {
     background: #ffffff;
+    color: var(--cashier-brand);
+  }
+
+  .cashier-flow-page .cashier-speed-tab:not(.is-active) .cashier-speed-tab-sub {
     color: var(--cashier-text-muted);
   }
 
