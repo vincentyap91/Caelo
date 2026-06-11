@@ -3060,7 +3060,7 @@
 
   /** Web_Promotion Details — Chat with Us (Cam88 color/gradient/button/chat) */
   .btn-promotion-chat {
-    color: var(--color-text-cta-inverse);
+    color: var(--color-text-card-text);
     background-image: var(--color-gradient-button-chat);
     border: 1px solid transparent;
   }
