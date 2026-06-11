@@ -148,7 +148,7 @@ function createInitialRewardHistory(currency) {
 const tabButtonClasses = (selected) =>
     `inline-flex min-h-[46px] shrink-0 whitespace-nowrap items-center justify-center rounded-t-[var(--radius-control)] border-b-0 border px-4 py-3 text-xs font-bold uppercase transition-colors duration-200 sm:min-h-[44px] sm:px-4 sm:py-2.5 sm:text-xs md:text-sm ${
         selected
-            ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]'
+            ? 'border-[var(--color-border-brand)] border-b-transparent bg-[var(--color-surface-base)] text-[var(--color-text-sub-title)] shadow-[var(--shadow-subtle)]'
             : 'border-transparent bg-transparent text-[var(--color-text-muted)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-text-primary)]'
     }`;
 
@@ -158,21 +158,15 @@ function ReferralBenefitPromoCards() {
             title: 'Referral Commission Bonus',
             description: 'Invite friends to receive a commission bonus when your downlines play',
             icon: referralCommissionIcon,
-            accent: 'text-[var(--color-button-hover)]',
-            surface:
-                'bg-gradient-soft-blue-panel',
+            surface: 'bg-gradient-promo-card',
             glow: 'bg-gradient-referral-glow-left',
-            iconShadow: 'drop-shadow-[0_10px_20px_rgb(37_99_235_/_0.12)]',
         },
         {
             title: 'Referral Deposit Bonus',
             description: 'Invite friends to receive a bonus when your downlines make a valid deposit',
             icon: referralDepositIcon,
-            accent: 'text-[var(--color-surface-accent-hover)]',
-            surface:
-                'bg-gradient-soft-blue-panel',
-            glow: 'bg-gradient-referral-glow-right',
-            iconShadow: 'drop-shadow-[0_10px_20px_rgb(242_154_0_/_0.15)]',
+            surface: 'bg-gradient-promo-card',
+            glow: 'bg-gradient-promo-bottom-glow',
         },
     ];
 
@@ -189,7 +183,7 @@ function ReferralBenefitPromoCards() {
                             <img
                                 src={card.icon}
                                 alt=""
-                                className={`h-full w-full object-contain ${card.iconShadow}`}
+                                className="h-full w-full object-contain drop-shadow-[var(--shadow-subtle)]"
                                 loading="lazy"
                                 draggable={false}
                             />
@@ -319,7 +313,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                                 <Info size={12} strokeWidth={2.25} />
                             </span>
                         </div>
-                        <p className="mt-1 text-xl font-bold text-[var(--color-text-cta-inverse)] md:text-2xl">
+                        <p className="mt-1 text-xl font-bold text-[var(--color-primary)] md:text-2xl">
                             {totalCommissionBonus}
                         </p>
                     </div>
@@ -330,7 +324,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                                 <Info size={12} strokeWidth={2.25} />
                             </span>
                         </div>
-                        <p className="mt-1 text-xl font-bold text-[var(--color-text-cta-inverse)] md:text-2xl">
+                        <p className="mt-1 text-xl font-bold text-[var(--color-primary)] md:text-2xl">
                             {totalDepositBonus}
                         </p>
                     </div>
@@ -348,7 +342,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                 <div className="surface-card flex flex-col rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Copy My Referral Code</h3>
                     <div className="mt-4 flex flex-1 flex-col gap-4">
-                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-cool-light)] px-4 py-3 shadow-[var(--shadow-input)]">
+                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-input-color)] px-4 py-3 shadow-[var(--shadow-input)]">
                             <input
                                 type="text"
                                 value={REFERRAL_CODE}
@@ -378,7 +372,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                 <div className="surface-card flex flex-col rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">Copy My Referral Link</h3>
                     <div className="mt-4 flex flex-1 flex-col gap-4">
-                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-cool-light)] px-4 py-3 shadow-[var(--shadow-input)]">
+                        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-[var(--color-border-brand)] bg-[var(--color-surface-input-color)] px-4 py-3 shadow-[var(--shadow-input)]">
                             <input
                                 type="text"
                                 value={REFERRAL_URL}
@@ -441,7 +435,7 @@ function RewardSummaryCard({ reward, onClaim }) {
         <article className="surface-card rounded-2xl p-4 shadow-[var(--shadow-card-soft)] sm:p-5 md:p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-5">
                 <div className="flex min-w-0 items-start gap-3.5">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-soft-blue-panel p-2.5 shadow-[var(--shadow-subtle)] sm:h-12 sm:w-12">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-promo-card p-2.5 shadow-[var(--shadow-subtle)] sm:h-12 sm:w-12">
                         <img
                             src={reward.icon}
                             alt=""
@@ -490,7 +484,7 @@ function RewardSummaryCard({ reward, onClaim }) {
                 </div>
                 <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Unclaimed</p>
-                    <p className="mt-1.5 text-base font-bold text-[var(--color-button-hover)] sm:text-base md:text-lg">
+                    <p className="mt-1.5 text-base font-bold text-[var(--color-text-accent)] sm:text-base md:text-lg">
                         {formatReferralMoney(reward.currency, reward.unclaimed)}
                     </p>
                 </div>
@@ -510,7 +504,7 @@ function RewardsLoginRequiredState({ onLoginClick }) {
     return (
         <section className="surface-card rounded-2xl px-5 py-8 text-center shadow-[var(--shadow-card-soft)] md:px-6 md:py-10">
             <div className="mx-auto max-w-[560px]">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-soft-blue-panel text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-promo-card text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]">
                     <Gift size={24} />
                 </div>
                 <h2 className="mt-4 text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">
@@ -537,7 +531,7 @@ function rewardStatusClassName(status) {
     }
 
     if (status === 'Unclaimed') {
-        return 'bg-[color-mix(in_srgb,var(--color-button-hover)_16%,white)] text-[var(--color-surface-accent-hover)]';
+        return 'bg-[color-mix(in_srgb,var(--color-text-accent)_16%,white)] text-[var(--color-text-accent)]';
     }
 
     return 'bg-[var(--color-surface-subtle)] text-[var(--color-text-muted)]';
@@ -578,7 +572,7 @@ function RewardHistoryTable({ rows, rewardType }) {
                             className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-subtle)]"
                         >
                             <td className="px-4 py-3.5 font-medium text-[var(--color-text-primary)]">{row.date}</td>
-                            <td className="px-4 py-3.5 text-right font-semibold text-[var(--color-button-hover)]">{row.amount}</td>
+                            <td className="px-4 py-3.5 text-right font-semibold text-[var(--color-text-accent)]">{row.amount}</td>
                             <td className="px-4 py-3.5 text-center">
                                 <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${rewardStatusClassName(row.status)}`}>
                                     {row.status}
@@ -679,7 +673,7 @@ function MyRewardsContent({ authUser, onLoginClick }) {
                     </p>
                 </div>
 
-                <div className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-4 md:px-6">
+                <div className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-notify)] px-4 py-4 md:px-6">
                     <PromotionStyleTabs
                         items={REWARD_HISTORY_FILTERS}
                         value={activeHistoryFilter}
@@ -826,7 +820,7 @@ export default function ReferralPage({ authUser, onLoginClick }) {
     const [activeTab, setActiveTab] = useState('Invite Friends');
 
     return (
-        <main className="w-full bg-[var(--color-surface-base)] pb-14">
+        <main className="referral-page w-full bg-[var(--color-surface-base)] pb-14">
             {/* Hero — Live Casino layout, no CTA / no provider logo */}
             <section className="w-full pt-5 md:pt-7">
                 <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8">

@@ -6,7 +6,7 @@ import { BROWSE_MEMBERSHIP_REBATE, BROWSE_WALLET_BALANCE } from '../constants/br
 export const WALLET_REBATE_BROWSE_PANEL_CLASS =
     'rounded-[24px] border border-[var(--color-border-subtle)] bg-gradient-wallet-glass px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
 
-/** Web_Slot - Cam88 (903:25656) wallet / promo shell — semantic surface-base (§13.11). */
+/** Web_Slot - Cam88 (781:13837 / 903:25656) wallet / promo shell — semantic surface-base (§13.11). */
 export const SLOTS_BROWSE_PANEL_CLASS =
     'slots-browse-panel rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
 

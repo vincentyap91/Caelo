@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertCircle, ArrowRight, Check, ChevronDown, Clock, HelpCircle, Info, Zap } from 'lucide-react';
+import { AlertCircle, ArrowRight, Building2, Check, ChevronDown, HelpCircle, Info, Wallet } from 'lucide-react';
 import fpxLogo from '../assets/fpx-logo.svg';
 import eWalletImg from '../assets/e-wallet.png';
 import instantDepositImg from '../assets/instant-deposit.png';
@@ -15,9 +15,33 @@ import { PUSH_EVENT } from '../constants/pushNotificationCopy';
 import { DEMO_ROLLOVER_STATUS } from '../constants/rolloverStatus';
 
 const DEPOSIT_STEPS = [
-    { id: 1, label: 'Choose Deposit Type' },
-    { id: 2, label: 'Bank & Amount' },
-    { id: 3, label: 'Confirm & Pay' },
+    { id: 1, label: 'Choose Method' },
+    { id: 2, label: 'Deposit' },
+    { id: 3, label: 'Completed' },
+];
+
+const DEPOSIT_RELOAD_BANKS = [
+    {
+        id: 'aba',
+        label: 'ABA BANK',
+        min: 3,
+        max: 100000,
+        image: 'https://assets.cambodiachoice.com/v1/image/resize?url=%2Faba-bank-logo.png&width=384&quality=75&format=webp',
+    },
+    {
+        id: 'wing',
+        label: 'WING BANK',
+        min: 3,
+        max: 100000,
+        image: 'https://assets.cambodiachoice.com/v1/image/resize?url=%2Fwing-bank-logo.svg&width=384&quality=75&format=webp',
+    },
+    {
+        id: 'acleda',
+        label: 'ACLEDA BANK',
+        min: 3,
+        max: 100000,
+        image: 'https://assets.cambodiachoice.com/v1/image/resize?url=%2Facleda-bank-logo.jpg&width=384&quality=75&format=webp',
+    },
 ];
 
 const DEPOSIT_OPTION_TYPES = [
@@ -77,11 +101,6 @@ const CHANNELS = [
     { id: 'fpx2', label: 'FPX Channel 2', desc: 'Online Banking Payments' },
 ];
 
-const DEPOSIT_SPEED_TABS = [
-    { id: 'fast', label: 'Fast Deposit', time: '1 minute' },
-    { id: 'normal', label: 'Normal Deposit', time: '5 minutes' },
-];
-
 const NORMAL_BANK_ACCOUNTS = [
     { id: 'demo1', label: 'First Deposit Account demo - 188818881887', accountName: 'First Deposit Account demo', accountNumber: '188818881887', image: BANKS[0]?.image },
     { id: 'demo2', label: 'Maybank Deposit Account - 123456789012', accountName: 'Maybank Deposit Account', accountNumber: '123456789012', image: BANKS.find((b) => b.id === 'maybank')?.image },
@@ -99,8 +118,10 @@ const MAX_AMOUNT_NORMAL = 10000;
 export default function DepositPage({ onNavigate }) {
     const { showTransactionNotification, showPushNotification } = useActionNotifications();
     const [step, setStep] = useState(1);
-    const [depositSpeedTab, setDepositSpeedTab] = useState('fast');
-    const [depositOptionType, setDepositOptionType] = useState('instant');
+    const [depositSpeedTab, setDepositSpeedTab] = useState('normal');
+    const [depositOptionType, setDepositOptionType] = useState('ewallet');
+    const [reloadSelection, setReloadSelection] = useState('');
+    const [selectedReloadBank, setSelectedReloadBank] = useState('');
     const [selectedNormalBankAccount, setSelectedNormalBankAccount] = useState('');
     const [remark, setRemark] = useState('');
     const [normalBankDropdownOpen, setNormalBankDropdownOpen] = useState(false);
@@ -160,7 +181,36 @@ export default function DepositPage({ onNavigate }) {
 
     const selectedNormalAccount = NORMAL_BANK_ACCOUNTS.find((a) => a.id === selectedNormalBankAccount);
 
-    const canProceedStep1 = !(claimBonus && !selectedBonus);
+    const selectedReloadBankOption = DEPOSIT_RELOAD_BANKS.find((b) => b.id === selectedReloadBank);
+    const canProceedStep1 =
+        ((reloadSelection === 'bank' && selectedReloadBank) || reloadSelection === 'ewallet')
+        && !(claimBonus && !selectedBonus);
+
+    const selectReloadBank = (bankId) => {
+        setReloadSelection('bank');
+        setSelectedReloadBank(bankId);
+        setDepositSpeedTab('normal');
+    };
+
+    const toggleReloadBankSection = () => {
+        if (reloadSelection === 'bank') {
+            setReloadSelection('');
+            return;
+        }
+        setReloadSelection('bank');
+        setDepositSpeedTab('normal');
+    };
+
+    const toggleReloadEwalletSection = () => {
+        if (reloadSelection === 'ewallet') {
+            setReloadSelection('');
+            return;
+        }
+        setReloadSelection('ewallet');
+        setSelectedReloadBank('');
+        setDepositSpeedTab('fast');
+        setDepositOptionType('ewallet');
+    };
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
@@ -207,6 +257,8 @@ export default function DepositPage({ onNavigate }) {
         setSelectedTng('');
         setClaimBonus(false);
         setSelectedBonus('');
+        setReloadSelection('');
+        setSelectedReloadBank('');
         setProcessingCountdown(PROCESSING_COUNTDOWN_SECONDS);
     };
 
@@ -241,19 +293,19 @@ export default function DepositPage({ onNavigate }) {
 
     return (
         <div className="page-container cashier-flow-page">
-            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div className="min-w-0 flex-1 space-y-4">
+            <div className="mb-6 space-y-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <h1 className="page-title">Deposit / Withdrawal</h1>
-                    <CashierModeTabs activeMode="deposit" onNavigate={onNavigate} />
+                    <button
+                        type="button"
+                        onClick={() => onNavigate?.('help-center')}
+                        className="cashier-help-link inline-flex shrink-0 items-center gap-2 text-sm font-semibold transition"
+                    >
+                        <HelpCircle size={18} />
+                        How to deposit?
+                    </button>
                 </div>
-                <button
-                    type="button"
-                    onClick={() => onNavigate?.('help-center')}
-                    className="cashier-help-link inline-flex shrink-0 items-center gap-2 text-sm font-semibold transition"
-                >
-                    <HelpCircle size={18} />
-                    How to deposit?
-                </button>
+                <CashierModeTabs activeMode="deposit" onNavigate={onNavigate} />
             </div>
 
             <div className="mb-3 md:mb-4">
@@ -273,94 +325,94 @@ export default function DepositPage({ onNavigate }) {
                     variant="cashier"
                     className="cashier-flow-stepper"
                     step={step}
-                    steps={DEPOSIT_STEPS.map((s) => ({
-                        id: s.id,
-                        label: s.id === 3 && isNormal ? 'Confirm & Submit' : s.label,
-                    }))}
+                    steps={DEPOSIT_STEPS}
                 />
             </div>
 
             <div className="surface-card overflow-visible rounded-2xl shadow-[var(--shadow-card-soft)]">
                 {/* Step 1: Choose deposit type */}
                 {step === 1 && (
-                    <div>
-                        <div className="flex">
-                            {DEPOSIT_SPEED_TABS.map(({ id, label, time }, idx) => {
-                                const isActive = depositSpeedTab === id;
-                                return (
-                                    <button
-                                        key={id}
-                                        type="button"
-                                        onClick={() => setDepositSpeedTab(id)}
-                                        className={`cashier-speed-tab min-w-0 flex-1 px-3 py-2.5 text-center transition sm:px-6 sm:py-4 ${
-                                            idx === 0 ? 'rounded-tl-2xl' : 'rounded-tr-2xl'
-                                        }${isActive ? ' is-active' : ''}`}
-                                    >
-                                        <p className="text-sm font-bold leading-tight sm:text-base sm:leading-normal">{label}</p>
-                                        <p
-                                            className="cashier-speed-tab-sub mt-0.5 flex items-center justify-center gap-0.5 text-xs leading-tight text-[var(--color-text-muted)] sm:mt-1 sm:gap-1 sm:leading-normal"
-                                        >
-                                            <Clock className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" strokeWidth={2} aria-hidden />
-                                            {time}
-                                        </p>
-                                    </button>
-                                );
-                            })}
-                        </div>
-                        <div className="space-y-4 p-5 sm:space-y-6 md:p-6">
-                        <div className="flex items-center gap-3">
+                    <div className="cashier-deposit-step1 space-y-4 p-5 md:p-6">
+                        <div className="flex items-start gap-3">
                             <span className="cashier-step-badge">1</span>
-                            <div>
-                                <h2 className="cashier-section-title text-base md:text-lg">Deposit Options <span className="text-[var(--color-danger)]">*</span></h2>
-                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Select your preferred deposit method.</p>
+                            <div className="min-w-0 pt-0.5">
+                                <h2 className="cashier-section-title text-base leading-snug md:text-lg">
+                                    Select a reload option from the available options.
+                                </h2>
+                                <p className="cashier-section-subtitle mt-1 text-xs leading-snug md:text-sm">
+                                    Choose one from the available options
+                                </p>
                             </div>
                         </div>
 
-                        {depositSpeedTab === 'normal' ? (
-                            <div className="flex justify-center md:justify-start">
-                                <button
-                                    type="button"
-                                    className="cashier-option-card is-selected relative flex h-full min-h-[7.25rem] w-full flex-col items-center justify-center gap-2 rounded-xl p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6 md:w-1/2"
-                                >
-                                    <img
-                                        src={instantDepositImg}
-                                        alt="Normal Deposit"
-                                        className="h-12 w-auto max-w-full object-contain sm:h-14"
-                                    />
-                                    <p className="cashier-option-label line-clamp-2 text-sm leading-tight sm:text-base">
-                                        Normal Deposit
-                                    </p>
-                                </button>
+                        <div
+                            className={`cashier-method-section${reloadSelection === 'bank' ? ' is-selected is-expanded' : ''}`}
+                        >
+                            <button
+                                type="button"
+                                className="cashier-method-section-header cashier-method-section-toggle"
+                                onClick={toggleReloadBankSection}
+                                aria-expanded={reloadSelection === 'bank'}
+                            >
+                                <span className="cashier-method-section-icon" aria-hidden>
+                                    <Building2 size={20} strokeWidth={2.25} />
+                                </span>
+                                <div className="min-w-0 flex-1">
+                                    <p className="cashier-method-section-title">Bank</p>
+                                    <p className="cashier-method-section-subtitle">Normal Bank Transfer</p>
+                                </div>
+                                <ChevronDown
+                                    size={18}
+                                    className={`cashier-method-section-chevron shrink-0${reloadSelection === 'bank' ? ' is-expanded' : ''}`}
+                                    aria-hidden
+                                />
+                            </button>
+                            {reloadSelection === 'bank' && (
+                                <>
+                                    <div className="cashier-method-section-divider" aria-hidden />
+                                    <div className="cashier-bank-cards">
+                                        {DEPOSIT_RELOAD_BANKS.map(({ id, label, min, max, image }) => (
+                                            <button
+                                                key={id}
+                                                type="button"
+                                                onClick={() => selectReloadBank(id)}
+                                                className={`cashier-bank-card${selectedReloadBank === id ? ' is-selected' : ''}`}
+                                            >
+                                                <img src={image} alt={label} className="cashier-bank-card-logo" />
+                                                <span className="cashier-bank-card-body">
+                                                    <span className="cashier-bank-card-label">{label}</span>
+                                                    <span className="cashier-bank-card-range">{min} - {max.toLocaleString()}</span>
+                                                </span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={toggleReloadEwalletSection}
+                            aria-expanded={reloadSelection === 'ewallet'}
+                            className={`cashier-method-section cashier-method-section-action w-full text-left${
+                                reloadSelection === 'ewallet' ? ' is-selected is-expanded' : ''
+                            }`}
+                        >
+                            <div className="cashier-method-section-header">
+                                <span className="cashier-method-section-icon" aria-hidden>
+                                    <Wallet size={20} strokeWidth={2.25} />
+                                </span>
+                                <div className="min-w-0 flex-1">
+                                    <p className="cashier-method-section-title">E-Wallet</p>
+                                    <p className="cashier-method-section-subtitle">E-Wallet (Manual)</p>
+                                </div>
+                                <ChevronDown
+                                    size={18}
+                                    className={`cashier-method-section-chevron shrink-0${reloadSelection === 'ewallet' ? ' is-expanded' : ''}`}
+                                    aria-hidden
+                                />
                             </div>
-                        ) : (
-                            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                                {DEPOSIT_OPTION_TYPES.map(({ id, label, badge, image }) => (
-                                    <button
-                                        key={id}
-                                        type="button"
-                                        onClick={() => setDepositOptionType(id)}
-                                        className={`cashier-option-card relative flex h-full min-h-[7.25rem] flex-col items-center justify-center gap-2 rounded-xl p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6${
-                                            depositOptionType === id ? ' is-selected' : ''
-                                        }`}
-                                    >
-                                        {badge && (
-                                            <span className="absolute left-2 top-2 inline-flex max-w-[calc(100%-1rem)] items-center gap-0.5 truncate rounded bg-gradient-to-r from-[var(--color-warning)] to-[var(--color-danger)] px-1.5 py-0.5 text-xs font-bold text-[var(--color-text-card-text)] sm:left-3 sm:top-3 sm:gap-1 sm:px-2">
-                                                <Zap size={12} className="shrink-0" />
-                                                {badge}
-                                            </span>
-                                        )}
-                                        <img
-                                            src={image}
-                                            alt={label}
-                                            className="h-12 w-auto max-w-full object-contain sm:h-14"
-                                        />
-                                        <p className="cashier-option-label line-clamp-2 text-sm leading-tight sm:text-base">
-                                            {label}
-                                        </p>
-                                    </button>
-                                ))}
-                            </div>
-                        )}
+                        </button>
 
                         <label className="flex cursor-pointer items-center gap-3">
                             <input
@@ -461,7 +513,6 @@ export default function DepositPage({ onNavigate }) {
                             Next
                             <ArrowRight size={18} />
                         </button>
-                        </div>
                     </div>
                 )}
 
@@ -785,16 +836,23 @@ export default function DepositPage({ onNavigate }) {
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
                                     <span className="text-sm font-medium text-[var(--color-text-muted)]">Deposit Type</span>
                                     <span className="text-sm font-semibold text-[var(--color-text-primary)]">
-                                        {DEPOSIT_SPEED_TABS.find((t) => t.id === depositSpeedTab)?.label ?? depositSpeedTab}
+                                        {reloadSelection === 'bank' ? 'Bank' : reloadSelection === 'ewallet' ? 'E-Wallet' : '—'}
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
                                     <span className="text-sm font-medium text-[var(--color-text-muted)]">Deposit Option</span>
                                     <span className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-text-primary)]">
-                                        {!isNormal && DEPOSIT_OPTION_TYPES.find((o) => o.id === depositOptionType)?.image && (
-                                            <img src={DEPOSIT_OPTION_TYPES.find((o) => o.id === depositOptionType)?.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
+                                        {reloadSelection === 'bank' && selectedReloadBankOption?.image && (
+                                            <img src={selectedReloadBankOption.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
-                                        {isNormal ? 'Normal Deposit' : (DEPOSIT_OPTION_TYPES.find((o) => o.id === depositOptionType)?.label ?? depositOptionType)}
+                                        {reloadSelection === 'ewallet' && (
+                                            <img src={eWalletImg} alt="" className="h-6 w-6 shrink-0 object-contain" />
+                                        )}
+                                        {reloadSelection === 'bank'
+                                            ? (selectedReloadBankOption?.label ?? 'Bank Transfer')
+                                            : reloadSelection === 'ewallet'
+                                                ? 'E-Wallet (Manual)'
+                                                : (isNormal ? 'Normal Deposit' : (DEPOSIT_OPTION_TYPES.find((o) => o.id === depositOptionType)?.label ?? depositOptionType))}
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">

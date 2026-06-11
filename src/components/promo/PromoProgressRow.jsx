@@ -47,19 +47,19 @@ export default function PromoProgressRow({
     const labelClass = isBalance
         ? 'text-xs font-bold balance-modal-text-primary'
         : isProfile
-          ? 'font-semibold leading-tight text-[var(--base-ink)] text-xs sm:text-sm'
+          ? 'font-semibold leading-tight text-[var(--color-text-primary)] text-xs sm:text-sm'
           : 'font-semibold leading-tight text-[var(--color-text-primary)] text-xs sm:text-sm';
 
     const valueClass = isBalance
         ? 'font-bold tabular-nums balance-modal-text-secondary'
         : isProfile
-          ? 'font-bold tabular-nums text-[var(--base-ink)]'
+          ? 'font-bold tabular-nums text-[var(--color-text-title)]'
           : 'font-bold tabular-nums text-[var(--color-primary)]';
 
     const percentClass = isBalance
         ? 'shrink-0 text-xs font-bold tabular-nums balance-modal-text-primary'
         : isProfile
-          ? 'shrink-0 text-xs font-bold tabular-nums text-[var(--base-ink)] sm:text-sm'
+          ? 'shrink-0 text-xs font-bold tabular-nums text-[var(--color-text-primary)] sm:text-sm'
           : 'shrink-0 text-xs font-bold tabular-nums text-[var(--color-text-primary)] sm:text-sm';
 
     const separatorClass = isBalance
@@ -86,7 +86,7 @@ export default function PromoProgressRow({
             <ProgressBar
                 percent={safePercent}
                 variant={isBalance ? 'dark' : 'slot-promo'}
-                className="mt-1.5 h-1.5 sm:h-2"
+                className={`mt-1.5 h-1.5 sm:h-2${isProfile ? ' profile-promo-progress' : ''}`}
             />
         </div>
     );

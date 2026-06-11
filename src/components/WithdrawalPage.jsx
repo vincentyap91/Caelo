@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AlertCircle, ArrowRight, ChevronDown, HelpCircle } from 'lucide-react';
+import { AlertCircle, ArrowRight, Building2, ChevronDown, HelpCircle, Wallet } from 'lucide-react';
 import PaymentConfirmModal from './PaymentConfirmModal';
 import RolloverRequirementModal from './RolloverRequirementModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
@@ -9,18 +9,16 @@ import PaymentFlowStepper from './payment/PaymentFlowStepper';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
 import { PUSH_EVENT } from '../constants/pushNotificationCopy';
 import { DEMO_ROLLOVER_STATUS, getRolloverProgressPercent } from '../constants/rolloverStatus';
-import eWalletImg from '../assets/e-wallet.png';
-import instantDepositImg from '../assets/instant-deposit.png';
 
 const WITHDRAWAL_STEPS = [
     { id: 1, label: 'Choose Method' },
-    { id: 2, label: 'Account & Amount' },
-    { id: 3, label: 'Confirm & Withdraw' },
+    { id: 2, label: 'Withdrawal' },
+    { id: 3, label: 'Completed' },
 ];
 
 const WITHDRAWAL_METHODS = [
-    { id: 'ewallet', label: 'E-Wallet', image: eWalletImg },
-    { id: 'bank', label: 'Bank Transfer', image: instantDepositImg },
+    { id: 'bank', label: 'Bank Transfer', subtitle: 'Normal Bank Transfer', icon: Building2 },
+    { id: 'ewallet', label: 'E-Wallet', subtitle: null, icon: Wallet },
 ];
 
 const E_WALLET_OPTIONS = [
@@ -164,19 +162,19 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 remainingCurrent={rolloverStatus.remainingAmount}
                 remainingTarget={rolloverStatus.targetAmount}
             />
-            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div className="min-w-0 flex-1 space-y-4">
+            <div className="mb-6 space-y-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <h1 className="page-title">Deposit / Withdrawal</h1>
-                    <CashierModeTabs activeMode="withdrawal" onNavigate={onNavigate} />
+                    <button
+                        type="button"
+                        onClick={() => onNavigate?.('help-center')}
+                        className="cashier-help-link inline-flex shrink-0 items-center gap-2 text-sm font-semibold transition"
+                    >
+                        <HelpCircle size={18} />
+                        How to withdraw?
+                    </button>
                 </div>
-                <button
-                    type="button"
-                    onClick={() => onNavigate?.('help-center')}
-                    className="cashier-help-link inline-flex shrink-0 items-center gap-2 text-sm font-semibold transition"
-                >
-                    <HelpCircle size={18} />
-                    How to withdraw?
-                </button>
+                <CashierModeTabs activeMode="withdrawal" onNavigate={onNavigate} />
             </div>
 
             {!isRolloverRequirementMet && (
@@ -200,31 +198,34 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
             <div className="surface-card overflow-visible rounded-2xl shadow-[var(--shadow-card-soft)]">
                 {/* Step 1: Choose method */}
                 {step === 1 && (
-                    <div className="space-y-6 p-5 md:p-6">
+                    <div className="space-y-5 p-5 sm:space-y-6 md:p-6">
                         <div className="flex items-center gap-3">
                             <span className="cashier-step-badge">1</span>
                             <div>
-                                <h2 className="cashier-section-title text-base md:text-lg">Withdrawal Method <span className="text-[var(--color-danger)]">*</span></h2>
-                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">Select E-Wallet or Bank Transfer.</p>
+                                <h2 className="cashier-section-title text-base md:text-lg">Withdrawal Method</h2>
+                                <p className="text-xs leading-snug text-[var(--color-text-muted)] md:text-sm">
+                                    Choose one from the available options
+                                </p>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                            {WITHDRAWAL_METHODS.map(({ id, label, image }) => (
+                        <div className="space-y-3">
+                            {WITHDRAWAL_METHODS.map(({ id, label, subtitle, icon: Icon }) => (
                                 <button
                                     key={id}
                                     type="button"
                                     onClick={() => setWithdrawalMethod(id)}
-                                    className={`cashier-option-card flex h-full min-h-[7.25rem] flex-col items-center justify-center gap-2 rounded-xl p-4 text-center transition sm:min-h-0 sm:gap-3 sm:p-6${
-                                        withdrawalMethod === id ? ' is-selected' : ''
-                                    }`}
+                                    className={`cashier-method-row${withdrawalMethod === id ? ' is-selected' : ''}`}
                                 >
-                                    <img
-                                        src={image}
-                                        alt={label}
-                                        className="h-12 w-auto max-w-full object-contain sm:h-14"
-                                    />
-                                    <p className="cashier-option-label text-sm leading-tight sm:text-base">{label}</p>
+                                    <span className="cashier-method-section-icon" aria-hidden>
+                                        <Icon size={20} strokeWidth={2.25} />
+                                    </span>
+                                    <div className="min-w-0 text-left">
+                                        <p className="cashier-method-section-title text-sm md:text-base">{label}</p>
+                                        {subtitle && (
+                                            <p className="cashier-method-section-subtitle">{subtitle}</p>
+                                        )}
+                                    </div>
                                 </button>
                             ))}
                         </div>

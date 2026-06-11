@@ -120,15 +120,15 @@ function UpgradeContent() {
                 <h3 className="text-lg font-bold text-[var(--color-text-primary)] md:text-xl">How Does It Work?</h3>
                 <ol className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     <li className="flex items-start gap-3">
-                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-xs font-bold text-[var(--color-text-card-text)]">1</span>
+                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-muted)] text-xs font-bold text-[var(--color-button-muted-text)]">1</span>
                         <span>Members apply to become VIP after reaching the required deposit and valid bet targets within the promotion cycle.</span>
                     </li>
                     <li className="flex items-start gap-3">
-                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-xs font-bold text-[var(--color-text-card-text)]">2</span>
+                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-muted)] text-xs font-bold text-[var(--color-button-muted-text)]">2</span>
                         <span>The VIP team reviews the account performance and may contact the member for profile verification.</span>
                     </li>
                     <li className="flex items-start gap-3">
-                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-xs font-bold text-[var(--color-text-card-text)]">3</span>
+                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-muted)] text-xs font-bold text-[var(--color-button-muted-text)]">3</span>
                         <span>Successful applicants receive tier confirmation, monthly reward eligibility, and access to premium member privileges.</span>
                     </li>
                 </ol>
@@ -175,7 +175,7 @@ function UpgradeContent() {
                                     {section.rows.map((row, rowIdx) => (
                                         <tr
                                             key={row.label}
-                                            className={rowIdx % 2 === 0 ? 'bg-[var(--color-surface-base)]' : 'bg-[var(--color-accent-pale)]'}
+                                            className={rowIdx % 2 === 0 ? 'bg-[var(--color-surface-base)]' : 'bg-[var(--color-surface-secondary-chip)]'}
                                         >
                                             <td className="border-b border-r border-[var(--color-border-subtle)] px-4 py-3 font-normal text-[var(--color-text-primary)]">
                                                 {row.label}
@@ -257,7 +257,7 @@ function ReferralContent() {
                 <div className="mt-4 space-y-3">
                     {referralBenefits.map((item, index) => (
                         <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                            <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-xs font-bold text-[var(--color-text-card-text)]">
+                            <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-muted)] text-xs font-bold text-[var(--color-button-muted-text)]">
                                 {index + 1}
                             </span>
                             <span>{item}</span>
@@ -297,7 +297,7 @@ export default function VipPage({ authUser }) {
     const showBannerCta = !authUser;
 
     return (
-        <main className="w-full bg-[var(--color-surface-base)] pb-14">
+        <main className="vip-page w-full bg-[var(--color-surface-base)] pb-14">
             <section className="w-full pt-5 md:pt-7">
                 <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8">
                     <div className="page-hero-banner">
@@ -338,7 +338,7 @@ export default function VipPage({ authUser }) {
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
                 <div className="soft-blue-panel rounded-[28px] p-4 shadow-[var(--shadow-card-raised)] md:p-6">
                     <div>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)] shadow-[var(--shadow-subtle)]">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)] shadow-[var(--shadow-subtle)]">
                             <Crown size={14} className="text-[var(--color-accent)]" />
                             VIP Group
                         </span>
@@ -354,7 +354,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">Starting Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)]">Starting Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">Normal</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
@@ -365,7 +365,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">Top Reward Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)]">Top Reward Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">Diamond</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
@@ -376,7 +376,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5 sm:col-span-2 lg:col-span-1">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">Member Support</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)]">Member Support</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">24 / 7</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-2 shadow-[var(--shadow-subtle)]">

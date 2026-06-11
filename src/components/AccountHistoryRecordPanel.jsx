@@ -81,7 +81,7 @@ function getStatusPillClassName(value) {
     const base = 'inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold leading-none';
 
     if (tone === 'success') {
-        return `${base} border-[var(--color-success)]/25 bg-[var(--color-success)]/12 text-[var(--color-success)]`;
+        return `${base} border-[var(--color-success-vivid)]/25 bg-[var(--color-success-vivid)]/12 text-[var(--color-success-vivid)]`;
     }
 
     if (tone === 'warning') {
@@ -92,7 +92,7 @@ function getStatusPillClassName(value) {
         return `${base} border-[var(--color-danger)]/22 bg-[var(--color-danger)]/10 text-[var(--color-danger-red)]`;
     }
 
-    return `${base} border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)]`;
+    return `${base} border-[var(--color-border-subtle)] bg-[var(--color-surface-filter)] text-[var(--color-text-muted)]`;
 }
 
 const HISTORY_QUICK_RANGES = [
@@ -163,17 +163,15 @@ export default function AccountHistoryRecordPanel({
     const quickRangeButtonClass = (selected) => {
         const shape = pillQuickRanges ? 'rounded-full' : 'rounded-xl';
         return [
-            'max-sm:snap-start shrink-0 whitespace-nowrap border px-3 py-2.5 text-xs font-semibold transition sm:min-w-[96px] sm:px-4 sm:text-sm',
+            'history-record-quick-range max-sm:snap-start shrink-0 whitespace-nowrap border px-3 py-2.5 text-xs font-semibold transition sm:min-w-[96px] sm:px-4 sm:text-sm',
             shape,
-            selected
-                ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
-                : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]',
+            selected ? 'history-record-quick-range--active' : 'history-record-quick-range--inactive',
         ].join(' ');
     };
 
     return (
-        <div className="space-y-6">
-            <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+        <div className="history-record-panel space-y-6">
+            <div className="history-record-filter-card surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
                 {filterSlot ? <div className="mb-5">{filterSlot}</div> : null}
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <CalendarDateInput
@@ -209,22 +207,22 @@ export default function AccountHistoryRecordPanel({
                 <div className="mt-4">
                     <button
                         type="button"
-                        className="btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
+                        className="history-record-submit btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-[var(--color-button-cta-primary)] shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
                     >
                         Submit
                     </button>
                 </div>
             </div>
 
-            <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
+            <div className="history-record-table-card surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
                 <div className="overflow-x-auto">
-                    <table className="w-full min-w-[320px] border-collapse text-sm">
+                    <table className="history-record-table w-full min-w-[320px] border-collapse text-sm">
                         <thead>
-                            <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]">
+                            <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-table)]">
                                 {columns.map((col) => (
                                     <th
                                         key={col.key}
-                                        className={`px-4 py-3 text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)] ${
+                                        className={`px-4 py-3 text-xs font-bold uppercase tracking-wide text-[var(--color-text-primary)] ${
                                             col.align === 'right' ? 'text-right' : 'text-left'
                                         }`}
                                     >
@@ -238,7 +236,7 @@ export default function AccountHistoryRecordPanel({
                                 filteredRows.map((row, rowIndex) => (
                                     <tr
                                         key={row.id ?? `${rowIndex}-${rowDateKey}`}
-                                        className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-subtle)]"
+                                        className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-deep)]"
                                     >
                                         {columns.map((col) => (
                                             <td
@@ -260,11 +258,10 @@ export default function AccountHistoryRecordPanel({
                                 ))
                             ) : (
                                 <tr>
-                                    <td
-                                        colSpan={colCount}
-                                        className="px-4 py-12 text-center text-sm font-medium text-[var(--color-text-muted)]"
-                                    >
-                                        {emptyMessage ?? 'No data found'}
+                                    <td colSpan={colCount} className="history-record-empty-cell p-4 sm:p-5">
+                                        <div className="history-record-empty-state px-4 py-12 text-center text-sm font-medium text-[var(--color-text-primary)]">
+                                            {emptyMessage ?? 'No data found'}
+                                        </div>
                                     </td>
                                 </tr>
                             )}

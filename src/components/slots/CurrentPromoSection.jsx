@@ -17,11 +17,11 @@ const VARIANT_CONFIG = {
     },
     profile: {
         section:
-            'profile-current-promo surface-card w-full rounded-2xl p-4 sm:p-6 md:p-8',
-        eyebrow: 'profile-current-promo__eyebrow font-bold uppercase tracking-wide',
-        name: 'profile-current-promo__name font-bold normal-case',
-        headerText: 'flex min-w-0 flex-col gap-0.5 text-xs leading-snug md:flex-row md:flex-wrap md:items-baseline md:gap-0 sm:text-sm',
-        innerCard: `profile-current-promo__card rounded-xl border p-3 sm:p-4 ${BROWSE_SUMMARY_CARD_COMPACT_CLASS}`,
+            'profile-current-promo surface-card w-full rounded-2xl bg-[var(--color-surface-card-light)] p-4 sm:p-6 md:p-8',
+        eyebrow: 'profile-current-promo__eyebrow font-bold uppercase tracking-wide text-[var(--color-text-primary)]',
+        name: 'profile-current-promo__name font-bold normal-case text-[var(--color-text-title)]',
+        headerText: 'flex min-w-0 flex-col gap-0.5 text-xs leading-snug text-[var(--color-text-primary)] md:flex-row md:flex-wrap md:items-baseline md:gap-0 sm:text-sm',
+        innerCard: `profile-current-promo__card rounded-xl border bg-[var(--color-surface-elevated)] p-3 sm:p-4 ${BROWSE_SUMMARY_CARD_COMPACT_CLASS}`,
         progressVariant: 'profile',
     },
 };

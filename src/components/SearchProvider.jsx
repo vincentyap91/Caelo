@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Search, X } from 'lucide-react';
 
-/** Web_Slot - Cam88 (903:25656) search field semantics (§13.11). */
+/** Web_Slot - Cam88 (781:13837 / 903:25656) search field semantics (§13.11). */
 export const SLOTS_BROWSE_SEARCH_CLASS =
     'slots-browse-search border-[var(--color-border-subtle)] bg-[var(--color-surface-input-inverse)] focus-within:border-[var(--color-primary)] focus-within:ring-[var(--color-primary)]/20 hover:border-[var(--color-border-brand)]';
 

@@ -13,6 +13,7 @@ import AccountLayout from './AccountLayout';
 import ProfilePhotoModal from './ProfilePhotoModal';
 import VipStatusPill from './VipStatusPill';
 import CurrentPromoSection from './slots/CurrentPromoSection';
+import ProgressBar from './ui/ProgressBar';
 import useSlotCurrentPromo from '../hooks/useSlotCurrentPromo';
 import { PROFILE_SHOW_ACTIVE_PROMO } from '../constants/slotCurrentPromo';
 import { BANKS } from '../constants/banks';
@@ -155,8 +156,8 @@ function ProfileVipProgressSection({ targetTier, progressPercent, tier, showTier
     const vip = showTierHeader ? getVipStatus(tier || 'Platinum') : null;
     const wrapClass =
         variant === 'card'
-            ? `rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-5 py-4 shadow-[var(--shadow-card-soft)] ${className}`
-            : className;
+            ? `profile-vip-progress-section rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-card-light)] px-5 py-4 shadow-[var(--shadow-card-soft)] ${className}`
+            : `profile-vip-progress-section ${className}`;
 
     return (
         <div className={wrapClass}>
@@ -172,14 +173,8 @@ function ProfileVipProgressSection({ targetTier, progressPercent, tier, showTier
                 </span>
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{progressPercent}%</span>
             </div>
-            <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-[var(--color-accent-glow)]">
-                <div
-                    className="h-full rounded-full bg-gradient-cta"
-                    style={{ width: `${progressPercent}%` }}
-                    aria-hidden="true"
-                />
-            </div>
-            <p className="mt-3 text-center text-sm font-medium text-[var(--color-text-secondary)]">
+            <ProgressBar percent={progressPercent} variant="profile-vip" className="mt-3 h-2.5" />
+            <p className="profile-vip-progress-section__caption mt-3 text-center text-sm font-medium text-[var(--color-text-small)]">
                 Progress to next tier: {progressPercent}%
             </p>
         </div>
@@ -323,11 +318,11 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
 
     return (
         <AccountLayout activePage="profile" authUser={authUser} onNavigate={onNavigate} onLogout={onLogout} onLiveChatClick={onLiveChatClick}>
-            <div className="page-container">
+            <div className="profile-page page-container">
                 <h1 className="page-title">Account Details</h1>
 
                 <div className="mt-5 space-y-5 md:mt-8 md:space-y-6">
-                    <div className="surface-card flex flex-row items-center justify-between gap-3 rounded-2xl p-4 sm:p-6 md:gap-8 md:p-8">
+                    <div className="profile-account-header surface-card flex flex-row items-center justify-between gap-3 rounded-2xl bg-[var(--color-surface-card-light)] p-4 sm:p-6 md:gap-8 md:p-8">
                         <div className="flex min-w-0 flex-1 flex-row items-center gap-3 sm:gap-5">
                             <div className="relative shrink-0">
                                 <button
@@ -348,13 +343,13 @@ export default function ProfilePage({ authUser, onLogout, onNavigate, onLiveChat
 
                             <div className="flex min-w-0 flex-1 flex-col gap-1 md:gap-3">
                                 <div className="space-y-0.5 md:space-y-1.5">
-                                    <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-button-hover)] md:text-xs md:tracking-code">
+                                    <p className="profile-account-header__badge text-[10px] font-semibold uppercase tracking-wide text-[var(--color-text-small)] md:text-xs md:tracking-code">
                                         Verified Account
                                     </p>
                                     <h2 className="truncate text-lg font-bold tracking-tight text-[var(--color-text-primary)] sm:text-xl md:text-3xl">
                                         {formValues.username}
                                     </h2>
-                                    <p className="truncate text-xs font-medium text-[var(--color-text-muted)] md:text-sm">{formValues.email}</p>
+                                    <p className="profile-account-header__contact truncate text-xs font-medium text-[var(--color-text-small)] md:text-sm">{formValues.email}</p>
                                 </div>
                             </div>
                         </div>

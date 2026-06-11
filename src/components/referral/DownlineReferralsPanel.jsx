@@ -31,8 +31,8 @@ const KPI_SUB_TABS = [
 function quickRangePillClassName(selected, smMinWidthClass = 'sm:min-w-[96px]') {
     return `max-sm:snap-start shrink-0 whitespace-nowrap rounded-xl border px-3 py-2.5 text-xs font-semibold transition ${smMinWidthClass} sm:px-4 sm:text-sm ${
         selected
-            ? 'border-[var(--color-accent)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
-            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
+            ? 'border-[var(--color-accent)] bg-[var(--color-surface-secondary-chip)] text-[var(--color-text-sub-title)]'
+            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-surface-secondary-chip)] hover:text-[var(--color-text-sub-title)]'
     }`;
 }
 
@@ -91,7 +91,7 @@ function StatTile({ label, value }) {
     return (
         <div className="surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
             <p className="text-sm font-semibold text-[var(--color-text-muted)]">{label}</p>
-            <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-button-hover)] md:text-3xl">{value}</p>
+            <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-primary)] md:text-3xl">{value}</p>
         </div>
     );
 }
@@ -101,7 +101,7 @@ function SummaryMetricCard({ label, value }) {
     return (
         <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] p-4 md:p-5">
             <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">{label}</p>
-            <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-button-hover)] md:text-3xl">{value}</p>
+            <p className="mt-2 text-2xl font-bold tabular-nums text-[var(--color-primary)] md:text-3xl">{value}</p>
         </div>
     );
 }

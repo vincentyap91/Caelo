@@ -22,7 +22,7 @@ export default function HistoryRecordPage({ activePage }) {
     }
 
     return (
-        <div className="page-container">
+        <div className="history-record-page page-container">
             <h1 className="page-title mb-8">{config.title}</h1>
             <AccountHistoryRecordPanel
                 startDateLabel={config.startDateLabel}
@@ -33,6 +33,7 @@ export default function HistoryRecordPage({ activePage }) {
                 filterSlot={
                     isTransactionRecord ? (
                         <SegmentedTabs
+                            className="history-record-type-tabs"
                             value={transactionType}
                             onChange={setTransactionType}
                             items={TRANSACTION_RECORD_TABS}

@@ -92,7 +92,7 @@ export default function PromotionDetailModal({
                     <div className="mt-6">
                         <div className="flex flex-wrap items-center justify-between gap-4">
                             {category && (
-                                <span className="inline-flex rounded-full bg-[var(--color-accent-pale)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
+                                <span className="promotion-card-category inline-flex rounded-full bg-[var(--color-secondary-tag)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-secondary-tag-text)]">
                                     {category}
                                 </span>
                             )}
@@ -165,7 +165,7 @@ export default function PromotionDetailModal({
                         <ol className="mt-4 space-y-3">
                             {applySteps.map((step, index) => (
                                 <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-[var(--color-text-secondary)] sm:text-base">
-                                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-pale)] text-xs font-bold text-[var(--color-button-hover)]">
+                                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-secondary-tag)] text-xs font-bold text-[var(--color-secondary-tag-text)]">
                                         {index + 1}
                                     </span>
                                     <span>{step}</span>
@@ -181,7 +181,7 @@ export default function PromotionDetailModal({
                                 {providers.map((provider) => (
                                     <span
                                         key={provider}
-                                        className="inline-flex rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-3.5 py-1.5 text-sm font-semibold text-[var(--color-button-hover)]"
+                                        className="inline-flex rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-secondary-tag)] px-3.5 py-1.5 text-sm font-semibold text-[var(--color-secondary-tag-text)]"
                                     >
                                         {provider}
                                     </span>

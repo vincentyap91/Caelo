@@ -294,7 +294,13 @@ export default function PromotionPage({ authUser, onNavigate }) {
                             >
                                 <div className="relative w-full shrink-0 overflow-hidden border-b border-[var(--color-border-subtle)]">
                                     {promotion.imageTag ? (
-                                        <span className="promotion-card-image-tag pointer-events-none absolute right-2 top-2 z-10 max-w-[calc(100%-1rem)]">
+                                        <span
+                                            className={`promotion-card-image-tag pointer-events-none absolute right-2 top-2 z-10 max-w-[calc(100%-1rem)] ${
+                                                promotion.imageTag === 'available'
+                                                    ? 'promotion-card-image-tag--available'
+                                                    : 'promotion-card-image-tag--conditions'
+                                            }`}
+                                        >
                                             {PROMOTION_IMAGE_TAG_LABELS[promotion.imageTag]}
                                         </span>
                                     ) : null}
@@ -307,7 +313,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                 <div className="flex min-h-0 flex-1 flex-col justify-between gap-4 px-4 py-4 md:px-5 md:py-5">
                                     <div className="flex flex-col gap-3">
                                         <div className="flex items-center justify-between gap-2">
-                                            <span className="inline-flex rounded-full bg-[var(--color-accent-pale)] px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
+                                            <span className="promotion-card-category inline-flex rounded-full bg-[var(--color-secondary-tag)] px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-secondary-tag-text)]">
                                                 {promotion.category}
                                             </span>
                                             {promotion.endDate && (

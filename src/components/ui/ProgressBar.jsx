@@ -13,6 +13,11 @@ const VARIANT_STYLES = {
         track: 'bg-[var(--color-progress-bar-bg)]',
         fill: 'bg-[var(--color-progress-bar-fill)]',
     },
+    /** User dashboard / account details VIP tier bar (Figma color/progress/bar/*) */
+    'profile-vip': {
+        track: 'bg-[var(--color-progress-bar-bg)]',
+        fill: 'bg-gradient-button-cta',
+    },
 };
 
 /**

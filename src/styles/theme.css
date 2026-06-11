@@ -265,12 +265,27 @@
   }
 
   /**
-   * Site footer ? Cam88 `--color-surface-low` + `--color-border-line`; Caelo blue shell.
+   * Footer — Cam88 (Riocity-MCP `1276:47259`)
+   * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/surface/low → brand blue footer shell (not Cam88 lavender)
+   * color/text/footer → description, headings, copyright, certification labels
+   * color/text/light → inline nav links (+ hover → text-footer)
+   * color/border/line → top border, section dividers, menu pipes, 18+ ring
+   * color/surface/base → logo chip background
+   * color/surface + color/border/line → payment method chips
    */
   .site-footer {
     --color-border-line: rgb(168 226 251);
     --color-surface-low: var(--brand-500);
+    --color-text-footer: var(--mono-0);
     --color-text-light: var(--mono-0);
+    --color-surface-base: var(--raw-app-surface-base);
+  }
+
+  .site-footer .footer-payment-methods-container {
+    --color-surface: var(--raw-app-surface-base);
   }
 
   .site-footer .site-footer__menu-divider {
@@ -317,12 +332,24 @@
   }
 
   /**
-   * Web_Slot - Cam88 (903:25656) ? Cam88 semantic names in JSX; Caelo look via scoped aliases (?13.11).
+   * Web_Slot - Cam88 (781:13837 / 903:25656) — Cam88 semantic names in JSX; Caelo look via scoped aliases (§13.11).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/surface/base, color/gradient/slot/panel → soft wallet shell gradient
+   * color/button/tabs, color/border/tabs, color/surface → provider tabs (white active + blue ring)
+   * color/primary, color/text-primary → wallet/promo labels & values
+   * color/progress/bar/bg|fill → promo progress track & fill
+   * color/button/cta-fourth(+text) → End Promo gold CTA
+   * color/surface/input-inverse, color/info/icon → search field
+   * color/surface/rtp-secondary-card → RTP pill
+   * color/border/danger → game thumb (transparent on Caelo)
    */
   .slots-page {
+    --color-surface-base: var(--raw-app-surface-base);
     --color-surface: var(--color-surface-base);
     --color-button-tabs: var(--color-surface-base);
     --color-border-tabs: var(--color-border-subtle);
+    --color-gradient-slot-panel: var(--color-gradient-home-muted);
   }
 
   .slots-page .slots-provider-tab--active {
@@ -331,7 +358,7 @@
   }
 
   .slots-page .slots-browse-panel {
-    background-image: var(--color-gradient-home-muted);
+    background-image: var(--color-gradient-slot-panel);
   }
 
   .slots-page .slots-browse-summary-label {
@@ -349,6 +376,7 @@
   }
 
   .slots-page .slot-current-promo {
+    --color-primary: var(--color-surface-accent-hover);
     --color-progress-bar-bg: var(--color-accent-glow);
     --color-progress-bar-fill: var(--brand-500);
   }
@@ -362,7 +390,8 @@
   }
 
   .slots-page .slot-current-promo .btn-theme-cta-fourth {
-    color: var(--color-text-cta-inverse);
+    --color-button-cta-fourth-text: var(--color-text-cta-inverse);
+    color: var(--color-button-cta-fourth-text);
     background-color: transparent;
     background-image: var(--color-gradient-button-cta);
     border: 1px solid var(--color-border-brand);
@@ -372,6 +401,7 @@
   .slots-page .slots-browse-search {
     --color-surface-input-inverse: var(--color-surface-base);
     --color-info-icon: var(--color-text-muted);
+    --color-primary: var(--color-surface-accent-hover);
   }
 
   .slots-page .slots-game-card__thumb {
@@ -383,6 +413,468 @@
     --color-surface-rtp-secondary-card: var(--color-accent-glow);
     --color-surface-rtp-secondary-card-text: var(--color-button-hover);
     --color-border-brand: var(--raw-border-accent);
+  }
+
+  /**
+   * Web_Promotion - Cam88 / Web_Promotion (FINAL) - Cam88
+   * (781:13837 / 919:22603 / 932:20823) — Cam88 semantic names in JSX; Caelo look via scoped aliases (§13.11).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/surface/base → white page + cards
+   * color/text-primary, color/text-muted → titles + body
+   * color/button/cta(+primary) → category tab selected (btn-theme-tab-selected utility)
+   * color/secondary-tag(+text) → category chip on cards
+   * color/primary-tag(+text) → banner status (conditions required)
+   * color/secondary-tag(+text) → banner status (available)
+   * color/border-subtle, color/surface/base → More Info outline button
+   * color/button/cta → Join Now / Claim Now / Load More (btn-theme-cta utility)
+   */
+  .promotion-page {
+    --color-surface-base: var(--raw-app-surface-base);
+    --color-primary-tag: var(--color-overlay);
+    --color-primary-tag-text: var(--color-text-card-text);
+    --color-secondary-tag: var(--color-accent-pale);
+    --color-secondary-tag-text: var(--color-button-hover);
+  }
+
+  .promotion-page .promotion-card-image-tag--available {
+    --color-secondary-tag: var(--color-overlay);
+    --color-secondary-tag-text: var(--color-text-card-text);
+  }
+
+  .promotion-page .card-muted h2,
+  .promotion-page .card-muted p {
+    color: var(--color-text-muted) !important;
+  }
+
+  .promotion-page .card-muted .btn-more-info {
+    background-color: var(--color-surface-subtle) !important;
+    border-color: var(--color-border-subtle) !important;
+    color: var(--color-text-muted) !important;
+  }
+
+  .promotion-page .card-muted .btn-theme-cta {
+    background-color: var(--color-surface-subtle) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    border-color: var(--color-border-subtle) !important;
+    color: var(--color-text-muted) !important;
+  }
+
+  /**
+   * Web_Referral - Cam88 (781:13837)
+   * Web_Referral_Referral Info (Before Login) — 957:51334
+   * Web_Referral_Referral Info — 957:44861
+   * Web_Referral_My Bonus_Comm Bonus — 957:45625
+   * Web_Referral_My Bonus_Deposit Record — 980:14461
+   * Cam88 semantic names in JSX; Caelo look via scoped aliases (§13.11).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/surface/base → page + tab active surface
+   * color/gradient/referral/panel|card|commission|deposit|icon → existing Caelo gradient utilities
+   * color/text/sub-title → active section tab label
+   * color/text/accent → unclaimed amounts, history commission/deposit values
+   * color/primary → bonus sidebar totals, KPI stat values
+   * color/surface/input-color → referral code/link copy fields
+   * color/surface/secondary-chip → quick-range pills (Downline Summary)
+   * color/surface/notify → reward history filter bar (PromotionStyleTabs panel)
+   */
+  .referral-page {
+    --color-surface-base: var(--raw-app-surface-base);
+    --color-text-sub-title: var(--color-button-hover);
+    --color-text-accent: var(--color-button-hover);
+    --color-primary: var(--raw-cta-text);
+    --color-surface-input-color: var(--color-surface-cool-light);
+    --color-surface-secondary-chip: var(--color-accent-pale);
+    --color-surface-notify: var(--color-surface-subtle);
+  }
+
+  .referral-page .soft-blue-panel {
+    background-image: var(--color-gradient-home-muted);
+    border-color: var(--color-accent-glow);
+  }
+
+  /**
+   * Web_VIP — Cam88 (781:13837 / 957:44321)
+   * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/surface/base → page + cards + soft panel shell
+   * color/text/fifth-title → VIP Group pill + stat card eyebrow labels
+   * color/button/muted(+text) → numbered step badges
+   * color/primary, color/text/card-text → tier comparison table headers
+   * color/surface/cool-light → table section header rows
+   * color/surface/secondary-chip → alternating table row tint
+   * color/gradient/home/highlight → hero title + privilege icon badges (bg-gradient-vip-badge utility)
+   * color/gradient/home/muted → soft panel + tier medal placeholder (bg-gradient-vip-tier-muted utility)
+   */
+  .vip-page {
+    --color-surface-base: var(--raw-app-surface-base);
+    --color-text-fifth-title: var(--color-button-hover);
+    --color-button-muted: var(--color-button-hover);
+    --color-button-muted-text: var(--color-text-card-text);
+    --color-surface-secondary-chip: var(--color-accent-pale);
+  }
+
+  .vip-page .soft-blue-panel {
+    background-image: var(--color-gradient-home-muted);
+    border-color: var(--color-accent-glow);
+  }
+
+  /**
+   * Transaction Record type tabs + filter/table — Web_History Record (957:40377)
+   * §13.11: Cam88 semantic names in JSX; Caelo palette via scoped aliases (layout unchanged).
+   *
+   * Figma role → scoped alias (preserves reference Caelo screenshot):
+   * color/button/tabs(+text) → Deposits/Withdrawals active + quick-range active (navy + white)
+   * color/surface/filter → inactive tabs + quick-range pills (cool-light)
+   * color/surface/filter-active → inactive tab hover (accent-pale)
+   * color/popup/body → white filter + table cards
+   * color/surface/input-light → date fields (cool-light)
+   * color/text/fourth → date values (text-primary)
+   * color/surface/table → table header row (surface-subtle / light blue-grey)
+   * color/text/primary → column headers scoped to muted; empty state stays dark primary
+   * color/surface/deep → row hover (surface-subtle)
+   * color/button/cta-primary → Submit label (text-card-text)
+   */
+  .history-record-page .history-record-panel {
+    --color-popup-body: var(--color-surface-base);
+    --color-surface-filter: var(--color-surface-cool-light);
+    --color-surface-filter-active: var(--color-accent-pale);
+    --color-surface-table: var(--color-surface-subtle);
+    --color-text-sub-title: var(--color-button-hover);
+    --color-success-vivid: var(--color-success);
+    --color-surface-input-light: var(--color-surface-cool-light);
+    --color-text-fourth: var(--color-text-primary);
+    --color-surface-deep: var(--color-surface-subtle);
+    --color-button-cta-primary: var(--color-text-card-text);
+  }
+
+  .history-record-page {
+    --color-button-tabs: var(--color-primary);
+    --color-button-tabs-text: var(--color-text-card-text);
+    --color-surface-mid: var(--color-surface-cool-light);
+  }
+
+  .history-record-page .history-record-filter-card {
+    background-color: var(--color-popup-body);
+  }
+
+  .history-record-page .history-record-filter-card label > span:first-child {
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .history-record-page .history-record-panel .date-input-single-icon {
+    background-color: var(--color-surface-input-light);
+    color: var(--color-text-fourth);
+  }
+
+  .history-record-page .history-record-panel .history-record-submit {
+    --color-button-cta-primary: var(--color-text-card-text);
+  }
+
+  .history-record-page .history-record-table-card {
+    background-color: var(--color-popup-body);
+  }
+
+  .history-record-page .history-record-type-tabs button:not(.btn-theme-primary) {
+    background-color: var(--color-surface-filter);
+    color: var(--color-text-muted);
+  }
+
+  .history-record-page .history-record-type-tabs button:not(.btn-theme-primary):hover {
+    background-color: var(--color-surface-filter-active);
+    color: var(--color-text-sub-title);
+  }
+
+  .history-record-page .history-record-quick-range--inactive {
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-surface-filter);
+    color: var(--color-text-muted);
+  }
+
+  .history-record-page .history-record-quick-range--inactive:hover {
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-surface-filter-active);
+    color: var(--color-text-sub-title);
+  }
+
+  .history-record-page .history-record-quick-range--active {
+    border-color: var(--color-button-tabs);
+    background-color: var(--color-button-tabs);
+    color: var(--color-button-tabs-text);
+  }
+
+  .history-record-page .history-record-table thead tr {
+    background-color: var(--color-surface-table);
+  }
+
+  .history-record-page .history-record-table thead th {
+    --color-text-primary: var(--color-text-muted);
+  }
+
+  .history-record-page .history-record-table tbody tr:hover {
+    background-color: var(--color-surface-deep);
+  }
+
+  .history-record-page .history-record-empty-state {
+    border: 1px dashed var(--color-border-subtle);
+    border-radius: 0.75rem;
+    background-color: var(--color-popup-body);
+    color: var(--color-text-primary);
+  }
+
+  /**
+   * Shared history/claim record panel — other routes (referral commission, claim modal shell).
+   * Same semantic names; Caelo look via scoped aliases.
+   */
+  .history-record-panel {
+    --color-popup-body: var(--color-surface-base);
+    --color-surface-filter: var(--color-surface-cool-light);
+    --color-surface-filter-active: var(--color-accent-pale);
+    --color-surface-table: var(--color-surface-subtle);
+    --color-text-sub-title: var(--color-button-hover);
+    --color-success-vivid: var(--color-success);
+    --color-surface-input-light: var(--color-surface-cool-light);
+    --color-text-fourth: var(--color-text-primary);
+    --color-surface-deep: var(--color-surface-subtle);
+    --color-button-cta-primary: var(--color-text-card-text);
+  }
+
+  .history-record-panel .history-record-filter-card {
+    background-color: var(--color-popup-body);
+  }
+
+  .history-record-panel .date-input-single-icon {
+    background-color: var(--color-surface-input-light);
+    color: var(--color-text-fourth);
+  }
+
+  .history-record-panel .history-record-submit {
+    --color-button-cta-primary: var(--color-text-card-text);
+  }
+
+  .history-record-panel .history-record-table-card {
+    background-color: var(--color-popup-body);
+  }
+
+  .history-record-panel .history-record-table thead tr {
+    background-color: var(--color-surface-table);
+  }
+
+  .history-record-panel .history-record-table thead th {
+    --color-text-primary: var(--color-text-muted);
+  }
+
+  .history-record-panel .history-record-table tbody tr:hover {
+    background-color: var(--color-surface-deep);
+  }
+
+  .history-record-panel .history-record-table .history-record-empty-cell {
+    --color-text-primary: var(--color-text-muted);
+  }
+
+  .history-record-panel .history-record-quick-range--inactive {
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-surface-filter);
+    color: var(--color-text-muted);
+  }
+
+  .history-record-panel .history-record-quick-range--inactive:hover {
+    border-color: var(--color-accent-glow);
+    background-color: var(--color-surface-filter-active);
+    color: var(--color-text-sub-title);
+  }
+
+  .history-record-panel .history-record-quick-range--active {
+    border-color: var(--color-accent);
+    background-color: var(--color-surface-filter-active);
+    color: var(--color-text-sub-title);
+  }
+
+  /**
+   * Web_Claim Record (Spin Wheel) — Cam88 (781:13837 / 957:49550)
+   * §13.11: modal shell + inner filter/table content; Caelo look via scoped aliases.
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/overlay → scrim backdrop
+   * color/popup/body → modal shell + table card
+   * color/popup/head → modal header bar (was --color-surface-subtle)
+   * color/surface/input-light → close chip + Type select (was surface-base / cool-light)
+   * color/surface/filter-active → close hover fill (was --color-accent-pale)
+   * color/text/sub-title → close hover icon (was --color-button-hover)
+   * color/text/fourth → Type select value (was --color-text-primary)
+   * color/info/icon → select chevron (was --color-button-hover)
+   * color/surface/deep → table row hover (was --color-surface-subtle)
+   */
+  .claim-record-modal {
+    --color-popup-body: var(--color-surface-base);
+    --color-popup-head: var(--color-surface-subtle);
+    --color-surface-input-light: var(--color-surface-cool-light);
+    --color-surface-filter-active: var(--color-accent-pale);
+    --color-text-sub-title: var(--color-button-hover);
+    --color-text-fourth: var(--color-text-primary);
+    --color-info-icon: var(--color-button-hover);
+    --color-surface-deep: var(--color-surface-subtle);
+  }
+
+  /**
+   * Transaction Record type tabs — color/button/tabs(+text) on active segment.
+   */
+  .history-record-page .history-record-type-tabs .btn-theme-primary {
+    background: var(--color-button-tabs);
+    color: var(--color-button-tabs-text);
+  }
+
+  .history-record-page .history-record-type-tabs .btn-theme-primary:hover {
+    background: var(--color-button-hover);
+    color: var(--color-button-tabs-text);
+  }
+
+  /**
+   * Web_Daily Check In — Cam88 (781:13837 / 957:49054)
+   * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/gradient/check-in/card → header band (was bg-gradient-rewards-accent-footer)
+   * color/surface/check-in/footer → info banner (was bg-gradient-rewards-footer)
+   * color/popup/body → card shell (was --color-surface-base)
+   * color/surface/check-in/text → panel title (was --color-text-primary-card-title)
+   * color/text/check-in/day-active → streak count + today labels (was --color-button-cta-end)
+   * color/text/check-in/day-past → claimed day labels (was --color-button-hover)
+   * color/text/check-in/day-muted → locked labels + scroll hint (was --color-text-soft)
+   * color/text/check-in/reward → streak reward amounts (was --color-text-primary-card-title)
+   * color/surface/check-in/cell → locked node circle (was --color-surface-cool-light)
+   * color/surface/check-in/cell-active → claimed node (was bg-gradient-accent-tab)
+   * color/surface/check-in/day-current → today node (was bg-gradient-cta)
+   * color/surface/check-in/icon → streak connector claimed segment (was --color-accent)
+   * color/surface/check-in/cta → trophy icon tile + claim CTA (was gradient-cta / primary)
+   * color/surface/check-in/inverse → check icon on claimed node (was --color-text-card-text)
+   * color/icon/check-in/active → coins on gold surfaces (was --color-text-primary)
+   * color/icon/check-in/muted → lock icon (was --color-text-soft)
+   * color/gradient/check-in/reward → today reward highlight strip (was bg-gradient-rewards-highlight)
+   * color/accent/check-in/reward → today reward amount (was --color-text-primary)
+   */
+  .daily-check-in-panel {
+    --color-popup-body: var(--color-surface-base);
+    --color-gradient-check-in-card: var(--color-gradient-home-muted);
+    --color-gradient-check-in-reward: var(--color-gradient-home-muted);
+    --color-surface-check-in-text: var(--raw-text-brand);
+    --color-text-check-in-day-active: var(--raw-cta-end);
+    --color-text-check-in-day-past: var(--color-button-hover);
+    --color-text-check-in-day-muted: var(--color-text-soft);
+    --color-text-check-in-reward: var(--raw-text-brand);
+    --color-surface-check-in-cell: var(--color-surface-cool-light);
+    --color-surface-check-in-icon: var(--color-accent);
+    --color-surface-check-in-cta: var(--color-primary);
+    --color-surface-check-in-inverse: var(--color-text-card-text);
+    --color-icon-check-in-active: var(--color-text-primary);
+    --color-icon-check-in-muted: var(--color-text-soft);
+    --color-accent-check-in-reward: var(--color-text-primary);
+  }
+
+  .daily-check-in-panel .daily-check-in-info-band {
+    background-image: var(--color-gradient-home-muted);
+  }
+
+  .daily-check-in-panel .daily-check-in-cell-active {
+    background-image: var(--color-gradient-menu-brand);
+    color: var(--color-surface-check-in-inverse);
+  }
+
+  .daily-check-in-panel .daily-check-in-cell-current {
+    background-image: var(--color-gradient-button-cta);
+    color: var(--color-icon-check-in-active);
+  }
+
+  .daily-check-in-panel .daily-check-in-trophy-icon,
+  .daily-check-in-panel .daily-check-in-reward-icon {
+    background-image: var(--color-gradient-button-cta);
+  }
+
+  .daily-check-in-panel .daily-check-in-today-highlight {
+    border-color: var(--color-accent);
+    background-image: var(--color-gradient-check-in-reward);
+  }
+
+  .daily-check-in-panel .btn-theme-primary {
+    background: var(--color-surface-check-in-cta);
+    color: var(--color-text-card-text);
+  }
+
+  .daily-check-in-panel .btn-theme-primary:hover {
+    background: var(--color-button-hover);
+  }
+
+  /**
+   * Web_Check In Successful — Cam88 (781:13837 / 957:49387)
+   * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/overlay/strong → scrim backdrop (unchanged)
+   * color/popup/body → modal shell (was --color-surface-base)
+   * color/gradient/check-in/day → coin burst circle (was bg-gradient-cta)
+   * color/icon/check-in/active → burst icon (was --color-text-primary)
+   * color/surface/check-in/icon → burst ring (was --color-accent)
+   * color/text/primary → “Congratulations!” title (unchanged)
+   * color/accent/check-in/reward → reward amount (was --color-button-cta-end)
+   * color/text/primary → body copy (scoped to --color-text-muted)
+   * color/text/check-in/day-active → falling coin tint (was --color-button-cta-end)
+   * color/text/check-in/day-muted → auto-close hint (was --color-text-soft)
+   * color/button/cta(+primary) → “Awesome” CTA (was btn-theme-primary)
+   */
+  .check-in-success-modal {
+    --color-popup-body: var(--color-surface-base);
+    --color-gradient-check-in-day: var(--color-gradient-button-cta);
+    --color-icon-check-in-active: var(--color-text-primary);
+    --color-surface-check-in-icon: var(--color-accent);
+    --color-accent-check-in-reward: var(--raw-cta-end);
+    --color-text-check-in-day-active: var(--raw-cta-end);
+    --color-text-check-in-day-muted: var(--color-text-soft);
+    --color-button-cta: var(--color-primary);
+    --color-button-cta-primary: var(--color-text-card-text);
+  }
+
+  .check-in-success-modal .check-in-success-modal-body {
+    --color-text-primary: var(--color-text-muted);
+  }
+
+  .check-in-success-modal .btn-theme-primary {
+    background: var(--color-button-cta);
+    color: var(--color-button-cta-primary);
+  }
+
+  .check-in-success-modal .btn-theme-primary:hover {
+    background: var(--color-button-hover);
+    color: var(--color-button-cta-primary);
+  }
+
+  /**
+   * Web_Spin Wheel List — Cam88 (781:13837 / 957:49867)
+   * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/surface/accent → card shell (was --color-surface-cool-light)
+   * color/gradient/rewards/scratch → card hero strip (was bg-gradient-rewards-scratch)
+   * color/surface/card-dark → corner badge scrim (was --color-surface-darkest)
+   * color/text/light → hero RM value + badge label (was --color-text-sticky-nav-text / card-text)
+   * color/primary → card title (was --color-text-primary)
+   * color/text/primary → card description (was --color-text-muted)
+   * color/button/cta(+primary) → card CTA (was surface-base + text-primary)
+   */
+  .spin-wheel-panel {
+    --color-surface-accent: var(--color-surface-cool-light);
+    --color-surface-card-dark: var(--color-surface-darkest);
+    --color-text-light: var(--color-text-sticky-nav-text);
+    --color-primary: var(--raw-app-text-primary);
+    --color-button-cta: var(--color-surface-base);
+    --color-button-cta-primary: var(--color-text-primary);
+  }
+
+  .spin-wheel-panel .spin-wheel-card-description {
+    --color-text-primary: var(--color-text-muted);
   }
 
   /** Favourite + game-card utilities share Riocity `--color-gradient-sports-card` ? preserve Caelo scrims. */
@@ -766,23 +1258,45 @@
   }
 
   /**
-   * Web_Login / Web_Register / Web_Register_Done ? Cam88 (919:20636, 919:20708, 919:20803)
-   * ?13.11: Cam88 semantic names only; Caelo resolved colors via scoped aliases below.
+   * Web_Login / Web_Register / Web_Register_Done — Cam88
+   * (781:13837 / 919:20636 / 919:20708 / 932:21639 / 932:21673)
+   * §13.11: Cam88 semantic names in CSS; Caelo resolved colors via scoped aliases below.
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/popup/body, color/popup/head → white shell + cool header
+   * color/surface/input-light, color/surface/input-muted → field shells
+   * color/text-primary, color/text-dim, color/text-placeholder, color/text-muted → labels / values / hints
+   * color/text-secondary → register field errors (Cam88 name; Caelo red via --register scope)
+   * color/text/link-danger → Register Now / Login Now / Customer Service links
+   * color/button/cta, color/button/cta-primary → Log In / Register primary actions
+   * color/button/muted, color/button/muted-text → Forgot Password secondary action
+   * color/border-subtle, color/danger → field borders + invalid state
+   * color/success → password rule checks (register)
    */
   .auth-modal-shell {
-    --color-popup-body: var(--color-surface-base);
+    --color-popup-body: var(--raw-app-surface-base);
+    --color-popup-head: var(--raw-universal-modal-header-bg);
     --color-surface-input-light: var(--color-surface-base);
     --color-surface-input-muted: var(--color-surface-cool-light);
     --color-text-placeholder: var(--color-text-soft);
     --color-text-dim: var(--color-text-primary);
-    --color-button-cta-primary: var(--color-text-cta-inverse);
+    --color-button-cta-primary: var(--color-text-card-text);
     --color-button-muted: var(--color-surface-cool-light);
     --color-button-muted-text: var(--color-text-secondary);
-    /* Login footer links ? Caelo blue (?13.11) */
     --color-text-link-danger: var(--color-button-hover);
   }
 
-  /** Web_Register ? Cam88 919:20708 field errors + footer link (?13.11) */
+  /** Web_Login — footer copy uses color/text-primary; link uses color/text/link-danger (§13.11). */
+  .auth-modal-container--login .auth-modal-links,
+  .auth-modal-container--login .auth-modal-link-text {
+    color: var(--color-text-primary);
+  }
+
+  .auth-modal-container--login .auth-modal-remember {
+    color: var(--color-text-primary);
+  }
+
+  /** Web_Register — Cam88 binds field errors to color/text-secondary (§13.11 → Caelo red). */
   .auth-modal-container--register {
     --color-text-secondary: var(--color-danger);
     --color-text-link-danger: var(--color-danger);
@@ -1031,7 +1545,7 @@
   }
 
   .auth-modal-link:hover {
-    color: var(--color-accent);
+    color: var(--color-button-hover);
   }
 
   .auth-modal-divider {
@@ -1187,17 +1701,17 @@
     background-color: var(--color-surface-input-light);
   }
 
-  /** Legacy LoginModal ? Cam88 semantics; Caelo gradient panel + field tokens */
+  /** Legacy LoginModal / 2FA — Cam88 semantics; Caelo gradient panel + field tokens */
   .login-modal-root {
     --color-overlay-strong: color-mix(in srgb, var(--color-surface-darkest) 70%, transparent);
   }
 
   .login-modal-shell {
-    --color-popup-body: var(--color-surface-base);
+    --color-popup-body: var(--raw-app-surface-base);
     --color-surface-input-light: var(--raw-surface-base-80);
     --color-text-placeholder: var(--color-text-soft);
     --color-text-dim: var(--color-text-secondary);
-    --color-button-cta-primary: var(--color-text-cta-inverse);
+    --color-button-cta-primary: var(--color-text-card-text);
     --color-text-link-danger: var(--color-danger);
     --color-border-brand: var(--raw-border-accent);
   }
@@ -1927,7 +2441,7 @@
   }
 
   .bg-gradient-rewards-scratch {
-    background-image: var(--color-gradient-card-brand);
+    background-image: var(--color-gradient-rewards-scratch);
   }
 
   .bg-gradient-brand-soft-panel {
@@ -2155,6 +2669,18 @@
 
   .bg-gradient-rewards-footer {
     background-image: var(--color-gradient-home-muted);
+  }
+
+  .bg-gradient-check-in-card {
+    background-image: var(--color-gradient-check-in-card);
+  }
+
+  .bg-gradient-check-in-day {
+    background-image: var(--color-gradient-check-in-day);
+  }
+
+  .bg-gradient-check-in-reward {
+    background-image: var(--color-gradient-check-in-reward);
   }
 
   .bg-gradient-app-download-qr {
@@ -2597,7 +3123,7 @@
     color: var(--color-button-hover-text);
   }
 
-  /** Promotion cards ? status pill on banner image (12WIN reference). */
+  /** Promotion cards — banner status pill (Cam88 color/primary-tag | color/secondary-tag). */
   .promotion-page .promotion-card-image-tag {
     border-radius: 6px;
     padding: 0.2rem 0.55rem;
@@ -2606,8 +3132,13 @@
     line-height: 1.2;
     letter-spacing: 0.01em;
     white-space: nowrap;
-    background-color: var(--color-overlay);
-    color: var(--color-text-card-text);
+    background-color: var(--color-primary-tag);
+    color: var(--color-primary-tag-text);
+  }
+
+  .promotion-page .promotion-card-image-tag--available {
+    background-color: var(--color-secondary-tag);
+    color: var(--color-secondary-tag-text);
   }
 
   /** Account horizontal tabs ? matches AccountSidebar accent styling */
@@ -2768,7 +3299,7 @@
   }
 
   /**
-   * Cashier flow ? deposit / withdrawal pages only (.cashier-flow-page wrapper).
+   * Cashier flow — deposit / withdrawal pages only (.cashier-flow-page wrapper).
    * Caelo blues from CAELO_THEME_REFERENCE; does not affect header, home, or other routes.
    */
   .cashier-flow-page {
@@ -2794,37 +3325,45 @@
     color: var(--cashier-brand);
   }
 
+  /**
+   * Deposit / Withdrawal tabs — Web_User Dashboard - 1/2 (957:15602).
+   * Semantic names only; Caelo values preserved via §13.11 scoped aliases on this block.
+   */
   .cashier-mode-tabs {
+    --color-button-cta: var(--cashier-brand);
+    --color-button-cta-primary: var(--color-text-card-text);
+    --color-button-tabs-muted: transparent;
+    --color-button-tabs-muted-text: var(--cashier-text-muted);
+    --color-button-tabs-text: var(--cashier-brand);
     display: flex;
     width: 100%;
-    max-width: 28rem;
     gap: 0.25rem;
-    border-radius: 9999px;
-    border: 1px solid var(--cashier-border);
-    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
     padding: 0.25rem;
   }
 
   .cashier-mode-tab {
     flex: 1;
     min-height: 2.75rem;
-    border-radius: 9999px;
+    border-radius: 0.55rem;
     border: none;
-    background: transparent;
+    background: var(--color-button-tabs-muted);
     font-size: 0.9375rem;
     font-weight: 700;
-    color: var(--cashier-text-muted);
+    color: var(--color-button-tabs-muted-text);
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   }
 
   .cashier-mode-tab.is-active {
-    background: var(--cashier-brand);
-    color: #ffffff;
+    background: var(--color-button-cta);
+    color: var(--color-button-cta-primary);
     box-shadow: var(--shadow-nav-pill);
   }
 
   .cashier-mode-tab:not(.is-active):hover {
-    color: var(--cashier-brand);
+    color: var(--color-button-tabs-text);
   }
 
   .cashier-flow-page .cashier-speed-tab.is-active {
@@ -2865,6 +3404,187 @@
     color: var(--cashier-brand);
   }
 
+  /**
+   * Deposit step 1 — Web_User Dashboard (957:15617). Semantic names; Caelo values via §13.11.
+   */
+  .cashier-deposit-step1 {
+    --color-border-subtle: var(--cashier-border);
+    --color-border-brand: var(--cashier-accent-500);
+    --color-text-primary-card-title: var(--cashier-brand);
+    --color-text-muted: var(--cashier-text-muted);
+    --color-text-small: var(--cashier-text-muted);
+    --color-accent-pale: var(--cashier-accent-50);
+    --color-button-hover: var(--cashier-accent-600);
+    --color-surface-accent-hover: var(--cashier-accent-600);
+  }
+
+  .cashier-deposit-step1 .cashier-step-badge {
+    background: var(--color-surface-accent-hover);
+    color: var(--color-text-card-text);
+  }
+
+  .cashier-deposit-step1 .cashier-section-title {
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-deposit-step1 .cashier-section-subtitle {
+    color: var(--color-text-muted);
+  }
+
+  .cashier-deposit-step1 .cashier-method-section {
+    overflow: hidden;
+    border: 2px solid var(--color-border-subtle);
+    border-radius: 1rem;
+    background: var(--color-surface-base);
+    padding: 0;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+
+  .cashier-deposit-step1 .cashier-method-section.is-selected {
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
+    box-shadow: 0 0 0 1px rgb(59 130 246 / 0.1);
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-action {
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.75rem;
+    border: none;
+    background: transparent;
+    padding: 0.9375rem;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-action:not(.is-selected):hover,
+  .cashier-deposit-step1 .cashier-method-section-toggle:hover {
+    border-color: var(--color-border-brand);
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9375rem;
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-chevron {
+    color: var(--color-text-muted);
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .cashier-deposit-step1 .cashier-method-section.is-selected .cashier-method-section-chevron {
+    color: var(--color-button-hover);
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-chevron.is-expanded {
+    transform: rotate(180deg);
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-divider {
+    height: 1px;
+    background: var(--color-border-subtle);
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-icon {
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: var(--color-accent-pale);
+    color: var(--color-button-hover);
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-deposit-step1 .cashier-method-section-subtitle {
+    margin-top: 0.125rem;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    color: var(--color-text-small);
+  }
+
+  .cashier-deposit-step1 .cashier-bank-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    padding: 0.625rem;
+  }
+
+  .cashier-deposit-step1 .cashier-bank-card {
+    display: flex;
+    min-height: 3.125rem;
+    flex: 1 1 calc(33.333% - 0.4375rem);
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.625rem;
+    border-radius: 0.875rem;
+    border: 2px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
+    padding: 0.625rem 0.75rem;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  @media (max-width: 639px) {
+    .cashier-deposit-step1 .cashier-bank-card {
+      flex: 1 1 100%;
+    }
+  }
+
+  .cashier-deposit-step1 .cashier-bank-card:hover {
+    border-color: var(--color-border-brand);
+  }
+
+  .cashier-deposit-step1 .cashier-bank-card.is-selected {
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
+  }
+
+  .cashier-deposit-step1 .cashier-bank-card-logo {
+    height: 1.875rem;
+    width: 1.875rem;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .cashier-deposit-step1 .cashier-bank-card-body {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .cashier-deposit-step1 .cashier-bank-card-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-deposit-step1 .cashier-bank-card-range {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-text-muted);
+  }
+
   .cashier-option-card {
     border: 2px solid var(--cashier-border);
     background: #ffffff;
@@ -2883,6 +3603,155 @@
   .cashier-option-card .cashier-option-label {
     font-weight: 700;
     color: var(--cashier-brand);
+  }
+
+  .cashier-method-section {
+    border: 2px solid var(--cashier-border);
+    border-radius: 1rem;
+    background: #ffffff;
+    padding: 1rem 1.125rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  @media (min-width: 768px) {
+    .cashier-method-section {
+      padding: 1.125rem 1.25rem;
+    }
+  }
+
+  .cashier-method-section.is-selected {
+    border-color: var(--cashier-accent-500);
+    box-shadow: 0 0 0 1px rgb(59 130 246 / 0.1);
+  }
+
+  .cashier-method-section-action {
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .cashier-method-section-action:not(.is-selected):hover {
+    border-color: var(--cashier-accent-200);
+  }
+
+  .cashier-method-section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .cashier-method-section-icon {
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: var(--cashier-accent-50);
+    color: var(--cashier-accent-600);
+  }
+
+  .cashier-method-section-title {
+    font-weight: 700;
+    color: var(--cashier-brand);
+  }
+
+  .cashier-method-section-subtitle {
+    margin-top: 0.125rem;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    color: var(--cashier-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .cashier-method-section-subtitle {
+      font-size: 0.875rem;
+    }
+  }
+
+  .cashier-bank-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 639px) {
+    .cashier-bank-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cashier-bank-card {
+    display: flex;
+    min-height: 6.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    border-radius: 0.875rem;
+    border: 2px solid var(--cashier-border);
+    background: #ffffff;
+    padding: 0.875rem 0.625rem;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .cashier-bank-card:hover {
+    border-color: var(--cashier-accent-200);
+  }
+
+  .cashier-bank-card.is-selected {
+    border-color: var(--cashier-accent-500);
+    background: var(--cashier-accent-50);
+  }
+
+  .cashier-bank-card-logo {
+    height: 2rem;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .cashier-bank-card-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--cashier-brand);
+  }
+
+  @media (min-width: 640px) {
+    .cashier-bank-card-label {
+      font-size: 0.75rem;
+    }
+  }
+
+  .cashier-bank-card-range {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--cashier-text-muted);
+  }
+
+  .cashier-method-row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.875rem;
+    border-radius: 1rem;
+    border: 2px solid var(--cashier-border);
+    background: #ffffff;
+    padding: 1rem 1.125rem;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .cashier-method-row:hover {
+    border-color: var(--cashier-accent-200);
+  }
+
+  .cashier-method-row.is-selected {
+    border-color: var(--cashier-accent-500);
+    background: var(--cashier-accent-50);
   }
 
   .cashier-flow-stepper .cashier-stepper-dot {
@@ -2940,21 +3809,17 @@
     background: var(--cashier-border);
   }
 
-  .account-layout-cashier .profile-menu-logout {
-    background: #fee2e2;
-    border-color: rgb(248 113 113 / 0.28);
-    color: #dc2626;
-  }
-
-  .account-layout-cashier .profile-menu-logout:hover {
-    background: linear-gradient(180deg, #fecaca 0%, #fca5a5 100%);
-    border-color: rgb(220 38 38 / 0.35);
-    color: #991b1b;
-    box-shadow: 0 4px 12px rgb(220 38 38 / 0.12);
-  }
-
-  /** Profile dropdown ? logout (light default, red gradient on hover) */
+  /**
+   * Web_User Dashboard - cam88 (932:22443) — Secure Logout
+   * §13.11: Cam88 semantic names; Caelo red gradient preserved via --color-gradient-tag chain.
+   *
+   * Figma role → token (Caelo value unchanged):
+   * color/gradient/tag → pill background (VARIABLE-RULES logout → gradient-tag)
+   * color/button/cta-primary → label + icon (scoped to white on red)
+   * color/danger → border tint
+   */
   .profile-menu-logout {
+    --color-button-cta-primary: var(--mono-0);
     display: flex;
     width: 100%;
     min-height: 3rem;
@@ -2962,14 +3827,15 @@
     justify-content: center;
     gap: 0.75rem;
     border-radius: 22px;
-    border: 1px solid rgba(248, 48, 77, 0.22);
-    background: var(--color-gradient-tag);
+    border: 1px solid color-mix(in srgb, var(--color-danger) 22%, transparent);
+    background-color: transparent;
+    background-image: var(--color-gradient-tag);
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 1rem;
     line-height: 1.25rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--color-button-cta-primary);
     transition:
       background 0.2s,
       border-color 0.2s,
@@ -2979,11 +3845,35 @@
   }
 
   .profile-menu-logout:hover {
-    border-color: rgba(255, 255, 255, 0.1);
-    background: var(--color-gradient-tag);
-    color: #ffffff;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-color: color-mix(in srgb, var(--color-button-cta-primary) 10%, transparent);
+    background-image: var(--color-gradient-tag);
+    color: var(--color-button-cta-primary);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-button-cta-primary) 10%, transparent);
     transform: translateY(-1px);
+  }
+
+  /** Cashier account shell — lighter logout default; same semantic names, scoped aliases */
+  .account-layout-cashier .profile-menu-logout {
+    --color-gradient-tag: linear-gradient(
+      180deg,
+      var(--raw-gradient-logout-default-start) 0%,
+      var(--raw-gradient-logout-default-end) 100%
+    );
+    --color-button-cta-primary: var(--color-danger-red);
+    border-color: color-mix(in srgb, var(--color-danger-red) 28%, transparent);
+    background-image: var(--color-gradient-tag);
+  }
+
+  .account-layout-cashier .profile-menu-logout:hover {
+    --color-gradient-tag: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-danger) 22%, var(--mono-0)) 0%,
+      color-mix(in srgb, var(--color-danger) 38%, var(--mono-0)) 100%
+    );
+    --color-button-cta-primary: var(--color-danger-maroon);
+    border-color: color-mix(in srgb, var(--color-danger-red) 35%, transparent);
+    background-image: var(--color-gradient-tag);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-danger-red) 12%, transparent);
   }
 
   /** Slots browse ? active promotion block (matches soft-blue / wallet browse panel) */
@@ -2997,23 +3887,76 @@
   }
 
   /** Profile dashboard ? reuses CurrentPromoSection with account page tokens */
+  /**
+   * Web_User Dashboard - cam88 (932:22443 / 957:15352 VIP progress / 957:15190 Current Promo)
+   * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
+   *
+   * Figma role → scoped alias (preserves pre-migration Caelo):
+   * color/surface/card-light → account header + VIP card shell (was --color-surface-base)
+   * color/text/primary → username, promo labels, progress % (unchanged)
+   * color/text/small → verified badge, email, progress caption (was --color-text-muted / secondary)
+   * color/progress/bar/bg → track (was --color-accent-glow / pale blue)
+   * color/progress/bar/fill → fill (was --color-primary navy; not Cam88 green)
+   * color/text/title → promo name + rollover values (was --color-primary / base-ink)
+   * color/surface/elevated → promo rollover inner card (was --color-surface-cool-light)
+   */
+  .profile-page,
+  .user-dashboard-sidebar {
+    --color-surface-card-light: var(--color-surface-base);
+    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-text-small: var(--color-text-secondary);
+  }
+
+  .profile-page .profile-account-header__badge {
+    --color-text-small: var(--color-button-hover);
+  }
+
+  .profile-page .profile-account-header__contact {
+    --color-text-small: var(--color-text-muted);
+  }
+
+  .profile-page .profile-vip-progress-section__caption,
+  .user-dashboard-sidebar .vip-tier-progress-card__caption {
+    --color-text-small: var(--color-text-secondary);
+  }
+
   .profile-current-promo {
-    background-color: var(--base-paper);
+    --color-surface-card-light: var(--base-paper);
+    --color-text-title: var(--color-primary);
+    --color-surface-elevated: var(--color-surface-cool-light);
+    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-fill: var(--color-primary);
+    background-color: var(--color-surface-card-light);
     border-color: var(--color-border-subtle);
     box-shadow: var(--shadow-card-soft);
   }
 
+  .profile-current-promo .profile-current-promo__card {
+    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-fill: var(--color-primary);
+  }
+
+  /** Promo rollover bar — color/progress/bar/bg + fill (Caelo pale track + navy fill) */
+  .profile-current-promo .profile-promo-progress {
+    background-color: var(--color-progress-bar-bg);
+  }
+
+  .profile-current-promo .profile-promo-progress > div {
+    background-color: var(--color-progress-bar-fill);
+    background-image: none;
+  }
+
   .profile-current-promo__eyebrow {
-    color: var(--base-ink);
+    --color-text-primary: var(--base-ink);
   }
 
   .profile-current-promo__name {
-    color: var(--color-primary);
+    color: var(--color-text-title);
   }
 
   .profile-current-promo__card {
     border-color: var(--color-border-subtle);
-    background-color: var(--color-surface-cool-light);
+    background-color: var(--color-surface-elevated);
   }
 
   .profile-menu-scroll {

@@ -31,7 +31,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
             <div className={`page-container relative z-10 flex flex-col gap-6 ${softerMobile ? 'max-md:gap-4' : ''}`}>
                 <div className="relative z-10 flex w-full flex-col items-center gap-8 md:flex-row md:items-start md:justify-between">
                     <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
-                        <div className="inline-flex items-center justify-center rounded-[18px] border border-[var(--color-border-line)]/20 bg-[var(--color-surface-base)] px-4 py-2.5 shadow-[var(--shadow-nav-pill)] md:rounded-[20px] md:px-5 md:py-3 md:translate-y-2">
+                        <div className="site-footer__logo-chip inline-flex items-center justify-center rounded-[18px] border border-[var(--color-border-line)]/20 bg-[var(--color-surface-base)] px-4 py-2.5 shadow-[var(--shadow-nav-pill)] md:rounded-[20px] md:px-5 md:py-3 md:translate-y-2">
                             <img
                                 src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp"
                                 alt="12WIN Logo"
@@ -109,9 +109,9 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
 
                     <div className="flex flex-col items-center gap-3">
                         <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-footer)]">Responsible Gaming</h4>
-                        <div className="flex items-center gap-4 text-[var(--color-text-footer)] opacity-95">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full border-[2px] border-[var(--color-border-line)] text-lg font-bold">18+</div>
-                            <div className="flex items-center gap-1 text-center text-xs font-bold leading-tight">
+                        <div className="flex items-center gap-4 text-[var(--color-text-light)] opacity-95">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full border-[2px] border-[var(--color-border-line)] text-lg font-bold text-[var(--color-text-light)]">18+</div>
+                            <div className="flex items-center gap-1 text-center text-xs font-bold leading-tight text-[var(--color-text-light)]">
                                 Be<br />Gamble<br />Aware
                             </div>
                         </div>

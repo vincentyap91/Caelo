@@ -734,6 +734,7 @@
   --color-gradient-referral-deposit:         linear-gradient(90deg, var(--accent-brown-700) 0%, var(--support-danger-maroon) 100%);
   --color-gradient-referral-icon:            linear-gradient(90deg, var(--accent-340) 0%, var(--accent-310) 100%);
   --color-gradient-referral-panel:           linear-gradient(180deg, var(--raw-gradient-register-page-start) 0%, var(--raw-gradient-register-page-mid) 45%, var(--raw-gradient-register-page-end) 100%);
+  --color-gradient-rewards-scratch:          linear-gradient(145deg, var(--raw-gradient-rewards-scratch-start) 0%, var(--raw-gradient-rewards-scratch-mid) 50%, var(--raw-gradient-rewards-scratch-end) 100%);
   --color-gradient-menu-brand:               linear-gradient(180deg, var(--raw-gradient-vip-nav-pill-start) 0%, var(--raw-gradient-vip-nav-pill-end) 100%);
   --color-gradient-menu-warm:                linear-gradient(90deg, var(--accent-brown-800) 0%, var(--accent-brown-700) 100%);
   --color-gradient-nav-daily-bonus:          linear-gradient(90deg, var(--brand-700) 0%, var(--brand-630) 100%);

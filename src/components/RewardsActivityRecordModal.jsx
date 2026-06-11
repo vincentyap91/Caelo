@@ -23,7 +23,7 @@ export default function RewardsActivityRecordModal({ open, onClose, filterSlot, 
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6">
+        <div className="claim-record-modal fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6">
             <button
                 type="button"
                 aria-label="Close dialog"
@@ -35,10 +35,10 @@ export default function RewardsActivityRecordModal({ open, onClose, filterSlot, 
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="rewards-record-modal-title"
-                className="relative z-[1] flex max-h-[min(90vh,880px)] w-full max-w-3xl flex-col overflow-hidden rounded-[var(--radius-panel-xl)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
+                className="claim-record-modal-shell relative z-[1] flex max-h-[min(90vh,880px)] w-full max-w-3xl flex-col overflow-hidden rounded-[var(--radius-panel-xl)] border border-[var(--color-border-subtle)] bg-[var(--color-popup-body)] shadow-[var(--shadow-modal)]"
                 onClick={(e) => e.stopPropagation()}
             >
-                <header className="flex shrink-0 items-center justify-between gap-4 border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-5 py-4 md:px-6">
+                <header className="claim-record-modal-header flex shrink-0 items-center justify-between gap-4 border-b border-[var(--color-border-subtle)] bg-[var(--color-popup-head)] px-5 py-4 md:px-6">
                     <h2 id="rewards-record-modal-title" className="text-base font-bold text-[var(--color-text-primary)] md:text-lg">
                         Record
                     </h2>
@@ -46,7 +46,7 @@ export default function RewardsActivityRecordModal({ open, onClose, filterSlot, 
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
+                        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-surface-filter-active)] hover:text-[var(--color-text-sub-title)]"
                     >
                         <X size={18} strokeWidth={2.5} />
                     </button>

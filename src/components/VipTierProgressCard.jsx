@@ -1,5 +1,6 @@
 import React from 'react';
 import { getVipStatus } from '../constants/vipStatus';
+import ProgressBar from './ui/ProgressBar';
 
 export default function VipTierProgressCard({
     currentTier = 'Platinum',
@@ -12,13 +13,13 @@ export default function VipTierProgressCard({
 
     return (
         <div
-            className={`w-full rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3.5 text-[var(--color-text-primary)] shadow-[var(--shadow-card-soft)] ${className}`}
+            className={`vip-tier-progress-card w-full rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-card-light)] px-4 py-3.5 text-[var(--color-text-primary)] shadow-[var(--shadow-card-soft)] ${className}`}
         >
             <div className="flex items-center gap-3">
                 <div className="flex items-center gap-3">
                     <img src={vip.medal} alt={`${vip.tier} medal`} className="h-12 w-12 shrink-0 object-contain" />
                     <div className="min-w-0">
-                        <p className="text-sm font-extrabold uppercase text-[var(--color-text-primary)]">
+                        <p className="vip-tier-progress-card__tier text-sm font-extrabold uppercase text-[var(--color-text-primary)]">
                             {currentTier}
                         </p>
                     </div>
@@ -32,15 +33,9 @@ export default function VipTierProgressCard({
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{safeProgress}%</span>
             </div>
 
-            <div className="mt-3 h-3 overflow-hidden rounded-full bg-[var(--color-accent-glow)]">
-                <div
-                    className="h-full rounded-full bg-gradient-cta"
-                    style={{ width: `${safeProgress}%` }}
-                    aria-hidden="true"
-                />
-            </div>
+            <ProgressBar percent={safeProgress} variant="profile-vip" className="mt-3 h-3" />
 
-            <p className="mt-3 text-center text-sm font-medium text-[var(--color-text-secondary)]">
+            <p className="vip-tier-progress-card__caption mt-3 text-center text-sm font-medium text-[var(--color-text-small)]">
                 Progress to next tier: {safeProgress}%
             </p>
         </div>
