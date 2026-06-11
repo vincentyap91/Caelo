@@ -421,7 +421,7 @@ export default function Navbar({
             />
 
 
-            <div className="top-sticky-nav-bar relative z-[110] hidden h-9 w-full items-center border-b border-[var(--color-border-subtle)] bg-[var(--color-sticky-nav)] px-4 text-xs text-[var(--color-text-sticky-nav-text)] md:flex md:px-10">
+            <div className="top-sticky-nav-bar relative z-[110] hidden h-9 w-full items-center border-b bg-[var(--color-sticky-nav)] px-4 text-xs text-[var(--color-text-sticky-nav-text)] md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between">
                     <div className="flex gap-4 items-center h-full">
                         <button

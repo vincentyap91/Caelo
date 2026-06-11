@@ -1,10 +1,10 @@
 {
   "summary": {
-    "generatedAt": "2026-06-10T08:07:04.424Z",
+    "generatedAt": "2026-06-11T08:28:00.805Z",
     "source": "src/theme.css",
-    "primitiveCount": 374,
-    "semanticCount": 288,
-    "gradientCompositeCount": 28,
+    "primitiveCount": 379,
+    "semanticCount": 292,
+    "gradientCompositeCount": 31,
     "primitiveErrors": 0,
     "semanticErrors": 3
   },
@@ -1726,6 +1726,42 @@
       "cssValue": "rgb(255 255 255 / 0.14)"
     },
     {
+      "cssName": "--raw-scrim-white-10",
+      "figmaPath": "raw/scrim/white/10",
+      "rgba": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0.1
+      },
+      "hex": null,
+      "cssValue": "rgb(255 255 255 / 0.1)"
+    },
+    {
+      "cssName": "--raw-scrim-white-07",
+      "figmaPath": "raw/scrim/white/07",
+      "rgba": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0.07
+      },
+      "hex": null,
+      "cssValue": "rgb(255 255 255 / 0.07)"
+    },
+    {
+      "cssName": "--raw-scrim-white-05",
+      "figmaPath": "raw/scrim/white/05",
+      "rgba": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0.05
+      },
+      "hex": null,
+      "cssValue": "rgb(255 255 255 / 0.05)"
+    },
+    {
       "cssName": "--raw-scrim-white-04",
       "figmaPath": "raw/scrim/white/04",
       "rgba": {
@@ -1736,6 +1772,18 @@
       },
       "hex": null,
       "cssValue": "rgb(255 255 255 / 0.04)"
+    },
+    {
+      "cssName": "--raw-scrim-white-03",
+      "figmaPath": "raw/scrim/white/03",
+      "rgba": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0.03
+      },
+      "hex": null,
+      "cssValue": "rgb(255 255 255 / 0.03)"
     },
     {
       "cssName": "--raw-scrim-slate-04",
@@ -2648,6 +2696,18 @@
       },
       "hex": "#d8f3ff",
       "cssValue": "#d8f3ff"
+    },
+    {
+      "cssName": "--raw-surface-referral-hub",
+      "figmaPath": "raw/surface/referral/hub",
+      "rgba": {
+        "r": 0.6901960784313725,
+        "g": 0.7294117647058823,
+        "b": 0.9294117647058824,
+        "a": 1
+      },
+      "hex": "#b0baed",
+      "cssValue": "#b0baed"
     },
     {
       "cssName": "--raw-gradient-promo-card-end",
@@ -5746,50 +5806,50 @@
     {
       "cssName": "--color-surface-input",
       "figmaPath": "color/surface/input",
-      "aliasCss": "--mono-905",
-      "aliasFigma": "mono/905",
+      "aliasCss": "--raw-surface-muted",
+      "aliasFigma": "raw/surface/muted",
       "aliasCollection": "01 Primitives",
       "scopes": [
         "FRAME_FILL",
         "SHAPE_FILL"
       ],
-      "resolvedHex": "#232323"
+      "resolvedHex": "#f8fafc"
     },
     {
       "cssName": "--color-surface-input-color",
       "figmaPath": "color/surface/input/color",
-      "aliasCss": "--brand-700",
-      "aliasFigma": "brand/700",
+      "aliasCss": "--raw-surface-muted",
+      "aliasFigma": "raw/surface/muted",
       "aliasCollection": "01 Primitives",
       "scopes": [
         "FRAME_FILL",
         "SHAPE_FILL"
       ],
-      "resolvedHex": "#01206c"
+      "resolvedHex": "#f8fafc"
     },
     {
       "cssName": "--color-surface-input-inverse",
       "figmaPath": "color/surface/input/inverse",
-      "aliasCss": "--mono-330",
-      "aliasFigma": "mono/330",
+      "aliasCss": "--raw-surface-muted",
+      "aliasFigma": "raw/surface/muted",
       "aliasCollection": "01 Primitives",
       "scopes": [
         "FRAME_FILL",
         "SHAPE_FILL"
       ],
-      "resolvedHex": "#333333"
+      "resolvedHex": "#f8fafc"
     },
     {
       "cssName": "--color-surface-input-light",
       "figmaPath": "color/surface/input/light",
-      "aliasCss": "--mono-0",
-      "aliasFigma": "mono/0",
+      "aliasCss": "--raw-surface-muted",
+      "aliasFigma": "raw/surface/muted",
       "aliasCollection": "01 Primitives",
       "scopes": [
         "FRAME_FILL",
         "SHAPE_FILL"
       ],
-      "resolvedHex": "#ffffff"
+      "resolvedHex": "#f8fafc"
     },
     {
       "cssName": "--color-surface-input-light-border",
@@ -5806,14 +5866,14 @@
     {
       "cssName": "--color-surface-input-muted",
       "figmaPath": "color/surface/input/muted",
-      "aliasCss": "--mono-565",
-      "aliasFigma": "mono/565",
+      "aliasCss": "--raw-surface-muted",
+      "aliasFigma": "raw/surface/muted",
       "aliasCollection": "01 Primitives",
       "scopes": [
         "FRAME_FILL",
         "SHAPE_FILL"
       ],
-      "resolvedHex": "#aaaaaa"
+      "resolvedHex": "#f8fafc"
     },
     {
       "cssName": "--color-surface-input-muted-border",
@@ -6094,26 +6154,26 @@
     {
       "cssName": "--color-surface-referral-card",
       "figmaPath": "color/surface/referral/card",
-      "aliasCss": "--brand-500",
-      "aliasFigma": "brand/500",
+      "aliasCss": "--raw-surface-referral-hub",
+      "aliasFigma": "raw/surface/referral/hub",
       "aliasCollection": "01 Primitives",
       "scopes": [
         "FRAME_FILL",
         "SHAPE_FILL"
       ],
-      "resolvedHex": "#123b94"
+      "resolvedHex": "#b0baed"
     },
     {
       "cssName": "--color-surface-referral-input",
       "figmaPath": "color/surface/referral/input",
-      "aliasCss": "--brand-630",
-      "aliasFigma": "brand/630",
+      "aliasCss": "--raw-surface-muted",
+      "aliasFigma": "raw/surface/muted",
       "aliasCollection": "01 Primitives",
       "scopes": [
         "FRAME_FILL",
         "SHAPE_FILL"
       ],
-      "resolvedHex": "#0d2a6a"
+      "resolvedHex": "#f8fafc"
     },
     {
       "cssName": "--color-surface-rtp-card",
@@ -6330,6 +6390,54 @@
         "SHAPE_FILL"
       ],
       "resolvedHex": "#323a38"
+    },
+    {
+      "cssName": "--color-page-home",
+      "figmaPath": "color/page/home",
+      "aliasCss": "--raw-page-home",
+      "aliasFigma": "raw/page/home",
+      "aliasCollection": "01 Primitives",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "resolvedHex": "#e6f4fd"
+    },
+    {
+      "cssName": "--color-page-register",
+      "figmaPath": "color/page/register",
+      "aliasCss": "--raw-page-register",
+      "aliasFigma": "raw/page/register",
+      "aliasCollection": "01 Primitives",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "resolvedHex": "#edf4ff"
+    },
+    {
+      "cssName": "--color-page-account",
+      "figmaPath": "color/page/account",
+      "aliasCss": "--raw-page-account",
+      "aliasFigma": "raw/page/account",
+      "aliasCollection": "01 Primitives",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "resolvedHex": "#eaf1fb"
+    },
+    {
+      "cssName": "--color-page-default",
+      "figmaPath": "color/page/default",
+      "aliasCss": "--raw-page-default",
+      "aliasFigma": "raw/page/default",
+      "aliasCollection": "01 Primitives",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "resolvedHex": "#f2f4f8"
     },
     {
       "cssName": "--color-primary",
@@ -7879,6 +7987,26 @@
   ],
   "gradientComposites": [
     {
+      "cssName": "--color-gradient-sticky-nav-pill",
+      "figmaPath": "color/gradient/sticky/nav/pill",
+      "startCss": "--raw-scrim-white-07",
+      "endCss": "--raw-scrim-white-03",
+      "startFigma": "raw/scrim/white/07",
+      "endFigma": "raw/scrim/white/03",
+      "startSemantic": "color/gradient/sticky/nav/pill/start",
+      "endSemantic": "color/gradient/sticky/nav/pill/end"
+    },
+    {
+      "cssName": "--color-gradient-sticky-nav-pill-hover",
+      "figmaPath": "color/gradient/sticky/nav/pill/hover",
+      "startCss": "--raw-scrim-white-10",
+      "endCss": "--raw-scrim-white-05",
+      "startFigma": "raw/scrim/white/10",
+      "endFigma": "raw/scrim/white/05",
+      "startSemantic": "color/gradient/sticky/nav/pill/hover/start",
+      "endSemantic": "color/gradient/sticky/nav/pill/hover/end"
+    },
+    {
       "cssName": "--color-gradient-button-cta",
       "figmaPath": "color/gradient/button/cta",
       "startCss": "--raw-cta-start",
@@ -8047,6 +8175,16 @@
       "endFigma": "raw/gradient/register/page/end",
       "startSemantic": "color/gradient/referral/panel/start",
       "endSemantic": "color/gradient/referral/panel/end"
+    },
+    {
+      "cssName": "--color-gradient-rewards-scratch",
+      "figmaPath": "color/gradient/rewards/scratch",
+      "startCss": "--raw-gradient-rewards-scratch-start",
+      "endCss": "--raw-gradient-rewards-scratch-end",
+      "startFigma": "raw/gradient/rewards/scratch/start",
+      "endFigma": "raw/gradient/rewards/scratch/end",
+      "startSemantic": "color/gradient/rewards/scratch/start",
+      "endSemantic": "color/gradient/rewards/scratch/end"
     },
     {
       "cssName": "--color-gradient-menu-brand",

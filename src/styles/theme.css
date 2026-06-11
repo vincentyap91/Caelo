@@ -72,8 +72,8 @@
   --shadow-nav-pill: 0 8px 16px rgba(1, 22, 63, 0.25);
   --nav-top-pill-border: rgba(255, 255, 255, 0.16);
   --nav-top-pill-border-hover: rgba(255, 255, 255, 0.24);
-  --nav-top-pill-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
-  --nav-top-pill-bg-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --nav-top-pill-bg: var(--color-gradient-sticky-nav-pill);
+  --nav-top-pill-bg-hover: var(--color-gradient-sticky-nav-pill-hover);
   --nav-top-pill-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 10px rgba(0, 0, 0, 0.06);
   --shadow-nav-tile-hover: 0 14px 24px rgba(3, 22, 58, 0.34);
   --shadow-success: 0 0 8px rgba(57, 181, 74, 0.6);
@@ -233,6 +233,9 @@
   .app-download-section {
     --color-button-hover: var(--brand-630);
     --color-text-secondary: var(--raw-text-brand-soft);
+    --color-text-muted: rgb(77 114 145 / 0.85);
+    --color-border-brand: var(--raw-border-brand);
+    --color-border-subtle: var(--raw-border-brand);
     --color-surface-cool-light: rgb(0 174 239 / 0.12);
     --color-accent-glow: #c6eeff;
   }
@@ -243,25 +246,32 @@
     --color-text-secondary: rgb(77 114 145);
   }
 
+  .app-download-section .app-download-apk-button {
+    --color-gradient-home-highlight: linear-gradient(
+      90deg,
+      var(--raw-gradient-app-download-button-start) 0%,
+      var(--brand-500) 100%
+    );
+  }
+
   /**
-   * App shell page backgrounds ? Cam88 surface roles; Caelo page tints via `--raw-page-*`.
-   * home/register/account ? `--color-surface-cool-light`; default ? `--color-surface-base`.
-   * See VARIABLE-RULES.en.md ?13.11.
+   * App shell page backgrounds — semantic `--color-page-*` (values in src/theme.css).
+   * See VARIABLE-RULES.en.md §6 / §13.11.
    */
   .app-shell[data-app-shell-bg="home"] {
-    background-color: var(--raw-page-home);
+    background-color: var(--color-page-home);
   }
 
   .app-shell[data-app-shell-bg="register"] {
-    background-color: var(--raw-page-register);
+    background-color: var(--color-page-register);
   }
 
   .app-shell[data-app-shell-bg="account"] {
-    background-color: var(--raw-page-account);
+    background-color: var(--color-page-account);
   }
 
   .app-shell[data-app-shell-bg="default"] {
-    background-color: var(--raw-page-default);
+    background-color: var(--color-page-default);
   }
 
   /**
@@ -984,6 +994,10 @@
     background-image: var(--color-gradient-tag);
   }
 
+  .home-category-search {
+    --color-info-icon: var(--color-text-primary-card-title);
+  }
+
   /**
    * Popular Category (GameCategories) ? Cam88 semantic names; Caelo blue card tints via scoped aliases.
    * See VARIABLE-RULES.en.md ?13.11.
@@ -1075,6 +1089,33 @@
   .home-page .live-transactions-panel {
     --color-surface-cool-light: var(--raw-brand-soft);
     --color-button-hover: var(--brand-630);
+    --color-border-brand: var(--raw-border-brand);
+  }
+
+  /**
+   * Homepage Live Sports — dark stadium cards + gold CTAs (§13.11).
+   * Cam88 semantic names in Figma; Caelo screenshot palette via scoped aliases.
+   */
+  .home-page .home-live-sports-section {
+    --color-text-third-title: var(--raw-nav-text-accent);
+    --color-text-card-text: #ffffff;
+    --color-text-muted: var(--raw-text-soft);
+    --color-text-sports-primary: #ffffff;
+    --color-text-sports-muted: var(--raw-text-soft);
+    --color-button-cta-fourth: var(--accent-400);
+    --color-button-cta-fourth-text: var(--mono-950);
+    --color-accent-yellow: var(--accent-400);
+    --color-border-line: rgb(255 255 255 / 0.12);
+    --color-border-sports-card: rgb(255 255 255 / 0.12);
+    --color-border-sports-market: rgb(0 0 0 / 0.12);
+    --color-overlay-sports-card: rgb(7 13 24 / 0.35);
+    --raw-gradient-sports-card-start: #19387e;
+    --raw-gradient-sports-card-end: #17274b;
+    --color-gradient-sports-card: linear-gradient(
+      90deg,
+      var(--raw-gradient-sports-card-start) 0%,
+      var(--raw-gradient-sports-card-end) 100%
+    );
   }
 
   /**
@@ -1088,7 +1129,7 @@
    * |--color-text-card-text| white subtitle + button labels |
    * |--color-text-primary| charcoal link label + URL |
    * |--color-surface-referral-input| muted field shell (--raw-surface-muted) |
-   * |--color-text-tertiary| dark copy icon |
+   * |--color-info-icon| dark copy icon (scoped to --color-text-tertiary) |
    * |--color-button-referral-cta| navy primary (Downlines / More Info) |
    * |--color-button-referral-cta (share)| vibrant red (--color-danger) |
    */
@@ -1097,6 +1138,7 @@
     --color-surface-referral-input: var(--raw-surface-muted);
     --color-text-sub-title: var(--color-text-tertiary);
     --color-text-primary: var(--color-text-tertiary);
+    --color-info-icon: var(--color-text-tertiary);
     --color-button-referral-cta: var(--color-primary);
     --color-button-referral-cta-text: var(--color-text-card-text);
   }
@@ -1904,7 +1946,7 @@
   }
 
   .rtp-trend-arrow--down {
-    color: var(--color-danger-red);
+    color: var(--color-danger-vivid);
   }
 
   /* Game card RTP pill ? Cam88 names; Caelo values from legacy accent tokens (?13.11) */
@@ -2375,6 +2417,14 @@
 
   .bg-gradient-menu-brand {
     background-image: var(--color-gradient-menu-brand);
+  }
+
+  .bg-gradient-sticky-nav-pill {
+    background-image: var(--color-gradient-sticky-nav-pill);
+  }
+
+  .bg-gradient-sticky-nav-pill-hover {
+    background-image: var(--color-gradient-sticky-nav-pill-hover);
   }
 
   .bg-gradient-nav-cta {
@@ -2957,7 +3007,7 @@
     padding-right: 1rem;
     border-radius: 0.5rem;
     border: 1px solid var(--nav-top-pill-border);
-    background-image: var(--nav-top-pill-bg);
+    background-image: var(--color-gradient-sticky-nav-pill);
     box-shadow: var(--nav-top-pill-shadow);
     font-size: 0.75rem;
     line-height: 1rem;
@@ -2968,7 +3018,7 @@
 
   .nav-top-pill:hover {
     border-color: var(--nav-top-pill-border-hover);
-    background-image: var(--nav-top-pill-bg-hover);
+    background-image: var(--color-gradient-sticky-nav-pill-hover);
   }
 
   .nav-top-pill--icon {

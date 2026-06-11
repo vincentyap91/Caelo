@@ -35,10 +35,11 @@ export default function SearchProvider({
     }, [category]);
 
     const isSlotsSearch = searchSemantics === 'slots' || className.includes('slots-browse-search');
+    const usesInfoIcon = isSlotsSearch || searchSemantics === 'category';
     const shellClass = isSlotsSearch
         ? `group flex h-11 min-h-[44px] min-w-0 items-center rounded-[var(--radius-control)] border py-0 pl-3 pr-1.5 shadow-[var(--shadow-input)] transition-all focus-within:ring-2 ${SLOTS_BROWSE_SEARCH_CLASS}`
         : `group flex h-11 min-h-[44px] min-w-0 items-center rounded-[var(--radius-control)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] py-0 pl-3 pr-1.5 shadow-[var(--shadow-input)] transition-all hover:border-[var(--color-accent-glow)] focus-within:border-[var(--color-accent)] focus-within:ring-2 focus-within:ring-[var(--color-accent)]/20`;
-    const iconClass = isSlotsSearch
+    const iconClass = usesInfoIcon
         ? 'shrink-0 text-[var(--color-info-icon)]'
         : 'shrink-0 text-[var(--color-text-primary-card-title)]';
     const inputClass = isSlotsSearch

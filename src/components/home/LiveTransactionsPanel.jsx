@@ -42,12 +42,11 @@ const TABS = [
 function TxRow({ row }) {
     const isDeposit = row.kind === 'deposit';
     const amountClass = isDeposit ? 'text-[var(--color-success)]' : 'text-[var(--color-button-hover)]';
-    const avatarRing = isDeposit ? 'ring-[var(--color-success)]/35' : 'ring-[var(--color-primary)]/35';
 
     return (
         <li className="flex items-center gap-3 py-3.5 md:gap-4 md:py-4">
             <div
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] ring-2 ring-inset ${avatarRing}`}
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] ring-2 ring-inset ring-[var(--color-border-brand)]"
                 aria-hidden
             >
                 <User size={18} strokeWidth={2.25} />

@@ -43,7 +43,7 @@ function ReferralHubCard({
                         type="button"
                         onClick={onCopy}
                         aria-label="Copy referral link"
-                        className="referral-hub-card__copy-btn flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[var(--color-text-primary)] transition-colors duration-150 hover:bg-[var(--color-border-brand)]"
+                        className="referral-hub-card__copy-btn flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[var(--color-info-icon)] transition-colors duration-150 hover:bg-[var(--color-border-brand)]"
                     >
                         {copied ? (
                             <Check size={14} className="text-[var(--color-success)]" />

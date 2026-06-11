@@ -144,8 +144,9 @@ function MobileCategoryBrowse({ onNavigate, state }) {
                     category={activeId}
                     placeholder={`Search in ${activeCategoryName}...`}
                     ariaLabel={`Search games in ${activeCategoryName}`}
-                    className="mb-3"
+                    className="home-category-search mb-3"
                     widthClassName="w-full"
+                    searchSemantics="category"
                 />
                 <div className={TOP_GAMES_GRID_CLASS}>
                     {previewGames.map((game) => (
@@ -213,8 +214,9 @@ function DesktopCategoryBrowse({ onNavigate, state }) {
                 category={activeId}
                 placeholder={`Search in ${activeCategoryName}...`}
                 ariaLabel={`Search games in ${activeCategoryName}`}
-                className="mb-3"
+                className="home-category-search mb-3"
                 widthClassName="w-full"
+                searchSemantics="category"
             />
 
             <div className={TOP_GAMES_GRID_CLASS}>

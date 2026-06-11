@@ -17,15 +17,15 @@
   },
   {
     "name": "01-primitives-04",
-    "size": 12687
+    "size": 12690
   },
   {
     "name": "01-primitives-05",
-    "size": 11531
+    "size": 11534
   },
   {
     "name": "01-primitives-06",
-    "size": 4629
+    "size": 4777
   },
   {
     "name": "02-semantics-01",
@@ -33,7 +33,7 @@
   },
   {
     "name": "02-semantics-02",
-    "size": 12304
+    "size": 12373
   },
   {
     "name": "02-semantics-03",
@@ -49,7 +49,7 @@
   },
   {
     "name": "03-gradient-stops-01",
-    "size": 11701
+    "size": 12081
   },
   {
     "name": "07-sync-web-code-syntax-01",
@@ -65,35 +65,35 @@
   },
   {
     "name": "07-sync-web-code-syntax-04",
-    "size": 7537
+    "size": 7539
   },
   {
     "name": "07-sync-web-code-syntax-05",
-    "size": 6117
+    "size": 6123
   },
   {
     "name": "07-sync-web-code-syntax-06",
-    "size": 5893
+    "size": 5881
   },
   {
     "name": "07-sync-web-code-syntax-07",
-    "size": 6403
+    "size": 6417
   },
   {
     "name": "07-sync-web-code-syntax-08",
-    "size": 6159
+    "size": 6135
   },
   {
     "name": "07-sync-web-code-syntax-09",
-    "size": 6161
+    "size": 6171
   },
   {
     "name": "07-sync-web-code-syntax-10",
-    "size": 6861
+    "size": 6845
   },
   {
     "name": "07-sync-web-code-syntax-11",
-    "size": 2550
+    "size": 2833
   },
   {
     "name": "04-pages",

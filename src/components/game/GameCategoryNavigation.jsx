@@ -52,7 +52,7 @@ export function GameCategoryNavItem({
             <Icon
                 size={vertical ? 18 : 20}
                 strokeWidth={active ? 2.5 : 2}
-                className={`shrink-0 ${active ? 'text-[var(--color-text-tertiary)]' : 'text-[var(--color-surface-input-light)]'}`}
+                className={`shrink-0 ${active ? 'text-[var(--color-text-tertiary)]' : 'text-[var(--color-button-nav-text)]'}`}
                 aria-hidden
             />
             <span

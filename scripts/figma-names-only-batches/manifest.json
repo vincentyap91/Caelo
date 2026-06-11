@@ -1,0 +1,46 @@
+{
+  "primitives": 375,
+  "semantics": 288,
+  "batches": [
+    {
+      "file": "00-setup.js",
+      "step": "setup"
+    },
+    {
+      "file": "01-primitives-01.js",
+      "bytes": 7518
+    },
+    {
+      "file": "01-primitives-02.js",
+      "bytes": 8946
+    },
+    {
+      "file": "01-primitives-03.js",
+      "bytes": 10584
+    },
+    {
+      "file": "01-primitives-04.js",
+      "bytes": 10648
+    },
+    {
+      "file": "01-primitives-05.js",
+      "bytes": 6844
+    },
+    {
+      "file": "02-semantics-01.js",
+      "bytes": 9052
+    },
+    {
+      "file": "02-semantics-02.js",
+      "bytes": 9923
+    },
+    {
+      "file": "02-semantics-03.js",
+      "bytes": 9688
+    },
+    {
+      "file": "02-semantics-04.js",
+      "bytes": 6240
+    }
+  ]
+}

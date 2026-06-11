@@ -187,21 +187,21 @@ export default function AppDownload() {
                     <div className="relative w-full">
                         <div className="pointer-events-none absolute inset-x-10 bottom-3 h-14 rounded-full bg-[var(--color-surface-cool-light)] blur-3xl" />
 
-                        <div className="relative overflow-hidden rounded-[30px] border border-[var(--color-surface-base)]/85 bg-gradient-app-download-shell p-4 shadow-[var(--shadow-brand-card)] backdrop-blur-md sm:px-4 sm:py-4">
+                        <div className="app-download-shell relative overflow-hidden rounded-[30px] border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] p-4 shadow-[var(--shadow-brand-card)] backdrop-blur-md sm:px-4 sm:py-4">
                             <div className="pointer-events-none absolute right-[-20px] top-[-20px] h-24 w-24 rounded-full bg-[var(--color-surface-cool-light)] blur-2xl" />
                             <div className="pointer-events-none absolute left-[-12px] bottom-8 h-16 w-16 rounded-full bg-[var(--color-surface-base)]/60 blur-2xl" />
 
                             <div className="relative">
-                                <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-surface-base)]/80 bg-[var(--color-surface-base)]/85 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
+                                <div className="app-download-apk-badge inline-flex items-center gap-2 rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
                                     <QrCode size={13} />
                                     Android APK
                                 </div>
 
-                                <div className="mt-3 rounded-[24px] border border-[var(--color-border-subtle)] bg-gradient-app-download-inner px-3 py-3 shadow-[var(--inset-white-glow),var(--shadow-brand-soft)]">
+                                <div className="app-download-inner mt-3 rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-3 shadow-[var(--inset-white-glow),var(--shadow-brand-soft)]">
                                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
                                         <div className="flex shrink-0 justify-center">
                                             <div className="relative overflow-hidden rounded-[18px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1.5 shadow-[var(--shadow-brand-soft)] group">
-                                                <div className="flex h-[102px] w-[102px] items-center justify-center rounded-[14px] border border-dashed border-[var(--color-border-subtle)] bg-gradient-app-download-qr sm:h-[108px] sm:w-[108px]">
+                                                <div className="app-download-qr-wrap flex h-[102px] w-[102px] items-center justify-center rounded-[14px] border border-dashed border-[var(--color-border-brand)] bg-gradient-app-download-qr sm:h-[108px] sm:w-[108px]">
                                                     <img
                                                         src={APK_QR_CODE_URL}
                                                         alt="12WIN Android APK QR code"
@@ -229,14 +229,14 @@ export default function AppDownload() {
                                                 href={APK_DOWNLOAD_URL}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="mt-2.5 flex min-h-9 w-full items-center justify-center gap-2 rounded-full bg-gradient-app-download-button px-4 py-2 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-brand-card-strong)] transition-transform hover:scale-[1.02]"
+                                                className="app-download-apk-button mt-2.5 flex min-h-9 w-full items-center justify-center gap-2 rounded-full bg-gradient-app-download-button px-4 py-2 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-brand-card-strong)] transition-transform hover:scale-[1.02]"
                                                 aria-label="Download 12WIN Android APK"
                                             >
                                                 <Download size={14} />
                                                 APK Download
                                             </a>
 
-                                            <p className="mt-1.5 text-xs font-semibold leading-relaxed text-[var(--color-button-hover)]/72">
+                                            <p className="mt-1.5 text-xs font-semibold leading-relaxed text-[var(--color-text-muted)]">
                                                 Desktop scan, mobile tap to install instantly.
                                             </p>
                                         </div>

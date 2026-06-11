@@ -152,6 +152,8 @@ not hyphenated shorthand like `color/sticky-nav`.
 | `top-sticky-nav-bar` fill | `.top-sticky-nav-bar` | `--color-sticky-nav` | `color/sticky/nav` |
 | `top-sticky-nav-bar` stroke | `border-[var(--color-border-subtle)]` | `--color-border-subtle` | `color/border/subtle` |
 | `nav-top-pill` text | `.nav-top-pill` | `--color-text-sticky-nav-text` | `color/text/sticky/nav/text` |
+| `nav-top-pill` fill | `.nav-top-pill` (Download / Login / Logout / English) | `--color-gradient-sticky-nav-pill` | `color/gradient/sticky/nav/pill/start` + `/end` |
+| `nav-top-pill:hover` fill | hover state | `--color-gradient-sticky-nav-pill-hover` | `color/gradient/sticky/nav/pill/hover/start` + `/end` |
 | `btn-theme-cta-soft` fill | `.btn-theme-cta-soft` gradient | `--color-gradient-button-cta` | `color/gradient/button/cta/start` + `/end` |
 | `btn-theme-cta-soft` text | CTA label | `--color-text-cta-inverse` | `color/text/cta/inverse` |
 | `btn-theme-cta-soft` border | CTA border | `--color-border-brand` | `color/border/brand` |

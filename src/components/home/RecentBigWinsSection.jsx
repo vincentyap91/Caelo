@@ -86,7 +86,7 @@ export default function RecentBigWinsSection({ onNavigate }) {
                     title={
                         <>
                             <span className="text-[var(--color-text-primary)]">Recent </span>
-                            <span className="text-[var(--color-text-recent-amount)] recent-big-wins-title-highlight">
+                            <span className="text-[var(--color-text-primary-card-title)] recent-big-wins-title-highlight">
                                 Big Wins
                             </span>
                         </>
