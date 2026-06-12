@@ -1,15 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertCircle, ArrowRight, Building2, Check, ChevronDown, Clock, HelpCircle, Info, Wallet } from 'lucide-react';
-import fpxLogo from '../assets/fpx-logo.svg';
+import { AlertCircle, Building2, Check, ChevronDown, Clock, Copy, HelpCircle, Upload, Wallet } from 'lucide-react';
 import eWalletImg from '../assets/e-wallet.png';
-import instantDepositImg from '../assets/instant-deposit.png';
-import CopyInputField from './security/CopyInputField';
 import PaymentConfirmModal from './PaymentConfirmModal';
 import ProcessingCountdownBanner from './ProcessingCountdownBanner';
 import RolloverStatusCard from './RolloverStatusCard';
 import CashierModeTabs from './payment/CashierModeTabs';
 import PaymentFlowStepper from './payment/PaymentFlowStepper';
-import ReceiptUploadField, { ReceiptPreviewModal, ReceiptFileCard } from './payment/ReceiptUploadField';
+import { ReceiptPreviewModal, ReceiptFileCard } from './payment/ReceiptUploadField';
 import { useActionNotifications } from '../context/ActionNotificationsContext';
 import { PUSH_EVENT } from '../constants/pushNotificationCopy';
 import { DEMO_ROLLOVER_STATUS } from '../constants/rolloverStatus';
@@ -44,13 +41,21 @@ const DEPOSIT_RELOAD_BANKS = [
     },
 ];
 
-const DEPOSIT_OPTION_TYPES = [
-    { id: 'ewallet', label: 'E-Wallet', badge: '5 SEC', image: eWalletImg },
-    { id: 'instant', label: 'Instant Deposit', image: instantDepositImg },
-];
-
-const TOUCH_N_GO_OPTIONS = [
-    { id: 'tng', label: 'TNG', image: 'https://cdn.i8global.com/lb9/tng_small-202510170553571671.svg' },
+const DEPOSIT_RELOAD_EWALLETS = [
+    {
+        id: 'wing-weluy',
+        label: 'WING WELUY',
+        min: 3,
+        max: 100000,
+        image: 'https://assets.cambodiachoice.com/v1/image/resize?url=%2Fwing-bank-logo.svg&width=384&quality=75&format=webp',
+    },
+    {
+        id: 'true-money',
+        label: 'TRUE MONEY',
+        min: 3,
+        max: 100000,
+        image: eWalletImg,
+    },
 ];
 
 const BONUS_INFO_DEFAULT = {
@@ -77,60 +82,60 @@ const BONUS_OPTIONS = [
     { id: 'dr10sp', label: 'Daily Reload Bonus 10% (Sports)', info: { ...BONUS_INFO_DEFAULT, percentageBonus: '10%', rollover: '15x' } },
 ];
 
-const BANKS = [
-    { id: 'affin', label: 'AFFIN BANK', image: 'https://cdn.i8global.com/lb9/affin-202504290525533163-202506170620081032.svg' },
-    { id: 'alliance', label: 'ALLIANCE BANK', image: 'https://cdn.i8global.com/lb9/alliance-202504290525435488-202506170619387678.svg' },
-    { id: 'ambank', label: 'AMBANK', image: 'https://cdn.i8global.com/lb9/ambank-202504290525160695-202506170618501744.svg' },
-    { id: 'islam', label: 'BANK ISLAM', image: 'https://cdn.i8global.com/lb9/bankislam-202504290511437178-202506170618225212.svg' },
-    { id: 'muamalat', label: 'Bank Muamalat', image: 'https://cdn.i8global.com/lb9/download-202511120751485725-202511190502581066.png' },
-    { id: 'rakyat', label: 'BANK RAKYAT', image: 'https://cdn.i8global.com/lb9/brakyat-202504290511272701-202506170617527173.svg' },
-    { id: 'bsn', label: 'BANK SIMPANAN NASIONAL', image: 'https://cdn.i8global.com/lb9/bsn-202504290511050175-202506170617232555.svg' },
-    { id: 'cimb', label: 'CIMB', image: 'https://cdn.i8global.com/lb9/cimb%20thai-202308031239061464-202412231441264270-202506170616362890.png' },
-    { id: 'hongleong', label: 'HONG LEONG BANK', image: 'https://cdn.i8global.com/lb9/hong%20leong%20bank-202307211346127077-202412231443043953-202506170547122116.png' },
-    { id: 'hsbc', label: 'HSBC', image: 'https://cdn.i8global.com/lb9/hsbc-202307211348497167-202412231448456546-202506170546413237.png' },
-    { id: 'maybank', label: 'MAYBANK', image: "https://cdn.i8global.com/lb9/mbb'-202504290507220417-202506170546160406.svg" },
-    { id: 'ocbc', label: 'OCBC', image: 'https://cdn.i8global.com/lb9/ocbc-202504290507050668-202506170545581986.svg' },
-    { id: 'public', label: 'PUBLIC BANK', image: 'https://cdn.i8global.com/lb9/pbe-202504290506535986-202506170545292269.svg' },
-    { id: 'rhb', label: 'RHB', image: 'https://cdn.i8global.com/lb9/rhb-202504290506435286-202506170545039303.svg' },
-    { id: 'standard', label: 'STANDARD CHARTERED BANK', image: 'https://cdn.i8global.com/lb9/standard-202504290506217726-202506170544281612.svg' },
-    { id: 'uob', label: 'UOB', image: 'https://cdn.i8global.com/lb9/uob-202504290506049294-202506170544077762.svg' },
-];
-
-const CHANNELS = [
-    { id: 'fpx1', label: 'FPX Channel 1', desc: 'Online Banking Payments' },
-    { id: 'fpx2', label: 'FPX Channel 2', desc: 'Online Banking Payments' },
-];
-
 /** Instant vs normal deposit — top tabs on step 1 (Caelo cashier-speed-tab). */
 const DEPOSIT_SPEED_TABS = [
     { id: 'fast', label: 'Instant Payment', time: '~1 Mins' },
     { id: 'normal', label: 'Normal Deposit', time: '~5 Mins' },
 ];
 
-const NORMAL_BANK_ACCOUNTS = [
-    { id: 'demo1', label: 'First Deposit Account demo - 188818881887', accountName: 'First Deposit Account demo', accountNumber: '188818881887', image: BANKS[0]?.image },
-    { id: 'demo2', label: 'Maybank Deposit Account - 123456789012', accountName: 'Maybank Deposit Account', accountNumber: '123456789012', image: BANKS.find((b) => b.id === 'maybank')?.image },
-    { id: 'demo3', label: 'CIMB Deposit Account - 987654321098', accountName: 'CIMB Deposit Account', accountNumber: '987654321098', image: BANKS.find((b) => b.id === 'cimb')?.image },
-    { id: 'demo4', label: 'Public Bank Deposit Account - 555566667777', accountName: 'Public Bank Deposit Account', accountNumber: '555566667777', image: BANKS.find((b) => b.id === 'public')?.image },
-];
-
-const PRESET_AMOUNTS = [30, 50, 100, 200, 500, 1000];
+const NORMAL_DEPOSIT_PRESETS = [5, 10, 50, 100, 500, 1000];
+const CASHIER_CURRENCY = 'USD';
+const DEMO_BALANCE = 0;
 const PROCESSING_COUNTDOWN_SECONDS = 5 * 60;
 const MIN_AMOUNT = 20;
 const MAX_AMOUNT = 10000;
-const MIN_AMOUNT_NORMAL = 50;
-const MAX_AMOUNT_NORMAL = 10000;
+const MIN_AMOUNT_NORMAL = 3;
+const MAX_AMOUNT_NORMAL = 100000;
+
+const DESTINATION_BANK_ACCOUNTS = {
+    aba: { bankName: 'ABA BANK', accountNumber: '013374386', accountName: 'CHON NAM' },
+    wing: { bankName: 'WING BANK', accountNumber: '012345678', accountName: 'CHON NAM' },
+    acleda: { bankName: 'ACLEDA BANK', accountNumber: '987654321', accountName: 'CHON NAM' },
+};
+
+const DESTINATION_EWALLET_ACCOUNTS = {
+    'wing-weluy': { providerName: 'WING WELUY', accountNumber: '098765432', accountName: 'CHON NAM' },
+    'true-money': { providerName: 'TRUE MONEY', accountNumber: '087654321', accountName: 'CHON NAM' },
+};
+
+function CopyDestValue({ value }) {
+    const [copied, setCopied] = useState(false);
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(value);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch {
+            setCopied(false);
+        }
+    };
+    return (
+        <span className="cashier-step2-dest-value">
+            {value}
+            <button type="button" className="cashier-step2-copy-btn" onClick={handleCopy} aria-label="Copy">
+                {copied ? <Check size={14} className="text-[var(--color-success)]" /> : <Copy size={14} />}
+            </button>
+        </span>
+    );
+}
 
 export default function DepositPage({ onNavigate }) {
     const { showTransactionNotification, showPushNotification } = useActionNotifications();
     const [step, setStep] = useState(1);
     const [depositSpeedTab, setDepositSpeedTab] = useState('fast');
-    const [depositOptionType, setDepositOptionType] = useState('ewallet');
     const [reloadSelection, setReloadSelection] = useState('ewallet');
     const [selectedReloadBank, setSelectedReloadBank] = useState('');
-    const [selectedNormalBankAccount, setSelectedNormalBankAccount] = useState('');
     const [remark, setRemark] = useState('');
-    const [normalBankDropdownOpen, setNormalBankDropdownOpen] = useState(false);
     const [uploadedReceipt, setUploadedReceipt] = useState(null);
     const [uploadError, setUploadError] = useState('');
     const [receiptPreviewOpen, setReceiptPreviewOpen] = useState(false);
@@ -150,12 +155,8 @@ export default function DepositPage({ onNavigate }) {
     }, [step]);
     const [claimBonus, setClaimBonus] = useState(false);
     const [selectedBonus, setSelectedBonus] = useState('');
-    const [selectedBank, setSelectedBank] = useState('');
-    const [selectedChannel, setSelectedChannel] = useState('');
     const [amount, setAmount] = useState('');
-    const [selectedTng, setSelectedTng] = useState('');
-    const [bankDropdownOpen, setBankDropdownOpen] = useState(false);
-    const [bonusDropdownOpen, setBonusDropdownOpen] = useState(false);
+    const [selectedReloadEwallet, setSelectedReloadEwallet] = useState('');
 
     useEffect(() => {
         const syncBonusFromUrl = () => {
@@ -173,29 +174,42 @@ export default function DepositPage({ onNavigate }) {
 
     const amountNum = parseFloat(amount) || 0;
     const isNormal = depositSpeedTab === 'normal';
-    const minAmount = isNormal ? MIN_AMOUNT_NORMAL : MIN_AMOUNT;
-    const maxAmount = isNormal ? MAX_AMOUNT_NORMAL : MAX_AMOUNT;
+    const selectedReloadBankOption = DEPOSIT_RELOAD_BANKS.find((b) => b.id === selectedReloadBank);
+    const selectedReloadEwalletOption = DEPOSIT_RELOAD_EWALLETS.find((e) => e.id === selectedReloadEwallet);
+    const selectedStep2MethodOption = isNormal ? selectedReloadBankOption : selectedReloadEwalletOption;
+    const destinationAccount = isNormal && selectedReloadBank
+        ? DESTINATION_BANK_ACCOUNTS[selectedReloadBank]
+        : !isNormal && selectedReloadEwallet
+            ? DESTINATION_EWALLET_ACCOUNTS[selectedReloadEwallet]
+            : null;
+    const minAmount = selectedStep2MethodOption
+        ? selectedStep2MethodOption.min
+        : isNormal ? MIN_AMOUNT_NORMAL : MIN_AMOUNT;
+    const maxAmount = selectedStep2MethodOption
+        ? selectedStep2MethodOption.max
+        : isNormal ? MAX_AMOUNT_NORMAL : MAX_AMOUNT;
+    const step2Methods = isNormal ? DEPOSIT_RELOAD_BANKS : DEPOSIT_RELOAD_EWALLETS;
+    const selectedStep2MethodId = isNormal ? selectedReloadBank : selectedReloadEwallet;
     const isValidAmount = amountNum >= minAmount && amountNum <= maxAmount;
-
-    const addPreset = (val) => {
-        setAmount(String((amountNum + val)));
-    };
 
     const setPresetAmount = (val) => {
         setAmount(String(val));
     };
 
-    const selectedNormalAccount = NORMAL_BANK_ACCOUNTS.find((a) => a.id === selectedNormalBankAccount);
-
-    const selectedReloadBankOption = DEPOSIT_RELOAD_BANKS.find((b) => b.id === selectedReloadBank);
-    const canProceedStep1 =
-        ((reloadSelection === 'bank' && selectedReloadBank) || reloadSelection === 'ewallet')
-        && !(claimBonus && !selectedBonus);
-
     const selectReloadBank = (bankId) => {
         setReloadSelection('bank');
         setSelectedReloadBank(bankId);
+        setSelectedReloadEwallet('');
         setDepositSpeedTab('normal');
+        setStep(2);
+    };
+
+    const selectReloadEwallet = (ewalletId) => {
+        setReloadSelection('ewallet');
+        setSelectedReloadEwallet(ewalletId);
+        setSelectedReloadBank('');
+        setDepositSpeedTab('fast');
+        setStep(2);
     };
 
     const toggleReloadBankSection = () => {
@@ -204,6 +218,7 @@ export default function DepositPage({ onNavigate }) {
             return;
         }
         setReloadSelection('bank');
+        setSelectedReloadEwallet('');
         setDepositSpeedTab('normal');
     };
 
@@ -214,8 +229,8 @@ export default function DepositPage({ onNavigate }) {
         }
         setReloadSelection('ewallet');
         setSelectedReloadBank('');
+        setSelectedReloadEwallet('');
         setDepositSpeedTab('fast');
-        setDepositOptionType('ewallet');
     };
 
     const selectDepositSpeedTab = (id) => {
@@ -223,10 +238,11 @@ export default function DepositPage({ onNavigate }) {
         if (id === 'normal') {
             setReloadSelection('bank');
             setSelectedReloadBank('');
+            setSelectedReloadEwallet('');
         } else {
             setReloadSelection('ewallet');
             setSelectedReloadBank('');
-            setDepositOptionType('ewallet');
+            setSelectedReloadEwallet('');
         }
     };
 
@@ -267,16 +283,13 @@ export default function DepositPage({ onNavigate }) {
         setConfirmModalOpen(false);
         setStep(1);
         setAmount('');
-        setSelectedNormalBankAccount('');
         setUploadedReceipt(null);
         setRemark('');
-        setSelectedBank('');
-        setSelectedChannel('');
-        setSelectedTng('');
         setClaimBonus(false);
         setSelectedBonus('');
         setReloadSelection('');
         setSelectedReloadBank('');
+        setSelectedReloadEwallet('');
         setProcessingCountdown(PROCESSING_COUNTDOWN_SECONDS);
     };
 
@@ -300,20 +313,30 @@ export default function DepositPage({ onNavigate }) {
         prevCountdownRef.current = processingCountdown;
     }, [processingCountdown, showPushNotification]);
 
-    const selectedBankLabel = selectedBank ? BANKS.find((b) => b.id === selectedBank)?.label ?? 'Select Bank Account' : 'Select Bank Account';
-    const canSelectChannel = (depositOptionType === 'ewallet' && selectedTng) || (depositOptionType === 'instant' && selectedBank);
-    const canProceedStep2 =
-        isNormal
-            ? selectedNormalBankAccount && isValidAmount && !!uploadedReceipt
-            : canSelectChannel && selectedChannel && isValidAmount;
-    const selectedChannelLabel = CHANNELS.find((c) => c.id === selectedChannel)?.label ?? '';
-    const selectedChannelDesc = CHANNELS.find((c) => c.id === selectedChannel)?.desc ?? '';
+    const selectBankOnStep2 = (bankId) => {
+        setSelectedReloadBank(bankId);
+        setReloadSelection('bank');
+    };
+
+    const selectEwalletOnStep2 = (ewalletId) => {
+        setSelectedReloadEwallet(ewalletId);
+        setReloadSelection('ewallet');
+    };
+
+    const selectStep2Method = (methodId) => {
+        if (isNormal) selectBankOnStep2(methodId);
+        else selectEwalletOnStep2(methodId);
+    };
+
+    const canProceedStep2 = isNormal
+        ? selectedStep2MethodId && isValidAmount && !!uploadedReceipt
+        : selectedStep2MethodId && isValidAmount;
 
     return (
         <div className="page-container cashier-flow-page">
             <div className="mb-6 space-y-4">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <h1 className="page-title">Deposit / Withdrawal</h1>
+                    <h1 className="cashier-flow-page__title page-title">Deposit / Withdrawal</h1>
                     <button
                         type="button"
                         onClick={() => onNavigate?.('help-center')}
@@ -347,11 +370,11 @@ export default function DepositPage({ onNavigate }) {
                 />
             </div>
 
-            <div className="surface-card overflow-visible rounded-2xl shadow-[var(--shadow-card-soft)]">
+            <div className="cashier-flow-surface-card surface-card overflow-visible rounded-2xl">
                 {/* Step 1: Choose deposit type */}
                 {step === 1 && (
-                    <div>
-                        <div className="flex border-b border-[var(--color-border-subtle)]" role="tablist" aria-label="Deposit speed">
+                    <div className="cashier-deposit-step1-card">
+                        <div className="cashier-deposit-step1-card__speed-tabs" role="tablist" aria-label="Deposit speed">
                             {DEPOSIT_SPEED_TABS.map(({ id, label, time }, idx) => {
                                 const isActive = depositSpeedTab === id;
                                 return (
@@ -436,15 +459,15 @@ export default function DepositPage({ onNavigate }) {
                         )}
 
                         {depositSpeedTab === 'fast' && (
-                        <button
-                            type="button"
-                            onClick={toggleReloadEwalletSection}
-                            aria-expanded={reloadSelection === 'ewallet'}
-                            className={`cashier-method-section cashier-method-section-action w-full text-left${
-                                reloadSelection === 'ewallet' ? ' is-selected is-expanded' : ''
-                            }`}
+                        <div
+                            className={`cashier-method-section${reloadSelection === 'ewallet' ? ' is-selected is-expanded' : ''}`}
                         >
-                            <div className="cashier-method-section-header">
+                            <button
+                                type="button"
+                                className="cashier-method-section-header cashier-method-section-toggle"
+                                onClick={toggleReloadEwalletSection}
+                                aria-expanded={reloadSelection === 'ewallet'}
+                            >
                                 <span className="cashier-method-section-icon" aria-hidden>
                                     <Wallet size={20} strokeWidth={2.25} />
                                 </span>
@@ -457,403 +480,210 @@ export default function DepositPage({ onNavigate }) {
                                     className={`cashier-method-section-chevron shrink-0${reloadSelection === 'ewallet' ? ' is-expanded' : ''}`}
                                     aria-hidden
                                 />
-                            </div>
-                        </button>
-                        )}
-
-                        <label className="flex cursor-pointer items-center gap-3">
-                            <input
-                                type="checkbox"
-                                checked={claimBonus}
-                                onChange={(e) => setClaimBonus(e.target.checked)}
-                                className="h-5 w-5 rounded border-[var(--color-border-subtle)] text-[var(--color-button-hover)] focus:ring-[var(--color-border-brand)]"
-                            />
-                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">Do you want to claim bonus?</span>
-                        </label>
-
-                        {claimBonus && (
-                            <div>
-                                <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Bonus <span className="text-[var(--color-danger)]">*</span></p>
-                                <div className="relative">
-                                    <button
-                                        type="button"
-                                        onClick={() => setBonusDropdownOpen((o) => !o)}
-                                        className="flex h-12 w-full items-center justify-between rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
-                                    >
-                                        <span className={selectedBonus ? 'font-medium text-[var(--color-text-primary)]' : 'text-[var(--color-text-muted)]'}>
-                                            {selectedBonus ? BONUS_OPTIONS.find((b) => b.id === selectedBonus)?.label ?? 'Select Bonus' : 'Select Bonus'}
-                                        </span>
-                                        <ChevronDown size={18} className={`text-[var(--color-text-muted)] transition ${bonusDropdownOpen ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    {bonusDropdownOpen && (
-                                        <>
-                                            <div className="absolute inset-0 z-10" onClick={() => setBonusDropdownOpen(false)} aria-hidden />
-                                            <div className="absolute top-full left-0 right-0 z-20 mt-1 max-h-56 overflow-auto rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
-                                                {BONUS_OPTIONS.map((b) => (
-                                                    <button
-                                                        key={b.id}
-                                                        type="button"
-                                                        onClick={() => {
-                                                            setSelectedBonus(b.id);
-                                                            setBonusDropdownOpen(false);
-                                                        }}
-                                                        className="flex w-full px-4 py-2.5 text-left text-sm font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-surface-input-light)]"
-                                                    >
-                                                        {b.label}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-
-                        {claimBonus && selectedBonus && (() => {
-                            const info = BONUS_OPTIONS.find((b) => b.id === selectedBonus)?.info ?? BONUS_INFO_DEFAULT;
-                            return (
-                                <div className="rounded-xl border-2 border-dashed border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)]/50 p-4">
-                                    <div className="mb-3 flex items-center gap-2">
-                                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-[var(--color-text-card-text)]">
-                                            <Info size={14} strokeWidth={2.5} />
-                                        </div>
-                                        <span className="text-sm font-bold text-[var(--color-button-hover)]">Bonus Info</span>
+                            </button>
+                            {reloadSelection === 'ewallet' && (
+                                <>
+                                    <div className="cashier-method-section-divider" aria-hidden />
+                                    <div className="cashier-bank-cards">
+                                        {DEPOSIT_RELOAD_EWALLETS.map(({ id, label, min, max, image }) => (
+                                            <button
+                                                key={id}
+                                                type="button"
+                                                onClick={() => selectReloadEwallet(id)}
+                                                className={`cashier-bank-card${selectedReloadEwallet === id ? ' is-selected' : ''}`}
+                                            >
+                                                <img src={image} alt={label} className="cashier-bank-card-logo" />
+                                                <span className="cashier-bank-card-body">
+                                                    <span className="cashier-bank-card-label">{label}</span>
+                                                    <span className="cashier-bank-card-range">{min} - {max.toLocaleString()}</span>
+                                                </span>
+                                            </button>
+                                        ))}
                                     </div>
-                                    <div className="space-y-2 text-sm">
-                                        <p className="flex gap-2">
-                                            <span className="font-medium text-[var(--color-text-muted)]">Rollover :</span>
-                                            <span className="text-[var(--color-text-primary)]">{info.rollover}</span>
-                                        </p>
-                                        <p className="flex gap-2">
-                                            <span className="font-medium text-[var(--color-text-muted)]">Claim :</span>
-                                            <span className="text-[var(--color-text-primary)]">{info.claim}</span>
-                                        </p>
-                                        <p className="flex gap-2">
-                                            <span className="font-medium text-[var(--color-text-muted)]">Minimum Deposit :</span>
-                                            <span className="text-[var(--color-text-primary)]">{info.minDeposit}</span>
-                                        </p>
-                                        <p className="flex gap-2">
-                                            <span className="font-medium text-[var(--color-text-muted)]">Percentage Bonus Reward :</span>
-                                            <span className="text-[var(--color-text-primary)]">{info.percentageBonus}</span>
-                                        </p>
-                                        <p className="flex gap-2">
-                                            <span className="font-medium text-[var(--color-text-muted)]">Maximum Bonus :</span>
-                                            <span className="text-[var(--color-text-primary)]">{info.maxBonus}</span>
-                                        </p>
-                                        <p className="flex gap-2">
-                                            <span className="shrink-0 font-medium text-[var(--color-text-muted)]">Game (Provider) :</span>
-                                            <span className="font-bold text-[var(--color-text-primary)]">
-                                                {info.gameProviders.join(', ')}
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })()}
-
-                        <button
-                            type="button"
-                            onClick={() => setStep(2)}
-                            disabled={!canProceedStep1}
-                            className="btn-theme-cta inline-flex h-12 min-w-[140px] items-center justify-center gap-2 rounded-xl px-6 text-base font-bold shadow-sm transition hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100"
-                        >
-                            Next
-                            <ArrowRight size={18} />
-                        </button>
+                                </>
+                            )}
+                        </div>
+                        )}
                     </div>
                     </div>
                 )}
 
-                {/* Step 2: Bank & Amount (combined) */}
+                {/* Step 2: Method & Amount (normal bank transfer + instant e-wallet) */}
                 {step === 2 && (
-                    <div className="cashier-flow-step space-y-6 p-5 md:p-6">
-                        <div className="flex items-center gap-3">
+                    <div className="cashier-flow-step cashier-step2-normal p-5 md:p-6">
+                        <div className="flex items-start gap-3">
                             <span className="cashier-step-badge">2</span>
-                            <div>
+                            <div className="min-w-0 pt-0.5">
                                 <h2 className="cashier-section-title text-base md:text-lg">
-                                    {isNormal ? 'Bank Account & Amount' : 'Bank, Provider & Amount'}
+                                    {isNormal ? 'Normal Bank Transfer' : 'E-Wallet'}
                                 </h2>
-                                <p className="cashier-section-subtitle text-xs leading-snug md:text-sm">
-                                    {isNormal ? 'Choose your bank account and enter the amount.' : 'Choose your bank, provider and enter the amount.'}
+                                <p className="cashier-section-subtitle mt-1 text-xs leading-snug md:text-sm">
+                                    Please Select or Enter Deposit Amount
                                 </p>
                             </div>
                         </div>
 
-                        {isNormal ? (
-                            <>
-                                <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Bank Account <span className="text-[var(--color-danger)]">*</span></p>
-                                    <div className="relative">
-                                        <button
-                                            type="button"
-                                            onClick={() => setNormalBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
-                                        >
-                                            {selectedNormalAccount ? (
-                                                <span className="flex items-center gap-2.5">
-                                                    {selectedNormalAccount.image ? (
-                                                        <img src={selectedNormalAccount.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
-                                                    ) : (
-                                                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-success-light)]">
-                                                            <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
-                                                        </span>
-                                                    )}
-                                                    <span className="font-medium text-[var(--color-text-primary)]">{selectedNormalAccount.label}</span>
-                                                </span>
-                                            ) : (
-                                                <span className="text-[var(--color-text-muted)]">Select Bank Account</span>
-                                            )}
-                                            <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${normalBankDropdownOpen ? 'rotate-180' : ''}`} />
-                                        </button>
-                                        {normalBankDropdownOpen && (
-                                            <>
-                                                <div className="absolute inset-0 z-10" onClick={() => setNormalBankDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
-                                                    {NORMAL_BANK_ACCOUNTS.map((a) => (
-                                                        <button
-                                                            key={a.id}
-                                                            type="button"
-                                                            onClick={() => {
-                                                                setSelectedNormalBankAccount(a.id);
-                                                                setNormalBankDropdownOpen(false);
-                                                            }}
-                                                            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
-                                                        >
-                                                            {a.image ? (
-                                                                <img src={a.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
-                                                            ) : (
-                                                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-success-light)]">
-                                                                    <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
-                                                                </span>
-                                                            )}
-                                                            <span className="font-normal text-[var(--color-text-primary)]">{a.label}</span>
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                    {selectedNormalAccount && (
-                                        <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                            <CopyInputField value={selectedNormalAccount.accountName} label="" />
-                                            <CopyInputField value={selectedNormalAccount.accountNumber} label="" />
-                                        </div>
-                                    )}
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Bank <span className="text-[var(--color-danger)]">*</span></p>
-                                    <div className="relative">
-                                        <button
-                                            type="button"
-                                            onClick={() => setBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
-                                        >
-                                            {depositOptionType === 'ewallet' && selectedTng ? (
-                                                <span className="flex items-center gap-2.5">
-                                                    <img
-                                                        src={TOUCH_N_GO_OPTIONS.find((t) => t.id === selectedTng)?.image}
-                                                        alt=""
-                                                        className="h-6 w-6 object-contain"
-                                                    />
-                                                    <span className="font-medium text-[var(--color-text-primary)]">
-                                                        {TOUCH_N_GO_OPTIONS.find((t) => t.id === selectedTng)?.label}
-                                                    </span>
-                                                </span>
-                                            ) : depositOptionType === 'instant' && selectedBank && BANKS.find((b) => b.id === selectedBank)?.image ? (
-                                                <span className="flex items-center gap-2.5">
-                                                    <img
-                                                        src={BANKS.find((b) => b.id === selectedBank)?.image}
-                                                        alt=""
-                                                        className="h-6 w-6 object-contain"
-                                                    />
-                                                    <span className="font-medium text-[var(--color-text-primary)]">{selectedBankLabel}</span>
-                                                </span>
-                                            ) : (
-                                                <span className="text-[var(--color-text-muted)]">Select Bank Account</span>
-                                            )}
-                                            <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${bankDropdownOpen ? 'rotate-180' : ''}`} />
-                                        </button>
-                                        {bankDropdownOpen && (
-                                            <>
-                                                <div className="absolute inset-0 z-10" onClick={() => setBankDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[500px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
-                                                    {depositOptionType === 'ewallet' ? (
-                                                        TOUCH_N_GO_OPTIONS.map((t) => (
-                                                            <button
-                                                                key={t.id}
-                                                                type="button"
-                                                                onClick={() => {
-                                                                    setSelectedTng(t.id);
-                                                                    setBankDropdownOpen(false);
-                                                                }}
-                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
-                                                            >
-                                                                <img src={t.image} alt={t.label} className="h-6 w-6 shrink-0 object-contain" />
-                                                                <span className="font-normal text-[var(--color-text-primary)]">{t.label}</span>
-                                                            </button>
-                                                        ))
-                                                    ) : (
-                                                        BANKS.map((b) => (
-                                                            <button
-                                                                key={b.id}
-                                                                type="button"
-                                                                onClick={() => {
-                                                                    setSelectedBank(b.id);
-                                                                    setBankDropdownOpen(false);
-                                                                }}
-                                                                className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
-                                                            >
-                                                                <img src={b.image} alt={b.label} className="h-6 w-6 shrink-0 object-contain" />
-                                                                <span className="font-normal text-[var(--color-text-primary)]">{b.label}</span>
-                                                            </button>
-                                                        ))
-                                                    )}
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
+                        <button type="button" onClick={() => setStep(1)} className="cashier-step2-back">
+                            Back
+                        </button>
 
-                                <div className={canSelectChannel ? '' : 'opacity-60'}>
-                                    <p className="mb-3 text-sm font-semibold text-[var(--color-text-primary)]">
-                                        Provider Channel <span className="text-[var(--color-danger)]">*</span>
-                                        {!canSelectChannel && (
-                                            <span className="ml-2 text-xs font-normal text-[var(--color-text-muted)]">(Select a bank first)</span>
-                                        )}
-                                    </p>
-                                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                                        {CHANNELS.map(({ id, label, desc }) => (
-                                            <button
-                                                key={id}
-                                                type="button"
-                                                disabled={!canSelectChannel}
-                                                onClick={() => canSelectChannel && setSelectedChannel(id)}
-                                                className={`cashier-channel-card relative flex min-h-[8.5rem] flex-col items-center gap-2 rounded-xl border p-3 text-center transition sm:min-h-0 sm:flex-row sm:items-center sm:gap-4 sm:p-4 sm:text-left ${
-                                                    selectedChannel === id ? 'is-selected' : ''
-                                                } ${!canSelectChannel ? 'cursor-not-allowed' : ''}`}
-                                            >
-                                                {selectedChannel === id && (
-                                                    <div className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] sm:right-3 sm:top-3 sm:h-6 sm:w-6">
-                                                        <Check size={12} strokeWidth={2.5} />
-                                                    </div>
-                                                )}
-                                                <img
-                                                    src={fpxLogo}
-                                                    alt="FPX"
-                                                    className="h-8 w-auto shrink-0 object-contain sm:h-10"
-                                                />
-                                                <div className="min-w-0 flex-1 sm:text-left">
-                                                    <p className="border-b border-[var(--color-border-subtle)] pb-1 text-xs font-bold leading-snug text-[var(--color-text-primary)] sm:pb-1.5 sm:text-sm">
-                                                        {label}
-                                                    </p>
-                                                    <p className="mt-1 line-clamp-3 text-xs leading-snug text-[var(--color-text-muted)] sm:mt-1.5 sm:line-clamp-none">
-                                                        {desc}
-                                                    </p>
-                                                </div>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            </>
+                        <div className="cashier-step2-meta">
+                            <div className="cashier-step2-meta-row">
+                                <span>Balance</span>
+                                <span>{DEMO_BALANCE.toFixed(2)}</span>
+                            </div>
+                            <div className="cashier-step2-meta-row">
+                                <span>Min Deposit</span>
+                                <span>{minAmount}</span>
+                            </div>
+                        </div>
+
+                        {isNormal && (
+                        <div className="cashier-step2-notes">
+                            <p className="cashier-step2-notes-title">Notes :</p>
+                            <p>Upload a screenshot of your payment receipt to notify us of your payment.</p>
+                        </div>
                         )}
 
                         <div>
-                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Amount <span className="text-[var(--color-danger)]">*</span></p>
-                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                                <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] shadow-[var(--shadow-subtle)]">
-                                    <span className="flex items-center justify-center bg-[var(--color-accent-glow)] px-4 text-sm font-bold text-[var(--color-button-hover)]">
-                                        MYR
-                                    </span>
-                                    <input
-                                        type="number"
-                                        value={amount}
-                                        onChange={(e) => setAmount(e.target.value)}
-                                        placeholder="0"
-                                        min={minAmount}
-                                        max={maxAmount}
-                                        className="h-12 flex-1 border-0 bg-transparent px-4 text-base font-semibold text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)]"
-                                    />
-                                </div>
-                                <div className="flex flex-wrap gap-2">
-                                    {PRESET_AMOUNTS.map((val) => {
-                                        const isActive = amountNum === val;
-                                        return (
-                                            <button
-                                                key={val}
-                                                type="button"
-                                                onClick={() => (isNormal ? setPresetAmount(val) : addPreset(val))}
-                                                className={`cashier-preset-chip rounded-xl border-2 px-4 py-2.5 text-sm font-bold transition ${
-                                                    isActive ? 'is-active' : ''
-                                                }`}
-                                            >
-                                                +{val}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
+                            <h3 className="cashier-step2-section-title">{isNormal ? 'Select Bank' : 'Select E-Wallet'}</h3>
+                            <div className="cashier-bank-cards">
+                                {step2Methods.map(({ id, label, min, max, image }) => (
+                                    <button
+                                        key={id}
+                                        type="button"
+                                        onClick={() => selectStep2Method(id)}
+                                        className={`cashier-bank-card${selectedStep2MethodId === id ? ' is-selected' : ''}`}
+                                    >
+                                        <img src={image} alt={label} className="cashier-bank-card-logo" />
+                                        <span className="cashier-bank-card-label">{label}</span>
+                                        <span className="cashier-bank-card-range">{min} - {max.toLocaleString()}</span>
+                                    </button>
+                                ))}
                             </div>
-                            <p className={`mt-2 flex items-center gap-1.5 text-xs font-medium ${isNormal ? 'italic text-[var(--color-button-hover)]' : 'text-[var(--color-text-muted)]'}`}>
-                                {isNormal && <Info size={14} className="shrink-0 text-[var(--color-button-hover)]" />}
-                                Min/Max Limit {minAmount.toFixed(2)} / {maxAmount.toLocaleString()}
+                        </div>
+
+                        <div>
+                            <h3 className="cashier-step2-section-title">Please Select or Enter Deposit Amount</h3>
+                            <div className="cashier-step2-preset-grid">
+                                {NORMAL_DEPOSIT_PRESETS.map((val) => (
+                                    <button
+                                        key={val}
+                                        type="button"
+                                        onClick={() => setPresetAmount(val)}
+                                        className={`cashier-step2-preset-btn${amountNum === val ? ' is-active' : ''}`}
+                                    >
+                                        {val >= 1000 ? '1k' : val}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="cashier-step2-currency-input">
+                                <span className="cashier-step2-currency-prefix">{CASHIER_CURRENCY}</span>
+                                <input
+                                    type="number"
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                    placeholder={`Enter the amount (${CASHIER_CURRENCY} ${minAmount} - ${CASHIER_CURRENCY} ${maxAmount.toLocaleString()})`}
+                                    min={minAmount}
+                                    max={maxAmount}
+                                />
+                            </div>
+                            <p className="cashier-step2-limit-hint">
+                                {CASHIER_CURRENCY} {minAmount} - {CASHIER_CURRENCY} {maxAmount.toLocaleString()}
                             </p>
                             {!isValidAmount && amount && (
                                 <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger)]">
                                     <AlertCircle size={14} className="shrink-0" />
                                     {amountNum < minAmount
-                                        ? `Minimum amount is MYR ${minAmount.toFixed(2)}`
-                                        : `Maximum amount is MYR ${maxAmount.toLocaleString()}`
+                                        ? `Minimum amount is ${CASHIER_CURRENCY} ${minAmount}`
+                                        : `Maximum amount is ${CASHIER_CURRENCY} ${maxAmount.toLocaleString()}`
                                     }
                                 </p>
                             )}
                         </div>
 
-                        {isNormal && (
-                            <>
-                                <div>
-                                    <ReceiptUploadField
-                                        file={uploadedReceipt}
-                                        previewUrl={receiptPreviewUrl}
-                                        onFileChange={handleFileChange}
-                                        onRemove={handleRemoveReceipt}
-                                        fileInputRef={fileInputRef}
-                                        onPreview={() => setReceiptPreviewOpen(true)}
-                                        error={uploadError}
-                                    />
+                        <div className="cashier-step2-amount-display">
+                            <span className="cashier-step2-amount-display-label">Deposit Amount</span>
+                            <div className="cashier-step2-amount-display-row">
+                                <span className="cashier-step2-currency-prefix cashier-step2-currency-prefix--display">{CASHIER_CURRENCY}</span>
+                                <span className="cashier-step2-amount-display-value">{amountNum.toFixed(2)}</span>
+                            </div>
+                        </div>
+
+                        {destinationAccount && (
+                            <div className="cashier-step2-dest-card">
+                                <div className="cashier-step2-dest-row">
+                                    <span className="cashier-step2-dest-label">{isNormal ? 'Bank Name' : 'E-Wallet'}</span>
+                                    <span className="cashier-step2-dest-value">
+                                        {isNormal ? destinationAccount.bankName : destinationAccount.providerName}
+                                    </span>
                                 </div>
-                                <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Remark</p>
-                                    <input
-                                        type="text"
-                                        value={remark}
-                                        onChange={(e) => setRemark(e.target.value)}
-                                        placeholder="Optional remark"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
-                                    />
+                                <div className="cashier-step2-dest-row">
+                                    <span className="cashier-step2-dest-label">Account Number</span>
+                                    <CopyDestValue value={destinationAccount.accountNumber} />
                                 </div>
-                            </>
+                                <div className="cashier-step2-dest-row">
+                                    <span className="cashier-step2-dest-label">Account Name</span>
+                                    <CopyDestValue value={destinationAccount.accountName} />
+                                </div>
+                            </div>
                         )}
 
-                        <div className="flex flex-wrap gap-3">
-                            <button
-                                type="button"
-                                onClick={() => setStep(1)}
-                                className="inline-flex h-12 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-6 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-subtle)]"
-                            >
-                                Back
-                            </button>
-                            <button
-                                type="button"
-                                onClick={handleSubmitStep2}
-                                disabled={!canProceedStep2}
-                                className="btn-theme-cta inline-flex h-12 min-w-[140px] items-center justify-center gap-2 rounded-xl px-6 text-base font-bold shadow-sm transition hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100"
-                            >
-                                Next
-                                <ArrowRight size={18} />
-                            </button>
+                        {isNormal && (
+                        <div>
+                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">
+                                Reference / Transaction ID (Optional)
+                            </p>
+                            <input
+                                type="text"
+                                value={remark}
+                                onChange={(e) => setRemark(e.target.value)}
+                                placeholder="Reference / Transaction ID (Optional)"
+                                className="cashier-step2-form-input"
+                            />
                         </div>
+                        )}
+
+                        {isNormal && (
+                        <div className="cashier-step2-upload-wrap">
+                            <p className="cashier-step2-upload-label">
+                                Upload a screenshot or PDF of your payment receipt to notify us of your payment <span className="text-[var(--color-danger)]">*</span>
+                            </p>
+                            <input ref={fileInputRef} type="file" accept="image/*,.pdf,application/pdf" className="hidden" onChange={handleFileChange} />
+                            {!uploadedReceipt ? (
+                                <button
+                                    type="button"
+                                    onClick={() => fileInputRef.current?.click()}
+                                    className="cashier-step2-upload-trigger"
+                                >
+                                    <Upload size={18} strokeWidth={2.25} />
+                                    Tap to upload file
+                                </button>
+                            ) : (
+                                <ReceiptFileCard
+                                    file={uploadedReceipt}
+                                    previewUrl={receiptPreviewUrl}
+                                    onPreview={() => setReceiptPreviewOpen(true)}
+                                    onRemove={handleRemoveReceipt}
+                                />
+                            )}
+                            {uploadError && (
+                                <p className="mt-2 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger)]">
+                                    <AlertCircle size={14} className="shrink-0" />
+                                    {uploadError}
+                                </p>
+                            )}
+                        </div>
+                        )}
+
+                        <button
+                            type="button"
+                            onClick={handleSubmitStep2}
+                            disabled={!canProceedStep2}
+                            className="cashier-step2-submit"
+                        >
+                            Submit
+                        </button>
                     </div>
                 )}
 
@@ -863,11 +693,9 @@ export default function DepositPage({ onNavigate }) {
                         <div className="flex items-center gap-3">
                             <span className="cashier-step-badge">3</span>
                             <div>
-                                <h2 className="cashier-section-title text-base md:text-lg">
-                                    {isNormal ? 'Confirm & Submit' : 'Transaction Summary'}
-                                </h2>
+                                <h2 className="cashier-section-title text-base md:text-lg">Confirm & Submit</h2>
                                 <p className="cashier-section-subtitle text-xs leading-snug md:text-sm">
-                                    {isNormal ? 'Review your deposit details and submit.' : 'Review your deposit details before confirming.'}
+                                    Review your deposit details and submit.
                                 </p>
                             </div>
                         </div>
@@ -889,44 +717,30 @@ export default function DepositPage({ onNavigate }) {
                                         {reloadSelection === 'bank' && selectedReloadBankOption?.image && (
                                             <img src={selectedReloadBankOption.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
-                                        {reloadSelection === 'ewallet' && (
-                                            <img src={eWalletImg} alt="" className="h-6 w-6 shrink-0 object-contain" />
+                                        {reloadSelection === 'ewallet' && selectedReloadEwalletOption?.image && (
+                                            <img src={selectedReloadEwalletOption.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
                                         {reloadSelection === 'bank'
                                             ? (selectedReloadBankOption?.label ?? 'Bank Transfer')
-                                            : reloadSelection === 'ewallet'
-                                                ? 'E-Wallet (Manual)'
-                                                : (isNormal ? 'Normal Deposit' : (DEPOSIT_OPTION_TYPES.find((o) => o.id === depositOptionType)?.label ?? depositOptionType))}
+                                            : (selectedReloadEwalletOption?.label ?? 'E-Wallet')}
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                    <span className="cashier-summary-card__row-label text-sm font-medium">{isNormal ? 'Bank Account' : 'Bank'}</span>
+                                    <span className="cashier-summary-card__row-label text-sm font-medium">
+                                        {isNormal ? 'Bank' : 'E-Wallet'}
+                                    </span>
                                     <span className="cashier-summary-card__row-value flex items-center gap-2.5 text-sm font-semibold">
-                                        {isNormal && selectedNormalAccount?.image && (
-                                            <img src={selectedNormalAccount.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
+                                        {isNormal && selectedReloadBankOption?.image && (
+                                            <img src={selectedReloadBankOption.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
-                                        {!isNormal && depositOptionType === 'ewallet' && selectedTng && TOUCH_N_GO_OPTIONS.find((t) => t.id === selectedTng)?.image && (
-                                            <img src={TOUCH_N_GO_OPTIONS.find((t) => t.id === selectedTng)?.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
-                                        )}
-                                        {!isNormal && depositOptionType === 'instant' && selectedBank && BANKS.find((b) => b.id === selectedBank)?.image && (
-                                            <img src={BANKS.find((b) => b.id === selectedBank)?.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
+                                        {!isNormal && selectedReloadEwalletOption?.image && (
+                                            <img src={selectedReloadEwalletOption.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                         )}
                                         {isNormal
-                                            ? (selectedNormalAccount?.label ?? '—')
-                                            : depositOptionType === 'ewallet'
-                                                ? TOUCH_N_GO_OPTIONS.find((t) => t.id === selectedTng)?.label ?? 'TNG'
-                                                : selectedBankLabel}
+                                            ? (selectedReloadBankOption?.label ?? '—')
+                                            : (selectedReloadEwalletOption?.label ?? '—')}
                                     </span>
                                 </div>
-                                {!isNormal && (
-                                    <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                        <span className="cashier-summary-card__row-label text-sm font-medium">Channel</span>
-                                        <span className="cashier-summary-card__row-value text-right text-sm font-semibold">
-                                            {selectedChannelLabel}
-                                            <span className="block text-xs font-normal text-[var(--color-text-muted)]">{selectedChannelDesc}</span>
-                                        </span>
-                                    </div>
-                                )}
                                 {claimBonus && selectedBonus && (
                                     <div className="flex items-center justify-between gap-4 px-5 py-4">
                                         <span className="cashier-summary-card__row-label text-sm font-medium">Bonus</span>
@@ -935,13 +749,13 @@ export default function DepositPage({ onNavigate }) {
                                         </span>
                                     </div>
                                 )}
-                                {isNormal && remark && (
+                                {remark && (
                                     <div className="flex items-center justify-between gap-4 px-5 py-4">
-                                        <span className="cashier-summary-card__row-label text-sm font-medium">Remark</span>
+                                        <span className="cashier-summary-card__row-label text-sm font-medium">Reference</span>
                                         <span className="cashier-summary-card__row-value text-sm font-semibold">{remark}</span>
                                     </div>
                                 )}
-                                {isNormal && uploadedReceipt && receiptPreviewUrl && (
+                                {uploadedReceipt && receiptPreviewUrl && (
                                     <div className="px-5 py-4">
                                         <span className="cashier-summary-card__row-label mb-3 block text-sm font-medium">Upload receipt</span>
                                         <ReceiptFileCard
@@ -958,7 +772,7 @@ export default function DepositPage({ onNavigate }) {
                                 <div className="flex items-center justify-between gap-4">
                                     <span className="cashier-summary-card__total-label text-sm font-bold">Total Amount</span>
                                     <span className="cashier-summary-card__total-value text-xl font-bold">
-                                        RM {amountNum.toLocaleString()}
+                                        {CASHIER_CURRENCY} {amountNum.toLocaleString()}
                                     </span>
                                 </div>
                             </div>
@@ -977,14 +791,14 @@ export default function DepositPage({ onNavigate }) {
                                 onClick={handleConfirmPay}
                                 className="btn-theme-cta inline-flex h-12 min-w-[160px] items-center justify-center gap-2 rounded-xl px-6 text-base font-bold shadow-sm transition hover:scale-[1.02]"
                             >
-                                {isNormal ? 'Confirm & Submit' : 'Confirm & Pay'}
+                                Confirm & Submit
                             </button>
                         </div>
                     </div>
                 )}
             </div>
 
-            <p className="mt-6 text-center text-xs font-medium text-[var(--color-text-muted)]">
+            <p className="cashier-flow-page__footer-note">
                 Transactions are encrypted for your protection.
             </p>
             </>

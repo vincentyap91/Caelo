@@ -561,7 +561,7 @@
 
   /**
    * Membership — Web_Membership (132:7052)
-   * color/button/hover + color/primary → selected tier + table header vertical gradient
+   * color/gradient/membership/tier → selected tier + table header (bg-gradient-membership-tier)
    * color/button/tabs(+text) → active Membership Benefits / Requirements pill
    * color/surface/base + color/border/subtle → inactive tier card + tab + table shell
    * color/text/muted → row labels + inactive tab label
@@ -569,7 +569,7 @@
    * color/effect/shadow/card/soft → benefit / rebate table cards
    */
   .vip-page .vip-membership-brand-gradient {
-    background-image: linear-gradient(180deg, var(--color-button-hover) 0%, var(--color-primary) 100%);
+    background-image: var(--color-gradient-membership-tier);
   }
 
   .vip-page .vip-tier-grid {
@@ -627,7 +627,7 @@
   }
 
   .vip-page .vip-tier-card--selected.vip-membership-brand-gradient {
-    background-image: linear-gradient(180deg, var(--color-button-hover) 0%, var(--color-primary) 100%);
+    background-image: var(--color-gradient-membership-tier);
   }
 
   .vip-page .vip-membership-tabs {
@@ -1163,7 +1163,7 @@
   }
 
   .home-category-tabs .category-tab-item--active {
-    background-image: var(--color-gradient-tag);
+    background-image: var(--color-gradient-home-cta);
   }
 
   .home-category-search {
@@ -2730,6 +2730,10 @@
     background-image: var(--color-gradient-home-muted);
   }
 
+  .bg-gradient-membership-tier {
+    background-image: var(--color-gradient-membership-tier);
+  }
+
   .bg-gradient-vip-tier-avatar {
     background-image: var(--color-gradient-home-highlight);
   }
@@ -3729,8 +3733,19 @@
   }
 
   /**
-   * Cashier flow — deposit / withdrawal pages only (.cashier-flow-page wrapper).
-   * Caelo blues from CAELO_THEME_REFERENCE; does not affect header, home, or other routes.
+   * Cashier flow — deposit / withdrawal pages (.cashier-flow-page).
+   * Figma 12win → Deposit - Step 1 (399:4598); Nav/Footer/Aside excluded.
+   * §13.11: Riocity semantic names; Caelo blues via scoped aliases below.
+   *
+   * Frame → token (main column):
+   * 399:4757 title → --color-text-primary-card-title
+   * 399:4766 help → --color-surface-accent-hover
+   * 399:4768 tabs active → --color-text-primary-card-title / --color-surface-base
+   * 399:4817 stepper active → --color-surface-accent-hover / --color-accent-pale pending
+   * 399:4847 speed tabs → scoped under .cashier-deposit-step1-card
+   * 399:4871 step badge → --color-surface-accent-hover / --color-surface-base
+   * 399:4880 method accordion (default border --color-border-subtle; selected --color-border-brand + --color-accent-pale)
+   * 399:4914 footer note → --color-text-muted
    */
   .cashier-flow-page {
     --cashier-brand: #123b94;
@@ -3741,18 +3756,109 @@
     --cashier-accent-50: #eff6ff;
     --cashier-border: #e2e8f0;
     --cashier-text-muted: #64748b;
+    --color-text-primary-card-title: var(--cashier-brand);
+    --color-text-muted: var(--cashier-text-muted);
+    --color-text-small: var(--cashier-text-muted);
+    --color-button-hover: var(--cashier-accent-600);
+    --color-border-subtle: var(--cashier-border);
+    --color-border-brand: var(--cashier-accent-500);
+    --color-accent-pale: var(--cashier-accent-50);
+    --color-accent-glow: var(--cashier-accent-100);
+    --color-surface-accent-hover: var(--cashier-accent-600);
+    --color-surface-base: var(--mono-0);
+    --color-text-card-text: var(--mono-0);
+    --color-button-cta: var(--cashier-brand);
+    --color-button-cta-primary: var(--mono-0);
+    --color-button-tabs-muted-text: var(--cashier-text-muted);
+    --color-button-tabs-text: var(--cashier-brand);
   }
 
-  .cashier-flow-page .page-title {
-    color: var(--cashier-brand);
+  .cashier-flow-page .page-title,
+  .cashier-flow-page .cashier-flow-page__title {
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-flow-page .cashier-flow-surface-card {
+    box-shadow: var(--shadow-card-soft);
+  }
+
+  .cashier-flow-page .cashier-flow-page__footer-note {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  /**
+   * Deposit rollover summary — icon chip (ShieldAlert).
+   * color/secondary-tag(+text) → pending icon background + glyph (§13.11 Caelo blues preserved).
+   */
+  .cashier-flow-page .rollover-status-card {
+    --color-secondary-tag: color-mix(in srgb, var(--color-button-hover) 10%, var(--color-surface-base));
+    --color-secondary-tag-text: var(--color-button-hover);
+    --color-button-support: var(--color-button-hover);
+    --color-button-support-text: var(--color-text-card-text);
+  }
+
+  .rollover-status-card__icon {
+    display: flex;
+    margin-top: 0.125rem;
+    height: 2.25rem;
+    width: 2.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.38);
+    background-color: var(--color-secondary-tag);
+    color: var(--color-secondary-tag-text);
+  }
+
+  .rollover-status-card__icon--lg {
+    margin-top: 0;
+    height: 2.75rem;
+    width: 2.75rem;
+    box-shadow: none;
+  }
+
+  .rollover-status-card__icon.is-complete {
+    background-color: color-mix(in srgb, var(--color-success) 12%, var(--color-surface-base));
+    color: var(--color-success);
+  }
+
+  /** Rollover — Contact Support (color/button/support + text). */
+  .rollover-status-card__support-btn {
+    display: inline-flex;
+    min-height: 2.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: var(--color-button-support);
+    color: var(--color-button-support-text);
+    transition: filter 0.2s, background-color 0.2s;
+  }
+
+  .rollover-status-card__support-btn:hover {
+    filter: brightness(1.05);
+  }
+
+  .rollover-status-card__support-btn--dark {
+    background-color: var(--color-text-sticky-nav-active);
+    color: var(--color-sticky-nav);
   }
 
   .cashier-flow-page .cashier-help-link {
-    color: var(--cashier-accent-600);
+    color: var(--color-surface-accent-hover);
   }
 
   .cashier-flow-page .cashier-help-link:hover {
-    color: var(--cashier-brand);
+    color: var(--color-text-primary-card-title);
   }
 
   /**
@@ -3766,15 +3872,11 @@
   }
 
   /**
-   * Deposit / Withdrawal tabs — Web_User Dashboard - 1/2 (957:15602).
-   * Semantic names only; Caelo values preserved via §13.11 scoped aliases on this block.
+   * Deposit / Withdrawal tabs — Figma Deposit - Step 1 (399:4768).
+   * Semantic names only; Caelo values from .cashier-flow-page aliases.
    */
   .cashier-mode-tabs {
-    --color-button-cta: var(--cashier-brand);
-    --color-button-cta-primary: var(--color-text-card-text);
     --color-button-tabs-muted: transparent;
-    --color-button-tabs-muted-text: var(--cashier-text-muted);
-    --color-button-tabs-text: var(--cashier-brand);
     display: flex;
     width: 100%;
     gap: 0.25rem;
@@ -3797,8 +3899,8 @@
   }
 
   .cashier-mode-tab.is-active {
-    background: var(--color-button-cta);
-    color: var(--color-button-cta-primary);
+    background: var(--color-text-primary-card-title);
+    color: var(--color-surface-base);
     box-shadow: var(--shadow-nav-pill);
   }
 
@@ -3806,27 +3908,40 @@
     color: var(--color-button-tabs-text);
   }
 
-  .cashier-flow-page .cashier-speed-tab.is-active {
-    background: var(--cashier-brand) !important;
-    color: #ffffff !important;
+  /**
+   * Deposit - Step 1 card shell — Figma 12win 399:4845–399:4914 (speed tabs + step 1 panel).
+   * Nav/Footer excluded per frame scope.
+   */
+  .cashier-deposit-step1-card {
+    --color-surface-cool-light: var(--cashier-accent-100);
+  }
+
+  .cashier-deposit-step1-card__speed-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .cashier-deposit-step1-card .cashier-speed-tab.is-active {
+    background: var(--color-text-primary-card-title);
+    color: var(--color-surface-base);
     box-shadow: var(--shadow-subtle);
   }
 
-  .cashier-flow-page .cashier-speed-tab.is-active .cashier-speed-tab-sub {
-    color: rgb(255 255 255 / 0.85) !important;
+  .cashier-deposit-step1-card .cashier-speed-tab.is-active .cashier-speed-tab-sub {
+    color: var(--color-text-card-text);
   }
 
-  .cashier-flow-page .cashier-speed-tab:not(.is-active) {
-    background: #ffffff;
-    color: var(--cashier-brand);
+  .cashier-deposit-step1-card .cashier-speed-tab:not(.is-active) {
+    background: var(--color-surface-base);
+    color: var(--color-text-primary-card-title);
   }
 
-  .cashier-flow-page .cashier-speed-tab:not(.is-active) .cashier-speed-tab-sub {
-    color: var(--cashier-text-muted);
+  .cashier-deposit-step1-card .cashier-speed-tab:not(.is-active) .cashier-speed-tab-sub {
+    color: var(--color-text-muted);
   }
 
-  .cashier-flow-page .cashier-speed-tab:not(.is-active):hover {
-    color: var(--cashier-brand);
+  .cashier-deposit-step1-card .cashier-speed-tab:not(.is-active):hover {
+    color: var(--color-text-primary-card-title);
   }
 
   .cashier-step-badge {
@@ -3837,53 +3952,75 @@
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
-    background: var(--cashier-accent-600);
     font-size: 0.875rem;
     font-weight: 700;
-    color: #ffffff;
+  }
+
+  .cashier-flow-page .cashier-step-badge {
+    background: var(--color-surface-accent-hover);
+    color: var(--color-surface-base);
   }
 
   .cashier-section-title {
     font-weight: 700;
-    color: var(--cashier-brand);
+  }
+
+  .cashier-flow-page .cashier-section-title {
+    color: var(--color-text-primary-card-title);
   }
 
   /**
-   * Cashier steps — Web_User Dashboard - 3 (deposit/withdrawal step 2 & 3) + step 1 (957:15617).
-   * §13.11: Cam88 semantic names in JSX; Caelo cashier blues via scoped aliases.
+   * Deposit - Step 1 method picker — Figma 399:4880 (method accordion + bank cards).
+   * Default border: --color-border-subtle; selected border: --color-border-brand; selected fill: --color-accent-pale.
+   * §13.11: scoped aliases preserve Caelo cashier blues on Riocity semantic names.
    */
-  .cashier-deposit-step1,
-  .cashier-flow-step {
+  .cashier-deposit-step1 {
     --color-border-subtle: var(--cashier-border);
     --color-border-brand: var(--cashier-accent-500);
-    --color-text-primary-card-title: var(--cashier-brand);
-    --color-text-muted: var(--cashier-text-muted);
-    --color-text-small: var(--cashier-text-muted);
     --color-accent-pale: var(--cashier-accent-50);
     --color-accent-glow: var(--cashier-accent-100);
-    --color-button-hover: var(--cashier-accent-600);
     --color-surface-accent-hover: var(--cashier-accent-600);
+    --color-text-primary-card-title: var(--cashier-brand);
+    --color-text-muted: var(--cashier-text-muted);
     --color-surface-cool-light: var(--cashier-accent-100);
     --color-surface-input-light: var(--raw-surface-muted);
     --color-button-cta: var(--cashier-accent-500);
-    --color-button-cta-primary: var(--color-text-card-text);
     --color-surface-subtle: var(--cashier-accent-50);
     --color-surface-elevated: var(--cashier-accent-50);
   }
 
-  .cashier-flow-step .cashier-step-badge,
-  .cashier-deposit-step1 .cashier-step-badge {
-    background: var(--color-surface-accent-hover);
-    color: var(--color-text-card-text);
+  .cashier-flow-step,
+  .cashier-step2-normal {
+    --color-surface-cool-light: var(--cashier-accent-100);
+    --color-surface-input-light: var(--raw-surface-muted);
+    --color-button-cta: var(--cashier-accent-500);
+    --color-surface-subtle: var(--cashier-accent-50);
+    --color-surface-elevated: var(--cashier-accent-50);
   }
 
-  .cashier-flow-step .cashier-section-title,
+  .cashier-deposit-step1 .cashier-step-badge {
+    background: var(--color-surface-accent-hover);
+    color: var(--color-surface-base);
+  }
+
   .cashier-deposit-step1 .cashier-section-title {
     color: var(--color-text-primary-card-title);
   }
 
-  .cashier-flow-step .cashier-section-subtitle,
   .cashier-deposit-step1 .cashier-section-subtitle {
+    color: var(--color-text-muted);
+  }
+
+  .cashier-flow-step .cashier-step-badge {
+    background: var(--color-surface-accent-hover);
+    color: var(--color-surface-base);
+  }
+
+  .cashier-flow-step .cashier-section-title {
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-flow-step .cashier-section-subtitle {
     color: var(--color-text-muted);
   }
 
@@ -3959,7 +4096,7 @@
   .cashier-deposit-step1 .cashier-method-section.is-selected {
     border-color: var(--color-border-brand);
     background: var(--color-accent-pale);
-    box-shadow: 0 0 0 1px rgb(59 130 246 / 0.1);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-border-brand) 10%, transparent);
   }
 
   .cashier-deposit-step1 .cashier-method-section-action {
@@ -3979,8 +4116,7 @@
     cursor: pointer;
   }
 
-  .cashier-deposit-step1 .cashier-method-section-action:not(.is-selected):hover,
-  .cashier-deposit-step1 .cashier-method-section-toggle:hover {
+  .cashier-deposit-step1 .cashier-method-section:not(.is-selected):hover {
     border-color: var(--color-border-brand);
   }
 
@@ -3997,7 +4133,7 @@
   }
 
   .cashier-deposit-step1 .cashier-method-section.is-selected .cashier-method-section-chevron {
-    color: var(--color-button-hover);
+    color: var(--color-surface-accent-hover);
   }
 
   .cashier-deposit-step1 .cashier-method-section-chevron.is-expanded {
@@ -4018,7 +4154,7 @@
     justify-content: center;
     border-radius: 9999px;
     background: var(--color-accent-pale);
-    color: var(--color-button-hover);
+    color: var(--color-surface-accent-hover);
   }
 
   .cashier-deposit-step1 .cashier-method-section-title {
@@ -4032,7 +4168,7 @@
     margin-top: 0.125rem;
     font-size: 0.75rem;
     line-height: 1.35;
-    color: var(--color-text-small);
+    color: var(--color-text-muted);
   }
 
   .cashier-deposit-step1 .cashier-bank-cards {
@@ -4102,29 +4238,29 @@
   }
 
   .cashier-option-card {
-    border: 2px solid var(--cashier-border);
-    background: #ffffff;
+    border: 2px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
     transition: border-color 0.2s, background 0.2s;
   }
 
   .cashier-option-card:hover {
-    border-color: var(--cashier-accent-200);
+    border-color: var(--color-accent-glow);
   }
 
   .cashier-option-card.is-selected {
-    border-color: var(--cashier-accent-500);
-    background: var(--cashier-accent-50);
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
   }
 
   .cashier-option-card .cashier-option-label {
     font-weight: 700;
-    color: var(--cashier-brand);
+    color: var(--color-text-primary-card-title);
   }
 
   .cashier-method-section {
-    border: 2px solid var(--cashier-border);
+    border: 2px solid var(--color-border-subtle);
     border-radius: 1rem;
-    background: #ffffff;
+    background: var(--color-surface-base);
     padding: 1rem 1.125rem;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
@@ -4136,8 +4272,8 @@
   }
 
   .cashier-method-section.is-selected {
-    border-color: var(--cashier-accent-500);
-    box-shadow: 0 0 0 1px rgb(59 130 246 / 0.1);
+    border-color: var(--color-border-brand);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-border-brand) 10%, transparent);
   }
 
   .cashier-method-section-action {
@@ -4145,8 +4281,8 @@
     text-align: left;
   }
 
-  .cashier-method-section-action:not(.is-selected):hover {
-    border-color: var(--cashier-accent-200);
+  .cashier-method-section:not(.is-selected):hover {
+    border-color: var(--color-accent-glow);
   }
 
   .cashier-method-section-header {
@@ -4163,20 +4299,20 @@
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
-    background: var(--cashier-accent-50);
-    color: var(--cashier-accent-600);
+    background: var(--color-accent-pale);
+    color: var(--color-surface-accent-hover);
   }
 
   .cashier-method-section-title {
     font-weight: 700;
-    color: var(--cashier-brand);
+    color: var(--color-text-primary-card-title);
   }
 
   .cashier-method-section-subtitle {
     margin-top: 0.125rem;
     font-size: 0.75rem;
     line-height: 1.35;
-    color: var(--cashier-text-muted);
+    color: var(--color-text-muted);
   }
 
   @media (min-width: 768px) {
@@ -4206,20 +4342,20 @@
     justify-content: center;
     gap: 0.375rem;
     border-radius: 0.875rem;
-    border: 2px solid var(--cashier-border);
-    background: #ffffff;
+    border: 2px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
     padding: 0.875rem 0.625rem;
     text-align: center;
     transition: border-color 0.2s, background 0.2s;
   }
 
   .cashier-bank-card:hover {
-    border-color: var(--cashier-accent-200);
+    border-color: var(--color-border-brand);
   }
 
   .cashier-bank-card.is-selected {
-    border-color: var(--cashier-accent-500);
-    background: var(--cashier-accent-50);
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
   }
 
   .cashier-bank-card-logo {
@@ -4233,7 +4369,7 @@
     font-size: 0.6875rem;
     font-weight: 700;
     line-height: 1.25;
-    color: var(--cashier-brand);
+    color: var(--color-text-primary-card-title);
   }
 
   @media (min-width: 640px) {
@@ -4245,7 +4381,412 @@
   .cashier-bank-card-range {
     font-size: 0.6875rem;
     font-weight: 600;
-    color: var(--cashier-text-muted);
+    color: var(--color-text-muted);
+  }
+
+  /* Step 2 — normal bank transfer (deposit & withdrawal); semantic --color-* only (VARIABLE-RULES §10.1) */
+  .cashier-step2-normal {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .cashier-step2-back {
+    align-self: flex-start;
+    display: inline-flex;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
+    padding: 0 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-primary-card-title);
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .cashier-step2-back:hover {
+    background: var(--color-accent-pale);
+    border-color: var(--color-border-brand);
+  }
+
+  .cashier-step2-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .cashier-step2-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-step2-notes {
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
+    padding: 0.875rem 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .cashier-step2-notes-title {
+    margin-bottom: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-step2-notes-list {
+    margin: 0;
+    padding-left: 1.125rem;
+  }
+
+  .cashier-step2-notes-list li + li {
+    margin-top: 0.25rem;
+  }
+
+  .cashier-step2-section-title {
+    margin-bottom: 0.75rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-step2-preset-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.625rem;
+    margin-bottom: 0.875rem;
+  }
+
+  @media (max-width: 479px) {
+    .cashier-step2-preset-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .cashier-step2-preset-btn {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-accent-glow);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text-primary-card-title);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .cashier-step2-preset-btn:hover {
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
+  }
+
+  .cashier-step2-preset-btn.is-active {
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
+    color: var(--color-button-hover);
+  }
+
+  .cashier-step2-currency-input {
+    display: flex;
+    overflow: hidden;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
+  }
+
+  .cashier-step2-currency-prefix {
+    display: flex;
+    min-width: 4.25rem;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    background: var(--color-accent-glow);
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--color-button-hover);
+  }
+
+  .cashier-step2-currency-prefix--display {
+    min-width: 3.5rem;
+    min-height: 2rem;
+    border-radius: 0.375rem;
+    align-self: center;
+    font-size: 0.8125rem;
+  }
+
+  .cashier-step2-currency-input input {
+    height: 2.75rem;
+    flex: 1;
+    border: 0;
+    background: transparent;
+    padding: 0 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-primary-card-title);
+    outline: none;
+  }
+
+  .cashier-step2-currency-input input::placeholder {
+    color: var(--color-text-muted);
+    font-weight: 400;
+  }
+
+  .cashier-step2-currency-input input:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  .cashier-step2-limit-hint {
+    margin-top: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-align: right;
+  }
+
+  .cashier-step2-amount-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
+    padding: 0.875rem 1rem;
+  }
+
+  .cashier-step2-amount-display-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .cashier-step2-amount-display-row {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .cashier-step2-amount-display-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-step2-dest-card {
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
+  }
+
+  .cashier-step2-dest-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .cashier-step2-dest-row:last-child {
+    border-bottom: 0;
+  }
+
+  .cashier-step2-dest-label {
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-step2-dest-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary-card-title);
+    text-align: right;
+  }
+
+  .cashier-step2-copy-btn {
+    display: inline-flex;
+    height: 1.75rem;
+    width: 1.75rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .cashier-step2-copy-btn:hover {
+    color: var(--color-button-hover);
+  }
+
+  .cashier-step2-upload-wrap {
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-accent-pale);
+    padding: 1rem;
+  }
+
+  .cashier-step2-upload-label {
+    margin-bottom: 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .cashier-step2-upload-wrap .cashier-step2-upload-trigger {
+    display: flex;
+    width: 100%;
+    min-height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.625rem;
+    border: 1px dashed var(--color-border-brand);
+    background: var(--color-surface-base);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary-card-title);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .cashier-step2-upload-wrap .cashier-step2-upload-trigger:hover {
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
+  }
+
+  .cashier-step2-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .cashier-step2-form-row {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, 7.5rem) minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem 1rem;
+  }
+
+  @media (max-width: 479px) {
+    .cashier-step2-form-row {
+      grid-template-columns: 1fr;
+      gap: 0.375rem;
+    }
+  }
+
+  .cashier-step2-form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-step2-form-input,
+  .cashier-step2-form-select {
+    height: 2.75rem;
+    width: 100%;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
+    padding: 0 0.875rem;
+    font-size: 0.875rem;
+    color: var(--color-text-primary-card-title);
+    outline: none;
+  }
+
+  .cashier-step2-form-input:disabled,
+  .cashier-step2-form-select:disabled {
+    cursor: not-allowed;
+    background: var(--color-surface-input-light);
+    color: var(--color-text-muted);
+  }
+
+  .cashier-step2-form-input:focus,
+  .cashier-step2-form-select:focus {
+    border-color: var(--color-border-brand);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-border-brand) 12%, transparent);
+  }
+
+  .cashier-step2-form-select-btn {
+    display: flex;
+    height: 2.75rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
+    padding: 0 0.875rem;
+    font-size: 0.875rem;
+    text-align: left;
+    color: var(--color-text-primary-card-title);
+  }
+
+  .cashier-step2-alert {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.625rem;
+    border: 1px solid color-mix(in srgb, var(--color-danger) 25%, transparent);
+    background: color-mix(in srgb, var(--color-danger) 8%, var(--color-surface-base));
+    padding: 0.75rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-danger);
+  }
+
+  .cashier-step2-submit {
+    display: flex;
+    width: 100%;
+    max-width: 14rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    border-radius: 9999px;
+    border: 0;
+    background: var(--color-text-primary-card-title);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-button-cta-primary);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .cashier-step2-submit:hover:not(:disabled) {
+    background: var(--color-button-hover);
+    transform: scale(1.01);
+  }
+
+  .cashier-step2-submit:disabled {
+    cursor: not-allowed;
+    background: var(--color-accent-glow);
+    color: var(--color-text-muted);
   }
 
   .cashier-method-row {
@@ -4254,20 +4795,28 @@
     align-items: center;
     gap: 0.875rem;
     border-radius: 1rem;
-    border: 2px solid var(--cashier-border);
-    background: #ffffff;
+    border: 2px solid var(--color-border-subtle);
+    background: var(--color-surface-base);
     padding: 1rem 1.125rem;
     text-align: left;
     transition: border-color 0.2s, background 0.2s;
   }
 
-  .cashier-method-row:hover {
-    border-color: var(--cashier-accent-200);
+  .cashier-method-row:not(.is-selected):hover {
+    border-color: var(--color-accent-glow);
   }
 
   .cashier-method-row.is-selected {
-    border-color: var(--cashier-accent-500);
-    background: var(--cashier-accent-50);
+    border-color: var(--color-border-brand);
+    background: var(--color-accent-pale);
+  }
+
+  /**
+   * Deposit / Withdrawal stepper — completed tick uses color/icon/subtle (Figma Deposit - Step 1).
+   * §13.11: Caelo white tick on blue dot via scoped --color-icon-subtle alias.
+   */
+  .cashier-flow-stepper {
+    --color-icon-subtle: var(--color-surface-base);
   }
 
   .cashier-flow-stepper .cashier-stepper-dot {
@@ -4278,11 +4827,11 @@
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
-    border: 1px solid var(--cashier-border);
-    background: var(--cashier-accent-50);
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-accent-pale);
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--cashier-text-muted);
+    color: var(--color-text-muted);
     transition: background 0.2s, color 0.2s, box-shadow 0.2s, border-color 0.2s;
   }
 
@@ -4297,45 +4846,49 @@
   .cashier-flow-stepper .cashier-stepper-dot.is-active,
   .cashier-flow-stepper .cashier-stepper-dot.is-completed {
     border-color: transparent;
-    background: var(--cashier-accent-600);
-    color: #ffffff;
+    background: var(--color-surface-accent-hover);
   }
 
   .cashier-flow-stepper .cashier-stepper-dot.is-active {
-    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.18), var(--shadow-accent);
+    color: var(--color-surface-base);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-surface-accent-hover) 18%, transparent), var(--shadow-accent);
+  }
+
+  .cashier-flow-stepper .cashier-stepper-dot.is-completed .cashier-stepper-check {
+    color: var(--color-icon-subtle);
   }
 
   .cashier-flow-stepper .cashier-stepper-label.is-active {
-    color: var(--cashier-accent-600);
+    color: var(--color-surface-accent-hover);
   }
 
   .cashier-flow-stepper .cashier-stepper-label.is-completed {
-    color: var(--cashier-brand);
+    color: var(--color-text-primary-card-title);
   }
 
   .cashier-flow-stepper .cashier-stepper-label.is-pending {
-    color: var(--cashier-text-muted);
+    color: var(--color-text-muted);
   }
 
   .cashier-flow-stepper .cashier-stepper-connector.is-done {
-    background: var(--cashier-accent-600);
+    background: var(--color-surface-accent-hover);
   }
 
   .cashier-flow-stepper .cashier-stepper-connector.is-pending {
-    background: var(--cashier-border);
+    background: var(--color-border-subtle);
   }
 
   /**
    * Web_User Dashboard - cam88 (932:22443) — Secure Logout
-   * §13.11: Cam88 semantic names; Caelo red gradient preserved via --color-gradient-tag chain.
-   *
-   * Figma role → token (Caelo value unchanged):
-   * color/gradient/tag → pill background (VARIABLE-RULES logout → gradient-tag)
-   * color/button/cta-primary → label + icon (scoped to white on red)
-   * color/danger → border tint
+   * VARIABLE-RULES §13.6: logout-* → --color-gradient-tag (color/gradient/tag).
+   * §13.11: pill fill = semantic --color-gradient-tag; Caelo stops = --raw-gradient-logout-* in theme.css.
    */
   .profile-menu-logout {
-    --color-button-cta-primary: var(--mono-0);
+    --color-gradient-tag: linear-gradient(
+      90deg,
+      var(--raw-gradient-logout-default-start) 0%,
+      var(--raw-gradient-logout-default-end) 100%
+    );
     display: flex;
     width: 100%;
     min-height: 3rem;
@@ -4343,7 +4896,7 @@
     justify-content: center;
     gap: 0.75rem;
     border-radius: 22px;
-    border: 1px solid color-mix(in srgb, var(--color-danger) 22%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-danger-red) 28%, transparent);
     background-color: transparent;
     background-image: var(--color-gradient-tag);
     padding-left: 1rem;
@@ -4351,7 +4904,7 @@
     font-size: 1rem;
     line-height: 1.25rem;
     font-weight: 700;
-    color: var(--color-button-cta-primary);
+    color: var(--color-danger-red);
     transition:
       background 0.2s,
       border-color 0.2s,
@@ -4361,35 +4914,17 @@
   }
 
   .profile-menu-logout:hover {
-    border-color: color-mix(in srgb, var(--color-button-cta-primary) 10%, transparent);
-    background-image: var(--color-gradient-tag);
-    color: var(--color-button-cta-primary);
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-button-cta-primary) 10%, transparent);
-    transform: translateY(-1px);
-  }
-
-  /** Cashier account shell — lighter logout default; same semantic names, scoped aliases */
-  .account-layout-cashier .profile-menu-logout {
     --color-gradient-tag: linear-gradient(
-      180deg,
-      var(--raw-gradient-logout-default-start) 0%,
-      var(--raw-gradient-logout-default-end) 100%
+      90deg,
+      var(--raw-gradient-logout-hover-start) 0%,
+      var(--raw-gradient-logout-hover-mid) 52%,
+      var(--raw-gradient-logout-hover-end) 100%
     );
-    --color-button-cta-primary: var(--color-danger-red);
-    border-color: color-mix(in srgb, var(--color-danger-red) 28%, transparent);
-    background-image: var(--color-gradient-tag);
-  }
-
-  .account-layout-cashier .profile-menu-logout:hover {
-    --color-gradient-tag: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-danger) 22%, var(--mono-0)) 0%,
-      color-mix(in srgb, var(--color-danger) 38%, var(--mono-0)) 100%
-    );
-    --color-button-cta-primary: var(--color-danger-maroon);
     border-color: color-mix(in srgb, var(--color-danger-red) 35%, transparent);
     background-image: var(--color-gradient-tag);
+    color: var(--color-danger-maroon);
     box-shadow: 0 4px 12px color-mix(in srgb, var(--color-danger-red) 12%, transparent);
+    transform: translateY(-1px);
   }
 
   /** Slots browse ? active promotion block (matches soft-blue / wallet browse panel) */
@@ -4439,25 +4974,148 @@
     --color-text-small: var(--color-text-secondary);
   }
 
-  /** Profile shell — progress + header tokens only; do not override surface-cool-light (sidebar blue bleeds into read-only fields). */
+  /**
+   * Account Details — Figma 12win → Account Details (431:5769); Nav/Footer excluded.
+   * §13.11: Cam88 semantic names in components; Caelo values via scoped aliases below.
+   */
   .profile-page {
     --color-surface-card-light: var(--color-surface-base);
+    --color-surface-input-light: var(--raw-surface-muted);
     --color-progress-bar-bg: var(--color-accent-glow);
     --color-progress-bar-fill: var(--color-primary);
     --color-text-small: var(--color-text-secondary);
   }
 
+  .profile-page .profile-page__title {
+    color: var(--color-text-primary);
+  }
+
   .profile-page .profile-account-header__badge {
-    --color-text-small: var(--color-button-hover);
+    color: var(--color-button-hover);
+  }
+
+  .profile-page .profile-account-header__username {
+    color: var(--color-text-primary);
   }
 
   .profile-page .profile-account-header__contact {
-    --color-text-small: var(--color-text-muted);
+    color: var(--color-text-muted);
+  }
+
+  .profile-page .profile-account-header__divider {
+    background-color: var(--color-border-subtle);
+  }
+
+  .profile-page .profile-account-header {
+    background-color: var(--color-surface-card-light);
+  }
+
+  .profile-page .profile-account-header__photo-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-surface-base), 0 0 0 4px var(--color-border-brand);
+  }
+
+  .profile-page .profile-account-header__avatar {
+    border: 4px solid var(--color-accent-glow);
+    background-image: var(--color-gradient-home-muted);
+    box-shadow: var(--shadow-accent-avatar);
+  }
+
+  .profile-page .profile-account-header__avatar-icon {
+    color: var(--color-button-hover);
+  }
+
+  .profile-page .profile-vip-progress-section--card {
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-card-light);
+    box-shadow: var(--shadow-card-soft);
+  }
+
+  .profile-page .profile-vip-progress-section__tier {
+    color: var(--color-primary);
+  }
+
+  .profile-page .profile-vip-progress__target {
+    background-color: var(--color-primary);
+    color: var(--color-text-card-text);
+  }
+
+  .profile-page .profile-vip-progress__percent {
+    color: var(--color-text-primary);
   }
 
   .profile-page .profile-vip-progress-section__caption,
   .user-dashboard-sidebar .vip-tier-progress-card__caption {
-    --color-text-small: var(--color-text-secondary);
+    color: var(--color-text-secondary);
+  }
+
+  .profile-page .profile-section-card__title {
+    color: var(--color-text-primary);
+  }
+
+  .profile-page .profile-section-card__subtitle {
+    color: var(--color-text-muted);
+  }
+
+  .profile-page .profile-personal-field__label {
+    color: var(--color-text-muted);
+  }
+
+  .profile-page .profile-personal-field__control {
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-input-light);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .profile-page .profile-personal-field__icon {
+    color: var(--color-text-soft);
+  }
+
+  .profile-page .profile-personal-field__value {
+    color: var(--color-text-primary);
+  }
+
+  .profile-page .profile-personal-dob-field {
+    position: relative;
+    border: 2px dashed var(--color-button-hover);
+    background: var(--color-surface-base);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .profile-page .profile-personal-dob-field__icon {
+    color: var(--color-button-hover);
+  }
+
+  .profile-page .profile-personal-dob-input {
+    color: var(--color-text-primary);
+  }
+
+  .profile-page .profile-personal-dob-hint {
+    color: var(--color-danger);
+  }
+
+  .profile-page .profile-personal-dob-input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .profile-page .profile-personal-dob-input::-webkit-date-and-time-value {
+    text-align: left;
+  }
+
+  /** Save Changes — color/button/cta gradient; borderless (Figma 431:6004). */
+  .profile-page .profile-personal-save.btn-theme-cta {
+    --color-border-brand: transparent;
+    --color-button-cta-primary: var(--color-text-card-text);
+    border-color: var(--color-border-brand);
+    box-shadow: var(--shadow-cta);
+    color: var(--color-button-cta-primary);
   }
 
   .profile-current-promo {

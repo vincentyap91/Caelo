@@ -38,11 +38,7 @@ function SupportRequestRow({ eligible, dark = false, onRequestSupport }) {
             <button
                 type="button"
                 onClick={() => onRequestSupport?.()}
-                className={`inline-flex min-h-[36px] shrink-0 items-center justify-center rounded-lg px-3 py-2 text-xs font-bold transition ${
-                    dark
-                        ? 'bg-[var(--color-text-sticky-nav-active)] text-[var(--color-sticky-nav)] hover:brightness-105'
-                        : 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] hover:bg-[var(--color-button-hover)]'
-                }`}
+                className={`rollover-status-card__support-btn${dark ? ' rollover-status-card__support-btn--dark' : ''}`}
             >
                 Contact Support
             </button>
@@ -177,7 +173,7 @@ export default function RolloverStatusCard({
                 </div>
 
                 {detailsOpen && (
-                    <div className="border-t border-[var(--color-warning)] bg-[var(--color-overlay)] px-4 py-3 md:px-5">
+                    <div className="border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-3 md:px-5">
                         <div className="space-y-3">
                             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
                                 <Metric label="Target amount" value={status?.targetAmount} />
@@ -194,14 +190,10 @@ export default function RolloverStatusCard({
 
     if (variant === 'summary-inline') {
         return (
-            <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
+            <div className="rollover-status-card surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
                 <div className="flex flex-col gap-3 p-4 md:grid md:grid-cols-[minmax(0,1.15fr)_minmax(220px,0.95fr)_auto] md:items-center md:gap-5 md:p-5">
                     <div className="flex min-w-0 items-start gap-3">
-                        <div className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.38)] ${
-                            isComplete
-                                ? 'bg-[color-mix(in_srgb,var(--color-success)_12%,white)] text-[var(--color-success)]'
-                                : 'bg-[color-mix(in_srgb,var(--color-button-hover)_10%,white)] text-[var(--color-button-hover)]'
-                        }`}>
+                        <div className={`rollover-status-card__icon${isComplete ? ' is-complete' : ''}`}>
                             {isComplete ? <CircleCheckBig size={17} /> : <ShieldAlert size={17} />}
                         </div>
                         <div className="min-w-0 space-y-1">
@@ -245,7 +237,7 @@ export default function RolloverStatusCard({
                 </div>
 
                 {detailsOpen && (
-                    <div className="border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)]/80 px-4 py-4 md:px-5">
+                    <div className="border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-4 md:px-5">
                         <div className="space-y-3">
                             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                                 <Metric label="Target amount" value={status?.targetAmount} />
@@ -261,15 +253,11 @@ export default function RolloverStatusCard({
     }
 
     return (
-        <div className="surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
+        <div className="rollover-status-card surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
             <div className="border-b border-[var(--color-border-subtle)] bg-gradient-soft-panel px-5 py-4 md:px-6">
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div className="flex items-start gap-3">
-                        <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${
-                            isComplete
-                                ? 'bg-[color-mix(in_srgb,var(--color-success)_12%,white)] text-[var(--color-success)]'
-                                : 'bg-[color-mix(in_srgb,var(--color-button-hover)_10%,white)] text-[var(--color-button-hover)]'
-                        }`}>
+                        <div className={`rollover-status-card__icon rollover-status-card__icon--lg${isComplete ? ' is-complete' : ''}`}>
                             {isComplete ? <CircleCheckBig size={20} /> : <ShieldAlert size={20} />}
                         </div>
                         <div className="min-w-0">

@@ -553,6 +553,8 @@
   --color-button-pagination-disabled: var(--raw-cam-muted);
   --color-button-referral-cta: var(--raw-brand-cam);
   --color-button-referral-cta-text: var(--mono-0);
+  --color-button-support: var(--raw-brand-cam);
+  --color-button-support-text: var(--mono-0);
   --color-button-sports: var(--raw-surface-sports-button);
   --color-button-tabs: var(--raw-brand-cam);
   --color-button-tabs-muted: var(--raw-cam-muted);

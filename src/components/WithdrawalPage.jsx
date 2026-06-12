@@ -28,27 +28,34 @@ const E_WALLET_OPTIONS = [
     { id: 'other', label: 'Other Wallet', image: 'https://pksoftcdn.azureedge.net/media/600x400-202602121348375675.png', min: 1, max: 999999 },
 ];
 
-const BANKS = [
-    { id: 'affin', label: 'AFFIN BANK', image: 'https://cdn.i8global.com/lb9/affin-202504290525533163-202506170620081032.svg' },
-    { id: 'alliance', label: 'ALLIANCE BANK', image: 'https://cdn.i8global.com/lb9/alliance-202504290525435488-202506170619387678.svg' },
-    { id: 'ambank', label: 'AMBANK', image: 'https://cdn.i8global.com/lb9/ambank-202504290525160695-202506170618501744.svg' },
-    { id: 'islam', label: 'BANK ISLAM', image: 'https://cdn.i8global.com/lb9/bankislam-202504290511437178-202506170618225212.svg' },
-    { id: 'muamalat', label: 'Bank Muamalat', image: 'https://cdn.i8global.com/lb9/download-202511120751485725-202511190502581066.png' },
-    { id: 'rakyat', label: 'BANK RAKYAT', image: 'https://cdn.i8global.com/lb9/brakyat-202504290511272701-202506170617527173.svg' },
-    { id: 'bsn', label: 'BANK SIMPANAN NASIONAL', image: 'https://cdn.i8global.com/lb9/bsn-202504290511050175-202506170617232555.svg' },
-    { id: 'cimb', label: 'CIMB', image: 'https://cdn.i8global.com/lb9/cimb%20thai-202308031239061464-202412231441264270-202506170616362890.png' },
-    { id: 'hongleong', label: 'HONG LEONG BANK', image: 'https://cdn.i8global.com/lb9/hong%20leong%20bank-202307211346127077-202412231443043953-202506170547122116.png' },
-    { id: 'hsbc', label: 'HSBC', image: 'https://cdn.i8global.com/lb9/hsbc-202307211348497167-202412231448456546-202506170546413237.png' },
-    { id: 'maybank', label: 'MAYBANK', image: "https://cdn.i8global.com/lb9/mbb'-202504290507220417-202506170546160406.svg" },
-    { id: 'ocbc', label: 'OCBC', image: 'https://cdn.i8global.com/lb9/ocbc-202504290507050668-202506170545581986.svg' },
-    { id: 'public', label: 'PUBLIC BANK', image: 'https://cdn.i8global.com/lb9/pbe-202504290506535986-202506170545292269.svg' },
-    { id: 'rhb', label: 'RHB', image: 'https://cdn.i8global.com/lb9/rhb-202504290506435286-202506170545039303.svg' },
-    { id: 'standard', label: 'STANDARD CHARTERED BANK', image: 'https://cdn.i8global.com/lb9/standard-202504290506217726-202506170544281612.svg' },
-    { id: 'uob', label: 'UOB', image: 'https://cdn.i8global.com/lb9/uob-202504290506049294-202506170544077762.svg' },
-];
-
 const PRESET_AMOUNTS = [100, 200, 500, 1000, 2000, 5000];
+const CASHIER_CURRENCY = 'USD';
+const DEMO_BALANCE = 0;
 const PROCESSING_COUNTDOWN_SECONDS = 5 * 60;
+
+const WITHDRAWAL_BANKS = [
+    {
+        id: 'aba',
+        label: 'ABA BANK',
+        min: 3,
+        max: 100000,
+        image: 'https://assets.cambodiachoice.com/v1/image/resize?url=%2Faba-bank-logo.png&width=384&quality=75&format=webp',
+    },
+    {
+        id: 'wing',
+        label: 'WING BANK',
+        min: 3,
+        max: 100000,
+        image: 'https://assets.cambodiachoice.com/v1/image/resize?url=%2Fwing-bank-logo.svg&width=384&quality=75&format=webp',
+    },
+    {
+        id: 'acleda',
+        label: 'ACLEDA BANK',
+        min: 3,
+        max: 100000,
+        image: 'https://assets.cambodiachoice.com/v1/image/resize?url=%2Facleda-bank-logo.jpg&width=384&quality=75&format=webp',
+    },
+];
 
 export default function WithdrawalPage({ onNavigate, navigationState }) {
     const { showTransactionNotification, showPushNotification } = useActionNotifications();
@@ -72,12 +79,13 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
 
     const amountNum = parseFloat(amount) || 0;
     const selectedEwalletOption = E_WALLET_OPTIONS.find((e) => e.id === selectedEwallet);
+    const selectedWithdrawalBank = WITHDRAWAL_BANKS.find((b) => b.id === selectedBank);
     const minAmount = withdrawalMethod === 'ewallet' && selectedEwalletOption
         ? selectedEwalletOption.min
-        : 100;
+        : selectedWithdrawalBank?.min ?? 3;
     const maxAmount = withdrawalMethod === 'ewallet' && selectedEwalletOption
         ? selectedEwalletOption.max
-        : 100000;
+        : selectedWithdrawalBank?.max ?? 100000;
     const isValidAmount = amountNum >= minAmount && amountNum <= maxAmount;
 
     const addPreset = (val) => {
@@ -88,13 +96,14 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
         setAmount(String(val));
     };
 
-    const selectedBankLabel = selectedBank ? BANKS.find((b) => b.id === selectedBank)?.label ?? 'Select Bank' : 'Select Bank';
+    const selectedBankLabel = selectedBank
+        ? WITHDRAWAL_BANKS.find((b) => b.id === selectedBank)?.label ?? 'Please Select Bank'
+        : 'Please Select Bank';
 
     const canProceedStep1 = true;
-    const canProceedStep2 =
-        (withdrawalMethod === 'ewallet'
-            ? selectedEwallet && phoneNumber.trim().length > 0
-            : selectedBank && bankAccountName.trim() && bankAccountNumber.trim()) && isValidAmount;
+    const canProceedStep2 = withdrawalMethod === 'ewallet'
+        ? selectedEwallet && phoneNumber.trim().length > 0 && isValidAmount
+        : selectedBank && bankAccountName.trim() && bankAccountNumber.trim() && isValidAmount && DEMO_BALANCE > 0;
 
     const handleConfirmWithdraw = () => {
         if (!isRolloverRequirementMet) {
@@ -243,99 +252,64 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                 )}
 
                 {/* Step 2: Account info & Amount (combined) */}
-                {step === 2 && (
-                    <div className="cashier-flow-step space-y-6 p-5 md:p-6">
-                        <div className="flex items-center gap-3">
+                {step === 2 && withdrawalMethod === 'bank' && (
+                    <div className="cashier-flow-step cashier-step2-normal p-5 md:p-6">
+                        <div className="flex items-start gap-3">
                             <span className="cashier-step-badge">2</span>
-                            <div>
-                                <h2 className="cashier-section-title text-base md:text-lg">Account & Amount</h2>
-                                <p className="cashier-section-subtitle text-xs leading-snug md:text-sm">
-                                    {withdrawalMethod === 'ewallet' ? 'Select E-Wallet, enter phone number and amount.' : 'Enter your bank account details and amount.'}
-                                </p>
+                            <div className="min-w-0 pt-0.5">
+                                <h2 className="cashier-section-title text-base md:text-lg">Normal Bank Transfer</h2>
                             </div>
                         </div>
 
-                        {withdrawalMethod === 'ewallet' ? (
-                            <>
-                                <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Select E-Wallet <span className="text-[var(--color-danger)]">*</span></p>
-                                    <div className="relative">
-                                        <button
-                                            type="button"
-                                            onClick={() => setEwalletDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
-                                        >
-                                            {selectedEwallet && selectedEwalletOption ? (
-                                                <span className="flex items-center gap-2.5">
-                                                    <img src={selectedEwalletOption.image} alt="" className="h-6 w-6 object-contain" />
-                                                    <span className="font-medium text-[var(--color-text-primary)]">
-                                                        {selectedEwalletOption.label} ({selectedEwalletOption.min} - {selectedEwalletOption.max.toLocaleString()})
-                                                    </span>
-                                                </span>
-                                            ) : (
-                                                <span className="text-[var(--color-text-muted)]">Select E-Wallet</span>
-                                            )}
-                                            <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${ewalletDropdownOpen ? 'rotate-180' : ''}`} />
-                                        </button>
-                                        {ewalletDropdownOpen && (
-                                            <>
-                                                <div className="absolute inset-0 z-10" onClick={() => setEwalletDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
-                                                    {E_WALLET_OPTIONS.map((opt) => (
-                                                        <button
-                                                            key={opt.id}
-                                                            type="button"
-                                                            onClick={() => {
-                                                                setSelectedEwallet(opt.id);
-                                                                setEwalletDropdownOpen(false);
-                                                            }}
-                                                            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
-                                                        >
-                                                            <img src={opt.image} alt={opt.label} className="h-6 w-6 shrink-0 object-contain" />
-                                                            <span className="font-normal text-[var(--color-text-primary)]">{opt.label} ({opt.min} - {opt.max.toLocaleString()})</span>
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                                <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Phone Number <span className="text-[var(--color-danger)]">*</span></p>
-                                    <input
-                                        type="tel"
-                                        value={phoneNumber}
-                                        onChange={(e) => setPhoneNumber(e.target.value)}
-                                        placeholder="Enter your phone number"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
-                                    />
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Bank <span className="text-[var(--color-danger)]">*</span></p>
+                        <button type="button" onClick={() => setStep(1)} className="cashier-step2-back">
+                            Back
+                        </button>
+
+                        <div className="cashier-step2-meta">
+                            <div className="cashier-step2-meta-row">
+                                <span>Balance</span>
+                                <span>{DEMO_BALANCE.toFixed(2)}</span>
+                            </div>
+                            <div className="cashier-step2-meta-row">
+                                <span>Min Withdrawal</span>
+                                <span>{selectedWithdrawalBank ? minAmount : '-'}</span>
+                            </div>
+                        </div>
+
+                        <div className="cashier-step2-notes">
+                            <p className="cashier-step2-notes-title">Notes :</p>
+                            <ul className="cashier-step2-notes-list">
+                                <li>Bank transfer takes up to 24 hours to reflect in your bank account</li>
+                                <li>If the entered and bank account are inconsistent, the company reserves the right to reject the application..</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 className="cashier-step2-section-title">Bank Account Info</h3>
+                            <div className="cashier-step2-form">
+                                <div className="cashier-step2-form-row">
+                                    <span className="cashier-step2-form-label">Bank Name</span>
                                     <div className="relative">
                                         <button
                                             type="button"
                                             onClick={() => setBankDropdownOpen((o) => !o)}
-                                            className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                            className="cashier-step2-form-select-btn"
                                         >
-                                            {selectedBank && BANKS.find((b) => b.id === selectedBank)?.image ? (
+                                            {selectedBank && selectedWithdrawalBank ? (
                                                 <span className="flex items-center gap-2.5">
-                                                    <img src={BANKS.find((b) => b.id === selectedBank)?.image} alt="" className="h-6 w-6 object-contain" />
-                                                    <span className="font-medium text-[var(--color-text-primary)]">{selectedBankLabel}</span>
+                                                    <img src={selectedWithdrawalBank.image} alt="" className="h-5 w-5 object-contain" />
+                                                    <span>{selectedWithdrawalBank.label}</span>
                                                 </span>
                                             ) : (
-                                                <span className="text-[var(--color-text-muted)]">Select Bank</span>
+                                                <span className="text-[var(--color-text-muted)]">Please Select Bank</span>
                                             )}
                                             <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${bankDropdownOpen ? 'rotate-180' : ''}`} />
                                         </button>
                                         {bankDropdownOpen && (
                                             <>
                                                 <div className="absolute inset-0 z-10" onClick={() => setBankDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
-                                                    {BANKS.map((b) => (
+                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[240px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                                    {WITHDRAWAL_BANKS.map((b) => (
                                                         <button
                                                             key={b.id}
                                                             type="button"
@@ -354,28 +328,141 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         )}
                                     </div>
                                 </div>
-                                <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Account Name <span className="text-[var(--color-danger)]">*</span></p>
+
+                                <div className="cashier-step2-form-row">
+                                    <span className="cashier-step2-form-label">Account Name</span>
                                     <input
                                         type="text"
                                         value={bankAccountName}
                                         onChange={(e) => setBankAccountName(e.target.value)}
-                                        placeholder="Enter account holder name"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
+                                        placeholder="Enter Your Account Name"
+                                        disabled={!selectedBank}
+                                        className="cashier-step2-form-input"
                                     />
                                 </div>
-                                <div>
-                                    <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Account Number <span className="text-[var(--color-danger)]">*</span></p>
+
+                                {DEMO_BALANCE <= 0 && (
+                                    <div className="cashier-step2-alert">
+                                        <AlertCircle size={16} className="shrink-0" />
+                                        Your Account Balance is {DEMO_BALANCE.toFixed(2)}
+                                    </div>
+                                )}
+
+                                <div className="cashier-step2-form-row">
+                                    <span className="cashier-step2-form-label">Account Number</span>
                                     <input
                                         type="text"
                                         value={bankAccountNumber}
                                         onChange={(e) => setBankAccountNumber(e.target.value)}
-                                        placeholder="Enter account number"
-                                        className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
+                                        placeholder="Enter Your Account Number"
+                                        disabled={!selectedBank}
+                                        className="cashier-step2-form-input"
                                     />
                                 </div>
-                            </>
-                        )}
+
+                                <div className="cashier-step2-form-row">
+                                    <span className="cashier-step2-form-label">Amount</span>
+                                    <div className="cashier-step2-currency-input">
+                                        <span className="cashier-step2-currency-prefix">{CASHIER_CURRENCY}</span>
+                                        <input
+                                            type="number"
+                                            value={amount}
+                                            onChange={(e) => setAmount(e.target.value)}
+                                            placeholder="Please Enter Amount"
+                                            min={minAmount}
+                                            max={maxAmount}
+                                            disabled={!selectedBank}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            {!isValidAmount && amount && (
+                                <p className="mt-2 flex items-center gap-1.5 text-sm font-medium text-[var(--color-danger)]">
+                                    <AlertCircle size={14} className="shrink-0" />
+                                    {amountNum < minAmount
+                                        ? `Minimum amount is ${CASHIER_CURRENCY} ${minAmount}`
+                                        : `Maximum amount is ${CASHIER_CURRENCY} ${maxAmount.toLocaleString()}`
+                                    }
+                                </p>
+                            )}
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() => canProceedStep2 && setStep(3)}
+                            disabled={!canProceedStep2}
+                            className="cashier-step2-submit"
+                        >
+                            Withdraw
+                        </button>
+                    </div>
+                )}
+
+                {step === 2 && withdrawalMethod === 'ewallet' && (
+                    <div className="cashier-flow-step space-y-6 p-5 md:p-6">
+                        <div className="flex items-center gap-3">
+                            <span className="cashier-step-badge">2</span>
+                            <div>
+                                <h2 className="cashier-section-title text-base md:text-lg">Account & Amount</h2>
+                                <p className="cashier-section-subtitle text-xs leading-snug md:text-sm">
+                                    Select E-Wallet, enter phone number and amount.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Select E-Wallet <span className="text-[var(--color-danger)]">*</span></p>
+                            <div className="relative">
+                                <button
+                                    type="button"
+                                    onClick={() => setEwalletDropdownOpen((o) => !o)}
+                                    className="flex h-12 w-full items-center justify-between gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-left text-sm shadow-[var(--shadow-subtle)]"
+                                >
+                                    {selectedEwallet && selectedEwalletOption ? (
+                                        <span className="flex items-center gap-2.5">
+                                            <img src={selectedEwalletOption.image} alt="" className="h-6 w-6 object-contain" />
+                                            <span className="font-medium text-[var(--color-text-primary)]">
+                                                {selectedEwalletOption.label} ({selectedEwalletOption.min} - {selectedEwalletOption.max.toLocaleString()})
+                                            </span>
+                                        </span>
+                                    ) : (
+                                        <span className="text-[var(--color-text-muted)]">Select E-Wallet</span>
+                                    )}
+                                    <ChevronDown size={18} className={`shrink-0 text-[var(--color-text-muted)] transition ${ewalletDropdownOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                {ewalletDropdownOpen && (
+                                    <>
+                                        <div className="absolute inset-0 z-10" onClick={() => setEwalletDropdownOpen(false)} aria-hidden />
+                                        <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                            {E_WALLET_OPTIONS.map((opt) => (
+                                                <button
+                                                    key={opt.id}
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setSelectedEwallet(opt.id);
+                                                        setEwalletDropdownOpen(false);
+                                                    }}
+                                                    className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm hover:bg-[var(--color-surface-input-light)]"
+                                                >
+                                                    <img src={opt.image} alt={opt.label} className="h-6 w-6 shrink-0 object-contain" />
+                                                    <span className="font-normal text-[var(--color-text-primary)]">{opt.label} ({opt.min} - {opt.max.toLocaleString()})</span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                        <div>
+                            <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Phone Number <span className="text-[var(--color-danger)]">*</span></p>
+                            <input
+                                type="tel"
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                placeholder="Enter your phone number"
+                                className="h-12 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-4 text-sm text-[var(--color-text-primary)] outline-none placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-border-brand)] focus:ring-2 focus:ring-[var(--color-border-brand)]/20"
+                            />
+                        </div>
 
                         <div>
                             <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Amount <span className="text-[var(--color-danger)]">*</span></p>
@@ -490,8 +577,8 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         <div className="flex items-center justify-between gap-4 px-5 py-4">
                                             <span className="cashier-summary-card__row-label text-sm font-medium">Bank</span>
                                             <span className="cashier-summary-card__row-value flex items-center gap-2.5 text-sm font-semibold">
-                                                {selectedBank && BANKS.find((b) => b.id === selectedBank)?.image && (
-                                                    <img src={BANKS.find((b) => b.id === selectedBank)?.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
+                                                {selectedWithdrawalBank?.image && (
+                                                    <img src={selectedWithdrawalBank.image} alt="" className="h-6 w-6 shrink-0 object-contain" />
                                                 )}
                                                 {selectedBankLabel}
                                             </span>

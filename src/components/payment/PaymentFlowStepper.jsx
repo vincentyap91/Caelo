@@ -33,7 +33,12 @@ export default function PaymentFlowStepper({ step, steps, variant = 'default', c
                                     }
                                 >
                                     {isCompleted ? (
-                                        <Check size={18} strokeWidth={2.5} className="sm:h-5 sm:w-5" aria-hidden />
+                                        <Check
+                                            size={18}
+                                            strokeWidth={2.5}
+                                            className={`${isCashier ? 'cashier-stepper-check ' : ''}sm:h-5 sm:w-5`}
+                                            aria-hidden
+                                        />
                                     ) : (
                                         s.id
                                     )}
