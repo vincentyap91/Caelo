@@ -1,101 +1,12 @@
-import React, { useState } from 'react';
-import { ChevronRight, Crown, Gift, ShieldCheck, Sparkles, Users } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { ChevronRight, Crown } from 'lucide-react';
 import normalMedal from '../assets/Normal.png';
-import bronzeMedal from '../assets/bronze.png';
-import silverMedal from '../assets/silver.png';
-import goldMedal from '../assets/gold.png';
-import platinumMedal from '../assets/platinum.png';
-import sapphireMedal from '../assets/sapphire.png';
 import diamondMedal from '../assets/diamond.png';
 import headsetImage from '../assets/headset.png';
 import vipBanner from '../assets/vip-banner.jpg';
 import { PAGE_BANNER_IMG_FILL } from '../constants/pageBannerClasses';
-import PromotionStyleTabs from './PromotionStyleTabs';
-
-const vipTabs = ['Upgrade', 'Privileges', 'Referral'];
-
-const vipLevels = [
-    { tier: 'Normal', medal: normalMedal, monthlyReload: '$8,000', annualReward: '$20,000', depositPoint: '$500', validBetPoint: '$15,000' },
-    { tier: 'Bronze', medal: bronzeMedal, monthlyReload: '$20,000', annualReward: '$50,000', depositPoint: '$2,000', validBetPoint: '$50,000' },
-    { tier: 'Silver', medal: silverMedal, monthlyReload: '$35,000', annualReward: '$90,000', depositPoint: '$5,000', validBetPoint: '$120,000' },
-    { tier: 'Gold', medal: goldMedal, monthlyReload: '$50,000', annualReward: '$120,000', depositPoint: '$8,000', validBetPoint: '$180,000' },
-    { tier: 'Platinum', medal: platinumMedal, monthlyReload: '$200,000', annualReward: '$240,000', depositPoint: '$18,000', validBetPoint: '$320,000' },
-    { tier: 'Sapphire', medal: sapphireMedal, monthlyReload: '$350,000', annualReward: '$360,000', depositPoint: '$30,000', validBetPoint: '$500,000' },
-    { tier: 'Diamond', medal: diamondMedal, monthlyReload: '$1,000,000', annualReward: '$1,200,000', depositPoint: '$100,000', validBetPoint: '$1,500,000' },
-];
-
-const vipTierComparisonTiers = [
-    { tier: 'Normal', medal: normalMedal },
-    { tier: 'Bronze', medal: bronzeMedal },
-    { tier: 'Silver', medal: silverMedal },
-    { tier: 'Gold', medal: goldMedal },
-    { tier: 'Platinum', medal: platinumMedal },
-    { tier: 'Diamond', medal: diamondMedal },
-];
-
-const vipTierComparisonSections = [
-    {
-        header: 'Upgrade & Maintenance Requirement',
-        rows: [
-            { label: 'Deposit Requirement (One Month)', values: ['First Deposit', '$150,000', '$300,000', '$800,000', '$1,800,000', '$5,000,000'] },
-            { label: 'Maintenance Requirement (One Month)', values: ['N/A', '$100,000', '$200,000', '$500,000', '$1,300,000', '$2,500,000'] },
-            { label: 'Membership Renewal', values: ['Lifetime', 'Monthly', 'Monthly', 'Monthly', 'Monthly', 'Monthly'] },
-        ],
-    },
-    {
-        header: 'Daily Rollover Rebate',
-        rows: [
-            { label: 'Sportsbook', values: ['0.60%', '0.65%', '0.70%', '0.80%', '1%', '1.25%'] },
-            { label: 'Live Casino', values: ['0.65%', '0.70%', '0.75%', '0.85%', '1.05%', '1.35%'] },
-            { label: 'Slot Games', values: ['0.55%', '0.60%', '0.65%', '0.75%', '0.95%', '1.15%'] },
-        ],
-    },
-    {
-        header: 'Gifts & Treats',
-        rows: [
-            { label: 'Tier Upgrade Bonus', values: ['N/A', '$500', '$888', '$1,888', '$2,888', '$8,888'] },
-            { label: 'Weekly Cash Rebate', values: ['N/A', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes'] },
-            { label: 'Birthday Bonus', values: ['N/A', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes'] },
-        ],
-    },
-    {
-        header: 'Service Support',
-        rows: [
-            { label: 'Daily Withdrawal Limit', values: ['3 Times', '3 Times', '4 Times', '4 Times', '5 Times', '8 Times'] },
-            { label: 'VIP Privilege Customer Service', values: ['N/A', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes'] },
-            { label: 'Deposit and Withdrawal Prioritization', values: ['N/A', 'Standard', 'Standard', 'High Priority', 'High Priority', 'Highest Priority'] },
-        ],
-    },
-];
-
-const privilegeCards = [
-    {
-        title: 'Priority Withdrawals',
-        description: 'Enjoy a faster review queue with dedicated handling for eligible VIP members.',
-        icon: ShieldCheck,
-    },
-    {
-        title: 'Exclusive Bonuses',
-        description: 'Unlock reload offers, birthday rewards, and campaign access reserved for VIP members.',
-        icon: Gift,
-    },
-    {
-        title: 'Dedicated Host Support',
-        description: 'Receive one-to-one support for account assistance, promotions, and event invitations.',
-        icon: Users,
-    },
-    {
-        title: 'Tailored Reward Journey',
-        description: 'Progress through higher tiers with better limits, stronger promotions, and premium perks.',
-        icon: Sparkles,
-    },
-];
-
-const referralBenefits = [
-    'Invite qualified players and earn extra bonus rewards once they successfully register and deposit.',
-    'Referral campaigns may include cashback, limited seasonal prizes, and upgraded VIP access reviews.',
-    'Customer service can assist with campaign eligibility and tracking for active referral requests.',
-];
+import { VIP_MEMBERSHIP_TABS, VIP_MEMBERSHIP_TIERS } from '../constants/vipMembershipTiers';
+import { scrollTabIntoViewSmooth } from './HorizontalScrollTabRow';
 
 function VipMedal({ src, alt, className = '' }) {
     if (!src) {
@@ -105,7 +16,7 @@ function VipMedal({ src, alt, className = '' }) {
                 title={alt}
                 className={`inline-flex items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-gradient-vip-tier-muted text-xs font-bold uppercase tracking-wide text-[var(--color-text-secondary)] shadow-[var(--shadow-subtle)] ${className}`}
             >
-                SV
+                VIP
             </span>
         );
     }
@@ -113,187 +24,105 @@ function VipMedal({ src, alt, className = '' }) {
     return <img src={src} alt={alt} className={`object-contain ${className}`} />;
 }
 
-function UpgradeContent() {
+function MembershipDataTable({ title, rows }) {
     return (
-        <div className="space-y-6">
-            <div className="surface-card rounded-2xl p-6 md:p-8">
-                <h3 className="text-lg font-bold text-[var(--color-text-primary)] md:text-xl">How Does It Work?</h3>
-                <ol className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    <li className="flex items-start gap-3">
-                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-muted)] text-xs font-bold text-[var(--color-button-muted-text)]">1</span>
-                        <span>Members apply to become VIP after reaching the required deposit and valid bet targets within the promotion cycle.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-muted)] text-xs font-bold text-[var(--color-button-muted-text)]">2</span>
-                        <span>The VIP team reviews the account performance and may contact the member for profile verification.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-muted)] text-xs font-bold text-[var(--color-button-muted-text)]">3</span>
-                        <span>Successful applicants receive tier confirmation, monthly reward eligibility, and access to premium member privileges.</span>
-                    </li>
-                </ol>
-            </div>
-
-            <div className="surface-card overflow-hidden rounded-2xl">
-                <div className="border-b border-[var(--color-border-subtle)] px-4 py-4 md:px-5">
-                    <h3 className="text-lg font-bold text-[var(--color-text-primary)] md:text-xl">VIP Loyalty Tiers</h3>
-                    <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                        Compare benefits across tiers. Move through each level by increasing your qualifying deposits and valid bets.
-                    </p>
-                </div>
-
-                <div className="hidden overflow-x-auto md:block">
-                    <table className="w-full min-w-[640px] border-collapse text-sm">
-                        <thead>
-                            <tr>
-                                <th className="w-[1%] border-b border-[var(--color-border-brand)]/20 bg-[var(--color-primary)] px-4 py-3" aria-hidden>
-                                </th>
-                                {vipTierComparisonTiers.map((t) => (
-                                    <th
-                                        key={t.tier}
-                                        className="min-w-[110px] border-b border-[var(--color-border-brand)]/20 bg-[var(--color-primary)] px-4 py-5 text-center shadow-[var(--inset-highlight-soft)]"
-                                    >
-                                        <div className="flex flex-col items-center gap-3">
-                                            <VipMedal src={t.medal} alt={`${t.tier} medal`} className="h-11 w-11 shrink-0 md:h-12 md:w-12" />
-                                            <span className="font-bold uppercase tracking-wide text-[var(--color-text-card-text)] drop-shadow-sm">{t.tier}</span>
-                                        </div>
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {vipTierComparisonSections.map((section) => (
-                                <React.Fragment key={section.header}>
-                                    <tr>
-                                        <td
-                                            colSpan={7}
-                                            className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-4 py-3 text-xs font-bold uppercase tracking-wide text-[var(--color-text-primary)]"
-                                        >
-                                            {section.header}
-                                        </td>
-                                    </tr>
-                                    {section.rows.map((row, rowIdx) => (
-                                        <tr
-                                            key={row.label}
-                                            className={rowIdx % 2 === 0 ? 'bg-[var(--color-surface-base)]' : 'bg-[var(--color-surface-secondary-chip)]'}
-                                        >
-                                            <td className="border-b border-r border-[var(--color-border-subtle)] px-4 py-3 font-normal text-[var(--color-text-primary)]">
-                                                {row.label}
-                                            </td>
-                                            {row.values.map((val, colIdx) => (
-                                                <td
-                                                    key={colIdx}
-                                                    className="border-b border-[var(--color-border-subtle)] px-4 py-3 text-center font-normal text-[var(--color-text-primary)]"
-                                                >
-                                                    {val}
-                                                </td>
-                                            ))}
-                                        </tr>
-                                    ))}
-                                </React.Fragment>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-
-                <div className="space-y-4 p-4 md:hidden">
-                    {vipTierComparisonTiers.map((t) => (
-                        <div key={t.tier} className="surface-card rounded-xl overflow-hidden">
-                            <div className="flex items-center gap-3 border-b border-[var(--color-border-subtle)] bg-[var(--color-primary)] px-4 py-4 shadow-[var(--inset-highlight-soft)]">
-                                <VipMedal src={t.medal} alt={`${t.tier} medal`} className="h-11 w-11 shrink-0" />
-                                <span className="font-bold uppercase tracking-wide text-[var(--color-text-card-text)] drop-shadow-sm">{t.tier}</span>
-                            </div>
-                            <div className="divide-y divide-[var(--color-border-subtle)] p-4">
-                                {vipTierComparisonSections.map((section) => (
-                                    <div key={section.header} className="py-3 first:pt-0 last:pb-0">
-                                        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-primary)]">
-                                            {section.header}
-                                        </p>
-                                        <div className="mt-2 space-y-2">
-                                            {section.rows.map((row) => (
-                                                <div key={row.label} className="flex justify-between gap-4 text-sm">
-                                                    <span className="font-normal text-[var(--color-text-primary)]">{row.label}</span>
-                                                    <span className="shrink-0 font-normal text-[var(--color-text-primary)]">
-                                                        {row.values[vipTierComparisonTiers.findIndex((x) => x.tier === t.tier)]}
-                                                    </span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+        <div className="vip-membership-table">
+            <table className="w-full border-collapse">
+                <thead>
+                    <tr className="vip-membership-brand-gradient">
+                        <th colSpan={2} className="vip-membership-table__head">
+                            {title}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows.map((row) => (
+                        <tr key={row.label}>
+                            <td className="vip-membership-table__label">{row.label}</td>
+                            <td className="vip-membership-table__value">{row.value}</td>
+                        </tr>
                     ))}
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
     );
 }
 
-function PrivilegesContent() {
+function MembershipBenefitsContent({ tier }) {
     return (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {privilegeCards.map(({ title, description, icon: Icon }) => (
-                <div
-                    key={title}
-                    className="surface-card rounded-2xl p-6 md:p-7"
-                >
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-vip-badge text-[var(--color-text-cta-inverse)] shadow-[var(--shadow-cta-soft)]">
-                        <Icon size={20} strokeWidth={2.25} />
-                    </span>
-                    <h3 className="mt-4 text-lg font-bold text-[var(--color-text-primary)]">{title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{description}</p>
-                </div>
-            ))}
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <MembershipDataTable title="Membership Benefits" rows={tier.benefits} />
+            <MembershipDataTable title="Member Rebates" rows={tier.rebates} />
         </div>
     );
 }
 
-function ReferralContent() {
-    return (
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="surface-card rounded-2xl p-6 md:p-7">
-                <h3 className="text-lg font-bold text-[var(--color-text-primary)] md:text-xl">Referral Rewards</h3>
-                <div className="mt-4 space-y-3">
-                    {referralBenefits.map((item, index) => (
-                        <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                            <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-button-muted)] text-xs font-bold text-[var(--color-button-muted-text)]">
-                                {index + 1}
-                            </span>
-                            <span>{item}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
+function MembershipRequirementsContent({ tier }) {
+    return <MembershipDataTable title="Requirements" rows={tier.requirements} />;
+}
 
-            <div className="surface-card rounded-2xl p-6 md:p-7">
-                <h3 className="text-lg font-bold text-[var(--color-text-primary)]">Contact VIP Team</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    Need assistance with account review, benefits, or VIP eligibility? Our support team can help you verify your requirements.
-                </p>
-                <div className="mt-5 space-y-3">
-                    <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] p-4">
-                        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Email</p>
-                        <p className="mt-1 font-semibold text-[var(--color-text-primary)]">vip@12win.example</p>
-                    </div>
-                    <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] p-4">
-                        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">Support Hours</p>
-                        <p className="mt-1 font-semibold text-[var(--color-text-primary)]">24/7 Live Chat Assistance</p>
-                    </div>
-                </div>
-                <button
-                    type="button"
-                    className="btn-theme-cta mt-5 inline-flex h-11 items-center justify-center rounded-xl px-6 text-sm font-bold transition hover:-translate-y-0.5 hover:brightness-105"
-                >
-                    Contact Support
-                </button>
+function MembershipSectionTabs({ items, value, onChange }) {
+    const tabRefs = useRef({});
+
+    return (
+        <div className="vip-membership-tabs" role="tablist" aria-label="Membership sections">
+            {items.map((item) => {
+                const active = value === item.id;
+
+                return (
+                    <button
+                        key={item.id}
+                        ref={(el) => {
+                            if (el) tabRefs.current[item.id] = el;
+                            else delete tabRefs.current[item.id];
+                        }}
+                        type="button"
+                        role="tab"
+                        aria-selected={active}
+                        onClick={() => {
+                            onChange(item.id);
+                            scrollTabIntoViewSmooth(tabRefs.current[item.id]);
+                        }}
+                        className={`vip-membership-tabs__tab ${active ? 'vip-membership-tabs__tab--active' : ''}`}
+                    >
+                        {item.label}
+                    </button>
+                );
+            })}
+        </div>
+    );
+}
+
+function VipTierSelector({ tiers, value, onChange }) {
+    return (
+        <div>
+            <h2 className="text-lg font-bold text-[var(--color-text-primary)] md:text-xl">VIP Privileges</h2>
+            <div className="vip-tier-grid mt-4">
+                {tiers.map((tier) => {
+                    const selected = value === tier.id;
+
+                    return (
+                        <button
+                            key={tier.id}
+                            type="button"
+                            aria-pressed={selected}
+                            onClick={() => onChange(tier.id)}
+                            className={`vip-tier-card ${selected ? 'vip-tier-card--selected vip-membership-brand-gradient' : ''}`}
+                        >
+                            <VipMedal src={tier.medal} alt={`${tier.tier} medal`} className="h-11 w-11" />
+                            <span className="text-sm font-bold">{tier.tier}</span>
+                        </button>
+                    );
+                })}
             </div>
         </div>
     );
 }
 
 export default function VipPage({ authUser }) {
-    const [activeTab, setActiveTab] = useState('Upgrade');
+    const [selectedTierId, setSelectedTierId] = useState(VIP_MEMBERSHIP_TIERS[0].id);
+    const [activeTab, setActiveTab] = useState(VIP_MEMBERSHIP_TABS[0].id);
+    const selectedTier = VIP_MEMBERSHIP_TIERS.find((tier) => tier.id === selectedTierId) ?? VIP_MEMBERSHIP_TIERS[0];
     const showBannerCta = !authUser;
 
     return (
@@ -306,7 +135,6 @@ export default function VipPage({ authUser }) {
                             alt="VIP Banner"
                             className={`page-hero-banner__img ${PAGE_BANNER_IMG_FILL}`}
                         />
-                        {/* Mobile: same right-column layout as referral hero; md+: unchanged VIP strip */}
                         <div className="absolute inset-y-0 right-0 flex w-[56%] items-center justify-end pr-3 sm:w-[52%] sm:pr-4 md:w-[52%] md:justify-start md:pr-0">
                             <div className="flex w-full max-w-[500px] flex-col items-center justify-center px-2 py-2 text-center max-md:justify-center md:max-w-[520px] md:px-8 md:py-7">
                                 <h1
@@ -340,7 +168,7 @@ export default function VipPage({ authUser }) {
                     <div>
                         <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)] shadow-[var(--shadow-subtle)]">
                             <Crown size={14} className="text-[var(--color-accent)]" />
-                            VIP Group
+                            VIP Club
                         </span>
                         <h1 className="mt-4 text-2xl font-semibold tracking-tight text-[var(--color-text-primary)] md:text-3xl">
                             Premium rewards for our most active members
@@ -390,18 +218,20 @@ export default function VipPage({ authUser }) {
                         </div>
                     </div>
 
-                    <div className="mt-5 border-t border-[var(--color-border-subtle)] pt-5">
-                        <PromotionStyleTabs
-                            items={vipTabs}
-                            value={activeTab}
-                            onChange={setActiveTab}
-                            gapClassName="!gap-3 sm:!gap-3"
-                            ariaLabel="VIP programme sections"
-                        />
+                    <div className="mt-6">
+                        <VipTierSelector tiers={VIP_MEMBERSHIP_TIERS} value={selectedTierId} onChange={setSelectedTierId} />
                     </div>
 
-                    <div className="mt-6">
-                        {activeTab === 'Upgrade' ? <UpgradeContent /> : activeTab === 'Privileges' ? <PrivilegesContent /> : <ReferralContent />}
+                    <div className="mt-5 border-t border-[var(--color-border-subtle)] pt-5">
+                        <MembershipSectionTabs items={VIP_MEMBERSHIP_TABS} value={activeTab} onChange={setActiveTab} />
+                    </div>
+
+                    <div className="mt-5">
+                        {activeTab === 'benefits' ? (
+                            <MembershipBenefitsContent tier={selectedTier} />
+                        ) : (
+                            <MembershipRequirementsContent tier={selectedTier} />
+                        )}
                     </div>
                 </div>
             </section>
@@ -429,4 +259,3 @@ export default function VipPage({ authUser }) {
         </main>
     );
 }
-
