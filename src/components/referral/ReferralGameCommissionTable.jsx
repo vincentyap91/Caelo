@@ -62,7 +62,7 @@ export default function ReferralGameCommissionTable({
                                 {levelKeys.map((key) => (
                                     <td
                                         key={key}
-                                        className="px-4 py-3 text-center text-sm font-bold tabular-nums text-[var(--color-button-hover)] md:px-5 md:py-3.5"
+                                        className="px-4 py-3 text-center text-sm font-bold tabular-nums text-[var(--color-text-primary)] md:px-5 md:py-3.5"
                                     >
                                         {row[key] ?? '—'}
                                     </td>

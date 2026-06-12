@@ -492,6 +492,8 @@
    * color/surface/input-color → referral code/link copy fields
    * color/surface/filter → quick-range date pills (inactive shell)
    * color/surface/notify → reward history filter bar (PromotionStyleTabs panel)
+   * color/text/cta/inverse → selected history filter tab (btn-theme-tab-selected)
+   * color/text/primary → How it works commission table td (provider + rate cells)
    * color/effect/shadow/card/soft → shadow-card-soft tint (.shadow-card-soft utility)
    */
   .referral-page {
