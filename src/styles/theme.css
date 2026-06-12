@@ -246,11 +246,7 @@
   }
 
   .app-download-section .app-download-apk-button {
-    --color-gradient-home-highlight: linear-gradient(
-      90deg,
-      var(--raw-gradient-app-download-button-start) 0%,
-      var(--brand-500) 100%
-    );
+    --color-gradient-home-highlight: var(--color-gradient-app-download-button);
   }
 
   /**
@@ -943,31 +939,32 @@
    * color/surface/check-in/text → title + close link (#01206c)
    * color/text/check-in/day-active → refresh line + day count (#032ea1)
    * color/text/check-in/day-past → remaining copy (#0c4a8e)
-   * color/surface/check-in/cell-active → finished shell (dark navy, dimmed ticket)
-   * color/surface/check-in/day-current → active shell (royal blue + glow)
-   * color/surface/check-in/day-bg → upcoming shell (periwinkle)
-   * color/surface/check-in/inverse → active/upcoming ticket + reward (white)
+   * color/surface/check-in/cell-active → claimed shell (navy)
+   * color/surface/check-in/day-current → active shell (navy + glow)
+   * color/surface/check-in/day/inactive → inactive card (#516c99)
+   * color/surface/check-in/cell/inactive → inactive pill (#647ca2)
+   * color/border/check-in/day/inactive → inactive border (#05348f)
+   * color/text/check-in/day/inactive → inactive ticket + reward (#9babc3); Container frame
+   * color/text/light → active Container reward (white)
+   * color/surface/check-in/inverse → active pill (white)
    * color/surface/check-in/text → active pill label (navy on white pill)
-   * color/text/check-in/day-muted → finished ticket + copy (muted grey-blue)
-   * color/text/check-in/reward → upcoming ticket + reward (white)
-   * color/icon/check-in-muted → finished ticket glyph
-   * color/icon/check-in-active → active ticket glyph
+   * color/surface/card/light → claimed ticket on navy (mono-111)
+   * color/icon/check-in-muted → claimed ticket glyph
+   * color/icon/check-in-active → active ticket glyph (white)
    * color/surface/check-in/cta → Check In Now
    */
   .daily-bonus-claim-modal {
     --color-popup-body: var(--color-surface-base);
     --color-popup-head: var(--raw-universal-modal-header-bg);
-    --color-surface-check-in-text: var(--brand-700);
+    --color-surface-check-in-text: var(--raw-check-in-day-shell);
     --color-text-check-in-day-active: var(--brand-500);
     --color-text-check-in-day-past: var(--raw-cta-text);
-    --color-text-check-in-day-muted: var(--raw-text-soft);
-    --color-text-check-in-reward: var(--color-text-card-text);
-    --color-surface-check-in-day-bg: var(--pale-200);
-    --color-surface-check-in-cell-active: var(--brand-630);
-    --color-surface-check-in-day-current: var(--brand-500);
+    --color-surface-check-in-cell-active: var(--raw-check-in-day-shell);
+    --color-surface-check-in-day-current: var(--raw-check-in-day-shell);
     --color-surface-check-in-cta: var(--brand-500);
     --color-surface-check-in-inverse: var(--color-text-card-text);
-    --color-icon-check-in-muted: var(--raw-text-soft);
+    --color-text-light: var(--mono-0);
+    --color-icon-check-in-muted: var(--color-surface-card-light);
     --color-icon-check-in-active: var(--color-text-card-text);
     border: none;
     border-radius: 20px;
@@ -1070,12 +1067,12 @@
   }
 
   .daily-bonus-claim-modal__day-card.is-finished .daily-bonus-claim-modal__day-pill {
-    background-color: transparent;
-    color: var(--color-surface-check-in-inverse);
+    background-color: color-mix(in srgb, var(--color-surface-card-light) 20%, transparent);
+    color: var(--color-surface-card-light);
   }
 
   .daily-bonus-claim-modal__day-card.is-finished .daily-bonus-claim-modal__day-reward {
-    color: var(--color-surface-check-in-inverse);
+    color: var(--color-text-check-in-day-inactive);
   }
 
   /* Active — royal blue shell, white ticket, glow (color/surface/check-in/day-current) */
@@ -1091,21 +1088,22 @@
   }
 
   .daily-bonus-claim-modal__day-card.is-active .daily-bonus-claim-modal__day-reward {
-    color: var(--color-surface-check-in-inverse);
+    color: var(--color-text-light);
   }
 
-  /* Upcoming — periwinkle shell, soft white ticket (color/surface/check-in/day-bg) */
+  /* Inactive — locked / upcoming days (color/surface/check-in/day/inactive) */
   .daily-bonus-claim-modal__day-card.is-upcoming {
-    background-color: var(--color-surface-check-in-day-bg);
+    border-color: var(--color-border-check-in-day-inactive);
+    background-color: var(--color-surface-check-in-day-inactive);
   }
 
   .daily-bonus-claim-modal__day-card.is-upcoming .daily-bonus-claim-modal__day-pill {
-    background-color: transparent;
-    color: var(--color-surface-check-in-inverse);
+    background-color: var(--color-surface-check-in-cell-inactive);
+    color: var(--color-text-check-in-day-inactive);
   }
 
   .daily-bonus-claim-modal__day-card.is-upcoming .daily-bonus-claim-modal__day-reward {
-    color: var(--color-surface-check-in-inverse);
+    color: var(--color-text-check-in-day-inactive);
   }
 
   .daily-bonus-claim-modal__day-pill {
@@ -1126,20 +1124,17 @@
     flex-shrink: 0;
   }
 
-  /* color/icon/check-in/active — white on dark + active shells */
-  .daily-bonus-claim-modal__day-ticket--finished,
+  /* Ticket glyph — active / claimed / inactive (color/icon/check-in/* + color/text/check-in/day/inactive) */
   .daily-bonus-claim-modal__day-ticket--active {
     color: var(--color-icon-check-in-active);
   }
 
   .daily-bonus-claim-modal__day-ticket--finished {
-    opacity: 0.88;
+    color: var(--color-icon-check-in-muted);
   }
 
-  /* color/surface/check-in/inverse — soft white on periwinkle upcoming shell */
   .daily-bonus-claim-modal__day-ticket--upcoming {
-    color: var(--color-surface-check-in-inverse);
-    opacity: 0.85;
+    color: var(--color-text-check-in-day-inactive);
   }
 
   .daily-bonus-claim-modal__day-reward {
@@ -1372,7 +1367,7 @@
   }
 
   .bg-gradient-app-download-button {
-    --color-gradient-home-highlight: linear-gradient(90deg, var(--raw-gradient-app-download-button-start) 0%, var(--brand-500) 100%);
+    --color-gradient-home-highlight: var(--color-gradient-app-download-button);
     background-image: var(--color-gradient-home-highlight);
   }
 
@@ -1630,8 +1625,10 @@
    * |--color-text-primary| charcoal link label + URL |
    * |--color-surface-referral-input| muted field shell (--raw-surface-muted) |
    * |--color-info-icon| dark copy icon (scoped to --color-text-tertiary) |
-   * |--color-button-referral-cta| navy primary (Downlines / More Info) |
-   * |--color-button-referral-cta (share)| vibrant red (--color-danger) |
+   * raw/button/referral/hub/share → --raw-button-referral-hub-share (#ff4d00)
+   * raw/button/referral/hub/secondary → --raw-button-referral-hub-secondary (#123b94)
+   * color/button/referral/hub/share → Share CTA fill
+   * color/button/referral/hub/secondary → Downlines / More Info fill
    */
   .home-page .referral-banner-section .referral-hub-card {
     --color-border-brand: var(--raw-brand-soft-border);
@@ -1639,26 +1636,23 @@
     --color-text-sub-title: var(--color-text-tertiary);
     --color-text-primary: var(--color-text-tertiary);
     --color-info-icon: var(--color-text-tertiary);
-    --color-button-referral-cta: var(--color-primary);
-    --color-button-referral-cta-text: var(--color-text-card-text);
+    --color-button-referral-hub-share-text: var(--color-text-card-text);
+    --color-button-referral-hub-secondary-text: var(--color-text-card-text);
   }
 
   .home-page .referral-banner-section .referral-hub-card__link-field {
     --color-border-brand: var(--raw-border-brand);
   }
 
-  .home-page .referral-hub-card__btn {
-    background: var(--color-button-referral-cta);
-    color: var(--color-button-referral-cta-text);
-  }
-
   .home-page .referral-hub-card__btn-share {
-    --color-button-referral-cta: var(--color-danger);
-    --color-danger: var(--support-error-warm);
+    background: var(--color-button-referral-hub-share);
+    color: var(--color-button-referral-hub-share-text);
     box-shadow: var(--shadow-hot);
   }
 
   .home-page .referral-hub-card__btn-cta {
+    background: var(--color-button-referral-hub-secondary);
+    color: var(--color-button-referral-hub-secondary-text);
     box-shadow: var(--shadow-accent);
   }
 
@@ -3578,21 +3572,47 @@
     background-color: var(--color-nav-border);
   }
 
-  /** Mobile logged-in balance chip ? same Caelo dark bar look via --color-sticky-nav */
+  /** Mobile logged-in balance chip — same fill + glass as `.top-sticky-balance-chip` (§13.11) */
   .mobile-sticky-balance {
-    border-color: var(--color-nav-border-soft);
+    --color-surface-high: var(--brand-400);
+    --color-text-sticky-nav-text: var(--mono-0);
+    border: none;
+    box-shadow: var(--nav-top-pill-shadow);
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .mobile-sticky-balance__toggle:hover {
-    background-color: var(--raw-nav-tile-border);
+    background-color: var(--color-surface-light-active);
   }
 
   .mobile-sticky-balance__refresh {
-    border-left-color: var(--color-nav-border);
+    background-color: var(--color-surface-high);
+    background-image: var(--nav-top-pill-bg);
+    border-left: 1px solid var(--color-nav-border);
+    color: var(--color-text-sticky-nav-text);
+  }
+
+  .mobile-sticky-balance__refresh:hover {
+    filter: brightness(1.1);
   }
 
   /**
-   * Web - Sidenav (Cam88 1324:11385) ? mobile drawer; Caelo light menu skin (?13.11).
+   * Web - Sidenav (Cam88 1324:11385) — mobile drawer; Caelo light menu skin (§13.11).
+   *
+   * Split tokens (§13.11) — Figma 471:9583 Sidemenu:
+   * | CSS | Figma path | Role |
+   * |--color-surface-sidenav-tier-badge| color/surface/sidenav/tier-badge | DIAMOND pill |
+   * |--color-border-sidenav-tier-badge| color/border/sidenav/tier-badge | tier ring |
+   * |--color-surface-sidenav-icon| color/surface/sidenav/icon | icon chip |
+   * |--color-border-sidenav-item-hover| color/border/sidenav/item-hover | item hover ring |
+   * |--color-surface-sidenav-subitem-hover| color/surface/sidenav/subitem-hover | sub-row hover |
+   * |--color-button-sidenav-live-chat| color/button/sidenav/live-chat | Live Chat fill |
+   * |--color-button-sidenav-live-chat-text| color/button/sidenav/live-chat/text | Live Chat label |
+   * |--color-button-sidenav-secondary| color/button/sidenav/secondary | Withdrawal / Logout |
+   * |--color-button-sidenav-secondary-text| color/button/sidenav/secondary/text | secondary label |
+   * |--color-border-sidenav-secondary| color/border/sidenav/secondary | secondary border |
    */
   .sidenav-shell {
     --color-button-nav: var(--color-surface-base);
@@ -3602,6 +3622,8 @@
     --color-sticky-nav: var(--brand-500);
     --color-primary: var(--brand-500);
     --color-text-sticky-nav-text: var(--mono-0);
+    --color-button-sidenav-live-chat: var(--brand-500);
+    --color-button-sidenav-secondary: var(--color-surface-base);
     background-color: var(--color-surface-base);
     border-color: var(--color-border-subtle);
     color: var(--color-button-nav-text);
@@ -3613,10 +3635,8 @@
   }
 
   .sidenav-shell .sidenav-tier-badge {
-    --color-accent-pale: var(--accent-pale-100);
-    --color-accent-glow: var(--raw-cta-border);
-    border: 1px solid var(--color-accent-glow);
-    background-color: var(--color-accent-pale);
+    border: 1px solid var(--color-border-sidenav-tier-badge);
+    background-color: var(--color-surface-sidenav-tier-badge);
     color: var(--color-text-primary-card-title);
   }
 
@@ -3654,7 +3674,7 @@
   }
 
   .sidenav-item:hover:not(.sidenav-item--active) {
-    border-color: var(--color-accent-glow);
+    border-color: var(--color-border-sidenav-item-hover);
     background-color: var(--color-surface-subtle);
     color: var(--color-button-nav-text);
   }
@@ -3671,16 +3691,14 @@
   }
 
   .sidenav-item__icon {
-    --color-accent-pale: var(--raw-surface-panel);
     border-color: var(--color-border-subtle);
-    background-color: var(--color-accent-pale);
+    background-color: var(--color-surface-sidenav-icon);
     color: var(--color-text-primary-card-title);
   }
 
   .sidenav-item--active .sidenav-item__icon {
-    --color-accent-pale: var(--raw-surface-panel);
     border-color: var(--color-border-subtle);
-    background-color: var(--color-accent-pale);
+    background-color: var(--color-surface-sidenav-icon);
     color: var(--color-text-primary-card-title);
   }
 
@@ -3690,7 +3708,7 @@
   }
 
   .sidenav-group--active {
-    border-color: var(--color-accent-glow);
+    border-color: var(--color-border-sidenav-item-hover);
     background-image: var(--color-gradient-home-muted);
     box-shadow: var(--shadow-brand-soft);
   }
@@ -3705,7 +3723,7 @@
   }
 
   .sidenav-subitem:hover {
-    background-color: var(--color-accent-pale);
+    background-color: var(--color-surface-sidenav-subitem-hover);
     color: var(--color-text-primary);
   }
 
@@ -3716,14 +3734,12 @@
   }
 
   .sidenav-subitem__icon {
-    --color-accent-pale: var(--raw-surface-panel);
-    background-color: var(--color-accent-pale);
+    background-color: var(--color-surface-sidenav-icon);
     color: var(--color-text-primary-card-title);
   }
 
   .sidenav-subitem--active .sidenav-subitem__icon {
-    --color-accent-pale: var(--raw-surface-panel);
-    background-color: var(--color-accent-pale);
+    background-color: var(--color-surface-sidenav-icon);
     color: var(--color-text-primary-card-title);
   }
 
@@ -3738,11 +3754,10 @@
   }
 
   .sidenav-shell .sidenav-live-chat {
-    --color-button-nav-text: var(--mono-0);
-    border: 1px solid var(--color-sticky-nav);
-    background-color: var(--color-sticky-nav);
+    border: 1px solid var(--color-button-sidenav-live-chat);
+    background-color: var(--color-button-sidenav-live-chat);
     background-image: none;
-    color: var(--color-button-nav-text);
+    color: var(--color-button-sidenav-live-chat-text);
     box-shadow: var(--nav-top-pill-shadow);
   }
 
@@ -3751,9 +3766,9 @@
   }
 
   .sidenav-secondary-action {
-    border: 1px solid var(--color-border-subtle);
-    background-color: var(--color-surface-base);
-    color: var(--color-text-primary-card-title);
+    border: 1px solid var(--color-border-sidenav-secondary);
+    background-color: var(--color-button-sidenav-secondary);
+    color: var(--color-button-sidenav-secondary-text);
     box-shadow: var(--shadow-input);
     transition:
       background-color 0.2s,
@@ -3762,7 +3777,7 @@
 
   .sidenav-secondary-action:hover {
     background-color: var(--color-surface-subtle);
-    color: var(--color-text-primary-card-title);
+    color: var(--color-button-sidenav-secondary-text);
   }
 
   .type-heading {

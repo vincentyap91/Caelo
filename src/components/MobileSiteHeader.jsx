@@ -84,12 +84,12 @@ export default function MobileSiteHeader({
                     <>
                         <div
                             ref={containerRef}
-                            className="mobile-sticky-balance relative inline-flex h-10 min-w-0 max-w-[min(13.75rem,calc(100vw-9.25rem))] shrink items-stretch rounded-xl border bg-[var(--color-sticky-nav)] shadow-sm"
+                            className="mobile-sticky-balance relative inline-flex h-10 min-w-0 max-w-[min(13.75rem,calc(100vw-9.25rem))] shrink items-stretch overflow-hidden rounded-lg"
                         >
                             <button
                                 type="button"
                                 onClick={() => setBalanceDropdownOpen(!balanceDropdownOpen)}
-                                className={`mobile-sticky-balance__toggle flex min-w-0 flex-1 touch-manipulation items-center gap-1 rounded-l-xl text-left transition focus-visible:z-10 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-border-subtle)]/70 focus-visible:ring-offset-0 ${balanceLayout?.variant === 'split'
+                                className={`mobile-sticky-balance__toggle flex min-w-0 flex-1 touch-manipulation items-center gap-1 text-left transition focus-visible:z-10 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--color-border-subtle)]/70 focus-visible:ring-offset-0 ${balanceLayout?.variant === 'split'
                                         ? 'justify-center py-0.5 pl-2.5 pr-1.5'
                                         : 'h-full py-0 pl-2.5 pr-1.5'
                                     }`}
@@ -123,7 +123,7 @@ export default function MobileSiteHeader({
                                     onRefreshBalance?.();
                                 }}
                                 disabled={!onRefreshBalance || balanceRefreshing}
-                                className="mobile-sticky-balance__refresh inline-flex h-full w-10 min-w-10 shrink-0 touch-manipulation items-center justify-center self-stretch rounded-r-xl border-l bg-transparent px-0.5 text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-sticky-nav-active)] disabled:pointer-events-none disabled:opacity-40"
+                                className="mobile-sticky-balance__refresh inline-flex h-full w-10 min-w-10 shrink-0 touch-manipulation items-center justify-center self-stretch px-0.5 transition disabled:pointer-events-none disabled:opacity-40"
                                 aria-label="Refresh balance"
                                 title="Refresh balance"
                             >

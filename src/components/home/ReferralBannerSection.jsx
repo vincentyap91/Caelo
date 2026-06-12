@@ -18,7 +18,7 @@ function ReferralHubCard({
 }) {
     return (
         <div
-            className={`referral-hub-card w-full rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-surface-referral-card)] p-5 text-center sm:p-6 ${className}`}
+            className={`referral-hub-card w-full rounded-2xl bg-[var(--color-surface-referral-card)] p-5 text-center sm:p-6 ${className}`}
         >
             <h2 className="text-xl font-bold leading-tight text-[var(--color-text-sub-title)]">
                 Your Unique Referral Hub
@@ -96,7 +96,7 @@ function MobileLayout({ onNavigate, onShare, copied, onCopy }) {
                 className="block h-auto w-full object-cover object-center"
                 draggable={false}
             />
-            <div className="w-full px-4 py-4">
+            <div className="w-full px-4 py-4 bg-[var(--color-surface-referral-card)]">
                 <ReferralHubCard
                     onNavigate={onNavigate}
                     onShare={onShare}

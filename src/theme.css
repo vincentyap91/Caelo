@@ -264,6 +264,8 @@
   --raw-gradient-register-panel-end: #3e3e3e;
   --raw-gradient-promo-card-start: #e9f3fc;
   --raw-surface-referral-hub: #b0baed;
+  --raw-button-referral-hub-share: #ff4d00;
+  --raw-button-referral-hub-secondary: #123b94;
   --raw-gradient-promo-card-end: var(--raw-surface-referral-hub);
   --raw-gradient-promo-card-desktop-start: #e9eff4;
   --raw-gradient-promo-card-desktop-end: #99a4b0;
@@ -396,6 +398,7 @@
   --color-text-accent-light:                 var(--accent-460);
   --color-text-card-text:                    var(--mono-0);
   --color-text-check-in-day-active:          var(--brand-400);
+  --color-text-check-in-day-inactive:        var(--raw-check-in-day-inactive-text);
   --color-text-check-in-day-muted:           var(--mono-475);
   --color-text-check-in-day-past:            var(--mono-471);
   --color-text-check-in-reward:              var(--mono-647);
@@ -459,11 +462,13 @@
   --color-surface-chatbox:                   var(--mono-750);
   --color-surface-check-in-cell:             var(--mono-453);
   --color-surface-check-in-cell-active:      var(--brand-630);
+  --color-surface-check-in-cell-inactive:    var(--raw-check-in-day-inactive-surface);
   --color-surface-check-in-cell-alt:         var(--mono-855);
   --color-surface-check-in-cell-hover:       var(--mono-636);
   --color-surface-check-in-cta:              var(--brand-500);
   --color-surface-check-in-day-bg:           var(--mono-112);
   --color-surface-check-in-day-current:      var(--brand-500);
+  --color-surface-check-in-day-inactive:     var(--raw-check-in-day-inactive-bg);
   --color-surface-check-in-footer:           var(--brand-700);
   --color-surface-check-in-icon:             var(--mono-650);
   --color-surface-check-in-inverse:          var(--accent-450);
@@ -515,7 +520,7 @@
   --color-surface-menu-active:               var(--brand-500);
   --color-surface-mid:                       var(--mono-660);
   --color-surface-mid-dark:                  var(--mono-630);
-  --color-surface-mid-color:                 var(--brand-630);
+  --color-surface-mid-color:                 var(--raw-surface-muted);
   --color-surface-mid-container:             var(--brand-700);
   --color-surface-mid-text:                  var(--mono-0);
   --color-surface-nav:                       var(--mono-720);
@@ -572,6 +577,7 @@
   --color-border-subtle:                     var(--raw-app-border);
   --color-border-tabs:                       var(--raw-border-tabs);
   --color-border-countdown:                  var(--raw-border-countdown);
+  --color-border-check-in-day-inactive:      var(--raw-check-in-day-inactive-border);
 
   /* nav */
   --color-nav-border:                        var(--raw-nav-border);
@@ -629,6 +635,20 @@
   --color-button-pagination-disabled:        var(--mono-666);
   --color-button-referral-cta:               var(--support-warning);
   --color-button-referral-cta-text:          var(--accent-brown-800);
+  --color-button-referral-hub-share:          var(--raw-button-referral-hub-share);
+  --color-button-referral-hub-share-text:    var(--mono-0);
+  --color-button-referral-hub-secondary:      var(--raw-button-referral-hub-secondary);
+  --color-button-referral-hub-secondary-text: var(--mono-0);
+  --color-surface-sidenav-tier-badge:        var(--accent-pale-100);
+  --color-border-sidenav-tier-badge:         var(--raw-cta-border);
+  --color-surface-sidenav-icon:              var(--raw-surface-panel);
+  --color-border-sidenav-item-hover:         var(--color-accent-glow);
+  --color-surface-sidenav-subitem-hover:     var(--color-accent-pale);
+  --color-button-sidenav-live-chat:          var(--brand-500);
+  --color-button-sidenav-live-chat-text:     var(--mono-0);
+  --color-button-sidenav-secondary:          var(--mono-0);
+  --color-button-sidenav-secondary-text:     var(--color-text-primary-card-title);
+  --color-border-sidenav-secondary:          var(--color-border-subtle);
   --color-button-support:                    var(--raw-gradient-accent-600);
   --color-button-support-text:               var(--mono-0);
   --color-button-nav-text:                   var(--brand-500);
@@ -767,6 +787,9 @@
   --color-gradient-home-card:                radial-gradient(circle at top, var(--raw-scrim-accent-blue-16) 0%, transparent 72%);
   --color-gradient-home-cta:                 linear-gradient(90deg, var(--brand-630) 0%, var(--brand-500) 100%);
   --color-gradient-home-dashboard:           linear-gradient(180deg, var(--color-surface-base) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-pale) 50%, transparent) 100%);
+  --color-gradient-app-download-button-start: var(--raw-gradient-app-download-button-start);
+  --color-gradient-app-download-button-end:   var(--brand-500);
+  --color-gradient-app-download-button:       linear-gradient(90deg, var(--color-gradient-app-download-button-start) 0%, var(--color-gradient-app-download-button-end) 100%);
   --color-gradient-home-highlight:           linear-gradient(180deg, var(--raw-gradient-app-download-section-start) 0%, var(--raw-gradient-app-download-section-end) 100%);
   --color-gradient-home-muted:               linear-gradient(180deg, var(--raw-gradient-soft-panel-start) 0%, var(--raw-gradient-soft-panel-end) 100%);
   --color-gradient-rank-first:               linear-gradient(90deg, var(--raw-gradient-rank-first-start) 0%, var(--raw-gradient-rank-first-end) 100%);
@@ -853,7 +876,7 @@
   --raw-page-register: #edf4ff;
   --raw-page-account: #eaf1fb;
   --raw-page-default: #f2f4f8;
-  --raw-surface-muted: #f8fafc;
+  --raw-surface-muted: #F8FAFC;
   --raw-surface-muted-soft: rgb(248 250 252 / 0.8);
   --raw-surface-subtle: #f8fbff;
   --raw-surface-panel: #f0f9ff;
@@ -880,6 +903,12 @@
   --raw-cta-border: #f0bb3d;
   --raw-cta-focus: #ffd166;
   --raw-cta-text: #0c4a8e;
+  --raw-check-in-claimed-shell: #5c719e;
+  --raw-check-in-day-shell: #003594;
+  --raw-check-in-day-inactive-bg: #516c99;
+  --raw-check-in-day-inactive-border: #05348f;
+  --raw-check-in-day-inactive-surface: #647ca2;
+  --raw-check-in-day-inactive-text: #9babc3;
   --raw-nav-border: rgb(255 255 255 / 0.15);
   --raw-nav-border-soft: rgb(255 255 255 / 0.1);
   --raw-nav-tile-border: rgb(255 255 255 / 0.05);
@@ -1026,4 +1055,7 @@
 
   /* Homepage referral hub — Cam88 color/surface/referral-card; Caelo lavender panel */
   --color-surface-referral-card: var(--raw-surface-referral-hub);
+  --color-button-referral-hub-share: var(--raw-button-referral-hub-share);
+  --color-button-referral-hub-secondary: var(--raw-button-referral-hub-secondary);
+  --color-button-referral-hub-text: var(--mono-0);
 }

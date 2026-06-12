@@ -1051,7 +1051,7 @@ export default function Navbar({
                                         <button
                                             type="button"
                                             onClick={() => handleMobileNavigate('withdrawal')}
-                                            className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 text-sm font-bold text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
+                                            className="sidenav-secondary-action inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl px-3 text-sm font-bold"
                                         >
                                             <ArrowUpFromLine size={15} />
                                             Withdrawal

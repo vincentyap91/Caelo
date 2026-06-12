@@ -84,7 +84,7 @@ export default function ProviderLobbyTile({
                 ) : null}
             </div>
 
-            <div className="provider-lobby-card__label flex min-h-[40px] items-center justify-center border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-2 py-2">
+            <div className="provider-lobby-card__label flex min-h-[40px] items-center justify-center border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-mid-color)] px-2 py-2">
                 <p className="line-clamp-2 text-center text-xs font-semibold leading-tight text-[var(--color-text-tertiary)] md:text-sm">
                     {label}
                 </p>

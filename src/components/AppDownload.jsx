@@ -131,7 +131,7 @@ export default function AppDownload() {
                     <h2 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--color-text-secondary)] sm:text-3xl md:text-4xl">
                         Download the <span className="text-[var(--color-primary)]">12WIN APP</span>
                     </h2>
-                    <p className="mt-4 text-sm font-medium leading-relaxed text-[var(--color-button-hover)]/85 sm:text-base sm:font-semibold">
+                    <p className="mt-4 text-sm font-medium leading-relaxed text-[var(--color-text-primary)] sm:text-base sm:font-semibold">
                         Playing through the application is more convenient than playing through the website.
                         You can feel the difference and enjoy free credit plus bonuses through this channel.
                     </p>

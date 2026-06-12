@@ -110,7 +110,10 @@ async function bindIconSubtree(node, path) {
 }
 
 const HI = ["color/gradient/home/highlight/start", "color/gradient/home/highlight/end"];
-const APK_BTN = ["raw/gradient/app/download/button/start", "color/primary"];
+const APK_BTN = [
+  "color/gradient/app/download/button/start",
+  "color/gradient/app/download/button/end",
+];
 
 const section = await figma.getNodeByIdAsync(SECTION_ID);
 if (!section) throw new Error(`App Download section ${SECTION_ID} not found`);
@@ -189,7 +192,7 @@ return {
     "color/button/hover (ANDROID APK badge)",
     "color/text/secondary (heading + chips)",
     "color/accent/pale (chips)",
-    "raw/gradient/app/download/button/start + color/primary (APK button)",
+    "color/gradient/app/download/button/start + /end (APK button)",
     "color/text/card/text (button label + icon)",
     "color/text/muted (helper copy)",
   ],
