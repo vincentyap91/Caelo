@@ -939,17 +939,17 @@
    * color/surface/check-in/text → title + close link (#01206c)
    * color/text/check-in/day-active → refresh line + day count (#032ea1)
    * color/text/check-in/day-past → remaining copy (#0c4a8e)
-   * color/surface/check-in/cell-active → claimed shell (navy)
-   * color/surface/check-in/day-current → active shell (navy + glow)
+   * color/surface/check-in/cell-active → claimed shell (#123b94)
+   * color/surface/check-in/day-current → active shell (#003594 + glow)
    * color/surface/check-in/day/inactive → inactive card (#516c99)
    * color/surface/check-in/cell/inactive → inactive pill (#647ca2)
-   * color/border/check-in/day/inactive → inactive border (#05348f)
-   * color/text/check-in/day/inactive → inactive ticket + reward (#9babc3); Container frame
-   * color/text/light → active Container reward (white)
+   * color/border/check-in/day/inactive → inactive + claimed border (#05348f)
+   * color/text/check-in/day/inactive → inactive ticket + reward (#9babc3)
+   * color/text/light → active reward (white)
    * color/surface/check-in/inverse → active pill (white)
-   * color/surface/check-in/text → active pill label (navy on white pill)
-   * color/surface/card/light → claimed ticket on navy (mono-111)
-   * color/icon/check-in-muted → claimed ticket glyph
+   * color/surface/check-in/text → active pill label (#003594 on white)
+   * raw/check-in/day/claimed/pill → claimed pill wash
+   * raw/check-in/day/claimed/accent → claimed pill text + ticket + reward (#cae3f4)
    * color/icon/check-in-active → active ticket glyph (white)
    * color/surface/check-in/cta → Check In Now
    */
@@ -959,12 +959,15 @@
     --color-surface-check-in-text: var(--raw-check-in-day-shell);
     --color-text-check-in-day-active: var(--brand-500);
     --color-text-check-in-day-past: var(--raw-cta-text);
-    --color-surface-check-in-cell-active: var(--raw-check-in-day-shell);
+    --color-text-check-in-day-claimed: var(--raw-check-in-day-claimed-accent);
+    --color-surface-check-in-cell-active: var(--brand-500);
+    --color-surface-check-in-cell-claimed: var(--raw-check-in-day-claimed-pill);
     --color-surface-check-in-day-current: var(--raw-check-in-day-shell);
+    --color-border-check-in-day-active: var(--brand-500);
     --color-surface-check-in-cta: var(--brand-500);
     --color-surface-check-in-inverse: var(--color-text-card-text);
     --color-text-light: var(--mono-0);
-    --color-icon-check-in-muted: var(--color-surface-card-light);
+    --color-icon-check-in-claimed: var(--raw-check-in-day-claimed-accent);
     --color-icon-check-in-active: var(--color-text-card-text);
     border: none;
     border-radius: 20px;
@@ -1061,22 +1064,24 @@
     text-align: center;
   }
 
-  /* Finished — dark navy shell, dimmed ticket (color/surface/check-in/cell-active) */
+  /* Claimed — medium blue shell, sky-blue ticket + reward (color/surface/check-in/cell-active) */
   .daily-bonus-claim-modal__day-card.is-finished {
+    border-color: var(--color-border-check-in-day-inactive);
     background-color: var(--color-surface-check-in-cell-active);
   }
 
   .daily-bonus-claim-modal__day-card.is-finished .daily-bonus-claim-modal__day-pill {
-    background-color: color-mix(in srgb, var(--color-surface-card-light) 20%, transparent);
-    color: var(--color-surface-card-light);
+    background-color: var(--color-surface-check-in-cell-claimed);
+    color: var(--color-text-check-in-day-claimed);
   }
 
   .daily-bonus-claim-modal__day-card.is-finished .daily-bonus-claim-modal__day-reward {
-    color: var(--color-text-check-in-day-inactive);
+    color: var(--color-text-check-in-day-claimed);
   }
 
-  /* Active — royal blue shell, white ticket, glow (color/surface/check-in/day-current) */
+  /* Active — darkest navy shell, white ticket, glow (color/surface/check-in/day-current) */
   .daily-bonus-claim-modal__day-card.is-active {
+    border-color: var(--color-border-check-in-day-active);
     background-color: var(--color-surface-check-in-day-current);
     box-shadow: 0 4px 14px color-mix(in srgb, var(--color-surface-check-in-day-current) 44%, transparent);
   }
@@ -1130,7 +1135,7 @@
   }
 
   .daily-bonus-claim-modal__day-ticket--finished {
-    color: var(--color-icon-check-in-muted);
+    color: var(--color-icon-check-in-claimed);
   }
 
   .daily-bonus-claim-modal__day-ticket--upcoming {

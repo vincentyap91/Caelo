@@ -905,6 +905,8 @@
   --raw-cta-text: #0c4a8e;
   --raw-check-in-claimed-shell: #5c719e;
   --raw-check-in-day-shell: #003594;
+  --raw-check-in-day-claimed-pill: rgb(1 32 108 / 0.45);
+  --raw-check-in-day-claimed-accent: #cae3f4;
   --raw-check-in-day-inactive-bg: #516c99;
   --raw-check-in-day-inactive-border: #05348f;
   --raw-check-in-day-inactive-surface: #647ca2;
