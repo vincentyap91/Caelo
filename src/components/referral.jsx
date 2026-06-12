@@ -285,19 +285,19 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                         Invite your friends to join through our referral program! Share your unique code or link and earn rewards as they sign up and engage with our platform.
                     </p>
                     <div className="flex flex-wrap gap-3 pt-2">
-                        <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-2.5">
+                        <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-color)] px-4 py-2.5">
                             <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                                 <Gift size={16} />
                             </span>
                             <span className="text-sm font-medium text-[var(--color-text-primary)]">Commission on deposits</span>
                         </div>
-                        <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-2.5">
+                        <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-color)] px-4 py-2.5">
                             <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                                 <Users size={16} />
                             </span>
                             <span className="text-sm font-medium text-[var(--color-text-primary)]">Unlimited referrals</span>
                         </div>
-                        <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] px-4 py-2.5">
+                        <div className="flex items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-color)] px-4 py-2.5">
                             <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
                                 <Zap size={16} />
                             </span>

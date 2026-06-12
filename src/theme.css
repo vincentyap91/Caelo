@@ -22,6 +22,7 @@
   --mono-0: #ffffff;
   --mono-105: #f0f0f0;
   --mono-108: #e9e9e9;
+  --mono-111: #d6dbf5;
   --mono-112: #e9f3fc;
   --mono-114: #e7e7e7;
   --mono-115: #dfe3e6;
@@ -134,6 +135,7 @@
   --support-danger-red: #d32030;
   --support-danger-vivid: #d71f28;
   --support-error: #ff0000;
+  --support-error-accent: #ffe4e4;
   --support-error-bright: #f8252d;
   --support-error-coral: #ff3f30;
   --support-error-crimson: #e51d35;
@@ -452,7 +454,7 @@
   --color-surface-border:                    var(--mono-870);
   --color-surface-card-container:            var(--mono-900);
   --color-surface-card-dark:                 var(--mono-628);
-  --color-surface-card-light:                var(--mono-330);
+  --color-surface-card-light:                var(--mono-111);
   --color-surface-cat-navigation:            var(--mono-750);
   --color-surface-chatbox:                   var(--mono-750);
   --color-surface-check-in-cell:             var(--mono-453);
@@ -659,7 +661,7 @@
   /* danger */
   --color-danger:                            var(--support-danger);
   --color-danger-accent:                     var(--support-danger-maroon);
-  --color-danger-deep:                       var(--support-danger-maroon);
+  --color-danger-deep:                       var(--support-error-accent);
   --color-danger-maroon:                     var(--support-danger-maroon);
   --color-danger-negative:                   var(--support-negative);
   --color-danger-red:                        var(--support-danger-red);
@@ -822,6 +824,7 @@
 
   /* light UI neutrals */
   --mono-105: #f8fafc;
+  --mono-111: #d6dbf5;
   --mono-112: #f0f9ff;
   --mono-255: #e2e8f0;
   --mono-400: #64748b;
@@ -900,6 +903,8 @@
   --raw-scrim-shine-start: rgb(255 255 255 / 0.2);
   --raw-scrim-shine-end: rgb(255 255 255 / 0);
   /* Caelo gradient + accent primitives */
+  --raw-gradient-home-cta-start: #ff4b5c;
+  --raw-gradient-home-cta-end: #d81b30;
   --raw-gradient-home-cta-edge: var(--brand-630);
   --raw-gradient-home-highlight-start: #ffd84d;
   --raw-gradient-home-highlight-end: #ffb22d;

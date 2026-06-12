@@ -57,6 +57,8 @@ import AuthModal from './components/AuthModal';
 import './index.css';
 import LiveChatModal from './components/LiveChatModal';
 import AnnouncementModal from './components/AnnouncementModal';
+import DailyBonusClaimModal from './components/DailyBonusClaimModal';
+import { shouldPromptDailyBonusClaim } from './constants/dailyCheckIn';
 
 import { ReferralDataProvider } from './context/ReferralDataContext';
 import { FavouritesProvider } from './context/FavouritesContext';
@@ -238,6 +240,7 @@ function AppInner() {
   const [authUser, setAuthUser] = useState(initialAuthUser);
   const [balanceRefreshing, setBalanceRefreshing] = useState(false);
   const [announcementModalOpen, setAnnouncementModalOpen] = useState(false);
+  const [dailyBonusModalOpen, setDailyBonusModalOpen] = useState(false);
   const [page, setPage] = useState(() => {
     const nextPage = resolvePageFromPath();
     return !initialAuthUser && isProtectedPage(nextPage) ? 'home' : nextPage;
@@ -329,7 +332,11 @@ function AppInner() {
     if (!suppressLoginToast) {
       showPushNotification({ event: PUSH_EVENT.LOGIN_SUCCESS, userName: name || user.name });
     }
-    
+
+    if (shouldPromptDailyBonusClaim()) {
+      setDailyBonusModalOpen(true);
+    }
+
     // Redirect to home page after successful login
     redirectToPublicHome({ replace: false });
   }, [showPushNotification, redirectToPublicHome]);
@@ -442,6 +449,12 @@ function AppInner() {
       setAnnouncementModalOpen(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (initialAuthUser && shouldPromptDailyBonusClaim()) {
+      setDailyBonusModalOpen(true);
+    }
+  }, [initialAuthUser]);
 
     const handleNavigate = (targetPage, options) => {
       const settingsToProfile = { security: 'security', notifications: 'notifications' };
@@ -779,6 +792,18 @@ function AppInner() {
         isOpen={announcementModalOpen}
         onClose={() => setAnnouncementModalOpen(false)}
       />
+
+      <DailyBonusClaimModal
+        open={dailyBonusModalOpen}
+        onClose={() => setDailyBonusModalOpen(false)}
+        guestPreview={!authUser}
+        onLoginClick={() => {
+          setDailyBonusModalOpen(false);
+          setAuthModalView('login');
+          setLoginModalOpen(true);
+        }}
+      />
+
       <ThemeEditor />
     </div>
   );

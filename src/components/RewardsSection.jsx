@@ -1,20 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import {
-    Check,
     ChevronDown,
     Clock,
-    Coins,
     History,
-    Lock,
     Trophy,
     Wallet,
 } from 'lucide-react';
+import DailyBonusClaimModal from './DailyBonusClaimModal';
 import RewardsActivityRecordModal from './RewardsActivityRecordModal';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from './HorizontalScrollTabRow';
 import { filterPillClassName } from './ui/filterPillClasses';
+import { DAILY_CHECKIN_CYCLE_DAYS } from '../constants/dailyCheckIn';
 import { REWARDS_ACTIVITY_RECORD_TYPES, REWARDS_PROGRAM_IDS, REWARDS_PROGRAMS } from '../constants/rewardsPrograms';
-import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
 /** Demo main wallet balance (Spin / Voucher / Prize rewards area — hidden on Daily Bonus) */
 const REWARDS_WALLET_BALANCE = '201.00';
@@ -26,38 +23,6 @@ const REWARDS_RECORD_COLUMNS = [
 ];
 
 const ACTIVITY_PROGRAM_IDS = new Set(REWARDS_ACTIVITY_RECORD_TYPES.map((p) => p.id));
-
-const DAILY_CHECKIN_TOTAL_DAYS = 31;
-const DAILY_CHECKIN_CURRENT_DAY = 8;
-
-function rewardForDay(day) {
-    if (day === 31) return 'MYR 150';
-    if (day === 28) return 'MYR 80';
-    if (day === 21) return 'MYR 50';
-    if (day === 14) return 'MYR 30';
-    if (day === 7) return 'MYR 25';
-    if (day % 7 === 0) return 'MYR 20';
-    if (day % 5 === 0) return 'MYR 10';
-    return 'MYR 5';
-}
-
-function buildDailyCheckinDays(total = DAILY_CHECKIN_TOTAL_DAYS, currentDay = DAILY_CHECKIN_CURRENT_DAY) {
-    return Array.from({ length: total }, (_, i) => {
-        const day = i + 1;
-        let status = 'locked';
-        if (day < currentDay) status = 'claimed';
-        else if (day === currentDay) status = 'claimable';
-        return {
-            id: `d${day}`,
-            day,
-            label: `Day ${day}`,
-            reward: rewardForDay(day),
-            status,
-        };
-    });
-}
-
-const DAILY_CHECKIN_DAYS = buildDailyCheckinDays();
 
 const VOUCHERS = [
     { id: 'v1', title: 'Scratch RM 5', value: '5' },
@@ -219,173 +184,6 @@ function RewardsWalletBar({ balance, onRecordClick }) {
     );
 }
 
-function CongratsClaimModal({ open, amount, onClose, autoCloseMs = 3000 }) {
-    useBodyScrollLock(open);
-
-    useEffect(() => {
-        if (!open) return undefined;
-        const timer = setTimeout(() => onClose?.(), autoCloseMs);
-        const onKey = (e) => {
-            if (e.key === 'Escape') onClose?.();
-        };
-        window.addEventListener('keydown', onKey);
-        return () => {
-            clearTimeout(timer);
-            window.removeEventListener('keydown', onKey);
-        };
-    }, [open, onClose, autoCloseMs]);
-
-    if (!open) return null;
-    if (typeof document === 'undefined') return null;
-
-    const coinCount = 14;
-
-    const viewportStyle = {
-        position: 'fixed',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        width: '100vw',
-        height: '100dvh',
-        minHeight: '100vh',
-        margin: 0,
-    };
-
-    return createPortal(
-        <div
-            className="z-[240] flex items-center justify-center p-4 sm:p-6"
-            style={viewportStyle}
-        >
-            <button
-                type="button"
-                aria-label="Close congratulations"
-                onClick={onClose}
-                className="bg-[var(--color-overlay-strong)] backdrop-blur-[2px]"
-                style={{ ...viewportStyle, zIndex: 0 }}
-            />
-
-            <section
-                role="dialog"
-                aria-modal="true"
-                aria-label="Reward claimed"
-                className="check-in-success-modal claim-congrats-pop relative z-[1] flex w-full max-w-[420px] flex-col items-center overflow-hidden rounded-[22px] border border-[var(--color-border-subtle)] bg-[var(--color-popup-body)] px-6 py-7 text-center shadow-[var(--shadow-modal)] sm:px-8 sm:py-9"
-                onClick={(e) => e.stopPropagation()}
-            >
-                <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-                    {Array.from({ length: coinCount }).map((_, i) => (
-                        <span
-                            key={i}
-                            className="claim-coin-fall absolute text-[var(--color-text-check-in-day-active)]"
-                            style={{
-                                left: `${(i * (100 / coinCount)).toFixed(2)}%`,
-                                animationDelay: `${(i % 5) * 0.18}s`,
-                                animationDuration: `${1.6 + (i % 4) * 0.25}s`,
-                                opacity: 0.85,
-                            }}
-                        >
-                            <Coins size={i % 3 === 0 ? 20 : 16} strokeWidth={2.25} />
-                        </span>
-                    ))}
-                </div>
-
-                <span
-                    className="check-in-success-modal-icon claim-coin-burst relative z-[1] flex h-20 w-20 items-center justify-center rounded-full bg-gradient-check-in-day text-[var(--color-icon-check-in-active)] shadow-[var(--shadow-cta)] ring-2 ring-[var(--color-surface-check-in-icon)] sm:h-24 sm:w-24"
-                    aria-hidden
-                >
-                    <Coins className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={2.25} />
-                </span>
-
-                <h2 className="relative z-[1] mt-5 text-lg font-bold tracking-tight text-[var(--color-text-primary)] sm:text-xl">
-                    Congratulations!
-                </h2>
-                <p className="relative z-[1] mt-2 text-2xl font-bold text-[var(--color-accent-check-in-reward)] sm:text-3xl">
-                    You got {amount}
-                </p>
-                <p className="check-in-success-modal-body relative z-[1] mt-2 text-sm leading-relaxed text-[var(--color-text-primary)] sm:text-[15px]">
-                    Come back tomorrow to keep your streak going and unlock a bigger reward.
-                </p>
-
-                <button
-                    type="button"
-                    onClick={onClose}
-                    className="btn-theme-primary relative z-[1] mt-5 inline-flex h-11 w-full items-center justify-center rounded-xl px-6 text-sm font-bold text-[var(--color-button-cta-primary)] shadow-sm transition hover:brightness-105"
-                >
-                    Awesome
-                </button>
-
-                <p className="relative z-[1] mt-2.5 text-[11px] font-medium text-[var(--color-text-check-in-day-muted)]">
-                    Auto-closing in {Math.round(autoCloseMs / 1000)} seconds
-                </p>
-            </section>
-        </div>,
-        document.body
-    );
-}
-
-const DailyStreakNode = React.forwardRef(function DailyStreakNode({ day, position }, ref) {
-    const isClaimed = day.status === 'claimed';
-    const isToday = day.status === 'claimable';
-
-    const circleClass = isClaimed
-        ? 'daily-check-in-cell-active ring-2 ring-[var(--color-accent-glow)] shadow-[var(--shadow-subtle)]'
-        : isToday
-          ? 'daily-check-in-cell-current ring-2 ring-[var(--color-accent)] shadow-[var(--shadow-cta-soft)]'
-          : 'bg-[var(--color-surface-check-in-cell)] text-[var(--color-icon-check-in-muted)] ring-1 ring-[var(--color-border-subtle)]';
-
-    const labelClass = isToday
-        ? 'text-[var(--color-text-check-in-day-active)]'
-        : isClaimed
-          ? 'text-[var(--color-text-check-in-day-past)]'
-          : 'text-[var(--color-text-check-in-day-muted)]';
-
-    const rewardClass = isToday || isClaimed
-        ? 'text-[var(--color-text-check-in-reward)]'
-        : 'text-[var(--color-text-check-in-day-muted)]';
-
-    return (
-        <div
-            ref={ref}
-            className="relative flex shrink-0 flex-col items-center gap-1.5"
-            aria-current={isToday ? 'step' : undefined}
-        >
-            <span
-                className={`relative flex h-11 w-11 items-center justify-center rounded-full text-xs font-bold transition sm:h-14 sm:w-14 ${circleClass}`}
-                aria-hidden
-            >
-                {isClaimed ? (
-                    <Check className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={3} />
-                ) : isToday ? (
-                    <Coins className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2.5} />
-                ) : (
-                    <Lock className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.25} />
-                )}
-                {isToday && (
-                    <span
-                        className="pointer-events-none absolute -inset-1 animate-ping rounded-full ring-2 ring-[var(--color-accent)]/50"
-                        aria-hidden
-                    />
-                )}
-            </span>
-            <p
-                className={`text-center text-[10px] font-bold uppercase tracking-wide sm:text-xs ${labelClass}`}
-            >
-                {isToday ? 'Today' : day.label}
-            </p>
-            <p
-                className={`text-center text-[10px] font-bold leading-tight sm:text-xs ${rewardClass}`}
-            >
-                {day.reward}
-            </p>
-            <span className="sr-only">
-                {day.label} · {day.reward} ·{' '}
-                {isClaimed ? 'completed' : isToday ? 'available today' : 'upcoming'}
-            </span>
-            <span className="sr-only">{position}</span>
-        </div>
-    );
-});
-
 function GuestPreviewBanner({ onLoginClick }) {
     return (
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[var(--radius-control)] border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-4 py-3 sm:px-5">
@@ -406,166 +204,46 @@ function GuestPreviewBanner({ onLoginClick }) {
 }
 
 function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
-    const [days, setDays] = useState(DAILY_CHECKIN_DAYS);
-    const [congratsAmount, setCongratsAmount] = useState(null);
-    const scrollerRef = useRef(null);
-    const todayRef = useRef(null);
-    const todayIdx = days.findIndex((d) => d.status === 'claimable');
-
-    useEffect(() => {
-        const scroller = scrollerRef.current;
-        const node = todayRef.current;
-        if (!scroller || !node) return;
-        const parentRect = scroller.getBoundingClientRect();
-        const nodeRect = node.getBoundingClientRect();
-        const delta = nodeRect.left - parentRect.left - parentRect.width / 2 + nodeRect.width / 2;
-        scroller.scrollTo({ left: scroller.scrollLeft + delta, behavior: 'auto' });
-    }, []);
-
-    const handleClaimToday = () => {
-        if (guestPreview || todayIdx < 0) return;
-        const reward = days[todayIdx].reward;
-        setDays((prev) =>
-            prev.map((d, i) => (i === todayIdx ? { ...d, status: 'claimed' } : d))
-        );
-        setCongratsAmount(reward);
-    };
-
-    const displayDays = guestPreview ? DAILY_CHECKIN_DAYS : days;
-    const displayStreakDays = displayDays.filter((d) => d.status === 'claimed').length;
-    const displayTodayIdx = displayDays.findIndex((d) => d.status === 'claimable');
-    const displayTodayDay = displayTodayIdx >= 0 ? displayDays[displayTodayIdx] : null;
+    const [modalOpen, setModalOpen] = useState(true);
 
     return (
         <div className="space-y-6">
-            <div className="daily-check-in-panel overflow-hidden rounded-[var(--radius-panel-lg)] border border-[var(--color-border-brand)] bg-[var(--color-popup-body)] shadow-[var(--shadow-card-soft)]">
-                <div className="bg-gradient-check-in-card px-5 py-5 sm:px-6 sm:py-6">
-                    <h3 className="text-lg font-bold text-[var(--color-surface-check-in-text)] md:text-xl">Daily Check In</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                        You have accumulated{' '}
-                        <span className="font-bold text-[var(--color-text-check-in-day-active)]">Day {displayStreakDays}</span> check-in
+            <div className="daily-check-in-panel surface-card flex flex-col gap-4 rounded-[var(--radius-panel-lg)] border border-[var(--color-border-subtle)] bg-[var(--color-popup-body)] p-5 shadow-[var(--shadow-card-soft)] sm:flex-row sm:items-center sm:justify-between sm:p-6">
+                <div className="min-w-0">
+                    <h3 className="text-lg font-bold text-[var(--color-surface-check-in-text)] md:text-xl">Daily Bonus Claim</h3>
+                    <p className="mt-2 flex items-center gap-2 text-sm font-medium text-[var(--color-text-check-in-day-active)]">
+                        <Clock className="h-4 w-4 shrink-0" strokeWidth={2.25} aria-hidden />
+                        Refresh Time: Daily 00:00 - 23:59 GMT+7
+                    </p>
+                    <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
+                        {DAILY_CHECKIN_CYCLE_DAYS}-day streak &mdash; open the claim window to check in and collect USD rewards.
                     </p>
                 </div>
-                <div className="daily-check-in-info-band flex flex-wrap items-center gap-4 border-t border-[var(--color-border-subtle)] px-5 py-4 sm:px-6 sm:py-5">
-                    <div
-                        className="daily-check-in-trophy-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-control)] shadow-[var(--shadow-subtle)] ring-1 ring-[var(--color-border-brand)]/50"
-                        aria-hidden
-                    >
-                        <Trophy className="h-7 w-7 text-[var(--color-icon-check-in-active)]" strokeWidth={2} />
-                    </div>
-                    <p className="min-w-0 flex-1 text-sm font-medium leading-relaxed text-[var(--color-text-secondary)]">
-                        Claim MYR rewards each day. Some days may require minimum valid turnover on your main wallet.
-                    </p>
-                </div>
-                <div className="border-t border-[var(--color-border-subtle)] bg-[var(--color-popup-body)] pb-4 sm:pb-5">
-                    <div
-                        ref={scrollerRef}
-                        className="overflow-x-auto scroll-smooth px-3 py-1 [-webkit-overflow-scrolling:touch] sm:px-6 sm:py-2"
-                    >
-                        <ol
-                            role="list"
-                            aria-label={`${displayDays.length}-day check-in streak`}
-                            className="flex flex-nowrap items-start gap-2 pb-3 pt-7 sm:gap-3 sm:pb-4 sm:pt-8"
-                        >
-                            {displayDays.map((d, idx) => {
-                                const isTodayNode = d.status === 'claimable';
-                                return (
-                                    <React.Fragment key={d.id}>
-                                        <li className="flex shrink-0">
-                                            <div className="w-14 sm:w-16">
-                                                <DailyStreakNode
-                                                    ref={isTodayNode ? todayRef : undefined}
-                                                    day={d}
-                                                    position={`Step ${idx + 1} of ${displayDays.length}`}
-                                                />
-                                            </div>
-                                        </li>
-                                        {idx < displayDays.length - 1 && (
-                                            <span
-                                                aria-hidden
-                                                className={`mt-5 h-1 w-6 shrink-0 rounded-full sm:mt-7 sm:w-8 ${
-                                                    d.status === 'claimed'
-                                                        ? 'bg-[var(--color-surface-check-in-icon)]'
-                                                        : 'bg-[var(--color-border-subtle)]'
-                                                }`}
-                                            />
-                                        )}
-                                    </React.Fragment>
-                                );
-                            })}
-                        </ol>
-                    </div>
-
-                    <div className="mt-2 px-3 sm:px-6">
-                        <p className="text-center text-[11px] font-medium text-[var(--color-text-check-in-day-muted)]">
-                            Scroll to see all {displayDays.length} days &middot; {displayStreakDays}/{displayDays.length} claimed
-                        </p>
-                    </div>
-
-                    <div className="px-3 sm:px-6">
-
-                    {displayTodayDay ? (
-                        <div className="daily-check-in-today-highlight mt-6 flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-control)] border-2 px-4 py-3 shadow-[var(--shadow-subtle)] sm:px-5">
-                            <div className="flex min-w-0 items-center gap-3">
-                                <span
-                                    className="daily-check-in-reward-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full shadow-[var(--shadow-subtle)] ring-1 ring-[var(--color-border-brand)]/60"
-                                    aria-hidden
-                                >
-                                    <Coins className="h-5 w-5 text-[var(--color-icon-check-in-active)]" strokeWidth={2.5} />
-                                </span>
-                                <div className="min-w-0">
-                                    <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-text-check-in-day-muted)]">
-                                        Today&rsquo;s reward
-                                    </p>
-                                    <p className="truncate text-base font-bold text-[var(--color-accent-check-in-reward)]">
-                                        {displayTodayDay.label} &middot; {displayTodayDay.reward}
-                                    </p>
-                                </div>
-                            </div>
-                            {guestPreview ? (
-                                <button
-                                    type="button"
-                                    onClick={onLoginClick}
-                                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105 active:brightness-95"
-                                >
-                                    Login to claim
-                                </button>
-                            ) : (
-                                <button
-                                    type="button"
-                                    onClick={handleClaimToday}
-                                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-control-xs)] px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105 active:brightness-95"
-                                >
-                                    Claim now
-                                </button>
-                            )}
-                        </div>
-                    ) : (
-                        <div className="mt-6 rounded-[var(--radius-control)] border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-4 py-3 text-center text-sm font-semibold text-[var(--color-button-hover)]">
-                            All caught up &mdash; see you tomorrow for the next streak day.
-                        </div>
-                    )}
-                    </div>
-                </div>
+                <button
+                    type="button"
+                    onClick={() => setModalOpen(true)}
+                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-xl px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105"
+                >
+                    {guestPreview ? 'Preview claim modal' : 'Open daily claim'}
+                </button>
             </div>
+
+            <DailyBonusClaimModal
+                open={modalOpen}
+                onClose={() => setModalOpen(false)}
+                guestPreview={guestPreview}
+                onLoginClick={onLoginClick}
+            />
 
             <TermsBlock title="Terms & Condition" subtitle="Daily Check-In T&C">
                 <ol className="list-decimal space-y-2 pl-4">
-                    <li>Daily rewards are paid in MYR to your main wallet after you claim.</li>
+                    <li>Daily rewards are paid in USD to your main wallet after you claim.</li>
                     <li>Selected days may require minimum valid turnover before the reward unlocks.</li>
                     <li>Only bets from your main wallet count toward turnover unless stated otherwise.</li>
                     <li>Unclaimed rewards may expire per campaign rules.</li>
                     <li>Claimed amounts may carry a one-time rollover before withdrawal.</li>
                 </ol>
             </TermsBlock>
-
-            {!guestPreview && (
-                <CongratsClaimModal
-                    open={Boolean(congratsAmount)}
-                    amount={congratsAmount}
-                    onClose={() => setCongratsAmount(null)}
-                />
-            )}
         </div>
     );
 }

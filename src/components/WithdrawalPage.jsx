@@ -100,7 +100,6 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
         ? WITHDRAWAL_BANKS.find((b) => b.id === selectedBank)?.label ?? 'Please Select Bank'
         : 'Please Select Bank';
 
-    const canProceedStep1 = true;
     const canProceedStep2 = withdrawalMethod === 'ewallet'
         ? selectedEwallet && phoneNumber.trim().length > 0 && isValidAmount
         : selectedBank && bankAccountName.trim() && bankAccountNumber.trim() && isValidAmount && DEMO_BALANCE > 0;
@@ -223,7 +222,10 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                 <button
                                     key={id}
                                     type="button"
-                                    onClick={() => setWithdrawalMethod(id)}
+                                    onClick={() => {
+                                        setWithdrawalMethod(id);
+                                        setStep(2);
+                                    }}
                                     className={`cashier-method-row${withdrawalMethod === id ? ' is-selected' : ''}`}
                                 >
                                     <span className="cashier-method-section-icon" aria-hidden>
@@ -238,16 +240,6 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                 </button>
                             ))}
                         </div>
-
-                        <button
-                            type="button"
-                            onClick={() => setStep(2)}
-                            disabled={!canProceedStep1}
-                            className="btn-theme-cta inline-flex h-12 min-w-[140px] items-center justify-center gap-2 rounded-xl px-6 text-base font-bold shadow-sm transition hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100"
-                        >
-                            Next
-                            <ArrowRight size={18} />
-                        </button>
                     </div>
                 )}
 
