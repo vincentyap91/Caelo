@@ -387,7 +387,7 @@
 
   .slots-page .slot-current-promo {
     --color-primary: var(--color-surface-accent-hover);
-    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-bg: var(--brand-500-soft);
     --color-progress-bar-fill: var(--brand-500);
   }
 
@@ -4441,19 +4441,18 @@
   }
 
   .cashier-step2-notes-title {
-    margin-bottom: 0.375rem;
+    margin-bottom: 0.5rem;
     font-size: 0.875rem;
     font-weight: 700;
     color: var(--color-text-primary-card-title);
   }
 
-  .cashier-step2-notes-list {
+  .cashier-step2-notes > p:not(.cashier-step2-notes-title) {
     margin: 0;
-    padding-left: 1.125rem;
   }
 
-  .cashier-step2-notes-list li + li {
-    margin-top: 0.25rem;
+  .cashier-step2-notes > p:not(.cashier-step2-notes-title) + p:not(.cashier-step2-notes-title) {
+    margin-top: 0.375rem;
   }
 
   .cashier-step2-section-title {
@@ -4879,9 +4878,9 @@
   }
 
   /**
-   * Web_User Dashboard - cam88 (932:22443) — Secure Logout
+   * Secure Logout — 12win Account Details sidebar (431:5874).
    * VARIABLE-RULES §13.6: logout-* → --color-gradient-tag (color/gradient/tag).
-   * §13.11: pill fill = semantic --color-gradient-tag; Caelo stops = --raw-gradient-logout-* in theme.css.
+   * §13.11: pill fill = --color-gradient-tag; label/icon = --color-danger-red; border = --color-danger-red (mix).
    */
   .profile-menu-logout {
     --color-gradient-tag: linear-gradient(
@@ -4897,20 +4896,26 @@
     gap: 0.75rem;
     border-radius: 22px;
     border: 1px solid color-mix(in srgb, var(--color-danger-red) 28%, transparent);
-    background-color: transparent;
-    background-image: var(--color-gradient-tag);
+    background: var(--color-gradient-tag);
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 1rem;
     line-height: 1.25rem;
     font-weight: 700;
     color: var(--color-danger-red);
+    cursor: pointer;
+    appearance: none;
     transition:
       background 0.2s,
       border-color 0.2s,
       color 0.2s,
       box-shadow 0.2s,
       transform 0.2s;
+  }
+
+  .profile-menu-logout svg {
+    color: currentColor;
+    flex-shrink: 0;
   }
 
   .profile-menu-logout:hover {
@@ -4921,7 +4926,7 @@
       var(--raw-gradient-logout-hover-end) 100%
     );
     border-color: color-mix(in srgb, var(--color-danger-red) 35%, transparent);
-    background-image: var(--color-gradient-tag);
+    background: var(--color-gradient-tag);
     color: var(--color-danger-maroon);
     box-shadow: 0 4px 12px color-mix(in srgb, var(--color-danger-red) 12%, transparent);
     transform: translateY(-1px);
@@ -4969,9 +4974,33 @@
     --color-button-hover: #2563eb;
     --color-surface-card-light: var(--color-surface-base);
     --color-surface-input-light: var(--raw-surface-muted);
-    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-bg: var(--brand-500-soft);
     --color-progress-bar-fill: var(--color-primary);
     --color-text-small: var(--color-text-secondary);
+  }
+
+  /** Secure Logout — Figma 431:5874; sidebar text color must not override pill label/icon. */
+  .user-dashboard-sidebar .profile-menu-logout {
+    --color-gradient-tag: linear-gradient(
+      90deg,
+      var(--raw-gradient-logout-default-start) 0%,
+      var(--raw-gradient-logout-default-end) 100%
+    );
+    border-color: color-mix(in srgb, var(--color-danger-red) 28%, transparent);
+    background: var(--color-gradient-tag);
+    color: var(--color-danger-red);
+  }
+
+  .user-dashboard-sidebar .profile-menu-logout:hover {
+    --color-gradient-tag: linear-gradient(
+      90deg,
+      var(--raw-gradient-logout-hover-start) 0%,
+      var(--raw-gradient-logout-hover-mid) 52%,
+      var(--raw-gradient-logout-hover-end) 100%
+    );
+    border-color: color-mix(in srgb, var(--color-danger-red) 35%, transparent);
+    background: var(--color-gradient-tag);
+    color: var(--color-danger-maroon);
   }
 
   /**
@@ -4981,7 +5010,7 @@
   .profile-page {
     --color-surface-card-light: var(--color-surface-base);
     --color-surface-input-light: var(--raw-surface-muted);
-    --color-progress-bar-bg: var(--color-accent-glow);
+    --color-progress-bar-bg: var(--brand-500-soft);
     --color-progress-bar-fill: var(--color-primary);
     --color-text-small: var(--color-text-secondary);
   }
@@ -5007,7 +5036,7 @@
   }
 
   .profile-page .profile-account-header {
-    background-color: var(--color-surface-card-light);
+    background-color: var(--color-surface-base);  
   }
 
   .profile-page .profile-account-header__photo-btn:focus-visible {
@@ -5121,9 +5150,9 @@
   .profile-current-promo {
     --color-surface-card-light: var(--base-paper);
     --color-text-title: var(--color-primary);
-    /* Promo rollover inner card — Caelo accent-pale (#eff6ff); lighter shell + matching track (§13.11). */
+    /* Promo rollover inner card — accent-pale shell; track uses color/progress/bar/bg (§13.11). */
     --color-surface-elevated: var(--color-accent-pale);
-    --color-progress-bar-bg: var(--color-accent-pale);
+    --color-progress-bar-bg: var(--brand-500-soft);
     --color-progress-bar-fill: var(--color-primary);
     background-color: var(--color-surface-card-light);
     border-color: var(--color-border-subtle);
@@ -5132,11 +5161,11 @@
 
   .profile-current-promo .profile-current-promo__card {
     --color-surface-elevated: var(--color-accent-pale);
-    --color-progress-bar-bg: var(--color-accent-pale);
+    --color-progress-bar-bg: var(--brand-500-soft);
     --color-progress-bar-fill: var(--color-primary);
   }
 
-  /** Promo rollover bar — color/progress/bar/bg + fill (Caelo pale track + navy fill) */
+  /** Promo rollover bar — color/progress/bar/bg + fill (brand-500-soft track + navy fill) */
   .profile-current-promo .profile-promo-progress {
     background-color: var(--color-progress-bar-bg);
   }
@@ -5156,7 +5185,7 @@
 
   .profile-current-promo__card {
     border-color: var(--color-border-subtle);
-    background-color: var(--color-surface-elevated);
+    background-color: var(--color-secondary-tag);
   }
 
   /**

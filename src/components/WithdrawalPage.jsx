@@ -278,10 +278,8 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
 
                         <div className="cashier-step2-notes">
                             <p className="cashier-step2-notes-title">Notes :</p>
-                            <ul className="cashier-step2-notes-list">
-                                <li>Bank transfer takes up to 24 hours to reflect in your bank account</li>
-                                <li>If the entered and bank account are inconsistent, the company reserves the right to reject the application..</li>
-                            </ul>
+                            <p>Bank transfer takes up to 24 hours to reflect in your bank account.</p>
+                            <p>If the entered name and bank account details are inconsistent, the company reserves the right to reject the application.</p>
                         </div>
 
                         <div>
