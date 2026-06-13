@@ -491,6 +491,7 @@
 
   /* border */
   --color-border: var(--mono-630);
+  --color-border-accent: var(--accent-460);
   --color-border-brand: var(--raw-border-cam-panel);
   --color-border-danger: var(--raw-brand-cam-strong);
   --color-border-divider: var(--mono-540);

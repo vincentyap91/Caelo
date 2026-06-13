@@ -58,7 +58,6 @@ import './index.css';
 import LiveChatModal from './components/LiveChatModal';
 import AnnouncementModal from './components/AnnouncementModal';
 import DailyBonusClaimModal from './components/DailyBonusClaimModal';
-import { shouldPromptDailyBonusClaim } from './constants/dailyCheckIn';
 
 import { ReferralDataProvider } from './context/ReferralDataContext';
 import { FavouritesProvider } from './context/FavouritesContext';
@@ -333,10 +332,6 @@ function AppInner() {
       showPushNotification({ event: PUSH_EVENT.LOGIN_SUCCESS, userName: name || user.name });
     }
 
-    if (shouldPromptDailyBonusClaim()) {
-      setDailyBonusModalOpen(true);
-    }
-
     // Redirect to home page after successful login
     redirectToPublicHome({ replace: false });
   }, [showPushNotification, redirectToPublicHome]);
@@ -450,12 +445,6 @@ function AppInner() {
     }
   }, []);
 
-  useEffect(() => {
-    if (initialAuthUser && shouldPromptDailyBonusClaim()) {
-      setDailyBonusModalOpen(true);
-    }
-  }, [initialAuthUser]);
-
     const handleNavigate = (targetPage, options) => {
       const settingsToProfile = { security: 'security', notifications: 'notifications' };
       const resolvedPage = settingsToProfile[targetPage] ?? targetPage;
@@ -553,7 +542,7 @@ function AppInner() {
       <FloatingSocials
         authUser={authUser}
         onLiveChatClick={() => setLiveChatOpen(true)}
-        onClaimRewardsClick={() => handleNavigate('loyalty-rewards')}
+        onClaimRewardsClick={() => setDailyBonusModalOpen(true)}
       />
 
       <Navbar

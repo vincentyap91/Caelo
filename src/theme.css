@@ -567,6 +567,7 @@
 
   /* border */
   --color-border:                            var(--raw-app-border);
+  --color-border-accent:                     var(--accent-460);
   --color-border-brand:                      var(--raw-border-brand);
   --color-border-danger:                     var(--brand-500);
   --color-border-divider:                    var(--mono-540);

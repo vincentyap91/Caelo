@@ -204,7 +204,7 @@ function GuestPreviewBanner({ onLoginClick }) {
 }
 
 function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
 
     return (
         <div className="space-y-6">
