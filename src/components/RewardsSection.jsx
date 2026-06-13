@@ -79,7 +79,7 @@ function TermsBlock({ title, subtitle, children }) {
         <div className="mt-8 border-t border-[var(--color-border-subtle)] pt-6">
             <h3 className="text-base font-bold text-[var(--color-text-primary)]">{title}</h3>
             {subtitle && (
-                <p className="mt-1 text-sm font-semibold text-[var(--color-button-hover)] underline decoration-[var(--color-accent-glow)] underline-offset-2">
+                <p className="mt-1 text-sm font-semibold text-[var(--color-text-sub)] underline decoration-[var(--color-accent-glow)] underline-offset-2">
                     {subtitle}
                 </p>
             )}
@@ -113,7 +113,7 @@ function ScratchStyleRewardCard({
 
     const badgeClass = isSpinWheel
         ? 'absolute bottom-2 left-2 z-10 rounded bg-[var(--color-surface-card-dark)]/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-light)]'
-        : 'absolute bottom-2 left-2 z-10 rounded bg-[var(--color-surface-darkest)]/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)]';
+        : 'absolute bottom-2 left-2 z-10 rounded bg-[var(--color-surface-darkest)]/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-light)]';
 
     const titleClass = isSpinWheel
         ? 'spin-wheel-card-title font-bold text-[var(--color-primary)]'
@@ -124,7 +124,7 @@ function ScratchStyleRewardCard({
         : 'text-xs font-medium text-[var(--color-text-muted)]';
 
     const ctaClass = isSpinWheel
-        ? 'spin-wheel-card-cta mt-auto w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-button-cta)] py-2.5 text-sm font-bold text-[var(--color-button-cta-primary)] transition hover:bg-[var(--color-accent-pale)] disabled:cursor-not-allowed disabled:opacity-60'
+        ? 'btn-theme-primary spin-wheel-card-cta mt-auto w-full rounded-xl py-2.5 text-sm font-bold shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60'
         : 'mt-auto w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-2.5 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-accent-pale)] disabled:cursor-not-allowed disabled:opacity-60';
 
     return (
@@ -169,7 +169,7 @@ function RewardsWalletBar({ balance, onRecordClick }) {
                 </span>
                 <div className="min-w-0">
                     <p className="text-sm font-semibold text-[var(--color-text-secondary)]">Wallet Balance:</p>
-                    <p className="mt-0.5 text-xl font-bold leading-tight text-[var(--color-button-hover)] md:text-2xl tabular-nums">{balance}</p>
+                    <p className="mt-0.5 text-xl font-bold leading-tight text-[var(--color-text-sub)] md:text-2xl tabular-nums">{balance}</p>
                 </div>
             </div>
             <button
@@ -177,7 +177,7 @@ function RewardsWalletBar({ balance, onRecordClick }) {
                 onClick={onRecordClick}
                 className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02] sm:min-w-[148px]"
             >
-                <History size={18} strokeWidth={2.5} className="shrink-0 text-[var(--color-text-card-text)]" aria-hidden />
+                <History size={18} strokeWidth={2.5} className="shrink-0 text-[var(--color-text-light)]" aria-hidden />
                 Record
             </button>
         </div>
@@ -194,7 +194,7 @@ function GuestPreviewBanner({ onLoginClick }) {
                 <button
                     type="button"
                     onClick={onLoginClick}
-                    className="btn-theme-primary inline-flex h-10 shrink-0 items-center justify-center rounded-xl px-5 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105"
+                    className="btn-theme-primary inline-flex h-10 shrink-0 items-center justify-center rounded-xl px-5 text-sm font-bold shadow-sm transition hover:brightness-105"
                 >
                     Login
                 </button>
@@ -222,7 +222,7 @@ function DailyBonusPanel({ guestPreview = false, onLoginClick }) {
                 <button
                     type="button"
                     onClick={() => setModalOpen(true)}
-                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-xl px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-105"
+                    className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center rounded-xl px-6 text-sm font-bold shadow-sm transition hover:brightness-105"
                 >
                     {guestPreview ? 'Preview claim modal' : 'Open daily claim'}
                 </button>
@@ -337,12 +337,12 @@ function PrizeBoxPanel({ guestPreview = false, onLoginClick }) {
                             key={item.id}
                             badge="Prize"
                             metaTopLeft={
-                                <span className="rounded-md bg-[var(--color-surface-darkest)]/45 px-2 py-1 text-xs font-bold text-[var(--color-text-card-text)] backdrop-blur-sm">
+                                <span className="rounded-md bg-[var(--color-surface-darkest)]/45 px-2 py-1 text-xs font-bold text-[var(--color-text-light)] backdrop-blur-sm">
                                     Reward #{item.id}
                                 </span>
                             }
                             metaTopRight={
-                                <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border-brand)]/25 bg-[var(--color-surface-darkest)]/40 px-2.5 py-1 text-xs font-semibold text-[var(--color-text-card-text)] backdrop-blur-sm">
+                                <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border-brand)]/25 bg-[var(--color-surface-darkest)]/40 px-2.5 py-1 text-xs font-semibold text-[var(--color-text-light)] backdrop-blur-sm">
                                     <Clock size={11} className="shrink-0 opacity-90" />
                                     {item.expires}
                                 </span>

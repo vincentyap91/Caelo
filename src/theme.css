@@ -439,6 +439,7 @@
   --color-text-sports-primary:               var(--raw-text-sports-primary);
   --color-text-sticky-nav-active:            var(--raw-nav-text-accent);
   --color-text-sticky-nav-text:              var(--raw-nav-text-soft);
+  --color-text-sub:                          var(--raw-gradient-accent-600);
   --color-text-sub-highlight:                var(--accent-460);
   --color-text-sub-title:                    var(--support-warning);
   --color-text-subtle:                       var(--raw-app-text-subtle);
@@ -613,7 +614,7 @@
   --color-button-cta-fourth-text:            var(--mono-950);
   --color-button-cta-pagination:             var(--mono-310);
   --color-button-cta-pagination-selected:    var(--brand-700);
-  --color-button-cta-primary:                var(--mono-950);
+  --color-button-cta-primary:                var(--brand-630);
   --color-button-cta-secondary:              var(--support-success-strong);
   --color-button-cta-secondary-text:         var(--mono-0);
   --color-button-cta-tertiary:               var(--mono-330);

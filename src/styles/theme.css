@@ -895,6 +895,7 @@
     --color-icon-check-in-active: var(--color-text-primary);
     --color-icon-check-in-muted: var(--color-text-soft);
     --color-accent-check-in-reward: var(--color-text-primary);
+    --color-text-light: var(--mono-0);
   }
 
   .daily-check-in-panel .daily-check-in-info-band {
@@ -922,11 +923,28 @@
   }
 
   .daily-check-in-panel .btn-theme-primary {
-    background: var(--color-surface-check-in-cta);
-    color: var(--color-text-card-text);
+    background: var(--color-button-cta-primary);
+    color: var(--color-text-light);
   }
 
   .daily-check-in-panel .btn-theme-primary:hover {
+    background: var(--color-button-hover);
+  }
+
+  /**
+   * Rewards page inner content — blue CTA pills (Open daily claim, Record, Login, spin CTAs).
+   * color/button/cta/primary → brand-630 shell; color/text/light → label.
+   */
+  #loyalty-rewards {
+    --color-text-light: var(--mono-0);
+  }
+
+  #loyalty-rewards .btn-theme-primary {
+    background: var(--color-button-cta-primary);
+    color: var(--color-text-light);
+  }
+
+  #loyalty-rewards .btn-theme-primary:hover {
     background: var(--color-button-hover);
   }
 
@@ -1260,15 +1278,13 @@
    * color/text/light → hero RM value + badge label (was --color-text-sticky-nav-text / card-text)
    * color/primary → card title (was --color-text-primary)
    * color/text/primary → card description (was --color-text-muted)
-   * color/button/cta(+primary) → card CTA (was surface-base + text-primary)
+   * color/button/cta/primary → card CTA shell (brand-630)
    */
   .spin-wheel-panel {
     --color-surface-accent: var(--color-surface-cool-light);
     --color-surface-card-dark: var(--color-surface-darkest);
     --color-text-light: var(--color-text-sticky-nav-text);
     --color-primary: var(--raw-app-text-primary);
-    --color-button-cta: var(--color-surface-base);
-    --color-button-cta-primary: var(--color-text-primary);
   }
 
   .spin-wheel-panel .spin-wheel-card-description {
