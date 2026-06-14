@@ -4243,7 +4243,7 @@
 
   .cashier-deposit-step1-card .cashier-speed-tab.is-active {
     background: var(--color-text-primary-card-title);
-    color: var(--color-surface-base);
+    color: var(--color-text-light);
     box-shadow: var(--shadow-subtle);
   }
 
@@ -4320,7 +4320,7 @@
 
   .cashier-deposit-step1 .cashier-step-badge {
     background: var(--color-surface-accent-hover);
-    color: var(--color-surface-base);
+    color: var(--color-text-light);
   }
 
   .cashier-deposit-step1 .cashier-section-title {
@@ -5169,7 +5169,7 @@
   }
 
   .cashier-flow-stepper .cashier-stepper-dot.is-active {
-    color: var(--color-surface-base);
+    color: var(--color-text-light);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-surface-accent-hover) 18%, transparent), var(--shadow-accent);
   }
 

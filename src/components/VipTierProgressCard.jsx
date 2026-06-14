@@ -27,7 +27,7 @@ export default function VipTierProgressCard({
             </div>
 
             <div className="mt-3 flex items-center justify-between gap-3">
-                <span className="rounded-full bg-[var(--color-primary)] px-4 py-1.5 text-[11px] font-extrabold uppercase text-[var(--color-surface-base)] shadow-[var(--shadow-subtle)]">
+                <span className="rounded-full bg-[var(--color-primary)] px-4 py-1.5 text-[11px] font-extrabold uppercase text-[var(--color-text-light)] shadow-[var(--shadow-subtle)]">
                     TARGET: {targetTier}
                 </span>
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{safeProgress}%</span>
