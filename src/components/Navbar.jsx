@@ -507,7 +507,7 @@ export default function Navbar({
                                             setProfileMenuOpen((open) => !open);
                                             setBalanceDropdownOpen(false);
                                         }}
-                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)] hover:text-[var(--color-text-sticky-nav-active)]"
+                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)]"
                                         aria-haspopup="menu"
                                         aria-expanded={profileMenuOpen}
                                         aria-label="Account menu"
