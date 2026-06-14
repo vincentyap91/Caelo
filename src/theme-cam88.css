@@ -658,7 +658,7 @@
   --color-bar: var(--raw-bar);
 
   /* primary-tag */
-  --color-primary-tag: var(--support-error-medium);
+  --color-primary-tag: var(--mono-0);
 
   /* primary-tag-text */
   --color-primary-tag-text: var(--mono-0);

@@ -40,7 +40,7 @@ export default function PaymentConfirmModal({ open, onClose, type = 'deposit' })
                     type="button"
                     aria-label="Close"
                     onClick={onClose}
-                    className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-surface-accent-hover)] text-[var(--color-text-card-text)] transition hover:brightness-95"
+                    className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-surface-accent)] text-[var(--color-text-card-text)] transition hover:brightness-95"
                 >
                     <X size={18} strokeWidth={3} />
                 </button>

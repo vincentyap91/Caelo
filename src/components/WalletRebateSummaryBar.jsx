@@ -29,7 +29,7 @@ export const SLOTS_BROWSE_SUMMARY_LABEL_COMPACT_CLASS =
     'slots-browse-summary-label font-semibold tracking-tight leading-tight text-[var(--color-primary)] text-xs sm:text-sm';
 
 export const BROWSE_SUMMARY_VALUE_COMPACT_CLASS =
-    'tabular-nums font-bold leading-tight tracking-tight text-[var(--color-surface-accent-hover)] text-base sm:text-lg md:text-xl';
+    'tabular-nums font-bold leading-tight tracking-tight text-[var(--color-surface-accent)] text-base sm:text-lg md:text-xl';
 
 export const SLOTS_BROWSE_SUMMARY_VALUE_COMPACT_CLASS =
     'slots-browse-summary-value tabular-nums font-bold leading-tight tracking-tight text-[var(--color-text-primary)] text-base sm:text-lg md:text-xl';
@@ -38,7 +38,7 @@ function SummaryItem({
     title,
     value,
     icon: Icon,
-    valueClassName = 'text-[var(--color-surface-accent-hover)]',
+    valueClassName = 'text-[var(--color-surface-accent)]',
     iconClassName = 'text-[var(--color-text-soft)]',
     emphasis = 'default',
     compact = false,

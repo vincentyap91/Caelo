@@ -372,7 +372,7 @@
   }
 
   .slots-page .slots-browse-summary-value {
-    --color-text-primary: var(--color-surface-accent-hover);
+    --color-text-primary: var(--color-surface-accent);
   }
 
   .slots-page .slots-browse-summary-card,
@@ -382,7 +382,7 @@
   }
 
   .slots-page .slot-current-promo {
-    --color-primary: var(--color-surface-accent-hover);
+    --color-primary: var(--color-surface-accent);
     --color-progress-bar-bg: var(--brand-500-soft);
     --color-progress-bar-fill: var(--brand-500);
   }
@@ -392,7 +392,7 @@
   }
 
   .slots-page .slot-current-promo__card {
-    --color-primary: var(--color-surface-accent-hover);
+    --color-primary: var(--color-surface-accent);
   }
 
   .slots-page .slot-current-promo .btn-theme-cta-fourth {
@@ -407,7 +407,7 @@
   .slots-page .slots-browse-search {
     --color-surface-input-inverse: var(--raw-surface-muted);
     --color-info-icon: var(--color-text-muted);
-    --color-primary: var(--color-surface-accent-hover);
+    --color-primary: var(--color-surface-accent);
   }
 
   .slots-page .slots-game-card__thumb {
@@ -2103,8 +2103,8 @@
   }
 
   .auth-modal-btn--secondary:hover {
-    background-color: var(--color-surface-accent-hover);
-    border-color: var(--color-surface-accent-hover);
+    background-color: var(--color-surface-accent);
+    border-color: var(--color-surface-accent);
     color: var(--color-surface-input-light);
     filter: none;
     transform: translateY(-1px);
@@ -2323,7 +2323,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
-    background-color: var(--color-surface-accent-hover);
+    background-color: var(--color-surface-accent);
     color: var(--color-text-card-text);
   }
 
@@ -2341,7 +2341,7 @@
   }
 
   .login-modal-close {
-    background-color: var(--color-surface-accent-hover);
+    background-color: var(--color-surface-accent);
     color: var(--color-text-card-text);
   }
 
@@ -3828,7 +3828,7 @@
    */
   .top-nav-shell {
     --color-button-nav-text: var(--brand-500);
-    --color-button-hover: var(--color-surface-accent-hover);
+    --color-button-hover: var(--color-surface-accent);
     --color-button-hover-text: var(--brand-500);
     background-color: var(--color-surface-base);
     border-bottom: 1px solid var(--color-border-subtle);
@@ -3973,7 +3973,7 @@
 
   .dark-nav-tile {
     border: 1px solid var(--color-border-subtle);
-    background-color: var(--color-surface-accent-hover);
+    background-color: var(--color-surface-accent);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
@@ -4059,11 +4059,11 @@
    *
    * Frame → token (main column):
    * 399:4757 title → --color-text-primary-card-title
-   * 399:4766 help → --color-surface-accent-hover
+   * 399:4766 help → --color-surface-accent
    * 399:4768 tabs active → --color-text-primary-card-title / --color-surface-base
-   * 399:4817 stepper active → --color-surface-accent-hover / --color-accent-pale pending
+   * 399:4817 stepper active → --color-surface-accent / --color-accent-pale pending
    * 399:4847 speed tabs → scoped under .cashier-deposit-step1-card
-   * 399:4871 step badge → --color-surface-accent-hover / --color-surface-base
+   * 399:4871 step badge → --color-surface-accent / --color-surface-base
    * 399:4880 method accordion (default border --color-border-subtle; selected --color-border-brand + --color-accent-pale)
    * 399:4914 footer note → --color-text-muted
    */
@@ -4084,7 +4084,7 @@
     --color-border-brand: var(--cashier-accent-500);
     --color-accent-pale: var(--cashier-accent-50);
     --color-accent-glow: var(--cashier-accent-100);
-    --color-surface-accent-hover: var(--cashier-accent-600);
+    --color-surface-accent: var(--cashier-accent-600);
     --color-surface-base: var(--mono-0);
     --color-text-card-text: var(--mono-0);
     --color-button-cta: var(--cashier-brand);
@@ -4174,7 +4174,7 @@
   }
 
   .cashier-flow-page .cashier-help-link {
-    color: var(--color-surface-accent-hover);
+    color: var(--color-surface-accent);
   }
 
   .cashier-flow-page .cashier-help-link:hover {
@@ -4277,7 +4277,7 @@
   }
 
   .cashier-flow-page .cashier-step-badge {
-    background: var(--color-surface-accent-hover);
+    background: var(--color-surface-accent);
     color: var(--color-surface-base);
   }
 
@@ -4299,7 +4299,7 @@
     --color-border-brand: var(--cashier-accent-500);
     --color-accent-pale: var(--cashier-accent-50);
     --color-accent-glow: var(--cashier-accent-100);
-    --color-surface-accent-hover: var(--cashier-accent-600);
+    --color-surface-accent: var(--cashier-accent-600);
     --color-text-primary-card-title: var(--cashier-brand);
     --color-text-muted: var(--cashier-text-muted);
     --color-surface-cool-light: var(--cashier-accent-100);
@@ -4319,7 +4319,7 @@
   }
 
   .cashier-deposit-step1 .cashier-step-badge {
-    background: var(--color-surface-accent-hover);
+    background: var(--color-surface-accent);
     color: var(--color-text-light);
   }
 
@@ -4332,7 +4332,7 @@
   }
 
   .cashier-flow-step .cashier-step-badge {
-    background: var(--color-surface-accent-hover);
+    background: var(--color-surface-accent);
     color: var(--color-surface-base);
   }
 
@@ -4453,7 +4453,7 @@
   }
 
   .cashier-deposit-step1 .cashier-method-section.is-selected .cashier-method-section-chevron {
-    color: var(--color-surface-accent-hover);
+    color: var(--color-surface-accent);
   }
 
   .cashier-deposit-step1 .cashier-method-section-chevron.is-expanded {
@@ -4473,8 +4473,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
-    background: var(--color-accent-pale);
-    color: var(--color-surface-accent-hover);
+    background: var(--color-primary-tag);
+    color: var(--color-surface-accent);
   }
 
   .cashier-deposit-step1 .cashier-method-section-title {
@@ -4620,7 +4620,7 @@
     justify-content: center;
     border-radius: 9999px;
     background: var(--color-accent-pale);
-    color: var(--color-surface-accent-hover);
+    color: var(--color-surface-accent);
   }
 
   .cashier-method-section-title {
@@ -5165,12 +5165,12 @@
   .cashier-flow-stepper .cashier-stepper-dot.is-active,
   .cashier-flow-stepper .cashier-stepper-dot.is-completed {
     border-color: transparent;
-    background: var(--color-surface-accent-hover);
+    background: var(--color-surface-accent);
   }
 
   .cashier-flow-stepper .cashier-stepper-dot.is-active {
     color: var(--color-text-light);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-surface-accent-hover) 18%, transparent), var(--shadow-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-surface-accent) 18%, transparent), var(--shadow-accent);
   }
 
   .cashier-flow-stepper .cashier-stepper-dot.is-completed .cashier-stepper-check {
@@ -5178,7 +5178,7 @@
   }
 
   .cashier-flow-stepper .cashier-stepper-label.is-active {
-    color: var(--color-surface-accent-hover);
+    color: var(--color-surface-accent);
   }
 
   .cashier-flow-stepper .cashier-stepper-label.is-completed {
@@ -5190,7 +5190,7 @@
   }
 
   .cashier-flow-stepper .cashier-stepper-connector.is-done {
-    background: var(--color-surface-accent-hover);
+    background: var(--color-surface-accent);
   }
 
   .cashier-flow-stepper .cashier-stepper-connector.is-pending {

@@ -421,7 +421,7 @@
   --color-text-link:                         var(--support-link);
   --color-text-link-danger:                  var(--support-link-danger);
   --color-text-link-inverse:                 var(--mono-0);
-  --color-text-mid:                          var(--mono-644);
+  --color-text-mid:                          var(--raw-gradient-accent-600);
   --color-text-mid-alt:                      var(--mono-646);
   --color-text-mid-neutral:                  var(--mono-465);
   --color-text-muted:                        var(--raw-app-text-muted);
@@ -451,7 +451,7 @@
 
   /* surface */
   --color-surface:                           var(--raw-app-surface);
-  --color-surface-accent:                    var(--mono-330);
+  --color-surface-accent:                    var(--raw-gradient-accent-600);
   --color-surface-accent-hover:              var(--brand-700);
   --color-surface-base:                      var(--raw-app-surface-base);
   --color-surface-base-dark:                 var(--mono-808);
@@ -743,7 +743,7 @@
   --color-bar:                               var(--raw-bar);
 
   /* primary-tag */
-  --color-primary-tag:                       var(--support-error-medium);
+  --color-primary-tag:                       var(--mono-0);
 
   /* primary-tag-text */
   --color-primary-tag-text:                  var(--mono-0);

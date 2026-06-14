@@ -92,7 +92,7 @@ const PhoneFront = () => (
                 <div className="h-3 w-3 rounded-sm bg-[var(--color-surface-base)]/30" />
             </div>
         </div>
-        <div className="flex h-12 w-full items-center justify-around rounded-lg border border-[var(--color-border-brand)]/20 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-surface-accent-hover)] px-1">
+        <div className="flex h-12 w-full items-center justify-around rounded-lg border border-[var(--color-border-brand)]/20 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-surface-accent)] px-1">
             <div className="h-9 w-7 rounded-md bg-[var(--color-border-brand)]" />
             <div className="h-9 w-7 rounded-md bg-[var(--color-border-brand)]" />
             <div className="h-9 w-7 rounded-md bg-[var(--color-border-brand)]" />

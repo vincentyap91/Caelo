@@ -263,7 +263,7 @@ export default function SlotBrowseFilterModal({
                                                                 type="button"
                                                                 onClick={() => setDraftProvider(provider.name)}
                                                                 className={`flex min-h-[90px] w-full min-w-0 flex-col items-center justify-center rounded-xl border px-2 py-2 text-center transition lg:min-h-[120px] lg:px-3 lg:py-2.5 ${selected
-                                                                    ? 'border-[var(--color-primary)] bg-[var(--color-accent-pale)] text-[var(--color-surface-accent-hover)] shadow-[var(--shadow-brand-soft)]'
+                                                                    ? 'border-[var(--color-primary)] bg-[var(--color-accent-pale)] text-[var(--color-surface-accent)] shadow-[var(--shadow-brand-soft)]'
                                                                     : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)]'
                                                                     }`}
                                                             >
