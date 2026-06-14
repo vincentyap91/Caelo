@@ -37,7 +37,7 @@ const CalendarDateInput = forwardRef(function CalendarDateInput(
             <label className={className ?? 'block'}>
                 <span
                     className={[
-                        'mb-2 block text-xs font-semibold text-[var(--color-text-primary)] md:text-sm',
+                        'mb-2 block text-xs font-semibold text-[var(--color-text-muted)] md:text-sm',
                         labelClassName,
                     ]
                         .filter(Boolean)

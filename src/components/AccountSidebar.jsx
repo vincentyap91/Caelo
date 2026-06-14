@@ -207,7 +207,7 @@ export default function AccountSidebar({
                                             onClick={() => handleCashierClick(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
+                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
                                                     : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                             }`}
                                         >
@@ -249,7 +249,7 @@ export default function AccountSidebar({
                                             onClick={() => handleNavClick(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
+                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
                                                     : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                             }`}
                                         >
@@ -293,7 +293,7 @@ export default function AccountSidebar({
                                             onClick={() => onNavigate?.('loyalty-rewards', { rewardsTab: id })}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
+                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
                                                     : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
                                             }`}
                                         >

@@ -4174,7 +4174,7 @@
   }
 
   .cashier-flow-page .cashier-help-link {
-    color: var(--color-surface-accent);
+    color: var(--color-text-sub);
   }
 
   .cashier-flow-page .cashier-help-link:hover {
@@ -4839,7 +4839,7 @@
     font-size: 0.875rem;
     font-style: italic;
     font-weight: 700;
-    color: var(--color-button-hover);
+    color: var(--color-text-sub);
   }
 
   .cashier-step2-currency-prefix--display {
@@ -4854,7 +4854,7 @@
     height: 2.75rem;
     flex: 1;
     border: 0;
-    background: transparent;
+    background: var(--color-surface-input-light);
     padding: 0 0.875rem;
     font-size: 0.875rem;
     font-weight: 500;

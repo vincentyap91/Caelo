@@ -204,7 +204,7 @@ export default function RolloverStatusCard({
                                 <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-bold ${
                                     isComplete
                                         ? 'bg-[color-mix(in_srgb,var(--color-success)_12%,white)] text-[var(--color-success)]'
-                                        : 'bg-[color-mix(in_srgb,var(--color-button-hover)_10%,white)] text-[var(--color-button-hover)]'
+                                        : 'bg-[color-mix(in_srgb,var(--color-button-hover)_10%,white)] text-[var(--color-text-sub)]'
                                 }`}>
                                     {badgeLabel}
                                 </span>
