@@ -157,7 +157,7 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                             </div>
                             <div className="hidden items-center justify-between gap-4 md:flex">
                                 <div className="flex items-center gap-4">
-                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-text-cta-inverse)]">
+                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-icon)]">
                                         <Star size={24} strokeWidth={2} />
                                     </span>
                                     <div>

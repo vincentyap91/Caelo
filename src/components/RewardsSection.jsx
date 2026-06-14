@@ -164,7 +164,7 @@ function RewardsWalletBar({ balance, onRecordClick }) {
     return (
         <div className="surface-card flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-card)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-5 shadow-[var(--shadow-card-soft)] md:p-6">
             <div className="flex min-w-0 flex-1 items-center gap-4">
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-text-cta-inverse)] shadow-[var(--shadow-cta-soft)] ring-1 ring-[var(--color-border-brand)]/60">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-icon)] shadow-[var(--shadow-cta-soft)] ring-1 ring-[var(--color-border-brand)]/60">
                     <Wallet className="h-6 w-6" strokeWidth={2} />
                 </span>
                 <div className="min-w-0">
@@ -417,7 +417,7 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
 
     const recordTypeFilterSlot = (
         <label className="claim-record-filter-field block w-full">
-            <span className="mb-2 block text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Type</span>
+            <span className="mb-2 block text-xs font-semibold text-[var(--color-text-muted)] md:text-sm">Type</span>
             <div className="relative">
                 <select
                     value={recordActivityType}
