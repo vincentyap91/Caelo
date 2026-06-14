@@ -336,7 +336,7 @@ export default function DepositPage({ onNavigate }) {
         <div className="page-container cashier-flow-page">
             <div className="mb-6 space-y-4">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <h1 className="cashier-flow-page__title page-title">Deposit / Withdrawal</h1>
+                    <h1 className="page-title">Deposit / Withdrawal</h1>
                     <button
                         type="button"
                         onClick={() => onNavigate?.('help-center')}

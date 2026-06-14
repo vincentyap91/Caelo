@@ -125,7 +125,7 @@ export default function AppDownload() {
 
             <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[0.9fr_1fr_0.85fr] lg:gap-10">
                 <div className="w-full max-w-[360px]">
-                    <div className="inline-flex rounded-full border border-[var(--color-surface-base)]/80 bg-[var(--color-surface-base)]/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
+                    <div className="inline-flex rounded-full border border-[var(--color-surface-base)]/80 bg-[var(--color-surface-base)]/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-secondary)]">
                         Mobile App
                     </div>
                     <h2 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--color-text-secondary)] sm:text-3xl md:text-4xl">
@@ -192,7 +192,7 @@ export default function AppDownload() {
                             <div className="pointer-events-none absolute left-[-12px] bottom-8 h-16 w-16 rounded-full bg-[var(--color-surface-base)]/60 blur-2xl" />
 
                             <div className="relative">
-                                <div className="app-download-apk-badge inline-flex items-center gap-2 rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)]">
+                                <div className="app-download-apk-badge inline-flex items-center gap-2 rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-secondary)]">
                                     <QrCode size={13} />
                                     Android APK
                                 </div>

@@ -3827,9 +3827,9 @@
    * Top nav + account tabs ? Web - Sidenav semantics, Caelo values scoped (?13.11).
    */
   .top-nav-shell {
-    --color-button-nav-text: var(--color-text-primary-card-title);
+    --color-button-nav-text: var(--brand-500);
     --color-button-hover: var(--color-surface-accent-hover);
-    --color-button-hover-text: var(--color-text-card-text);
+    --color-button-hover-text: var(--brand-500);
     background-color: var(--color-surface-base);
     border-bottom: 1px solid var(--color-border-subtle);
   }
@@ -3840,7 +3840,7 @@
 
   .top-nav-link:hover:not(.nav-desktop-link-active) {
     background-color: var(--color-button-hover);
-    color: var(--color-button-hover-text);
+    color: var(--color-text-light);
     box-shadow: var(--shadow-nav-top);
   }
 
@@ -3850,7 +3850,7 @@
 
   .top-nav-more-trigger:hover:not(.nav-desktop-link-active) {
     background-color: var(--color-button-hover);
-    color: var(--color-button-hover-text);
+    color: var(--color-text-light);
     box-shadow: var(--shadow-nav-top);
   }
 
@@ -3858,7 +3858,7 @@
     --color-button-nav: var(--color-surface-base);
     --color-button-nav-text: var(--color-text-secondary);
     --color-button-hover: var(--color-accent-pale);
-    --color-button-hover-text: var(--color-text-primary-card-title);
+    --color-button-hover-text: var(--brand-500);
     border: 1px solid var(--color-border-subtle);
     background-color: var(--color-surface-base);
   }
@@ -4095,7 +4095,7 @@
 
   .cashier-flow-page .page-title,
   .cashier-flow-page .cashier-flow-page__title {
-    color: var(--color-text-primary-card-title);
+    color: var(--color-text-primary);
   }
 
   .cashier-flow-page .cashier-flow-surface-card {
@@ -5568,7 +5568,7 @@
   }
 
   .section-header-theme {
-    border-bottom: 2px solid var(--color-border-brand);
+    border-bottom: 2px solid var(--color-border);
   }
 
   @media (min-width: 768px) {

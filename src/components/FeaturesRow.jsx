@@ -251,7 +251,7 @@ export default function FeaturesRow() {
                         <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[var(--color-surface-cool-light)] bg-[var(--color-surface-base)] p-1 shadow-sm transition-transform group-hover:scale-110 lg:h-auto lg:w-auto lg:p-2">
                             {item.icon}
                         </div>
-                        <span className="w-full text-pretty text-xs font-semibold leading-snug tracking-tight text-[var(--color-button-hover)] sm:text-sm lg:max-w-[120px] lg:flex-none lg:font-bold lg:leading-tight lg:tracking-normal">
+                        <span className="w-full text-pretty text-xs font-semibold leading-snug tracking-tight text-[var(--color-secondary)] sm:text-sm lg:max-w-[120px] lg:flex-none lg:font-bold lg:leading-tight lg:tracking-normal">
                             {item.title}
                         </span>
                     </div>

@@ -40,7 +40,7 @@ const DesktopPromoCard = ({ title, image, imageAlt, imageClassName = '', glowCla
         <div className={`absolute inset-x-0 bottom-0 h-full ${glowClassName}`} />
 
         <div className="absolute left-6 top-1/2 z-10 -translate-y-1/2 flex flex-col gap-1">
-            <h3 className="w-[280px] text-lg font-bold leading-tight tracking-tight text-[var(--color-button-hover)]">
+            <h3 className="w-[280px] text-lg font-bold leading-tight tracking-tight text-[var(--color-secondary)]">
                 {title}
             </h3>
         </div>

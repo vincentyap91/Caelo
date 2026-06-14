@@ -24,7 +24,7 @@ const EXIT_ANIMATION_NAME = 'push-notification-exit';
 const variantStyles = {
     [PUSH_VARIANT.success]: {
         iconWrap:
-            'bg-[var(--color-success-light)] text-[var(--color-success)] shadow-[var(--shadow-success)]',
+            'bg-[var(--color-success-light)] text-[var(--color-surface)] shadow-[var(--shadow-success)]',
         iconRing: 'ring-1 ring-[var(--color-success)]/12',
         accent: 'bg-[var(--color-success)]',
         accentSoft: 'bg-[var(--color-success)]/10',

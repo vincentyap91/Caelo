@@ -417,7 +417,7 @@
   --color-text-highlight:                    var(--raw-promo-date);
   --color-text-hover:                        var(--mono-950);
   --color-text-label:                        var(--mono-490);
-  --color-text-light:                        var(--mono-488);
+  --color-text-light:                        var(--mono-0);
   --color-text-link:                         var(--support-link);
   --color-text-link-danger:                  var(--support-link-danger);
   --color-text-link-inverse:                 var(--mono-0);
@@ -567,7 +567,7 @@
   --color-primary:                           var(--brand-500);
 
   /* border */
-  --color-border:                            var(--raw-app-border);
+  --color-border:                            var(--brand-630);
   --color-border-accent:                     var(--accent-460);
   --color-border-brand:                      var(--raw-border-brand);
   --color-border-danger:                     var(--brand-500);
@@ -623,7 +623,7 @@
   --color-button-dashboard-primary-start:    var(--brand-500);
   --color-button-disabled:                   var(--brand-630);
   --color-button-dot:                        var(--brand-500);
-  --color-button-hover:                      var(--raw-gradient-accent-600);
+  --color-button-hover:                      var(--brand-630);
   --color-button-hover-text:                 var(--brand-500);
   --color-button-lang-border:                var(--mono-650);
   --color-button-lang-icon:                  var(--mono-0);
@@ -734,6 +734,7 @@
   --color-icon-rank-third:                   var(--raw-icon-rank-third-mark);
   --color-icon-subtle:                       var(--mono-560);
   --color-icon-um:                           var(--brand-500);
+  --color-icon:                        var(--brand-500);
 
   /* transparent */
   --color-transparent:                       var(--mono-0909);
@@ -751,7 +752,7 @@
   --color-scrollbar:                         var(--brand-500);
 
   /* secondary */
-  --color-secondary:                         var(--mono-0);
+  --color-secondary:                         var(--brand-630);
 
   /* secondary-tag */
   --color-secondary-tag:                     var(--raw-gradient-accent-50);
