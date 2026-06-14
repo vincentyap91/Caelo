@@ -525,6 +525,56 @@
     border-color: var(--color-accent-glow);
   }
 
+  .referral-page .referral-social-share {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 0.25rem;
+  }
+
+  .referral-page .referral-social-share__label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .referral-page .referral-social-share__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .referral-page .referral-social-share__btn {
+    display: inline-flex;
+    height: 2rem;
+    width: 2rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 9999px;
+    color: var(--color-text-card-text);
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+
+  .referral-page .referral-social-share__btn:hover {
+    filter: brightness(1.08);
+    transform: scale(1.05);
+  }
+
+  .referral-page .referral-social-share__btn--facebook {
+    background-color: var(--color-social-facebook);
+  }
+
+  .referral-page .referral-social-share__btn--telegram {
+    background-color: var(--color-social-telegram);
+  }
+
+  .referral-page .referral-social-share__btn--whatsapp {
+    background-color: var(--color-social-whatsapp);
+  }
+
   /**
    * Web_VIP — Cam88 (781:13837 / 957:44321)
    * §13.11: Cam88 semantic names in JSX; Caelo look via scoped aliases (layout unchanged).
@@ -3937,7 +3987,7 @@
    */
   .top-nav-shell {
     --color-button-nav-text: var(--brand-500);
-    --color-button-hover: var(--color-surface-accent);
+    --color-button-hover: var(--brand-630);
     --color-button-hover-text: var(--brand-500);
     background-color: var(--color-surface-base);
     border-bottom: 1px solid var(--color-border-subtle);

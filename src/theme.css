@@ -20,6 +20,9 @@
      --------------------------------------------------------------------------- */
   /* mono */
   --mono-0: #ffffff;
+  --mono-1: #1877f2;
+  --mono-2: #0088cc;
+  --mono-3: #25d366;
   --mono-105: #f0f0f0;
   --mono-108: #e9e9e9;
   --mono-111: #d6dbf5;
@@ -759,6 +762,11 @@
 
   /* secondary-tag-text */
   --color-secondary-tag-text:                var(--support-success-vivid);
+
+  /* social */
+  --color-social-facebook:                   var(--mono-1);
+  --color-social-telegram:                   var(--mono-2);
+  --color-social-whatsapp:                    var(--mono-3);
 
   /* sticky-nav */
   --color-sticky-nav:                        var(--brand-700);

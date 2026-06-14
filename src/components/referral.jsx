@@ -31,12 +31,82 @@ import DownlineReferralsPanel from './referral/DownlineReferralsPanel';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from './HorizontalScrollTabRow';
 import PromotionStyleTabs from './PromotionStyleTabs';
 import ReferralGameCommissionTable from './referral/ReferralGameCommissionTable';
+import WhatsAppIcon from './WhatsAppIcon';
 
 const affiliateTabs = ['Invite Friends', 'My Referrals', 'My Rewards', 'How It Works'];
 
 // Placeholder data – replace with real user data when integrated
 const REFERRAL_CODE = '589092';
 const REFERRAL_URL = `${typeof window !== 'undefined' ? window.location.origin : ''}/register?code=${REFERRAL_CODE}`;
+
+function getReferralShareMessage() {
+    return `Use my referral code ${REFERRAL_CODE} to join 12WIN! ${REFERRAL_URL}`;
+}
+
+function openReferralFacebookShare() {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(REFERRAL_URL)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+function openReferralTelegramShare() {
+    const url = `https://t.me/share/url?url=${encodeURIComponent(REFERRAL_URL)}&text=${encodeURIComponent(`Use my referral code ${REFERRAL_CODE}`)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+function openReferralWhatsAppShare() {
+    const url = `https://wa.me/?text=${encodeURIComponent(getReferralShareMessage())}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+function FacebookShareIcon({ size = 14 }) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden>
+            <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.048 8.048 0 0 0-.653-.036 26.74 26.74 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.121.188-.21.43-.258.725-.047.284-.071.658-.071 1.122v1.61h4.297l-.359 3.667h-3.938v7.98H9.101z" />
+        </svg>
+    );
+}
+
+function TelegramShareIcon({ size = 14 }) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden>
+            <path d="M9.78 15.28 9.5 19.5c.55 0 .79-.24 1.08-.53l2.59-2.48 5.37 3.93c.98.54 1.68.26 1.93-.9l3.52-16.5h.01c.31-1.44-.52-2.01-1.47-1.66L1.2 9.72c-1.41.55-1.39 1.34-.24 1.7l5.47 1.71L19.07 5.3c.66-.44 1.26-.2.77.26" />
+        </svg>
+    );
+}
+
+function ReferralSocialShareButtons() {
+    return (
+        <div className="referral-social-share">
+            <span className="referral-social-share__label">Share via social media</span>
+            <div className="referral-social-share__actions">
+                <button
+                    type="button"
+                    className="referral-social-share__btn referral-social-share__btn--facebook"
+                    onClick={openReferralFacebookShare}
+                    aria-label="Share referral code on Facebook"
+                >
+                    <FacebookShareIcon />
+                </button>
+                <button
+                    type="button"
+                    className="referral-social-share__btn referral-social-share__btn--telegram"
+                    onClick={openReferralTelegramShare}
+                    aria-label="Share referral code on Telegram"
+                >
+                    <TelegramShareIcon />
+                </button>
+                <button
+                    type="button"
+                    className="referral-social-share__btn referral-social-share__btn--whatsapp"
+                    onClick={openReferralWhatsAppShare}
+                    aria-label="Share referral code on WhatsApp"
+                >
+                    <WhatsAppIcon size={14} />
+                </button>
+            </div>
+        </div>
+    );
+}
 
 const depositCommissionTiers = [
     { tier: 'Tier 1', rate: 'PKR 2' },
@@ -366,6 +436,7 @@ function InviteFriendsContent({ onSwitchTab, authUser, onLoginClick }) {
                             <Share2 size={14} />
                             Share your code
                         </button>
+                        <ReferralSocialShareButtons />
                     </div>
                 </div>
 
