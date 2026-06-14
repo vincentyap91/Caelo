@@ -1,7 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import CalendarDateInput from './CalendarDateInput';
 import HorizontalScrollTabRow, { scrollTabIntoViewSmooth } from './HorizontalScrollTabRow';
+import TablePagination from './ui/TablePagination';
 import { filterPillClassName } from './ui/filterPillClasses';
+
+const DEFAULT_PAGE_SIZE = 5;
 
 function formatDateForInput(d) {
     const y = d.getFullYear();
@@ -114,6 +117,7 @@ const HISTORY_QUICK_RANGES = [
  * @param {import('react').ReactNode} [props.filterSlot]
  * @param {boolean} [props.pillQuickRanges]
  * @param {string} [props.emptyMessage]
+ * @param {number} [props.pageSize]
  */
 export default function AccountHistoryRecordPanel({
     startDateLabel,
@@ -124,12 +128,14 @@ export default function AccountHistoryRecordPanel({
     filterSlot = null,
     pillQuickRanges = false,
     emptyMessage = null,
+    pageSize = DEFAULT_PAGE_SIZE,
 }) {
     const quickTabRefs = useRef({});
     const today = new Date();
     const [historyStart, setHistoryStart] = useState(formatDateForInput(today));
     const [historyEnd, setHistoryEnd] = useState(formatDateForInput(new Date(today.getTime() + 86400000)));
     const [historyQuickRange, setHistoryQuickRange] = useState('today');
+    const [currentPage, setCurrentPage] = useState(1);
 
     const setHistoryRangeFromQuick = (id) => {
         setHistoryQuickRange(id);
@@ -160,6 +166,23 @@ export default function AccountHistoryRecordPanel({
         const rowTime = rowDate.getTime();
         return rowTime >= startDate.getTime() && rowTime <= endDate.getTime();
     });
+
+    const totalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize));
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [historyStart, historyEnd, rows, pageSize]);
+
+    useEffect(() => {
+        if (currentPage > totalPages) {
+            setCurrentPage(totalPages);
+        }
+    }, [currentPage, totalPages]);
+
+    const paginatedRows = useMemo(() => {
+        const startIndex = (currentPage - 1) * pageSize;
+        return filteredRows.slice(startIndex, startIndex + pageSize);
+    }, [filteredRows, currentPage, pageSize]);
 
     const quickRangeButtonClass = (selected) =>
         filterPillClassName(selected, { shape: pillQuickRanges ? 'rounded-full' : 'rounded-xl' });
@@ -228,7 +251,7 @@ export default function AccountHistoryRecordPanel({
                         </thead>
                         <tbody>
                             {filteredRows.length > 0 ? (
-                                filteredRows.map((row, rowIndex) => (
+                                paginatedRows.map((row, rowIndex) => (
                                     <tr
                                         key={row.id ?? `${rowIndex}-${rowDateKey}`}
                                         className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-deep)]"
@@ -262,6 +285,13 @@ export default function AccountHistoryRecordPanel({
                             )}
                         </tbody>
                     </table>
+                </div>
+                <div className="history-record-table-footer">
+                    <TablePagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
                 </div>
             </div>
         </div>

@@ -830,6 +830,115 @@
   }
 
   /**
+   * Shared table pagination — Cam88 color/button/pagination + color/button/cta/pagination.
+   * §13.11: compact Caelo light cluster (pale track, navy active, muted idle).
+   */
+  .table-pagination {
+    --color-button-pagination: var(--color-surface-base);
+    --color-button-pagination-arrow: var(--color-secondary);
+    --color-button-pagination-disabled: var(--color-text-muted);
+    --color-button-cta-pagination: var(--color-surface-subtle);
+    --color-button-cta-pagination-selected: var(--color-primary);
+  }
+
+  .table-pagination {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .history-record-panel .history-record-table-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid var(--color-border-subtle);
+    padding: 0.75rem 1rem 1rem;
+    background-color: var(--color-popup-body);
+  }
+
+  .table-pagination__arrow {
+    display: inline-flex;
+    height: 1.875rem;
+    width: 1.875rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 0.5rem;
+    background-color: var(--color-button-pagination);
+    color: var(--color-button-pagination-arrow);
+    box-shadow: var(--shadow-subtle);
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .table-pagination__arrow:hover:not(:disabled) {
+    border-color: var(--color-border-brand);
+    background-color: var(--color-accent-pale);
+    color: var(--color-primary);
+  }
+
+  .table-pagination__arrow:disabled {
+    cursor: not-allowed;
+    border-color: var(--color-border-subtle);
+    background-color: var(--color-surface-subtle);
+    color: var(--color-button-pagination-disabled);
+    opacity: 0.65;
+    box-shadow: none;
+  }
+
+  .table-pagination__pages {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.125rem;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 0.5rem;
+    background-color: var(--color-button-cta-pagination);
+    padding: 0.125rem;
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .table-pagination__page {
+    display: inline-flex;
+    min-width: 1.625rem;
+    height: 1.625rem;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 0.375rem;
+    background: transparent;
+    padding: 0 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text-muted);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .table-pagination__page:hover:not(.is-active) {
+    background-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-base));
+    color: var(--color-primary);
+  }
+
+  .table-pagination__ellipsis {
+    display: inline-flex;
+    min-width: 1.25rem;
+    height: 1.625rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.125rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text-muted);
+    user-select: none;
+  }
+
+  .table-pagination__page.is-active {
+    background-color: var(--color-button-cta-pagination-selected);
+    color: var(--color-text-light);
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--color-button-cta-pagination-selected) 28%, transparent);
+  }
+
+  /**
    * Web_Claim Record (Spin Wheel) — Cam88 (781:13837 / 957:49550)
    * §13.11: modal shell + inner filter/table content; Caelo look via scoped aliases.
    *

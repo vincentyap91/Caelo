@@ -735,38 +735,38 @@ function HowItWorksContent() {
 
     return (
         <div className="space-y-6">
-            <div className="surface-card rounded-2xl p-6 md:p-8">
+            <div>
                 <h3 className="text-center text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">Invite Your Friends to Earn Passive Income</h3>
                 <div className="mt-8 grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-3">
                     {steps.map((step) => (
-                            <div
-                                key={step.num}
-                                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-gradient-surface-card shadow-referral-subtle"
-                            >
-                                <span className="absolute left-4 top-4 z-10 rounded-md bg-gradient-cta px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-cta-inverse)] shadow-sm">
-                                    Step {step.num}
-                                </span>
-                                <div className="flex flex-1 flex-col items-center px-4 pb-7 pt-14 text-center md:px-5 md:pb-8">
-                                    <div
-                                        className="mb-5 flex w-full max-w-[280px] flex-1 items-center justify-center md:max-w-[300px]"
-                                        aria-hidden
-                                    >
-                                        <div className="relative w-full overflow-hidden rounded-xl px-2 py-3 md:py-4">
-                                            <img
-                                                src={step.image}
-                                                alt=""
-                                                className="mx-auto h-auto max-h-[200px] w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.02] sm:max-h-[220px] md:max-h-[240px]"
-                                                loading="lazy"
-                                                draggable={false}
-                                            />
-                                        </div>
+                        <div
+                            key={step.num}
+                            className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-gradient-surface-card shadow-referral-subtle"
+                        >
+                            <span className="absolute left-4 top-4 z-10 rounded-md bg-gradient-cta px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-cta-inverse)] shadow-sm">
+                                Step {step.num}
+                            </span>
+                            <div className="flex flex-1 flex-col items-center px-4 pb-7 pt-14 text-center md:px-5 md:pb-8">
+                                <div
+                                    className="mb-5 flex w-full max-w-[280px] flex-1 items-center justify-center md:max-w-[300px]"
+                                    aria-hidden
+                                >
+                                    <div className="relative w-full overflow-hidden rounded-xl px-2 py-3 md:py-4">
+                                        <img
+                                            src={step.image}
+                                            alt=""
+                                            className="mx-auto h-auto max-h-[200px] w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.02] sm:max-h-[220px] md:max-h-[240px]"
+                                            loading="lazy"
+                                            draggable={false}
+                                        />
                                     </div>
-                                    <p className="max-w-[16rem] text-sm font-bold leading-snug text-[var(--color-text-primary)] md:max-w-none md:text-base md:leading-relaxed">
-                                        {step.title}
-                                    </p>
                                 </div>
+                                <p className="max-w-[16rem] text-sm font-bold leading-snug text-[var(--color-text-primary)] md:max-w-none md:text-base md:leading-relaxed">
+                                    {step.title}
+                                </p>
                             </div>
-                        ))}
+                        </div>
+                    ))}
                 </div>
             </div>
 
