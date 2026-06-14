@@ -1163,7 +1163,7 @@
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: var(--tracking-tight);
-    color: var(--color-surface-check-in-text);
+    color: var(--color-text-title);
   }
 
   .daily-bonus-claim-modal__header .universal-modal-close-btn {
@@ -1678,7 +1678,7 @@
   }
 
   .recent-big-wins-section .recent-big-wins-title-highlight {
-    color: var(--color-primary);
+    color: var(--color-text-title);
   }
 
   .recent-big-wins-section .recent-big-wins-thumb {

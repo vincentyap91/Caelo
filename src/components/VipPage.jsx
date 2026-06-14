@@ -166,7 +166,7 @@ export default function VipPage({ authUser }) {
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
                 <div className="soft-blue-panel rounded-[28px] p-4 shadow-[var(--shadow-card-raised)] md:p-6">
                     <div>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)] shadow-[var(--shadow-subtle)]">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-title)] shadow-[var(--shadow-subtle)]">
                             <Crown size={14} className="text-[var(--color-accent)]" />
                             VIP Club
                         </span>
@@ -182,7 +182,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)]">Starting Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-title)]">Starting Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">Normal</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
@@ -193,7 +193,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)]">Top Reward Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-title)]">Top Reward Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">Diamond</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
@@ -204,7 +204,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5 sm:col-span-2 lg:col-span-1">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-fifth-title)]">Member Support</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-title)]">Member Support</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">24 / 7</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-2 shadow-[var(--shadow-subtle)]">

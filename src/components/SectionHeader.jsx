@@ -11,7 +11,7 @@ export default function SectionHeader({ title, icon, rightLink, rightLinkTo, onN
                 <div className="flex items-center justify-center text-[var(--color-icon)]">
                     {icon}
                 </div>
-                <h2 className="text-base font-bold tracking-tight text-[var(--color-text-third-title)] md:text-lg">
+                <h2 className="text-base font-bold tracking-tight text-[var(--color-text-title)] md:text-lg">
                     {title}
                 </h2>
                 <div className="ml-4 mt-1 relative top-1 flex gap-1">
@@ -25,12 +25,12 @@ export default function SectionHeader({ title, icon, rightLink, rightLinkTo, onN
                     <button
                         type="button"
                         onClick={handleRightClick}
-                        className="mb-1 text-xs font-semibold text-[var(--color-text-third-title)] hover:underline"
+                        className="mb-1 text-xs font-semibold text-[var(--color-text-link)] hover:underline"
                     >
                         {rightLink}
                     </button>
                 ) : (
-                    <a href="#" className="mb-1 text-xs font-semibold text-[var(--color-text-third-title)] hover:underline">
+                    <a href="#" className="mb-1 text-xs font-semibold text-[var(--color-text-link)] hover:underline">
                         {rightLink}
                     </a>
                 )

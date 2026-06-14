@@ -421,7 +421,7 @@
   --color-text-hover:                        var(--mono-950);
   --color-text-label:                        var(--mono-490);
   --color-text-light:                        var(--mono-0);
-  --color-text-link:                         var(--support-link);
+  --color-text-link:                         var(--brand-500);
   --color-text-link-danger:                  var(--support-link-danger);
   --color-text-link-inverse:                 var(--mono-0);
   --color-text-mid:                          var(--raw-gradient-accent-600);
@@ -449,7 +449,7 @@
   --color-text-subtle-dark:                  var(--mono-545);
   --color-text-tertiary:                     var(--mono-950);
   --color-text-third-title:                  var(--brand-500);
-  --color-text-title:                        var(--accent-400);
+  --color-text-title:                        var(--brand-500);
   --color-text-warm:                         var(--accent-brown-800);
 
   /* surface */
