@@ -4219,8 +4219,8 @@
   }
 
   .cashier-mode-tab.is-active {
-    background: var(--color-text-primary-card-title);
-    color: var(--color-surface-base);
+    background: var(--color-button-tabs);
+    color: var(--color-text-light);
     box-shadow: var(--shadow-nav-pill);
   }
 
@@ -4242,7 +4242,7 @@
   }
 
   .cashier-deposit-step1-card .cashier-speed-tab.is-active {
-    background: var(--color-text-primary-card-title);
+    background: var(--color-button-tabs);
     color: var(--color-text-light);
     box-shadow: var(--shadow-subtle);
   }
