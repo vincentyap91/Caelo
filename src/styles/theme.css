@@ -4139,7 +4139,7 @@
 
   .profile-menu-dropdown .dark-nav-panel {
     border: 1px solid var(--color-nav-border);
-    background-color: var(--color-button-cta-primary);
+    background-color: var(--color-button-cta-category);
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
   }
 
@@ -4156,7 +4156,6 @@
 
   .profile-menu-dropdown .dark-nav-tile:hover {
     border-color: var(--color-nav-top-pill-border-hover);
-    color: var(--color-icon-action);
   }
 
   .profile-menu-dropdown .profile-menu-avatar {
@@ -4193,7 +4192,7 @@
 
   .profile-menu-dropdown .profile-menu-section-label,
   .profile-menu-dropdown .profile-menu-tile-label {
-    color: #ffffff;
+    color: var(--color-text-sticky-nav-text);
   }
 
   .profile-menu-dropdown .profile-menu-chevron {
@@ -5403,7 +5402,7 @@
     );
     border-color: color-mix(in srgb, var(--color-danger-red) 35%, transparent);
     background: var(--color-gradient-tag);
-    color: var(--color-danger-maroon);
+    color: var(--color-icon-subtle);
     box-shadow: 0 4px 12px color-mix(in srgb, var(--color-danger-red) 12%, transparent);
     transform: translateY(-1px);
   }
@@ -5476,7 +5475,7 @@
     );
     border-color: color-mix(in srgb, var(--color-danger-red) 35%, transparent);
     background: var(--color-gradient-tag);
-    color: var(--color-danger-maroon);
+    color: var(--color-button-cta-primary);
   }
 
   /**
