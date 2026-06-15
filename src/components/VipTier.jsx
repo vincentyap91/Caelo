@@ -22,7 +22,7 @@ function VipLevelCard({ vp, className }) {
                             draggable={false}
                         />
                     </div>
-                    <h3 className="whitespace-nowrap text-sm font-bold tracking-wide text-[var(--color-button-hover)]">
+                    <h3 className="whitespace-nowrap text-sm font-bold tracking-wide text-[var(--color-secondary)]">
                         VIP {vp.tier}
                     </h3>
                 </div>
