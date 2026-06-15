@@ -3,7 +3,6 @@ import {
     ChevronDown,
     Heart,
     History,
-    PencilLine,
     Settings,
     ShieldCheck,
     UserCircle2,
@@ -144,16 +143,6 @@ export default function AccountSidebar({
                             <div className="blue-accent-avatar flex aspect-square h-14 w-14 items-center justify-center overflow-hidden rounded-full lg:h-16 lg:w-16">
                                 <UserCircle2 className="block h-8 w-8 text-[var(--color-button-hover)] lg:h-10 lg:w-10" />
                             </div>
-                            {!guestPreview && (
-                                <button
-                                    type="button"
-                                    onClick={() => onNavigate?.('profile')}
-                                    className="absolute bottom-0 right-0 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] text-[var(--color-button-hover)] shadow-sm transition hover:scale-105 hover:bg-[var(--color-accent-pale)] lg:h-7 lg:w-7"
-                                    aria-label="Edit profile"
-                                >
-                                    <PencilLine className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
-                                </button>
-                            )}
                         </div>
                         <div className="min-w-0 flex-1 pt-0 lg:pt-1">
                             <p className="text-xl font-bold leading-tight text-[var(--color-text-primary-card-title)] lg:text-2xl">{username}</p>

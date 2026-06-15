@@ -485,7 +485,7 @@
   --color-surface-code:                      var(--mono-622);
   --color-surface-coloful-deep:              var(--raw-brand-soft);
   --color-surface-colorful:                  var(--brand-700);
-  --color-surface-cool-light:                var(--raw-surface-muted);
+  --color-surface-cool-light:                var(--mono-105);
   --color-surface-darkest:                   var(--mono-940);
   --color-surface-deep:                      var(--mono-920);
   --color-surface-deep-dark:                 var(--mono-915);
@@ -618,7 +618,7 @@
   --color-button-cta-fourth-text:            var(--mono-950);
   --color-button-cta-pagination:             var(--mono-310);
   --color-button-cta-pagination-selected:    var(--brand-700);
-  --color-button-cta-primary:                var(--brand-630);
+  --color-button-cta-primary:                var(--mono-0);
   --color-button-cta-secondary:              var(--support-success-strong);
   --color-button-cta-secondary-text:         var(--mono-0);
   --color-button-cta-tertiary:               var(--mono-330);

@@ -550,7 +550,7 @@ export default function Navbar({
                                         <div className="relative shrink-0">
                                             <div className="relative flex items-start gap-3">
                                                 <div className="relative shrink-0">
-                                                    <div className="profile-menu-avatar flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-border-subtle)] bg-gradient-menu-brand shadow-[var(--inset-highlight-strong)]">
+                                                    <div className="profile-menu-avatar flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[var(--color-border-subtle)] bg-[var(--color-surface-colorful)] shadow-[var(--inset-highlight-strong)]">
                                                         <UserCircle2 size={36} className="profile-menu-avatar-icon" />
                                                     </div>
                                                 </div>

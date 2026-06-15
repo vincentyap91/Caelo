@@ -4227,7 +4227,7 @@
     --cashier-accent-600: #2563eb;
     --cashier-accent-500: #3b82f6;
     --cashier-accent-200: #bfdbfe;
-    --cashier-accent-100: #dbeafe;
+    --cashier-accent-100: var(--mono-105);
     --cashier-accent-50: #eff6ff;
     --cashier-border: #e2e8f0;
     --cashier-text-muted: #64748b;
@@ -5443,7 +5443,7 @@
   .account-layout,
   .user-dashboard-sidebar {
     --color-accent-glow: #dbeafe;
-    --color-surface-cool-light: #dbeafe;
+    --color-surface-cool-light: var(--mono-105);
     --color-accent-pale: #eff6ff;
     --color-border-brand: #3b82f6;
     --color-button-hover: #2563eb;
