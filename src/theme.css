@@ -177,6 +177,8 @@
   --raw-scrim-shine-start: rgb(255 255 255 / 0.2);
   --raw-scrim-shine-end: rgb(255 255 255 / 0);
   --raw-scrim-white-55: rgb(255 255 255 / 0.55);
+  --raw-scrim-white-24: rgb(255 255 255 / 0.24);
+  --raw-scrim-white-16: rgb(255 255 255 / 0.16);
   --raw-scrim-white-14: rgb(255 255 255 / 0.14);
   --raw-scrim-white-10: rgb(255 255 255 / 0.1);
   --raw-scrim-white-07: rgb(255 255 255 / 0.07);
@@ -771,6 +773,11 @@
   --color-sticky-nav:                        var(--brand-500);
   --color-gradient-sticky-nav-pill:          linear-gradient(180deg, var(--raw-scrim-white-07) 0%, var(--raw-scrim-white-03) 100%);
   --color-gradient-sticky-nav-pill-hover:    linear-gradient(180deg, var(--raw-scrim-white-10) 0%, var(--raw-scrim-white-05) 100%);
+  --color-nav-top-pill-border:               var(--raw-scrim-white-16);
+  --color-nav-top-pill-border-hover:         var(--raw-scrim-white-24);
+  --color-nav-top-pill-bg:                   var(--color-gradient-sticky-nav-pill);
+  --color-nav-top-pill-bg-hover:             var(--color-gradient-sticky-nav-pill-hover);
+  --color-nav-top-pill-shadow:               inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 10px rgba(0, 0, 0, 0.06);
 
   /* thumbnail */
   --color-thumbnail:                         var(--mono-950);

@@ -70,13 +70,6 @@
   --shadow-nav-top: 0 8px 16px rgba(0, 73, 156, 0.2);
   --shadow-nav-dropdown: 0 20px 44px rgba(0, 16, 56, 0.4);
   --shadow-nav-pill: 0 8px 16px rgba(1, 22, 63, 0.25);
-  --raw-scrim-white-16: rgba(255, 255, 255, 0.16);
-  --raw-scrim-white-24: rgba(255, 255, 255, 0.24);
-  --nav-top-pill-border: var(--raw-scrim-white-16);
-  --nav-top-pill-border-hover: var(--raw-scrim-white-24);
-  --nav-top-pill-bg: var(--color-gradient-sticky-nav-pill);
-  --nav-top-pill-bg-hover: var(--color-gradient-sticky-nav-pill-hover);
-  --nav-top-pill-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 10px rgba(0, 0, 0, 0.06);
   --shadow-nav-tile-hover: 0 14px 24px rgba(3, 22, 58, 0.34);
   --shadow-success: 0 0 8px rgba(57, 181, 74, 0.6);
   --shadow-scan: 0 0 8px #00a8e8;
@@ -3696,9 +3689,9 @@
     padding-left: 1rem;
     padding-right: 1rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--nav-top-pill-border);
+    border: 1px solid var(--color-nav-top-pill-border);
     background-image: var(--color-gradient-sticky-nav-pill);
-    box-shadow: var(--nav-top-pill-shadow);
+    box-shadow: var(--color-nav-top-pill-shadow);
     font-size: 0.75rem;
     line-height: 1rem;
     font-weight: 700;
@@ -3707,7 +3700,7 @@
   }
 
   .nav-top-pill:hover {
-    border-color: var(--nav-top-pill-border-hover);
+    border-color: var(--color-nav-top-pill-border-hover);
     background-image: var(--color-gradient-sticky-nav-pill-hover);
   }
 
@@ -3727,27 +3720,27 @@
    */
   .top-sticky-nav-bar .top-sticky-balance-chip,
   .top-sticky-nav-bar .top-sticky-profile-chip {
-    border: 1px solid var(--nav-top-pill-border);
-    box-shadow: var(--nav-top-pill-shadow);
+    border: 1px solid var(--color-nav-top-pill-border);
+    box-shadow: var(--color-nav-top-pill-shadow);
     color: var(--color-text-sticky-nav-text);
   }
 
   .top-sticky-nav-bar .top-sticky-balance-chip {
     --color-surface-high: var(--brand-400);
     background-color: var(--color-surface-high);
-    background-image: var(--nav-top-pill-bg);
+    background-image: var(--color-nav-top-pill-bg);
   }
 
   .top-sticky-nav-bar .top-sticky-balance-chip__refresh {
     background-color: var(--color-surface-high);
-    background-image: var(--nav-top-pill-bg);
+    background-image: var(--color-nav-top-pill-bg);
     border-left: 1px solid var(--color-nav-border);
     color: var(--color-text-sticky-nav-text);
   }
 
   .top-sticky-nav-bar .top-sticky-profile-chip {
     background-color: transparent;
-    background-image: var(--nav-top-pill-bg), var(--color-gradient-menu-brand);
+    background-image: var(--color-nav-top-pill-bg), var(--color-gradient-menu-brand);
   }
 
   .top-sticky-nav-bar .top-sticky-profile-chip__divider {
@@ -3759,9 +3752,9 @@
     --color-surface-high: var(--brand-400);
     --color-text-sticky-nav-text: var(--mono-0);
     border: none;
-    box-shadow: var(--nav-top-pill-shadow);
+    box-shadow: var(--color-nav-top-pill-shadow);
     background-color: var(--color-surface-high);
-    background-image: var(--nav-top-pill-bg);
+    background-image: var(--color-nav-top-pill-bg);
     color: var(--color-text-sticky-nav-text);
   }
 
@@ -3771,7 +3764,7 @@
 
   .mobile-sticky-balance__refresh {
     background-color: var(--color-surface-high);
-    background-image: var(--nav-top-pill-bg);
+    background-image: var(--color-nav-top-pill-bg);
     border-left: 1px solid var(--color-nav-border);
     color: var(--color-text-sticky-nav-text);
   }
@@ -3827,14 +3820,14 @@
     --color-surface-high: var(--brand-400);
     border: none;
     background-color: var(--color-surface-high);
-    background-image: var(--nav-top-pill-bg);
-    box-shadow: var(--nav-top-pill-shadow);
+    background-image: var(--color-nav-top-pill-bg);
+    box-shadow: var(--color-nav-top-pill-shadow);
     color: var(--color-text-sticky-nav-text);
   }
 
   .sidenav-shell .sidenav-balance-pill__refresh {
     background-color: var(--color-surface-high);
-    background-image: var(--nav-top-pill-bg);
+    background-image: var(--color-nav-top-pill-bg);
     border-left: 1px solid var(--color-nav-border);
     color: var(--color-text-sticky-nav-text);
   }
@@ -3940,7 +3933,7 @@
     background-color: var(--color-button-sidenav-live-chat);
     background-image: none;
     color: var(--color-button-sidenav-live-chat-text);
-    box-shadow: var(--nav-top-pill-shadow);
+    box-shadow: var(--color-nav-top-pill-shadow);
   }
 
   .sidenav-shell .sidenav-live-chat:hover {
