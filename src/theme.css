@@ -105,7 +105,6 @@
   --brand-500: #45ff8b;
   --brand-500-soft: #45ff8b33;
   --brand-630: #1f3728;
-  --brand-700: #26583b;
 
   /* accent */
   --accent-200: #fdd182;
@@ -505,7 +504,7 @@
   --color-surface-forest-deep:               var(--brand-700);
   --color-surface-forest-deep:               var(--brand-700);
   --color-surface-game-stage:                var(--raw-surface-game-stage);
-  --color-surface-high:                      var(--mono-800);
+  --color-surface-high:                      var(--brand-400);
   --color-surface-highlight:                 var(--mono-310);
   --color-surface-info:                      var(--support-info);
   --color-surface-info-deep:                 var(--support-info-strong);
