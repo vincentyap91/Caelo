@@ -70,8 +70,10 @@
   --shadow-nav-top: 0 8px 16px rgba(0, 73, 156, 0.2);
   --shadow-nav-dropdown: 0 20px 44px rgba(0, 16, 56, 0.4);
   --shadow-nav-pill: 0 8px 16px rgba(1, 22, 63, 0.25);
-  --nav-top-pill-border: rgba(255, 255, 255, 0.16);
-  --nav-top-pill-border-hover: rgba(255, 255, 255, 0.24);
+  --raw-scrim-white-16: rgba(255, 255, 255, 0.16);
+  --raw-scrim-white-24: rgba(255, 255, 255, 0.24);
+  --nav-top-pill-border: var(--raw-scrim-white-16);
+  --nav-top-pill-border-hover: var(--raw-scrim-white-24);
   --nav-top-pill-bg: var(--color-gradient-sticky-nav-pill);
   --nav-top-pill-bg-hover: var(--color-gradient-sticky-nav-pill-hover);
   --nav-top-pill-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 10px rgba(0, 0, 0, 0.06);
@@ -3720,12 +3722,12 @@
   }
 
   /**
-   * Logged-in balance + profile pills ? screenshot fills, LOGOUT glass family (?13.11).
-   * No outer border; sheen + shadow only (same tokens as `.nav-top-pill`).
+   * Logged-in balance + profile pills — screenshot fills, LOGOUT glass family (§13.11).
+   * Outer border uses semantic color/border/subtle.
    */
   .top-sticky-nav-bar .top-sticky-balance-chip,
   .top-sticky-nav-bar .top-sticky-profile-chip {
-    border: none;
+    border: 1px solid var(--nav-top-pill-border);
     box-shadow: var(--nav-top-pill-shadow);
     color: var(--color-text-sticky-nav-text);
   }

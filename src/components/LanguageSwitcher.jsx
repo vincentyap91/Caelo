@@ -84,13 +84,6 @@ export default function LanguageSwitcher({
                                 : 'bg-gradient-language-panel-top'
                         }`}
                     />
-                    <div
-                        className={`pointer-events-none absolute inset-x-0 bottom-0 h-14 ${
-                            isLightTone
-                                ? 'bg-gradient-language-panel-radial-light'
-                                : 'bg-gradient-language-panel-radial'
-                        }`}
-                    />
                     {LANGUAGES.map((lang) => {
                         const isActive = value === lang.code;
                         return (
@@ -113,7 +106,7 @@ export default function LanguageSwitcher({
                                         : `text-[var(--color-text-sticky-nav-text)] ${
                                             isActive
                                                 ? 'bg-gradient-language-option-active shadow-[var(--inset-highlight-soft)]'
-                                                : 'hover:bg-[var(--color-border-subtle)]'
+                                                : 'hover:bg-[var(--color-surface-light-active)]'
                                         }`
                                 }`}
                             >
