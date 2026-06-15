@@ -1,0 +1,157 @@
+) {
+  const card = figma.createFrame();
+  card.layoutMode = "VERTICAL";
+  card.itemSpacing = 8;
+  card.paddingTop = 28;
+  card.paddingBottom = 12;
+  card.paddingLeft = card.paddingRight = 8;
+  card.cornerRadius = 15;
+  await bindFillPath(card, "color/surface/cool/light");
+  await bindStrokePath(card, "color/border/brand");
+  catGrid.appendChild(card);
+  card.layoutSizingHorizontal = "FILL";
+
+  const ribbon = figma.createFrame();
+  ribbon.cornerRadius = 10;
+  ribbon.paddingLeft = ribbon.paddingRight = 10;
+  ribbon.paddingTop = ribbon.paddingBottom = 6;
+  await bindFillPath(ribbon, "color/primary");
+  await bindStrokePath(ribbon, "color/border/brand");
+  ribbon.appendChild(await makeText(name.toUpperCase(), 10, "Bold", "color/text/card/text"));
+  card.appendChild(ribbon);
+
+  const thumb = figma.createFrame();
+  thumb.resize(180, 200);
+  thumb.cornerRadius = 10;
+  await bindFillPath(thumb, "color/surface/cool/light");
+  card.appendChild(thumb);
+}
+
+// Top Games (TopGames.jsx + TopGameCard compact)
+const topGames = sectionShell("Top Games");
+content.appendChild(topGames);
+topGames.appendChild(await sectionHeader("Top Games"));
+
+const gameRow = figma.createFrame();
+gameRow.layoutMode = "HORIZONTAL";
+gameRow.itemSpacing = 16;
+gameRow.fills = [];
+topGames.appendChild(gameRow);
+gameRow.layoutSizingHorizontal = "FILL";
+
+for (let i = 1; i <= 6; i++) {
+  const card = figma.createFrame();
+  card.layoutMode = "VERTICAL";
+  card.itemSpacing = 0;
+  card.cornerRadius = 16;
+  card.resize(200, 240);
+  await bindFillPath(card, "color/surface/base");
+  gameRow.appendChild(card);
+
+  const art = figma.createFrame();
+  art.resize(200, 160);
+  art.cornerRadius = 16;
+  await bindFillPath(art, "color/surface/cool/light");
+  card.appendChild(art);
+
+  const gameFooter = figma.createFrame();
+  gameFooter.layoutMode = "VERTICAL";
+  gameFooter.itemSpacing = 4;
+  gameFooter.paddingLeft = gameFooter.paddingRight = 8;
+  gameFooter.paddingTop = gameFooter.paddingBottom = 8;
+  gameFooter.resize(200, 80);
+  await bindFillPath(gameFooter, "color/surface/rtp/card");
+  await bindStrokePath(gameFooter, "color/border/subtle", 1);
+  card.appendChild(gameFooter);
+  gameFooter.appendChild(await makeText(`Game ${i}`, 11, "Bold", "color/text/card/text"));
+
+  const rtp = figma.createFrame();
+  rtp.cornerRadius = 999;
+  rtp.paddingLeft = rtp.paddingRight = 10;
+  rtp.paddingTop = rtp.paddingBottom = 4;
+  await bindFillPath(rtp, "color/surface/rtp/secondary/card");
+  rtp.appendChild(await makeText("RTP 96.5%", 10, "Bold", "color/surface/rtp/secondary/card/text"));
+  gameFooter.appendChild(rtp);
+
+  const primaryBorder = figma.createRectangle();
+  primaryBorder.resize(200, 4);
+  await bindFillPath(primaryBorder, "color/primary");
+  card.appendChild(primaryBorder);
+}
+
+// Live activity (HomeLiveActivity.jsx — bg-gradient-home-dashboard)
+const live = sectionShell("Live activity");
+content.appendChild(live);
+live.appendChild(await sectionHeader("Live Transactions"));
+
+for (const panelName of ["Live Transactions", "Recent Big Wins"]) {
+  const panel = figma.createFrame();
+  panel.name = panelName;
+  panel.layoutMode = "VERTICAL";
+  panel.itemSpacing = 16;
+  panel.paddingLeft = panel.paddingRight = 32;
+  panel.paddingTop = panel.paddingBottom = 32;
+  panel.cornerRadius = 20;
+  await bindGradientFill(panel, "color/gradient/home/dashboard/start", "color/gradient/home/dashboard/end");
+  await bindStrokePath(panel, "color/border/brand");
+  live.appendChild(panel);
+  panel.layoutSizingHorizontal = "FILL";
+  panel.appendChild(await makeText(panelName + " panel", 14, "Regular", "color/text/secondary"));
+}
+
+// Footer (Footer.jsx — site-footer)
+const footer = figma.createFrame();
+footer.name = "Footer";
+footer.layoutMode = "VERTICAL";
+footer.itemSpacing = 12;
+footer.paddingLeft = footer.paddingRight = 64;
+footer.paddingTop = footer.paddingBottom = 48;
+footer.resize(1440, 160);
+await bindFillPath(footer, "color/surface/low");
+await bindStrokePath(footer, "color/border/line");
+footer.strokeTopWeight = 1;
+footer.strokeBottomWeight = 0;
+footer.strokeLeftWeight = 0;
+footer.strokeRightWeight = 0;
+ui.appendChild(footer);
+footer.appendChild(
+  await makeText(
+    "© 2026 12WIN · 18+ · Responsible gaming",
+    12,
+    "Semi Bold",
+    "color/text/footer",
+  ),
+);
+
+const ann = homePage.findOne((n) => n.name.startsWith("[Color Tokens"));
+if (ann) ann.y = ui.height + 48;
+
+return {
+  step: "home-ui-1to1",
+  uiFrameId: ui.id,
+  uiHeight: ui.height,
+  semanticBindings: [
+    "color/surface/base",
+    "color/sticky/nav",
+    "color/border/subtle",
+    "color/text/sticky/nav/text",
+    "color/gradient/button/cta/start",
+    "color/gradient/button/cta/end",
+    "color/text/cta/inverse",
+    "color/surface/base",
+    "color/text/primary/card/title",
+    "color/primary",
+    "color/text/card/text",
+    "color/border/brand",
+    "color/surface/cool/light",
+    "color/button/hover",
+    "color/surface/rtp/card",
+    "color/surface/rtp/secondary/card",
+    "color/surface/rtp/secondary/card/text",
+    "color/gradient/home/dashboard/start",
+    "color/gradient/home/dashboard/end",
+    "color/surface/low",
+    "color/border/line",
+    "color/text/footer",
+  ],
+};

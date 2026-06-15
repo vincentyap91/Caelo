@@ -1,0 +1,259 @@
+const SECTION_ID = "234:1247";
+
+const semCol = (await figma.variables.getLocalVariableCollectionsAsync()).find(
+  (c) => c.name === "02 Semantic",
+);
+if (!semCol) throw new Error('Missing collection "02 Semantic"');
+
+async function getVar(path) {
+  return (await figma.variables.getLocalVariablesAsync("COLOR")).find(
+    (v) => v.variableCollectionId === semCol.id && v.name === path,
+  );
+}
+
+function solidFill(hex = { r: 1, g: 1, b: 1 }) {
+  return [{ type: "SOLID", color: hex }];
+}
+
+function bindFill(node, variable) {
+  if (!variable || !node) return false;
+  if (!node.fills?.length) node.fills = solidFill();
+  const paint = node.fills[0];
+  if (paint.type !== "SOLID") return false;
+  node.fills = [figma.variables.setBoundVariableForPaint(paint, "color", variable)];
+  return true;
+}
+
+function bindStroke(node, variable) {
+  if (!variable || !node) return false;
+  if (!node.strokes?.length) node.strokes = solidFill();
+  const paint = node.strokes[0];
+  if (paint.type !== "SOLID") return false;
+  node.strokes = [figma.variables.setBoundVariableForPaint(paint, "color", variable)];
+  return true;
+}
+
+async function bindFillPath(node, path) {
+  if (!node) return;
+  bindFill(node, await getVar(path));
+}
+
+async function bindStrokePath(node, path, weight) {
+  if (!node) return;
+  if (weight != null) node.strokeWeight = weight;
+  bindStroke(node, await getVar(path));
+}
+
+async function bindGradientFill(node, startPath, endPath) {
+  const startVar = await getVar(startPath);
+  const endVar = await getVar(endPath);
+  if (!startVar || !endVar || !node) {
+    await bindFillPath(node, startPath);
+    return;
+  }
+  node.fills = [
+    {
+      type: "GRADIENT_LINEAR",
+      gradientTransform: [
+        [1, 0, 0],
+        [0, 1, 0],
+      ],
+      gradientStops: [
+        {
+          color: { r: 0, g: 0, b: 0, a: 1 },
+          position: 0,
+          boundVariables: { color: { type: "VARIABLE_ALIAS", id: startVar.id } },
+        },
+        {
+          color: { r: 0, g: 0, b: 0, a: 1 },
+          position: 1,
+          boundVariables: { color: { type: "VARIABLE_ALIAS", id: endVar.id } },
+        },
+      ],
+    },
+  ];
+}
+
+async function bindTextPath(node, path) {
+  if (!node || node.type !== "TEXT") return;
+  const variable = await getVar(path);
+  if (!variable) return;
+  const paint = figma.variables.setBoundVariableForPaint(
+    { type: "SOLID", color: { r: 0, g: 0, b: 0 } },
+    "color",
+    variable,
+  );
+  node.setRangeFills(0, node.characters.length, [paint]);
+}
+
+async function bindIconSubtree(node, path) {
+  if (!node) return;
+  if (node.type === "VECTOR" || node.type === "BOOLEAN_OPERATION") {
+    if (node.fills?.length && node.fills[0].type === "SOLID") await bindFillPath(node, path);
+    if (node.strokes?.length && node.strokes[0].type === "SOLID") await bindStrokePath(node, path);
+  }
+  if ("children" in node) {
+    for (const child of node.children) await bindIconSubtree(child, path);
+  }
+}
+
+const SPORTS_CARD = ["color/gradient/sports/card/start", "color/gradient/sports/card/end"];
+
+function isOddsCell(node) {
+  return (
+    node?.type === "FRAME" &&
+    (node.name === "sports-odds-cell" ||
+      (node.name === "Background" &&
+        node.parent?.name === "sports-match-card" &&
+        node.fills?.[0]?.type === "SOLID"))
+  );
+}
+
+function classifySportsText(node, inOddsCell = false) {
+  const t = (node.characters || "").trim();
+  if (inOddsCell || t === "HDP" || t === "Odds" || /^-?\d+(\.\d+)?$/.test(t)) {
+    return "color/button/cta/fourth/text";
+  }
+  if (t.includes("GMT") || (t.includes("/") && t.includes("am"))) return "color/text/sports/muted";
+  if (/^\d{2}:\d{2}$/.test(t) || t === "-") return "color/text/sports/primary";
+  if (t.length > 15 || t.includes("WORLD CUP") || t.includes("Friendly")) return "color/text/sports/muted";
+  return "color/text/sports/primary";
+}
+
+const section = await figma.getNodeByIdAsync(SECTION_ID);
+if (!section) throw new Error(`Live Sports section ${SECTION_ID} not found`);
+
+section.name = "home-live-sports-section";
+
+const header = await figma.getNodeByIdAsync("234:1248");
+if (header) {
+  header.name = "section-header-theme HorizontalBorder";
+  await bindStrokePath(header, "color/border/line");
+}
+
+const title = await figma.getNodeByIdAsync("234:1249");
+if (title?.type === "TEXT") {
+  title.name = "home-section-title";
+  const chars = title.characters;
+  const liveVar = await getVar("color/text/third/title");
+  const sportsVar = await getVar("color/text/card/text");
+  const idx = chars.indexOf("Sports");
+  if (idx > 0 && liveVar && sportsVar) {
+    title.setRangeFills(0, idx, [
+      figma.variables.setBoundVariableForPaint({ type: "SOLID", color: { r: 0, g: 0, b: 0 } }, "color", liveVar),
+    ]);
+    title.setRangeFills(idx, chars.length, [
+      figma.variables.setBoundVariableForPaint({ type: "SOLID", color: { r: 0, g: 0, b: 0 } }, "color", sportsVar),
+    ]);
+  } else {
+    await bindTextPath(title, "color/text/card/text");
+  }
+}
+
+await bindTextPath(await figma.getNodeByIdAsync("234:1250"), "color/text/muted");
+
+const betBtn = await figma.getNodeByIdAsync("234:1252");
+if (betBtn) {
+  betBtn.name = "sports-bet-now-button";
+  await bindFillPath(betBtn, "color/button/cta/fourth");
+}
+await bindTextPath(await figma.getNodeByIdAsync("234:1253"), "color/button/cta/fourth/text");
+
+const liveCol = await figma.getNodeByIdAsync("234:1254");
+if (liveCol) liveCol.name = "home-live-sports-carousel";
+await bindTextPath(await figma.getNodeByIdAsync("234:1255"), "color/text/card/text");
+
+const nextBtn = await figma.getNodeByIdAsync("234:1548");
+if (nextBtn) {
+  nextBtn.name = "home-live-sports-next";
+  await bindFillPath(nextBtn, "color/button/cta/fourth");
+  await bindIconSubtree(await figma.getNodeByIdAsync("234:1549"), "color/button/cta/fourth/text");
+}
+
+async function bindSportsSubtree(node, inCard = false) {
+  if (!node) return;
+
+  if (
+    (node.name === "Background+Shadow" || node.name === "sports-match-card") &&
+    node.parent?.name.includes("Container")
+  ) {
+    node.name = "sports-match-card";
+    await bindGradientFill(node, ...SPORTS_CARD);
+    await bindStrokePath(node, "color/border/sports/card");
+    inCard = true;
+  }
+
+  if (inCard && node.name === "Overlay" && node.type === "FRAME") {
+    await bindFillPath(node, "color/overlay/sports/card");
+  }
+
+  if (inCard && isOddsCell(node)) {
+    node.name = "sports-odds-cell";
+    await bindFillPath(node, "color/accent/yellow");
+    await bindStrokePath(node, "color/border/sports/market");
+  }
+
+  if (inCard && node.type === "TEXT") {
+    await bindTextPath(node, classifySportsText(node, isOddsCell(node.parent)));
+  }
+
+  if (inCard && (node.name === "SVG" || node.type === "VECTOR")) {
+    await bindIconSubtree(node, "color/accent/yellow");
+  }
+
+  if ("children" in node) {
+    for (const child of node.children) await bindSportsSubtree(child, inCard);
+  }
+}
+
+await bindSportsSubtree(section);
+
+let bound = 0;
+let raw = 0;
+function audit(node) {
+  if ("fills" in node && node.fills?.length) {
+    const f = node.fills[0];
+    if (f.visible !== false && f.type === "SOLID") {
+      if (f.boundVariables?.color) bound++;
+      else if (f.color) raw++;
+    }
+    if (f.type === "GRADIENT_LINEAR" && f.visible !== false) bound++;
+  }
+  if (node.type === "TEXT") {
+    for (const seg of node.getStyledTextSegments(["fills"])) {
+      const f = seg.fills?.[0];
+      if (f?.type === "SOLID") {
+        if (f.boundVariables?.color) bound++;
+        else if (f.color) raw++;
+      }
+    }
+  }
+  if ("strokes" in node && node.strokes?.length) {
+    const s = node.strokes[0];
+    if (s.visible !== false && s.type === "SOLID") {
+      if (s.boundVariables?.color) bound++;
+      else if (s.color) raw++;
+    }
+  }
+  if ("children" in node) node.children.forEach(audit);
+}
+audit(section);
+
+return {
+  sectionId: section.id,
+  sectionName: section.name,
+  bound,
+  rawFillsStrokes: raw,
+  bindings: [
+    "color/text/third/title + color/text/card/text (split LIVE Sports title)",
+    "color/text/muted",
+    "color/text/card/text (Live Sports carousel label)",
+    "color/button/cta/fourth + /text (Bet Now + carousel next)",
+    "color/gradient/sports/card",
+    "color/overlay/sports/card",
+    "color/accent/yellow (odds bar)",
+    "color/border/sports/card + /market",
+    "color/border/line",
+    "color/text/sports/primary + /muted",
+  ],
+};

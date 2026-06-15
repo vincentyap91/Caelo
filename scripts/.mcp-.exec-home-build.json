@@ -1,0 +1,1 @@
+{"fileKey":"J056FpXrIW4sDJtXNLsz0T","skillNames":"figma-use","description":".exec-home-build.js","code":"const code = [0,1,2].map(i => figma.root.getSharedPluginData(\"caelo\", \"homeBuild\" + i)).join(\"\");\nconst AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;\nconst fn = new AsyncFunction(\"figma\", code);\nreturn await fn(figma);"}

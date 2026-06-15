@@ -1,0 +1,102 @@
+[
+  {
+    "name": "00-setup-collections",
+    "bytes": 1377
+  },
+  {
+    "name": "01-primitives-01",
+    "bytes": 9918
+  },
+  {
+    "name": "01-primitives-02",
+    "bytes": 10610
+  },
+  {
+    "name": "01-primitives-03",
+    "bytes": 10776
+  },
+  {
+    "name": "01-primitives-04",
+    "bytes": 12690
+  },
+  {
+    "name": "01-primitives-05",
+    "bytes": 11534
+  },
+  {
+    "name": "01-primitives-06",
+    "bytes": 4777
+  },
+  {
+    "name": "02-semantics-01",
+    "bytes": 11333
+  },
+  {
+    "name": "02-semantics-02",
+    "bytes": 12373
+  },
+  {
+    "name": "02-semantics-03",
+    "bytes": 12099
+  },
+  {
+    "name": "02-semantics-04",
+    "bytes": 12143
+  },
+  {
+    "name": "02-semantics-05",
+    "bytes": 2736
+  },
+  {
+    "name": "03-gradient-stops-01",
+    "bytes": 12081
+  },
+  {
+    "name": "07-sync-web-code-syntax-01",
+    "bytes": 4201
+  },
+  {
+    "name": "07-sync-web-code-syntax-02",
+    "bytes": 5177
+  },
+  {
+    "name": "07-sync-web-code-syntax-03",
+    "bytes": 6375
+  },
+  {
+    "name": "07-sync-web-code-syntax-04",
+    "bytes": 7539
+  },
+  {
+    "name": "07-sync-web-code-syntax-05",
+    "bytes": 6123
+  },
+  {
+    "name": "07-sync-web-code-syntax-06",
+    "bytes": 5881
+  },
+  {
+    "name": "07-sync-web-code-syntax-07",
+    "bytes": 6417
+  },
+  {
+    "name": "07-sync-web-code-syntax-08",
+    "bytes": 6135
+  },
+  {
+    "name": "07-sync-web-code-syntax-09",
+    "bytes": 6171
+  },
+  {
+    "name": "07-sync-web-code-syntax-10",
+    "bytes": 6845
+  },
+  {
+    "name": "07-sync-web-code-syntax-11",
+    "bytes": 2833
+  },
+  {
+    "name": "05-audit",
+    "bytes": 1828
+  }
+]

@@ -769,7 +769,7 @@
   --color-social-whatsapp:                    var(--mono-3);
 
   /* sticky-nav */
-  --color-sticky-nav:                        var(--brand-700);
+  --color-sticky-nav:                        var(--brand-500);
   --color-gradient-sticky-nav-pill:          linear-gradient(180deg, var(--raw-scrim-white-07) 0%, var(--raw-scrim-white-03) 100%);
   --color-gradient-sticky-nav-pill-hover:    linear-gradient(180deg, var(--raw-scrim-white-10) 0%, var(--raw-scrim-white-05) 100%);
 

@@ -1,0 +1,172 @@
+pendChild(await makePill("nav-top-pill", "LOGIN"));
+
+const joinBtn = figma.createFrame();
+joinBtn.name = "btn-theme-cta-soft";
+joinBtn.layoutMode = "HORIZONTAL";
+joinBtn.paddingLeft = joinBtn.paddingRight = 14;
+joinBtn.paddingTop = joinBtn.paddingBottom = 6;
+joinBtn.cornerRadius = 8;
+await bindGradientFill(joinBtn, "color/gradient/button/cta/start", "color/gradient/button/cta/end");
+await bindStrokePath(joinBtn, "color/border/brand");
+joinBtn.appendChild(await makeText("JOIN NOW", 11, "Bold", "color/text/cta/inverse"));
+stickyRight.appendChild(joinBtn);
+stickyRight.appendChild(await makePill("nav-top-pill nav-top-pill--icon", "LIVE CHAT", "🎧"));
+stickyRight.appendChild(await makePill("nav-top-pill nav-top-pill--icon", "EN ▾", "🇬🇧"));
+
+const mainNav = figma.createFrame();
+mainNav.name = "top-nav-shell";
+mainNav.layoutMode = "HORIZONTAL";
+mainNav.resize(1440, 64);
+mainNav.paddingLeft = mainNav.paddingRight = 40;
+mainNav.counterAxisAlignItems = "CENTER";
+mainNav.itemSpacing = 24;
+await bindFillPath(mainNav, "color/surface/base");
+await bindStrokePath(mainNav, "color/border/subtle");
+mainNav.strokeTopWeight = mainNav.strokeLeftWeight = mainNav.strokeRightWeight = 0;
+mainNav.strokeBottomWeight = 1;
+navWrap.appendChild(mainNav);
+mainNav.appendChild(await makeText("12WIN", 20, "Bold", "color/text/primary/card/title"));
+
+const navLinks = figma.createFrame();
+navLinks.name = "top-nav-links";
+navLinks.layoutMode = "HORIZONTAL";
+navLinks.itemSpacing = 4;
+navLinks.fills = [];
+mainNav.appendChild(navLinks);
+navLinks.layoutSizingHorizontal = "FILL";
+
+const labels = [
+  "Home",
+  "All",
+  "Sports",
+  "Live Casino",
+  "Slots",
+  "Fish Hunt",
+  "Promotion",
+  "Referral",
+  "Membership",
+  "More ▾",
+];
+for (const label of labels) {
+  const link = figma.createFrame();
+  const isActive = label === "Home";
+  link.name = isActive ? "top-nav-link nav-desktop-link-active" : "top-nav-link";
+  link.layoutMode = "HORIZONTAL";
+  link.paddingLeft = link.paddingRight = 14;
+  link.paddingTop = link.paddingBottom = 8;
+  link.cornerRadius = 8;
+  if (isActive) {
+    await bindGradientFill(link, "color/gradient/button/cta/start", "color/gradient/button/cta/end");
+    await bindStrokePath(link, "color/border/brand");
+    // .top-nav-link { color: button-nav-text } wins over nav-desktop-link-active for text
+    link.appendChild(await makeText(label, 13, "Semi Bold", "color/text/primary/card/title"));
+  } else {
+    link.fills = [];
+    link.appendChild(await makeText(label, 13, "Bold", "color/text/primary/card/title"));
+  }
+  navLinks.appendChild(link);
+}
+
+// ── Hero + Marquee (HeroSection.jsx) ──
+const hero = figma.createFrame();
+hero.name = "Hero + Marquee";
+hero.layoutMode = "VERTICAL";
+hero.primaryAxisSizingMode = "AUTO";
+hero.counterAxisSizingMode = "FIXED";
+hero.resize(1440, 100);
+hero.itemSpacing = 0;
+await bindFillPath(hero, "color/primary");
+ui.appendChild(hero);
+
+const heroImg = figma.createFrame();
+heroImg.name = "Hero banner";
+heroImg.resize(1440, 280);
+await bindFillPath(heroImg, "color/surface/cool/light");
+hero.appendChild(heroImg);
+heroImg.appendChild(await makeText("homebanner.jpg", 14, "Regular", "color/text/card/text"));
+
+const marquee = figma.createFrame();
+marquee.name = "Announcement marquee";
+marquee.layoutMode = "HORIZONTAL";
+marquee.resize(1440, 44);
+marquee.paddingLeft = marquee.paddingRight = 64;
+marquee.counterAxisAlignItems = "CENTER";
+marquee.itemSpacing = 12;
+await bindFillPath(marquee, "color/primary");
+await bindStrokePath(marquee, "color/border/brand");
+marquee.strokeTopWeight = 1;
+marquee.strokeBottomWeight = 0;
+marquee.strokeLeftWeight = 0;
+marquee.strokeRightWeight = 0;
+hero.appendChild(marquee);
+marquee.appendChild(await makeText("📣", 14, "Regular", "color/text/card/text"));
+marquee.appendChild(
+  await makeText(
+    "Dear valued customer — promotions and VIP rewards available daily.",
+    12,
+    "Regular",
+    "color/text/sticky/nav/text",
+  ),
+);
+
+// ── Home content ──
+const content = figma.createFrame();
+content.name = "Home content";
+content.layoutMode = "VERTICAL";
+content.primaryAxisSizingMode = "AUTO";
+content.counterAxisSizingMode = "FIXED";
+content.resize(1440, 100);
+content.paddingLeft = content.paddingRight = 64;
+content.paddingTop = content.paddingBottom = 40;
+content.itemSpacing = 48;
+content.fills = [];
+ui.appendChild(content);
+
+// Features row (FeaturesRow.jsx)
+const features = sectionShell("Features row", 32);
+content.appendChild(features);
+features.appendChild(await sectionHeader("Outstanding Functions"));
+
+const featGrid = figma.createFrame();
+featGrid.layoutMode = "HORIZONTAL";
+featGrid.itemSpacing = 16;
+featGrid.fills = [];
+features.appendChild(featGrid);
+featGrid.layoutSizingHorizontal = "FILL";
+
+for (const title of ["Prestigious Brands", "Game Modes", "Guaranteed safety", "Fast action"]) {
+  const card = figma.createFrame();
+  card.layoutMode = "VERTICAL";
+  card.itemSpacing = 10;
+  card.paddingLeft = card.paddingRight = 16;
+  card.paddingTop = card.paddingBottom = 16;
+  card.cornerRadius = 12;
+  card.resize(300, 120);
+  await bindFillPath(card, "color/surface/base");
+  await bindStrokePath(card, "color/border/brand");
+  featGrid.appendChild(card);
+  card.layoutSizingHorizontal = "FILL";
+
+  const iconCircle = figma.createFrame();
+  iconCircle.resize(52, 52);
+  iconCircle.cornerRadius = 999;
+  await bindFillPath(iconCircle, "color/surface/base");
+  await bindStrokePath(iconCircle, "color/surface/cool/light");
+  card.appendChild(iconCircle);
+
+  card.appendChild(await makeText(title, 13, "Semi Bold", "color/button/hover"));
+}
+
+// Popular Category (GameCategories.jsx)
+const cats = sectionShell("Popular Category");
+content.appendChild(cats);
+cats.appendChild(await sectionHeader("Popular Category"));
+
+const catGrid = figma.createFrame();
+catGrid.layoutMode = "HORIZONTAL";
+catGrid.itemSpacing = 16;
+catGrid.fills = [];
+cats.appendChild(catGrid);
+catGrid.layoutSizingHorizontal = "FILL";
+
+for (const name of ["Slots", "Casino", "Sports", "Fishing", "E-Sports", "Lottery"]

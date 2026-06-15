@@ -1,0 +1,38 @@
+[
+  {
+    "label": "prim-01",
+    "bytes": 2270
+  },
+  {
+    "label": "prim-02",
+    "bytes": 2984
+  },
+  {
+    "label": "prim-03",
+    "bytes": 3803
+  },
+  {
+    "label": "prim-04",
+    "bytes": 3835
+  },
+  {
+    "label": "prim-05",
+    "bytes": 2583
+  },
+  {
+    "label": "sem-01",
+    "bytes": 3527
+  },
+  {
+    "label": "sem-02",
+    "bytes": 3604
+  },
+  {
+    "label": "sem-03",
+    "bytes": 3525
+  },
+  {
+    "label": "sem-04",
+    "bytes": 2589
+  }
+]

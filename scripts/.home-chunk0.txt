@@ -1,0 +1,190 @@
+await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+
+const homePage = figma.root.children.find((p) => p.name === "Caelo – Home");
+if (!homePage) throw new Error('Missing page "Caelo – Home"');
+await figma.setCurrentPageAsync(homePage);
+
+const semCol = (await figma.variables.getLocalVariableCollectionsAsync()).find((c) => c.name === "02 Semantic");
+const defaultModeId = semCol.modes.find((m) => m.name === "Default").modeId;
+
+async function getVar(path) {
+  return (await figma.variables.getLocalVariablesAsync("COLOR")).find(
+    (v) => v.variableCollectionId === semCol.id && v.name === path,
+  );
+}
+
+function solidFill(hex = { r: 1, g: 1, b: 1 }) {
+  return [{ type: "SOLID", color: hex }];
+}
+
+function bindFill(node, variable) {
+  if (!variable || !node.fills?.length) return;
+  const paint = node.fills[0];
+  if (paint.type !== "SOLID") return;
+  node.fills = [figma.variables.setBoundVariableForPaint(paint, "color", variable)];
+}
+
+function bindStroke(node, variable) {
+  if (!variable || !node.strokes?.length) return;
+  const paint = node.strokes[0];
+  if (paint.type !== "SOLID") return;
+  node.strokes = [figma.variables.setBoundVariableForPaint(paint, "color", variable)];
+}
+
+async function bindFillPath(node, path) {
+  node.fills = solidFill();
+  bindFill(node, await getVar(path));
+}
+
+async function bindStrokePath(node, path, weight = 1) {
+  node.strokes = solidFill({ r: 0, g: 0, b: 0 });
+  node.strokeWeight = weight;
+  bindStroke(node, await getVar(path));
+}
+
+async function bindGradientFill(node, startPath, endPath) {
+  const startVar = await getVar(startPath);
+  const endVar = await getVar(endPath);
+  if (!startVar || !endVar) {
+    await bindFillPath(node, startPath);
+    return;
+  }
+  node.fills = [
+    {
+      type: "GRADIENT_LINEAR",
+      gradientTransform: [
+        [0, 1, 0],
+        [-1, 0, 1],
+      ],
+      gradientStops: [
+        {
+          color: { r: 0, g: 0, b: 0, a: 1 },
+          position: 0,
+          boundVariables: { color: { type: "VARIABLE_ALIAS", id: startVar.id } },
+        },
+        {
+          color: { r: 0, g: 0, b: 0, a: 1 },
+          position: 1,
+          boundVariables: { color: { type: "VARIABLE_ALIAS", id: endVar.id } },
+        },
+      ],
+    },
+  ];
+}
+
+async function makeText(content, size, weight, colorPath) {
+  const t = figma.createText();
+  t.fontName = { family: "Inter", style: weight };
+  t.fontSize = size;
+  t.characters = content;
+  t.fills = solidFill();
+  bindFill(t, await getVar(colorPath));
+  return t;
+}
+
+function sectionShell(name, padY = 32) {
+  const s = figma.createFrame();
+  s.name = name;
+  s.layoutMode = "VERTICAL";
+  s.primaryAxisSizingMode = "AUTO";
+  s.counterAxisSizingMode = "FIXED";
+  s.resize(1440, 100);
+  s.paddingLeft = s.paddingRight = 64;
+  s.paddingTop = s.paddingBottom = padY;
+  s.itemSpacing = 24;
+  s.fills = [];
+  return s;
+}
+
+async function sectionHeader(title) {
+  const row = figma.createFrame();
+  row.layoutMode = "HORIZONTAL";
+  row.itemSpacing = 10;
+  row.fills = [];
+  row.counterAxisSizingMode = "AUTO";
+  row.primaryAxisSizingMode = "AUTO";
+  row.appendChild(await makeText("♛", 18, "Regular", "color/button/hover"));
+  row.appendChild(await makeText(title, 20, "Bold", "color/primary"));
+  const bars = figma.createFrame();
+  bars.layoutMode = "HORIZONTAL";
+  bars.itemSpacing = 4;
+  bars.fills = [];
+  for (const w of [16, 8, 4]) {
+    const bar = figma.createRectangle();
+    bar.resize(w, 20);
+    bar.rotation = -20;
+    await bindFillPath(bar, "color/primary");
+    bars.appendChild(bar);
+  }
+  row.appendChild(bars);
+  return row;
+}
+
+homePage.findAll((n) => n.name === "Caelo – Home — UI").forEach((n) => n.remove());
+
+const createdNodeIds = [];
+const ui = figma.createFrame();
+ui.name = "Caelo – Home — UI";
+ui.layoutMode = "VERTICAL";
+ui.primaryAxisSizingMode = "AUTO";
+ui.counterAxisSizingMode = "FIXED";
+ui.resize(1440, 100);
+ui.itemSpacing = 0;
+ui.clipsContent = false;
+await bindFillPath(ui, "color/surface/base");
+ui.setExplicitVariableModeForCollection(semCol.id, defaultModeId);
+homePage.insertChild(0, ui);
+createdNodeIds.push(ui.id);
+
+async function makePill(name, label, icon = "") {
+  const pill = figma.createFrame();
+  pill.name = name;
+  pill.layoutMode = "HORIZONTAL";
+  pill.itemSpacing = 6;
+  pill.paddingLeft = 14;
+  pill.paddingRight = 14;
+  pill.paddingTop = pill.paddingBottom = 6;
+  pill.cornerRadius = 8;
+  pill.fills = [];
+  if (icon) pill.appendChild(await makeText(icon, 11, "Regular", "color/text/sticky/nav/text"));
+  pill.appendChild(await makeText(label, 11, "Bold", "color/text/sticky/nav/text"));
+  return pill;
+}
+
+// ── Navbar (Navbar.jsx guest header — 1:1 semantic bindings) ──
+const navWrap = figma.createFrame();
+navWrap.name = "Navbar";
+navWrap.layoutMode = "VERTICAL";
+navWrap.itemSpacing = 0;
+navWrap.fills = [];
+navWrap.resize(1440, 100);
+navWrap.primaryAxisSizingMode = "AUTO";
+ui.appendChild(navWrap);
+
+const stickyBar = figma.createFrame();
+stickyBar.name = "top-sticky-nav-bar";
+stickyBar.layoutMode = "HORIZONTAL";
+stickyBar.resize(1440, 36);
+stickyBar.paddingLeft = stickyBar.paddingRight = 40;
+stickyBar.counterAxisAlignItems = "CENTER";
+stickyBar.primaryAxisAlignItems = "SPACE_BETWEEN";
+await bindFillPath(stickyBar, "color/sticky/nav");
+await bindStrokePath(stickyBar, "color/border/subtle");
+stickyBar.strokeTopWeight = stickyBar.strokeLeftWeight = stickyBar.strokeRightWeight = 0;
+stickyBar.strokeBottomWeight = 1;
+navWrap.appendChild(stickyBar);
+
+const stickyLeft = figma.createFrame();
+stickyLeft.layoutMode = "HORIZONTAL";
+stickyLeft.fills = [];
+stickyBar.appendChild(stickyLeft);
+stickyLeft.appendChild(await makePill("nav-top-pill nav-top-pill--icon", "Download App", "📱"));
+
+const stickyRight = figma.createFrame();
+stickyRight.layoutMode = "HORIZONTAL";
+stickyRight.itemSpacing = 8;
+stickyRight.fills = [];
+stickyBar.appendChild(stickyRight);
+stickyRight.ap
