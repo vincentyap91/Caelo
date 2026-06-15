@@ -726,7 +726,7 @@
   --color-effect-shadow-card-soft:           var(--mono-950);
 
   /* icon */
-  --color-icon-action:                       var(--mono-580);
+  --color-icon-action:                       var(--raw-nav-icon-hover);
   --color-icon-check-in-active:              var(--brand-400);
   --color-icon-check-in-muted:               var(--mono-468);
   --color-icon-check-in-star-deep:           var(--brand-700);
