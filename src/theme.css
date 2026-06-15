@@ -736,7 +736,7 @@
   --color-icon-rank-first:                   var(--raw-icon-rank-first-mark);
   --color-icon-rank-second:                  var(--raw-icon-rank-second-mark);
   --color-icon-rank-third:                   var(--raw-icon-rank-third-mark);
-  --color-icon-subtle:                       var(--mono-560);
+  --color-icon-subtle:                       var(--mono-0);
   --color-icon-um:                           var(--brand-500);
   --color-icon:                        var(--brand-500);
 

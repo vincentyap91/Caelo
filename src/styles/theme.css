@@ -4138,7 +4138,7 @@
   }
 
   .profile-menu-dropdown .dark-nav-panel {
-    border: 1px solid rgb(106 200 255 / 0.12);
+    border: 1px solid var(--color-nav-border);
     background-color: var(--color-button-cta-primary);
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
   }
@@ -4148,21 +4148,23 @@
   }
 
   .profile-menu-dropdown .dark-nav-tile {
-    border: 1px solid rgb(87 181 255 / 0.1);
-    background-color: #01206c;
+    border: 1px solid var(--color-nav-top-pill-border);
+    background-color: var(--color-surface-colorful);
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+    color: var(--color-icon-subtle);
   }
 
   .profile-menu-dropdown .dark-nav-tile:hover {
-    border-color: rgb(102 203 255 / 0.3);
+    border-color: var(--color-nav-top-pill-border-hover);
+    color: var(--color-icon-action);
   }
 
   .profile-menu-dropdown .profile-menu-avatar {
-    border-color: rgb(106 200 255 / 0.2);
+    border-color: var(--color-nav-top-pill-border);
   }
 
   .profile-menu-dropdown .profile-menu-avatar-icon {
-    color: #ffffff;
+    color: var(--color-icon-subtle);
   }
 
   .profile-menu-dropdown .profile-menu-username {
@@ -4186,7 +4188,7 @@
   }
 
   .profile-menu-dropdown .profile-menu-section-icon {
-    color: #ffd84d;
+    color: var(--color-border-accent);
   }
 
   .profile-menu-dropdown .profile-menu-section-label,
@@ -4199,7 +4201,7 @@
   }
 
   .profile-menu-dropdown .profile-menu-tile-icon {
-    color: #5cc4ff;
+    color: var(-color-icon-action);
   }
 
   .profile-menu-dropdown .dark-nav-tile:hover .profile-menu-tile-icon {
@@ -5369,7 +5371,7 @@
     justify-content: center;
     gap: 0.75rem;
     border-radius: 22px;
-    border: 1px solid color-mix(in srgb, var(--color-danger-red) 28%, transparent);
+    border: 1px solid var(--color-danger-red);
     background: var(--color-gradient-tag);
     padding-left: 1rem;
     padding-right: 1rem;
