@@ -832,7 +832,7 @@
 
   /* missing start/end for color/gradient/sports/stage */
   --color-gradient-table:                    linear-gradient(180deg, var(--raw-gradient-scrollbar-track-start) 0%, var(--raw-gradient-scrollbar-track-end) 100%);
-  --color-gradient-tag:                      linear-gradient(90deg, var(--raw-gradient-logout-default-start) 0%, var(--raw-gradient-logout-default-end) 100%);
+  --color-gradient-tag:                      linear-gradient(90deg, var(--raw-gradient-logout-start) 0%, var(--raw-gradient-logout-end) 100%);
 
   /* table */
 

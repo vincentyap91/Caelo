@@ -594,7 +594,7 @@ export default function Navbar({
                                                                     const page = cashierPageById[id];
                                                                     if (page) onNavigate?.(page);
                                                                 }}
-                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-top-pill-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
                                                                 <Icon size={18} className="profile-menu-tile-icon mb-1.5" />
                                                                 <span className="profile-menu-tile-label text-xs font-bold leading-tight">{label}</span>
@@ -637,7 +637,7 @@ export default function Navbar({
                                                                         onNavigate?.(id);
                                                                     }
                                                                 }}
-                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-top-pill-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                             >
                                                                 <Icon size={18} className="profile-menu-tile-icon mb-1.5" />
                                                                 <span className="profile-menu-tile-label text-xs font-bold leading-tight">{label}</span>
@@ -677,7 +677,7 @@ export default function Navbar({
                                                                         setProfileMenuOpen(false);
                                                                         onNavigate?.('loyalty-rewards', { rewardsTab: id });
                                                                     }}
-                                                                    className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-border-brand)] hover:shadow-[var(--shadow-nav-tile-hover)]"
+                                                                    className="dark-nav-tile group flex min-h-[72px] flex-col items-center justify-center rounded-[14px] px-2 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-nav-top-pill-border-hover)] hover:shadow-[var(--shadow-nav-tile-hover)]"
                                                                 >
                                                                     <NavIcon
                                                                         size={18}

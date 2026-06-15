@@ -5365,7 +5365,7 @@
     justify-content: center;
     gap: 0.75rem;
     border-radius: 22px;
-    border: 1px solid var(--color-danger-red);
+    border: 1px solid var(--color-danger-warm);
     background: var(--color-button-cta-primary);
     padding-left: 1rem;
     padding-right: 1rem;
@@ -5451,8 +5451,8 @@
 
   /** Secure Logout — Figma 431:5874; sidebar text color must not override pill label/icon. */
   .user-dashboard-sidebar .profile-menu-logout {
-    border-color: color-mix(in srgb, var(--color-danger-red) 28%, transparent);
-    background: var(--color-button-cta-category);
+    border-color: var(--color-danger-warm);
+    background: var(--color-button-cta-primary);
     color: var(--color-danger-red);
   }
 
