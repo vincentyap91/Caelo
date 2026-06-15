@@ -564,6 +564,7 @@
   --color-border-tabs:                       var(--raw-border-tabs);
   --color-border-countdown:                  var(--raw-border-countdown);
   --color-border-check-in-day-inactive:      var(--raw-check-in-day-inactive-border);
+  --color-white-border:   #ffffff16;
 
   /* nav */
   --color-nav-border:                        var(--raw-nav-border);
@@ -743,6 +744,9 @@
 
   /* secondary-tag-text */
   --color-secondary-tag-text:                var(--support-success-vivid);
+
+   /* tertiery */
+   --color-tertiery: #ffffff;   
 
   /* social */
   --color-social-facebook:                   var(--mono-1);
