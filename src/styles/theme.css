@@ -4133,8 +4133,8 @@
 
   /** Profile dropdown (navbar) ? Caelo dark navy + gold section icons + cyan grid icons */
   .profile-menu-dropdown.dark-nav-shell {
-    background-color: #123b94;
-    color: #ffffff;
+    background-color: var(--color-primary);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .profile-menu-dropdown .dark-nav-panel {
