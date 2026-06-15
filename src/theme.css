@@ -520,7 +520,7 @@
   --color-surface-input-muted-border:        var(--mono-565);
   --color-surface-inset:                     var(--mono-950);
   --color-surface-light:                     var(--mono-108);
-  --color-surface-light-active:              rgb(255 255 255 / 0.08);
+  --color-surface-light-active:              var(--raw-scrim-white-10);
   --color-surface-low:                       var(--mono-930);
   --color-surface-menu-active:               var(--brand-500);
   --color-surface-mid:                       var(--mono-660);
