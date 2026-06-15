@@ -5358,11 +5358,6 @@
    * §13.11: pill fill = --color-gradient-tag; label/icon = --color-danger-red; border = --color-danger-red (mix).
    */
   .profile-menu-logout {
-    --color-gradient-tag: linear-gradient(
-      90deg,
-      var(--raw-gradient-logout-default-start) 0%,
-      var(--raw-gradient-logout-default-end) 100%
-    );
     display: flex;
     width: 100%;
     min-height: 3rem;
@@ -5371,7 +5366,7 @@
     gap: 0.75rem;
     border-radius: 22px;
     border: 1px solid var(--color-danger-red);
-    background: var(--color-gradient-tag);
+    background: var(--color-button-cta-primary);
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 1rem;
@@ -5456,13 +5451,8 @@
 
   /** Secure Logout — Figma 431:5874; sidebar text color must not override pill label/icon. */
   .user-dashboard-sidebar .profile-menu-logout {
-    --color-gradient-tag: linear-gradient(
-      90deg,
-      var(--raw-gradient-logout-default-start) 0%,
-      var(--raw-gradient-logout-default-end) 100%
-    );
     border-color: color-mix(in srgb, var(--color-danger-red) 28%, transparent);
-    background: var(--color-gradient-tag);
+    background: var(--color-button-cta-category);
     color: var(--color-danger-red);
   }
 
