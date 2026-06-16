@@ -6,7 +6,7 @@
   --font-family-multilingual: "Poppins", "Noto Sans SC", "Noto Sans TC", "Noto Sans Thai", "Noto Sans KR", "Noto Sans Devanagari", "Noto Sans Myanmar", "Noto Sans JP", "Segoe UI", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Yu Gothic UI", "Leelawadee UI", "Nirmala UI", "Myanmar Text", sans-serif;
 
   /* Layout aliases ? Figma semantics (colors defined in src/theme.css) */
-  --surface-base: var(--color-tertiery);
+  --surface-base: var(--color-surface-base);
   --border-default: var(--color-border-subtle);
   --text-muted: var(--color-text-muted);
   --ref-10: #f1f5f9;
@@ -29,7 +29,7 @@
   --space-payout-card-gap: 0.9375rem;
 
   /* Semantic aliases */
-  --base-paper: var(--color-tertiery);
+  --base-paper: var(--color-surface-base);
   --base-ink: var(--color-text-primary);
   --mono-300: var(--color-border-subtle);
   --wash-400: var(--color-surface-cool-light);
@@ -100,7 +100,7 @@
   /* Former Tailwind `@theme` tokens (must be real CSS vars). */
   --font-sans: var(--font-family-sans);
   --color-prime-light: var(--color-primary);
-  --color-prime-dark: var(--color-secondary);
+  --color-prime-dark: var(--color-button-hover);
 
   --animate-scan: scan 1.5s linear infinite;
   --animate-float: float 5s ease-in-out infinite;
@@ -303,7 +303,7 @@
   .top-sticky-profile-badge {
     border: 1px solid var(--color-border-accent);
     background-color: transparent;
-    color: var(--color-accent);
+    color: var(--color-text-accent);
   }
 
   /**
@@ -347,15 +347,15 @@
   .slots-page,
   .fishing-page {
     --color-surface-base: var(--raw-app-surface-base);
-    --color-surface: var(--color-tertiery);
-    --color-button-tabs: var(--color-tertiery);
+    --color-surface: var(--color-surface-base);
+    --color-button-tabs: var(--color-surface-base);
     --color-border-tabs: var(--raw-border-tabs);
     --color-gradient-slot-panel: var(--color-gradient-home-muted);
   }
 
   .slots-page .slots-provider-tab--active,
   .fishing-page .slots-provider-tab--active {
-    --color-button-tabs: var(--color-tertiery);
+    --color-button-tabs: var(--color-surface-base);
   }
 
   .slots-page .slots-browse-panel {
@@ -372,7 +372,7 @@
 
   .slots-page .slots-browse-summary-card,
   .slots-page .slot-current-promo__card {
-    --color-surface: var(--color-tertiery);
+    --color-surface: var(--color-surface-base);
     background-image: var(--color-gradient-wallet-panel);
   }
 
@@ -412,7 +412,7 @@
   .slots-page .slots-game-card__rtp.rtp-label--pill,
   .slots-page .slots-game-card .rtp-label--pill {
     --color-surface-rtp-secondary-card: var(--color-accent-glow);
-    --color-surface-rtp-secondary-card-text: var(--color-secondary);
+    --color-surface-rtp-secondary-card-text: var(--color-button-hover);
     --color-border-brand: var(--raw-border-accent);
   }
 
@@ -437,14 +437,14 @@
   .promotion-page {
     --color-surface-base: var(--raw-app-surface-base);
     --color-primary-tag: var(--color-overlay);
-    --color-primary-tag-text: var(--color-tertiery);
+    --color-primary-tag-text: var(--color-text-card-text);
     --color-secondary-tag: var(--color-accent-pale);
-    --color-secondary-tag-text: var(--color-secondary);
+    --color-secondary-tag-text: var(--color-button-hover);
   }
 
   .promotion-page .promotion-card-image-tag--available {
     --color-secondary-tag: var(--color-overlay);
-    --color-secondary-tag-text: var(--color-tertiery);
+    --color-secondary-tag-text: var(--color-text-card-text);
   }
 
   .promotion-page .card-muted h2,
@@ -490,7 +490,7 @@
   .referral-page {
     --color-surface-base: var(--raw-app-surface-base);
     --color-surface-menu-active: var(--brand-500);
-    --color-text-accent: var(--color-secondary);
+    --color-text-accent: var(--color-button-hover);
     --color-primary: var(--raw-cta-text);
     --color-surface-input-color: var(--raw-surface-muted);
     --color-surface-filter: var(--color-surface-cool-light);
@@ -549,7 +549,7 @@
     justify-content: center;
     border: 0;
     border-radius: 9999px;
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
     transition: transform 0.15s ease, filter 0.15s ease;
   }
 
@@ -586,12 +586,12 @@
    */
   .vip-page {
     --color-surface-base: var(--raw-app-surface-base);
-    --color-text-fifth-title: var(--color-secondary);
-    --color-button-muted: var(--color-secondary);
-    --color-button-muted-text: var(--color-tertiery);
+    --color-text-fifth-title: var(--color-button-hover);
+    --color-button-muted: var(--color-button-hover);
+    --color-button-muted-text: var(--color-text-card-text);
     --color-surface-secondary-chip: var(--color-accent-pale);
     --color-button-tabs: var(--color-primary);
-    --color-button-tabs-text: var(--color-tertiery);
+    --color-button-tabs-text: var(--color-text-card-text);
     --color-text-sub-title: var(--color-primary);
   }
 
@@ -642,7 +642,7 @@
     gap: 0.5rem;
     border: 1px solid var(--color-border-subtle);
     border-radius: 0.5rem;
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     color: var(--color-primary);
     padding: 0.75rem 0.5rem;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -663,7 +663,7 @@
 
   .vip-page .vip-tier-card--selected {
     border-color: var(--color-border-brand);
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
     box-shadow: var(--shadow-subtle), var(--inset-highlight-soft);
   }
 
@@ -680,7 +680,7 @@
   .vip-page .vip-membership-tabs__tab {
     border: 1px solid var(--color-border-subtle);
     border-radius: 0.55rem;
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     color: var(--color-text-muted);
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
@@ -712,7 +712,7 @@
     overflow: hidden;
     border: 1px solid var(--color-border-subtle);
     border-radius: 0.875rem;
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     box-shadow: var(--shadow-card-soft);
   }
 
@@ -721,7 +721,7 @@
     text-align: left;
     font-size: 0.7125rem;
     font-weight: 700;
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
   }
 
   .vip-page .vip-membership-table__label {
@@ -735,7 +735,7 @@
   }
 
   .vip-page .vip-membership-table tbody tr {
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
   }
 
   .vip-page .vip-membership-table td {
@@ -762,21 +762,21 @@
    * color/button/cta-primary → Submit label (text-card-text)
    */
   .history-record-page .history-record-panel {
-    --color-popup-body: var(--color-tertiery);
+    --color-popup-body: var(--color-surface-base);
     --color-surface-filter: var(--color-surface-cool-light);
     --color-surface-filter-active: var(--color-accent-pale);
     --color-surface-table: var(--color-surface-subtle);
-    --color-text-sub-title: var(--color-secondary);
+    --color-text-sub-title: var(--color-button-hover);
     --color-success-vivid: var(--color-success);
     --color-surface-input-light: var(--raw-surface-muted);
     --color-text-fourth: var(--color-text-primary);
     --color-surface-deep: var(--color-surface-subtle);
-    --color-button-cta-primary: var(--color-tertiery);
+    --color-button-cta-primary: var(--color-text-card-text);
   }
 
   .history-record-page {
     --color-button-tabs: var(--color-primary);
-    --color-button-tabs-text: var(--color-tertiery);
+    --color-button-tabs-text: var(--color-text-card-text);
     --color-surface-mid: var(--color-surface-cool-light);
   }
 
@@ -796,7 +796,7 @@
   }
 
   .history-record-page .history-record-panel .history-record-submit {
-    --color-button-cta-primary: var(--color-tertiery);
+    --color-button-cta-primary: var(--color-text-card-text);
   }
 
   .history-record-page .history-record-table-card {
@@ -827,18 +827,18 @@
    * Same semantic names; Caelo look via scoped aliases.
    */
   .history-record-panel {
-    --color-popup-body: var(--color-tertiery);
+    --color-popup-body: var(--color-surface-base);
     --color-button-tabs: var(--color-primary);
-    --color-button-tabs-text: var(--color-tertiery);
+    --color-button-tabs-text: var(--color-text-card-text);
     --color-surface-filter: var(--color-surface-cool-light);
     --color-surface-filter-active: var(--color-accent-pale);
     --color-surface-table: var(--color-surface-subtle);
-    --color-text-sub-title: var(--color-secondary);
+    --color-text-sub-title: var(--color-button-hover);
     --color-success-vivid: var(--color-success);
     --color-surface-input-light: var(--raw-surface-muted);
     --color-text-fourth: var(--color-text-primary);
     --color-surface-deep: var(--color-surface-subtle);
-    --color-button-cta-primary: var(--color-tertiery);
+    --color-button-cta-primary: var(--color-text-card-text);
   }
 
   .history-record-panel .history-record-filter-card {
@@ -851,7 +851,7 @@
   }
 
   .history-record-panel .history-record-submit {
-    --color-button-cta-primary: var(--color-tertiery);
+    --color-button-cta-primary: var(--color-text-card-text);
   }
 
   .history-record-panel .history-record-table-card {
@@ -879,7 +879,7 @@
    * §13.11: compact Caelo light cluster (pale track, navy active, muted idle).
    */
   .table-pagination {
-    --color-button-pagination: var(--color-tertiery);
+    --color-button-pagination: var(--color-surface-base);
     --color-button-pagination-arrow: var(--color-secondary);
     --color-button-pagination-disabled: var(--color-text-muted);
     --color-button-cta-pagination: var(--color-surface-subtle);
@@ -959,7 +959,7 @@
   }
 
   .table-pagination__page:hover:not(.is-active) {
-    background-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-tertiery));
+    background-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-base));
     color: var(--color-primary);
   }
 
@@ -999,13 +999,13 @@
    * color/surface/deep → table row hover (was --color-surface-subtle)
    */
   .claim-record-modal {
-    --color-popup-body: var(--color-tertiery);
+    --color-popup-body: var(--color-surface-base);
     --color-popup-head: var(--color-surface-subtle);
     --color-surface-input-light: var(--raw-surface-muted);
     --color-surface-filter-active: var(--color-accent-pale);
-    --color-text-sub-title: var(--color-secondary);
+    --color-text-sub-title: var(--color-button-hover);
     --color-text-fourth: var(--color-text-primary);
-    --color-info-icon: var(--color-secondary);
+    --color-info-icon: var(--color-button-hover);
     --color-surface-deep: var(--color-surface-subtle);
   }
 
@@ -1034,18 +1034,18 @@
    * color/accent/check-in/reward → today reward amount (was --color-text-primary)
    */
   .daily-check-in-panel {
-    --color-popup-body: var(--color-tertiery);
+    --color-popup-body: var(--color-surface-base);
     --color-gradient-check-in-card: var(--color-gradient-home-muted);
     --color-gradient-check-in-reward: var(--color-gradient-home-muted);
     --color-surface-check-in-text: var(--raw-text-brand);
     --color-text-check-in-day-active: var(--raw-cta-end);
-    --color-text-check-in-day-past: var(--color-secondary);
+    --color-text-check-in-day-past: var(--color-button-hover);
     --color-text-check-in-day-muted: var(--color-text-soft);
     --color-text-check-in-reward: var(--raw-text-brand);
     --color-surface-check-in-cell: var(--color-surface-cool-light);
     --color-surface-check-in-icon: var(--color-accent);
     --color-surface-check-in-cta: var(--color-primary);
-    --color-surface-check-in-inverse: var(--color-tertiery);
+    --color-surface-check-in-inverse: var(--color-text-card-text);
     --color-icon-check-in-active: var(--color-text-primary);
     --color-icon-check-in-muted: var(--color-text-soft);
     --color-accent-check-in-reward: var(--color-text-primary);
@@ -1082,7 +1082,7 @@
   }
 
   .daily-check-in-panel .btn-theme-primary:hover {
-    background: var(--color-secondary);
+    background: var(--color-button-hover);
   }
 
   /**
@@ -1099,7 +1099,7 @@
   }
 
   #loyalty-rewards .btn-theme-primary:hover {
-    background: var(--color-secondary);
+    background: var(--color-button-hover);
   }
 
   /**
@@ -1126,7 +1126,7 @@
    * color/surface/check-in/cta → Check In Now
    */
   .daily-bonus-claim-modal {
-    --color-popup-body: var(--color-tertiery);
+    --color-popup-body: var(--color-surface-base);
     --color-popup-head: var(--raw-universal-modal-header-bg);
     --color-surface-check-in-text: var(--raw-check-in-day-shell);
     --color-text-check-in-day-active: var(--brand-500);
@@ -1137,10 +1137,10 @@
     --color-surface-check-in-day-current: var(--raw-check-in-day-shell);
     --color-border-check-in-day-active: var(--brand-500);
     --color-surface-check-in-cta: var(--brand-500);
-    --color-surface-check-in-inverse: var(--color-tertiery);
+    --color-surface-check-in-inverse: var(--color-text-card-text);
     --color-text-light: var(--mono-0);
     --color-icon-check-in-claimed: var(--raw-check-in-day-claimed-accent);
-    --color-icon-check-in-active: var(--color-tertiery);
+    --color-icon-check-in-active: var(--color-text-card-text);
     border: none;
     border-radius: 20px;
     box-shadow: var(--shadow-modal);
@@ -1339,7 +1339,7 @@
     border-radius: 8px;
     background-color: var(--color-surface-check-in-cta);
     background-image: none;
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
     font-size: 0.875rem;
     font-weight: 700;
     line-height: 1.07;
@@ -1396,7 +1396,7 @@
    * color/button/cta(+primary) → “Awesome” CTA (was btn-theme-primary)
    */
   .check-in-success-modal {
-    --color-popup-body: var(--color-tertiery);
+    --color-popup-body: var(--color-surface-base);
     --color-gradient-check-in-day: var(--color-gradient-button-cta);
     --color-icon-check-in-active: var(--color-text-primary);
     --color-surface-check-in-icon: var(--color-accent);
@@ -1404,7 +1404,7 @@
     --color-text-check-in-day-active: var(--raw-cta-end);
     --color-text-check-in-day-muted: var(--color-text-soft);
     --color-button-cta: var(--color-primary);
-    --color-button-cta-primary: var(--color-tertiery);
+    --color-button-cta-primary: var(--color-text-card-text);
   }
 
   .check-in-success-modal .check-in-success-modal-body {
@@ -1417,7 +1417,7 @@
   }
 
   .check-in-success-modal .btn-theme-primary:hover {
-    background: var(--color-secondary);
+    background: var(--color-button-hover);
     color: var(--color-button-cta-primary);
   }
 
@@ -1437,7 +1437,7 @@
   .spin-wheel-panel {
     --color-surface-accent: var(--color-surface-cool-light);
     --color-surface-card-dark: var(--color-surface-darkest);
-    --color-text-light: var(--color-tertiery);
+    --color-text-light: var(--color-text-sticky-nav-text);
     --color-primary: var(--raw-app-text-primary);
   }
 
@@ -1568,7 +1568,7 @@
   .recent-big-wins-section {
     --color-border-line: var(--color-border-subtle);
     --color-surface-panel: var(--raw-surface-muted);
-    --color-text-recent-amount: var(--color-secondary);
+    --color-text-recent-amount: var(--color-button-hover);
   }
 
   /**
@@ -1576,7 +1576,6 @@
    */
   .mobile-site-header {
     --color-border: var(--color-border-subtle);
-    --color-button-nav: var(--color-tertiery);
     --color-button-nav-text: var(--color-text-primary);
   }
 
@@ -1600,13 +1599,12 @@
    */
   .home-category-tabs {
     --color-surface-cat-navigation: transparent;
-    --color-button-nav: var(--color-tertiery);
     --color-button-nav-text: var(--color-text-primary);
     --color-button-hover: var(--color-surface-subtle);
     --color-button-hover-text: var(--color-text-primary);
     --color-surface-input-light: var(--color-primary);
     --color-surface-menu-active: transparent;
-    --color-button-cta-tertiary-text: var(--color-tertiery);
+    --color-button-cta-tertiary-text: var(--color-text-card-text);
     --color-gradient-home-cta: linear-gradient(
       270deg,
       var(--raw-gradient-home-cta-start) 0%,
@@ -1615,7 +1613,7 @@
   }
 
   .home-category-tabs .category-tab-item--active {
-    border: 1px solid color-mix(in srgb, var(--color-tertiery) 28%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-text-card-text) 28%, transparent);
     background-color: transparent;
     background-image: var(--color-gradient-home-cta);
     box-shadow: 0 2px 8px color-mix(in srgb, var(--color-danger-vivid) 32%, transparent);
@@ -1707,7 +1705,7 @@
   .home-page .home-live-activity-card {
     --color-gradient-home-dashboard: linear-gradient(
       180deg,
-      var(--color-tertiery) 0%,
+      var(--color-surface-base) 0%,
       var(--color-surface-subtle) 45%,
       color-mix(in srgb, var(--color-accent-pale) 50%, transparent) 100%
     );
@@ -1794,8 +1792,8 @@
     --color-text-sub-title: var(--color-text-tertiary);
     --color-text-primary: var(--color-text-tertiary);
     --color-info-icon: var(--color-text-tertiary);
-    --color-button-referral-hub-share-text: var(--color-tertiery);
-    --color-button-referral-hub-secondary-text: var(--color-tertiery);
+    --color-button-referral-hub-share-text: var(--color-text-card-text);
+    --color-button-referral-hub-secondary-text: var(--color-text-card-text);
   }
 
   .home-page .referral-banner-section .referral-hub-card__link-field {
@@ -1827,7 +1825,7 @@
     bottom: 0;
     width: 2.5rem;
     pointer-events: none;
-    background: linear-gradient(to left, var(--color-tertiery) 0%, transparent 100%);
+    background: linear-gradient(to left, var(--color-surface-base) 0%, transparent 100%);
     z-index: 1;
   }
 
@@ -1999,10 +1997,10 @@
     --color-surface-input-muted: var(--raw-surface-muted);
     --color-text-placeholder: var(--color-text-soft);
     --color-text-dim: var(--color-text-primary);
-    --color-button-cta-primary: var(--color-tertiery);
+    --color-button-cta-primary: var(--color-text-card-text);
     --color-button-muted: var(--color-surface-cool-light);
     --color-button-muted-text: var(--color-text-secondary);
-    --color-text-link-danger: var(--color-secondary);
+    --color-text-link-danger: var(--color-button-hover);
   }
 
   /** Web_Login — footer copy uses color/text-primary; link uses color/text/link-danger (§13.11). */
@@ -2264,7 +2262,7 @@
   }
 
   .auth-modal-link:hover {
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
   }
 
   .auth-modal-divider {
@@ -2390,7 +2388,7 @@
   }
 
   .auth-modal-register-done {
-    --color-popup-body: var(--color-tertiery);
+    --color-popup-body: var(--color-surface-base);
     --color-text-primary: var(--color-text-primary-card-title);
     --color-text-muted: var(--color-text-soft);
     --color-surface-input-light: var(--raw-surface-muted);
@@ -2430,7 +2428,7 @@
     --color-surface-input-light: var(--raw-surface-muted);
     --color-text-placeholder: var(--color-text-soft);
     --color-text-dim: var(--color-text-secondary);
-    --color-button-cta-primary: var(--color-tertiery);
+    --color-button-cta-primary: var(--color-text-card-text);
     --color-text-link-danger: var(--color-danger);
     --color-border-brand: var(--raw-border-accent);
   }
@@ -2461,7 +2459,7 @@
     justify-content: center;
     border-radius: 9999px;
     background-color: var(--color-surface-accent);
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
   }
 
   .login-modal-input {
@@ -2479,7 +2477,7 @@
 
   .login-modal-close {
     background-color: var(--color-surface-accent);
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
   }
 
   .login-modal-link {
@@ -2528,7 +2526,7 @@
     width: 3.25rem;
     height: 3.25rem;
     border-radius: 9999px;
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     color: var(--color-primary);
     box-shadow: var(--shadow-card-soft);
     transition: filter 150ms ease-out;
@@ -2604,7 +2602,7 @@
   /* Game card RTP pill ? Cam88 names; Caelo values from legacy accent tokens (?13.11) */
   .rtp-label--pill {
     --color-surface-rtp-secondary-card: var(--color-accent-pale);
-    --color-surface-rtp-secondary-card-text: var(--color-secondary);
+    --color-surface-rtp-secondary-card-text: var(--color-button-hover);
     --color-border-brand: var(--raw-border-accent);
   }
 
@@ -2636,7 +2634,7 @@
     width: 100%;
     overflow: hidden;
     border-radius: var(--radius-universal-modal);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     box-shadow: var(--shadow-modal);
     display: flex;
     flex-direction: column;
@@ -2690,7 +2688,7 @@
   .universal-modal-banner-wrapper {
     overflow: hidden;
     border: 1px solid var(--color-border-brand);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     box-shadow: var(--shadow-subtle);
   }
 
@@ -3055,13 +3053,13 @@
 
   .surface-card {
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     box-shadow: var(--shadow-card-soft);
   }
 
   .surface-panel {
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     box-shadow: var(--shadow-card-raised);
     backdrop-filter: blur(12px);
   }
@@ -3466,7 +3464,7 @@
   }
 
   .referral-glass-card {
-    background: color-mix(in srgb, var(--color-tertiery) 14%, transparent);
+    background: color-mix(in srgb, var(--color-surface-base) 14%, transparent);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid var(--color-border-brand);
@@ -3474,7 +3472,7 @@
   }
 
   .referral-glass-field {
-    background: color-mix(in srgb, var(--color-tertiery) 18%, transparent);
+    background: color-mix(in srgb, var(--color-surface-base) 18%, transparent);
     border: 1px solid var(--color-border-subtle);
   }
 
@@ -3499,11 +3497,11 @@
 
   .btn-theme-primary {
     background: var(--color-primary);
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
   }
 
   .btn-theme-primary:hover {
-    background: var(--color-secondary);
+    background: var(--color-button-hover);
   }
 
   /**
@@ -3512,15 +3510,15 @@
    */
   .caelo-segmented-tabs {
     --color-button-tabs: var(--color-primary);
-    --color-button-tabs-text: var(--color-tertiery);
+    --color-button-tabs-text: var(--color-text-card-text);
     --color-surface-filter-active: var(--color-accent-pale);
-    --color-text-sub-title: var(--color-secondary);
+    --color-text-sub-title: var(--color-button-hover);
     display: flex;
     gap: 0.25rem;
     overflow-x: auto;
     border-radius: 0.75rem;
     border: 1px solid var(--color-border-subtle);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     padding: 0.25rem;
     box-shadow: var(--shadow-subtle);
     scrollbar-width: none;
@@ -3590,7 +3588,7 @@
   }
 
   .caelo-segmented-tabs__tab--active:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-button-hover);
     color: var(--color-button-tabs-text);
   }
 
@@ -3605,10 +3603,10 @@
    */
   .caelo-filter-pill {
     --color-button-tabs: var(--color-primary);
-    --color-button-tabs-text: var(--color-tertiery);
+    --color-button-tabs-text: var(--color-text-card-text);
     --color-surface-filter: var(--color-surface-cool-light);
     --color-surface-filter-active: var(--color-accent-pale);
-    --color-text-sub-title: var(--color-secondary);
+    --color-text-sub-title: var(--color-button-hover);
   }
 
   .caelo-filter-pill--inactive {
@@ -3631,12 +3629,12 @@
 
   .caelo-filter-pill--active:hover {
     border-color: var(--color-button-tabs);
-    background-color: var(--color-secondary);
+    background-color: var(--color-button-hover);
     color: var(--color-button-tabs-text);
   }
 
   .btn-theme-cta {
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
     background-image: var(--color-gradient-button-cta);
     box-shadow: var(--shadow-cta);
   }
@@ -3650,7 +3648,7 @@
 
   /** Web_Promotion Details — Chat with Us (Cam88 color/gradient/button/chat) */
   .btn-promotion-chat {
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
     background-image: var(--color-gradient-button-chat);
     border: 1px solid transparent;
   }
@@ -3678,7 +3676,7 @@
     font-size: 0.75rem;
     line-height: 1rem;
     font-weight: 700;
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
     transition: border-color 0.2s, background-image 0.2s, box-shadow 0.2s;
   }
 
@@ -3705,7 +3703,7 @@
   .top-sticky-nav-bar .top-sticky-profile-chip {
     border: 1px solid var(--color-nav-top-pill-border);
     box-shadow: var(--color-nav-top-pill-shadow);
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .top-sticky-nav-bar .top-sticky-balance-chip {
@@ -3718,7 +3716,7 @@
     background-color: var(--color-surface-high);
     background-image: var(--color-nav-top-pill-bg);
     border-left: 1px solid var(--color-nav-border);
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .top-sticky-nav-bar .top-sticky-profile-chip {
@@ -3738,7 +3736,7 @@
     box-shadow: var(--color-nav-top-pill-shadow);
     background-color: var(--color-surface-high);
     background-image: var(--color-nav-top-pill-bg);
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .mobile-sticky-balance__toggle:hover {
@@ -3749,7 +3747,7 @@
     background-color: var(--color-surface-high);
     background-image: var(--color-nav-top-pill-bg);
     border-left: 1px solid var(--color-nav-border);
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .mobile-sticky-balance__refresh:hover {
@@ -3773,7 +3771,6 @@
    * |--color-border-sidenav-secondary| color/border/sidenav/secondary | secondary border |
    */
   .sidenav-shell {
-    --color-button-nav: var(--color-tertiery);
     --color-button-nav-text: var(--color-text-primary-card-title);
     --color-button-hover-text: var(--color-text-primary-card-title);
     --color-border-line: var(--color-border-subtle);
@@ -3781,14 +3778,14 @@
     --color-primary: var(--brand-500);
     --color-text-sticky-nav-text: var(--mono-0);
     --color-button-sidenav-live-chat: var(--brand-500);
-    --color-button-sidenav-secondary: var(--color-tertiery);
-    background-color: var(--color-tertiery);
+    --color-button-sidenav-secondary: var(--color-surface-base);
+    background-color: var(--color-surface-base);
     border-color: var(--color-border-subtle);
     color: var(--color-primary);
   }
 
   .sidenav-shell .sidenav-header {
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     border-color: var(--color-border-subtle);
   }
 
@@ -3805,14 +3802,14 @@
     background-color: var(--color-surface-high);
     background-image: var(--color-nav-top-pill-bg);
     box-shadow: var(--color-nav-top-pill-shadow);
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .sidenav-shell .sidenav-balance-pill__refresh {
     background-color: var(--color-surface-high);
     background-image: var(--color-nav-top-pill-bg);
     border-left: 1px solid var(--color-nav-border);
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .sidenav-shell .sidenav-body {
@@ -3839,7 +3836,7 @@
 
   .sidenav-item--active {
     border: 1px solid var(--color-border-brand);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     color: var(--color-primary);
     box-shadow: var(--shadow-input);
   }
@@ -3908,7 +3905,7 @@
 
   .sidenav-footer {
     border-color: var(--color-border-line);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
   }
 
   .sidenav-shell .sidenav-live-chat {
@@ -3949,7 +3946,7 @@
   /** Desktop main nav: current page (Web - Sidenav active row ? `--color-button-hover`) */
   .nav-desktop-link-active {
     border: 1px solid var(--color-border-brand);
-    background-color: var(--color-secondary);
+    background-color: var(--color-button-hover);
     color: var(--color-primary);
     box-shadow: var(--shadow-cta-soft);
   }
@@ -3967,7 +3964,7 @@
     --color-button-nav-text: var(--brand-500);
     --color-button-hover: var(--brand-630);
     --color-button-hover-text: var(--brand-500);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     border-bottom: 1px solid var(--color-border-subtle);
   }
 
@@ -3976,7 +3973,7 @@
   }
 
   .top-nav-link:hover:not(.nav-desktop-link-active) {
-    background-color: var(--color-secondary);
+    background-color: var(--color-button-hover);
     color: var(--color-text-light);
     box-shadow: var(--shadow-nav-top);
   }
@@ -3986,18 +3983,17 @@
   }
 
   .top-nav-more-trigger:hover:not(.nav-desktop-link-active) {
-    background-color: var(--color-secondary);
+    background-color: var(--color-button-hover);
     color: var(--color-text-light);
     box-shadow: var(--shadow-nav-top);
   }
 
   .top-nav-more-menu {
-    --color-button-nav: var(--color-tertiery);
     --color-button-nav-text: var(--color-text-secondary);
     --color-button-hover: var(--color-accent-pale);
     --color-button-hover-text: var(--brand-500);
     border: 1px solid var(--color-border-subtle);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
   }
 
   .top-nav-more-item {
@@ -4010,7 +4006,7 @@
   }
 
   .top-nav-more-item--active {
-    background-color: var(--color-secondary);
+    background-color: var(--color-button-hover);
     color: var(--color-button-hover-text);
   }
 
@@ -4040,18 +4036,18 @@
 
   .account-tab {
     color: var(--color-text-muted);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     border: 1px solid var(--color-border-subtle);
   }
 
   .account-tab:hover:not(.account-tab--active) {
     background-color: var(--color-accent-pale);
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
   }
 
   .account-tab--active {
     background-color: var(--color-accent-pale);
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
     border-color: var(--color-accent-glow);
     box-shadow: var(--shadow-subtle);
   }
@@ -4064,7 +4060,7 @@
     aspect-ratio: 1200 / 350;
     overflow: hidden;
     border-radius: var(--radius-hero-banner);
-    background-color: var(--color-tertiery);
+    background-color: var(--color-surface-base);
     border: 1px solid var(--color-border-subtle);
     box-shadow: var(--shadow-live-banner);
   }
@@ -4104,7 +4100,7 @@
 
   .dark-nav-panel {
     border: 1px solid var(--color-border-subtle);
-    background-color: var(--color-secondary);
+    background-color: var(--color-button-hover);
     box-shadow: var(--inset-highlight-soft);
   }
 
@@ -4117,7 +4113,7 @@
   /** Profile dropdown (navbar) ? Caelo dark navy + gold section icons + cyan grid icons */
   .profile-menu-dropdown.dark-nav-shell {
     background-color: var(--color-primary);
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .profile-menu-dropdown .dark-nav-panel {
@@ -4157,7 +4153,7 @@
     border: 1px solid var(--color-border-accent);
     background: var(--color-primary) !important;
     background-image: none !important;
-    color: var(--color-accent);
+    color: var(--color-text-accent);
     box-shadow: none;
   }
 
@@ -4175,7 +4171,7 @@
 
   .profile-menu-dropdown .profile-menu-section-label,
   .profile-menu-dropdown .profile-menu-tile-label {
-    color: var(--color-tertiery);
+    color: var(--color-text-sticky-nav-text);
   }
 
   .profile-menu-dropdown .profile-menu-chevron {
@@ -4253,10 +4249,10 @@
    * color/secondary-tag(+text) → pending icon background + glyph (§13.11 Caelo blues preserved).
    */
   .cashier-flow-page .rollover-status-card {
-    --color-secondary-tag: color-mix(in srgb, var(--color-secondary) 10%, var(--color-tertiery));
-    --color-secondary-tag-text: var(--color-secondary);
-    --color-button-support: var(--color-secondary);
-    --color-button-support-text: var(--color-tertiery);
+    --color-secondary-tag: color-mix(in srgb, var(--color-button-hover) 10%, var(--color-surface-base));
+    --color-secondary-tag-text: var(--color-button-hover);
+    --color-button-support: var(--color-button-hover);
+    --color-button-support-text: var(--color-text-card-text);
   }
 
   .rollover-status-card__icon {
@@ -4281,7 +4277,7 @@
   }
 
   .rollover-status-card__icon.is-complete {
-    background-color: color-mix(in srgb, var(--color-success) 12%, var(--color-tertiery));
+    background-color: color-mix(in srgb, var(--color-success) 12%, var(--color-surface-base));
     color: var(--color-success);
   }
 
@@ -4340,7 +4336,7 @@
     gap: 0.25rem;
     border-radius: 0.75rem;
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0.25rem;
   }
 
@@ -4386,11 +4382,11 @@
   }
 
   .cashier-deposit-step1-card .cashier-speed-tab.is-active .cashier-speed-tab-sub {
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
   }
 
   .cashier-deposit-step1-card .cashier-speed-tab:not(.is-active) {
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     color: var(--color-text-primary-card-title);
   }
 
@@ -4416,7 +4412,7 @@
 
   .cashier-flow-page .cashier-step-badge {
     background: var(--color-surface-accent);
-    color: var(--color-tertiery);
+    color: var(--color-surface-base);
   }
 
   .cashier-section-title {
@@ -4471,7 +4467,7 @@
 
   .cashier-flow-step .cashier-step-badge {
     background: var(--color-surface-accent);
-    color: var(--color-tertiery);
+    color: var(--color-surface-base);
   }
 
   .cashier-flow-step .cashier-section-title {
@@ -4509,7 +4505,7 @@
   }
 
   .cashier-flow-step .cashier-summary-card__total-value {
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
   }
 
   .cashier-flow-step .cashier-preset-chip.is-active {
@@ -4520,8 +4516,8 @@
 
   .cashier-flow-step .cashier-preset-chip:not(.is-active) {
     border-color: var(--color-border-subtle);
-    background: var(--color-tertiery);
-    color: var(--color-secondary);
+    background: var(--color-surface-base);
+    color: var(--color-button-hover);
   }
 
   .cashier-flow-step .cashier-preset-chip:not(.is-active):hover {
@@ -4535,7 +4531,7 @@
 
   .cashier-flow-step .cashier-channel-card:not(.is-selected) {
     border-color: var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
   }
 
   .cashier-flow-step .cashier-channel-card:not(.is-selected):hover {
@@ -4546,7 +4542,7 @@
     overflow: hidden;
     border: 2px solid var(--color-border-subtle);
     border-radius: 1rem;
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0;
     transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   }
@@ -4646,7 +4642,7 @@
     gap: 0.625rem;
     border-radius: 0.875rem;
     border: 2px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0.625rem 0.75rem;
     text-align: left;
     transition: border-color 0.2s, background 0.2s;
@@ -4697,7 +4693,7 @@
 
   .cashier-option-card {
     border: 2px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     transition: border-color 0.2s, background 0.2s;
   }
 
@@ -4718,7 +4714,7 @@
   .cashier-method-section {
     border: 2px solid var(--color-border-subtle);
     border-radius: 1rem;
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 1rem 1.125rem;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
@@ -4801,7 +4797,7 @@
     gap: 0.375rem;
     border-radius: 0.875rem;
     border: 2px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0.875rem 0.625rem;
     text-align: center;
     transition: border-color 0.2s, background 0.2s;
@@ -4857,7 +4853,7 @@
     justify-content: center;
     border-radius: 0.5rem;
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0 1rem;
     font-size: 0.8125rem;
     font-weight: 600;
@@ -4891,7 +4887,7 @@
   .cashier-step2-notes {
     border-radius: 0.75rem;
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0.875rem 1rem;
     font-size: 0.8125rem;
     line-height: 1.5;
@@ -4955,7 +4951,7 @@
   .cashier-step2-preset-btn.is-active {
     border-color: var(--color-border-brand);
     background: var(--color-accent-pale);
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
   }
 
   .cashier-step2-currency-input {
@@ -4963,7 +4959,7 @@
     overflow: hidden;
     border-radius: 0.625rem;
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
   }
 
   .cashier-step2-currency-prefix {
@@ -5025,7 +5021,7 @@
     gap: 0.5rem;
     border-radius: 0.625rem;
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0.875rem 1rem;
   }
 
@@ -5052,7 +5048,7 @@
     overflow: hidden;
     border-radius: 0.75rem;
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
   }
 
   .cashier-step2-dest-row {
@@ -5099,7 +5095,7 @@
   }
 
   .cashier-step2-copy-btn:hover {
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
   }
 
   .cashier-step2-upload-wrap {
@@ -5125,7 +5121,7 @@
     gap: 0.5rem;
     border-radius: 0.625rem;
     border: 1px dashed var(--color-border-brand);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--color-text-primary-card-title);
@@ -5169,7 +5165,7 @@
     width: 100%;
     border-radius: 0.625rem;
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0 0.875rem;
     font-size: 0.875rem;
     color: var(--color-text-primary-card-title);
@@ -5198,7 +5194,7 @@
     gap: 0.5rem;
     border-radius: 0.625rem;
     border: 1px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 0 0.875rem;
     font-size: 0.875rem;
     text-align: left;
@@ -5236,7 +5232,7 @@
   }
 
   .cashier-step2-submit:hover:not(:disabled) {
-    background: var(--color-secondary);
+    background: var(--color-button-hover);
     transform: scale(1.01);
   }
 
@@ -5253,7 +5249,7 @@
     gap: 0.875rem;
     border-radius: 1rem;
     border: 2px solid var(--color-border-subtle);
-    background: var(--color-tertiery);
+    background: var(--color-surface-base);
     padding: 1rem 1.125rem;
     text-align: left;
     transition: border-color 0.2s, background 0.2s;
@@ -5273,7 +5269,7 @@
    * §13.11: Caelo white tick on blue dot via scoped --color-icon-subtle alias.
    */
   .cashier-flow-stepper {
-    --color-icon-subtle: var(--color-tertiery);
+    --color-icon-subtle: var(--color-surface-base);
   }
 
   .cashier-flow-stepper .cashier-stepper-dot {
@@ -5425,7 +5421,7 @@
     --color-accent-pale: #eff6ff;
     --color-border-brand: #3b82f6;
     --color-button-hover: #2563eb;
-    --color-surface-card-light: var(--color-tertiery);
+    --color-surface-card-light: var(--color-surface-base);
     --color-surface-input-light: var(--raw-surface-muted);
     --color-progress-bar-bg: var(--brand-500-soft);
     --color-progress-bar-fill: var(--color-primary);
@@ -5456,7 +5452,7 @@
    * §13.11: Cam88 semantic names in components; Caelo values via scoped aliases below.
    */
   .profile-page {
-    --color-surface-card-light: var(--color-tertiery);
+    --color-surface-card-light: var(--color-surface-base);
     --color-surface-input-light: var(--raw-surface-muted);
     --color-progress-bar-bg: var(--brand-500-soft);
     --color-progress-bar-fill: var(--color-primary);
@@ -5468,7 +5464,7 @@
   }
 
   .profile-page .profile-account-header__badge {
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
   }
 
   .profile-page .profile-account-header__username {
@@ -5484,12 +5480,12 @@
   }
 
   .profile-page .profile-account-header {
-    background-color: var(--color-tertiery);  
+    background-color: var(--color-surface-base);  
   }
 
   .profile-page .profile-account-header__photo-btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px var(--color-tertiery), 0 0 0 4px var(--color-border-brand);
+    box-shadow: 0 0 0 2px var(--color-surface-base), 0 0 0 4px var(--color-border-brand);
   }
 
   .profile-page .profile-account-header__avatar {
@@ -5499,7 +5495,7 @@
   }
 
   .profile-page .profile-account-header__avatar-icon {
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
   }
 
   .profile-page .profile-vip-progress-section--card {
@@ -5514,7 +5510,7 @@
 
   .profile-page .profile-vip-progress__target {
     background-color: var(--color-primary);
-    color: var(--color-tertiery);
+    color: var(--color-text-card-text);
   }
 
   .profile-page .profile-vip-progress__percent {
@@ -5554,13 +5550,13 @@
 
   .profile-page .profile-personal-dob-field {
     position: relative;
-    border: 2px dashed var(--color-secondary);
-    background: var(--color-tertiery);
+    border: 2px dashed var(--color-button-hover);
+    background: var(--color-surface-base);
     box-shadow: var(--shadow-subtle);
   }
 
   .profile-page .profile-personal-dob-field__icon {
-    color: var(--color-secondary);
+    color: var(--color-button-hover);
   }
 
   .profile-page .profile-personal-dob-input {
@@ -5589,7 +5585,7 @@
   /** Save Changes — color/button/cta gradient; borderless (Figma 431:6004). */
   .profile-page .profile-personal-save.btn-theme-cta {
     --color-border-brand: transparent;
-    --color-button-cta-primary: var(--color-tertiery);
+    --color-button-cta-primary: var(--color-text-card-text);
     border-color: var(--color-border-brand);
     box-shadow: var(--shadow-cta);
     color: var(--color-button-cta-primary);
