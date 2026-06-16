@@ -407,7 +407,7 @@
   --color-surface-primary-shape:             #2e9e3c;
   --color-surface-qrcode:                    #ffffff;
   --color-surface-referral-card:             #b0baed;
-  --color-surface-referral-input:            #f8fafc;
+  --color-surface-referral-input:            #f1f1f1;
   --color-surface-rtp-card:                  #1a4bb8;
   --color-surface-rtp-secondary-card:        #dbeafe;
   --color-surface-rtp-secondary-card-text:   #1d4ed8;
@@ -510,8 +510,8 @@
   --color-button-pagination:                 #ffffff;
   --color-button-pagination-arrow:           #0d2a6a;
   --color-button-pagination-disabled:        #64748b;
-  --color-button-referral-cta:               #ffb22d;
-  --color-button-referral-cta-text:          #432800;
+  --color-button-referral-cta:               #032ea1;
+  --color-button-referral-cta-text:          #ffffff;
   --color-button-referral-hub-share:          #ff4d00;
   --color-button-referral-hub-share-text:    #ffffff;
   --color-button-referral-hub-secondary:      #123b94;

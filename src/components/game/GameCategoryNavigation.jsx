@@ -20,13 +20,13 @@ function resolveCategoryTarget(category) {
 
 /** Selected state — Category Tabs active pill (Cam88 1395:13359). */
 export const CATEGORY_NAV_ACTIVE_CLASS =
-    'category-tab-item--active border border-[var(--color-border-subtle)] bg-[var(--color-surface-menu-active)] text-[var(--color-button-cta-tertiary-text)] ring-1 ring-white/10';
+    'category-tab-item--active border border-[var(--color-border-subtle)] bg-[var(--color-surface-menu-active)] text-[var(--color-tertiery)] ring-1 ring-white/10';
 
 const MOBILE_SIDEBAR_INACTIVE_CLASS =
-    'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-button-nav)] text-[var(--color-primary)] shadow-sm';
+    'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-primary)] shadow-sm';
 
 const DESKTOP_TAB_INACTIVE_CLASS =
-    'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-button-nav)] text-[var(--color-primary)] shadow-sm hover:bg-[var(--color-secondary)] hover:text-[var(--color-button-hover-text)]';
+    'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-primary)] shadow-sm hover:bg-[var(--color-secondary)] hover:text-[var(--color-tertiery)]';
 
 export function GameCategoryNavItem({
     category,
@@ -52,7 +52,7 @@ export function GameCategoryNavItem({
             <Icon
                 size={vertical ? 18 : 20}
                 strokeWidth={active ? 2.5 : 2}
-                className={`shrink-0 ${active ? 'text-[var(--color-button-cta-tertiary-text)]' : 'text-[var(--color-primary)]'}`}
+                className={`shrink-0 ${active ? 'text-[var(--color-tertiery)]' : 'text-[var(--color-primary)]'}`}
                 aria-hidden
             />
             <span
