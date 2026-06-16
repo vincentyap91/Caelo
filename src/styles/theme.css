@@ -4022,8 +4022,8 @@
   }
 
   .top-nav-more-item:hover {
-    background-color: var(--color-surface-cool-light);
-    color: var(--color-text-primary-card-title);
+    background-color: var(--color-button-nav);
+    color: var(--color-primary);
   }
 
   .top-nav-more-item--active {
