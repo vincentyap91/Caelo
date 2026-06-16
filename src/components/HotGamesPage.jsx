@@ -48,7 +48,7 @@ export default function HotGamesPage({ onNavigate }) {
                 aria-label={`Open ${game.name}`}
               />
               {(game.hot || game.new) && (
-                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-danger)] px-2.5 py-0.5 text-xs font-bold text-[var(--color-text-card-text)]">
+                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-danger)] px-2.5 py-0.5 text-xs font-bold text-[var(--color-tertiery)]">
                   {game.hot ? 'HOT' : 'NEW'}
                 </span>
               )}

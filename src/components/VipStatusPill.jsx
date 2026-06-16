@@ -19,8 +19,8 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
 
   const basePillClasses = `inline-flex ${flexDir} items-center ${gap} ${header ? 'h-10 rounded-xl' : 'rounded-full'} ${padding} ${textSize} transition-all duration-200 ${header ? 'shrink-0' : ''} ${className}`;
 
-  const lightStyles = 'border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]';
-  const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-text-sticky-nav-text)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]';
+  const lightStyles = 'border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)]';
+  const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-tertiery)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]';
 
   const headerGlossyPill =
     'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-gradient-vip-nav-pill-hover';
@@ -44,7 +44,7 @@ export default function VipStatusPill({ level = 'Diamond', theme = 'light', size
         <div
           className="-mt-2 inline-flex items-center justify-center rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-4 py-2 shadow-[0_0_12px_rgba(59_130_246_/_0.25)]"
         >
-          <span className="text-sm font-bold text-[var(--color-button-hover)] md:text-base">{labelText}</span>
+          <span className="text-sm font-bold text-[var(--color-secondary)] md:text-base">{labelText}</span>
         </div>
       </div>
     );

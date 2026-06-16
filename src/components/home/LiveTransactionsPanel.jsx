@@ -21,7 +21,7 @@ function LiveDot() {
 function LiveStatusBadge({ className = '' }) {
     return (
         <div
-            className={`inline-flex items-center gap-1.5 rounded-full bg-[var(--color-surface-base)]/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-subtle)]/50 ${className}`}
+            className={`inline-flex items-center gap-1.5 rounded-full bg-[var(--color-tertiery)]/80 py-1 pl-2 pr-2.5 ring-1 ring-[var(--color-border-subtle)]/50 ${className}`}
             role="status"
             aria-label="Live feed"
         >
@@ -41,12 +41,12 @@ const TABS = [
 
 function TxRow({ row }) {
     const isDeposit = row.kind === 'deposit';
-    const amountClass = isDeposit ? 'text-[var(--color-success)]' : 'text-[var(--color-button-hover)]';
+    const amountClass = isDeposit ? 'text-[var(--color-success)]' : 'text-[var(--color-secondary)]';
 
     return (
         <li className="flex items-center gap-3 py-3.5 md:gap-4 md:py-4">
             <div
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] ring-2 ring-inset ring-[var(--color-border-brand)]"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] ring-2 ring-inset ring-[var(--color-border-brand)]"
                 aria-hidden
             >
                 <User size={18} strokeWidth={2.25} />
@@ -72,7 +72,7 @@ function TxRow({ row }) {
                     <ArrowUpFromLine
                         size={17}
                         strokeWidth={2.35}
-                        className="shrink-0 text-[var(--color-button-hover)]"
+                        className="shrink-0 text-[var(--color-secondary)]"
                         aria-hidden
                     />
                 )}
@@ -109,7 +109,7 @@ export default function LiveTransactionsPanel() {
             <div className="shrink-0">
                 <SectionHeader
                     title="Live Transactions"
-                    icon={<Radio size={22} className="text-[var(--color-button-hover)]" strokeWidth={2.25} />}
+                    icon={<Radio size={22} className="text-[var(--color-secondary)]" strokeWidth={2.25} />}
                 />
                 <div className="-mt-1 mb-3 flex flex-row items-center justify-between gap-2 sm:gap-3 md:mb-4">
                     <p className="min-w-0 flex-1 pr-1 text-xs font-medium leading-snug text-[var(--color-text-muted)] sm:pr-2 md:text-sm">
@@ -128,8 +128,8 @@ export default function LiveTransactionsPanel() {
                                 onClick={() => setFilter(t.id)}
                                 className={`rounded-full text-xs font-bold transition md:text-sm ${
                                     active
-                                        ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-sm'
-                                        : 'text-[var(--color-text-primary-card-title)] hover:bg-[var(--color-surface-base)]/70'
+                                        ? 'bg-[var(--color-secondary)] text-[var(--color-tertiery)] shadow-sm'
+                                        : 'text-[var(--color-text-primary-card-title)] hover:bg-[var(--color-tertiery)]/70'
                                 } max-sm:flex max-sm:min-h-[2.375rem] max-sm:min-w-0 max-sm:flex-1 max-sm:basis-0 max-sm:items-center max-sm:justify-center max-sm:px-2 max-sm:py-2 max-sm:leading-none sm:flex-initial sm:px-4 sm:py-2 sm:leading-normal`}
                             >
                                 <span className="block text-center">{t.label}</span>

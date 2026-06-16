@@ -195,13 +195,13 @@
         "file": "src/components/AppDownload.jsx",
         "line": 121,
         "match": "bg-gradient-app-download-section",
-        "snippet": "className=\"app-download-section relative mt-4 scroll-mt-[114px] overflow-hidden rounded-[30px] border border-[var(--color-surface-base)]/80 "
+        "snippet": "className=\"app-download-section relative mt-4 scroll-mt-[114px] overflow-hidden rounded-[30px] border border-[var(--color-tertiery)]/80 "
       },
       {
         "file": "src/components/AppDownload.jsx",
         "line": 190,
         "match": "bg-gradient-app-download-shell",
-        "snippet": "<div className=\"relative overflow-hidden rounded-[30px] border border-[var(--color-surface-base)]/85 bg-gradient-app-download-shell p-4 shad"
+        "snippet": "<div className=\"relative overflow-hidden rounded-[30px] border border-[var(--color-tertiery)]/85 bg-gradient-app-download-shell p-4 shad"
       },
       {
         "file": "src/components/AppDownload.jsx",
@@ -279,7 +279,7 @@
         "file": "src/components/DepositPage.jsx",
         "line": 298,
         "match": "bg-gradient-to-b",
-        "snippet": "? 'bg-gradient-to-b from-[var(--color-accent)] to-[var(--color-button-hover)] text-[var(--color-text-card-text)] shadow-none sm:shadow-sm'"
+        "snippet": "? 'bg-gradient-to-b from-[var(--color-accent)] to-[var(--color-secondary)] text-[var(--color-tertiery)] shadow-none sm:shadow-sm'"
       },
       {
         "file": "src/components/DepositPage.jsx",
@@ -357,7 +357,7 @@
         "file": "src/components/game/GameCategoryNavigation.jsx",
         "line": 23,
         "match": "bg-gradient-tag",
-        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';"
+        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-tertiery)] ring-1 ring-white/10';"
       },
       {
         "file": "src/components/game-detail/GameDetailLayout.jsx",
@@ -401,7 +401,7 @@
         "file": "src/components/FavouritesPage.jsx",
         "line": 131,
         "match": "shadow-[0_4px_12px_rgba(15,23,42,0.04)]",
-        "snippet": "<div className=\"inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[0_4px_12px_rgba"
+        "snippet": "<div className=\"inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-1 shadow-[0_4px_12px_rgba"
       },
       {
         "file": "src/components/FeaturesRow.jsx",
@@ -425,7 +425,7 @@
         "file": "src/components/LanguageSwitcher.jsx",
         "line": 47,
         "match": "shadow-[0_6px_14px_rgba(15,23,42,0.08)]",
-        "snippet": "? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,"
+        "snippet": "? 'border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,"
       },
       {
         "file": "src/components/LoginModal.jsx",
@@ -521,7 +521,7 @@
         "file": "src/components/VipStatusPill.jsx",
         "line": 23,
         "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
-        "snippet": "const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-text-sticky-nav-text)] shadow-[inse"
+        "snippet": "const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-tertiery)] shadow-[inse"
       },
       {
         "file": "src/components/VipStatusPill.jsx",
@@ -595,7 +595,7 @@
         "file": "src/components/FavouritesPage.jsx",
         "line": 131,
         "match": "shadow-[0_4px_12px_rgba(15,23,42,0.04)]",
-        "snippet": "<div className=\"inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-1 shadow-[0_4px_12px_rgba"
+        "snippet": "<div className=\"inline-flex rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-1 shadow-[0_4px_12px_rgba"
       },
       {
         "file": "src/components/FeaturesRow.jsx",
@@ -619,7 +619,7 @@
         "file": "src/components/LanguageSwitcher.jsx",
         "line": 47,
         "match": "shadow-[0_6px_14px_rgba(15,23,42,0.08)]",
-        "snippet": "? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,"
+        "snippet": "? 'border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,"
       },
       {
         "file": "src/components/LoginModal.jsx",
@@ -709,7 +709,7 @@
         "file": "src/components/VipStatusPill.jsx",
         "line": 23,
         "match": "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
-        "snippet": "const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-text-sticky-nav-text)] shadow-[inse"
+        "snippet": "const darkStyles = 'border border-[var(--color-border-brand)] bg-gradient-vip-nav-pill text-[var(--color-tertiery)] shadow-[inse"
       },
       {
         "file": "src/components/VipStatusPill.jsx",
@@ -1299,7 +1299,7 @@
         "file": "src/components/game/GameCategoryNavigation.jsx",
         "line": 23,
         "match": "ring-white/10",
-        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';"
+        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-tertiery)] ring-1 ring-white/10';"
       },
       {
         "file": "src/components/GameCategories.jsx",
@@ -1355,7 +1355,7 @@
         "file": "src/components/game/GameCategoryNavigation.jsx",
         "line": 23,
         "match": "ring-white/10",
-        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-text-card-text)] ring-1 ring-white/10';"
+        "snippet": "'border border-[var(--color-border-subtle)] bg-gradient-tag text-[var(--color-tertiery)] ring-1 ring-white/10';"
       },
       {
         "file": "src/components/home/MobileHomeBottomNav.jsx",

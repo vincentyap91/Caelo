@@ -787,7 +787,7 @@
   --color-gradient-header-balance:           linear-gradient(90deg, var(--mono-550) 0%, var(--mono-600) 100%);
   --color-gradient-home-card:                radial-gradient(circle at top, var(--raw-scrim-accent-blue-16) 0%, transparent 72%);
   --color-gradient-home-cta:                 linear-gradient(90deg, var(--brand-630) 0%, var(--brand-500) 100%);
-  --color-gradient-home-dashboard:           linear-gradient(180deg, var(--color-surface-base) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-pale) 50%, transparent) 100%);
+  --color-gradient-home-dashboard:           linear-gradient(180deg, var(--color-tertiery) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-pale) 50%, transparent) 100%);
   --color-gradient-app-download-button-start: var(--raw-gradient-app-download-button-start);
   --color-gradient-app-download-button-end:   var(--brand-500);
   --color-gradient-app-download-button:       linear-gradient(90deg, var(--color-gradient-app-download-button-start) 0%, var(--color-gradient-app-download-button-end) 100%);

@@ -74,12 +74,12 @@ export default function FloatingSocials({ authUser, onLiveChatClick, onClaimRewa
                     <button
                         type="button"
                         onClick={onLiveChatClick}
-                        className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-floating-social text-[var(--color-text-card-text)] shadow-[var(--shadow-nav-pill)] transition hover:brightness-110 hover:scale-105 active:scale-95"
+                        className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-floating-social text-[var(--color-tertiery)] shadow-[var(--shadow-nav-pill)] transition hover:brightness-110 hover:scale-105 active:scale-95"
                         title="Live Chat"
                         aria-label="Open live chat"
                     >
                         <MessageCircle size={24} />
-                        <span className="absolute right-0 top-0 inline-flex h-5 min-w-5 -translate-y-1 translate-x-1 items-center justify-center rounded-full bg-[var(--color-danger)] px-1 text-xs font-bold text-[var(--color-text-card-text)]">
+                        <span className="absolute right-0 top-0 inline-flex h-5 min-w-5 -translate-y-1 translate-x-1 items-center justify-center rounded-full bg-[var(--color-danger)] px-1 text-xs font-bold text-[var(--color-tertiery)]">
                             {unreadCount}
                         </span>
                     </button>

@@ -72,7 +72,7 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
                         onClick={handleToggleOn}
                         className="relative h-6 w-11 shrink-0 rounded-full bg-[var(--color-border-subtle)] transition-colors hover:bg-[var(--color-accent-glow)]"
                     >
-                        <span className="absolute left-1 top-1 h-4 w-4 rounded-full bg-[var(--color-surface-base)] shadow transition-transform" />
+                        <span className="absolute left-1 top-1 h-4 w-4 rounded-full bg-[var(--color-tertiery)] shadow transition-transform" />
                     </button>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">
@@ -96,7 +96,7 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
                             <button
                                 type="button"
                                 onClick={() => setQrModalOpen(true)}
-                                className="flex items-center gap-2 text-sm font-semibold text-[var(--color-button-hover)] transition hover:text-[var(--color-button-hover)]"
+                                className="flex items-center gap-2 text-sm font-semibold text-[var(--color-secondary)] transition hover:text-[var(--color-secondary)]"
                             >
                                 <QrCode size={18} />
                                 View QR Code
@@ -111,7 +111,7 @@ export default function TwoFactorPanel({ accountName = 'your account' }) {
                             <button
                                 type="button"
                                 onClick={handleCancelSetup}
-                                className="w-full rounded-xl border border-[var(--color-border-subtle)] py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
+                                className="w-full rounded-xl border border-[var(--color-border-subtle)] py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]"
                             >
                                 Cancel
                             </button>

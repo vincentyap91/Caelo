@@ -34,7 +34,7 @@ export default function LoadingPage({ message = 'Loading...', fullPage = true, m
     if (fullPage === 'overlay') {
         return (
             <div
-                className={`fixed left-0 right-0 bottom-0 z-[100] flex items-center justify-center bg-[var(--color-surface-base)]/90 backdrop-blur-sm ${NAV_STICKY_SUBHEADER_TOP_CLASS}`}
+                className={`fixed left-0 right-0 bottom-0 z-[100] flex items-center justify-center bg-[var(--color-tertiery)]/90 backdrop-blur-sm ${NAV_STICKY_SUBHEADER_TOP_CLASS}`}
                 role="status"
                 aria-live="polite"
                 aria-label={message}

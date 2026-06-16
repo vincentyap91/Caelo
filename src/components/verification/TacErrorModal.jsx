@@ -38,7 +38,7 @@ export default function TacErrorModal({ open, onConfirm, titleId = 'tac-error-ti
                         strokeWidth={1.35}
                         aria-hidden
                     />
-                    <p id={titleId} className="mt-6 text-base font-medium leading-snug text-[var(--color-text-card-text)] sm:text-lg">
+                    <p id={titleId} className="mt-6 text-base font-medium leading-snug text-[var(--color-tertiery)] sm:text-lg">
                         TAC Is Incorrect Or Has Expired.
                     </p>
                     <button

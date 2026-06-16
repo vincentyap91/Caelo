@@ -187,7 +187,7 @@ export default function DownlineReferralsPanel() {
                         <div className="mt-4">
                             <button
                                 type="button"
-                                className="btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-[var(--color-text-card-text)] shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
+                                className="btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-[var(--color-tertiery)] shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
                             >
                                 Submit
                             </button>
@@ -236,7 +236,7 @@ export default function DownlineReferralsPanel() {
                         <div className="relative">
                             <Search
                                 size={18}
-                                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-button-hover)]"
+                                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-secondary)]"
                                 aria-hidden
                             />
                             <input

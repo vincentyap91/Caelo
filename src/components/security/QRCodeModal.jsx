@@ -40,7 +40,7 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-[var(--color-surface-darkest)]/70 backdrop-blur-[1px]" aria-hidden onClick={onClose} />
-            <div className="relative z-[1] w-full max-w-md rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-6 shadow-[var(--shadow-modal)]" onClick={(e) => e.stopPropagation()}>
+            <div className="relative z-[1] w-full max-w-md rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-6 shadow-[var(--shadow-modal)]" onClick={(e) => e.stopPropagation()}>
                 <button
                     type="button"
                     onClick={onClose}
@@ -52,7 +52,7 @@ export default function QRCodeModal({ open, onClose, secret, accountName, onVeri
                 <h3 className="mb-6 text-xl font-bold tracking-tight text-[var(--color-text-primary)]">Verify & Activate 2FA</h3>
 
                 <div className="mb-6 flex flex-col items-center gap-4">
-                    <div className="flex h-44 w-44 items-center justify-center rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-4 shadow-[var(--shadow-subtle)]">
+                    <div className="flex h-44 w-44 items-center justify-center rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-4 shadow-[var(--shadow-subtle)]">
                         {!imageError && qrCodeUrl ? (
                             <img
                                 src={qrCodeUrl}

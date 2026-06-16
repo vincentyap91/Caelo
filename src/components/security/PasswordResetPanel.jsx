@@ -24,7 +24,7 @@ function PasswordInput({ label, value, onChange, error, showPassword, onToggleSh
                     className={`w-full rounded-xl border px-4 py-3 pr-12 text-sm outline-none placeholder:text-[var(--color-text-soft)] focus:ring-2 focus:ring-[var(--color-info-icon)]/20 ${
                         error
                             ? 'border-[var(--color-danger)] bg-[var(--color-danger)]/5 text-[var(--color-text-primary)] focus:border-[var(--color-danger)]'
-                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] focus:border-[var(--color-info-icon)]'
+                            : 'border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] focus:border-[var(--color-info-icon)]'
                     }`}
                 />
                 <button

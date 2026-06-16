@@ -78,7 +78,7 @@ export default function ProviderLobbyTile({
                 />
 
                 {hot ? (
-                    <span className="absolute right-2 top-2 z-10 rounded-full bg-[var(--color-danger)] px-2 py-0.5 text-[10px] font-bold tracking-wide text-[var(--color-text-card-text)] shadow-[var(--shadow-hot)]">
+                    <span className="absolute right-2 top-2 z-10 rounded-full bg-[var(--color-danger)] px-2 py-0.5 text-[10px] font-bold tracking-wide text-[var(--color-tertiery)] shadow-[var(--shadow-hot)]">
                         HOT
                     </span>
                 ) : null}

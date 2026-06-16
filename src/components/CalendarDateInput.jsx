@@ -26,7 +26,7 @@ const CalendarDateInput = forwardRef(function CalendarDateInput(
             />
             <Calendar
                 size={18}
-                className="pointer-events-none absolute right-3 text-[var(--color-button-hover)]"
+                className="pointer-events-none absolute right-3 text-[var(--color-secondary)]"
                 aria-hidden
             />
         </div>

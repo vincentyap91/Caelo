@@ -55,12 +55,12 @@ export default function MobileSiteHeader({
     }, [balanceDropdownOpen]);
 
     return (
-        <div className="mobile-site-header relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-[var(--color-border)] bg-[var(--color-surface-base)] px-3 py-1.5 text-[var(--color-button-nav-text)] md:hidden">
+        <div className="mobile-site-header relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-[var(--color-border)] bg-[var(--color-tertiery)] px-3 py-1.5 text-[var(--color-primary)] md:hidden">
             <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
                 <button
                     type="button"
                     onClick={onMenuToggle}
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-button-nav)] text-[var(--color-button-nav-text)] transition hover:bg-[var(--color-surface-cool-light)]"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-button-nav)] text-[var(--color-primary)] transition hover:bg-[var(--color-surface-cool-light)]"
                     aria-label="Open mobile menu"
                     aria-expanded={mobileMenuOpen}
                 >
@@ -98,21 +98,21 @@ export default function MobileSiteHeader({
                             >
                                 {balanceLayout?.variant === 'split' ? (
                                     <span className="flex min-w-0 flex-1 flex-col justify-center gap-px leading-none">
-                                        <span className="text-[9px] font-semibold leading-none tracking-wide text-[var(--color-text-sticky-nav-text)]">
+                                        <span className="text-[9px] font-semibold leading-none tracking-wide text-[var(--color-tertiery)]">
                                             {balanceLayout.currency}
                                         </span>
-                                        <span className="min-w-0 w-full truncate whitespace-nowrap text-[clamp(10px,2.9vw,12px)] font-extrabold tabular-nums leading-none tracking-tight text-[var(--color-text-sticky-nav-text)]">
+                                        <span className="min-w-0 w-full truncate whitespace-nowrap text-[clamp(10px,2.9vw,12px)] font-extrabold tabular-nums leading-none tracking-tight text-[var(--color-tertiery)]">
                                             {balanceLayout.amount}
                                         </span>
                                     </span>
                                 ) : (
-                                    <span className="min-w-0 flex-1 truncate whitespace-nowrap text-[clamp(11px,3.15vw,14px)] font-extrabold tabular-nums leading-none tracking-tight text-[var(--color-text-sticky-nav-text)]">
+                                    <span className="min-w-0 flex-1 truncate whitespace-nowrap text-[clamp(11px,3.15vw,14px)] font-extrabold tabular-nums leading-none tracking-tight text-[var(--color-tertiery)]">
                                         {balanceLayout?.text ?? authUser.balance}
                                     </span>
                                 )}
                                 <ChevronDown
                                     size={13}
-                                    className={`shrink-0 text-[var(--color-text-sticky-nav-text)] transition-transform ${balanceDropdownOpen ? 'rotate-180' : ''}`}
+                                    className={`shrink-0 text-[var(--color-tertiery)] transition-transform ${balanceDropdownOpen ? 'rotate-180' : ''}`}
                                 />
                             </button>
                             <button
@@ -157,7 +157,7 @@ export default function MobileSiteHeader({
                         <button
                             type="button"
                             onClick={onLoginClick}
-                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-button-nav)] px-3 text-xs font-semibold text-[var(--color-button-nav-text)] shadow-sm transition hover:bg-[var(--color-surface-cool-light)]"
+                            className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-button-nav)] px-3 text-xs font-semibold text-[var(--color-primary)] shadow-sm transition hover:bg-[var(--color-surface-cool-light)]"
                         >
                             Log In
                         </button>

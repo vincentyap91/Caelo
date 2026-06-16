@@ -155,7 +155,7 @@ export default function FavouritesPage({ onNavigate }) {
                         return (
                             <section key={id}>
                                 <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[var(--color-text-primary)]">
-                                    <Trophy size={20} className="text-[var(--color-button-hover)]" />
+                                    <Trophy size={20} className="text-[var(--color-secondary)]" />
                                     {title}
                                 </h2>
                                 {sectionItems.length === 0 ? (
@@ -177,7 +177,7 @@ export default function FavouritesPage({ onNavigate }) {
                                                             [id]: (prev[id] ?? 2) + 2,
                                                         }))
                                                     }
-                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
+                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]"
                                                 >
                                                     Load more
                                                 </button>
@@ -199,7 +199,7 @@ export default function FavouritesPage({ onNavigate }) {
                         return (
                             <section key={id}>
                                 <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[var(--color-text-primary)]">
-                                    <Icon size={20} className="text-[var(--color-button-hover)]" />
+                                    <Icon size={20} className="text-[var(--color-secondary)]" />
                                     {title}
                                 </h2>
                                 {sectionItems.length === 0 ? (
@@ -227,7 +227,7 @@ export default function FavouritesPage({ onNavigate }) {
                                                             [id]: (prev[id] ?? 2) + 2,
                                                         }))
                                                     }
-                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
+                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] px-8 py-2.5 text-sm font-semibold text-[var(--color-text-primary)] shadow-[var(--shadow-subtle)] transition hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]"
                                                 >
                                                     Load more
                                                 </button>

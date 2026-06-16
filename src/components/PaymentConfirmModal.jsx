@@ -40,13 +40,13 @@ export default function PaymentConfirmModal({ open, onClose, type = 'deposit' })
                     type="button"
                     aria-label="Close"
                     onClick={onClose}
-                    className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-surface-accent)] text-[var(--color-text-card-text)] transition hover:brightness-95"
+                    className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-surface-accent)] text-[var(--color-tertiery)] transition hover:brightness-95"
                 >
                     <X size={18} strokeWidth={3} />
                 </button>
 
                 <div className="flex flex-col items-center gap-6 text-center">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--color-success)] text-[var(--color-text-card-text)] shadow-[var(--shadow-success)]">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--color-success)] text-[var(--color-tertiery)] shadow-[var(--shadow-success)]">
                         <Check size={28} strokeWidth={2.5} />
                     </div>
 

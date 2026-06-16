@@ -77,7 +77,7 @@ These duplicate values already defined as `--shadow-*` in `src/styles/theme.css`
 | `ring-white/10` | `GameCategoryNavigation.jsx`, `LanguageSwitcher.jsx` | `ring-[var(--color-ring-on-dark)]/10` or `--color-ring-subtle` utility |
 | `ring-white/20` | `ScrollToTop.jsx` | `--color-ring-highlight` |
 | `ring-white/70` | `PushNotificationToast.jsx` | `--color-ring-panel` |
-| `ring-2 ring-white` | `MobileHomeBottomNav.jsx` | `ring-[var(--color-surface-base)]` |
+| `ring-2 ring-white` | `MobileHomeBottomNav.jsx` | `ring-[var(--color-tertiery)]` |
 | `outline-white/60` | `GameDetailPlayModal.jsx` | `outline-[var(--color-ring-on-dark)]/60` |
 | `border-slate-200/90` | `constants/navStickyOffsets.js` | `border-[var(--color-border-subtle)]/90` |
 
@@ -146,10 +146,10 @@ Patterns like `from-[var(--color-accent-400)] to-[var(--color-accent-600)]` in `
 |------|------------:|----------|
 | `FeaturesRow.jsx` | ~59 hex + rgba | Extract gradient defs to CSS vars: `stopColor="var(--color-accent-400)"`; highlights `fill="var(--raw-scrim-white-55)"`; prefer `currentColor` on monochrome paths |
 | `ReferralStep3dIcons.jsx` | ~37 hex | Map gold/cyan stops to `--color-cta-*` / `--color-primary` chain |
-| `AppDownload.jsx` | ~13 hex + `fill="white"` | Badge SVG: `fill="var(--color-text-card-text)"`; stops → `--color-accent-*`, `--color-primary` |
-| `ui/RebateIcon.jsx` | clip `fill="white"` | `fill="currentColor"` + parent `text-[var(--color-surface-base)]` |
+| `AppDownload.jsx` | ~13 hex + `fill="white"` | Badge SVG: `fill="var(--color-tertiery)"`; stops → `--color-accent-*`, `--color-primary` |
+| `ui/RebateIcon.jsx` | clip `fill="white"` | `fill="currentColor"` + parent `text-[var(--color-tertiery)]` |
 | `ui/CasinoChipIcon.jsx` | clip `fill="white"` | Same as RebateIcon |
-| `FeaturesRow.jsx` | `fill="white" stroke="#00E676"` status dot | `fill="var(--color-surface-base)" stroke="var(--color-success)"` |
+| `FeaturesRow.jsx` | `fill="white" stroke="#00E676"` status dot | `fill="var(--color-tertiery)" stroke="var(--color-success)"` |
 
 ### Payment / brand footer icons (optional — **P3**)
 
@@ -245,7 +245,7 @@ Replace all `shadow-[…rgba(…)]` in components with existing `--shadow-*` tok
 
 ### Phase 4 — Illustration SVGs (2 PRs)
 
-1. `AppDownload.jsx` + `FeaturesRow.jsx` — stop colors → CSS variables; text `fill` → `var(--color-text-card-text)`
+1. `AppDownload.jsx` + `FeaturesRow.jsx` — stop colors → CSS variables; text `fill` → `var(--color-tertiery)`
 2. `ReferralStep3dIcons.jsx` — same pattern; extract shared `<IllustrationDefs />` if gradients repeat
 
 ### Phase 5 — Icon hygiene (1 PR)

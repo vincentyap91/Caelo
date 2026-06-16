@@ -31,7 +31,7 @@ function ToggleRow({ label, checked, onChange }) {
                 }`}
             >
                 <span
-                    className={`absolute top-1 h-4 w-4 rounded-full bg-[var(--color-surface-base)] shadow transition-all ${
+                    className={`absolute top-1 h-4 w-4 rounded-full bg-[var(--color-tertiery)] shadow transition-all ${
                         checked ? 'left-[22px]' : 'left-1'
                     }`}
                 />
@@ -58,7 +58,7 @@ function RecentNotificationCard({ item }) {
 
     return (
         <div className="surface-card flex gap-4 rounded-2xl px-4 py-4 transition hover:border-[var(--color-accent-glow)] md:px-5 md:py-5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-pale)] text-[var(--color-secondary)]">
                 <Icon size={20} strokeWidth={2.25} aria-hidden />
             </div>
             <div className="min-w-0 flex-1">
@@ -80,7 +80,7 @@ function RecentNotificationCard({ item }) {
                               ? 'bg-[var(--color-surface-subtle)] text-[var(--color-danger)]'
                               : status === 'warning'
                                 ? 'bg-[var(--color-accent-pale)] text-[var(--color-danger)]'
-                                : 'bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]'
+                                : 'bg-[var(--color-accent-glow)] text-[var(--color-secondary)]'
                     }`}
                 >
                     {isLive ? <Loader2 size={12} className="animate-spin" aria-hidden /> : null}
@@ -145,7 +145,7 @@ export default function NotificationsPage() {
             <section className="mt-10 md:mt-12" aria-labelledby="recent-notifications-heading">
                 <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
                     <div className="flex items-center gap-2">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)]">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)]">
                             <Bell size={18} strokeWidth={2.25} aria-hidden />
                         </span>
                         <h2
@@ -159,7 +159,7 @@ export default function NotificationsPage() {
                         <button
                             type="button"
                             onClick={handleClearRecent}
-                            className="text-sm font-semibold text-[var(--color-button-hover)] transition hover:text-[var(--color-button-hover)]"
+                            className="text-sm font-semibold text-[var(--color-secondary)] transition hover:text-[var(--color-secondary)]"
                         >
                             Clear all
                         </button>

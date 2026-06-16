@@ -25,9 +25,9 @@ export default function PaymentFlowStepper({ step, steps, variant = 'default', c
                                             ? `cashier-stepper-dot${isCompleted ? ' is-completed' : ''}${isActive ? ' is-active' : ''}`
                                             : `flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition sm:h-10 sm:w-10 sm:text-sm ${
                                                   isCompleted
-                                                      ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)]'
+                                                      ? 'bg-[var(--color-secondary)] text-[var(--color-tertiery)]'
                                                       : isActive
-                                                        ? 'bg-[var(--color-button-hover)] text-[var(--color-text-card-text)] ring-[3px] ring-[var(--color-accent)]/22 shadow-[var(--shadow-accent)]'
+                                                        ? 'bg-[var(--color-secondary)] text-[var(--color-tertiery)] ring-[3px] ring-[var(--color-accent)]/22 shadow-[var(--shadow-accent)]'
                                                         : 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-text-muted)]'
                                               }`
                                     }
@@ -51,7 +51,7 @@ export default function PaymentFlowStepper({ step, steps, variant = 'default', c
                                               }`
                                             : `w-full max-w-[7.5rem] text-center text-xs font-semibold leading-snug sm:max-w-none sm:text-sm ${
                                                   isActive
-                                                      ? 'text-[var(--color-button-hover)]'
+                                                      ? 'text-[var(--color-secondary)]'
                                                       : isCompleted
                                                         ? 'text-[var(--color-text-primary)]'
                                                         : 'text-[var(--color-text-muted)]'
@@ -71,7 +71,7 @@ export default function PaymentFlowStepper({ step, steps, variant = 'default', c
                                             isCashier
                                                 ? `cashier-stepper-connector h-1 w-full rounded-full${step > s.id ? ' is-done' : ' is-pending'}`
                                                 : `h-1 w-full rounded-full ${
-                                                      step > s.id ? 'bg-[var(--color-button-hover)]' : 'bg-[var(--color-border-subtle)]'
+                                                      step > s.id ? 'bg-[var(--color-secondary)]' : 'bg-[var(--color-border-subtle)]'
                                                   }`
                                         }
                                     />

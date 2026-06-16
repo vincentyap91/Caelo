@@ -39,7 +39,7 @@ export default function ScrollToTop({ authUser }) {
         <button
             type="button"
             onClick={scrollToTop}
-            className={`fixed ${mobilePositionClass} z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-brand)]/20 bg-gradient-scroll-top text-[var(--color-text-card-text)] shadow-[0_8px_16px_rgba(0,114,188,0.24)] ring-1 ring-white/20 transition-all hover:scale-105 active:scale-95 ${desktopPositionClass} md:z-[140] md:h-14 md:w-14 active:brightness-95`}
+            className={`fixed ${mobilePositionClass} z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-brand)]/20 bg-gradient-scroll-top text-[var(--color-tertiery)] shadow-[0_8px_16px_rgba(0,114,188,0.24)] ring-1 ring-white/20 transition-all hover:scale-105 active:scale-95 ${desktopPositionClass} md:z-[140] md:h-14 md:w-14 active:brightness-95`}
             aria-label="Scroll to top"
         >
             <ArrowUp size={24} strokeWidth={2.5} />

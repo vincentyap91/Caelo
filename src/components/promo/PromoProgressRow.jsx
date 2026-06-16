@@ -53,7 +53,7 @@ export default function PromoProgressRow({
     const valueClass = isBalance
         ? 'font-bold tabular-nums balance-modal-text-secondary'
         : isProfile
-          ? 'font-bold tabular-nums text-[var(--color-text-title)]'
+          ? 'font-bold tabular-nums text-[var(--color-primary)]'
           : 'font-bold tabular-nums text-[var(--color-primary)]';
 
     const percentClass = isBalance

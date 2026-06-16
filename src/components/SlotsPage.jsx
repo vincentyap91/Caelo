@@ -147,7 +147,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                 }`}
                             >
                                 {(provider.featured || provider.new) && (
-                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-bold text-[var(--color-text-card-text)] ${provider.new ? 'bg-[var(--color-accent)]' : 'bg-[var(--color-danger)]'}`}>
+                                    <span className={`absolute right-1 top-1 rounded-full px-2 py-0.5 text-xs font-bold text-[var(--color-tertiery)] ${provider.new ? 'bg-[var(--color-accent)]' : 'bg-[var(--color-danger)]'}`}>
                                         {provider.new ? 'New' : 'Hot'}
                                     </span>
                                 )}
@@ -196,7 +196,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                                 aria-label={`Open ${game.name}`}
                             />
                             {(game.hot || game.new) && (
-                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-danger)] px-2.5 py-0.5 text-xs font-bold text-[var(--color-text-card-text)]">
+                                <span className="pointer-events-none absolute left-2 top-2 z-10 rounded-full bg-[var(--color-danger)] px-2.5 py-0.5 text-xs font-bold text-[var(--color-tertiery)]">
                                     {game.hot ? 'HOT' : 'NEW'}
                                 </span>
                             )}

@@ -506,7 +506,7 @@
   --color-button-menu-active:                #123b94;
   --color-button-muted:                      #334155;
   --color-button-muted-text:                 #ffffff;
-  --color-button-nav:                        #d9e9facc;
+  --color-button-nav:                        #f8fafccc;
   --color-button-pagination:                 #ffffff;
   --color-button-pagination-arrow:           #0d2a6a;
   --color-button-pagination-disabled:        #64748b;
@@ -701,7 +701,7 @@
   --color-gradient-home-cta:                 linear-gradient(90deg, var(--brand-630) 0%, var(--brand-500) 100%);
   --color-gradient-home-dashboard-start:     #ffffff;
   --color-gradient-home-dashboard-end:       #f4fbff;
-  --color-gradient-home-dashboard:           linear-gradient(180deg, var(--color-surface-base) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-pale) 50%, transparent) 100%);
+  --color-gradient-home-dashboard:           linear-gradient(180deg, var(--color-tertiery) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-pale) 50%, transparent) 100%);
   --color-gradient-app-download-button-start: #00cfff;
   --color-gradient-app-download-button-end:   #123b94;
   --color-gradient-app-download-button:       linear-gradient(90deg, var(--color-gradient-app-download-button-start) 0%, var(--color-gradient-app-download-button-end) 100%);

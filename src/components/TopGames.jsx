@@ -12,7 +12,7 @@ export default function TopGames({ onNavigate }) {
         <section className="home-top-games-section w-full pt-4">
             <SectionHeader
                 title="Top Games"
-                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}
+                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-secondary)]" />}
                 rightLink={hasMoreGames ? 'See all' : undefined}
                 rightLinkTo={hasMoreGames ? 'all-games' : undefined}
                 onNavigate={onNavigate}

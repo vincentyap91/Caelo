@@ -78,7 +78,7 @@ export default function FeedbackPage() {
                                             aria-hidden="true"
                                             onClick={() => setCategoryOpen(false)}
                                         />
-                                        <div role="listbox" className="absolute left-0 top-full z-20 mt-1 w-full min-w-[180px] rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-2 shadow-[var(--shadow-card-soft)]">
+                                        <div role="listbox" className="absolute left-0 top-full z-20 mt-1 w-full min-w-[180px] rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] py-2 shadow-[var(--shadow-card-soft)]">
                                             {feedbackCategories.map((opt) => (
                                                 <button
                                                     key={opt}
@@ -91,7 +91,7 @@ export default function FeedbackPage() {
                                                     }}
                                                     className={`w-full px-4 py-2.5 text-left text-sm font-medium ${
                                                         category === opt
-                                                            ? 'bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
+                                                            ? 'bg-[var(--color-accent-pale)] text-[var(--color-secondary)]'
                                                             : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-cool-light)]'
                                                     }`}
                                                 >
@@ -143,7 +143,7 @@ export default function FeedbackPage() {
                                     Drag and drop or click to choose files (Optional)
                                 </p>
                                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">(JPG, PDF or PNG) File size limit: 5MB</p>
-                                {file && <p className="mt-2 text-xs font-medium text-[var(--color-button-hover)]">{file.name}</p>}
+                                {file && <p className="mt-2 text-xs font-medium text-[var(--color-secondary)]">{file.name}</p>}
                                 {fileError && <p className="mt-2 text-xs font-medium text-[var(--color-danger)]">{fileError}</p>}
                             </div>
                         </label>

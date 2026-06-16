@@ -158,14 +158,14 @@ export default function SlotBrowseFilterModal({
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-11 min-h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)] lg:h-10 lg:min-h-0 lg:w-10"
+                        className="inline-flex h-11 min-h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)] lg:h-10 lg:min-h-0 lg:w-10"
                     >
                         <X size={18} />
                     </button>
                 </div>
 
                 <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-4 py-3 pb-4 sm:px-6 sm:py-5 lg:overflow-hidden">
-                    <div className="shrink-0 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/80 p-3 shadow-[var(--shadow-live-card)] max-lg:rounded-[20px] sm:rounded-[24px] sm:p-4">
+                    <div className="shrink-0 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)]/80 p-3 shadow-[var(--shadow-live-card)] max-lg:rounded-[20px] sm:rounded-[24px] sm:p-4">
                         <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-2.5">
                             <label className="flex h-11 min-h-11 w-full items-center gap-2 rounded-xl border border-[var(--color-border-subtle)]/90 bg-[var(--color-surface-input-light)] px-3 shadow-[0_2px_10px_rgba(15,23,42,0.04)] lg:h-10 lg:min-h-0 lg:flex-1">
                                 <Search size={16} className="shrink-0 text-[var(--color-text-muted)]" />
@@ -179,7 +179,7 @@ export default function SlotBrowseFilterModal({
                             </label>
 
                             <div
-                                className="inline-flex w-full min-h-11 items-stretch gap-0.5 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/85 p-1 shadow-[var(--shadow-input)] lg:min-h-0 lg:w-auto lg:shrink-0"
+                                className="inline-flex w-full min-h-11 items-stretch gap-0.5 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)]/85 p-1 shadow-[var(--shadow-input)] lg:min-h-0 lg:w-auto lg:shrink-0"
                                 role="tablist"
                                 aria-label="Filter by result type"
                             >
@@ -194,7 +194,7 @@ export default function SlotBrowseFilterModal({
                                             onClick={() => setDraftScope(scope.id)}
                                             className={`flex min-h-11 min-w-0 flex-1 items-center justify-center rounded-xl px-2 py-2 text-xs font-bold transition-all duration-200 lg:min-h-0 lg:px-3 lg:flex-none ${selected
                                                 ? 'btn-theme-tab-selected'
-                                                : 'border border-transparent bg-transparent text-[var(--color-text-secondary)] hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-base)] hover:text-[var(--color-text-primary)]'
+                                                : 'border border-transparent bg-transparent text-[var(--color-text-secondary)] hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-tertiery)] hover:text-[var(--color-text-primary)]'
                                                 }`}
                                         >
                                             {scope.label}
@@ -245,7 +245,7 @@ export default function SlotBrowseFilterModal({
                                                         onClick={() => setDraftProvider(allProvidersValue)}
                                                         className={`col-span-full w-full min-w-0 rounded-xl border px-3 py-2 text-center text-sm font-semibold transition sm:text-left ${draftProvider === allProvidersValue
                                                             ? 'btn-theme-tab-selected'
-                                                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)]'
+                                                            : 'border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)]'
                                                             }`}
                                                     >
                                                         <span className="block text-[13px] sm:text-sm">All Providers</span>
@@ -264,7 +264,7 @@ export default function SlotBrowseFilterModal({
                                                                 onClick={() => setDraftProvider(provider.name)}
                                                                 className={`flex min-h-[90px] w-full min-w-0 flex-col items-center justify-center rounded-xl border px-2 py-2 text-center transition lg:min-h-[120px] lg:px-3 lg:py-2.5 ${selected
                                                                     ? 'border-[var(--color-primary)] bg-[var(--color-accent-pale)] text-[var(--color-surface-accent)] shadow-[var(--shadow-brand-soft)]'
-                                                                    : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)]'
+                                                                    : 'border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)]'
                                                                     }`}
                                                             >
                                                                 {providerLogo && (
@@ -294,7 +294,7 @@ export default function SlotBrowseFilterModal({
                                                     <button
                                                         type="button"
                                                         onClick={() => setProvidersExpanded((prev) => !prev)}
-                                                        className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)] lg:hidden"
+                                                        className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)] lg:hidden"
                                                     >
                                                         {isExpanded ? (
                                                             <>
@@ -337,7 +337,7 @@ export default function SlotBrowseFilterModal({
                                                 {visibleGames.slice(0, 24).map((game) => (
                                                     <article
                                                         key={`${game.provider}-${game.name}`}
-                                                        className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/90 p-2 shadow-[var(--shadow-subtle)] sm:rounded-2xl sm:p-3"
+                                                        className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)]/90 p-2 shadow-[var(--shadow-subtle)] sm:rounded-2xl sm:p-3"
                                                     >
                                                         <div className="flex items-center gap-2 sm:gap-3">
                                                             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-[var(--color-surface-subtle)] sm:h-12 sm:w-12">
@@ -385,11 +385,11 @@ export default function SlotBrowseFilterModal({
                     </div>
                 </div>
 
-                <div className="flex shrink-0 flex-col gap-2 border-t border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:flex-row lg:items-center lg:justify-between lg:gap-3 lg:px-6 lg:py-4 lg:pb-4">
+                <div className="flex shrink-0 flex-col gap-2 border-t border-[var(--color-border-subtle)] bg-[var(--color-tertiery)]/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:flex-row lg:items-center lg:justify-between lg:gap-3 lg:px-6 lg:py-4 lg:pb-4">
                     <button
                         type="button"
                         onClick={handleReset}
-                        className="inline-flex h-12 min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-bold text-[var(--color-text-secondary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)] lg:h-11 lg:min-h-0 lg:w-auto"
+                        className="inline-flex h-12 min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-4 text-sm font-bold text-[var(--color-text-secondary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-accent-pale)] lg:h-11 lg:min-h-0 lg:w-auto"
                     >
                         <RotateCcw size={16} />
                         Reset

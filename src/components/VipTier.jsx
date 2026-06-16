@@ -55,7 +55,7 @@ export default function VipTier({ onNavigate }) {
         <section className="home-vip-tier-section w-full pt-4 relative">
             <SectionHeader
                 title="VIP Group"
-                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}
+                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-secondary)]" />}
                 rightLink="More Details"
                 rightLinkTo="vip"
                 onNavigate={onNavigate}
@@ -83,7 +83,7 @@ export default function VipTier({ onNavigate }) {
                             <VipLevelCard
                                 key={vp.level}
                                 vp={vp}
-                                className="surface-card min-w-[288px] snap-center overflow-hidden rounded-[22px] border border-[var(--color-border-brand)]/70 bg-[var(--color-surface-base)]/90 shadow-[0_8px_20px_rgba(0,114,188,0.06)]"
+                                className="surface-card min-w-[288px] snap-center overflow-hidden rounded-[22px] border border-[var(--color-border-brand)]/70 bg-[var(--color-tertiery)]/90 shadow-[0_8px_20px_rgba(0,114,188,0.06)]"
                             />
                         ))}
                     </div>
@@ -95,7 +95,7 @@ export default function VipTier({ onNavigate }) {
                         <VipLevelCard
                             key={vp.level}
                             vp={vp}
-                            className="surface-card overflow-hidden rounded-[22px] border border-[var(--color-border-brand)]/70 bg-[var(--color-surface-base)]/90 transition-all hover:border-[var(--color-primary)] hover:shadow-[var(--shadow-card-hover)]"
+                            className="surface-card overflow-hidden rounded-[22px] border border-[var(--color-border-brand)]/70 bg-[var(--color-tertiery)]/90 transition-all hover:border-[var(--color-primary)] hover:shadow-[var(--shadow-card-hover)]"
                         />
                     ))}
                 </div>

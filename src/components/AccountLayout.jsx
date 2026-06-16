@@ -25,7 +25,7 @@ export default function AccountLayout({
                     <button
                         type="button"
                         onClick={() => setMobileSidebarOpen((open) => !open)}
-                        className="account-layout__menu-trigger inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-sub)] shadow-[var(--shadow-subtle)] transition-all hover:bg-[var(--color-accent-pale)] hover:shadow"
+                        className="account-layout__menu-trigger inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--color-accent-glow)] bg-[var(--color-tertiery)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-sub)] shadow-[var(--shadow-subtle)] transition-all hover:bg-[var(--color-accent-pale)] hover:shadow"
                     >
                         <UserRound size={16} />
                         Account Menu

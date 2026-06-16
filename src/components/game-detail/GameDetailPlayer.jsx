@@ -84,7 +84,7 @@ export default function GameDetailPlayer({
                     <button
                         type="button"
                         onClick={toggleFullscreen}
-                        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-brand)]/20 bg-[var(--color-surface-darkest)]/50 text-[var(--color-text-card-text)] backdrop-blur-sm transition hover:bg-[var(--color-surface-darkest)]/70"
+                        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-brand)]/20 bg-[var(--color-surface-darkest)]/50 text-[var(--color-tertiery)] backdrop-blur-sm transition hover:bg-[var(--color-surface-darkest)]/70"
                         aria-label={fs ? 'Exit fullscreen' : 'Enter fullscreen'}
                     >
                         <Maximize2 size={18} />

@@ -26,7 +26,7 @@
   --color-surface-panel: #f0f9ff;
 
   /* Caelo Brand Tokens */
-  --surface-base: var(--color-surface-base);
+  --surface-base: var(--color-tertiery);
   --border-default: var(--color-border-default);
   --text-muted: var(--color-text-muted);
   --ref-10: #f1f5f9;
@@ -102,7 +102,7 @@
   --space-payout-card-gap: 0.9375rem;
 
   /* 02 Semantic — use in components instead of legacy color-* where specified */
-  --base-paper: var(--color-surface-base);
+  --base-paper: var(--color-tertiery);
   --base-ink: var(--color-text-strong);
   --mono-300: var(--color-border-default);
   --wash-400: var(--color-wash-400);
@@ -186,7 +186,7 @@
   /* Universal modal — pale header + navy type; game body / wallet shell use global brand tokens */
   --color-universal-modal-header-bg: #e8eef6;
   --color-universal-modal-header-text: var(--color-brand-deep);
-  --color-universal-modal-game-body-bg: var(--color-surface-base);
+  --color-universal-modal-game-body-bg: var(--color-tertiery);
   --color-universal-modal-card-border: var(--color-border-brand);
   --radius-universal-modal: 14px;
   --shadow-register-card: 0 18px 35px rgba(10, 42, 97, 0.14);
@@ -480,7 +480,7 @@
   .auth-modal-content {
     /* No “box in box” — let content sit on modal surface */
     padding: 0;
-    background-color: var(--color-surface-base);
+    background-color: var(--color-tertiery);
   }
 
   .auth-modal-split {
@@ -538,7 +538,7 @@
     display: flex;
     align-items: center;
     border: 1px solid var(--color-border-default);
-    background-color: var(--color-surface-base);
+    background-color: var(--color-tertiery);
     border-radius: var(--radius-control);
     box-shadow: var(--shadow-input);
   }
@@ -732,7 +732,7 @@
     padding: 10px 12px;
     border-radius: var(--radius-control);
     border: 1px solid var(--color-border-default);
-    background-color: var(--color-surface-base);
+    background-color: var(--color-tertiery);
     box-shadow: var(--shadow-input);
     font-size: 14px;
     font-weight: 800;
@@ -746,7 +746,7 @@
     width: 100%;
     border-radius: var(--radius-control);
     border: 1px solid var(--color-border-default);
-    background-color: var(--color-surface-base);
+    background-color: var(--color-tertiery);
     box-shadow: var(--shadow-card-soft);
     overflow: hidden;
     z-index: 5;
@@ -759,7 +759,7 @@
     font-size: 14px;
     font-weight: 800;
     color: var(--color-text-strong);
-    background-color: var(--color-surface-base);
+    background-color: var(--color-tertiery);
     transition: background-color 0.15s ease;
   }
 
@@ -871,7 +871,7 @@
     width: 100%;
     overflow: hidden;
     border-radius: var(--radius-universal-modal);
-    background-color: var(--color-surface-base);
+    background-color: var(--color-tertiery);
     box-shadow: var(--shadow-modal);
     display: flex;
     flex-direction: column;
@@ -925,7 +925,7 @@
   .universal-modal-banner-wrapper {
     overflow: hidden;
     border: 1px solid var(--color-universal-modal-card-border);
-    background-color: var(--color-surface-base);
+    background-color: var(--color-tertiery);
     box-shadow: var(--shadow-subtle);
   }
 
@@ -1261,7 +1261,7 @@
 
   .surface-card {
     border: 1px solid var(--color-border-default);
-    background: var(--color-surface-base);
+    background: var(--color-tertiery);
     box-shadow: var(--shadow-card-soft);
   }
 
@@ -1325,7 +1325,7 @@
     aspect-ratio: 1200 / 350;
     overflow: hidden;
     border-radius: var(--radius-hero-banner);
-    background-color: var(--color-surface-base);
+    background-color: var(--color-tertiery);
     border: 1px solid var(--color-border-default);
     box-shadow: var(--shadow-live-banner);
   }

@@ -59,7 +59,7 @@ const REPLACEMENTS = [
   ['hover:bg-[rgb(248_251_255)]', 'hover:bg-[var(--color-accent-50)]'],
   ['bg-[rgb(239_246_255_/_0.8)]', 'bg-[var(--color-accent-50)]/80'],
   ['bg-[rgb(239_246_255_/_0.5)]', 'bg-[var(--color-accent-50)]/50'],
-  ['bg-[rgb(255_255_255_/_0.4)]', 'bg-[var(--color-surface-base)]/40'],
+  ['bg-[rgb(255_255_255_/_0.4)]', 'bg-[var(--color-tertiery)]/40'],
   ['bg-[#222222]', 'bg-[var(--color-surface-card-container)]'],
   ['bg-[#39FF88]', 'bg-[var(--color-success-vivid)]'],
   ['bg-[rgb(0_174_239_/_0.16)]', 'bg-[var(--color-accent-glow)]/40'],
@@ -141,7 +141,7 @@ const REPLACEMENTS = [
   ['text-[rgb(53_91_143)]', 'text-[var(--color-text-brand)]'],
   ['text-[rgb(255_82_0)]', 'text-[var(--color-danger)]'],
   ['text-[rgb(173,49,24)]', 'text-[var(--color-danger-deep)]'],
-  ['bg-[rgb(24_114_214)]', 'bg-[var(--color-button-hover)]'],
+  ['bg-[rgb(24_114_214)]', 'bg-[var(--color-secondary)]'],
   ['bg-[rgb(241_245_252)]', 'bg-[var(--color-surface-muted)]'],
   ['bg-[rgb(248_251_255)]', 'bg-[var(--color-accent-50)]'],
   ['bg-[rgb(247_250_255)]', 'bg-[var(--color-accent-50)]'],
@@ -216,7 +216,7 @@ const REPLACEMENTS = [
   ['drop-shadow-[0_1px_2px_rgba(0,0,0,0.28)]', 'drop-shadow-[var(--shadow-subtle)]'],
   ['drop-shadow-[0_2px_3px_rgba(8,26,66,0.35)]', 'drop-shadow-[var(--shadow-nav-pill)]'],
   ['shadow-[0_0_15px_rgba(255,255,255,0.4)]', 'shadow-[var(--inset-white-glow)]'],
-  ['fill-white', 'fill-[var(--color-text-card-text)]'],
+  ['fill-white', 'fill-[var(--color-tertiery)]'],
 ];
 
 function walk(dir, acc = []) {

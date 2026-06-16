@@ -267,7 +267,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
     }, [hasMorePromotions, filteredPromotions.length]);
 
     return (
-        <main className="promotion-page w-full bg-[var(--color-surface-base)] pb-14">
+        <main className="promotion-page w-full bg-[var(--color-tertiery)] pb-14">
             <div className="mx-auto w-full max-w-screen-2xl px-4 py-4 md:px-8 md:py-6">
                 <h1 className="page-title">Promotion</h1>
 
@@ -290,7 +290,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                         return !(isLoggedIn && isExpired) ? (
                             <article
                                 key={promotion.id}
-                                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-subtle)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-soft)] ${isExpired ? 'card-muted' : ''}`}
+                                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] shadow-[var(--shadow-subtle)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-soft)] ${isExpired ? 'card-muted' : ''}`}
                             >
                                 <div className="relative w-full shrink-0 overflow-hidden border-b border-[var(--color-border-subtle)]">
                                     {promotion.imageTag ? (
@@ -334,7 +334,7 @@ export default function PromotionPage({ authUser, onNavigate }) {
                                         <button
                                             type="button"
                                             onClick={() => setSelectedPromotion(promotion)}
-                                            className="btn-more-info inline-flex h-10 min-w-[100px] flex-1 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-bold text-[var(--color-text-secondary)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
+                                            className="btn-more-info inline-flex h-10 min-w-[100px] flex-1 items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-4 text-sm font-bold text-[var(--color-text-secondary)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]"
                                         >
                                             More Info
                                         </button>

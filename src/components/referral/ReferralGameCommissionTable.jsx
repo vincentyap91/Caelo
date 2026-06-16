@@ -20,7 +20,7 @@ export default function ReferralGameCommissionTable({
     return (
         <div
             className={[
-                'overflow-hidden rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] shadow-referral-subtle',
+                'overflow-hidden rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] shadow-referral-subtle',
                 className,
             ]
                 .filter(Boolean)
@@ -32,7 +32,7 @@ export default function ReferralGameCommissionTable({
                         <tr className="border-b border-[var(--color-border-brand)] bg-surface-secondary-table-head">
                             <th
                                 scope="col"
-                                className="px-4 py-3.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)] md:px-5 md:text-sm"
+                                className="px-4 py-3.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)] md:px-5 md:text-sm"
                             >
                                 {providerColumnLabel}
                             </th>
@@ -40,7 +40,7 @@ export default function ReferralGameCommissionTable({
                                 <th
                                     key={label}
                                     scope="col"
-                                    className="px-4 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)] md:px-5 md:text-sm"
+                                    className="px-4 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)] md:px-5 md:text-sm"
                                 >
                                     {label}
                                 </th>
@@ -53,7 +53,7 @@ export default function ReferralGameCommissionTable({
                                 key={row.id ?? row.provider}
                                 className={[
                                     'border-b border-[var(--color-border-subtle)] last:border-b-0',
-                                    idx % 2 === 1 ? 'bg-[var(--color-surface-subtle)]/70' : 'bg-[var(--color-surface-base)]',
+                                    idx % 2 === 1 ? 'bg-[var(--color-surface-subtle)]/70' : 'bg-[var(--color-tertiery)]',
                                 ].join(' ')}
                             >
                                 <td className="px-4 py-3 font-semibold text-[var(--color-text-primary)] md:px-5 md:py-3.5">

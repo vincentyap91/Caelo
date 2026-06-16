@@ -9,7 +9,7 @@ const primaryBtnClass =
     'btn-theme-cta-soft inline-flex min-h-[44px] w-full items-center justify-center rounded-xl px-2.5 text-center text-xs font-bold leading-tight shadow-[var(--shadow-cta-soft)] transition hover:brightness-[1.05] active:scale-[0.98] sm:text-sm';
 
 const secondaryBtnClass =
-    'btn-theme-primary inline-flex min-h-[44px] w-full items-center justify-center rounded-xl px-2.5 text-center text-xs font-bold leading-tight text-[var(--color-text-card-text)] shadow-sm transition hover:brightness-110 active:scale-[0.98] sm:text-sm';
+    'btn-theme-primary inline-flex min-h-[44px] w-full items-center justify-center rounded-xl px-2.5 text-center text-xs font-bold leading-tight text-[var(--color-tertiery)] shadow-sm transition hover:brightness-110 active:scale-[0.98] sm:text-sm';
 
 /**
  * Pre-launch instructions for Pussy888: shown on game detail before the iframe / play modal.
@@ -39,20 +39,20 @@ export default function Pussy888PreLaunchPanel({ onLaunchWebsite }) {
                         alt="Pussy888"
                         className="h-16 w-auto max-w-[min(100%,240px)] object-contain object-center md:h-[4.5rem]"
                     />
-                    <p className="mt-5 text-sm font-medium leading-relaxed text-[var(--color-text-card-text)] md:mt-6 md:text-base">
+                    <p className="mt-5 text-sm font-medium leading-relaxed text-[var(--color-tertiery)] md:mt-6 md:text-base">
                         To play, click &apos;Transfer All Credit&apos;, launch the APK, copy paste your username and password to log
                         in.
                     </p>
 
                     <div className="mt-6 w-full space-y-4 text-left">
                         <div>
-                            <label htmlFor="p888-demo-user" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)]">
+                            <label htmlFor="p888-demo-user" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)]">
                                 Username
                             </label>
                             <input id="p888-demo-user" type="text" readOnly value="12WIN_MEMBER" className={inputClass} tabIndex={-1} />
                         </div>
                         <div>
-                            <label htmlFor="p888-demo-pass" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)]">
+                            <label htmlFor="p888-demo-pass" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)]">
                                 Password
                             </label>
                             <input

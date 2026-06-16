@@ -61,7 +61,7 @@ export default function PokerPage({ onNavigate }) {
             />
 
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
-                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-4 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:p-5">
+                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-4 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div>
                             <p className="text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">Poker Providers</p>
@@ -103,7 +103,7 @@ export default function PokerPage({ onNavigate }) {
                     ))}
                 </div>
                 {filteredProviders.length === 0 && (
-                    <div className="mt-6 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-7 text-center">
+                    <div className="mt-6 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-4 py-7 text-center">
                         <p className="text-base font-bold text-[var(--color-text-secondary)]">No providers match your search.</p>
                         <p className="mt-1 text-xs text-[var(--color-text-soft)]">Try a different keyword.</p>
                     </div>

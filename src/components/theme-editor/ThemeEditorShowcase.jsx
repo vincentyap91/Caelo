@@ -26,7 +26,7 @@ function PreviewCard({ title, children }) {
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 4,
             padding: '3px 8px', borderRadius: 8, border: '1px solid var(--color-border-subtle)',
-            background: dark ? '#1e293b' : 'var(--color-surface-base)',
+            background: dark ? '#1e293b' : 'var(--color-tertiery)',
             color: dark ? '#e2e8f0' : 'var(--color-text-muted)',
             fontSize: 10, fontWeight: 600, cursor: 'pointer',
           }}
@@ -37,7 +37,7 @@ function PreviewCard({ title, children }) {
       </div>
       <div style={{
         padding: 14,
-        background: dark ? '#0f172a' : 'var(--color-surface-base)',
+        background: dark ? '#0f172a' : 'var(--color-tertiery)',
         color: dark ? '#e2e8f0' : 'var(--color-text-secondary)',
         transition: 'background 0.2s, color 0.2s',
       }}>
@@ -61,7 +61,7 @@ function NavShowcase() {
           <div key={item} style={{
             padding: '8px 12px', borderRadius: 8, fontSize: 12, fontWeight: 600,
             background: i === 0 ? 'rgba(255,255,255,0.15)' : 'transparent',
-            color: i === 0 ? 'var(--color-accent)' : 'var(--color-text-sticky-nav-text)',
+            color: i === 0 ? 'var(--color-accent)' : 'var(--color-tertiery)',
             cursor: 'pointer',
             border: i === 0 ? '1px solid var(--color-border-brand)' : '1px solid transparent',
           }}>{item}</div>
@@ -72,7 +72,7 @@ function NavShowcase() {
         <p style={{ fontSize: 10, fontWeight: 700, color: 'var(--color-accent)', marginBottom: 6, textTransform: 'uppercase' }}>Game Providers</p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
           {['Pragmatic Play', 'PG Soft', 'Jili', 'Spadegaming'].map(p => (
-            <div key={p} className="dark-nav-tile" style={{ padding: '6px 8px', borderRadius: 7, fontSize: 11, fontWeight: 600, color: 'var(--color-text-sticky-nav-text)' }}>{p}</div>
+            <div key={p} className="dark-nav-tile" style={{ padding: '6px 8px', borderRadius: 7, fontSize: 11, fontWeight: 600, color: 'var(--color-tertiery)' }}>{p}</div>
           ))}
         </div>
       </div>
@@ -147,7 +147,7 @@ function FeedbackShowcase() {
       {[
         { type: 'success', bg: 'rgba(57,181,74,0.1)', border: 'var(--color-success)', color: 'var(--color-success)', text: 'Deposit successful! Funds have been credited.' },
         { type: 'error', bg: 'rgba(255,91,46,0.1)', border: 'var(--color-danger)', color: 'var(--color-danger)', text: 'Withdrawal failed. Please try again.' },
-        { type: 'info', bg: 'var(--color-accent-pale)', border: 'var(--color-accent)', color: 'var(--color-button-hover)', text: 'Your VIP status will be reviewed on Monday.' },
+        { type: 'info', bg: 'var(--color-accent-pale)', border: 'var(--color-accent)', color: 'var(--color-secondary)', text: 'Your VIP status will be reviewed on Monday.' },
       ].map(a => (
         <div key={a.type} style={{
           padding: '8px 12px', borderRadius: 10,

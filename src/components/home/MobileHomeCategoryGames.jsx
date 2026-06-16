@@ -188,7 +188,7 @@ function DesktopCategoryBrowse({ onNavigate, state }) {
         <section className="home-category-games-section w-full pt-4">
             <SectionHeader
                 title="Category Games"
-                icon={<LayoutGrid size={22} className="text-[var(--color-button-hover)]" strokeWidth={2.25} />}
+                icon={<LayoutGrid size={22} className="text-[var(--color-secondary)]" strokeWidth={2.25} />}
             />
 
             <nav

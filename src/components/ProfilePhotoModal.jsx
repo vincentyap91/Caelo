@@ -94,7 +94,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="profile-photo-modal-title"
-                className="relative z-[1] flex w-full max-w-[420px] flex-col overflow-hidden rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
+                className="relative z-[1] flex w-full max-w-[420px] flex-col overflow-hidden rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] shadow-[var(--shadow-modal)]"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex items-center justify-between border-b border-[var(--color-border-subtle)] px-5 py-4 sm:px-6">
@@ -108,7 +108,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]"
                     >
                         <X size={18} />
                     </button>
@@ -165,7 +165,7 @@ export default function ProfilePhotoModal({ open, onClose, initialUrl, onSave })
                         <button
                             type="button"
                             onClick={onClose}
-                            className="inline-flex min-h-[44px] min-w-[100px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-primary)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)]"
+                            className="inline-flex min-h-[44px] min-w-[100px] items-center justify-center rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-4 text-sm font-semibold text-[var(--color-text-primary)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)]"
                         >
                             Cancel
                         </button>

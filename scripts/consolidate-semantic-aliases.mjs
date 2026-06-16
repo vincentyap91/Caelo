@@ -196,10 +196,10 @@ if (!theme.includes('--raw-scrim-game-overlay-start: var(--raw-scrim-game-launch
 
 const caeloSemanticsPatch = `  --color-surface-light-active: rgb(255 255 255 / 0.08);
   --color-gradient-sidenav-scrim: linear-gradient(90deg, var(--raw-scrim-game-launch-start) 0%, var(--raw-scrim-game-launch-mid) 45%, var(--raw-scrim-game-launch-end-soft) 100%);
-  --color-gradient-home-dashboard: linear-gradient(180deg, var(--color-surface-base) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-50) 50%, transparent) 100%);
+  --color-gradient-home-dashboard: linear-gradient(180deg, var(--color-tertiery) 0%, var(--color-surface-subtle) 45%, color-mix(in srgb, var(--color-accent-50) 50%, transparent) 100%);
 `;
 
-if (!theme.includes('--color-gradient-home-dashboard: linear-gradient(180deg, var(--color-surface-base)')) {
+if (!theme.includes('--color-gradient-home-dashboard: linear-gradient(180deg, var(--color-tertiery)')) {
   theme = theme.replace(
     '  --color-payout-panel-bg: var(--mono-0);',
     `${caeloSemanticsPatch}  --color-payout-panel-bg: var(--mono-0);`,

@@ -8,7 +8,7 @@ import PromoProgress from './PromoProgress';
 
 const VARIANT_CONFIG = {
     browse: {
-        section: 'slot-current-promo soft-blue-panel rounded-[var(--radius-panel)] bg-[var(--color-surface-base)] p-2.5 md:p-3',
+        section: 'slot-current-promo soft-blue-panel rounded-[var(--radius-panel)] bg-[var(--color-tertiery)] p-2.5 md:p-3',
         eyebrow: 'slot-current-promo__eyebrow font-bold uppercase tracking-wide text-[var(--color-text-primary)]',
         name: 'font-bold normal-case text-[var(--color-primary)]',
         headerText: 'flex min-w-0 flex-col gap-0.5 text-xs leading-snug text-[var(--color-text-primary)] md:flex-row md:flex-wrap md:items-baseline md:gap-0 sm:text-sm',
@@ -19,7 +19,7 @@ const VARIANT_CONFIG = {
         section:
             'profile-current-promo surface-card w-full rounded-2xl bg-[var(--color-surface-card-light)] p-4 sm:p-6 md:p-8',
         eyebrow: 'profile-current-promo__eyebrow font-bold uppercase tracking-wide text-[var(--color-text-primary)]',
-        name: 'profile-current-promo__name font-bold normal-case text-[var(--color-text-title)]',
+        name: 'profile-current-promo__name font-bold normal-case text-[var(--color-primary)]',
         headerText: 'flex min-w-0 flex-col gap-0.5 text-xs leading-snug text-[var(--color-text-primary)] md:flex-row md:flex-wrap md:items-baseline md:gap-0 sm:text-sm',
         innerCard: `profile-current-promo__card rounded-xl border bg-[var(--color-surface-elevated)] p-3 sm:p-4 ${BROWSE_SUMMARY_CARD_COMPACT_CLASS}`,
         progressVariant: 'profile',

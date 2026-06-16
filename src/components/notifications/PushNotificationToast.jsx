@@ -48,11 +48,11 @@ const variantStyles = {
     },
     [PUSH_VARIANT.info]: {
         iconWrap:
-            'bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-[var(--shadow-accent)]',
+            'bg-[var(--color-accent-pale)] text-[var(--color-secondary)] shadow-[var(--shadow-accent)]',
         iconRing: 'ring-1 ring-[var(--color-accent)]/14',
         accent: 'bg-[var(--color-accent)]',
         accentSoft: 'bg-[var(--color-accent)]/10',
-        accentText: 'text-[var(--color-button-hover)]',
+        accentText: 'text-[var(--color-secondary)]',
     },
 };
 
@@ -261,7 +261,7 @@ export function PushNotificationToast({
                             <span
                                 className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${
                                     showPending
-                                        ? 'bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]'
+                                        ? 'bg-[var(--color-accent-glow)] text-[var(--color-secondary)]'
                                         : `${vs.accentSoft} ${vs.accentText}`
                                 }`}
                             >

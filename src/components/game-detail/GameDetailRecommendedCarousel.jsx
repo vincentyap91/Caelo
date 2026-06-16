@@ -37,7 +37,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                         <button
                             type="button"
                             onClick={() => scrollBy(-1)}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-pale)]"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] transition hover:bg-[var(--color-accent-pale)]"
                             aria-label="Scroll left"
                         >
                             <ChevronLeft size={18} />
@@ -45,7 +45,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                         <button
                             type="button"
                             onClick={() => scrollBy(1)}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-pale)]"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] transition hover:bg-[var(--color-accent-pale)]"
                             aria-label="Scroll right"
                         >
                             <ChevronRight size={18} />
@@ -81,7 +81,7 @@ export default function GameDetailRecommendedCarousel({ title = 'Recommended Gam
                                 decoding="async"
                             />
                             {g.provider ? (
-                                <span className="absolute left-1/2 top-2 z-[1] max-w-[90%] -translate-x-1/2 truncate rounded-full bg-[var(--color-surface-darkest)]/55 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-card-text)] backdrop-blur-sm">
+                                <span className="absolute left-1/2 top-2 z-[1] max-w-[90%] -translate-x-1/2 truncate rounded-full bg-[var(--color-surface-darkest)]/55 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)] backdrop-blur-sm">
                                     {g.provider}
                                 </span>
                             ) : null}

@@ -194,7 +194,7 @@ export default function DownlineDetailModal({ downline, onClose, onSaveRemark })
             aria-label="Downlines detail"
         >
             <div
-                className="relative w-full max-w-[480px] rounded-2xl bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
+                className="relative w-full max-w-[480px] rounded-2xl bg-[var(--color-tertiery)] shadow-[var(--shadow-modal)]"
             >
                 {/* Modal header */}
                 <div className="flex items-center justify-between border-b border-[var(--color-border-subtle)] px-5 py-4">

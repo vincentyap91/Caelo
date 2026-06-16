@@ -12,7 +12,7 @@ export default function GameDetailFallbackPanel({ message, actions = null }) {
     return (
         <div
             role="status"
-            className="w-full max-w-md rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-5 py-7 text-center shadow-[var(--shadow-card-raised)] sm:px-7 sm:py-8"
+            className="w-full max-w-md rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-5 py-7 text-center shadow-[var(--shadow-card-raised)] sm:px-7 sm:py-8"
         >
             <p className="text-sm font-bold leading-snug tracking-tight text-[var(--color-text-primary)] sm:text-base">
                 {message}

@@ -6,14 +6,14 @@ const MobilePromoCard = ({ title, image, imageAlt, imageClassName = '', glowClas
     <button
         type="button"
         onClick={onClick}
-        className="home-promo-card home-promo-card--mobile relative w-full cursor-pointer overflow-hidden rounded-[24px] border-2 border-[var(--color-border-brand)] bg-gradient-promo-card text-left shadow-[var(--shadow-brand-soft)] transition-[transform,box-shadow] hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-button-hover)] md:hidden"
+        className="home-promo-card home-promo-card--mobile relative w-full cursor-pointer overflow-hidden rounded-[24px] border-2 border-[var(--color-border-brand)] bg-gradient-promo-card text-left shadow-[var(--shadow-brand-soft)] transition-[transform,box-shadow] hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-secondary)] md:hidden"
     >
         <div className="absolute inset-0 bg-gradient-promo-overlay" />
         <div className={`absolute inset-x-0 bottom-0 h-16 bg-gradient-promo-bottom-glow ${glowClassName}`} />
 
         <div className="relative z-10 grid min-h-[158px] grid-cols-[1.2fr_0.9fr] items-center gap-2 px-4 py-4">
             <div className="self-center">
-                <h3 className="max-w-[150px] text-base font-bold leading-tight tracking-tight text-[var(--color-button-hover)]">
+                <h3 className="max-w-[150px] text-base font-bold leading-tight tracking-tight text-[var(--color-secondary)]">
                     {title}
                 </h3>
             </div>
@@ -34,7 +34,7 @@ const DesktopPromoCard = ({ title, image, imageAlt, imageClassName = '', glowCla
     <button
         type="button"
         onClick={onClick}
-        className="home-promo-card home-promo-card--desktop group relative hidden h-[120px] w-full flex-1 cursor-pointer rounded-2xl border-2 border-[var(--color-border-brand)] bg-gradient-promo-card-desktop text-left shadow-sm transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-button-hover)] md:block"
+        className="home-promo-card home-promo-card--desktop group relative hidden h-[120px] w-full flex-1 cursor-pointer rounded-2xl border-2 border-[var(--color-border-brand)] bg-gradient-promo-card-desktop text-left shadow-sm transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-secondary)] md:block"
     >
         <div className="absolute inset-0 bg-cover opacity-10 mix-blend-multiply" />
         <div className={`absolute inset-x-0 bottom-0 h-full ${glowClassName}`} />

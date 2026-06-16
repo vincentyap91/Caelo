@@ -421,7 +421,7 @@ export default function Navbar({
             />
 
 
-            <div className="top-sticky-nav-bar relative z-[110] hidden h-9 w-full items-center border-b bg-[var(--color-sticky-nav)] px-4 text-xs text-[var(--color-text-sticky-nav-text)] md:flex md:px-10">
+            <div className="top-sticky-nav-bar relative z-[110] hidden h-9 w-full items-center border-b bg-[var(--color-sticky-nav)] px-4 text-xs text-[var(--color-tertiery)] md:flex md:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between">
                     <div className="flex gap-4 items-center h-full">
                         <button
@@ -429,7 +429,7 @@ export default function Navbar({
                             onClick={() => onDownloadAppClick?.()}
                             className="nav-top-pill nav-top-pill--icon shrink-0"
                         >
-                            <Smartphone size={14} className="shrink-0 text-[var(--color-text-sticky-nav-text)]" />
+                            <Smartphone size={14} className="shrink-0 text-[var(--color-tertiery)]" />
                             <span>Download App</span>
                         </button>
                     </div>
@@ -441,7 +441,7 @@ export default function Navbar({
                                 className="relative flex h-full items-center gap-1 rounded-[12px] px-1 py-0.5"
                             >
                                 <div className="relative">
-                                    <div className="top-sticky-balance-chip flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg text-[var(--color-text-sticky-nav-text)]">
+                                    <div className="top-sticky-balance-chip flex h-8 min-w-0 max-w-[13rem] items-stretch overflow-hidden rounded-lg text-[var(--color-tertiery)]">
                                         <button
                                             type="button"
                                             onClick={() => {
@@ -489,10 +489,10 @@ export default function Navbar({
                                             setProfileMenuOpen(false);
                                             onNavigate?.('profile');
                                         }}
-                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)]"
+                                        className="flex min-w-0 max-w-[min(100%,15rem)] items-center gap-1.5 px-2 text-[var(--color-tertiery)] transition hover:bg-[var(--color-surface-light-active)]"
                                         aria-label="My profile"
                                     >
-                                        <UserRound size={16} className="shrink-0 text-[var(--color-text-sticky-nav-text)]" strokeWidth={2.25} />
+                                        <UserRound size={16} className="shrink-0 text-[var(--color-tertiery)]" strokeWidth={2.25} />
                                         <span className="truncate text-xs font-bold text-[var(--color-text-accent)]">
                                             {authUser.name}
                                         </span>
@@ -507,7 +507,7 @@ export default function Navbar({
                                             setProfileMenuOpen((open) => !open);
                                             setBalanceDropdownOpen(false);
                                         }}
-                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-text-sticky-nav-text)] transition hover:bg-[var(--color-surface-light-active)]"
+                                        className="inline-flex w-7 shrink-0 items-center justify-center text-[var(--color-tertiery)] transition hover:bg-[var(--color-surface-light-active)]"
                                         aria-haspopup="menu"
                                         aria-expanded={profileMenuOpen}
                                         aria-label="Account menu"
@@ -912,7 +912,7 @@ export default function Navbar({
                     <div className="flex items-center gap-2 lg:hidden">
                         {authUser ? (
                             <>
-                                <div className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3 text-sm font-bold text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)]">
+                                <div className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] px-3 text-sm font-bold text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)]">
                                     <span className="truncate">{authUser.balance}</span>
                                     <CircleDollarSign size={14} className="shrink-0 text-[var(--color-accent)]" />
                                 </div>
@@ -926,7 +926,7 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('profile')}
-                                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] text-[var(--color-text-primary-card-title)] transition hover:bg-[var(--color-surface-cool-light)]"
+                                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] text-[var(--color-text-primary-card-title)] transition hover:bg-[var(--color-surface-cool-light)]"
                                     aria-label="My profile"
                                 >
                                     <UserCircle2 size={20} className="text-[var(--color-text-primary-card-title)]" />
@@ -937,7 +937,7 @@ export default function Navbar({
                                 <button
                                     type="button"
                                     onClick={() => onLoginClick?.()}
-                                    className="inline-flex min-h-10 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-3.5 text-sm font-semibold text-[var(--color-text-primary-card-title)] transition hover:bg-[var(--color-surface-cool-light)] hover:border-[var(--color-border-brand)]"
+                                    className="inline-flex min-h-10 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] px-3.5 text-sm font-semibold text-[var(--color-text-primary-card-title)] transition hover:bg-[var(--color-surface-cool-light)] hover:border-[var(--color-border-brand)]"
                                 >
                                     Login
                                 </button>
@@ -1009,7 +1009,7 @@ export default function Navbar({
                                 <span className="sidenav-tier-badge inline-flex rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">
                                     {profileTierLabel}
                                 </span>
-                                <div className="w-full rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3.5 shadow-[var(--shadow-card-soft)]">
+                                <div className="w-full rounded-[20px] border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-3.5 shadow-[var(--shadow-card-soft)]">
                                     <div className="flex items-center justify-between gap-3">
                                         <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">
                                             Balance
@@ -1067,7 +1067,7 @@ export default function Navbar({
                                         setMobileMenuOpen(false);
                                         onLoginClick?.();
                                     }}
-                                    className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-4 text-sm font-semibold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
+                                    className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] px-4 text-sm font-semibold text-[var(--color-text-secondary)] shadow-[var(--shadow-input)] transition hover:bg-[var(--color-surface-subtle)]"
                                 >
                                     Login
                                 </button>
@@ -1088,7 +1088,7 @@ export default function Navbar({
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)] transition hover:bg-[var(--color-surface-subtle)]"
+                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)] transition hover:bg-[var(--color-surface-subtle)]"
                         aria-label="Close mobile menu"
                     >
                         <X size={16} />

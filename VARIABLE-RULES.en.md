@@ -117,7 +117,7 @@ New tokens must live under an existing **module**. Do not invent a parallel nami
 }
 .btn-primary {
   background: var(--color-primary);
-  color: var(--color-text-cta-inverse);
+  color: var(--color-primary);
 }
 .hero {
   background: var(--color-gradient-home-cta);
@@ -279,7 +279,7 @@ Sites do not reference these directly, but they help explain where `--color-*` r
 
 ```tsx
 // ✅ Semantic color from Riocity allowlist
-className="bg-[var(--color-surface-base)] text-[var(--color-text-primary)]"
+className="bg-[var(--color-tertiery)] text-[var(--color-text-primary)]"
 
 // ✅ Shared utility whose CSS already uses --color-* (preferred)
 className="btn-theme-cta-soft surface-card bg-gradient-promo-card"
@@ -640,7 +640,7 @@ Rename only — **no new pill background** on the footer row; keep Caelo white R
 | Card footer background | `--color-primary` | `--color-surface-rtp-card` | `var(--color-primary)` in `theme.css` bottom |
 | Footer RTP label text | `--color-text-card-text` | `--color-surface-rtp-secondary-card-text` | `var(--mono-0)` |
 | Detailed-view RTP pill bg | `--color-accent-50` / `--color-accent-pale` | `--color-surface-rtp-secondary-card` | `.rtp-label--pill { --color-surface-rtp-secondary-card: var(--color-accent-pale); }` |
-| Detailed-view RTP pill text | `--color-accent-700` / `--color-button-hover` | `--color-surface-rtp-secondary-card-text` | `.rtp-label--pill { …: var(--color-button-hover); }` |
+| Detailed-view RTP pill text | `--color-accent-700` / `--color-button-hover` | `--color-surface-rtp-secondary-card-text` | `.rtp-label--pill { …: var(--color-secondary); }` |
 
 ```css
 /* src/theme.css — same value chain, new semantic name */
@@ -659,7 +659,7 @@ Caelo keeps its scrolling list layout (not Cam88’s two-column cards). Componen
 | Thumbnail ring | `--color-border-brand` | `.recent-big-wins-thumb { --color-border-brand: var(--raw-border-accent); }` | [`974:29004`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29004) |
 | Provider chip label | `--color-text-subtle` | already Caelo subtle gray in semantic block | [`974:29095`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29095) |
 | Game title | `--color-text-primary` | unchanged | [`974:29098`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29098) |
-| Win amount | `--color-text-recent-amount` | section scope → `var(--color-button-hover)` (Caelo blue; not Cam88 red) | [`974:29099`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29099) |
+| Win amount | `--color-text-recent-amount` | section scope → `var(--color-secondary)` (Caelo blue; not Cam88 red) | [`974:29099`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29099) |
 | Timestamp | `--color-button-hover` | unchanged (no Cam88 layer; keep prior Caelo token) | — |
 | Title “Recent” | `--color-text-primary` | unchanged | [`974:29007`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29007) |
 | Title “Big Wins” | `--color-text-recent-amount` | descendant → `var(--color-primary)` (Caelo all-brand title; not Cam88 red) | [`974:29007`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29007) |
@@ -669,7 +669,7 @@ Caelo keeps its scrolling list layout (not Cam88’s two-column cards). Componen
 .recent-big-wins-section {
   --color-border-line: var(--color-border-subtle);
   --color-surface-panel: var(--raw-surface-muted);
-  --color-text-recent-amount: var(--color-button-hover);
+  --color-text-recent-amount: var(--color-secondary);
 }
 .recent-big-wins-section .recent-big-wins-title-highlight {
   color: var(--color-primary);

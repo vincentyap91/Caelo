@@ -43,7 +43,7 @@ function ProgressRing({ percent }) {
                     cy={size / 2}
                     r={r}
                     fill="none"
-                    stroke="var(--color-button-hover)"
+                    stroke="var(--color-secondary)"
                     strokeWidth={stroke}
                     strokeLinecap="round"
                     strokeDasharray={c}
@@ -96,7 +96,7 @@ export default function RolloverRequirementModal({
     const remainingLine = (
         <>
             You have{' '}
-            <span className="font-bold text-[var(--color-button-hover)]">
+            <span className="font-bold text-[var(--color-secondary)]">
                 {formatDisplay(remainingCurrent)} / {formatDisplay(remainingTarget)}
             </span>{' '}
             to go!
@@ -115,12 +115,12 @@ export default function RolloverRequirementModal({
                 role="alertdialog"
                 aria-modal="true"
                 aria-labelledby={titleId}
-                className="relative z-[1] flex max-h-[min(92vh,calc(100vh-2rem))] w-full max-w-[420px] flex-col rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-6 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
+                className="relative z-[1] flex max-h-[min(92vh,calc(100vh-2rem))] w-full max-w-[420px] flex-col rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] px-6 pb-6 pt-8 shadow-[var(--shadow-modal)] sm:px-8 sm:pb-8 sm:pt-10"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="min-h-0 flex-1 overflow-y-auto">
                     <div className="flex flex-col items-center text-center">
-                        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-danger)_30%,var(--color-border-brand))] bg-[color-mix(in_srgb,var(--color-danger)_10%,var(--color-surface-base))] shadow-[var(--shadow-subtle)]">
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-danger)_30%,var(--color-border-brand))] bg-[color-mix(in_srgb,var(--color-danger)_10%,var(--color-tertiery))] shadow-[var(--shadow-subtle)]">
                             <AlertTriangle
                                 className="text-[var(--color-danger)]"
                                 size={44}
@@ -160,7 +160,7 @@ export default function RolloverRequirementModal({
                     </div>
 
                     <div
-                        className="mt-5 flex gap-3 rounded-2xl border border-[color-mix(in_srgb,var(--color-danger)_32%,var(--color-border-brand))] bg-[color-mix(in_srgb,var(--color-danger)_8%,var(--color-surface-base))] px-4 py-3.5 shadow-[var(--shadow-subtle)] sm:px-5"
+                        className="mt-5 flex gap-3 rounded-2xl border border-[color-mix(in_srgb,var(--color-danger)_32%,var(--color-border-brand))] bg-[color-mix(in_srgb,var(--color-danger)_8%,var(--color-tertiery))] px-4 py-3.5 shadow-[var(--shadow-subtle)] sm:px-5"
                         role="status"
                     >
                         <AlertCircle

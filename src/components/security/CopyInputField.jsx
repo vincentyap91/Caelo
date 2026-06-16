@@ -30,7 +30,7 @@ export default function CopyInputField({ value, label, readOnly = true }) {
                 <button
                     type="button"
                     onClick={handleCopy}
-                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]"
+                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]"
                     aria-label="Copy"
                 >
                     {copied ? <Check size={16} className="text-[var(--color-success)]" /> : <Copy size={16} />}

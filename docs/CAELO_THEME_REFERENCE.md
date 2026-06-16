@@ -45,7 +45,7 @@
 
 | Token | Maps to |
 |-------|---------|
-| `--base-paper` | `var(--color-surface-base)` → `#ffffff` |
+| `--base-paper` | `var(--color-tertiery)` → `#ffffff` |
 | `--base-ink` | `var(--color-text-strong)` → `#0f172a` |
 
 ---

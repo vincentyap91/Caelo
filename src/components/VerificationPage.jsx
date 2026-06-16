@@ -89,7 +89,7 @@ export default function VerificationPage() {
                     <button
                         type="button"
                         onClick={() => setView('main')}
-                        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-button-hover)]"
+                        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-secondary)]"
                     >
                         <ChevronLeft size={18} />
                         Add Bank Account
@@ -154,7 +154,7 @@ export default function VerificationPage() {
                                         <span className="mt-3 text-sm font-medium text-[var(--color-text-secondary)]">
                                             Drop or click to upload a file
                                         </span>
-                                        <span className="mt-1 text-sm text-[var(--color-button-hover)] underline">Browse</span>
+                                        <span className="mt-1 text-sm text-[var(--color-secondary)] underline">Browse</span>
                                         <span className="mt-2 text-xs text-[var(--color-text-muted)]">(JPG, PDF or PNG) File size limit: 5MB</span>
                                         <input
                                             type="file"
@@ -181,8 +181,8 @@ export default function VerificationPage() {
                                     Please upload a copy of your bank statement that meets the stated requirements.
                                 </p>
                                 <div className="mt-4 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)] p-6">
-                                    <div className="rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-4 text-center shadow-sm">
-                                        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]">
+                                    <div className="rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-4 text-center shadow-sm">
+                                        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-accent-glow)] text-[var(--color-secondary)]">
                                             <Landmark size={24} />
                                         </div>
                                         <p className="text-sm font-bold text-[var(--color-text-secondary)]">STATEMENT OF ACCOUNT</p>
@@ -244,7 +244,7 @@ export default function VerificationPage() {
                     <button
                         type="button"
                         onClick={() => setView('main')}
-                        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-button-hover)]"
+                        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:text-[var(--color-secondary)]"
                     >
                         <ChevronLeft size={18} />
                         Identity Verification
@@ -340,13 +340,13 @@ export default function VerificationPage() {
                             className="verification-card surface-card flex flex-col rounded-2xl p-6 transition hover:shadow-[var(--shadow-card-hover)]"
                         >
                             <div className="flex items-start justify-between">
-                                <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-3 py-1 text-xs font-semibold text-[var(--color-button-hover)]">
+                                <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-accent-pale)] px-3 py-1 text-xs font-semibold text-[var(--color-secondary)]">
                                     <Info size={12} />
                                     {status}
                                 </span>
                             </div>
                             <div className="mt-4 flex items-start gap-4">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-glow)] text-[var(--color-button-hover)]">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-glow)] text-[var(--color-secondary)]">
                                     <Icon size={24} />
                                 </div>
                                 <div>
@@ -357,7 +357,7 @@ export default function VerificationPage() {
                             <button
                                 type="button"
                                 onClick={() => setView(id)}
-                                className="verification-card__action mt-6 inline-flex w-fit items-center justify-center rounded-full border-2 border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-5 py-2.5 text-sm font-bold text-[var(--color-button-hover)] transition hover:bg-[var(--color-accent-pale)]"
+                                className="verification-card__action mt-6 inline-flex w-fit items-center justify-center rounded-full border-2 border-[var(--color-border-brand)] bg-[var(--color-tertiery)] px-5 py-2.5 text-sm font-bold text-[var(--color-secondary)] transition hover:bg-[var(--color-accent-pale)]"
                             >
                                 {actionLabel}
                             </button>

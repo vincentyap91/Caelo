@@ -79,7 +79,7 @@ const supportTags = ['Deposit', 'Withdrawal', 'Bonus', 'Verification', 'Technica
 function Avatar({ small = false }) {
     return (
         <span
-            className={`inline-flex shrink-0 overflow-hidden rounded-full border border-[var(--color-accent)]/22 bg-[var(--color-surface-base)] shadow-[var(--shadow-brand-soft)] ${small ? 'h-10 w-10' : 'h-12 w-12'
+            className={`inline-flex shrink-0 overflow-hidden rounded-full border border-[var(--color-accent)]/22 bg-[var(--color-tertiery)] shadow-[var(--shadow-brand-soft)] ${small ? 'h-10 w-10' : 'h-12 w-12'
                 }`}
         >
             <img
@@ -98,14 +98,14 @@ function BottomNav({ activeTab, onChange }) {
     const inactive = 'text-[var(--color-text-muted)] font-medium';
 
     return (
-        <div className="relative flex shrink-0 items-center justify-around rounded-none border-x-0 border-b-0 border-t border-[var(--color-border-brand)] bg-[var(--color-surface-base)] px-5 py-3.5 shadow-[var(--inset-panel)]">
+        <div className="relative flex shrink-0 items-center justify-around rounded-none border-x-0 border-b-0 border-t border-[var(--color-border-brand)] bg-[var(--color-tertiery)] px-5 py-3.5 shadow-[var(--inset-panel)]">
             <button type="button" onClick={() => onChange('home')} className={`${navBtn} ${activeTab === 'home' ? active : inactive}`}>
                 <Home size={20} strokeWidth={2} />
                 <span className="text-sm">Home</span>
             </button>
             <button type="button" onClick={() => onChange('messages')} className={`relative ${navBtn} ${activeTab === 'messages' ? active : inactive}`}>
                 <MessageCircle size={20} strokeWidth={2} />
-                <span className="absolute right-4 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--color-danger)] px-1 text-xs font-bold text-[var(--color-text-card-text)]">
+                <span className="absolute right-4 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--color-danger)] px-1 text-xs font-bold text-[var(--color-tertiery)]">
                     2
                 </span>
                 <span className="text-sm">Messages</span>
@@ -230,7 +230,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                             Hi {username},
                             <span className="ml-2 inline-block">👋</span>
                         </p>
-                        <p className="mt-1 text-2xl font-bold leading-tight text-[var(--color-button-hover)]">
+                        <p className="mt-1 text-2xl font-bold leading-tight text-[var(--color-secondary)]">
                             How can we help you?
                         </p>
                     </div>
@@ -325,7 +325,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
         <>
             <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-gradient-register-panel px-5 py-4">
                 <div className="flex items-center justify-between">
-                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-button-hover)]">Messages</h2>
+                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-secondary)]">Messages</h2>
                     <button
                         type="button"
                         onClick={onClose}
@@ -381,7 +381,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
         <>
             <div className="shrink-0 border-b border-[var(--color-border-brand)] bg-gradient-register-panel px-5 py-4">
                 <div className="flex items-center justify-between">
-                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-button-hover)]">Help</h2>
+                    <h2 className="flex-1 text-center text-2xl font-bold text-[var(--color-secondary)]">Help</h2>
                     <button
                         type="button"
                         onClick={onClose}
@@ -438,7 +438,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                     </button>
                     <Avatar small />
                     <div className="min-w-0 flex-1">
-                        <p className="text-base font-semibold text-[var(--color-button-hover)]">{thread.name}</p>
+                        <p className="text-base font-semibold text-[var(--color-secondary)]">{thread.name}</p>
                         <div className="flex items-center gap-2">
                             <span className="inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
                             <span className="text-sm text-[var(--color-text-muted)]">{thread.status}</span>
@@ -490,7 +490,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                     </button>
                     <Avatar small />
                     <div className="min-w-0 flex-1">
-                        <p className="text-base font-semibold text-[var(--color-button-hover)]">{thread.name}</p>
+                        <p className="text-base font-semibold text-[var(--color-secondary)]">{thread.name}</p>
                         <p className="text-sm text-[var(--color-text-muted)]">{thread.title}</p>
                     </div>
                     <button
@@ -532,8 +532,8 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                                     markRecentChat('rory', { title: 'Chat with Rory', preview: 'Nora: Rate your conversation', time: '17m', unread: true });
                                 }}
                                 className={`rounded-full border border-[var(--color-border-subtle)] px-4 py-2.5 text-base font-medium shadow-[var(--shadow-card-soft)] transition ${isSelected
-                                        ? 'bg-[var(--color-primary)] text-[var(--color-text-card-text)]'
-                                        : 'bg-[var(--color-surface-base)] text-[var(--color-button-hover)]'
+                                        ? 'bg-[var(--color-primary)] text-[var(--color-tertiery)]'
+                                        : 'bg-[var(--color-tertiery)] text-[var(--color-secondary)]'
                                     }`}
                             >
                                 {tag}
@@ -558,7 +558,7 @@ export default function LiveChatModal({ open, onClose, authUser }) {
                     </button>
                     <Avatar small />
                     <div className="min-w-0 flex-1">
-                        <p className="text-base font-semibold text-[var(--color-button-hover)]">{thread.name}</p>
+                        <p className="text-base font-semibold text-[var(--color-secondary)]">{thread.name}</p>
                         <div className="flex items-center gap-2">
                             <span className="inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
                             <span className="text-sm text-[var(--color-text-muted)]">Active</span>

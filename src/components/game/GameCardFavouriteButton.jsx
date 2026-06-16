@@ -31,9 +31,9 @@ export default function GameCardFavouriteButton({
             ? 'h-[34px] w-[34px] min-h-[34px] min-w-[34px]'
             : 'h-[38px] w-[38px] min-h-[38px] min-w-[38px] sm:h-[42px] sm:w-[42px] sm:min-h-[42px] sm:min-w-[42px]';
 
-    const inactiveClasses = `${TRANSITION} game-fav-btn-inactive border border-[var(--color-border-brand)]/20 bg-gradient-favourite-inactive text-[var(--color-text-card-text)] backdrop-blur-md hover:scale-105 hover:border-[var(--color-text-sticky-nav-active)]/70 hover:text-[var(--color-text-card-text)] active:scale-[0.98] md:group-hover:border-[var(--color-text-sticky-nav-active)]/75 md:group-hover:bg-gradient-favourite-inactive-hover md:group-hover:text-[var(--color-text-card-text)]`;
+    const inactiveClasses = `${TRANSITION} game-fav-btn-inactive border border-[var(--color-border-brand)]/20 bg-gradient-favourite-inactive text-[var(--color-tertiery)] backdrop-blur-md hover:scale-105 hover:border-[var(--color-text-sticky-nav-active)]/70 hover:text-[var(--color-tertiery)] active:scale-[0.98] md:group-hover:border-[var(--color-text-sticky-nav-active)]/75 md:group-hover:bg-gradient-favourite-inactive-hover md:group-hover:text-[var(--color-tertiery)]`;
 
-    const activeClasses = `${TRANSITION} game-fav-btn-active scale-[1.02] border-2 border-[var(--color-border-brand)]/95 bg-gradient-favourite-active text-[var(--color-text-card-text)] backdrop-blur-md hover:scale-[1.08] hover:border-[var(--color-border-brand)] hover:bg-gradient-favourite-active-hover active:scale-[0.97] md:group-hover:border-[var(--color-border-brand)] md:group-hover:bg-gradient-favourite-active-hover`;
+    const activeClasses = `${TRANSITION} game-fav-btn-active scale-[1.02] border-2 border-[var(--color-border-brand)]/95 bg-gradient-favourite-active text-[var(--color-tertiery)] backdrop-blur-md hover:scale-[1.08] hover:border-[var(--color-border-brand)] hover:bg-gradient-favourite-active-hover active:scale-[0.97] md:group-hover:border-[var(--color-border-brand)] md:group-hover:bg-gradient-favourite-active-hover`;
 
     return (
         <button
@@ -53,8 +53,8 @@ export default function GameCardFavouriteButton({
                 strokeWidth={active ? 2.15 : 2.35}
                 className={
                     active
-                        ? 'fill-[var(--color-text-card-text)] text-[var(--color-text-card-text)] drop-shadow-[var(--shadow-subtle)]'
-                        : 'text-[var(--color-text-card-text)] drop-shadow-[var(--shadow-subtle)]'
+                        ? 'fill-[var(--color-tertiery)] text-[var(--color-tertiery)] drop-shadow-[var(--shadow-subtle)]'
+                        : 'text-[var(--color-tertiery)] drop-shadow-[var(--shadow-subtle)]'
                 }
             />
         </button>

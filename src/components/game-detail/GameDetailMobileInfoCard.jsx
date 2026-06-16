@@ -29,7 +29,7 @@ export default function GameDetailMobileInfoCard({
                             decoding="async"
                         />
                     ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--color-accent-pale)] to-[var(--color-accent-glow)] text-lg font-bold text-[var(--color-button-hover)]">
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--color-accent-pale)] to-[var(--color-accent-glow)] text-lg font-bold text-[var(--color-secondary)]">
                             {gameTitle?.slice(0, 1)?.toUpperCase() ?? '?'}
                         </div>
                     )}
@@ -44,7 +44,7 @@ export default function GameDetailMobileInfoCard({
                             <button
                                 type="button"
                                 onClick={onProviderClick}
-                                className="font-semibold text-[var(--color-button-hover)] underline decoration-[var(--color-accent-glow)] underline-offset-2 transition hover:text-[var(--color-button-hover)] hover:decoration-[var(--color-accent)]"
+                                className="font-semibold text-[var(--color-secondary)] underline decoration-[var(--color-accent-glow)] underline-offset-2 transition hover:text-[var(--color-secondary)] hover:decoration-[var(--color-accent)]"
                             >
                                 {providerName}
                             </button>

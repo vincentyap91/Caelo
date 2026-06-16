@@ -298,7 +298,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                         {bankDropdownOpen && (
                                             <>
                                                 <div className="absolute inset-0 z-10" onClick={() => setBankDropdownOpen(false)} aria-hidden />
-                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[240px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                                <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[240px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] py-1 shadow-lg">
                                                     {WITHDRAWAL_BANKS.map((b) => (
                                                         <button
                                                             key={b.id}
@@ -423,7 +423,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                                 {ewalletDropdownOpen && (
                                     <>
                                         <div className="absolute inset-0 z-10" onClick={() => setEwalletDropdownOpen(false)} aria-hidden />
-                                        <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-1 shadow-lg">
+                                        <div className="absolute top-full left-0 right-0 z-20 mt-1.5 max-h-[300px] overflow-y-auto rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] py-1 shadow-lg">
                                             {E_WALLET_OPTIONS.map((opt) => (
                                                 <button
                                                     key={opt.id}
@@ -458,7 +458,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                             <p className="mb-2 text-xs font-semibold text-[var(--color-text-primary)] md:text-sm">Amount <span className="text-[var(--color-danger)]">*</span></p>
                             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                                 <div className="flex flex-1 overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] shadow-[var(--shadow-subtle)]">
-                                    <span className="flex items-center justify-center bg-[var(--color-accent-glow)] px-4 text-sm font-bold text-[var(--color-button-hover)]">
+                                    <span className="flex items-center justify-center bg-[var(--color-accent-glow)] px-4 text-sm font-bold text-[var(--color-secondary)]">
                                         MYR
                                     </span>
                                     <input
@@ -535,7 +535,7 @@ export default function WithdrawalPage({ onNavigate, navigationState }) {
                             </div>
                         </div>
 
-                        <div className="cashier-summary-card overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
+                        <div className="cashier-summary-card overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] shadow-[var(--shadow-card-soft)]">
                             <div className="cashier-summary-card__header border-b px-5 py-3">
                                 <p className="cashier-summary-card__header-label text-xs font-bold uppercase tracking-wide">Withdrawal Details</p>
                             </div>

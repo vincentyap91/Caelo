@@ -125,7 +125,7 @@ function ScratchStyleRewardCard({
 
     const ctaClass = isSpinWheel
         ? 'btn-theme-primary spin-wheel-card-cta mt-auto w-full rounded-xl py-2.5 text-sm font-bold shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60'
-        : 'mt-auto w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-2.5 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-accent-pale)] disabled:cursor-not-allowed disabled:opacity-60';
+        : 'mt-auto w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] py-2.5 text-sm font-bold text-[var(--color-text-primary)] transition hover:bg-[var(--color-accent-pale)] disabled:cursor-not-allowed disabled:opacity-60';
 
     return (
         <div className={shellClass}>
@@ -162,9 +162,9 @@ function ScratchStyleRewardCard({
 
 function RewardsWalletBar({ balance, onRecordClick }) {
     return (
-        <div className="surface-card flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-card)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-5 shadow-[var(--shadow-card-soft)] md:p-6">
+        <div className="surface-card flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-card)] border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-5 shadow-[var(--shadow-card-soft)] md:p-6">
             <div className="flex min-w-0 flex-1 items-center gap-4">
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-icon)] shadow-[var(--shadow-cta-soft)] ring-1 ring-[var(--color-border-brand)]/60">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-secondary)] shadow-[var(--shadow-cta-soft)] ring-1 ring-[var(--color-border-brand)]/60">
                     <Wallet className="h-6 w-6" strokeWidth={2} />
                 </span>
                 <div className="min-w-0">
@@ -301,7 +301,7 @@ function VoucherScratchPanel({ guestPreview = false, onLoginClick }) {
                             key={v.id}
                             badge="Scratch"
                             heroCenter={
-                                <span className="text-4xl font-bold text-[var(--color-text-sticky-nav-text)] drop-shadow-lg">
+                                <span className="text-4xl font-bold text-[var(--color-tertiery)] drop-shadow-lg">
                                     RM {v.value}
                                 </span>
                             }
@@ -348,7 +348,7 @@ function PrizeBoxPanel({ guestPreview = false, onLoginClick }) {
                                 </span>
                             }
                             heroCenter={
-                                <span className="text-4xl font-bold text-[var(--color-text-sticky-nav-text)] drop-shadow-lg">
+                                <span className="text-4xl font-bold text-[var(--color-tertiery)] drop-shadow-lg">
                                     RM {item.amount}
                                 </span>
                             }
@@ -446,7 +446,7 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
             {!embedInPage && (
                 <div className="flex flex-wrap items-start justify-between gap-4">
                     <div className="flex min-w-0 flex-1 items-start gap-3">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-pale)] text-[var(--color-secondary)]">
                             <Trophy size={22} strokeWidth={2} />
                         </div>
                         <div>
@@ -484,7 +484,7 @@ export default function RewardsSection({ embedInPage = false, guestPreview = fal
                                 </select>
                                 <ChevronDown
                                     size={18}
-                                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-button-hover)]"
+                                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-secondary)]"
                                     aria-hidden
                                 />
                             </div>

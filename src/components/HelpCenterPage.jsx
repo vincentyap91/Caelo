@@ -204,7 +204,7 @@ export default function HelpCenterPage({ navigationState = null, guestLayout = f
                                     <ol className="mt-4 space-y-3">
                                         {section.items.map((item, index) => (
                                             <li key={item} className="flex items-start gap-3">
-                                                <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-pale)] text-xs font-bold text-[var(--color-button-hover)]">
+                                                <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-pale)] text-xs font-bold text-[var(--color-secondary)]">
                                                     {index + 1}
                                                 </span>
                                                 <p className="text-sm font-medium leading-relaxed text-[var(--color-text-muted)]">

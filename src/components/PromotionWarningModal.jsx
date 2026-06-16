@@ -39,7 +39,7 @@ export default function PromotionWarningModal({
                 role="dialog"
                 aria-modal="true"
                 aria-label="Promotion warning"
-                className="relative z-[1] flex w-full max-w-[500px] flex-col overflow-hidden rounded-[22px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)]"
+                className="relative z-[1] flex w-full max-w-[500px] flex-col overflow-hidden rounded-[22px] border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] shadow-[var(--shadow-modal)]"
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className="flex items-center justify-between gap-4 border-b border-[var(--color-border-subtle)] px-5 py-3.5 sm:px-6">
@@ -50,7 +50,7 @@ export default function PromotionWarningModal({
                         type="button"
                         aria-label="Close"
                         onClick={onClose}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)] sm:h-10 sm:w-10"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-muted)] transition hover:border-[var(--color-accent-glow)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)] sm:h-10 sm:w-10"
                     >
                         <X size={18} />
                     </button>
@@ -58,7 +58,7 @@ export default function PromotionWarningModal({
 
                 <div className="px-5 py-5 sm:px-6 sm:py-5.5">
                     <div className="mx-auto flex max-w-[500px] flex-col items-center text-center">
-                        <span className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-gradient-cta text-[var(--color-text-cta-inverse)] shadow-[0_12px_24px_rgba(255,178,45,0.16)]">
+                        <span className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-gradient-cta text-[var(--color-primary)] shadow-[0_12px_24px_rgba(255,178,45,0.16)]">
                             <AlertTriangle size={30} strokeWidth={2.4} />
                         </span>
 

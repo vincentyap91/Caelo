@@ -31,7 +31,7 @@ export default function GameCategories({ onNavigate }) {
         <section className="game-categories-section w-full pt-4">
             <SectionHeader
                 title="Popular Category"
-                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-button-hover)]" />}
+                icon={<Crown size={22} fill="currentColor" className="text-[var(--color-secondary)]" />}
             />
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-6">
@@ -48,13 +48,13 @@ export default function GameCategories({ onNavigate }) {
                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 w-[86%]">
                             <div className="relative w-full">
                                 <div className="absolute inset-x-2 -bottom-1.5 h-2 rounded-full bg-[var(--color-primary)]/35 blur-sm"></div>
-                                <div className="game-category-ribbon relative overflow-hidden rounded-[10px] border border-[var(--color-border-brand)] bg-[var(--color-primary)] px-2 py-1.5 shadow-[var(--shadow-nav-pill)]">
+                                <div className="game-category-ribbon relative overflow-hidden rounded-[10px] border border-[var(--color-border-subtle)] bg-[var(--color-primary)] px-2 py-1.5 shadow-[var(--shadow-nav-pill)]">
                                 <div className="game-category-ribbon-shine pointer-events-none absolute inset-0"></div>
-                                    <span className="relative block text-center text-[var(--color-text-card-text)] text-xs uppercase font-bold tracking-wide drop-shadow-[var(--shadow-subtle)]">
+                                    <span className="relative block text-center text-[var(--color-tertiery)] text-xs uppercase font-bold tracking-wide drop-shadow-[var(--shadow-subtle)]">
                                         {cat.name}
                                     </span>
                                 </div>
-                                <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-0 h-0 border-y-[11px] border-y-transparent border-l-[12px] border-l-[var(--color-button-hover)] drop-shadow-[var(--shadow-nav-pill)]"></div>
+                                <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-0 h-0 border-y-[11px] border-y-transparent border-l-[12px] border-l-[var(--color-secondary)] drop-shadow-[var(--shadow-nav-pill)]"></div>
                             </div>
                         </div>
 

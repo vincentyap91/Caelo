@@ -117,7 +117,7 @@ color/gradient/home/cta/start + end  →  --color-gradient-home-cta
 }
 .btn-primary {
   background: var(--color-primary);
-  color: var(--color-text-cta-inverse);
+  color: var(--color-primary);
 }
 .hero {
   background: var(--color-gradient-home-cta);
@@ -279,7 +279,7 @@ color/gradient/home/cta/start + end  →  --color-gradient-home-cta
 
 ```tsx
 // ✅ Riocity allowlist 的 semantic 色
-className="bg-[var(--color-surface-base)] text-[var(--color-text-primary)]"
+className="bg-[var(--color-tertiery)] text-[var(--color-text-primary)]"
 
 // ✅ 已在 CSS 里用 --color-* 的共享 utility（优先）
 className="btn-theme-cta-soft surface-card bg-gradient-promo-card"
@@ -640,7 +640,7 @@ Caelo 保留现有 Footer 布局（12WIN logo、支付方式、About Us 链接�
 | 卡片 footer 背景 | `--color-primary` | `--color-surface-rtp-card` | `theme.css` 末尾 `var(--color-primary)` |
 | Footer RTP 文字 | `--color-text-card-text` | `--color-surface-rtp-secondary-card-text` | `var(--mono-0)` |
 | 详情页 RTP pill 底 | `--color-accent-50` / `--color-accent-pale` | `--color-surface-rtp-secondary-card` | `.rtp-label--pill { …: var(--color-accent-pale); }` |
-| 详情页 RTP pill 字 | `--color-accent-700` / `--color-button-hover` | `--color-surface-rtp-secondary-card-text` | `.rtp-label--pill { …: var(--color-button-hover); }` |
+| 详情页 RTP pill 字 | `--color-accent-700` / `--color-button-hover` | `--color-surface-rtp-secondary-card-text` | `.rtp-label--pill { …: var(--color-secondary); }` |
 
 ```css
 /* src/theme.css — 新 semantic 名，旧值链 */
@@ -659,7 +659,7 @@ Caelo 保留滚动列表（非 Cam88 双列卡片）。组件用 Cam88 名；sco
 | 缩略图描边 | `--color-border-brand` | `.recent-big-wins-thumb { --color-border-brand: var(--raw-border-accent); }` | [`974:29004`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29004) |
 | Provider chip 字 | `--color-text-subtle` | semantic 块已有 | [`974:29095`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29095) |
 | 游戏名 | `--color-text-primary` | 不变 | [`974:29098`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29098) |
-| 中奖金额 | `--color-text-recent-amount` | 区块 scope → `var(--color-button-hover)`（Caelo 蓝，非 Cam88 红） | [`974:29099`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29099) |
+| 中奖金额 | `--color-text-recent-amount` | 区块 scope → `var(--color-secondary)`（Caelo 蓝，非 Cam88 红） | [`974:29099`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29099) |
 | 时间 | `--color-button-hover` | 不变 | — |
 | 标题 “Recent” | `--color-text-primary` | 不变 | [`974:29007`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29007) |
 | 标题 “Big Wins” | `--color-text-recent-amount` | 子选择器 → `var(--color-primary)` | [`974:29007`](https://www.figma.com/design/UAdiwF7uYbVMqq8ky3Fn0n/Riocity-MCP?node-id=974-29007) |
@@ -669,7 +669,7 @@ Caelo 保留滚动列表（非 Cam88 双列卡片）。组件用 Cam88 名；sco
 .recent-big-wins-section {
   --color-border-line: var(--color-border-subtle);
   --color-surface-panel: var(--raw-surface-muted);
-  --color-text-recent-amount: var(--color-button-hover);
+  --color-text-recent-amount: var(--color-secondary);
 }
 .recent-big-wins-section .recent-big-wins-title-highlight {
   color: var(--color-primary);

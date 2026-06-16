@@ -17,7 +17,7 @@ export default function GameDetailDataTable({ columns = [], rows = [], striped =
     if (columns.length === 0) return null;
 
     return (
-        <div className="overflow-x-auto rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
+        <div className="overflow-x-auto rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] shadow-[var(--shadow-card-soft)]">
             <table className="w-full min-w-[520px] border-collapse text-sm">
                 <thead>
                     <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-cool-light)]">

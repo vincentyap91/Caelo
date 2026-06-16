@@ -8,16 +8,16 @@ export default function SectionHeader({ title, icon, rightLink, rightLinkTo, onN
     return (
         <div className="section-header-theme mb-4 flex w-full items-end justify-between pb-1">
             <div className="flex items-center gap-2">
-                <div className="flex items-center justify-center text-[var(--color-icon)]">
+                <div className="flex items-center justify-center text-[var(--color-secondary)]">
                     {icon}
                 </div>
-                <h2 className="text-base font-bold tracking-tight text-[var(--color-text-title)] md:text-lg">
+                <h2 className="text-base font-bold tracking-tight text-[var(--color-primary)] md:text-lg">
                     {title}
                 </h2>
                 <div className="ml-4 mt-1 relative top-1 flex gap-1">
-                    <div className="h-5 w-4 skew-x-[-20deg] bg-[var(--color-icon)]"></div>
-                    <div className="h-5 w-2 skew-x-[-20deg] bg-[var(--color-icon)]"></div>
-                    <div className="h-5 w-1 skew-x-[-20deg] bg-[var(--color-icon)]"></div>
+                    <div className="h-5 w-4 skew-x-[-20deg] bg-[var(--color-secondary)]"></div>
+                    <div className="h-5 w-2 skew-x-[-20deg] bg-[var(--color-secondary)]"></div>
+                    <div className="h-5 w-1 skew-x-[-20deg] bg-[var(--color-secondary)]"></div>
                 </div>
             </div>
             {rightLink && (

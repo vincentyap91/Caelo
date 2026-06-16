@@ -61,19 +61,19 @@ const claimButtonClass =
     'btn-theme-primary inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02] md:min-h-11 md:w-auto md:min-w-[120px]';
 
 const tableHeadClassLeft =
-    'px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
+    'px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wide text-[var(--color-secondary)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
 const tableHeadClassRight =
-    'px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wide text-[var(--color-button-hover)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
+    'px-3 py-2.5 text-right text-xs font-bold uppercase tracking-wide text-[var(--color-secondary)] sm:px-4 sm:py-3 md:text-[var(--color-text-muted)]';
 
 function RebateEarnedSummary() {
     return (
         <div className="flex items-center gap-3 sm:gap-4">
-            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-text-cta-inverse)] sm:h-12 sm:w-12">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-primary)] sm:h-12 sm:w-12">
                 <Star className="h-[22px] w-[22px] sm:h-6 sm:w-6" strokeWidth={2} aria-hidden />
             </span>
             <div className="min-w-0 flex-1">
                 <p className="text-xs font-semibold leading-snug text-[var(--color-text-muted)] sm:text-sm">Total Rebate Earned</p>
-                <p className="mt-1 text-lg font-bold tabular-nums text-[var(--color-button-hover)] sm:text-xl md:text-2xl">MYR 0.000</p>
+                <p className="mt-1 text-lg font-bold tabular-nums text-[var(--color-secondary)] sm:text-xl md:text-2xl">MYR 0.000</p>
             </div>
         </div>
     );
@@ -157,12 +157,12 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                             </div>
                             <div className="hidden items-center justify-between gap-4 md:flex">
                                 <div className="flex items-center gap-4">
-                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-icon)]">
+                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-cta text-[var(--color-secondary)]">
                                         <Star size={24} strokeWidth={2} />
                                     </span>
                                     <div>
                                         <p className="text-sm font-semibold text-[var(--color-text-muted)]">Total Rebate Earned</p>
-                                        <p className="mt-1 text-xl font-bold text-[var(--color-button-hover)] md:text-2xl">MYR 0.000</p>
+                                        <p className="mt-1 text-xl font-bold text-[var(--color-secondary)] md:text-2xl">MYR 0.000</p>
                                     </div>
                                 </div>
                                 <button
@@ -292,7 +292,7 @@ export default function RebatePage({ authUser, onLoginClick, guestLayout }) {
                                                     {row.provider}
                                                 </td>
                                                 <td className="px-3 py-3 text-sm text-[var(--color-text-muted)] md:px-4 md:py-3.5">{row.category}</td>
-                                                <td className="px-3 py-3 text-right text-sm font-semibold text-[var(--color-button-hover)] md:px-4 md:py-3.5">
+                                                <td className="px-3 py-3 text-right text-sm font-semibold text-[var(--color-secondary)] md:px-4 md:py-3.5">
                                                     {row.rebate}
                                                 </td>
                                             </tr>

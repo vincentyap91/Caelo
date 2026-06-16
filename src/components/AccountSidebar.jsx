@@ -135,13 +135,13 @@ export default function AccountSidebar({
     return (
         <>
             <aside
-                className="user-dashboard-sidebar relative flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-y-contain border-r border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] p-3.5 text-[var(--color-text-primary)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 lg:sticky lg:top-24 lg:h-auto lg:max-h-none lg:w-[320px] lg:flex-none lg:overflow-visible lg:rounded-[24px] lg:border lg:border-[var(--color-border-subtle)] lg:p-6 lg:shadow-[var(--shadow-card-raised)] w-full max-w-[88vw] lg:max-w-none"
+                className="user-dashboard-sidebar relative flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-y-contain border-r border-[var(--color-accent-glow)] bg-[var(--color-tertiery)] p-3.5 text-[var(--color-text-primary)] shadow-[var(--shadow-sidebar)] transition-transform duration-300 lg:sticky lg:top-24 lg:h-auto lg:max-h-none lg:w-[320px] lg:flex-none lg:overflow-visible lg:rounded-[24px] lg:border lg:border-[var(--color-border-subtle)] lg:p-6 lg:shadow-[var(--shadow-card-raised)] w-full max-w-[88vw] lg:max-w-none"
             >
                 <div>
                     <div className="flex items-start gap-3 pt-0 lg:gap-4 lg:pt-1">
                         <div className="relative ml-0 mt-0 shrink-0 lg:ml-1 lg:mt-1">
                             <div className="blue-accent-avatar flex aspect-square h-14 w-14 items-center justify-center overflow-hidden rounded-full lg:h-16 lg:w-16">
-                                <UserCircle2 className="block h-8 w-8 text-[var(--color-button-hover)] lg:h-10 lg:w-10" />
+                                <UserCircle2 className="block h-8 w-8 text-[var(--color-secondary)] lg:h-10 lg:w-10" />
                             </div>
                         </div>
                         <div className="min-w-0 flex-1 pt-0 lg:pt-1">
@@ -169,24 +169,24 @@ export default function AccountSidebar({
                 </div>
 
                 <div className="mt-5 space-y-3 lg:mt-8 lg:space-y-5">
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('cashier')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
                                     <Wallet className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">Cashier</span>
                             </span>
                             <ChevronDown
-                                className={`h-4 w-4 shrink-0 transition-transform lg:h-[18px] lg:w-[18px] ${openMenus.cashier ? 'rotate-180 text-[var(--color-button-hover)]' : 'text-[var(--color-text-muted)]'}`}
+                                className={`h-4 w-4 shrink-0 transition-transform lg:h-[18px] lg:w-[18px] ${openMenus.cashier ? 'rotate-180 text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)]'}`}
                             />
                         </button>
                         {isMenuOpen('cashier') && (
-                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-surface-base)] p-1 lg:mt-4">
+                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-tertiery)] p-1 lg:mt-4">
                                 {cashierLinks.map(({ id, label, icon: Icon }) => {
                                     const isActive = activePage === id;
                                     return (
@@ -196,12 +196,12 @@ export default function AccountSidebar({
                                             onClick={() => handleCashierClick(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
+                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)] shadow-sm'
+                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -211,14 +211,14 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('account')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
                                     <UserRound className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">My Account</span>
@@ -228,7 +228,7 @@ export default function AccountSidebar({
                             />
                         </button>
                         {isMenuOpen('account') && (
-                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-surface-base)] p-1 lg:mt-4">
+                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-tertiery)] p-1 lg:mt-4">
                                 {accountLinks.map(({ id, label, icon: Icon }) => {
                                     const isActive = activePage === id;
                                     return (
@@ -238,12 +238,12 @@ export default function AccountSidebar({
                                             onClick={() => handleNavClick(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
+                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)] shadow-sm'
+                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -253,14 +253,14 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('loyaltyRewards')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
                                     <Trophy className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">Rewards</span>
@@ -270,7 +270,7 @@ export default function AccountSidebar({
                             />
                         </button>
                         {isMenuOpen('loyaltyRewards') && (
-                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-surface-base)] p-1 lg:mt-4">
+                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-tertiery)] p-1 lg:mt-4">
                                 {REWARDS_PROGRAMS.map(({ id, label }) => {
                                     const NavIcon = REWARDS_NAV_ICONS[id] ?? Trophy;
                                     const isActive =
@@ -282,14 +282,14 @@ export default function AccountSidebar({
                                             onClick={() => onNavigate?.('loyalty-rewards', { rewardsTab: id })}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
+                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)] shadow-sm'
+                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
                                             }`}
                                         >
                                             <NavIcon
                                                 className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${
                                                     isActive
-                                                        ? 'text-[var(--color-button-hover)]'
+                                                        ? 'text-[var(--color-secondary)]'
                                                         : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'
                                                 }`}
                                             />
@@ -301,14 +301,14 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('historyRecord')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
                                     <History className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">History Record</span>
@@ -318,7 +318,7 @@ export default function AccountSidebar({
                             />
                         </button>
                         {isMenuOpen('historyRecord') && (
-                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-surface-base)] p-1 lg:mt-4">
+                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-tertiery)] p-1 lg:mt-4">
                                 {HISTORY_RECORD_NAV.map(({ id, label, icon: Icon }) => {
                                     const isActive = activePage === id;
                                     return (
@@ -328,12 +328,12 @@ export default function AccountSidebar({
                                             onClick={() => onNavigate?.(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all hover:scale-[1.02] lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-small)] hover:border-l-[var(--color-border-brand)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
+                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)]'
+                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:border-l-[var(--color-border-brand)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -343,14 +343,14 @@ export default function AccountSidebar({
                         )}
                     </div>
 
-                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-3 lg:rounded-[20px] lg:p-4">
+                    <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-3 lg:rounded-[20px] lg:p-4">
                         <button
                             type="button"
                             onClick={() => toggleMenu('settings')}
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-button-hover)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
                                     <Settings className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">Settings</span>
@@ -360,7 +360,7 @@ export default function AccountSidebar({
                             />
                         </button>
                         {isMenuOpen('settings') && (
-                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-surface-base)] p-1 lg:mt-4">
+                            <div className="mt-2.5 space-y-1 overflow-hidden rounded-xl bg-[var(--color-tertiery)] p-1 lg:mt-4">
                                 {settingsOptions.map(({ id, label, icon: Icon, action }) => {
                                     const isActive = activePage === id;
                                     const isLiveChat = action === 'liveChat';
@@ -377,12 +377,12 @@ export default function AccountSidebar({
                                             }}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all hover:scale-[1.02] lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive && !isLiveChat
-                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]'
-                                                    : 'border-l-transparent bg-[var(--color-surface-base)] text-[var(--color-text-small)] hover:border-l-[var(--color-border-brand)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-button-hover)]'
+                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)]'
+                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:border-l-[var(--color-border-brand)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive && !isLiveChat ? 'text-[var(--color-button-hover)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive && !isLiveChat ? 'text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>

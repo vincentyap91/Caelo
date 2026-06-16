@@ -47,13 +47,13 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                                 <button
                                     type="button"
                                     onClick={() => onNavigate?.('deposit')}
-                            className="btn-theme-cta-soft absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-[var(--color-sticky-nav)] text-[var(--color-text-cta-inverse)] transition hover:brightness-105 active:scale-95"
+                            className="btn-theme-cta-soft absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-[var(--color-sticky-nav)] text-[var(--color-primary)] transition hover:brightness-105 active:scale-95"
                             aria-label="Deposit"
                         >
                             <Icon size={30} strokeWidth={3} />
                         </button>
                         <div className="mt-auto flex flex-col items-center pb-1">
-                            <span className={`text-[10px] font-medium tracking-tight ${activePage === 'deposit' ? 'text-[var(--color-text-sticky-nav-active)]' : 'text-[var(--color-text-sticky-nav-text)]'
+                            <span className={`text-[10px] font-medium tracking-tight ${activePage === 'deposit' ? 'text-[var(--color-text-sticky-nav-active)]' : 'text-[var(--color-tertiery)]'
                                 }`}>
                                 {label}
                             </span>
@@ -81,7 +81,7 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                             }}
                             className={`flex min-h-11 min-w-0 flex-1 flex-col items-center justify-center gap-1 px-0.5 py-1.5 transition select-none active:opacity-85 ${isActive
                                 ? 'text-[var(--color-text-sticky-nav-active)]'
-                                : 'text-[var(--color-text-sticky-nav-text)]'
+                                : 'text-[var(--color-tertiery)]'
                                 }`}
                         >
                             <div className="relative">
@@ -93,7 +93,7 @@ export default function MobileHomeBottomNav({ activePage, authUser, onNavigate, 
                                     aria-hidden
                                 />
                                 {id === 'account' && authUser?.notifications > 0 && (
-                                    <span className="absolute -right-1.5 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[var(--color-danger)] px-0.5 text-[9px] font-bold text-[var(--color-text-card-text)] ring-2 ring-white">
+                                    <span className="absolute -right-1.5 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[var(--color-danger)] px-0.5 text-[9px] font-bold text-[var(--color-tertiery)] ring-2 ring-white">
                                         {authUser.notifications}
                                     </span>
                                 )}

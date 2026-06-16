@@ -871,7 +871,7 @@ function ThemeEditorInner() {
             {/* Passcode Modal */}
             {showPasscodeModal && (
                 <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] backdrop-blur-sm">
-                    <form onSubmit={handleUnlock} className="w-64 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-6 shadow-[var(--shadow-modal)]">
+                    <form onSubmit={handleUnlock} className="w-64 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-6 shadow-[var(--shadow-modal)]">
                         <div className="mb-4 flex flex-col items-center gap-2">
                             <Lock className="text-[var(--color-primary)]" size={24} />
                             <h3 className="text-sm font-bold text-[var(--color-text-primary)]">Enter Passcode</h3>
@@ -886,7 +886,7 @@ function ThemeEditorInner() {
                         />
                         <div className="flex gap-2">
                             <button type="button" onClick={() => setShowPasscodeModal(false)} className="flex-1 rounded-xl py-2 text-xs font-semibold text-[var(--color-text-muted)] hover:bg-[var(--color-surface-subtle)] transition">Cancel</button>
-                            <button type="submit" className="flex-1 rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] hover:bg-[var(--color-button-hover)] transition">Unlock</button>
+                            <button type="submit" className="flex-1 rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-tertiery)] hover:bg-[var(--color-secondary)] transition">Unlock</button>
                         </div>
                     </form>
                 </div>
@@ -899,22 +899,22 @@ function ThemeEditorInner() {
             >
                 {open && isUnlocked && (
                     <div
-                        className={`rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-modal)] backdrop-blur-md transition-all ${flashPanel ? 'ring-4 ring-[var(--color-accent)]/70' : ''}`}
+                        className={`rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] shadow-[var(--shadow-modal)] backdrop-blur-md transition-all ${flashPanel ? 'ring-4 ring-[var(--color-accent)]/70' : ''}`}
                         style={{ maxHeight: '82vh', display: 'flex', flexDirection: 'column', width: panelWidth, position: 'relative' }}
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between rounded-t-2xl border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-4 py-2.5">
+                        <div className="flex items-center justify-between rounded-t-2xl border-b border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-4 py-2.5">
                             <div className="flex items-center gap-2">
                                 <Sliders size={14} className="text-[var(--color-primary)]" />
                                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Theme Editor</span>
-                                <span className="rounded-full bg-[var(--color-warning)] px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[var(--color-text-cta-inverse)]">DEV</span>
+                                <span className="rounded-full bg-[var(--color-warning)] px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[var(--color-primary)]">DEV</span>
                             </div>
                             <div className="flex items-center gap-1">
                                 <button
                                     type="button"
                                     onClick={() => setInspecting((v) => !v)}
                                     title={inspecting ? 'Disable Inspector' : 'Enable Inspector Mode'}
-                                    className={`rounded-lg p-1.5 transition ${inspecting ? 'bg-[var(--color-accent)] text-[var(--color-text-card-text)]' : 'text-[var(--color-text-soft)] hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-secondary)]'}`}
+                                    className={`rounded-lg p-1.5 transition ${inspecting ? 'bg-[var(--color-accent)] text-[var(--color-tertiery)]' : 'text-[var(--color-text-soft)] hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-secondary)]'}`}
                                 >
                                     <MousePointer size={13} />
                                 </button>
@@ -940,7 +940,7 @@ function ThemeEditorInner() {
                         {inspecting && (
                             <div className="flex items-center gap-2 border-b border-[var(--color-border-subtle)] bg-[var(--color-accent-pale)] px-4 py-1.5">
                                 <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent)]" />
-                                <span className="text-xs font-semibold text-[var(--color-button-hover)]">Inspector active</span>
+                                <span className="text-xs font-semibold text-[var(--color-secondary)]">Inspector active</span>
                             </div>
                         )}
 
@@ -1062,7 +1062,7 @@ function ThemeEditorInner() {
                                 <div className="space-y-3">
                                     <div className="flex gap-2">
                                         <button type="button" onClick={handleSaveProfile}
-                                            className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] transition hover:bg-[var(--color-button-hover)]">
+                                            className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-tertiery)] transition hover:bg-[var(--color-secondary)]">
                                             <BookMarked size={12} /> Save Current
                                         </button>
                                         <button type="button" onClick={handleExportProfiles} disabled={!profiles.length}
@@ -1110,7 +1110,7 @@ function ThemeEditorInner() {
                                     <button
                                         type="button"
                                         onClick={handleSyncSite}
-                                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] py-2.5 text-xs font-bold text-[var(--color-text-card-text)] transition hover:bg-[var(--color-button-hover)]"
+                                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] py-2.5 text-xs font-bold text-[var(--color-tertiery)] transition hover:bg-[var(--color-secondary)]"
                                     >
                                         <RefreshCw size={12} /> Sync with Site
                                     </button>
@@ -1155,7 +1155,7 @@ function ThemeEditorInner() {
                                                 <button
                                                     type="button"
                                                     onClick={handleImportNames}
-                                                    className="mt-2 w-full rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] transition hover:bg-[var(--color-button-hover)]"
+                                                    className="mt-2 w-full rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-tertiery)] transition hover:bg-[var(--color-secondary)]"
                                                 >
                                                     Parse & Import
                                                 </button>
@@ -1191,7 +1191,7 @@ function ThemeEditorInner() {
                                                     className="w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-input-light)] px-3 py-2 font-mono text-[11px] text-[var(--color-text-secondary)] outline-none focus:border-[var(--color-primary)]"
                                                 />
                                                 {importFeedback && <p className="text-xs font-medium text-[var(--color-success-strong)]">{importFeedback.msg}</p>}
-                                                <button type="button" onClick={handleImport} className="mt-1 w-full rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-text-card-text)] hover:bg-[var(--color-button-hover)]">Apply Overrides</button>
+                                                <button type="button" onClick={handleImport} className="mt-1 w-full rounded-xl bg-[var(--color-primary)] py-2 text-xs font-bold text-[var(--color-tertiery)] hover:bg-[var(--color-secondary)]">Apply Overrides</button>
                                             </div>
                                         )}
                                     </div>
@@ -1362,7 +1362,7 @@ function ThemeEditorInner() {
                         }
                     }}
                     title="Toggle Theme Editor"
-                    className={`flex h-11 w-11 items-center justify-center rounded-full shadow-xl transition hover:scale-105 active:scale-95 ${inspecting ? 'bg-[var(--color-accent)] ring-4 ring-[var(--color-border-subtle)]/50' : isUnlocked ? 'bg-[var(--color-primary)] hover:bg-[var(--color-button-hover)]' : 'bg-[var(--color-button-muted)] hover:bg-[var(--color-surface-mid-dark)]'} text-[var(--color-text-card-text)]`}
+                    className={`flex h-11 w-11 items-center justify-center rounded-full shadow-xl transition hover:scale-105 active:scale-95 ${inspecting ? 'bg-[var(--color-accent)] ring-4 ring-[var(--color-border-subtle)]/50' : isUnlocked ? 'bg-[var(--color-primary)] hover:bg-[var(--color-secondary)]' : 'bg-[var(--color-button-muted)] hover:bg-[var(--color-surface-mid-dark)]'} text-[var(--color-tertiery)]`}
                 >
                     {isUnlocked ? <Sliders size={18} /> : <Unlock size={18} />}
                 </button>

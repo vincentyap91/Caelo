@@ -45,7 +45,7 @@ export default function LanguageSwitcher({
                 onClick={() => setOpen((o) => !o)}
                 className={`flex items-center ${showShortLabel || showFullLabel ? 'gap-1.5' : 'gap-1'} ${buttonClassName} ${
                     isLightTone
-                        ? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,42,0.08)] transition-all hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]'
+                        ? 'border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-primary)] shadow-[0_6px_14px_rgba(15,23,42,0.08)] transition-all hover:border-[var(--color-border-subtle)] hover:bg-[var(--color-surface-cool-light)]'
                         : ''
                 }`}
                 aria-haspopup="listbox"
@@ -64,7 +64,7 @@ export default function LanguageSwitcher({
                 ) : null}
                 <ChevronDown
                     size={12}
-                    className={`transition-transform ${isLightTone ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-text-sticky-nav-text)]/75'} ${open ? 'rotate-180' : ''}`}
+                    className={`transition-transform ${isLightTone ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-tertiery)]/75'} ${open ? 'rotate-180' : ''}`}
                 />
             </button>
 
@@ -72,7 +72,7 @@ export default function LanguageSwitcher({
                 <div
                     className={`absolute right-0 top-full z-[450] mt-2 w-[240px] max-w-[calc(100vw-1rem)] overflow-hidden rounded-[18px] py-1 shadow-[var(--shadow-nav-dropdown)] backdrop-blur-xl ${
                         isLightTone
-                            ? 'border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]'
+                            ? 'border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)]'
                             : 'border border-[var(--color-border-brand)] bg-gradient-language-nav'
                     }`}
                     role="listbox"
@@ -103,7 +103,7 @@ export default function LanguageSwitcher({
                                                 ? 'bg-[var(--color-surface-subtle)] shadow-[var(--inset-panel)]'
                                                 : 'hover:bg-[var(--color-surface-cool-light)]'
                                         }`
-                                        : `text-[var(--color-text-sticky-nav-text)] ${
+                                        : `text-[var(--color-tertiery)] ${
                                             isActive
                                                 ? 'bg-gradient-language-option-active shadow-[var(--inset-highlight-soft)]'
                                                 : 'hover:bg-[var(--color-surface-light-active)]'
@@ -124,7 +124,7 @@ export default function LanguageSwitcher({
                                                 : 'bg-[var(--color-accent)] shadow-[0_0_0_4px_var(--color-accent)]/18'
                                             : isLightTone
                                                 ? 'bg-[var(--color-text-soft)]/0 opacity-0 group-hover:bg-[var(--color-text-soft)]/30 group-hover:opacity-100'
-                                                : 'bg-[var(--color-surface-base)]/0 opacity-0 group-hover:bg-[var(--color-surface-base)]/30 group-hover:opacity-100'
+                                                : 'bg-[var(--color-tertiery)]/0 opacity-0 group-hover:bg-[var(--color-tertiery)]/30 group-hover:opacity-100'
                                     }`}
                                     aria-hidden="true"
                                 />

@@ -25,7 +25,7 @@ export default function LobbyProviderCard({
 
     return (
         <div
-            className={`group relative flex min-h-[168px] flex-col overflow-hidden rounded-3xl border bg-[var(--color-surface-base)] shadow-[var(--shadow-live-provider)] transition duration-300 md:hover:-translate-y-1 md:hover:shadow-[var(--shadow-live-provider-hover)] md:min-h-0 md:h-[104px] md:flex-row md:items-center md:justify-center ${
+            className={`group relative flex min-h-[168px] flex-col overflow-hidden rounded-3xl border bg-[var(--color-tertiery)] shadow-[var(--shadow-live-provider)] transition duration-300 md:hover:-translate-y-1 md:hover:shadow-[var(--shadow-live-provider-hover)] md:min-h-0 md:h-[104px] md:flex-row md:items-center md:justify-center ${
                 selected
                     ? 'border-[var(--color-surface-accent)] ring-2 ring-[var(--color-primary)]/25'
                     : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-brand)]'
@@ -46,7 +46,7 @@ export default function LobbyProviderCard({
                 onPlayClick={onPlayClick}
             />
             {hot && (
-                <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-full bg-[var(--color-danger)] px-2 py-0.5 text-xs font-bold tracking-wide text-[var(--color-text-card-text)] shadow-[var(--shadow-hot)] md:text-xs">
+                <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-full bg-[var(--color-danger)] px-2 py-0.5 text-xs font-bold tracking-wide text-[var(--color-tertiery)] shadow-[var(--shadow-hot)] md:text-xs">
                     HOT
                 </span>
             )}

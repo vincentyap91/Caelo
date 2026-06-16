@@ -60,12 +60,12 @@ export default function GameDetailPlayModal({
             style={{ maxHeight: '100dvh', height: '100dvh' }}
         >
             <header className="flex shrink-0 items-center justify-between gap-3 border-b border-[var(--color-border-brand)] bg-[var(--color-primary)] px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))] shadow-[var(--inset-highlight-soft)]">
-                <h2 className="min-w-0 flex-1 truncate text-sm font-bold tracking-tight text-[var(--color-text-card-text)] md:text-base">{gameTitle}</h2>
+                <h2 className="min-w-0 flex-1 truncate text-sm font-bold tracking-tight text-[var(--color-tertiery)] md:text-base">{gameTitle}</h2>
                 <button
                     type="button"
                     onClick={onClose}
                     aria-label="Close game"
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)]/25 bg-[var(--color-border-subtle)] text-[var(--color-text-card-text)] transition hover:bg-[var(--color-surface-base)]/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)]/25 bg-[var(--color-border-subtle)] text-[var(--color-tertiery)] transition hover:bg-[var(--color-tertiery)]/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
                 >
                     <X size={20} strokeWidth={2.25} />
                 </button>

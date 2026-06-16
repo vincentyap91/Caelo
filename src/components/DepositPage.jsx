@@ -700,7 +700,7 @@ export default function DepositPage({ onNavigate }) {
                             </div>
                         </div>
 
-                        <div className="cashier-summary-card overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] shadow-[var(--shadow-card-soft)]">
+                        <div className="cashier-summary-card overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] shadow-[var(--shadow-card-soft)]">
                             <div className="cashier-summary-card__header border-b px-5 py-3">
                                 <p className="cashier-summary-card__header-label text-xs font-bold uppercase tracking-wide">Payment Details</p>
                             </div>

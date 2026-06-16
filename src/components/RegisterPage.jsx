@@ -31,9 +31,9 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
     return (
         <main className="w-full bg-gradient-register-page py-6 md:py-10">
             <section className="page-container">
-                <div className="overflow-hidden rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] shadow-[var(--shadow-register-card)]">
+                <div className="overflow-hidden rounded-2xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] shadow-[var(--shadow-register-card)]">
                     <div className="grid lg:grid-cols-[1.05fr_1fr]">
-                        <article className="relative max-md:h-[135px] max-md:overflow-hidden text-[var(--color-text-card-text)]">
+                        <article className="relative max-md:h-[135px] max-md:overflow-hidden text-[var(--color-tertiery)]">
                             <div className="h-full min-h-0 overflow-hidden rounded-t-2xl md:rounded-l-xl">
                                 <picture className="contents">
                                     <source media="(max-width: 767px)" srcSet={promoImageMobile} />
@@ -47,7 +47,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                             </div>
                         </article>
 
-                        <article className="bg-gradient-register-panel p-4 text-[var(--color-text-card-text)] md:p-6">
+                        <article className="bg-gradient-register-panel p-4 text-[var(--color-tertiery)] md:p-6">
                             <div className="mx-auto w-full max-w-[420px]">
                                 {phase === 'success' ? (
                                     <div className="flex min-h-[260px] flex-col items-center justify-center gap-2 px-2 py-10 text-center sm:min-h-[300px]">
@@ -185,7 +185,7 @@ export default function RegisterPage({ onLoginClick, onRegisterSuccess, onContac
                                             </h2>
                                             <button
                                                 type="button"
-                                                className="mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 text-sm font-semibold text-[var(--color-text-card-text)] shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[var(--color-success-strong)] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97]"
+                                                className="mt-3 inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 text-sm font-semibold text-[var(--color-tertiery)] shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[var(--color-success-strong)] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97]"
                                             >
                                                 <WhatsAppIcon size={16} className="shrink-0 opacity-95" />
                                                 WhatsApp

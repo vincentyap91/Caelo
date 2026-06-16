@@ -196,7 +196,7 @@ export default function LoginModal({
                         type="button"
                         onClick={handleWhatsAppLogin}
                         disabled={whatsappLoading}
-                        className="inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 text-sm font-semibold text-[var(--color-text-card-text)] shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[var(--color-success-strong)] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97] disabled:cursor-not-allowed disabled:opacity-70"
+                        className="inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-success-strong)] bg-[var(--color-success-strong)] px-4 text-sm font-semibold text-[var(--color-tertiery)] shadow-[0_1px_2px_rgb(0_0_0_/_10%)] transition hover:bg-[var(--color-success-strong)] hover:shadow-[0_2px_5px_rgb(37_211_102_/_28%)] active:brightness-[0.97] disabled:cursor-not-allowed disabled:opacity-70"
                     >
                         <WhatsAppIcon size={16} className="shrink-0 opacity-95" />
                         {whatsappLoading ? 'Connecting...' : 'WhatsApp'}

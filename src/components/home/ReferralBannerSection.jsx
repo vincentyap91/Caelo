@@ -23,7 +23,7 @@ function ReferralHubCard({
             <h2 className="text-xl font-bold leading-tight text-[var(--color-text-sub-title)]">
                 Your Unique Referral Hub
             </h2>
-            <p className="mt-1 text-base font-bold text-[var(--color-text-card-text)]">
+            <p className="mt-1 text-base font-bold text-[var(--color-tertiery)]">
                 Share &amp; Grow Your Network
             </p>
 

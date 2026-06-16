@@ -36,7 +36,7 @@ The Caelo codebase has a two-layer color system:
   formula below, and its Web code syntax must be `var(--color-...)`. Do not choose a different
   semantic merely because it resolves to the same hex value.
 - Figma node bindings must also use the same semantic role as localhost. Do not bind by matching
-  the resolved color only. For example, if localhost says `color: var(--color-text-sticky-nav-text)`,
+  the resolved color only. For example, if localhost says `color: var(--color-tertiery)`,
   the Figma text/icon must bind to `color/text/sticky/nav/text`, even if another semantic resolves
   to the same hex.
 
@@ -49,9 +49,9 @@ Figma path (02 Semantic)     →  CSS custom property (WEB code syntax)
 mono/700                     →  var(--mono-700)
 brand/500                    →  var(--brand-500)
 raw/brand/cam                →  var(--raw-brand-cam)
-color/surface/base           →  var(--color-surface-base)
+color/surface/base           →  var(--color-tertiery)
 color/sticky/nav             →  var(--color-sticky-nav)
-color/text/sticky/nav/text     →  var(--color-text-sticky-nav-text)
+color/text/sticky/nav/text     →  var(--color-tertiery)
 color/text/primary/card/title  →  var(--color-text-primary-card-title)
 ```
 

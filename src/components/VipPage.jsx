@@ -126,7 +126,7 @@ export default function VipPage({ authUser }) {
     const showBannerCta = !authUser;
 
     return (
-        <main className="vip-page w-full bg-[var(--color-surface-base)] pb-14">
+        <main className="vip-page w-full bg-[var(--color-tertiery)] pb-14">
             <section className="w-full pt-5 md:pt-7">
                 <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8">
                     <div className="page-hero-banner">
@@ -151,7 +151,7 @@ export default function VipPage({ authUser }) {
                                 {showBannerCta && (
                                     <a
                                         href="/register"
-                                        className="btn-theme-cta mt-2 inline-flex h-9 min-w-[150px] items-center justify-center rounded-[10px] px-5 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-text-cta-inverse)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface-mid-container)] md:mt-6 md:h-14 md:min-w-[240px] md:px-12 md:text-lg"
+                                        className="btn-theme-cta mt-2 inline-flex h-9 min-w-[150px] items-center justify-center rounded-[10px] px-5 text-xs font-bold transition hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface-mid-container)] md:mt-6 md:h-14 md:min-w-[240px] md:px-12 md:text-lg"
                                         aria-label="Join VIP now"
                                     >
                                         JOIN NOW
@@ -166,7 +166,7 @@ export default function VipPage({ authUser }) {
             <section className="mx-auto mt-4 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
                 <div className="soft-blue-panel rounded-[28px] p-4 shadow-[var(--shadow-card-raised)] md:p-6">
                     <div>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-base)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-text-title)] shadow-[var(--shadow-subtle)]">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-tertiery)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--color-primary)] shadow-[var(--shadow-subtle)]">
                             <Crown size={14} className="text-[var(--color-accent)]" />
                             VIP Club
                         </span>
@@ -182,7 +182,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-title)]">Starting Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-primary)]">Starting Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">Normal</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
@@ -193,7 +193,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-title)]">Top Reward Tier</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-primary)]">Top Reward Tier</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">Diamond</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-1.5 shadow-[var(--shadow-subtle)]">
@@ -204,7 +204,7 @@ export default function VipPage({ authUser }) {
                         <div className="surface-card rounded-2xl px-4 py-4 md:px-5 sm:col-span-2 lg:col-span-1">
                             <div className="flex items-center justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-title)]">Member Support</p>
+                                    <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-primary)]">Member Support</p>
                                     <p className="mt-1.5 text-xl font-bold text-[var(--color-text-primary)]">24 / 7</p>
                                 </div>
                                 <div className="shrink-0 rounded-full border border-[var(--color-accent-glow)] bg-[var(--color-surface-subtle)] p-2 shadow-[var(--shadow-subtle)]">
@@ -237,7 +237,7 @@ export default function VipPage({ authUser }) {
             </section>
 
             <section className="mx-auto mt-5 w-full max-w-screen-2xl px-4 md:mt-6 md:px-8">
-                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] p-5 shadow-[var(--shadow-live-card)]">
+                <div className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-5 shadow-[var(--shadow-live-card)]">
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <p className="text-xl font-bold text-[var(--color-text-primary)] md:text-2xl">VIP Highlights</p>

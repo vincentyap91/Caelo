@@ -58,7 +58,7 @@ export default function MyBetsPage() {
                                     aria-hidden="true"
                                     onClick={() => setDateDropdownOpen(false)}
                                 />
-                                <div className="absolute left-0 top-full z-20 mt-1 min-w-[180px] rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] py-2 shadow-lg">
+                                <div className="absolute left-0 top-full z-20 mt-1 min-w-[180px] rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] py-2 shadow-lg">
                                     {dateRangeOptions.map((opt) => (
                                         <button
                                             key={opt}
@@ -68,7 +68,7 @@ export default function MyBetsPage() {
                                                 setDateDropdownOpen(false);
                                             }}
                                             className={`w-full px-4 py-2.5 text-left text-sm font-medium ${
-                                                dateRange === opt ? 'bg-[var(--color-accent-pale)] text-[var(--color-button-hover)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-cool-light)]'
+                                                dateRange === opt ? 'bg-[var(--color-accent-pale)] text-[var(--color-secondary)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-cool-light)]'
                                             }`}
                                         >
                                             {opt}
@@ -86,10 +86,10 @@ export default function MyBetsPage() {
                             aria-checked={setAsDefault}
                             onClick={() => setSetAsDefault((v) => !v)}
                             className={`flex h-5 w-5 items-center justify-center rounded border-2 transition ${
-                                setAsDefault ? 'border-[var(--color-success)] bg-[var(--color-success)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]'
+                                setAsDefault ? 'border-[var(--color-success)] bg-[var(--color-success)]' : 'border-[var(--color-border-subtle)] bg-[var(--color-tertiery)]'
                             }`}
                         >
-                            {setAsDefault && <Check size={12} className="text-[var(--color-text-card-text)]" strokeWidth={3} />}
+                            {setAsDefault && <Check size={12} className="text-[var(--color-tertiery)]" strokeWidth={3} />}
                         </button>
                         <span className="text-sm font-medium text-[var(--color-text-secondary)]">Set this search as Default</span>
                     </label>
@@ -98,7 +98,7 @@ export default function MyBetsPage() {
                 <div className="surface-card flex min-h-[320px] flex-col items-center justify-center rounded-2xl p-12">
                     <div className="relative">
                         <ReceiptText size={64} className="text-[var(--color-text-soft)]" strokeWidth={1.5} />
-                        <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-text-soft)] text-xs font-bold text-[var(--color-text-card-text)]">
+                        <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-text-soft)] text-xs font-bold text-[var(--color-tertiery)]">
                             1
                         </span>
                     </div>
