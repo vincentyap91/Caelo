@@ -555,7 +555,7 @@ function RewardSummaryCard({ reward, onClaim }) {
                 </div>
                 <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-subtle)] p-3.5 sm:p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">Unclaimed</p>
-                    <p className="mt-1.5 text-base font-bold text-[var(--color-text-accent)] sm:text-base md:text-lg">
+                    <p className="mt-1.5 text-base font-bold text-[var(--color-accent)] sm:text-base md:text-lg">
                         {formatReferralMoney(reward.currency, reward.unclaimed)}
                     </p>
                 </div>
@@ -602,7 +602,7 @@ function rewardStatusClassName(status) {
     }
 
     if (status === 'Unclaimed') {
-        return 'bg-[color-mix(in_srgb,var(--color-text-accent)_16%,white)] text-[var(--color-text-accent)]';
+        return 'bg-[color-mix(in_srgb,var(--color-accent)_16%,white)] text-[var(--color-accent)]';
     }
 
     return 'bg-[var(--color-surface-subtle)] text-[var(--color-text-muted)]';
@@ -643,7 +643,7 @@ function RewardHistoryTable({ rows, rewardType }) {
                             className="border-b border-[var(--color-border-subtle)] transition hover:bg-[var(--color-surface-subtle)]"
                         >
                             <td className="px-4 py-3.5 font-medium text-[var(--color-text-primary)]">{row.date}</td>
-                            <td className="px-4 py-3.5 text-right font-semibold text-[var(--color-text-accent)]">{row.amount}</td>
+                            <td className="px-4 py-3.5 text-right font-semibold text-[var(--color-accent)]">{row.amount}</td>
                             <td className="px-4 py-3.5 text-center">
                                 <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${rewardStatusClassName(row.status)}`}>
                                     {row.status}

@@ -493,7 +493,7 @@ export default function Navbar({
                                         aria-label="My profile"
                                     >
                                         <UserRound size={16} className="shrink-0 text-[var(--color-tertiery)]" strokeWidth={2.25} />
-                                        <span className="truncate text-xs font-bold text-[var(--color-text-accent)]">
+                                        <span className="truncate text-xs font-bold text-[var(--color-accent)]">
                                             {authUser.name}
                                         </span>
                                         <span className="top-sticky-profile-badge shrink-0 rounded px-1 py-0.5 text-[9px] font-bold leading-none uppercase">
