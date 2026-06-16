@@ -402,7 +402,7 @@
   --color-surface-overlay-dark:              #2d2d2d;
   --color-surface-overlay-light:             #ffffff66;
   --color-surface-pale-blue:                 #f0f9ff;
-  --color-surface-panel:                     #f0f9ff;
+  --color-surface-panel:                     #E6F3FB;
   --color-surface-panel-border:              #2e9e3c;
   --color-surface-primary-shape:             #2e9e3c;
   --color-surface-qrcode:                    #ffffff;
@@ -673,7 +673,7 @@
   --color-gradient-button-chat-start:  #3b82f6;
   --color-gradient-button-chat-end:    #8b5cf6;
   --color-gradient-button-chat:        linear-gradient(90deg, var(--color-gradient-button-chat-start) 0%, var(--color-gradient-button-chat-end) 100%);
-  --color-gradient-card-brand-start:         #eaf0ff;
+  --color-gradient-card-brand-start:         #e6f3fb;
   --color-gradient-card-brand-end:           #ecf1f9;
   --color-gradient-card-brand:               linear-gradient(180deg, var(--raw-gradient-live-page-start) 0%, var(--raw-gradient-live-page-mid) 36%, var(--raw-gradient-live-page-end) 100%);
   --color-gradient-check-in-card-start:      #2e9e3c;
