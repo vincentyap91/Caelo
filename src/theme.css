@@ -308,7 +308,7 @@
   --color-text-sports-primary:               #ffffff;
   --color-text-sticky-nav-active:            #ffd84d;
   --color-text-sticky-nav-text:              #ffffffe5;
-  --color-text-sub:                          #032ea1;
+  --color-text-sub:                          #2563eb;
   --color-text-sub-highlight:                #d4af37;
   --color-text-sub-title:                    #000000;
   --color-text-subtle:                       #475569;
@@ -407,7 +407,7 @@
   --color-surface-primary-shape:             #2e9e3c;
   --color-surface-qrcode:                    #ffffff;
   --color-surface-referral-card:             #b0baed;
-  --color-surface-referral-input:            #f1f1f1;
+  --color-surface-referral-input:            #f8fafc;
   --color-surface-rtp-card:                  #1a4bb8;
   --color-surface-rtp-secondary-card:        #dbeafe;
   --color-surface-rtp-secondary-card-text:   #1d4ed8;
@@ -510,8 +510,8 @@
   --color-button-pagination:                 #ffffff;
   --color-button-pagination-arrow:           #0d2a6a;
   --color-button-pagination-disabled:        #64748b;
-  --color-button-referral-cta:               #032ea1;
-  --color-button-referral-cta-text:          #ffffff;
+  --color-button-referral-cta:               #ffb22d;
+  --color-button-referral-cta-text:          #432800;
   --color-button-referral-hub-share:          #ff4d00;
   --color-button-referral-hub-share-text:    #ffffff;
   --color-button-referral-hub-secondary:      #123b94;
@@ -521,7 +521,7 @@
   --color-border-sidenav-tier-badge:         #f0bb3d;
   --color-surface-sidenav-icon:              #f0f9ff;
   --color-border-sidenav-item-hover:         #dbeafe;
-  --color-surface-sidenav-subitem-hover:     #f4fbff;
+  --color-surface-sidenav-subitem-hover:     #d9f1ff;
   --color-button-sidenav-live-chat:          #123b94;
   --color-button-sidenav-live-chat-text:     #ffffff;
   --color-button-sidenav-secondary:          #ffffff;
@@ -545,8 +545,8 @@
   --color-progress-bar-fill:                 #123b94;
 
   /* success */
-  --color-success:                           #39b54a;
-  --color-success-light:                     #67c667;
+  --color-success:                           #16a34a;
+  --color-success-light:                     #e4f8ec;
   --color-success-lime-bright:               #4abd20;
   --color-success-lime-deep:                 #63941e;
   --color-success-lime-medium:               #79b12b;
