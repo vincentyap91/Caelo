@@ -362,36 +362,14 @@
     background-image: var(--color-gradient-slot-panel);
   }
 
-  .slots-page .slots-browse-summary-label {
-    --color-primary: var(--color-text-secondary);
-  }
-
-  .slots-page .slots-browse-summary-value {
-    --color-text-primary: var(--color-surface-accent);
-  }
-
   .slots-page .slots-browse-summary-card,
   .slots-page .slot-current-promo__card {
-    --color-surface: var(--color-surface-base);
     background-image: var(--color-gradient-wallet-panel);
   }
 
-  .slots-page .slot-current-promo {
-    --color-primary: var(--color-surface-accent);
-    --color-progress-bar-bg: var(--brand-500-soft);
-    --color-progress-bar-fill: var(--brand-500);
-  }
 
-  .slots-page .slot-current-promo__eyebrow {
-    --color-text-primary: var(--color-text-muted);
-  }
-
-  .slots-page .slot-current-promo__card {
-    --color-primary: var(--color-surface-accent);
-  }
 
   .slots-page .slot-current-promo .btn-theme-cta-fourth {
-    --color-button-cta-fourth-text: var(--color-primary);
     color: var(--color-primary);
     background-color: transparent;
     background-image: var(--color-gradient-button-cta);
