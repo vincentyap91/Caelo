@@ -289,7 +289,7 @@
   --color-text-light:                        #ffffff;
   --color-text-link:                         #123b94;
   --color-text-link-danger:                  #f8d840;
-  --color-text-link-inverse:                 #ffffff;
+  --color-text-link-inverse:                 #000000;
   --color-text-mid:                          #565656;
   --color-text-mid-alt:                      #676767;
   --color-text-mid-neutral:                  #878787;
@@ -329,7 +329,7 @@
   --color-surface-card-dark:                 #424242;
   --color-surface-card-light:                #d6dbf5;
   --color-surface-cat-navigation:            #282828;
-  --color-surface-chatbox:                   #282828;
+  --color-surface-chatbox:                   #F3F3FF;
   --color-surface-check-in-cell:             #454545;
   --color-surface-check-in-cell-active:      #0d2a6a;
   --color-surface-check-in-cell-inactive:    #647ca2;
@@ -482,7 +482,7 @@
   --color-button-cta-arrow-selected:         #ffffff;
   --color-button-cta-category:               #0d2a6a;
   --color-button-cta-category-text:          #123b94;
-  --color-button-cta-fifth:                  #222222;
+  --color-button-cta-fifth:                  #123B94;
   --color-button-cta-fifth-text:             #ffffff;
   --color-button-cta-fourth:                 #ffd84d;
   --color-button-cta-fourth-text:            #000000;
@@ -498,7 +498,7 @@
   --color-button-dashboard-primary-start:    #123b94;
   --color-button-disabled:                   #0d2a6a;
   --color-button-dot:                        #123b94;
-  --color-button-hover:                      #0d2a6a;
+  --color-button-hover:                      #D9F1FF;
   --color-button-hover-text:                 #123b94;
   --color-button-lang-border:                #5d5d5d;
   --color-button-lang-icon:                  #ffffff;
@@ -640,7 +640,10 @@
   --color-secondary-tag-text:                #1d4ed8;
 
    /* tertiery */
-   --color-tertiery: #ffffff;   
+   --color-tertiery:                         #ffffff;
+
+   /* Fourth */
+   --color-fourth:                           #2563EB
 
   /* social */
   --color-social-facebook:                   #1877f2;

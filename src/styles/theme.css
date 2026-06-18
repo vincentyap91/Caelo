@@ -3816,7 +3816,7 @@
 
   .sidenav-item {
     border: 1px solid var(--color-border-subtle);
-    background-color: var(--color-button-nav);
+    background-color: var(--color-tertiery);
     color: var(--color-primary);
     box-shadow: var(--shadow-input);
     transition:
@@ -3857,7 +3857,7 @@
 
   .sidenav-group {
     border-color: var(--color-border-subtle);
-    background-color: var(--color-button-nav);
+    background-color: var(--color-tertiery);
   }
 
   .sidenav-group--active {
