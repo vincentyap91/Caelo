@@ -292,7 +292,7 @@
   --color-text-link-inverse:                 #000000;
   --color-text-mid:                          #565656;
   --color-text-mid-alt:                      #676767;
-  --color-text-mid-neutral:                  #878787;
+  --color-text-mid-neutral:                 #878787;
   --color-text-muted:                        #64748b;
   --color-text-placeholder:                  #64748b;
   --color-text-primary:                      #0f172a;
@@ -558,7 +558,7 @@
 
   /* danger */
   --color-danger:                            #ff5b2e;
-  --color-danger-accent:                     #532320;
+  --color-danger-accent:                    #532320;
   --color-danger-deep:                       #fff2ee;
   --color-danger-maroon:                     #532320;
   --color-danger-negative:                   #ff6341;
