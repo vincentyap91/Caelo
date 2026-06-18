@@ -96,7 +96,7 @@ export default function RecentPayoutSection({ onNavigate, payouts = MOCK_RECENT_
     return (
         <section aria-label="Recent payout" className="w-full">
             <div
-                className={`recent-payout-section ${RECENT_PAYOUT_PANEL_CLASS} border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] p-6 [box-shadow:var(--color-effect-glow)]`}
+                className={`recent-payout-section ${RECENT_PAYOUT_PANEL_CLASS} border border-[var(--color-border-brand)] bg-[var(--color-surface-base)] p-6 [box-shadow:var(--color-effect-glow)]`}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
                 onFocusCapture={() => setIsPaused(true)}

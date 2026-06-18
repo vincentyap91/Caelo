@@ -23,7 +23,7 @@ export const CATEGORY_NAV_ACTIVE_CLASS =
     'category-tab-item--active border border-[var(--color-border-subtle)] bg-[var(--color-surface-menu-active)] text-[var(--color-tertiery)] ring-1 ring-white/10';
 
 const MOBILE_SIDEBAR_INACTIVE_CLASS =
-    'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-primary)] shadow-sm';
+    'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-primary)] shadow-sm hover:bg-[var(--color-secondary)] hover:text-[var(--color-tertiery)]';
 
 const DESKTOP_TAB_INACTIVE_CLASS =
     'category-tab-item border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-primary)] shadow-sm hover:bg-[var(--color-secondary)] hover:text-[var(--color-tertiery)]';
@@ -44,15 +44,15 @@ export function GameCategoryNavItem({
             type="button"
             onClick={() => onSelect?.(category)}
             className={`${vertical
-                    ? 'flex min-h-11 flex-col items-center justify-center gap-1 rounded-xl px-1 py-2 text-center'
-                    : 'flex shrink-0 flex-row items-center justify-center gap-2 rounded-xl px-3 py-2 text-left'
+                    ? 'group flex min-h-11 flex-col items-center justify-center gap-1 rounded-xl px-1 py-2 text-center'
+                    : 'group flex shrink-0 flex-row items-center justify-center gap-2 rounded-xl px-3 py-2 text-left'
                 } transition-all ${active ? CATEGORY_NAV_ACTIVE_CLASS : inactiveClass}`}
             aria-pressed={active}
         >
             <Icon
                 size={vertical ? 18 : 20}
                 strokeWidth={active ? 2.5 : 2}
-                className={`shrink-0 ${active ? 'text-[var(--color-tertiery)]' : 'text-[var(--color-primary)]'}`}
+                className={`shrink-0 ${active ? 'text-[var(--color-tertiery)]' : 'text-[var(--color-primary)] group-hover:text-[var(--color-tertiery)]'}`}
                 aria-hidden
             />
             <span

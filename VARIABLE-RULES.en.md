@@ -279,7 +279,7 @@ Sites do not reference these directly, but they help explain where `--color-*` r
 
 ```tsx
 // ✅ Semantic color from Riocity allowlist
-className="bg-[var(--color-tertiery)] text-[var(--color-text-primary)]"
+className="bg-[var(--color-surface-base)] text-[var(--color-text-primary)]"
 
 // ✅ Shared utility whose CSS already uses --color-* (preferred)
 className="btn-theme-cta-soft surface-card bg-gradient-promo-card"

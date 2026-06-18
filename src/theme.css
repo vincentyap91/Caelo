@@ -586,7 +586,7 @@
   --color-overlay-strong:                    #000000cc;
 
   /* muted */
-  --color-muted:                             #334155;
+  --color-muted:                             #929292;
 
   /* info */
   --color-info-icon:                         #123b94;
@@ -724,7 +724,7 @@
   --color-gradient-rank-third:               linear-gradient(90deg, var(--raw-gradient-rank-third-start) 0%, var(--raw-gradient-rank-third-end) 100%);
   --color-gradient-referral-card-start:      #d8f3ff;
   --color-gradient-referral-card-end:        #a6d7f2;
-  --color-gradient-referral-card:            linear-gradient(90deg, var(--brand-630) 0%, var(--brand-700) 100%);
+  --color-gradient-referral-card:            linear-gradient(90deg, #d8f3ff 0%, #a6d7f2 100%);
   --color-gradient-referral-commission-start: #c5eefd;
   --color-gradient-referral-commission-end:  #8ccbf0;
   --color-gradient-referral-commission:      linear-gradient(90deg, var(--brand-630) 0%, var(--brand-700) 100%);

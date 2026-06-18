@@ -411,7 +411,6 @@
 
   .slots-page .slots-game-card__rtp.rtp-label--pill,
   .slots-page .slots-game-card .rtp-label--pill {
-    --color-surface-rtp-secondary-card: var(--color-accent-glow);
     --color-surface-rtp-secondary-card-text: var(--color-button-hover);
     --color-border-brand: var(--raw-border-accent);
   }
@@ -2601,7 +2600,6 @@
 
   /* Game card RTP pill ? Cam88 names; Caelo values from legacy accent tokens (?13.11) */
   .rtp-label--pill {
-    --color-surface-rtp-secondary-card: var(--color-accent-pale);
     --color-surface-rtp-secondary-card-text: var(--color-button-hover);
     --color-border-brand: var(--raw-border-accent);
   }
@@ -3126,7 +3124,7 @@
   }
 
   .bg-gradient-promo-card-desktop {
-    background-image: var(--color-gradient-referral-commission);
+    background-image: var(--color-gradient-referral-card);
   }
 
   .bg-gradient-app-download-phone {

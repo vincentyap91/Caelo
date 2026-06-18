@@ -279,7 +279,7 @@ color/gradient/home/cta/start + end  →  --color-gradient-home-cta
 
 ```tsx
 // ✅ Riocity allowlist 的 semantic 色
-className="bg-[var(--color-tertiery)] text-[var(--color-text-primary)]"
+className="bg-[var(--color-surface-base)] text-[var(--color-text-primary)]"
 
 // ✅ 已在 CSS 里用 --color-* 的共享 utility（优先）
 className="btn-theme-cta-soft surface-card bg-gradient-promo-card"
