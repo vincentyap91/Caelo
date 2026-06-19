@@ -118,7 +118,7 @@ export default function LiveChatPage({ onNavigate, authUser }) {
                             <h2 className="text-[15px] font-bold text-[var(--color-tertiery)] leading-none">RioCity9 Support</h2>
                             <div className="mt-1 flex items-center gap-1.5">
                                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success-vivid)]"></span>
-                                <p className="text-[10px] font-bold text-[var(--color-text-light)] uppercase tracking-wide">SUPPORT ONLINE</p>
+                                <p className="text-[10px] font-bold text-[var(--color-tertiery)] uppercase tracking-wide">SUPPORT ONLINE</p>
                             </div>
                         </div>
                     </div>

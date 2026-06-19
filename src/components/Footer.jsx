@@ -31,21 +31,21 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
             <div className={`page-container relative z-10 flex flex-col gap-6 ${softerMobile ? 'max-md:gap-4' : ''}`}>
                 <div className="relative z-10 flex w-full flex-col items-center gap-8 md:flex-row md:items-start md:justify-between">
                     <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
-                        <div className="site-footer__logo-chip inline-flex items-center justify-center rounded-[18px] border border-[var(--color-border-line)]/20 bg-[var(--color-surface-base)] px-4 py-2.5 shadow-[var(--shadow-nav-pill)] md:rounded-[20px] md:px-5 md:py-3 md:translate-y-2">
+                        <div className="site-footer__logo-chip inline-flex items-center justify-center rounded-[18px] border border-[var(--color-border-line)]/20 bg-[var(--color-tertiery)] px-4 py-2.5 shadow-[var(--shadow-nav-pill)] md:rounded-[20px] md:px-5 md:py-3 md:translate-y-2">
                             <img
                                 src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp"
                                 alt="12WIN Logo"
                                 className="h-7 w-auto object-contain md:h-8"
                             />
                         </div>
-                        <p className="max-w-[28rem] text-xs font-semibold leading-relaxed tracking-wide text-[var(--color-text-footer)]">
+                        <p className="max-w-[28rem] text-xs font-semibold leading-relaxed tracking-wide text-[var(--color-tertiery)]">
                             12WIN offer wide range of highest quality gaming products to our players. Our Customer Support Team is available to assist you 24 hours a day. All personal information will be treated and stored at the strictest and most confidential way.
                         </p>
                     </div>
 
                     <div className="flex w-full flex-col items-center gap-6 md:w-auto md:items-end md:gap-5">
                         <div className="flex flex-col items-center gap-2.5 md:items-end">
-                            <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-footer)]">Payment Method</h4>
+                            <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)]">Payment Method</h4>
                             <FooterPaymentMethods />
                         </div>
 
@@ -56,14 +56,14 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                                         <button
                                             type="button"
                                             onClick={link.onClick}
-                                            className="text-xs font-bold text-[var(--color-text-light)] transition-colors hover:text-[var(--color-text-footer)]"
+                                            className="text-xs font-bold text-[var(--color-tertiery)] transition-colors hover:text-[var(--color-tertiery)]"
                                         >
                                             {link.label}
                                         </button>
                                     ) : (
                                         <a
                                             href={link.href}
-                                            className="text-xs font-bold text-[var(--color-text-light)] transition-colors hover:text-[var(--color-text-footer)]"
+                                            className="text-xs font-bold text-[var(--color-tertiery)] transition-colors hover:text-[var(--color-tertiery)]"
                                         >
                                             {link.label}
                                         </a>
@@ -83,7 +83,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                     }`}
                 >
                     <div className="flex flex-col items-center gap-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-footer)]">Certificated by</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)]">Certificated by</h4>
                         <div
                             className="flex max-w-full flex-wrap items-center justify-center gap-x-4 gap-y-3.5 px-1 sm:gap-x-5 sm:gap-y-4 md:gap-x-6"
                             role="list"
@@ -108,10 +108,10 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                     </div>
 
                     <div className="flex flex-col items-center gap-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-footer)]">Responsible Gaming</h4>
-                        <div className="flex items-center gap-4 text-[var(--color-text-light)] opacity-95">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full border-[2px] border-[var(--color-border-line)] text-lg font-bold text-[var(--color-text-light)]">18+</div>
-                            <div className="flex items-center gap-1 text-center text-xs font-bold leading-tight text-[var(--color-text-light)]">
+                        <h4 className="text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)]">Responsible Gaming</h4>
+                        <div className="flex items-center gap-4 text-[var(--color-tertiery)] opacity-95">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full border-[2px] border-[var(--color-border-line)] text-lg font-bold text-[var(--color-tertiery)]">18+</div>
+                            <div className="flex items-center gap-1 text-center text-xs font-bold leading-tight text-[var(--color-tertiery)]">
                                 Be<br />Gamble<br />Aware
                             </div>
                         </div>
@@ -119,7 +119,7 @@ export default function Footer({ onNavigate, onLiveChatClick, mobileVisualTone =
                 </div>
 
                 <div className="relative z-10 w-full pb-3 text-center">
-                    <p className="text-xs font-bold tracking-wide text-[var(--color-text-footer)]">
+                    <p className="text-xs font-bold tracking-wide text-[var(--color-tertiery)]">
                         Copyright 12WIN {'\u00A9'} 2026. All rights reserved.
                     </p>
                 </div>

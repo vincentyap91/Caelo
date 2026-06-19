@@ -8,7 +8,7 @@ export const WALLET_REBATE_BROWSE_PANEL_CLASS =
 
 /** Web_Slot - Cam88 (781:13837 / 903:25656) wallet / promo shell — semantic surface-base (§13.11). */
 export const SLOTS_BROWSE_PANEL_CLASS =
-    'slots-browse-panel rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
+    'slots-browse-panel rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
 
 /** Shared inner card shell for slots browse summary tiles (wallet, promo, etc.). */
 export const BROWSE_SUMMARY_CARD_SHELL_CLASS =

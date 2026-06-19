@@ -279,7 +279,7 @@ Sites do not reference these directly, but they help explain where `--color-*` r
 
 ```tsx
 // ✅ Semantic color from Riocity allowlist
-className="bg-[var(--color-surface-base)] text-[var(--color-text-primary)]"
+className="bg-[var(--color-tertiery)] text-[var(--color-text-primary)]"
 
 // ✅ Shared utility whose CSS already uses --color-* (preferred)
 className="btn-theme-cta-soft surface-card bg-gradient-promo-card"
@@ -593,8 +593,8 @@ Caelo keeps its existing footer layout (12WIN logo, payment row, About Us links,
 ```jsx
 /* ✅ Same footer element, Cam88 semantic name */
 <footer className="… bg-[var(--color-surface-low)] …">
-<p className="… text-[var(--color-text-footer)]">…</p>
-<button className="… text-[var(--color-text-light)] hover:text-[var(--color-text-footer)]">…</button>
+<p className="… text-[var(--color-tertiery)]">…</p>
+<button className="… text-[var(--color-tertiery)] hover:text-[var(--color-tertiery)]">…</button>
 
 /* ❌ Do not add Cam88-only UI */
 <nav data-name="Menu">…</nav>

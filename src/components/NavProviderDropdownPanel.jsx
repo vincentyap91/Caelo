@@ -36,7 +36,7 @@ export default function NavProviderDropdownPanel({ open = false, providers = [],
                                 ) : null}
 
                                 {provider.hot ? (
-                                    <span className="absolute right-2 top-2 rounded-full bg-[var(--color-danger)] px-2 py-0.5 text-xs font-bold tracking-wide text-[var(--color-text-card-text)] shadow-[var(--shadow-hot)]">
+                                    <span className="absolute right-2 top-2 rounded-full bg-[var(--color-danger)] px-2 py-0.5 text-xs font-bold tracking-wide text-[var(--color-tertiery)] shadow-[var(--shadow-hot)]">
                                         HOT
                                     </span>
                                 ) : null}

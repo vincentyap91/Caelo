@@ -279,7 +279,7 @@ color/gradient/home/cta/start + end  →  --color-gradient-home-cta
 
 ```tsx
 // ✅ Riocity allowlist 的 semantic 色
-className="bg-[var(--color-surface-base)] text-[var(--color-text-primary)]"
+className="bg-[var(--color-tertiery)] text-[var(--color-text-primary)]"
 
 // ✅ 已在 CSS 里用 --color-* 的共享 utility（优先）
 className="btn-theme-cta-soft surface-card bg-gradient-promo-card"
@@ -593,8 +593,8 @@ Caelo 保留现有 Footer 布局（12WIN logo、支付方式、About Us 链接�
 ```jsx
 /* ✅ 同一 Footer 元素，换 Cam88 semantic 名 */
 <footer className="… bg-[var(--color-surface-low)] …">
-<p className="… text-[var(--color-text-footer)]">…</p>
-<button className="… text-[var(--color-text-light)] hover:text-[var(--color-text-footer)]">…</button>
+<p className="… text-[var(--color-tertiery)]">…</p>
+<button className="… text-[var(--color-tertiery)] hover:text-[var(--color-tertiery)]">…</button>
 
 /* ❌ 不要加 Cam88 独有 UI */
 <nav data-name="Menu">…</nav>

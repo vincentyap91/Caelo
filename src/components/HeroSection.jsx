@@ -25,11 +25,11 @@ export default function HeroSection() {
             {/* Marquee row immediately under hero */}
             <div className="relative z-20 flex min-h-9 w-full items-center border-t border-[var(--color-border-brand)]/5 bg-[var(--color-primary)] py-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
                 <div className="mx-auto flex w-full max-w-screen-2xl items-center gap-2 px-3 md:gap-3 md:px-8">
-                    <div className="flex shrink-0 items-center justify-center text-[var(--color-text-card-text)]">
+                    <div className="flex shrink-0 items-center justify-center text-[var(--color-tertiery)]">
                         <Megaphone size={16} strokeWidth={2} className="opacity-95" aria-hidden />
                     </div>
                     <div className="relative flex min-h-8 flex-1 items-center overflow-hidden md:min-h-9">
-                        <div className="inline-block whitespace-nowrap animate-marquee text-xs font-medium text-[var(--color-text-sticky-nav-text)] will-change-transform">
+                        <div className="inline-block whitespace-nowrap animate-marquee text-xs font-medium text-[var(--color-tertiery)] will-change-transform">
                             Dear valued customer, we are upgrading our payment channels for faster deposits. Promotions and VIP rewards are available daily — play responsibly and enjoy your experience.
                         </div>
                     </div>

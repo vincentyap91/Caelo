@@ -112,8 +112,8 @@ function ScratchStyleRewardCard({
         : 'relative aspect-[16/10] bg-gradient-rewards-scratch';
 
     const badgeClass = isSpinWheel
-        ? 'absolute bottom-2 left-2 z-10 rounded bg-[var(--color-surface-card-dark)]/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-light)]'
-        : 'absolute bottom-2 left-2 z-10 rounded bg-[var(--color-surface-darkest)]/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-text-light)]';
+        ? 'absolute bottom-2 left-2 z-10 rounded bg-[var(--color-surface-card-dark)]/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)]'
+        : 'absolute bottom-2 left-2 z-10 rounded bg-[var(--color-surface-darkest)]/40 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[var(--color-tertiery)]';
 
     const titleClass = isSpinWheel
         ? 'spin-wheel-card-title font-bold text-[var(--color-primary)]'
@@ -177,7 +177,7 @@ function RewardsWalletBar({ balance, onRecordClick }) {
                 onClick={onRecordClick}
                 className="btn-theme-primary inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl px-6 text-sm font-bold shadow-sm transition hover:scale-[1.02] sm:min-w-[148px]"
             >
-                <History size={18} strokeWidth={2.5} className="shrink-0 text-[var(--color-text-light)]" aria-hidden />
+                <History size={18} strokeWidth={2.5} className="shrink-0 text-[var(--color-tertiery)]" aria-hidden />
                 Record
             </button>
         </div>
@@ -263,7 +263,7 @@ function SpinWheelPanel({ guestPreview = false, onLoginClick }) {
                             variant="spin-wheel"
                             badge="Spin"
                             heroCenter={
-                                <span className="text-4xl font-bold text-[var(--color-text-light)] drop-shadow-lg">
+                                <span className="text-4xl font-bold text-[var(--color-tertiery)] drop-shadow-lg">
                                     RM {s.value}
                                 </span>
                             }
@@ -337,12 +337,12 @@ function PrizeBoxPanel({ guestPreview = false, onLoginClick }) {
                             key={item.id}
                             badge="Prize"
                             metaTopLeft={
-                                <span className="rounded-md bg-[var(--color-surface-darkest)]/45 px-2 py-1 text-xs font-bold text-[var(--color-text-light)] backdrop-blur-sm">
+                                <span className="rounded-md bg-[var(--color-surface-darkest)]/45 px-2 py-1 text-xs font-bold text-[var(--color-tertiery)] backdrop-blur-sm">
                                     Reward #{item.id}
                                 </span>
                             }
                             metaTopRight={
-                                <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border-brand)]/25 bg-[var(--color-surface-darkest)]/40 px-2.5 py-1 text-xs font-semibold text-[var(--color-text-light)] backdrop-blur-sm">
+                                <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border-brand)]/25 bg-[var(--color-surface-darkest)]/40 px-2.5 py-1 text-xs font-semibold text-[var(--color-tertiery)] backdrop-blur-sm">
                                     <Clock size={11} className="shrink-0 opacity-90" />
                                     {item.expires}
                                 </span>
