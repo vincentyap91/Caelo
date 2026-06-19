@@ -14,7 +14,7 @@ export default function RtpLabel({ value, className = '', variant = 'pill', comp
     if (variant === 'footer') {
         return (
             <span
-                className={`inline-flex items-center justify-center gap-1 text-xs font-medium leading-tight text-[var(--color-surface-rtp-secondary-card-text)] ${className}`.trim()}
+                className={`inline-flex items-center justify-center gap-1 text-xs font-medium leading-tight text-[var(--color-tertiery)] ${className}`.trim()}
             >
                 <span className="font-normal opacity-75">RTP:</span>
                 <span>{value.toFixed(2)}%</span>
