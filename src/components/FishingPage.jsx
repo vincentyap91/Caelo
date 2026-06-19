@@ -113,7 +113,7 @@ export default function FishingPage({ onNavigate }) {
                                 className={`slots-provider-tab relative flex h-14 min-w-[calc((100%-0.5rem)/2.35)] shrink-0 items-center justify-center rounded-2xl border-2 px-2 shadow-[var(--shadow-card-soft)] transition sm:min-w-[calc((100%-0.75rem)/3.35)] md:h-16 md:min-w-[calc((100%-1rem)/4.35)] lg:min-w-[calc((100%-2rem)/5.6)] xl:min-w-[calc((100%-3rem)/7.6)] ${
                                     isActive
                                         ? 'slots-provider-tab--active border-[var(--color-border-tabs)] bg-[var(--color-button-tabs)] ring-2 ring-[var(--color-primary)]/30'
-                                        : 'border-[var(--color-border-tabs)] bg-[var(--color-surface)] hover:border-[var(--color-border-brand)]'
+                                        : 'border-[var(--color-border-tabs)] bg-[var(--color-tertiery)] hover:border-[var(--color-border-brand)]'
                                 }`}
                             >
                                 {(provider.featured || provider.new) && (

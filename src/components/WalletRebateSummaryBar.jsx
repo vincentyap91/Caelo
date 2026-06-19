@@ -8,7 +8,7 @@ export const WALLET_REBATE_BROWSE_PANEL_CLASS =
 
 /** Web_Slot - Cam88 (781:13837 / 903:25656) wallet / promo shell — semantic surface-base (§13.11). */
 export const SLOTS_BROWSE_PANEL_CLASS =
-    'slots-browse-panel rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
+    'slots-browse-panel rounded-[24px] border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)] px-2.5 py-2 shadow-[var(--shadow-live-card)] backdrop-blur-sm md:px-4 md:py-4';
 
 /** Shared inner card shell for slots browse summary tiles (wallet, promo, etc.). */
 export const BROWSE_SUMMARY_CARD_SHELL_CLASS =
@@ -16,7 +16,7 @@ export const BROWSE_SUMMARY_CARD_SHELL_CLASS =
 
 /** Cam88 Web_Slot inner summary tiles — `--color-surface` card shell (§13.11). */
 export const SLOTS_BROWSE_SUMMARY_CARD_SHELL_CLASS =
-    'slots-browse-summary-card rounded-[var(--radius-panel)] border border-[var(--color-border-subtle)] bg-[var(--color-surface)] shadow-[var(--shadow-subtle)]';
+    'slots-browse-summary-card rounded-[var(--radius-panel)] border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] shadow-[var(--shadow-subtle)]';
 
 export const BROWSE_SUMMARY_CARD_COMPACT_CLASS =
     'min-h-[56px] px-2.5 py-2.5 sm:min-h-[68px] sm:px-3.5 sm:py-3';
