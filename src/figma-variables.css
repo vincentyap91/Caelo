@@ -138,22 +138,22 @@
   /* Generated gradient composites */
   --color-button-cta: linear-gradient(90deg, var(--color-button-cta-start) 0%, var(--color-button-cta-end) 100%);
   --color-gradient-app-download-button: linear-gradient(90deg, var(--color-gradient-app-download-button-start) 0%, var(--color-gradient-app-download-button-end) 100%);
-  --color-gradient-button-cta: linear-gradient(90deg, var(--color-gradient-button-cta-start) 0%, var(--color-gradient-button-cta-end) 100%);
-  --color-gradient-card-brand: linear-gradient(90deg, var(--color-gradient-card-brand-start) 0%, var(--color-gradient-card-brand-end) 100%);
-  --color-gradient-countdown-panel: linear-gradient(90deg, var(--color-gradient-countdown-panel-start) 0%, var(--color-gradient-countdown-panel-end) 100%);
-  --color-gradient-countdown: linear-gradient(90deg, var(--color-gradient-countdown-start) 0%, var(--color-gradient-countdown-end) 100%);
+  --color-gradient-button-cta: linear-gradient(180deg, var(--color-gradient-button-cta-start) 0%, var(--color-gradient-button-cta-end) 100%);
+  --color-gradient-card-brand: linear-gradient(180deg, var(--color-gradient-card-brand-start) 0%, var(--color-gradient-card-brand-end) 100%);
+  --color-gradient-countdown-panel: linear-gradient(135deg, var(--color-gradient-countdown-panel-start) 0%, var(--color-gradient-countdown-panel-end) 100%);
+  --color-gradient-countdown: linear-gradient(180deg, var(--color-gradient-countdown-start) 0%, var(--color-gradient-countdown-end) 100%);
   --color-gradient-cta: linear-gradient(90deg, var(--color-gradient-cta-start) 0%, var(--color-gradient-cta-end) 100%);
   --color-gradient-home-cta: linear-gradient(90deg, var(--color-gradient-home-cta-start) 0%, var(--color-gradient-home-cta-end) 100%);
-  --color-gradient-home-dashboard: linear-gradient(90deg, var(--color-gradient-home-dashboard-start) 0%, var(--color-gradient-home-dashboard-end) 100%);
-  --color-gradient-home-highlight: linear-gradient(90deg, var(--color-gradient-home-highlight-start) 0%, var(--color-gradient-home-highlight-end) 100%);
-  --color-gradient-home-muted: linear-gradient(90deg, var(--color-gradient-home-muted-start) 0%, var(--color-gradient-home-muted-end) 100%);
-  --color-gradient-logout: linear-gradient(90deg, var(--color-gradient-logout-start) 0%, var(--color-gradient-logout-end) 100%);
-  --color-gradient-membership-tier: linear-gradient(90deg, var(--color-gradient-membership-tier-start) 0%, var(--color-gradient-membership-tier-end) 100%);
-  --color-gradient-menu-brand: linear-gradient(90deg, var(--color-gradient-menu-brand-start) 0%, var(--color-gradient-menu-brand-end) 100%);
+  --color-gradient-home-dashboard: linear-gradient(180deg, var(--color-gradient-home-dashboard-start) 0%, var(--color-gradient-home-dashboard-end) 100%);
+  --color-gradient-home-highlight: linear-gradient(180deg, var(--color-gradient-home-highlight-start) 0%, var(--color-gradient-home-highlight-end) 100%);
+  --color-gradient-home-muted: linear-gradient(180deg, var(--color-gradient-home-muted-start) 0%, var(--color-gradient-home-muted-end) 100%);
+  --color-gradient-logout: linear-gradient(180deg, var(--color-gradient-logout-start) 0%, var(--color-gradient-logout-end) 100%);
+  --color-gradient-membership-tier: linear-gradient(180deg, var(--color-gradient-membership-tier-start) 0%, var(--color-gradient-membership-tier-end) 100%);
+  --color-gradient-menu-brand: linear-gradient(180deg, var(--color-gradient-menu-brand-start) 0%, var(--color-gradient-menu-brand-end) 100%);
   --color-gradient-referral-card: linear-gradient(90deg, var(--color-gradient-referral-card-start) 0%, var(--color-gradient-referral-card-end) 100%);
-  --color-gradient-rewards-scratch: linear-gradient(90deg, var(--color-gradient-rewards-scratch-start) 0%, var(--color-gradient-rewards-scratch-end) 100%);
+  --color-gradient-rewards-scratch: linear-gradient(145deg, var(--color-gradient-rewards-scratch-start) 0%, var(--color-gradient-rewards-scratch-end) 100%);
   --color-gradient-sports-card: linear-gradient(90deg, var(--color-gradient-sports-card-start) 0%, var(--color-gradient-sports-card-end) 100%);
-  --color-gradient-sticky-nav-pill-hover: linear-gradient(90deg, var(--color-gradient-sticky-nav-pill-hover-start) 0%, var(--color-gradient-sticky-nav-pill-hover-end) 100%);
-  --color-gradient-sticky-nav-pill: linear-gradient(90deg, var(--color-gradient-sticky-nav-pill-start) 0%, var(--color-gradient-sticky-nav-pill-end) 100%);
+  --color-gradient-sticky-nav-pill-hover: linear-gradient(180deg, var(--color-gradient-sticky-nav-pill-hover-start) 0%, var(--color-gradient-sticky-nav-pill-hover-end) 100%);
+  --color-gradient-sticky-nav-pill: linear-gradient(180deg, var(--color-gradient-sticky-nav-pill-start) 0%, var(--color-gradient-sticky-nav-pill-end) 100%);
   --color-gradient-tag: linear-gradient(90deg, var(--color-gradient-tag-start) 0%, var(--color-gradient-tag-end) 100%);
 }
