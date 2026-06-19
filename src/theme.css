@@ -229,6 +229,7 @@
   /* site-tunable app shell (override values per brand below --color-table-highlight) */
 
   /* color â€” Riocity semantic names (Caelo values resolve from overrides below) */
+  --color-button-cta: linear-gradient(90deg, var(--color-button-start) 0%, var(--color-button-end) 100%);
   --color-button-cta-end: #ffb22d;
   --color-button-cta-start: #ffcf4a;
 
@@ -494,6 +495,7 @@
   --color-button-cta-secondary-text:         #ffffff;
   --color-button-cta-tertiary:               #333333;
   --color-button-cta-tertiary-text:          #ffffff;
+  --color-button-dashboard-primary:          linear-gradient(90deg, var(--color-button-dashboard-primary-start) 0%, var(--color-button-dashboard-primary-end) 100%);
   --color-button-dashboard-primary-end:      #123b94;
   --color-button-dashboard-primary-start:    #123b94;
   --color-button-disabled:                   #0d2a6a;
@@ -691,6 +693,7 @@
   --color-gradient-check-in-reward:          linear-gradient(90deg, var(--color-gradient-check-in-reward-start) 0%, var(--color-gradient-check-in-reward-end) 100%);
 
   /* missing start/end for color/gradient/dashboard/button/brand */
+  --color-gradient-cta:                      linear-gradient(90deg, var(--color-gradient-cta-start) 0%, var(--color-gradient-cta-end) 100%);
   --color-gradient-cta-start:                #48c8f0;
   --color-gradient-cta-end:                  #123b94;
   --color-gradient-dashboard-warm-start:     #fc8448;
@@ -715,6 +718,7 @@
   --color-gradient-home-muted-start:         #ffffff;
   --color-gradient-home-muted-end:           #f8fbff;
   --color-gradient-home-muted:               linear-gradient(180deg, var(--color-gradient-home-muted-start) 0%, var(--color-gradient-home-muted-end) 100%);
+  --color-gradient-logout:                   linear-gradient(180deg, var(--color-gradient-logout-start) 0%, var(--color-gradient-logout-end) 100%);
   --color-gradient-logout-start:             #fff5f6;
   --color-gradient-logout-end:               #fce8ec;
   --color-gradient-rank-first-start:         #ffde8d;
@@ -787,7 +791,7 @@
   /* table */
 
   /* table */
-  --color-table-highlight: var(--color-gradient-table);
+  --color-table-highlight:  linear-gradient(180deg, var(--color-table-highlight-start) 0%, var(--color-table-highlight-end) 100%);;
 
   /* ---------------------------------------------------------------------------
      Caelo primitive overrides â€” RioCity9 export retuned for blue/light site
