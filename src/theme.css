@@ -645,7 +645,7 @@
    --color-tertiery:                         #ffffff;
 
    /* Fourth */
-   --color-fourth:                           #2563EB
+   --color-fourth:                           #2563EB;
 
   /* social */
   --color-social-facebook:                   #1877f2;
@@ -791,7 +791,7 @@
   /* table */
 
   /* table */
-  --color-table-highlight:  linear-gradient(180deg, var(--color-table-highlight-start) 0%, var(--color-table-highlight-end) 100%);;
+  --color-table-highlight:  linear-gradient(180deg, var(--color-table-highlight-start) 0%, var(--color-table-highlight-end) 100%);
 
   /* ---------------------------------------------------------------------------
      Caelo primitive overrides â€” RioCity9 export retuned for blue/light site
