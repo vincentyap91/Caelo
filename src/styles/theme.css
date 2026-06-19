@@ -1574,20 +1574,6 @@
    * color/surface/menu/active → transparent so gradient shows through JSX bg layer
    * color/button/cta/tertiary/text → active icon + label (white)
    */
-  .home-category-tabs {
-    --color-surface-cat-navigation: transparent;
-    --color-button-nav-text: var(--color-text-primary);
-    --color-button-hover: var(--color-surface-subtle);
-    --color-button-hover-text: var(--color-text-primary);
-    --color-surface-input-light: var(--color-primary);
-    --color-surface-menu-active: transparent;
-    --color-button-cta-tertiary-text: var(--color-tertiery);
-    --color-gradient-home-cta: linear-gradient(
-      270deg,
-      var(--raw-gradient-home-cta-start) 0%,
-      var(--raw-gradient-home-cta-end) 100%
-    );
-  }
 
   .home-category-tabs .category-tab-item--active {
     border: 1px solid color-mix(in srgb, var(--color-tertiery) 28%, transparent);
