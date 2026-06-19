@@ -389,7 +389,7 @@
 
   .slots-page .slots-game-card__rtp.rtp-label--pill,
   .slots-page .slots-game-card .rtp-label--pill {
-    --color-surface-rtp-secondary-card-text: var(--color-button-hover);
+    --color-surface-rtp-secondary-card-text: var(--color-surface-accent);
     --color-border-brand: var(--raw-border-accent);
   }
 

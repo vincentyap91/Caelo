@@ -25,7 +25,7 @@ export default function RtpLabel({ value, className = '', variant = 'pill', comp
 
     return (
         <span
-            className={`rtp-label--pill inline-flex items-center gap-1 rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-rtp-secondary-card)] px-2.5 py-1 text-[11px] font-bold leading-none text-[var(--color-surface-rtp-secondary-card-text)] ${className}`.trim()}
+            className={`rtp-label--pill inline-flex items-center gap-1 rounded-full border border-[var(--color-border-brand)] bg-[var(--color-surface-rtp-secondary-card)] px-2.5 py-1 text-[11px] font-bold leading-none text-[var(--color-surface-accent)] ${className}`.trim()}
         >
             RTP {value.toFixed(2)}%
             <RtpTrendArrow direction={direction} size={13} />

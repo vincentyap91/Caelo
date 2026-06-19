@@ -23,7 +23,7 @@ export const BROWSE_SUMMARY_CARD_COMPACT_CLASS =
 
 /** Typography aligned with compact denseMobile wallet/rebate tiles. */
 export const BROWSE_SUMMARY_LABEL_COMPACT_CLASS =
-    'font-semibold tracking-tight leading-tight text-[var(--color-text-secondary)] text-xs sm:text-sm';
+    'font-semibold tracking-tight leading-tight text-[var(--color-primary)] text-xs sm:text-sm';
 
 export const SLOTS_BROWSE_SUMMARY_LABEL_COMPACT_CLASS =
     'slots-browse-summary-label font-semibold tracking-tight leading-tight text-[var(--color-primary)] text-xs sm:text-sm';
@@ -38,7 +38,7 @@ function SummaryItem({
     title,
     value,
     icon: Icon,
-    valueClassName = 'text-[var(--color-surface-accent)]',
+    valueClassName = 'text-[var(--color-text-primary)]',
     iconClassName = 'text-[var(--color-text-soft)]',
     emphasis = 'default',
     compact = false,

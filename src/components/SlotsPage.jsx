@@ -225,7 +225,7 @@ export default function SlotsPage({ selectedProviderIdFromMenu, onNavigate }) {
                             <div className="p-2 md:p-3">
                                 <p className="line-clamp-2 text-xs font-bold text-[var(--color-text-primary)] md:text-sm">{game.name}</p>
                                 <p className="mt-1 text-xs text-[var(--color-text-secondary)]">{game.provider}</p>
-                                <RtpLabel value={game.rtp} className="slots-game-card__rtp mt-2 text-xs text-[var(--color-text-primary-card-title)]" compact />
+                                <RtpLabel value={game.rtp} className="slots-game-card__rtp mt-2 text-xs text-[var(--color-surface-accent)]" compact />
                             </div>
                         </div>
                     ))}
