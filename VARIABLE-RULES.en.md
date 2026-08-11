@@ -312,9 +312,10 @@ className="shadow-[var(--shadow-card-soft)]"
 
 ```bash
 node scripts/audit-theme-color-control.mjs
+# optional full dump: node scripts/audit-theme-color-control.mjs --json
 ```
 
-Output: [docs/theme-color-audit-data.json](./docs/theme-color-audit-data.json). Treat **`primitiveDirect`**, **`disallowedSemantic`**, and inline **`shadow-*` / `inset-*` / legacy `surface-*`** in components as migration backlog.
+Treat **`primitiveDirect`**, **`disallowedSemantic`**, and inline **`shadow-*` / `inset-*` / legacy `surface-*`** in components as migration backlog.
 
 #### Codebase snapshot (2026-06-08)
 
@@ -347,8 +348,8 @@ Output: [docs/theme-color-audit-data.json](./docs/theme-color-audit-data.json). 
 | [THEME_CSS_INCREMENTAL_UPDATE.md](./THEME_CSS_INCREMENTAL_UPDATE.md) | Incremental updates, no-rename rules |
 | [generate-theme-css.mjs](./generate-theme-css.mjs) | JSON → CSS generator |
 | [scripts/audit-theme-color-control.mjs](./scripts/audit-theme-color-control.mjs) | Audit that components use only allowed semantic names |
-| [docs/theme-color-control-audit.md](./docs/theme-color-control-audit.md) | Migration backlog + bypass patterns (see §13) |
-| [docs/theme-color-audit-data.json](./docs/theme-color-audit-data.json) | Machine-readable audit output from the script above |
+| [docs/CAELO_THEME_REFERENCE.md](./docs/CAELO_THEME_REFERENCE.md) | Caelo token checklist + restore after pull |
+| [docs/caelo-theme.css.snapshot](./docs/caelo-theme.css.snapshot) | Known-good `styles/theme.css` snapshot |
 
 ---
 
@@ -528,7 +529,7 @@ Re-run alignment checks when `theme-riocity.css` syncs or after large migrations
 node scripts/audit-theme-color-control.mjs
 ```
 
-Compare `--color-*` definitions in [src/theme.css](./src/theme.css) against the allowlist in [src/theme-riocity.css](./src/theme-riocity.css). Migration backlog and bypass patterns: [docs/theme-color-control-audit.md](./docs/theme-color-control-audit.md).
+Compare `--color-*` definitions in [src/theme.css](./src/theme.css) against the allowlist in [src/theme-riocity.css](./src/theme-riocity.css).
 
 | Status | Action |
 |--------|--------|

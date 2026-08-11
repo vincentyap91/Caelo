@@ -24,6 +24,7 @@ const LiveCasinoPage = React.lazy(() => import('./components/LiveCasinoPage'));
 const SlotsPage = React.lazy(() => import('./components/SlotsPage'));
 const AllGamesPage = React.lazy(() => import('./components/AllGamesPage'));
 const SportsPage = React.lazy(() => import('./components/SportsPage'));
+const SportsbookPage = React.lazy(() => import('./components/SportsbookPage'));
 const EsportsPage = React.lazy(() => import('./components/EsportsPage'));
 const LotteryPage = React.lazy(() => import('./components/LotteryPage'));
 const FishingPage = React.lazy(() => import('./components/FishingPage'));
@@ -87,6 +88,12 @@ function resolvePageFromPath() {
     }
     if (pathname === '/sports') {
       return 'sports';
+    }
+    if (pathname === '/sportsbook/event' || pathname.startsWith('/sportsbook/event/')) {
+      return 'sportsbook-event';
+    }
+    if (pathname === '/sportsbook') {
+      return 'sportsbook';
     }
     if (pathname === '/e-sports' || pathname === '/esports') {
       return 'e-sports';
@@ -205,6 +212,7 @@ function isProtectedPage(pageId) {
 function resolveAppShellBg(pageId, authUser) {
   if (pageId === 'home') return 'home';
   if (pageId === 'register') return 'register';
+  if (pageId === 'sportsbook' || pageId === 'sportsbook-event') return 'sportsbook';
   if (pageId === 'rebate' && !authUser) return 'default';
   if (
     pageId === 'profile'
@@ -455,6 +463,8 @@ function AppInner() {
       slots: '/slots',
       'all-games': '/all-games',
       sports: '/sports',
+      sportsbook: '/sportsbook',
+      'sportsbook-event': '/sportsbook/event',
       'e-sports': '/e-sports',
       lottery: '/lottery',
       fishing: '/fishing',
@@ -621,6 +631,10 @@ function AppInner() {
         <SlotsPage selectedProviderIdFromMenu={selectedSlotsProviderIdFromMenu} onNavigate={handleNavigate} />
       ) : page === 'sports' ? (
         <SportsPage onNavigate={handleNavigate} />
+      ) : page === 'sportsbook' ? (
+        <SportsbookPage authUser={authUser} mode="home" />
+      ) : page === 'sportsbook-event' ? (
+        <SportsbookPage authUser={authUser} mode="event" />
       ) : page === 'e-sports' ? (
         <EsportsPage onNavigate={handleNavigate} />
       ) : page === 'lottery' ? (
@@ -741,7 +755,7 @@ function AppInner() {
       )}
       </div>
 
-      {page !== 'live-chat' && (
+      {page !== 'live-chat' && page !== 'sportsbook' && page !== 'sportsbook-event' && (
         <MobileHomeBottomNav
           activePage={page}
           authUser={authUser}

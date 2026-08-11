@@ -1,0 +1,243 @@
+/**
+ * Sportsbook ↔ Caelo palette (UI remap)
+ *
+ * Keep 1xbet dark sportsbook chrome structure; retint accents to Caelo:
+ *   cyan  → orange / gold  (selected odds, focus, CTA accents)
+ *   blue  → Caelo brand / accent blue (tabs, filters, login, chrome chips)
+ *
+ * Source lock: docs/CAELO_THEME_REFERENCE.md
+ *   brand #123B94 · CTA #ffcf4a→#ffb22d · CTA text #0c4a8e · nav accent #ffd84d
+ *
+ * Load AFTER /sportsbook/css/styles.css
+ */
+
+.sportsbook-root,
+body.sportsbook-port-active {
+  /* ---- Blues (was 1xbet sky / header blues) → Caelo brand ---- */
+  --brand-blue: #123b94;
+  --brand-blue-hover: #1a4bb8;
+  --header-action: #123b94;
+  --header-action-hover: #2563eb;
+  --accent-blue: #2563eb;
+  --accent-blue-hover: #60a5fa;
+  --accent-blue-soft: #93c5fd;
+
+  /* Soft brand glow on dark rails (was cyan soft links) */
+  --cyan-soft: #ffd84d;
+
+  /* ---- Cyan → Caelo orange / gold ---- */
+  --cyan-accent: #ffb22d;
+  --odds-selected: #e89a12;
+
+  /* Conversion CTAs were lime green → Caelo gold family.
+     Fill is deep enough for white labels; gold buttons also get CTA-text overrides below. */
+  --action-green: #ffb22d;
+  --action-green-hover: #ffcf4a;
+  --action-green-active: #e89a12;
+  --success: #65a30d; /* keep wins/success readable — not orange */
+
+  /* Extra Caelo hooks for overrides */
+  --sb-cta-text: #0c4a8e;
+  --sb-cta-start: #ffcf4a;
+  --sb-cta-end: #ffb22d;
+  --sb-brand: #123b94;
+}
+
+/* ------------------------------------------------------------------
+   Contrast fixes (designer pass)
+   ------------------------------------------------------------------ */
+
+/* Selected odds: amber fill + dark blue type (Caelo CTA pairing) */
+.sportsbook-root .odd-btn.selected,
+.sportsbook-root .tg-odd.selected,
+.sportsbook-root [data-odd].selected,
+body.sportsbook-port-active .odd-btn.selected {
+  background: var(--odds-selected) !important;
+  border-color: var(--action-green-active) !important;
+  color: var(--sb-cta-text) !important;
+}
+
+.sportsbook-root .odd-btn.selected::after,
+body.sportsbook-port-active .odd-btn.selected::after {
+  background: var(--sb-cta-text) !important;
+}
+
+/* Primary conversion buttons: gold fill + dark blue type (easier to read) */
+.sportsbook-root .btn-promo,
+.sportsbook-root .btn-reg,
+.sportsbook-root .btn-place,
+.sportsbook-root .btn-acc,
+.sportsbook-root .btn-generate,
+.sportsbook-root .btn-app-download,
+.sportsbook-root .home-sports-filter__apply,
+body.sportsbook-port-active .btn-place,
+body.sportsbook-port-active [data-cta='place'],
+body.sportsbook-port-active [data-cta='register'] {
+  background: linear-gradient(180deg, var(--sb-cta-start) 0%, var(--sb-cta-end) 100%) !important;
+  color: var(--sb-cta-text) !important;
+  border: none;
+}
+
+.sportsbook-root .btn-promo:hover,
+.sportsbook-root .btn-reg:hover,
+.sportsbook-root .btn-place:hover,
+.sportsbook-root .btn-acc:hover,
+.sportsbook-root .btn-generate:hover,
+.sportsbook-root .btn-app-download:hover,
+body.sportsbook-port-active .btn-place:hover {
+  background: linear-gradient(180deg, #ffe08a 0%, var(--sb-cta-start) 100%) !important;
+  color: var(--sb-cta-text) !important;
+}
+
+/* Active tab / Matches underline was green → gold (readable on dark toolbars) */
+.sportsbook-root .section-tab.is-active,
+.sportsbook-root .te-toolbar .section-tab.is-active,
+.sportsbook-root .bet-tab.is-active {
+  box-shadow: inset 0 -2px 0 var(--action-green);
+}
+
+/* Focus rings: orange instead of cyan */
+.sportsbook-root :where(button):focus-visible,
+.sportsbook-root :where(input):focus-visible,
+.sportsbook-root :where(select):focus-visible,
+.sportsbook-root :where(a):focus-visible,
+body.sportsbook-port-active :where(button):focus-visible {
+  outline-color: var(--cyan-accent);
+}
+
+/* HOT badge: deep Caelo navy type on gold pill */
+.sportsbook-root .top-event-hot,
+.sportsbook-root .hot-badge {
+  color: #01206c !important;
+  background: var(--action-green);
+}
+
+/* promo online pill — keep readable; don't force navy-on-gold unless HOT */
+.sportsbook-root .promo-live-pill {
+  color: #fff;
+  background: var(--brand-blue);
+}
+
+/* ------------------------------------------------------------------
+   Bet slip amounts → #224f78
+   Potential winnings · stake / Single bet amount
+   ------------------------------------------------------------------ */
+.sportsbook-root .ticket-winnings-row,
+.sportsbook-root .ticket-winnings-row strong,
+.sportsbook-root .ticket-winnings-row #potential-return,
+.sportsbook-root .stake-control input,
+.sportsbook-root .stake-title,
+.sportsbook-root .stake-step,
+.sportsbook-root .quick-stakes button,
+.sportsbook-root .ticket-summary-row,
+.sportsbook-root .ticket-summary-row strong,
+.sportsbook-root #bet-type-select,
+.sportsbook-root #bet-type-value,
+.sportsbook-root .bet-type-row,
+body.sportsbook-port-active .ticket-winnings-row,
+body.sportsbook-port-active .ticket-winnings-row strong,
+body.sportsbook-port-active .stake-control input {
+  color: #224f78 !important;
+}
+
+/* ------------------------------------------------------------------
+   Bet history: Win / Won amounts → green · Loss → red
+   (Do NOT use --action-green* here — those tokens are remapped to gold CTAs)
+   ------------------------------------------------------------------ */
+.sportsbook-root,
+body.sportsbook-port-active {
+  --sb-won-green: #88af2a;
+  --sb-won-green-active: #6f9220;
+  --sb-won-green-bg: #f0f7e4;
+  --sb-won-green-border: rgba(136, 175, 42, 0.35);
+}
+
+/* Won status chip */
+.sportsbook-root .mybets-status--won,
+body.sportsbook-port-active .mybets-status--won,
+body.sportsbook-port-active .bh-desktop-backdrop .mybets-status--won {
+  color: var(--sb-won-green-active) !important;
+  background: var(--sb-won-green-bg) !important;
+  border-color: var(--sb-won-green-border) !important;
+}
+
+/* Bet history card payout when Won */
+.sportsbook-root .bh-desk-winnings--won,
+body.sportsbook-port-active .bh-desk-winnings--won,
+body.sportsbook-port-active .bh-desktop-backdrop .bh-desk-winnings--won,
+body.sportsbook-port-active .bh-desk-card:has(.mybets-status--won) .bh-desk-winnings--won {
+  color: var(--sb-won-green) !important;
+}
+
+/* Loss status + payout amount on lost cards */
+.sportsbook-root .mybets-status--lost,
+body.sportsbook-port-active .mybets-status--lost,
+body.sportsbook-port-active .bh-desktop-backdrop .mybets-status--lost {
+  color: var(--danger) !important;
+}
+
+body.sportsbook-port-active .bh-desk-card:has(.mybets-status--lost) .bh-desk-field:nth-child(4) .bh-desk-value {
+  color: var(--danger) !important;
+}
+
+/* Summary / KPI win-loss totals (is-pos was tied to orange CTA token) */
+body.sportsbook-port-active .bh-desktop-kpi__summary-value.is-pos,
+body.sportsbook-port-active .bh-desktop-kpi__value.is-pos,
+body.sportsbook-port-active .bh-desk-summary-cell--num.is-pos,
+.sportsbook-root .bh-desktop-kpi__summary-value.is-pos,
+.sportsbook-root .bh-desktop-kpi__value.is-pos,
+.sportsbook-root .bh-desk-summary-cell--num.is-pos {
+  color: var(--sb-won-green) !important;
+}
+
+body.sportsbook-port-active .bh-desktop-kpi__summary-value.is-neg,
+body.sportsbook-port-active .bh-desktop-kpi__value.is-neg,
+body.sportsbook-port-active .bh-desk-summary-cell--num.is-neg,
+.sportsbook-root .bh-desktop-kpi__summary-value.is-neg,
+.sportsbook-root .bh-desktop-kpi__value.is-neg,
+.sportsbook-root .bh-desk-summary-cell--num.is-neg {
+  color: var(--danger) !important;
+}
+
+.sportsbook-root .mybets-card:has(.mybets-status--won) .mybets-card-payout-value,
+body.sportsbook-port-active .mybets-card:has(.mybets-status--won) .mybets-card-payout-value {
+  color: var(--sb-won-green) !important;
+}
+
+body.sportsbook-port-active .ba-backdrop dd[data-ba-winnings] {
+  color: var(--sb-won-green) !important;
+}
+
+/* Default open-slip payout amounts stay navy */
+.sportsbook-root .mybets-card-payout-value,
+body.sportsbook-port-active .mybets-card-payout-value {
+  color: #224f78;
+}
+
+.sportsbook-root .sbs-calculation .sbs-loss {
+  color: var(--danger);
+}
+
+/* Deposit CTA — brand blue (money action, not gold) */
+.sportsbook-root .btn-place[data-cta='deposit'],
+body.sportsbook-port-active .btn-place[data-cta='deposit'] {
+  background: var(--brand-blue) !important;
+  color: #fff !important;
+}
+
+.sportsbook-root .btn-place[data-cta='deposit']:hover,
+body.sportsbook-port-active .btn-place[data-cta='deposit']:hover {
+  background: var(--brand-blue-hover) !important;
+  color: #fff !important;
+}
+
+/* Auth modal Register — gold + navy type */
+body.sportsbook-port-active #auth-backdrop .auth-btn--register {
+  background: linear-gradient(180deg, var(--sb-cta-start) 0%, var(--sb-cta-end) 100%) !important;
+  color: var(--sb-cta-text) !important;
+}
+
+body.sportsbook-port-active #auth-backdrop .auth-btn--login {
+  background: var(--brand-blue) !important;
+  color: #fff !important;
+}

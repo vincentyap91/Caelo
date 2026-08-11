@@ -1,0 +1,57 @@
+/* Exported from Figma: 12win Variable */
+/* Source file key: 11McXTepQdPTUboghSRsLX */
+/* Pages scanned: Lucky878 - Desktop, Lucky878 - Mobile */
+/* Variable collection: 01 Semantic; mode: Lucky878 */
+/* Generated gradient composites are created from matching *-start, *-mid, and *-end color tokens. */
+
+:root {
+  --color-primary: #10294a;
+  --color-secondary: #1e99f8;
+  --color-tertiery: #020617;
+  --color-accent: #f0c85a;
+  --color-overlay: #02061785;
+  --color-muted: #64748b;
+  --color-inner-shadow: #98e2f9bf;
+  --color-drop-shadow: #38bdf866;
+  --color-text-primary: #f8fafc;
+  --color-text-muted: #b5b5b5;
+  --color-border-subtle: #1e3a5f;
+  --color-gradient-border-start: #00000000;
+  --color-gradient-border-mid: #1e3a5f;
+  --color-gradient-border-end: #00000000;
+  --color-gradient-table-start: #1e99f8;
+  --color-gradient-table-end: #020617;
+  --color-gradient-panel-start: #10294ab8;
+  --color-gradient-panel-end: #10294a00;
+  --color-gradient-button-cta-start: #fdd182;
+  --color-gradient-button-cta-end: #f0d10c;
+  --color-gradient-card-brand-start: #141414;
+  --color-gradient-card-brand-end: #1e3a5f;
+  --color-gradient-menu-brand-start: #10294a;
+  --color-gradient-menu-brand-end: #020617;
+  --color-surface-float: #041229;
+  --color-surface-mid: #090909;
+  --color-surface-subtle: #0f172acc;
+  --color-surface-overlay-light: #1f1f1f;
+  --color-accent-pale: #1e99f82e;
+  --color-popup-body: #0b0b0b;
+  --color-popup-head: #1b1b1b;
+  --color-page-home: #000e21;
+  --color-page-default: #000e21;
+  --color-danger-warm: #c8102e;
+
+  /* Generated gradient composites */
+  --color-gradient-border: linear-gradient(180deg, var(--color-gradient-border-start) 0%, var(--color-gradient-border-mid) 50%, var(--color-gradient-border-end) 100%);
+  --color-gradient-button-cta: linear-gradient(180deg, var(--color-gradient-button-cta-start) 0%, var(--color-gradient-button-cta-end) 100%);
+  --color-gradient-card-brand: linear-gradient(145deg, var(--color-gradient-card-brand-start) 0%, var(--color-gradient-card-brand-end) 100%);
+  --color-gradient-menu-brand: linear-gradient(180deg, var(--color-gradient-menu-brand-start) 0%, var(--color-gradient-menu-brand-end) 100%);
+  --color-gradient-panel: linear-gradient(180deg, var(--color-gradient-panel-start) 0%, var(--color-gradient-panel-end) 100%);
+  --color-gradient-table: linear-gradient(180deg, var(--color-gradient-table-start) 0%, var(--color-gradient-table-end) 100%);
+
+  /* Captured alternate Figma angles on scanned pages */
+  --color-gradient-border-horizontal: linear-gradient(90deg, var(--color-gradient-border-start) 0%, var(--color-gradient-border-mid) 50%, var(--color-gradient-border-end) 100%);
+  --color-gradient-button-cta-accent-text: linear-gradient(145deg, var(--color-gradient-button-cta-start) 0%, var(--color-gradient-button-cta-end) 100%);
+  --color-gradient-card-brand-game-card: linear-gradient(137.938deg, var(--color-gradient-card-brand-start) 0%, var(--color-gradient-card-brand-end) 100%);
+  --color-gradient-card-brand-promotion-card: linear-gradient(150.203deg, var(--color-gradient-card-brand-start) 0%, var(--color-gradient-card-brand-end) 100%);
+  --color-gradient-card-brand-vip-card: linear-gradient(159.028deg, var(--color-gradient-card-brand-start) 0%, var(--color-gradient-card-brand-end) 100%);
+}

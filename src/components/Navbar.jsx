@@ -66,6 +66,9 @@ const DESKTOP_MAIN_LINKS = [
     'Membership',
 ];
 
+/** Sports dropdown — existing lobby + new sportsbook. */
+const DESKTOP_SPORTS_LINKS = ['Sports', 'Sportsbook'];
+
 /** More dropdown — Recent Game, Rebate, E-Sports. */
 const DESKTOP_MORE_LINKS = ['Recent Game', 'Rebate', 'E-Sports'];
 
@@ -73,6 +76,7 @@ const NAV_TARGETS = {
     Home: 'home',
     All: 'all-games',
     Sports: 'sports',
+    Sportsbook: 'sportsbook',
     'Live Casino': 'live-casino',
     Slots: 'slots',
     'Fish Hunt': 'fishing',
@@ -88,6 +92,7 @@ const NAV_HREFS = {
     Home: '/',
     All: '/all-games',
     Sports: '/sports',
+    Sportsbook: '/sportsbook',
     'Live Casino': '/casino',
     Slots: '/slots',
     'Fish Hunt': '/fishing',
@@ -98,6 +103,10 @@ const NAV_HREFS = {
     Rebate: '/rebate',
     'E-Sports': '/e-sports',
 };
+
+function isDesktopSportsActive(activePage) {
+    return activePage === 'sports' || activePage === 'sportsbook' || activePage === 'sportsbook-event';
+}
 
 function isDesktopMoreActive(activePage) {
     return DESKTOP_MORE_LINKS.some((link) => NAV_TARGETS[link] === activePage);
@@ -116,6 +125,7 @@ const MOBILE_GAMES_SUB_ITEMS = [
     { id: 'casino', label: 'Casino', page: 'live-casino', icon: CasinoChipIcon },
     { id: 'slots', label: 'Slots', page: 'slots', icon: Dices },
     { id: 'sports', label: 'Sports', page: 'sports', icon: Trophy },
+    { id: 'sportsbook', label: 'Sportsbook', page: 'sportsbook', icon: Trophy },
     { id: 'e-sports', label: 'E-Sports', page: 'e-sports', icon: Gamepad2 },
     { id: 'lottery', label: 'Lottery', page: 'lottery', icon: Ticket },
 ];
@@ -836,6 +846,54 @@ export default function Navbar({
 
                     <div className="hidden lg:flex flex-1 justify-end items-center gap-x-1">
                         {DESKTOP_MAIN_LINKS.map((link) => {
+                            if (link === 'Sports') {
+                                return (
+                                    <div
+                                        key={link}
+                                        className="relative group"
+                                        onMouseEnter={() => setNavProviderDropdown(null)}
+                                        onMouseLeave={() => setNavProviderDropdown(null)}
+                                    >
+                                        <button
+                                            type="button"
+                                            className={`top-nav-more-trigger relative flex items-center gap-1 rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap transition-all ${
+                                                isDesktopSportsActive(activePage) ? 'nav-desktop-link-active' : ''
+                                            }`}
+                                            aria-haspopup="menu"
+                                        >
+                                            Sports <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
+                                        </button>
+
+                                        <div className="absolute left-0 top-full pt-1 z-[130] w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                            <div className="top-nav-more-menu rounded-xl py-2 shadow-[var(--shadow-nav-dropdown)]">
+                                                {DESKTOP_SPORTS_LINKS.map((subLink) => {
+                                                    const targetId = NAV_TARGETS[subLink];
+                                                    const itemActive =
+                                                        activePage === targetId
+                                                        || (subLink === 'Sportsbook' && activePage === 'sportsbook-event');
+                                                    return (
+                                                        <a
+                                                            key={subLink}
+                                                            href={NAV_HREFS[subLink]}
+                                                            role="menuitem"
+                                                            onClick={(event) => {
+                                                                event.preventDefault();
+                                                                if (targetId) onNavigate?.(targetId);
+                                                            }}
+                                                            className={`top-nav-more-item block px-5 py-2.5 text-sm font-bold transition-colors ${
+                                                                itemActive ? 'top-nav-more-item--active' : ''
+                                                            }`}
+                                                        >
+                                                            {subLink}
+                                                        </a>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            }
+
                             const targetId = NAV_TARGETS[link];
                             const isActive = activePage === targetId;
                             return (

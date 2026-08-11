@@ -1,6 +1,7 @@
 /**
  * Audit color usage outside src/theme.css semantic tokens.
  * Run: node scripts/audit-theme-color-control.mjs
+ * Optional: --json writes theme-color-audit-data.json at repo root (do not commit).
  */
 import fs from 'fs';
 import path from 'path';
@@ -152,8 +153,9 @@ const report = {
     .map((r) => ({ file: r.rel, issues: r.issueCount })),
 };
 
-const outJson = path.join(ROOT, 'docs', 'theme-color-audit-data.json');
-fs.mkdirSync(path.dirname(outJson), { recursive: true });
-fs.writeFileSync(outJson, JSON.stringify(report, null, 2));
 console.log(JSON.stringify(report.summary, null, 2));
-console.log(`\nWrote ${path.relative(ROOT, outJson)}`);
+if (process.argv.includes('--json')) {
+  const outJson = path.join(ROOT, 'theme-color-audit-data.json');
+  fs.writeFileSync(outJson, JSON.stringify(report, null, 2));
+  console.log(`\nWrote ${path.relative(ROOT, outJson)}`);
+}

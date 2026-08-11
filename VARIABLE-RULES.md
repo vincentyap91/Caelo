@@ -312,9 +312,10 @@ className="shadow-[var(--shadow-card-soft)]"
 
 ```bash
 node scripts/audit-theme-color-control.mjs
+# 可选完整导出: node scripts/audit-theme-color-control.mjs --json
 ```
 
-输出：[docs/theme-color-audit-data.json](./docs/theme-color-audit-data.json)。组件里的 **`primitiveDirect`**、**`disallowedSemantic`**、inline **`shadow-*` / `inset-*` / legacy `surface-*`** 均视为待迁移项。
+组件里的 **`primitiveDirect`**、**`disallowedSemantic`**、inline **`shadow-*` / `inset-*` / legacy `surface-*`** 均视为待迁移项。
 
 #### Codebase 快照（2026-06-08）
 
@@ -347,8 +348,8 @@ node scripts/audit-theme-color-control.mjs
 | [THEME_CSS_INCREMENTAL_UPDATE.md](./THEME_CSS_INCREMENTAL_UPDATE.md) | 增量更新、禁止改名细则 |
 | [generate-theme-css.mjs](./generate-theme-css.mjs) | JSON → CSS 生成器 |
 | [scripts/audit-theme-color-control.mjs](./scripts/audit-theme-color-control.mjs) | 审计组件是否只用允许的 semantic 名 |
-| [docs/theme-color-control-audit.md](./docs/theme-color-control-audit.md) | 迁移待办 + 绕过模式清单（见 §13） |
-| [docs/theme-color-audit-data.json](./docs/theme-color-audit-data.json) | 上述脚本输出的机器可读数据 |
+| [docs/CAELO_THEME_REFERENCE.md](./docs/CAELO_THEME_REFERENCE.md) | Caelo token 清单 + pull 后恢复 |
+| [docs/caelo-theme.css.snapshot](./docs/caelo-theme.css.snapshot) | 已知正确的 `styles/theme.css` 快照 |
 
 ---
 
@@ -528,7 +529,7 @@ Caelo 历史上约有 90 个 Riocity 没有的 `--color-gradient-*`。迁移时�
 node scripts/audit-theme-color-control.mjs
 ```
 
-对照 [src/theme.css](./src/theme.css) 与 [src/theme-riocity.css](./src/theme-riocity.css) 中的 `--color-*` 定义。迁移待办与绕过模式：[docs/theme-color-control-audit.md](./docs/theme-color-control-audit.md)。
+对照 [src/theme.css](./src/theme.css) 与 [src/theme-riocity.css](./src/theme-riocity.css) 中的 `--color-*` 定义。
 
 | 状态 | 动作 |
 |------|------|

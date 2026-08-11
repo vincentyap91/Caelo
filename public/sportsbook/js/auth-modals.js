@@ -1,0 +1,1886 @@
+/**
+ * auth-modals.js — Login / Register / Confirm popups
+ * Login layout: screenshot 1 · Confirm dialogs: screenshot 2
+ * Colors: DESIGN_SYSTEM.md
+ */
+(function () {
+  "use strict";
+
+  /* Force mobile layout viewport for Figma captures: ?mobile=1 */
+  try {
+    if (new URLSearchParams(window.location.search).get("mobile") === "1") {
+      var meta = document.querySelector('meta[name="viewport"]');
+      if (meta) meta.setAttribute("content", "width=390, initial-scale=1");
+      else {
+        meta = document.createElement("meta");
+        meta.name = "viewport";
+        meta.content = "width=390, initial-scale=1";
+        document.head.appendChild(meta);
+      }
+      document.documentElement.classList.add("capture-mobile");
+    }
+  } catch (e) { /* ignore */ }
+
+  const EYE_OFF =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+  const EYE_ON =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const CLOSE_SVG =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+
+  let otpTimerId = null;
+  let otpSeconds = 0;
+  /* Demo TAC — any other 6-digit code shows error */
+  const DEMO_TAC = "123456";
+
+  /* ---------- Main account wallet (MYR) ---------- */
+  const WALLET_KEY = "1xbet-main-balance";
+  const STARTING_BALANCE = 1000;
+
+  function formatWalletAmount(n) {
+    const v = Math.max(0, Number(n) || 0);
+    if (!Number.isFinite(v)) return "0";
+    return Number.isInteger(v) ? String(v) : v.toFixed(2);
+  }
+
+  function getMainBalance() {
+    try {
+      const raw = localStorage.getItem(WALLET_KEY);
+      if (raw == null || raw === "") return null;
+      const n = Number(raw);
+      return Number.isFinite(n) ? Math.max(0, n) : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function setMainBalance(amount) {
+    const next = Math.max(0, Math.round((Number(amount) || 0) * 100) / 100);
+    try {
+      localStorage.setItem(WALLET_KEY, String(next));
+    } catch (_) {
+      /* ignore */
+    }
+    syncWalletUi();
+    return next;
+  }
+
+  /** First login / first visit: grant RM1000 once (persists until spent / deposited). */
+  function ensureStartingBalance() {
+    const existing = getMainBalance();
+    if (existing != null) return existing;
+    return setMainBalance(STARTING_BALANCE);
+  }
+
+  function creditMainBalance(amount) {
+    const add = Number(amount);
+    if (!Number.isFinite(add) || add <= 0) return getMainBalance() ?? 0;
+    return setMainBalance((getMainBalance() ?? 0) + add);
+  }
+
+  function debitMainBalance(amount) {
+    const stake = Number(amount);
+    const cur = getMainBalance() ?? 0;
+    if (!Number.isFinite(stake) || stake <= 0) {
+      return { ok: false, reason: "invalid", balance: cur };
+    }
+    if (stake > cur + 1e-9) {
+      return { ok: false, reason: "insufficient", balance: cur };
+    }
+    return { ok: true, balance: setMainBalance(cur - stake) };
+  }
+
+  function syncWalletUi() {
+    const bal = getMainBalance();
+    const display = formatWalletAmount(bal == null ? 0 : bal);
+
+    document.querySelectorAll("[data-wallet-main]").forEach((el) => {
+      el.textContent = display;
+    });
+
+    document.querySelectorAll(".header-balance-chip .header-balance-row").forEach((row, index) => {
+      if (index !== 0) return;
+      const val = row.querySelector("span:last-child");
+      if (val && !val.hasAttribute("data-wallet-main")) val.textContent = display;
+    });
+
+    document.querySelectorAll(".acc-menu-balance-row").forEach((row) => {
+      const label = row.querySelector(".acc-menu-balance-label");
+      if (!label || !/Main account/i.test(label.textContent || "")) return;
+      const val = row.querySelector(".acc-menu-balance-value");
+      if (val) {
+        val.setAttribute("data-wallet-main", "");
+        val.textContent = display;
+      }
+    });
+
+    const slipBal = document.querySelector('[data-ticket-meta="balance"] strong');
+    if (slipBal) slipBal.textContent = display + " MYR";
+
+    document.querySelectorAll("[data-wallet-max], .max-stake-link strong").forEach((el) => {
+      if (document.body.classList.contains("is-logged-in")) {
+        el.textContent = display + " MYR";
+      }
+    });
+
+    if (typeof window.syncBetSlipAuthUi === "function") {
+      window.syncBetSlipAuthUi();
+    }
+  }
+
+  window.DsWallet = {
+    STARTING_BALANCE,
+    get: () => getMainBalance() ?? 0,
+    set: setMainBalance,
+    credit: creditMainBalance,
+    debit: debitMainBalance,
+    ensureStarting: ensureStartingBalance,
+    sync: syncWalletUi,
+    format: formatWalletAmount,
+  };
+
+  function clearOtpError() {
+    const err = $("#auth-otp-error");
+    if (err) {
+      err.hidden = true;
+      err.textContent = "Invalid code. Please try again.";
+    }
+    $$("#auth-otp input").forEach((input) => input.classList.remove("is-invalid"));
+  }
+
+  function showOtpError(msg) {
+    const err = $("#auth-otp-error");
+    if (err) {
+      err.textContent = msg || "Invalid code. Please try again.";
+      err.hidden = false;
+    }
+    $$("#auth-otp input").forEach((input) => input.classList.add("is-invalid"));
+  }
+
+  function readOtpCode() {
+    return $$("#auth-otp input")
+      .map((i) => i.value)
+      .join("");
+  }
+
+  function checkOtpAndAdvance() {
+    const code = readOtpCode();
+    if (code.length < 6) return;
+    if (code === DEMO_TAC) {
+      clearOtpError();
+      openPanel("complete");
+      return;
+    }
+    showOtpError("Invalid code. Please try again.");
+  }
+
+  function ensureCss() {
+    if (document.getElementById("auth-modals-css")) return;
+    const link = document.createElement("link");
+    link.id = "auth-modals-css";
+    link.rel = "stylesheet";
+    link.href = "/sportsbook/css/auth-modals.css";
+    document.head.appendChild(link);
+  }
+
+  function artCol() {
+    return (
+      '<div class="auth-dialog-art" aria-hidden="true">' +
+      '<img src="/sportsbook/assets/images/auth/auth-hero.png" alt="" width="280" height="116" />' +
+      "</div>"
+    );
+  }
+
+  function head(title, titleId) {
+    const idAttr = titleId ? ' id="' + titleId + '"' : "";
+    return (
+      '<div class="auth-dialog-head">' +
+      '<div class="auth-dialog-brand">' +
+      '<img class="auth-dialog-logo" src="/sportsbook/assets/icons/logo-1xbet.svg" alt="1xBet" width="90" height="26" />' +
+      '<h2 class="auth-dialog-title"' +
+      idAttr +
+      ">" +
+      title +
+      "</h2>" +
+      "</div>" +
+      '<button type="button" class="auth-dialog-close" data-auth-close aria-label="Close">' +
+      CLOSE_SVG +
+      "</button>" +
+      "</div>"
+    );
+  }
+
+  /** Screenshot 2 — white confirm card */
+  function confirmDialog(opts) {
+    const iconClass = opts.warn
+      ? "auth-confirm-icon auth-confirm-icon--warn"
+      : "auth-confirm-icon";
+    const iconChar = opts.icon || "?";
+    const primaryClass = opts.primaryClass || "auth-btn--login";
+    const secondaryClass = opts.secondaryClass || "auth-btn--register";
+    const primaryAttr = opts.primaryAttr || 'data-auth-close';
+    const secondaryAttr = opts.secondaryAttr || 'data-auth-close';
+
+    return (
+      '<div class="auth-dialog auth-dialog--confirm">' +
+      '<div class="auth-confirm">' +
+      '<button type="button" class="auth-confirm-close" data-auth-close aria-label="Close">' +
+      CLOSE_SVG +
+      "</button>" +
+      '<div class="' +
+      iconClass +
+      '" aria-hidden="true">' +
+      iconChar +
+      "</div>" +
+      '<h2 class="auth-confirm-title" id="' +
+      opts.titleId +
+      '">' +
+      opts.title +
+      "</h2>" +
+      '<p class="auth-confirm-text">' +
+      opts.text +
+      "</p>" +
+      '<div class="auth-confirm-actions">' +
+      '<button type="button" class="auth-btn ' +
+      primaryClass +
+      '" ' +
+      primaryAttr +
+      ">" +
+      opts.primary +
+      "</button>" +
+      '<button type="button" class="auth-btn ' +
+      secondaryClass +
+      '" ' +
+      secondaryAttr +
+      ">" +
+      opts.secondary +
+      "</button>" +
+      "</div>" +
+      "</div>" +
+      "</div>"
+    );
+  }
+
+  function buildMarkup() {
+    return (
+      '<div class="auth-backdrop" id="auth-backdrop" hidden>' +
+      /* LOGIN */
+      '<div class="auth-panel" data-auth-panel="login" role="dialog" aria-modal="true" aria-labelledby="auth-login-title">' +
+      '<div class="auth-dialog">' +
+      head("Log In", "auth-login-title") +
+      '<div class="auth-dialog-body">' +
+      artCol() +
+      '<form class="auth-dialog-form" id="auth-login-form" novalidate>' +
+      '<div class="auth-field">' +
+      '<label class="auth-label" for="auth-login-user">Enter Username or Phone Number</label>' +
+      '<input class="auth-input" id="auth-login-user" name="username" type="text" autocomplete="username" placeholder="e.g: johndoe or 60123456789" required />' +
+      '<p class="auth-hint">Phone number must include country code (60xxxxxxxxxx)</p>' +
+      "</div>" +
+      '<div class="auth-field">' +
+      '<label class="auth-label" for="auth-login-pass">Enter Password</label>' +
+      '<div class="auth-password-wrap">' +
+      '<input class="auth-input" id="auth-login-pass" name="password" type="password" autocomplete="current-password" placeholder="Enter Password" required />' +
+      '<button type="button" class="auth-eye" data-auth-eye="auth-login-pass" aria-label="Show password">' +
+      EYE_OFF +
+      "</button>" +
+      "</div>" +
+      "</div>" +
+      '<div class="auth-row">' +
+      '<label class="auth-check"><input type="checkbox" name="remember" /> Remember Me</label>' +
+      "</div>" +
+      '<div class="auth-actions">' +
+      '<button type="submit" class="auth-btn auth-btn--login">Log In</button>' +
+      '<button type="button" class="auth-btn auth-btn--ghost" data-auth-open="forgot">Forgot Password</button>' +
+      "</div>" +
+      '<p class="auth-switch">Do not have an account yet? <button type="button" data-auth-open="register">Register Now!</button></p>' +
+      "</form>" +
+      "</div></div></div>" +
+      /* REGISTER */
+      '<div class="auth-panel" data-auth-panel="register" role="dialog" aria-modal="true" aria-labelledby="auth-register-title" hidden>' +
+      '<div class="auth-dialog">' +
+      head("Register", "auth-register-title") +
+      '<div class="auth-dialog-body">' +
+      artCol() +
+      '<form class="auth-dialog-form" id="auth-register-form" novalidate>' +
+      '<div class="auth-field">' +
+      '<label class="auth-label" for="auth-reg-user">Enter Username</label>' +
+      '<input class="auth-input" id="auth-reg-user" name="username" type="text" autocomplete="username" placeholder="Username" required />' +
+      "</div>" +
+      '<div class="auth-field">' +
+      '<label class="auth-label" for="auth-reg-phone">Mobile Number</label>' +
+      '<div class="auth-phone-row">' +
+      '<select class="auth-select" id="auth-reg-cc" name="countryCode" aria-label="Country code">' +
+      '<option value="+60" selected>+60</option>' +
+      '<option value="+65">+65</option>' +
+      '<option value="+62">+62</option>' +
+      '<option value="+66">+66</option>' +
+      '<option value="+63">+63</option>' +
+      "</select>" +
+      '<input class="auth-input" id="auth-reg-phone" name="phone" type="tel" inputmode="numeric" placeholder="Phone number" required />' +
+      "</div>" +
+      "</div>" +
+      '<div class="auth-field">' +
+      '<label class="auth-label" for="auth-reg-pass">Enter Your Password</label>' +
+      '<div class="auth-password-wrap">' +
+      '<input class="auth-input" id="auth-reg-pass" name="password" type="password" autocomplete="new-password" placeholder="Password" required />' +
+      '<button type="button" class="auth-eye" data-auth-eye="auth-reg-pass" aria-label="Show password">' +
+      EYE_OFF +
+      "</button>" +
+      "</div>" +
+      '<ul class="auth-req-list" id="auth-pass-reqs" aria-live="polite">' +
+      '<li data-req="len">Include at least 8 characters, containing both a letter and a number, with no symbols allowed.</li>' +
+      '<li data-req="alnum">Only letters (A-Z, a-z) and numbers (0-9).</li>' +
+      '<li data-req="nosym">No special characters / symbols.</li>' +
+      "</ul>" +
+      "</div>" +
+      '<div class="auth-field">' +
+      '<label class="auth-label" for="auth-reg-ref">Referral Code</label>' +
+      '<input class="auth-input" id="auth-reg-ref" name="referral" type="text" placeholder="Optional" />' +
+      "</div>" +
+      '<button type="submit" class="auth-btn auth-btn--register auth-btn--block">Register</button>' +
+      '<p class="auth-switch">Already have an account? <button type="button" data-auth-open="login">Login Now!</button></p>' +
+      "</form>" +
+      "</div>" +
+      '<div class="auth-social">' +
+      '<p class="auth-social-label">Register Through Social Media</p>' +
+      '<button type="button" class="auth-social-btn" aria-label="WhatsApp">' +
+      '<img src="/sportsbook/assets/images/auth/whatsapp.png" alt="" width="28" height="28" />' +
+      "</button>" +
+      "</div>" +
+      "</div></div>" +
+      /* FORGOT — confirm style (screenshot 2) */
+      '<div class="auth-panel" data-auth-panel="forgot" role="dialog" aria-modal="true" aria-labelledby="auth-forgot-title" hidden>' +
+      confirmDialog({
+        titleId: "auth-forgot-title",
+        title: "Confirm action",
+        text: "To reset your password please contact our Customer Support via live chat for assistance.",
+        icon: "?",
+        primary: "Live Chat",
+        secondary: "Cancel",
+        primaryAttr: 'data-auth-close data-auth-action="live-chat"',
+        secondaryAttr: 'data-auth-open="login"',
+      }) +
+      "</div>" +
+      /* LOGOUT — screenshot 2 */
+      '<div class="auth-panel" data-auth-panel="logout" role="dialog" aria-modal="true" aria-labelledby="auth-logout-title" hidden>' +
+      confirmDialog({
+        titleId: "auth-logout-title",
+        title: "Confirm action",
+        text: "Are you sure you want to log out?",
+        icon: "?",
+        primary: "Log Out",
+        secondary: "Cancel",
+        primaryAttr: 'data-auth-action="logout"',
+        secondaryAttr: "data-auth-close",
+      }) +
+      "</div>" +
+      /* VERIFY — TAC after Register step 1 (split auth-dialog) */
+      '<div class="auth-panel" data-auth-panel="verify" role="dialog" aria-modal="true" aria-labelledby="auth-verify-title" hidden>' +
+      '<div class="auth-dialog">' +
+      head("Verify Your Number", "auth-verify-title") +
+      '<div class="auth-dialog-body">' +
+      artCol() +
+      '<form class="auth-dialog-form auth-verify-form" id="auth-verify-form" novalidate>' +
+      '<div class="auth-verify-copy">' +
+      "<h3>Verify Your Number</h3>" +
+      '<p id="auth-verify-sub">Enter the code we sent to *******0000.</p>' +
+      "</div>" +
+      '<div class="auth-otp" id="auth-otp">' +
+      '<input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code" />' +
+      '<input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2" />' +
+      '<input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3" />' +
+      '<input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4" />' +
+      '<input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5" />' +
+      '<input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6" />' +
+      "</div>" +
+      '<p class="auth-otp-timer" id="auth-otp-timer">TAC Code Sent. 60s</p>' +
+      '<p class="auth-otp-error" id="auth-otp-error" hidden role="alert">Invalid code. Please try again.</p>' +
+      '<button type="button" class="auth-btn auth-btn--cs auth-btn--block" data-auth-action="live-chat">Contact Customer Service</button>' +
+      "</form>" +
+      "</div></div></div>" +
+      /* COMPLETE — same split auth-dialog as Login / Register */
+      '<div class="auth-panel" data-auth-panel="complete" role="dialog" aria-modal="true" aria-labelledby="auth-complete-title" hidden>' +
+      '<div class="auth-dialog">' +
+      head("Log In", "auth-complete-title") +
+      '<div class="auth-dialog-body">' +
+      artCol() +
+      '<div class="auth-dialog-form auth-complete-form">' +
+      "<h3>Registration Completed!</h3>" +
+      '<button type="button" class="auth-btn auth-btn--login auth-btn--block" data-auth-open="login">Log In</button>' +
+      "</div>" +
+      "</div></div></div>" +
+      "</div>"
+    );
+  }
+
+  function $(sel, root) {
+    return (root || document).querySelector(sel);
+  }
+
+  function $$(sel, root) {
+    return Array.from((root || document).querySelectorAll(sel));
+  }
+
+  const AUTH_KEY = "1xbet_logged_in";
+
+  function ensureAccountCss() {
+    if (document.getElementById("account-css")) return;
+    const link = document.createElement("link");
+    link.id = "account-css";
+    link.rel = "stylesheet";
+    link.href = "/sportsbook/css/account.css";
+    document.head.appendChild(link);
+  }
+
+  function accountMenuHtml(menuId) {
+    const chevron =
+      '<svg viewBox="0 0 8 8" width="8" height="8" aria-hidden="true"><path d="M1.5 2.75L4 5.25 6.5 2.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const icons = {
+      deposit:
+        '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2.5v8M9 10.5L6.25 7.75M9 10.5l2.75-2.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 12.5c.9 1.6 2.9 2.7 5.5 2.7s4.6-1.1 5.5-2.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+      withdraw:
+        '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 15.5v-8M9 7.5l2.75 2.75M9 7.5L6.25 10.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 5.5c.9-1.6 2.9-2.7 5.5-2.7s4.6 1.1 5.5 2.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+      invite:
+        '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="6.5" cy="6" r="2.25" stroke="currentColor" stroke-width="1.5"/><circle cx="12.25" cy="7" r="1.75" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 14.5c.4-2.2 2.1-3.5 4-3.5s3.6 1.3 4 3.5M10.5 11.2c1.1-.4 2.3-.2 3.2.7.7.8 1 1.7 1.1 2.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
+      profile:
+        '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 14.5c.6-2.4 2.5-3.7 5-3.7s4.4 1.3 5 3.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+      history:
+        '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 6v3l1.9 1.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 9a6 6 0 1 0 1.1-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 3v3h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      settings:
+        '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 1.65l1.2.32.42 1.4c.42.12.81.3 1.16.54l1.38-.42 1.2 1.2-.42 1.38c.24.35.42.74.54 1.16l1.4.42.32 1.2-.32 1.2-1.4.42c-.12.42-.3.81-.54 1.16l.42 1.38-1.2 1.2-1.38-.42a4.6 4.6 0 01-1.16.54l-.42 1.4L9 16.35l-1.2-.32-.42-1.4a4.6 4.6 0 01-1.16-.54l-1.38.42-1.2-1.2.42-1.38a4.6 4.6 0 01-.54-1.16l-1.4-.42L1.65 9l.32-1.2 1.4-.42c.12-.42.3-.81.54-1.16l-.42-1.38 1.2-1.2 1.38.42c.35-.24.74-.42 1.16-.54l.42-1.4L9 1.65z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="9" cy="9" r="2.2" stroke="currentColor" stroke-width="1.45"/></svg>',
+      logout:
+        '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M7.5 3.5H4.2A1.7 1.7 0 002.5 5.2v7.6A1.7 1.7 0 004.2 14.5h3.3M8 9h7.5M12.5 5.5L16 9l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      avatar:
+        '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="7" r="3.2" stroke="currentColor" stroke-width="1.5"/><path d="M4 16.5c.7-2.8 2.9-4.2 6-4.2s5.3 1.4 6 4.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    };
+
+    return (
+      '<div class="acc-menu" id="' +
+      menuId +
+      '" role="menu" hidden>' +
+      '<div class="acc-menu-arrow" aria-hidden="true"></div>' +
+      '<div class="acc-menu-head">' +
+      '<span class="acc-menu-avatar">' +
+      icons.avatar +
+      "</span>" +
+      '<div class="acc-menu-user">' +
+      '<div class="acc-menu-id-row">' +
+      '<p class="acc-menu-id">№1733760863</p>' +
+      "</div>" +
+      '<p class="acc-menu-email">wendy.h@example.net</p>' +
+      "</div>" +
+      "</div>" +
+      '<div class="acc-menu-balances">' +
+      '<div class="acc-menu-balance-row"><span class="acc-menu-balance-label">Main account (MYR) ' +
+      chevron +
+      '</span><span class="acc-menu-balance-value" data-wallet-main>0</span></div>' +
+      '<div class="acc-menu-balance-row"><span class="acc-menu-balance-label">Game wallet ' +
+      chevron +
+      '</span><span class="acc-menu-balance-value">0</span></div>' +
+      '<div class="acc-menu-balance-row"><span class="acc-menu-balance-label">Unsettled bets</span><span class="acc-menu-balance-value">0</span></div>' +
+      "</div>" +
+      '<nav class="acc-menu-nav" aria-label="Account">' +
+      '<a href="deposit.html" class="acc-menu-link" role="menuitem"><span class="acc-menu-icon">' +
+      icons.deposit +
+      "</span>Make a Deposit</a>" +
+      '<a href="withdraw.html" class="acc-menu-link" role="menuitem"><span class="acc-menu-icon">' +
+      icons.withdraw +
+      "</span>Withdraw Funds</a>" +
+      '<a href="referral-invite.html" class="acc-menu-link" role="menuitem"><span class="acc-menu-icon">' +
+      icons.invite +
+      "</span>Invite friends</a>" +
+      '<a href="personal-profile.html" class="acc-menu-link" role="menuitem"><span class="acc-menu-icon">' +
+      icons.profile +
+      '<span class="acc-menu-icon-dot" aria-hidden="true"></span></span>Personal Profile</a>' +
+      '<a href="bet-history.html" class="acc-menu-link" role="menuitem"><span class="acc-menu-icon">' +
+      icons.history +
+      "</span>Bet History</a>" +
+      '<a href="security.html" class="acc-menu-link" role="menuitem"><span class="acc-menu-icon">' +
+      icons.settings +
+      "</span>Account settings</a>" +
+      '<button type="button" class="acc-menu-link" role="menuitem" data-auth-open="logout"><span class="acc-menu-icon">' +
+      icons.logout +
+      "</span>Log out</button>" +
+      "</nav>" +
+      "</div>"
+    );
+  }
+
+  function closeAccountMenus(exceptWrap) {
+    $$(".header-account-wrap.is-open").forEach((wrap) => {
+      if (exceptWrap && wrap === exceptWrap) return;
+      wrap.classList.remove("is-open");
+      const btn = $(".header-account-btn", wrap);
+      const menu = $(".acc-menu", wrap);
+      if (btn) btn.setAttribute("aria-expanded", "false");
+      if (menu) menu.hidden = true;
+    });
+  }
+
+  function enhanceAccountDropdown(btn) {
+    if (!btn || btn.dataset.accMenuReady === "1") return;
+
+    let wrap = btn.closest(".header-account-wrap");
+    if (!wrap) {
+      wrap = document.createElement("div");
+      wrap.className = "header-account-wrap";
+      btn.parentNode.insertBefore(wrap, btn);
+      wrap.appendChild(btn);
+    }
+
+    if (btn.tagName === "A") {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = btn.className;
+      button.setAttribute("aria-label", btn.getAttribute("aria-label") || "My account");
+      button.innerHTML = btn.innerHTML;
+      btn.replaceWith(button);
+      btn = button;
+      wrap = btn.closest(".header-account-wrap");
+    }
+
+    let menu = $(".acc-menu", wrap);
+    const menuId = "acc-menu-" + Math.random().toString(36).slice(2, 9);
+    if (!menu) {
+      wrap.insertAdjacentHTML("beforeend", accountMenuHtml(menuId));
+      menu = $(".acc-menu", wrap);
+      syncWalletUi();
+    }
+
+    btn.setAttribute("aria-haspopup", "menu");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", menu.id || menuId);
+    btn.dataset.accMenuReady = "1";
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !wrap.classList.contains("is-open");
+      closeAccountMenus(willOpen ? wrap : null);
+      wrap.classList.toggle("is-open", willOpen);
+      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      if (menu) menu.hidden = !willOpen;
+    });
+  }
+
+  function initAccountDropdowns() {
+    $$(".header-account-btn").forEach(enhanceAccountDropdown);
+
+    if (!document.body.dataset.accMenuDocBound) {
+      document.body.dataset.accMenuDocBound = "1";
+      document.addEventListener("click", (e) => {
+        if (e.target.closest(".header-account-wrap")) return;
+        closeAccountMenus();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeAccountMenus();
+      });
+    }
+  }
+
+
+
+  function userHeaderHtml() {
+    return (
+      '<div class="header-user-block" id="header-user-block" hidden>' +
+      '<div class="header-user-cluster">' +
+      '<div class="header-account-wrap">' +
+      '<button type="button" class="header-account-btn" aria-label="My account" aria-haspopup="menu" aria-expanded="false">' +
+      '<img src="/sportsbook/assets/images/account/icon-user.svg" alt="" width="16" height="16" />' +
+      '<img src="/sportsbook/assets/images/account/icon-chevron.svg" alt="" class="meta-chevron" width="10" height="6" />' +
+      '<span class="header-account-dot" aria-hidden="true"></span>' +
+      "</button>" +
+      "</div>" +
+      '<div class="header-balance-chip">' +
+      '<div class="header-balance-rows">' +
+      '<div class="header-balance-row"><span>MYR</span><span data-wallet-main>0</span></div>' +
+      '<div class="header-balance-row"><span>Game wallet</span><span>0</span></div>' +
+      "</div>" +
+      '<button type="button" class="header-balance-refresh" aria-label="Update balance">' +
+      '<img src="/sportsbook/assets/images/account/icon-refresh.svg" alt="" width="10" height="10" />' +
+      "</button>" +
+      "</div>" +
+      "</div>" +
+      '<a href="deposit.html" class="btn-deposit">Deposit</a>' +
+      '<button type="button" class="icon-btn icon-btn-square header-msg-btn" aria-label="Messages" aria-haspopup="dialog" aria-expanded="false">' +
+      '<span class="icon-btn-inner">' +
+      '<img src="/sportsbook/assets/images/account/icon-messages.svg" alt="" width="16" height="16" />' +
+      '<span class="icon-badge">6</span>' +
+      "</span>" +
+      '<img src="/sportsbook/assets/images/account/icon-chevron.svg" alt="" class="meta-chevron" width="10" height="6" />' +
+      "</button>" +
+      "</div>"
+    );
+  }
+
+  function authScriptBase() {
+    const scripts = document.getElementsByTagName("script");
+    for (let i = scripts.length - 1; i >= 0; i--) {
+      const src = scripts[i].getAttribute("src") || "";
+      if (/auth-modals\.js(\?|$)/.test(src)) {
+        return src.replace(/auth-modals\.js.*$/, "");
+      }
+    }
+    return "js/";
+  }
+
+  function loadScriptOnce(id, src, onload) {
+    const existing = document.getElementById(id);
+    if (existing) {
+      if (onload) {
+        if (existing.dataset.loaded === "1") onload();
+        else existing.addEventListener("load", onload);
+      }
+      return;
+    }
+    const s = document.createElement("script");
+    s.id = id;
+    s.src = src;
+    s.onload = function () {
+      s.dataset.loaded = "1";
+      if (onload) onload();
+    };
+    document.head.appendChild(s);
+  }
+
+  function ensureMessagesUI() {
+    const base = authScriptBase();
+    const run = () => {
+      if (window.MessagesUI && typeof window.MessagesUI.init === "function") {
+        window.MessagesUI.init();
+      }
+    };
+    if (window.MessagesUI) {
+      run();
+      return;
+    }
+    loadScriptOnce("messages-data-js", base + "messages-data.js", () => {
+      loadScriptOnce("messages-js", base + "messages.js", run);
+    });
+  }
+
+  function ensureUserHeader() {
+    const actions = $(".header-actions");
+    if (!actions) return;
+    ensureAccountCss();
+
+    // Account pages already ship a logged-in header — still normalize assets
+    const hasStaticUser = $(".header-user-cluster", actions) || $("#header-user-block", actions);
+
+    // Mark guest-only controls
+    $$(".btn-register, .btn-login", actions).forEach((el) => el.classList.add("header-guest-only"));
+    $$(".desktop-only-action", actions).forEach((el) => el.classList.add("header-guest-only"));
+
+    // Upgrade gift / lang icons to Figma assets when present
+    const giftBtn = $('button[aria-label="Bonus"], button.header-gift-btn, a.header-gift-btn', actions);
+    if (giftBtn) {
+      giftBtn.classList.add("header-gift-btn");
+      const giftImg = $("img", giftBtn);
+      if (giftImg) giftImg.src = "/sportsbook/assets/images/account/icon-gift.svg";
+    }
+    $$(".header-lang-btn .meta-chevron, .header-account-btn .meta-chevron, .header-msg-btn .meta-chevron", actions).forEach((img) => {
+      img.src = "/sportsbook/assets/images/account/icon-chevron.svg";
+    });
+
+    wireHeaderGiftBtn();
+
+    if (hasStaticUser) {
+      return;
+    }
+
+    const meta = $(".header-meta-group", actions);
+    if (meta) {
+      meta.insertAdjacentHTML("beforebegin", userHeaderHtml());
+    } else {
+      actions.insertAdjacentHTML("beforeend", userHeaderHtml());
+    }
+  }
+
+
+
+  function wireHeaderGiftBtn() {
+    const gift =
+      document.querySelector(".header-actions .header-gift-btn") ||
+      document.querySelector('.header-actions button[aria-label="Bonus"]');
+    if (!gift || gift.dataset.giftWired === "1") {
+      syncHeaderGiftBtn();
+      return;
+    }
+    gift.classList.add("header-gift-btn");
+    gift.dataset.giftWired = "1";
+    gift.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (isLoggedIn()) {
+        window.location.href = "daily-checkin.html";
+        return;
+      }
+      openPanel("login");
+    });
+    syncHeaderGiftBtn();
+  }
+
+  function syncHeaderGiftBtn() {
+    const gift =
+      document.querySelector(".header-actions .header-gift-btn") ||
+      document.querySelector('.header-actions button[aria-label="Bonus"]');
+    if (!gift) return;
+    gift.classList.add("header-gift-btn");
+    const loggedIn = isLoggedIn();
+    gift.setAttribute(
+      "aria-label",
+      loggedIn ? "Daily Check-In" : "Bonus — log in to claim"
+    );
+    gift.setAttribute("title", loggedIn ? "Daily Check-In" : "Log in");
+  }
+
+  function ensureMobileNavLogout() {
+    const drawer = $("#header-bottom");
+    if (!drawer) return null;
+
+    let bar = $(".nav-logout-bar", drawer);
+    if (!bar) {
+      const logoutIcon =
+        '<svg viewBox="0 0 18 18" width="18" height="18" fill="none" aria-hidden="true">' +
+        '<path d="M7.5 3.5H4.2A1.7 1.7 0 002.5 5.2v7.6A1.7 1.7 0 004.2 14.5h3.3M8 9h7.5M12.5 5.5L16 9l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        "</svg>";
+      drawer.insertAdjacentHTML(
+        "beforeend",
+        '<div class="nav-logout-bar" hidden>' +
+          '<button type="button" class="nav-logout-btn" data-auth-open="logout">' +
+          '<span class="nav-logout-icon" aria-hidden="true">' +
+          logoutIcon +
+          "</span>" +
+          "Log out" +
+          "</button>" +
+          "</div>"
+      );
+      bar = $(".nav-logout-bar", drawer);
+    }
+    return bar;
+  }
+
+  function syncMobileNavLogout(on) {
+    const bar = ensureMobileNavLogout();
+    if (!bar) return;
+    bar.hidden = !on;
+  }
+
+  function ensureDesktopFullMenu() {
+    try {
+      if (/\/mobile(?:\/|$)/i.test(window.location.pathname || "")) return;
+      if (!document.getElementById("mobile-menu-btn") && !document.getElementById("mobile-menu-tab")) {
+        return;
+      }
+      const run = () => {
+        if (window.DesktopFullMenu) {
+          if (typeof window.DesktopFullMenu.ensure === "function") window.DesktopFullMenu.ensure();
+          if (typeof window.DesktopFullMenu.syncAuth === "function") window.DesktopFullMenu.syncAuth();
+        }
+      };
+      if (window.DesktopFullMenu) {
+        run();
+        return;
+      }
+      loadScriptOnce("desktop-menu-js", authScriptBase() + "desktop-menu.js", run);
+    } catch (e) { /* ignore */ }
+  }
+
+  function setLoggedIn(on) {
+    ensureUserHeader();
+    document.body.classList.toggle("is-logged-in", !!on);
+    try {
+      if (on) sessionStorage.setItem(AUTH_KEY, "1");
+      else sessionStorage.removeItem(AUTH_KEY);
+    } catch (e) { /* ignore */ }
+
+    const userBlock = $("#header-user-block");
+    if (userBlock) userBlock.hidden = !on;
+
+    $$(".header-guest-only").forEach((el) => {
+      el.hidden = !!on;
+    });
+
+    syncHeaderGiftBtn();
+    syncMobileNavLogout(!!on);
+
+    if (on) {
+      ensureStartingBalance();
+      initAccountDropdowns();
+      ensureMessagesUI();
+      syncWalletUi();
+      bindWalletRefresh();
+    } else {
+      closeAccountMenus();
+      if (window.MessagesUI && typeof window.MessagesUI.destroy === "function") {
+        window.MessagesUI.destroy();
+      }
+    }
+
+    if (window.DesktopFullMenu && typeof window.DesktopFullMenu.syncAuth === "function") {
+      window.DesktopFullMenu.syncAuth();
+    }
+
+    const tabbar = document.querySelector(".mobile-tabbar");
+    if (tabbar && tabbar.dataset.sportsTabbar !== "1" && tabbar.dataset.casinoTabbar !== "1") {
+      delete tabbar.dataset.mainTabbar;
+      delete tabbar.dataset.accountTabbar;
+    }
+    initMobileTabbar();
+
+    if (typeof window.syncBetSlipAuthUi === "function") {
+      window.syncBetSlipAuthUi();
+    }
+  }
+
+  function bindWalletRefresh() {
+    document.querySelectorAll(".header-balance-refresh").forEach((btn) => {
+      if (btn.dataset.walletRefreshBound === "1") return;
+      btn.dataset.walletRefreshBound = "1";
+      btn.addEventListener("click", () => {
+        syncWalletUi();
+        if (typeof window.showToast === "function") {
+          window.showToast("Balance updated");
+        }
+      });
+    });
+  }
+
+  function isLoggedIn() {
+    try {
+      return sessionStorage.getItem(AUTH_KEY) === "1" || document.body.classList.contains("is-logged-in");
+    } catch (e) {
+      return document.body.classList.contains("is-logged-in");
+    }
+  }
+
+  function openPanel(name) {
+    const backdrop = $("#auth-backdrop");
+    if (!backdrop) return;
+    backdrop.hidden = false;
+    requestAnimationFrame(() => backdrop.classList.add("is-open"));
+    document.body.classList.add("auth-open");
+
+    $$("[data-auth-panel]", backdrop).forEach((panel) => {
+      const match = panel.getAttribute("data-auth-panel") === name;
+      panel.hidden = !match;
+    });
+
+    if (name === "verify") startOtpTimer(60);
+
+    const focusEl = $(
+      '[data-auth-panel="' + name + '"] input, [data-auth-panel="' + name + '"] button',
+      backdrop
+    );
+    focusEl?.focus();
+  }
+
+  function closeAuth() {
+    const backdrop = $("#auth-backdrop");
+    if (!backdrop) return;
+    backdrop.classList.remove("is-open");
+    document.body.classList.remove("auth-open");
+    stopOtpTimer();
+    setTimeout(() => {
+      if (!backdrop.classList.contains("is-open")) backdrop.hidden = true;
+    }, 200);
+  }
+
+  function startOtpTimer(sec) {
+    stopOtpTimer();
+    otpSeconds = sec;
+    const el = $("#auth-otp-timer");
+    const tick = () => {
+      if (el) el.textContent = otpSeconds > 0 ? "TAC Code Sent. " + otpSeconds + "s" : "Resend code";
+      if (otpSeconds <= 0) {
+        stopOtpTimer();
+        return;
+      }
+      otpSeconds -= 1;
+    };
+    tick();
+    otpTimerId = setInterval(tick, 1000);
+  }
+
+  function stopOtpTimer() {
+    if (otpTimerId) {
+      clearInterval(otpTimerId);
+      otpTimerId = null;
+    }
+  }
+
+  function toast(msg) {
+    if (typeof window.showToast === "function") {
+      window.showToast(msg);
+      return;
+    }
+    let el = $("#auth-toast");
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "auth-toast";
+      el.style.cssText =
+        "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10001;background:#0f2744;color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.3)";
+      document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(el._t);
+    el._t = setTimeout(() => {
+      el.hidden = true;
+    }, 2200);
+  }
+
+  function updatePassReqs(value) {
+    const len = value.length >= 8 && /[A-Za-z]/.test(value) && /\d/.test(value);
+    const alnum = value.length === 0 || /^[A-Za-z0-9]+$/.test(value);
+    const nosym = value.length === 0 || !/[^A-Za-z0-9]/.test(value);
+    const map = { len, alnum, nosym };
+    $$("#auth-pass-reqs [data-req]").forEach((li) => {
+      const key = li.getAttribute("data-req");
+      li.classList.toggle("is-ok", !!map[key] && value.length > 0);
+    });
+    return len && alnum && nosym;
+  }
+
+  function wireOtp() {
+    const inputs = $$("#auth-otp input");
+
+    inputs.forEach((input, i) => {
+      input.addEventListener("input", () => {
+        input.value = input.value.replace(/\D/g, "").slice(0, 1);
+        clearOtpError();
+        if (input.value && inputs[i + 1]) inputs[i + 1].focus();
+        checkOtpAndAdvance();
+      });
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && !input.value && inputs[i - 1]) {
+          inputs[i - 1].focus();
+        }
+      });
+      input.addEventListener("paste", (e) => {
+        e.preventDefault();
+        clearOtpError();
+        const text = (e.clipboardData || window.clipboardData).getData("text").replace(/\D/g, "").slice(0, 6);
+        text.split("").forEach((ch, idx) => {
+          if (inputs[idx]) inputs[idx].value = ch;
+        });
+        const next = inputs[Math.min(text.length, inputs.length - 1)];
+        next?.focus();
+        checkOtpAndAdvance();
+      });
+    });
+  }
+
+  function bindTriggers() {
+    document.addEventListener("click", (e) => {
+      const authOpen = e.target.closest("[data-auth-open]");
+      if (authOpen) {
+        e.preventDefault();
+        const panel = authOpen.getAttribute("data-auth-open");
+        if (panel === "logout") closeAccountMenus();
+        openPanel(panel);
+        return;
+      }
+
+      const loginBtn = e.target.closest(".btn-login");
+      if (loginBtn) {
+        e.preventDefault();
+        openPanel("login");
+        return;
+      }
+
+      const regBtn = e.target.closest(".btn-register, a[href='#reg-form'], .btn-slip-reg, .btn-get-bonus");
+      if (regBtn) {
+        e.preventDefault();
+        openPanel("register");
+      }
+    });
+  }
+
+  function bindModal() {
+    const backdrop = $("#auth-backdrop");
+    if (!backdrop) return;
+
+    backdrop.addEventListener("click", (e) => {
+      if (e.target === backdrop) {
+        closeAuth();
+        return;
+      }
+
+      const actionBtn = e.target.closest("[data-auth-action]");
+      if (actionBtn) {
+        e.preventDefault();
+        const action = actionBtn.getAttribute("data-auth-action");
+        if (action === "logout") {
+          setLoggedIn(false);
+          toast("Logged out");
+          closeAuth();
+          if (/personal-profile|deposit|withdraw/.test(location.pathname)) {
+            location.href = "index.html";
+          }
+          return;
+        }
+        if (action === "live-chat") {
+          toast("Opening live chat…");
+          closeAuth();
+          location.href = "live-chat.html";
+          return;
+        }
+      }
+
+      const openBtn = e.target.closest("[data-auth-open]");
+      if (openBtn) {
+        e.preventDefault();
+        openPanel(openBtn.getAttribute("data-auth-open"));
+        return;
+      }
+
+      const closeBtn = e.target.closest("[data-auth-close]");
+      if (closeBtn) {
+        e.preventDefault();
+        closeAuth();
+        return;
+      }
+
+      const eye = e.target.closest("[data-auth-eye]");
+      if (eye) {
+        e.preventDefault();
+        const id = eye.getAttribute("data-auth-eye");
+        const input = document.getElementById(id);
+        if (!input) return;
+        const show = input.type === "password";
+        input.type = show ? "text" : "password";
+        eye.innerHTML = show ? EYE_ON : EYE_OFF;
+        eye.setAttribute("aria-label", show ? "Hide password" : "Show password");
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && backdrop.classList.contains("is-open")) closeAuth();
+    });
+
+    $("#auth-login-form")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      setLoggedIn(true);
+      toast("Demo only — signed in");
+      closeAuth();
+      if (/referral-invite\.html|membership-invite\.html|rebate-invite\.html/i.test(location.pathname + location.href)) {
+        location.reload();
+      }
+    });
+
+    const regPass = $("#auth-reg-pass");
+    regPass?.addEventListener("input", () => updatePassReqs(regPass.value));
+
+    $("#auth-register-form")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const pass = $("#auth-reg-pass")?.value || "";
+      if (!updatePassReqs(pass)) {
+        toast("Please meet the password requirements");
+        return;
+      }
+      const phone = ($("#auth-reg-phone")?.value || "").replace(/\D/g, "");
+      const last4 = phone.length >= 4 ? phone.slice(-4) : "0000";
+      const sub = $("#auth-verify-sub");
+      if (sub) sub.textContent = "Enter the code we sent to *******" + last4 + ".";
+      $$("#auth-otp input").forEach((input) => {
+        input.value = "";
+      });
+      clearOtpError();
+      openPanel("verify");
+    });
+
+    $("#auth-verify-form")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      checkOtpAndAdvance();
+    });
+
+    wireOtp();
+  }
+
+  let mtFlyoutCloseTimer = 0;
+  const MT_FLYOUT_CLOSE_MS = 220;
+
+  function isAccountShellPage(page, file) {
+    const accountPages = [
+      "personal-profile", "security", "change-password", "information-center", "change-language",
+      "deposit", "withdraw", "payment-queries", "transaction-history", "bet-history",
+      "commission-record", "rebate-record", "checkin-record", "promotion-record",
+      "daily-checkin", "live-chat"
+    ];
+    if (document.querySelector(".account-main")) return true;
+    if (accountPages.indexOf(page) !== -1) return true;
+    const accountFiles = accountPages.map((p) => p + ".html");
+    return accountFiles.indexOf(file) !== -1;
+  }
+
+  /* Desktop → mobile (≤900): no bottom tabbar on account / info / promo utility pages */
+  function shouldHideMobileTabbar(page, file) {
+    const pages = [
+      "deposit",
+      "withdraw",
+      "personal-profile",
+      "security",
+      "change-password",
+      "change-language",
+      "transaction-history",
+      "bet-history",
+      "promotion-record",
+      "referral-invite",
+      "membership-invite",
+      "rebate-invite",
+      "daily-checkin",
+      "promo",
+      "promo-detail",
+      "live-chat",
+      "information-center",
+      "about-us",
+      "terms",
+      "payments",
+      "partnership",
+      "messages",
+    ];
+    if (pages.indexOf(page) !== -1) return true;
+    return pages.some((p) => p + ".html" === file);
+  }
+
+  function hideMobileTabbar(tabbar) {
+    document.body.classList.add("hide-mobile-tabbar");
+    if (!tabbar) return;
+    tabbar.hidden = true;
+    tabbar.setAttribute("aria-hidden", "true");
+  }
+
+  function showMobileTabbar(tabbar) {
+    document.body.classList.remove("hide-mobile-tabbar");
+    if (!tabbar) return;
+    tabbar.hidden = false;
+    tabbar.removeAttribute("aria-hidden");
+  }
+
+  function isCasinoChromePage(page, file) {
+    const casinoFiles = [
+      "casino.html",
+      "live-casino.html",
+      "casino-favourites.html",
+      "world-flight-26.html",
+      "casino-categories.html",
+      "casino-providers.html"
+    ];
+    if (casinoFiles.indexOf(file) !== -1) return true;
+    return (
+      page === "casino" ||
+      page === "live-casino" ||
+      page === "casino-favourites" ||
+      page === "world-flight-26" ||
+      page === "casino-categories" ||
+      page === "casino-providers"
+    );
+  }
+
+  function isSportsbookChromePage(page, file) {
+    if (isAccountShellPage(page, file)) return false;
+    if (isCasinoChromePage(page, file)) return false;
+    if (document.querySelector(".sportsbook-layout")) return true;
+    const sportsFiles = [
+      "index.html", "sports.html", "national-team.html", "live-national-team.html", "big-tournaments.html",
+      "long-term-bets.html", "multi-live.html", "marble-live.html", "esports.html",
+      "wc2026.html", "msi.html", "favourites.html", "results.html", "fast-bet.html",
+      "referral-invite.html", "rebate-invite.html", "membership-invite.html",
+      "search.html", "event.html"
+    ];
+    return sportsFiles.indexOf(file) !== -1 || file === "" || file === "/";
+  }
+
+  function sportsTabActiveKey(file, page) {
+    const p = page || "";
+    if (file === "deposit.html" || p === "deposit") return "deposit";
+    if (file === "personal-profile.html" || p === "personal-profile") return "account";
+    if (isAccountShellPage(p, file)) return "account";
+    return "sports";
+  }
+
+  function casinoTabActiveKey(file) {
+    if (file === "casino-favourites.html") return "mycasino";
+    if (file === "promo.html") return "promo";
+    if (file === "casino-providers.html") return "providers";
+    if (file === "casino-categories.html") return "categories";
+    return "";
+  }
+
+  function casinoLobbyHref() {
+    return "casino-categories.html";
+  }
+
+  function casinoProvidersHref() {
+    return "casino-providers.html";
+  }
+
+  function buildCasinoTabbarHtml(activeKey, file) {
+    const catOn = activeKey === "categories" ? " is-active" : "";
+    const provOn = activeKey === "providers" ? " is-active" : "";
+    const myOn = activeKey === "mycasino" ? " is-active" : "";
+    const promoOn = activeKey === "promo" ? " is-active" : "";
+    const lobby = casinoLobbyHref(file);
+    const providers = casinoProvidersHref(file);
+    return (
+      '<a href="' + lobby + '" class="mobile-tab' + catOn + '"' +
+      (activeKey === "categories" ? ' aria-current="page"' : "") + ">" +
+      '<img src="/sportsbook/mobile/assets/icons/cs-categories.svg" alt="" width="22" height="22" />' +
+      '<span class="mobile-tab-label">Categories</span></a>' +
+      '<a href="' + providers + '" class="mobile-tab' + provOn + '"' +
+      (activeKey === "providers" ? ' aria-current="page"' : "") + ">" +
+      '<img src="/sportsbook/mobile/assets/icons/cs-providers.svg" alt="" width="22" height="22" />' +
+      '<span class="mobile-tab-label">Providers</span></a>' +
+      '<a href="casino-favourites.html" class="mobile-tab mobile-tab--mycasino' + myOn + '"' +
+      (activeKey === "mycasino" ? ' aria-current="page"' : "") + ' aria-label="My Casino">' +
+      '<span class="mobile-tab-mycasino-wrap">' +
+      '<span class="mobile-tab-mycasino-icon" aria-hidden="true">' +
+      '<img src="/sportsbook/mobile/assets/icons/cs-mycasino.svg" alt="" width="18" height="18" /></span></span>' +
+      '<span class="mobile-tab-label">My Casino</span></a>' +
+      '<a href="promo.html" class="mobile-tab' + promoOn + '"' +
+      (activeKey === "promo" ? ' aria-current="page"' : "") + ">" +
+      '<img src="/sportsbook/mobile/assets/icons/cs-promo.svg" alt="" width="22" height="22" />' +
+      '<span class="mobile-tab-label">Promo</span></a>' +
+      '<button type="button" class="mobile-tab" id="mobile-account-tab" data-auth-open="login">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-user.svg" alt="" width="20" height="20" />' +
+      '<span class="mobile-tab-label" id="mobile-account-label">Log in</span></button>'
+    );
+  }
+
+  function ensureCasinoTabbarMarkup(tabbar) {
+    if (!tabbar) return;
+    const file = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+    const activeKey = casinoTabActiveKey(file);
+    const needsBuild =
+      !tabbar.classList.contains("mobile-tabbar--casino") ||
+      !tabbar.querySelector(".mobile-tab--mycasino") ||
+      !document.getElementById("mobile-account-tab");
+    tabbar.classList.add("mobile-tabbar--casino");
+    tabbar.classList.remove("mobile-tabbar--sports", "mobile-tabbar--account");
+    document.body.classList.remove("has-account-tabbar");
+    delete tabbar.dataset.sportsTabbar;
+    tabbar.dataset.casinoTabbar = "1";
+    tabbar.dataset.mainTabbar = "1";
+    tabbar.setAttribute("aria-label", "Casino primary");
+    if (needsBuild) {
+      tabbar.innerHTML = buildCasinoTabbarHtml(activeKey, file);
+    }
+  }
+
+  function syncCasinoTabbarAuth(loggedIn) {
+    const tabbar = document.querySelector('.mobile-tabbar[data-casino-tabbar="1"]');
+    if (!tabbar) return;
+    const label = document.getElementById("mobile-account-label");
+    const accountTab = document.getElementById("mobile-account-tab");
+    if (label) label.textContent = loggedIn ? "Account" : "Log in";
+    if (accountTab) {
+      if (loggedIn) {
+        accountTab.removeAttribute("data-auth-open");
+      } else {
+        accountTab.setAttribute("data-auth-open", "login");
+      }
+      if (!accountTab.dataset.casinoWired) {
+        accountTab.dataset.casinoWired = "1";
+        accountTab.addEventListener("click", (e) => {
+          if (!isLoggedIn()) return;
+          e.preventDefault();
+          window.location.href = "personal-profile.html";
+        });
+      }
+    }
+    tabbar.dataset.mainTabbar = "1";
+  }
+
+  function buildSportsTabbarHtml(activeKey) {
+    const sportsOn = activeKey === "sports" ? " is-active" : "";
+    const casinoOn = activeKey === "casino" ? " is-active" : "";
+    const depositOn = activeKey === "deposit" ? " is-active" : "";
+    const accountOn = activeKey === "account" ? " is-active" : "";
+    return (
+      '<div class="mobile-tab-slot" data-mt-flyout-slot="sports">' +
+      '<button type="button" class="mobile-tab' + sportsOn + '" id="mobile-sports-btn" data-mt-flyout-open="sports" aria-expanded="false" aria-controls="mt-flyout-sports" aria-haspopup="menu">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-sports.svg" alt="" width="20" height="20" />' +
+      '<span class="mobile-tab-label">Sports</span></button>' +
+      '<div class="mobile-tab-flyout" id="mt-flyout-sports" role="menu" aria-label="Sports" hidden>' +
+      '<a href="national-team.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<img class="mobile-tab-flyout__icon--flag" src="/sportsbook/assets/icons/flag-my.svg" alt="" width="22" height="22" />' +
+      "<span>Bet on Your National Team</span></a>" +
+      '<a href="live-national-team.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<img class="mobile-tab-flyout__icon--live" src="/sportsbook/mobile/assets/icons/tab-live.svg" alt="" width="22" height="22" />' +
+      "<span>Live</span></a>" +
+      '<a href="sports.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-menu.svg" alt="" width="22" height="22" />' +
+      "<span>Sports</span></a>" +
+      '<button type="button" class="mobile-tab-flyout__close" data-mt-flyout-close aria-label="Close">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-close.svg" alt="" width="22" height="22" /></button>' +
+      "</div></div>" +
+      '<div class="mobile-tab-slot" data-mt-flyout-slot="casino">' +
+      '<button type="button" class="mobile-tab' + casinoOn + '" data-mt-flyout-open="casino" aria-expanded="false" aria-controls="mt-flyout-casino" aria-haspopup="menu">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-casino.svg" alt="" width="20" height="20" />' +
+      '<span class="mobile-tab-label">Casino</span></button>' +
+      '<div class="mobile-tab-flyout" id="mt-flyout-casino" role="menu" aria-label="Casino" hidden>' +
+      '<a href="casino.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-cherries.svg" alt="" width="22" height="22" />' +
+      "<span>Casino</span></a>" +
+      '<a href="live-casino.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-spade.svg" alt="" width="22" height="22" />' +
+      "<span>Live Casino</span></a>" +
+      '<a href="world-flight-26.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-dice.svg" alt="" width="22" height="22" />' +
+      "<span>1xGames</span></a>" +
+      '<button type="button" class="mobile-tab-flyout__close" data-mt-flyout-close aria-label="Close">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-close.svg" alt="" width="22" height="22" /></button>' +
+      "</div></div>" +
+      '<button type="button" class="mobile-tab mobile-tab--betslip" id="mobile-betslip-btn" aria-controls="right-sidebar" aria-expanded="false" aria-label="Bet slip">' +
+      '<span class="mobile-tab-betslip-wrap"><span class="mobile-tab-betslip-icon" aria-hidden="true">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-coupon.svg" alt="" width="18" height="18" /></span>' +
+      '<span class="mobile-tab-badge" id="mobile-bet-count" hidden>0</span></span>' +
+      '<span class="mobile-tab-label">Bet slip</span></button>' +
+      '<a href="deposit.html" class="mobile-tab' + depositOn + '" id="mobile-deposit-tab" data-auth-open="login">' +
+      '<img src="/sportsbook/mobile/assets/icons/tab-deposit.svg" alt="" width="20" height="20" />' +
+      '<span class="mobile-tab-label">Deposit</span></a>' +
+      '<button type="button" class="mobile-tab' + accountOn + '" id="mobile-account-tab" data-auth-open="login"' +
+      (activeKey === "account" ? ' aria-current="page"' : "") + ">" +
+      '<img src="/sportsbook/mobile/assets/icons/tab-user.svg" alt="" width="20" height="20" />' +
+      '<span class="mobile-tab-label" id="mobile-account-label">Log in</span></button>'
+    );
+  }
+
+  function ensureSportsTabbarMarkup(tabbar) {
+    if (!tabbar) return;
+    if (!document.getElementById("mt-tab-flyout-backdrop")) {
+      const backdrop = document.createElement("div");
+      backdrop.className = "mobile-tab-flyout-backdrop";
+      backdrop.id = "mt-tab-flyout-backdrop";
+      backdrop.hidden = true;
+      tabbar.parentNode.insertBefore(backdrop, tabbar);
+    }
+    const file = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+    const page = document.body.dataset.page || "";
+    const activeKey = sportsTabActiveKey(file, page);
+    const needsBuild =
+      tabbar.classList.contains("mobile-tabbar--account") ||
+      tabbar.dataset.accountTabbar === "1" ||
+      !tabbar.querySelector("[data-mt-flyout-slot]") ||
+      !document.getElementById("mobile-account-tab");
+    tabbar.classList.add("mobile-tabbar--sports");
+    tabbar.classList.remove("mobile-tabbar--account", "mobile-tabbar--casino");
+    document.body.classList.remove("has-account-tabbar");
+    delete tabbar.dataset.accountTabbar;
+    delete tabbar.dataset.casinoTabbar;
+    tabbar.dataset.sportsTabbar = "1";
+    tabbar.dataset.mainTabbar = "1";
+    tabbar.setAttribute("aria-label", "Mobile primary");
+    if (needsBuild) {
+      tabbar.innerHTML = buildSportsTabbarHtml(activeKey);
+      if (typeof window.syncMobileBetCount === "function") window.syncMobileBetCount();
+    } else {
+      tabbar.querySelectorAll(".mobile-tab").forEach((el) => {
+        el.classList.remove("is-active");
+        el.removeAttribute("aria-current");
+      });
+      if (activeKey === "sports") {
+        const btn = document.getElementById("mobile-sports-btn");
+        if (btn) btn.classList.add("is-active");
+      } else if (activeKey === "deposit") {
+        const dep = document.getElementById("mobile-deposit-tab");
+        if (dep) {
+          dep.classList.add("is-active");
+          dep.setAttribute("aria-current", "page");
+        }
+      } else if (activeKey === "account") {
+        const acc = document.getElementById("mobile-account-tab");
+        if (acc) {
+          acc.classList.add("is-active");
+          acc.setAttribute("aria-current", "page");
+        }
+      }
+    }
+  }
+
+  function closeSportsTabFlyout() {
+    clearTimeout(mtFlyoutCloseTimer);
+    const backdrop = document.getElementById("mt-tab-flyout-backdrop");
+    const openSlots = Array.prototype.slice.call(document.querySelectorAll("[data-mt-flyout-slot].is-open"));
+    if (!openSlots.length) {
+      if (backdrop) backdrop.hidden = true;
+      return;
+    }
+    openSlots.forEach((slot) => {
+      const panel = slot.querySelector(".mobile-tab-flyout");
+      if (panel) panel.classList.add("is-closing");
+    });
+    mtFlyoutCloseTimer = window.setTimeout(() => {
+      if (backdrop) backdrop.hidden = true;
+      document.querySelectorAll("[data-mt-flyout-slot]").forEach((slot) => {
+        slot.classList.remove("is-open");
+        const panel = slot.querySelector(".mobile-tab-flyout");
+        const btn = slot.querySelector("[data-mt-flyout-open]");
+        if (panel) {
+          panel.classList.remove("is-closing");
+          panel.hidden = true;
+        }
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+      mtFlyoutCloseTimer = 0;
+    }, MT_FLYOUT_CLOSE_MS);
+  }
+
+  function openSportsTabFlyout(key) {
+    clearTimeout(mtFlyoutCloseTimer);
+    const backdrop = document.getElementById("mt-tab-flyout-backdrop");
+    if (backdrop) backdrop.hidden = false;
+    document.querySelectorAll("[data-mt-flyout-slot]").forEach((slot) => {
+      const on = slot.getAttribute("data-mt-flyout-slot") === key;
+      const panel = slot.querySelector(".mobile-tab-flyout");
+      const btn = slot.querySelector("[data-mt-flyout-open]");
+      if (!on) {
+        slot.classList.remove("is-open");
+        if (panel) {
+          panel.classList.remove("is-closing");
+          panel.hidden = true;
+        }
+        if (btn) btn.setAttribute("aria-expanded", "false");
+        return;
+      }
+      if (panel) {
+        panel.classList.remove("is-closing");
+        panel.hidden = false;
+        slot.classList.remove("is-open");
+        void panel.offsetWidth;
+      }
+      slot.classList.add("is-open");
+      if (btn) btn.setAttribute("aria-expanded", "true");
+    });
+  }
+
+  function isMobileViewport() {
+    return window.matchMedia("(max-width: 900px)").matches;
+  }
+
+  function setSportsDrawerBackdrop(visible) {
+    const backdrop = document.getElementById("drawer-backdrop");
+    if (!backdrop) return;
+    backdrop.hidden = !visible;
+    backdrop.classList.toggle("is-visible", visible);
+    document.body.classList.toggle("drawer-open", visible);
+  }
+
+  function closeSportsMobileDrawers() {
+    document.getElementById("left-sidebar")?.classList.remove("open");
+    document.getElementById("right-sidebar")?.classList.remove("is-open");
+    document.getElementById("header-bottom")?.classList.remove("is-open");
+    if (window.DesktopFullMenu) window.DesktopFullMenu.close();
+    document.getElementById("mobile-menu-btn")?.setAttribute("aria-expanded", "false");
+    document.getElementById("mobile-menu-tab")?.setAttribute("aria-expanded", "false");
+    document.getElementById("mobile-betslip-btn")?.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("ds-menu-open");
+    setSportsDrawerBackdrop(false);
+    if (typeof window.syncMobileBetCount === "function") window.syncMobileBetCount();
+  }
+
+  function ensureSharedBetSlipScript() {
+    if (window.SharedBetSlip) return Promise.resolve(window.SharedBetSlip);
+    return new Promise((resolve) => {
+      const finish = () => resolve(window.SharedBetSlip || null);
+      const existing = document.querySelector('script[src*="shared-bet-slip.js"]');
+      if (existing) {
+        if (window.SharedBetSlip) {
+          finish();
+          return;
+        }
+        existing.addEventListener("load", finish, { once: true });
+        existing.addEventListener("error", finish, { once: true });
+        return;
+      }
+      const authScript = document.querySelector('script[src*="auth-modals.js"]');
+      let src = "js/shared-bet-slip.js";
+      try {
+        if (authScript && authScript.src) {
+          src = new URL("shared-bet-slip.js", authScript.src).href;
+        }
+      } catch (e) { /* keep relative */ }
+      const s = document.createElement("script");
+      s.src = src;
+      s.addEventListener("load", finish, { once: true });
+      s.addEventListener("error", finish, { once: true });
+      document.head.appendChild(s);
+    });
+  }
+
+  function toggleSportsBetSlip() {
+    if (!isMobileViewport()) return;
+    closeSportsTabFlyout();
+
+    const applyToggle = (right) => {
+      if (!right) return;
+      const open = right.classList.contains("is-open");
+      closeSportsMobileDrawers();
+      if (!open) {
+        /* ≤900 sheet uses full slip chrome — clear desktop compact-rail collapse */
+        right.classList.remove("collapsed");
+        document.querySelector(".sportsbook-layout")?.classList.remove("right-collapsed");
+        right.classList.add("is-open");
+        document.getElementById("mobile-betslip-btn")?.setAttribute("aria-expanded", "true");
+        setSportsDrawerBackdrop(true);
+        if (typeof window.syncMobileBetCount === "function") window.syncMobileBetCount();
+      }
+    };
+
+    const existing = document.getElementById("right-sidebar");
+    if (existing) {
+      applyToggle(existing);
+      return;
+    }
+
+    ensureSharedBetSlipScript()
+      .then((api) => (api && api.ensure ? api.ensure() : Promise.resolve(null)))
+      .then(applyToggle);
+  }
+
+  function initSportsTabFlyouts() {
+    if (document.documentElement.dataset.mtFlyoutWired === "1") return;
+    document.documentElement.dataset.mtFlyoutWired = "1";
+    window.closeSportsTabFlyout = closeSportsTabFlyout;
+
+    /* Capture phase so rebuilt tabbar still works after page scripts bound old nodes */
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (!document.querySelector('.mobile-tabbar[data-sports-tabbar="1"]')) return;
+
+        const openBtn = e.target.closest("[data-mt-flyout-open]");
+        if (openBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          const key = openBtn.getAttribute("data-mt-flyout-open");
+          const slot = openBtn.closest("[data-mt-flyout-slot]");
+          if (!key || !slot) return;
+          closeSportsMobileDrawers();
+          if (slot.classList.contains("is-open")) closeSportsTabFlyout();
+          else openSportsTabFlyout(key);
+          return;
+        }
+
+        if (e.target.closest("[data-mt-flyout-close]")) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeSportsTabFlyout();
+          return;
+        }
+
+        if (e.target.closest("#mt-tab-flyout-backdrop")) {
+          e.stopPropagation();
+          closeSportsTabFlyout();
+          return;
+        }
+
+        if (e.target.closest("#mobile-betslip-btn")) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleSportsBetSlip();
+        }
+      },
+      true
+    );
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeSportsTabFlyout();
+        if (document.getElementById("right-sidebar")?.classList.contains("is-open")) {
+          closeSportsMobileDrawers();
+        }
+      }
+    });
+
+    document.getElementById("right-drawer-close")?.addEventListener("click", () => {
+      closeSportsMobileDrawers();
+    });
+
+    document.getElementById("drawer-backdrop")?.addEventListener("click", () => {
+      if (!document.querySelector('.mobile-tabbar[data-sports-tabbar="1"]')) return;
+      closeSportsTabFlyout();
+      closeSportsMobileDrawers();
+    });
+  }
+
+  function syncSportsTabbarAuth(loggedIn) {
+    const tabbar = document.querySelector('.mobile-tabbar[data-sports-tabbar="1"]');
+    if (!tabbar) return;
+    const label = document.getElementById("mobile-account-label");
+    const accountTab = document.getElementById("mobile-account-tab");
+    const depositTab = document.getElementById("mobile-deposit-tab");
+    if (label) label.textContent = loggedIn ? "Account" : "Log in";
+    if (accountTab) {
+      if (loggedIn) {
+        accountTab.removeAttribute("data-auth-open");
+      } else {
+        accountTab.setAttribute("data-auth-open", "login");
+      }
+      if (!accountTab.dataset.sportsWired) {
+        accountTab.dataset.sportsWired = "1";
+        accountTab.addEventListener("click", (e) => {
+          if (!isLoggedIn()) return;
+          e.preventDefault();
+          window.location.href = "personal-profile.html";
+        });
+      }
+    }
+    if (depositTab) {
+      if (loggedIn) {
+        depositTab.removeAttribute("data-auth-open");
+      } else {
+        depositTab.setAttribute("data-auth-open", "login");
+      }
+    }
+    tabbar.dataset.mainTabbar = "1";
+  }
+
+  function initMobileTabbar() {
+    const tabbar = document.querySelector(".mobile-tabbar");
+    if (!tabbar) return;
+
+    const loggedIn = isLoggedIn() || document.body.classList.contains("is-logged-in");
+    const page = document.body.dataset.page || "";
+    const file = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+
+    if (shouldHideMobileTabbar(page, file)) {
+      hideMobileTabbar(tabbar);
+      return;
+    }
+
+    showMobileTabbar(tabbar);
+
+    /* Casino pages keep their own Categories / Providers / My Casino tabbar */
+    if (tabbar.dataset.casinoTabbar === "1" || isCasinoChromePage(page, file)) {
+      ensureCasinoTabbarMarkup(tabbar);
+      syncCasinoTabbarAuth(loggedIn);
+      return;
+    }
+
+    /* All other desktop→mobile pages use the home sports tabbar */
+    ensureSportsTabbarMarkup(tabbar);
+    syncSportsTabbarAuth(loggedIn);
+    initSportsTabFlyouts();
+  }
+
+  /* ── Sports / Live ≤900 subcategory strip (header dropdown IA) ── */
+  /* Mirrors account .acc-subnav on withdraw; destinations from header Sports/Live menus. */
+  var SB_SUBNAV_GROUPS = {
+    sports: {
+      label: "Sports menu",
+      pages: ["sports", "national-team", "big-tournaments", "long-term-bets"],
+      items: [
+        {
+          key: "sports",
+          href: "sports.html",
+          label: "Sports",
+          icon: "/sportsbook/mobile/assets/icons/tab-menu.svg",
+          tint: true,
+          pages: ["sports"],
+        },
+        {
+          key: "national-team",
+          href: "national-team.html",
+          label: "Bet on Your National Team",
+          icon: "/sportsbook/assets/icons/flag-my.svg",
+          pages: ["national-team"],
+        },
+        {
+          key: "big-tournaments",
+          href: "big-tournaments.html",
+          label: "Bet on Big Tournaments",
+          icon: "/sportsbook/assets/icons/icon-trophy.svg",
+          tint: true,
+          pages: ["big-tournaments"],
+        },
+        {
+          key: "long-term-bets",
+          href: "long-term-bets.html",
+          label: "Long-term bets",
+          icon: "/sportsbook/assets/icons/icon-clock.svg",
+          tint: true,
+          pages: ["long-term-bets"],
+        },
+      ],
+    },
+    live: {
+      label: "Live menu",
+      pages: ["live-national-team", "marble-live", "fast-bet"],
+      items: [
+        {
+          key: "live-national-team",
+          href: "live-national-team.html",
+          label: "Bet on Your National Team",
+          icon: "/sportsbook/assets/icons/flag-my.svg",
+          pages: ["live-national-team"],
+        },
+        {
+          key: "marble-live",
+          href: "marble-live.html",
+          label: "Marble-Live",
+          icon: "/sportsbook/assets/icons/marble/sport-football.svg",
+          tint: true,
+          pages: ["marble-live"],
+        },
+        {
+          key: "fast-bet",
+          href: "fast-bet.html",
+          label: "Fast bet",
+          icon: "/sportsbook/assets/icons/account-subnav/dice.svg",
+          pages: ["fast-bet"],
+        },
+      ],
+    },
+  };
+
+  function isMobileSitePath() {
+    return /\/mobile(\/|$)/i.test(window.location.pathname || "");
+  }
+
+  function sbSubnavGroupForPage(page) {
+    if (!page) return null;
+    if (SB_SUBNAV_GROUPS.sports.pages.indexOf(page) !== -1) return SB_SUBNAV_GROUPS.sports;
+    if (SB_SUBNAV_GROUPS.live.pages.indexOf(page) !== -1) return SB_SUBNAV_GROUPS.live;
+    return null;
+  }
+
+  function sbSubnavIconHtml(item) {
+    var tintCls = item.tint ? " sb-subnav-icon--tint" : "";
+    return (
+      '<span class="sb-subnav-icon' +
+      tintCls +
+      '" aria-hidden="true">' +
+      '<img src="' +
+      item.icon +
+      '" alt="" width="18" height="18" decoding="async" />' +
+      "</span>"
+    );
+  }
+
+  function initSbSubnav() {
+    if (isMobileSitePath()) return;
+    if (document.body.classList.contains("mh-page")) return;
+    if (document.querySelector(".sb-subnav")) return;
+
+    var page = document.body.getAttribute("data-page") || "";
+    var group = sbSubnavGroupForPage(page);
+    if (!group) return;
+
+    var main =
+      document.getElementById("main-content") ||
+      document.querySelector(".main-content");
+    if (!main) return;
+
+    var cards = group.items
+      .map(function (item) {
+        var active = item.pages && item.pages.indexOf(page) !== -1;
+        var cls = "sb-subnav-card" + (active ? " is-active" : "");
+        var current = active ? ' aria-current="page"' : "";
+        return (
+          '<a href="' +
+          item.href +
+          '" class="' +
+          cls +
+          '"' +
+          current +
+          ">" +
+          sbSubnavIconHtml(item) +
+          "<span>" +
+          item.label +
+          "</span>" +
+          "</a>"
+        );
+      })
+      .join("");
+
+    var nav = document.createElement("nav");
+    nav.className = "sb-subnav";
+    nav.setAttribute("aria-label", group.label);
+    nav.innerHTML = '<div class="sb-subnav-track">' + cards + "</div>";
+
+    var subbar = main.querySelector(".nt-mobile-subbar");
+    if (subbar && subbar.parentNode === main) {
+      if (subbar.nextSibling) main.insertBefore(nav, subbar.nextSibling);
+      else main.appendChild(nav);
+    } else {
+      main.insertBefore(nav, main.firstChild);
+    }
+
+    var activeCard = nav.querySelector(".sb-subnav-card.is-active");
+    if (activeCard && typeof activeCard.scrollIntoView === "function") {
+      setTimeout(function () {
+        activeCard.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+      }, 50);
+    }
+  }
+
+  function init() {
+    ensureCss();
+    ensureAccountCss();
+    // Always rebuild so markup stays in sync with this script
+    const existing = $("#auth-backdrop");
+    if (existing) existing.remove();
+    document.body.insertAdjacentHTML("beforeend", buildMarkup());
+    bindModal();
+    bindTriggers();
+    ensureUserHeader();
+
+    // Restore session or honor page-level is-logged-in (account pages)
+    if (isLoggedIn()) setLoggedIn(true);
+    else setLoggedIn(false);
+
+    initMobileTabbar();
+    initSbSubnav();
+    ensureDesktopFullMenu();
+
+    /* Prefetch shared mobile bet slip on sports tabbar pages that lack #right-sidebar */
+    if (
+      document.querySelector('.mobile-tabbar[data-sports-tabbar="1"]') &&
+      !document.getElementById("right-sidebar") &&
+      !/\/mobile(\/|$)/i.test(window.location.pathname || "")
+    ) {
+      ensureSharedBetSlipScript().then((api) => {
+        if (api && typeof api.ensure === "function") api.ensure();
+      });
+    }
+
+    window.AuthModals = {
+      open: openPanel,
+      close: closeAuth,
+      setLoggedIn: setLoggedIn,
+      isLoggedIn: isLoggedIn,
+    };
+
+    /* Deep-link for Figma / demos: ?modal=… or ?auth=1 (logged-in shell) */
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("auth") === "1") {
+        setLoggedIn(true);
+      }
+      const modal = (params.get("modal") || "").toLowerCase();
+      if (
+        modal === "login" ||
+        modal === "register" ||
+        modal === "logout" ||
+        modal === "verify" ||
+        modal === "complete" ||
+        modal === "forgot"
+      ) {
+        if (modal === "logout") setLoggedIn(true);
+        else setLoggedIn(false);
+        if (modal === "verify") {
+          const sub = $("#auth-verify-sub");
+          if (sub) sub.textContent = "Enter the code we sent to *******4894.";
+        }
+        requestAnimationFrame(() => openPanel(modal));
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();

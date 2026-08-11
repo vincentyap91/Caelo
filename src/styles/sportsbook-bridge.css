@@ -1,0 +1,99 @@
+/* Bridge: Caelo shell ↔ 1xBet sportsbook middle shell */
+
+.sportsbook-root {
+  /* Override 1xbet default 96px after styles.css loads */
+  --header-h: 100px !important;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  background: var(--page-bg-secondary, #0e243d);
+  color: var(--text-inverse, #fff);
+}
+
+.sportsbook-root .sportsbook-layout {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* event.html match details middle column */
+.sportsbook-root[data-sportsbook-mode='event'] .ev-main {
+  min-width: 0;
+}
+
+/* Dark gutter while sportsbook route is active (App shell stays light elsewhere) */
+.app-shell[data-app-shell-bg='sportsbook'] {
+  background: #0b1d33;
+}
+
+body.sportsbook-port-active {
+  background: #0b1d33;
+}
+
+/*
+ * Body-level sportsbook chrome (tabbar / mh-sf / toast / JS modals) sits outside
+ * .sportsbook-layout but inside the port host — keep 1xbet font stack on host.
+ */
+.sportsbook-root .mobile-tabbar,
+.sportsbook-root .mh-sf,
+.sportsbook-root .toast,
+.sportsbook-root .drawer-backdrop {
+  font-family: var(--font, system-ui, sans-serif);
+}
+
+/*
+ * Caelo Footer must keep theme colors on /sportsbook.
+ */
+body.sportsbook-port-active .site-footer,
+.app-shell[data-app-shell-bg='sportsbook'] .site-footer {
+  --color-border-line: rgb(168 226 251);
+  --color-surface-low: var(--brand-500);
+  --color-text-footer: var(--mono-0);
+  --color-text-light: var(--mono-0);
+  --color-surface-base: var(--raw-app-surface-base);
+  --color-tertiery: var(--mono-0);
+  background-color: var(--color-surface-low) !important;
+  background-image: none !important;
+  color: var(--color-tertiery);
+  border-color: var(--color-border-line);
+  margin-top: 0 !important;
+  padding-top: 3rem !important;
+  padding-bottom: 1.5rem !important;
+  gap: unset;
+}
+
+body.sportsbook-port-active .site-footer .footer-payment-methods-container,
+.app-shell[data-app-shell-bg='sportsbook'] .site-footer .footer-payment-methods-container {
+  --color-surface: var(--raw-app-surface-base);
+}
+
+body.sportsbook-port-active .site-footer .site-footer__menu-divider,
+.app-shell[data-app-shell-bg='sportsbook'] .site-footer .site-footer__menu-divider {
+  --color-border-line: var(--mono-0);
+}
+
+body.sportsbook-port-active .site-footer a,
+body.sportsbook-port-active .site-footer button,
+.app-shell[data-app-shell-bg='sportsbook'] .site-footer a,
+.app-shell[data-app-shell-bg='sportsbook'] .site-footer button {
+  color: var(--color-tertiery);
+  text-decoration: none;
+}
+
+/* Auth / slip modals are appended to document.body — use 1xbet tokens from body.sportsbook-port-active */
+body.sportsbook-port-active #auth-backdrop,
+body.sportsbook-port-active .bss-backdrop,
+body.sportsbook-port-active #ds-event-info {
+  font-family: var(--font, system-ui, sans-serif);
+}
+
+@media (max-width: 767px) {
+  .sportsbook-root {
+    --header-h: 56px !important;
+    min-height: calc(100vh - 56px);
+  }
+
+  body.sportsbook-port-active .site-footer,
+  .app-shell[data-app-shell-bg='sportsbook'] .site-footer {
+    padding-bottom: 6rem !important;
+  }
+}

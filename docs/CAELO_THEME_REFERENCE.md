@@ -3,11 +3,38 @@
 > **Before `git pull` / merge:** Keep these values. Do **not** overwrite the current correct Caelo theme with older or generic colors from incoming changes. If a conflict appears in `src/styles/theme.css` or promo-related files, prefer **this document** and the local working copy you verified in the UI.
 
 **Primary source of truth:** `src/styles/theme.css`  
-**File snapshot:** `docs/caelo-theme.css.snapshot` (full copy — restore with `Copy-Item`)  
-**After pull:** see `docs/THEME_RESTORE_AFTER_PULL.md`  
+**File snapshot:** `docs/caelo-theme.css.snapshot`  
 **Git tag:** `caelo-theme-stable` · **branch:** `caelo-theme-colors`  
 **Theme editor defaults:** `src/components/theme-editor/ThemeEditorConfig.js`  
 **Figma sync scripts:** `scripts/figma-sync-caelo-theme.*.js`
+
+---
+
+## Restore after `git pull`
+
+Use when colors look wrong after pulling (green brand, dark progress tracks, unexpected `src/theme.css`, etc.).
+
+```powershell
+# From repo root — restores theme files from the saved tag
+git checkout caelo-theme-stable -- src/styles/theme.css src/index.css src/components/ui/ProgressBar.jsx
+
+# If pull added migration theme files you do not want:
+git rm -f src/theme.css src/theme-cam88.css 2>$null
+git checkout caelo-theme-stable -- src/index.css
+```
+
+Or restore from the snapshot file:
+
+```powershell
+Copy-Item docs/caelo-theme.css.snapshot src/styles/theme.css -Force
+```
+
+Quick verify in `src/styles/theme.css`: `--color-brand-primary: #123B94`, `--color-accent-100: #dbeafe`, `--color-nav-accent: #ffd84d`.
+
+```powershell
+git show caelo-theme-stable:src/styles/theme.css
+git diff caelo-theme-stable -- src/styles/theme.css
+```
 
 ---
 
