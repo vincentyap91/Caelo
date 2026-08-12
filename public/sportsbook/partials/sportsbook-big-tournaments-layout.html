@@ -1,0 +1,819 @@
+<div class="sportsbook-layout">
+      <!-- LEFT SIDEBAR — Bet on Big Tournaments nav -->
+      <aside class="left-sidebar bt-sidebar" id="left-sidebar" aria-label="Tournaments navigation">
+        <button type="button" class="sidebar-collapse" id="sidebar-collapse" aria-label="Collapse block">
+          <img src="/sportsbook/assets/icons/nav-collapse.svg" alt="" width="9" height="10" />
+          <span>Collapse block</span>
+        </button>
+        <button type="button" class="mobile-drawer-close" id="left-drawer-close" aria-label="Close sports navigation">Close</button>
+
+        <div class="bt-side-card">
+          <div class="bt-side-title">Bet on Big Tournaments</div>
+          <div class="bt-side-count">7 Events</div>
+
+          <details class="bt-sport-group" open>
+            <summary class="bt-sport-summary">
+              <img src="/sportsbook/assets/icons/bt-sport-football.svg" alt="" class="bt-sport-icon" width="16" height="16" />
+              <span>Football</span>
+              <img src="/sportsbook/assets/icons/bt-chevron.svg" alt="" class="bt-summary-chevron" width="10" height="6" />
+            </summary>
+            <nav class="bt-tour-list" aria-label="Football tournaments">
+              <a href="/sportsbook/big-tournaments" data-caelo-nav="sportsbook-big-tournaments" class="bt-tour-item active" aria-current="page">
+                <img src="/sportsbook/assets/icons/bt-wc-winner.svg" alt="" class="bt-tour-icon-img" width="16" height="16" />
+                <span class="bt-tour-name">World Cup 2026. Winner</span>
+              </a>
+              <a href="#" class="bt-tour-item">
+                <img src="/sportsbook/assets/icons/bt-league-eng.png" alt="" class="bt-tour-icon-img" width="16" height="16" />
+                <span class="bt-tour-name">England. Premier League. 2026/27. Winner</span>
+              </a>
+              <a href="#" class="bt-tour-item">
+                <img src="/sportsbook/assets/icons/bt-league-fr.png" alt="" class="bt-tour-icon-img" width="16" height="16" />
+                <span class="bt-tour-name">France. Ligue 1. 2026/27. Winner</span>
+              </a>
+              <a href="#" class="bt-tour-item">
+                <img src="/sportsbook/assets/icons/bt-league-de.png" alt="" class="bt-tour-icon-img" width="16" height="16" />
+                <span class="bt-tour-name">Germany. Bundesliga. 2026/27. Winner</span>
+              </a>
+              <a href="#" class="bt-tour-item">
+                <img src="/sportsbook/assets/icons/bt-league-it.png" alt="" class="bt-tour-icon-img" width="16" height="16" />
+                <span class="bt-tour-name">Italy. Serie A. 2026/27. Winner</span>
+              </a>
+              <a href="#" class="bt-tour-item">
+                <img src="/sportsbook/assets/icons/bt-league-ru.png" alt="" class="bt-tour-icon-img" width="16" height="16" />
+                <span class="bt-tour-name">Russia. Premier League. 2026/27. Winner</span>
+              </a>
+              <a href="#" class="bt-tour-item">
+                <img src="/sportsbook/assets/icons/bt-league-es.png" alt="" class="bt-tour-icon-img" width="16" height="16" />
+                <span class="bt-tour-name">Spain. La Liga. 2026/27. Winner</span>
+              </a>
+            </nav>
+          </details>
+        </div>
+      </aside>
+
+      <!-- CENTER CONTENT — Outright betting table -->
+      <main class="main-content bt-main" id="main-content">
+        <!-- =900: back � title (same as mobile/big-tournaments.html) -->
+        <div class="nt-mobile-subbar" aria-label="Bet on Big Tournaments">
+          <a href="/sportsbook/sports" data-caelo-nav="sportsbook-sports" class="nt-mobile-subbar__back" aria-label="Back">
+            <img src="/sportsbook/mobile/assets/icons/sp-back.svg" alt="" width="10" height="16" />
+          </a>
+          <h1 class="nt-mobile-subbar__title">Bet on Big Tournaments</h1>
+        </div>
+
+        <!-- =900: accordion board (mirrors mobile/big-tournaments.html) -->
+        <div class="bt-mobile-board-host bt-mobile-board" id="bt-mobile-board-host">
+        <div class="mh-bt-hero" aria-hidden="true">
+              <img src="/sportsbook/mobile/assets/banners/champs-banner.jpg" alt="" width="750" height="280" />
+            </div>
+
+            <div class="mh-bt-board">
+              <section class="mh-bt-sport" data-sport="football">
+                <button type="button" class="mh-bt-sport__head" aria-expanded="true">
+                  <img class="mh-bt-sport__ico" src="/sportsbook/mobile/assets/icons/sport-football.svg" alt="" width="18" height="18" />
+                  <span>Football</span>
+                  <span class="mh-bt-sport__chev" aria-hidden="true"></span>
+                </button>
+                <div class="mh-bt-sport__body">
+
+                  <!-- World Cup 2026 — desktop outright data + country flags -->
+                  <div class="mh-bt-league" data-league="wc2026">
+                    <button type="button" class="mh-bt-league__head" aria-expanded="true">
+                      <img class="mh-bt-league__flag" src="/sportsbook/assets/icons/bt-wc-winner.png" alt="" width="18" height="18" />
+                      <span class="mh-bt-league__name">World Cup 2026. Winner</span>
+                      <span class="mh-bt-league__chev" aria-hidden="true"></span>
+                    </button>
+                    <div class="mh-bt-league__body">
+                      <div class="mh-bt-market">
+                        <label class="visually-hidden" for="mh-bt-market-wc">Market</label>
+                        <select id="mh-bt-market-wc" class="mh-bt-market__select" aria-label="Market">
+                          <option value="place13" selected>1-3RD PLACE</option>
+                          <option value="sf">To reach semi-finals</option>
+                          <option value="final">To reach final</option>
+                          <option value="third">3rd place</option>
+                          <option value="second">2nd place</option>
+                          <option value="winner">Winner</option>
+                        </select>
+                      </div>
+
+                      <article class="mh-bt-row"
+                        data-place13-yes="1.14" data-place13-no="5.7"
+                        data-sf-yes="1.28" data-sf-no="3.55"
+                        data-final-yes="1.55" data-final-no="2.35"
+                        data-third-yes="8.5" data-third-no="1.05"
+                        data-second-yes="4.2" data-second-no="1.2"
+                        data-winner-yes="2.35" data-winner-no="1.55">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-flag-fr.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">France</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.14"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.14</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="5.7"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">5.7</span></button>
+                        </div>
+                      </article>
+
+                      <article class="mh-bt-row"
+                        data-place13-yes="1.22" data-place13-no="4.1"
+                        data-sf-yes="1.4" data-sf-no="2.85"
+                        data-final-yes="1.85" data-final-no="1.9"
+                        data-third-yes="9" data-third-no="1.04"
+                        data-second-yes="5" data-second-no="1.14"
+                        data-winner-yes="5" data-winner-no="1.14">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-flag-arg.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Argentina</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.22"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.22</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="4.1"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">4.1</span></button>
+                        </div>
+                      </article>
+
+                      <article class="mh-bt-row"
+                        data-place13-yes="1.25" data-place13-no="3.8"
+                        data-sf-yes="1.45" data-sf-no="2.7"
+                        data-final-yes="1.9" data-final-no="1.85"
+                        data-third-yes="9.5" data-third-no="1.03"
+                        data-second-yes="5.25" data-second-no="1.13"
+                        data-winner-yes="5.25" data-winner-no="1.13">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-flag-esp.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Spain</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.25"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.25</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="3.8"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">3.8</span></button>
+                        </div>
+                      </article>
+
+                      <article class="mh-bt-row"
+                        data-place13-yes="1.28" data-place13-no="3.55"
+                        data-sf-yes="1.5" data-sf-no="2.5"
+                        data-final-yes="2" data-final-no="1.75"
+                        data-third-yes="10" data-third-no="1.02"
+                        data-second-yes="5.55" data-second-no="1.12"
+                        data-winner-yes="5.55" data-winner-no="1.12">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-flag-eng.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">England</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.28"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.28</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="3.55"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">3.55</span></button>
+                        </div>
+                      </article>
+
+                      <article class="mh-bt-row"
+                        data-place13-yes="2.1" data-place13-no="1.7"
+                        data-sf-yes="2.8" data-sf-no="1.4"
+                        data-final-yes="4.5" data-final-no="1.18"
+                        data-third-yes="12" data-third-no="1.01"
+                        data-second-yes="15" data-second-no="1.02"
+                        data-winner-yes="15" data-winner-no="1.02">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-flag-nor.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Norway</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="2.1"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">2.1</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.7"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.7</span></button>
+                        </div>
+                      </article>
+
+                      <article class="mh-bt-row"
+                        data-place13-yes="3.2" data-place13-no="1.32"
+                        data-sf-yes="4.5" data-sf-no="1.18"
+                        data-final-yes="8" data-final-no="1.06"
+                        data-third-yes="-" data-third-no="-"
+                        data-second-yes="35" data-second-no="1.01"
+                        data-winner-yes="35" data-winner-no="1.01">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-flag-bel.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Belgium</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="3.2"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">3.2</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.32"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.32</span></button>
+                        </div>
+                      </article>
+
+                      <article class="mh-bt-row"
+                        data-place13-yes="4" data-place13-no="1.22"
+                        data-sf-yes="6" data-sf-no="1.12"
+                        data-final-yes="11" data-final-no="1.03"
+                        data-third-yes="-" data-third-no="-"
+                        data-second-yes="41" data-second-no="1.01"
+                        data-winner-yes="41" data-winner-no="1.01">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-flag-sui.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Switzerland</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="4"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">4</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.22"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.22</span></button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                  <!-- England PL — collapsed; demo winner market (league flag reused) -->
+                  <div class="mh-bt-league is-collapsed" data-league="eng">
+                    <button type="button" class="mh-bt-league__head" aria-expanded="false">
+                      <img class="mh-bt-league__flag" src="/sportsbook/assets/icons/bt-league-eng.png" alt="" width="18" height="18" />
+                      <span class="mh-bt-league__name">England. Premier League. 2026/27. Winner</span>
+                      <span class="mh-bt-league__chev" aria-hidden="true"></span>
+                    </button>
+                    <div class="mh-bt-league__body">
+                      <div class="mh-bt-market">
+                        <select class="mh-bt-market__select" aria-label="Market">
+                          <option value="place12" selected>1-2ND PLACE</option>
+                          <option value="winner">Winner</option>
+                        </select>
+                      </div>
+                      <article class="mh-bt-row" data-place12-yes="1.57" data-place12-no="2.4" data-winner-yes="2.1" data-winner-no="1.7">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-eng.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Arsenal</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.57"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.57</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="2.4"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">2.4</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-place12-yes="2.4" data-place12-no="1.57" data-winner-yes="3.2" data-winner-no="1.32">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-eng.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Manchester City</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="2.4"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">2.4</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.57"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.57</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-place12-yes="2.75" data-place12-no="1.45" data-winner-yes="4.5" data-winner-no="1.18">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-eng.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Liverpool</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="2.75"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">2.75</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.45"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.45</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-place12-yes="6" data-place12-no="1.12" data-winner-yes="11" data-winner-no="1.03">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-eng.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Chelsea</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="6"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">6</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.12"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.12</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-place12-yes="100" data-place12-no="-" data-winner-yes="150" data-winner-no="-">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-eng.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Leeds United</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="100"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">100</span></button>
+                          <button type="button" class="mh-bt-odd is-empty" data-side="no" disabled><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">—</span></button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div class="mh-bt-league is-collapsed" data-league="fr">
+                    <button type="button" class="mh-bt-league__head" aria-expanded="false">
+                      <img class="mh-bt-league__flag" src="/sportsbook/assets/icons/bt-league-fr.png" alt="" width="18" height="18" />
+                      <span class="mh-bt-league__name">France. Ligue 1. 2026/27. Winner</span>
+                      <span class="mh-bt-league__chev" aria-hidden="true"></span>
+                    </button>
+                    <div class="mh-bt-league__body">
+                      <div class="mh-bt-market">
+                        <select class="mh-bt-market__select" aria-label="Market">
+                          <option value="winner" selected>Winner</option>
+                        </select>
+                      </div>
+                      <article class="mh-bt-row" data-winner-yes="1.55" data-winner-no="2.35">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-fr.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Paris Saint-Germain</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.55"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.55</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="2.35"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">2.35</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="6.5" data-winner-no="1.1">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-fr.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Monaco</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="6.5"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">6.5</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.1"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.1</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="9" data-winner-no="1.04">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-fr.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Marseille</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="9"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">9</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.04"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.04</span></button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div class="mh-bt-league is-collapsed" data-league="de">
+                    <button type="button" class="mh-bt-league__head" aria-expanded="false">
+                      <img class="mh-bt-league__flag" src="/sportsbook/assets/icons/bt-league-de.png" alt="" width="18" height="18" />
+                      <span class="mh-bt-league__name">Germany. Bundesliga. 2026/27. Winner</span>
+                      <span class="mh-bt-league__chev" aria-hidden="true"></span>
+                    </button>
+                    <div class="mh-bt-league__body">
+                      <div class="mh-bt-market">
+                        <select class="mh-bt-market__select" aria-label="Market">
+                          <option value="winner" selected>Winner</option>
+                        </select>
+                      </div>
+                      <article class="mh-bt-row" data-winner-yes="1.45" data-winner-no="2.7">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-de.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Bayern Munich</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.45"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.45</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="2.7"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">2.7</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="4.2" data-winner-no="1.2">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-de.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Bayer Leverkusen</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="4.2"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">4.2</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.2"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.2</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="8" data-winner-no="1.06">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-de.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Dortmund</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="8"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">8</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.06"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.06</span></button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div class="mh-bt-league is-collapsed" data-league="it">
+                    <button type="button" class="mh-bt-league__head" aria-expanded="false">
+                      <img class="mh-bt-league__flag" src="/sportsbook/assets/icons/bt-league-it.png" alt="" width="18" height="18" />
+                      <span class="mh-bt-league__name">Italy. Serie A. 2026/27. Winner</span>
+                      <span class="mh-bt-league__chev" aria-hidden="true"></span>
+                    </button>
+                    <div class="mh-bt-league__body">
+                      <div class="mh-bt-market">
+                        <select class="mh-bt-market__select" aria-label="Market">
+                          <option value="winner" selected>Winner</option>
+                        </select>
+                      </div>
+                      <article class="mh-bt-row" data-winner-yes="1.7" data-winner-no="2.1">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-it.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Inter</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.7"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.7</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="2.1"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">2.1</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="3.5" data-winner-no="1.28">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-it.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Napoli</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="3.5"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">3.5</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.28"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.28</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="5" data-winner-no="1.14">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-it.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Juventus</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="5"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">5</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.14"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.14</span></button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div class="mh-bt-league is-collapsed" data-league="ru">
+                    <button type="button" class="mh-bt-league__head" aria-expanded="false">
+                      <img class="mh-bt-league__flag" src="/sportsbook/assets/icons/bt-league-ru.png" alt="" width="18" height="18" />
+                      <span class="mh-bt-league__name">Russia. Premier League. 2026/27. Winner</span>
+                      <span class="mh-bt-league__chev" aria-hidden="true"></span>
+                    </button>
+                    <div class="mh-bt-league__body">
+                      <div class="mh-bt-market">
+                        <select class="mh-bt-market__select" aria-label="Market">
+                          <option value="winner" selected>Winner</option>
+                        </select>
+                      </div>
+                      <article class="mh-bt-row" data-winner-yes="2.2" data-winner-no="1.65">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-ru.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Zenit</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="2.2"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">2.2</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.65"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.65</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="3.1" data-winner-no="1.35">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-ru.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Krasnodar</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="3.1"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">3.1</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.35"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.35</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="4.5" data-winner-no="1.18">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-ru.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Spartak Moscow</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="4.5"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">4.5</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.18"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.18</span></button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div class="mh-bt-league is-collapsed" data-league="es">
+                    <button type="button" class="mh-bt-league__head" aria-expanded="false">
+                      <img class="mh-bt-league__flag" src="/sportsbook/assets/icons/bt-league-es.png" alt="" width="18" height="18" />
+                      <span class="mh-bt-league__name">Spain. La Liga. 2026/27. Winner</span>
+                      <span class="mh-bt-league__chev" aria-hidden="true"></span>
+                    </button>
+                    <div class="mh-bt-league__body">
+                      <div class="mh-bt-market">
+                        <select class="mh-bt-market__select" aria-label="Market">
+                          <option value="winner" selected>Winner</option>
+                        </select>
+                      </div>
+                      <article class="mh-bt-row" data-winner-yes="1.85" data-winner-no="1.9">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-es.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Real Madrid</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="1.85"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">1.85</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.9"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.9</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="2.5" data-winner-no="1.5">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-es.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Barcelona</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="2.5"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">2.5</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.5"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.5</span></button>
+                        </div>
+                      </article>
+                      <article class="mh-bt-row" data-winner-yes="7" data-winner-no="1.08">
+                        <div class="mh-bt-row__team">
+                          <img class="mh-bt-row__flag" src="/sportsbook/assets/icons/bt-league-es.png" alt="" width="22" height="22" />
+                          <span class="mh-bt-row__name">Atletico Madrid</span>
+                        </div>
+                        <div class="mh-bt-row__odds">
+                          <button type="button" class="mh-bt-odd" data-side="yes" data-odd="7"><span class="mh-bt-odd__lab">Yes</span><span class="mh-bt-odd__val">7</span></button>
+                          <button type="button" class="mh-bt-odd" data-side="no" data-odd="1.08"><span class="mh-bt-odd__lab">No</span><span class="mh-bt-odd__val">1.08</span></button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+            </div>
+        </div>
+
+
+        <div class="bt-titlebar">
+          <span>Football. World Cup 2026. Winner</span>
+        </div>
+
+        <div class="bt-table-wrap">
+          <table class="bt-outright-table" aria-label="World Cup 2026 outright markets">
+            <thead>
+              <tr class="bt-thead-labels">
+                <th class="bt-th-team" scope="col" rowspan="2">Team</th>
+                <th class="bt-th-market" colspan="2">1-3RD PLACE</th>
+                <th class="bt-th-market" colspan="2">To reach semi-finals</th>
+                <th class="bt-th-market" colspan="2">To reach final</th>
+                <th class="bt-th-market" colspan="2">3rd place</th>
+                <th class="bt-th-market" colspan="2">2nd place</th>
+                <th class="bt-th-market" colspan="2">Winner</th>
+              </tr>
+              <tr class="bt-thead-yn">
+                <th class="bt-th-yn">yes</th><th class="bt-th-yn">no</th>
+                <th class="bt-th-yn">yes</th><th class="bt-th-yn">no</th>
+                <th class="bt-th-yn">yes</th><th class="bt-th-yn">no</th>
+                <th class="bt-th-yn">yes</th><th class="bt-th-yn">no</th>
+                <th class="bt-th-yn">yes</th><th class="bt-th-yn">no</th>
+                <th class="bt-th-yn">yes</th><th class="bt-th-yn">no</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- France -->
+              <tr class="bt-team-row">
+                <td class="bt-td-team">
+                  <img src="/sportsbook/assets/icons/bt-flag-fr.png" alt="" class="bt-flag-img" width="20" height="20" />
+                  <span>France</span>
+                </td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-1-3-yes","league":"World Cup 2026 Winner","match":"France","market":"1-3rd Place","selection":"Yes","odds":1.14}'>1.14</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-1-3-no","league":"World Cup 2026 Winner","match":"France","market":"1-3rd Place","selection":"No","odds":5.7}'>5.7</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-sf-yes","league":"World Cup 2026 Winner","match":"France","market":"To reach semi-finals","selection":"Yes","odds":1.28}'>1.28</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-sf-no","league":"World Cup 2026 Winner","match":"France","market":"To reach semi-finals","selection":"No","odds":3.55}'>3.55</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-f-yes","league":"World Cup 2026 Winner","match":"France","market":"To reach final","selection":"Yes","odds":1.55}'>1.55</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-f-no","league":"World Cup 2026 Winner","match":"France","market":"To reach final","selection":"No","odds":2.35}'>2.35</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-3rd-yes","league":"World Cup 2026 Winner","match":"France","market":"3rd Place","selection":"Yes","odds":8.5}'>8.5</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-3rd-no","league":"World Cup 2026 Winner","match":"France","market":"3rd Place","selection":"No","odds":1.05}'>1.05</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-2nd-yes","league":"World Cup 2026 Winner","match":"France","market":"2nd Place","selection":"Yes","odds":4.2}'>4.2</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-2nd-no","league":"World Cup 2026 Winner","match":"France","market":"2nd Place","selection":"No","odds":1.2}'>1.2</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-win-yes","league":"World Cup 2026 Winner","match":"France","market":"Winner","selection":"Yes","odds":2.35}'>2.35</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-fr-win-no","league":"World Cup 2026 Winner","match":"France","market":"Winner","selection":"No","odds":1.55}'>1.55</button></td>
+              </tr>
+              <!-- Argentina -->
+              <tr class="bt-team-row">
+                <td class="bt-td-team">
+                  <img src="/sportsbook/assets/icons/bt-flag-arg.png" alt="" class="bt-flag-img" width="20" height="20" />
+                  <span>Argentina</span>
+                </td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-1-3-yes","league":"World Cup 2026 Winner","match":"Argentina","market":"1-3rd Place","selection":"Yes","odds":1.22}'>1.22</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-1-3-no","league":"World Cup 2026 Winner","match":"Argentina","market":"1-3rd Place","selection":"No","odds":4.1}'>4.1</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-sf-yes","league":"World Cup 2026 Winner","match":"Argentina","market":"To reach semi-finals","selection":"Yes","odds":1.4}'>1.4</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-sf-no","league":"World Cup 2026 Winner","match":"Argentina","market":"To reach semi-finals","selection":"No","odds":2.85}'>2.85</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-f-yes","league":"World Cup 2026 Winner","match":"Argentina","market":"To reach final","selection":"Yes","odds":1.85}'>1.85</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-f-no","league":"World Cup 2026 Winner","match":"Argentina","market":"To reach final","selection":"No","odds":1.9}'>1.9</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-3rd-yes","league":"World Cup 2026 Winner","match":"Argentina","market":"3rd Place","selection":"Yes","odds":9}'>9</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-3rd-no","league":"World Cup 2026 Winner","match":"Argentina","market":"3rd Place","selection":"No","odds":1.04}'>1.04</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-2nd-yes","league":"World Cup 2026 Winner","match":"Argentina","market":"2nd Place","selection":"Yes","odds":5}'>5</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-2nd-no","league":"World Cup 2026 Winner","match":"Argentina","market":"2nd Place","selection":"No","odds":1.14}'>1.14</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-win-yes","league":"World Cup 2026 Winner","match":"Argentina","market":"Winner","selection":"Yes","odds":5}'>5</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-arg-win-no","league":"World Cup 2026 Winner","match":"Argentina","market":"Winner","selection":"No","odds":1.14}'>1.14</button></td>
+              </tr>
+              <!-- Spain -->
+              <tr class="bt-team-row">
+                <td class="bt-td-team">
+                  <img src="/sportsbook/assets/icons/bt-flag-esp.png" alt="" class="bt-flag-img" width="20" height="20" />
+                  <span>Spain</span>
+                </td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-1-3-yes","league":"World Cup 2026 Winner","match":"Spain","market":"1-3rd Place","selection":"Yes","odds":1.25}'>1.25</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-1-3-no","league":"World Cup 2026 Winner","match":"Spain","market":"1-3rd Place","selection":"No","odds":3.8}'>3.8</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-sf-yes","league":"World Cup 2026 Winner","match":"Spain","market":"To reach semi-finals","selection":"Yes","odds":1.45}'>1.45</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-sf-no","league":"World Cup 2026 Winner","match":"Spain","market":"To reach semi-finals","selection":"No","odds":2.7}'>2.7</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-f-yes","league":"World Cup 2026 Winner","match":"Spain","market":"To reach final","selection":"Yes","odds":1.9}'>1.9</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-f-no","league":"World Cup 2026 Winner","match":"Spain","market":"To reach final","selection":"No","odds":1.85}'>1.85</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-3rd-yes","league":"World Cup 2026 Winner","match":"Spain","market":"3rd Place","selection":"Yes","odds":9.5}'>9.5</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-3rd-no","league":"World Cup 2026 Winner","match":"Spain","market":"3rd Place","selection":"No","odds":1.03}'>1.03</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-2nd-yes","league":"World Cup 2026 Winner","match":"Spain","market":"2nd Place","selection":"Yes","odds":5.25}'>5.25</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-2nd-no","league":"World Cup 2026 Winner","match":"Spain","market":"2nd Place","selection":"No","odds":1.13}'>1.13</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-win-yes","league":"World Cup 2026 Winner","match":"Spain","market":"Winner","selection":"Yes","odds":5.25}'>5.25</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-esp-win-no","league":"World Cup 2026 Winner","match":"Spain","market":"Winner","selection":"No","odds":1.13}'>1.13</button></td>
+              </tr>
+              <!-- England -->
+              <tr class="bt-team-row">
+                <td class="bt-td-team">
+                  <img src="/sportsbook/assets/icons/bt-flag-eng.png" alt="" class="bt-flag-img" width="20" height="20" />
+                  <span>England</span>
+                </td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-1-3-yes","league":"World Cup 2026 Winner","match":"England","market":"1-3rd Place","selection":"Yes","odds":1.28}'>1.28</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-1-3-no","league":"World Cup 2026 Winner","match":"England","market":"1-3rd Place","selection":"No","odds":3.55}'>3.55</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-sf-yes","league":"World Cup 2026 Winner","match":"England","market":"To reach semi-finals","selection":"Yes","odds":1.5}'>1.5</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-sf-no","league":"World Cup 2026 Winner","match":"England","market":"To reach semi-finals","selection":"No","odds":2.5}'>2.5</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-f-yes","league":"World Cup 2026 Winner","match":"England","market":"To reach final","selection":"Yes","odds":2}'>2</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-f-no","league":"World Cup 2026 Winner","match":"England","market":"To reach final","selection":"No","odds":1.75}'>1.75</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-3rd-yes","league":"World Cup 2026 Winner","match":"England","market":"3rd Place","selection":"Yes","odds":10}'>10</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-3rd-no","league":"World Cup 2026 Winner","match":"England","market":"3rd Place","selection":"No","odds":1.02}'>1.02</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-2nd-yes","league":"World Cup 2026 Winner","match":"England","market":"2nd Place","selection":"Yes","odds":5.55}'>5.55</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-2nd-no","league":"World Cup 2026 Winner","match":"England","market":"2nd Place","selection":"No","odds":1.12}'>1.12</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-win-yes","league":"World Cup 2026 Winner","match":"England","market":"Winner","selection":"Yes","odds":5.55}'>5.55</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-eng-win-no","league":"World Cup 2026 Winner","match":"England","market":"Winner","selection":"No","odds":1.12}'>1.12</button></td>
+              </tr>
+              <!-- Norway -->
+              <tr class="bt-team-row">
+                <td class="bt-td-team">
+                  <img src="/sportsbook/assets/icons/bt-flag-nor.png" alt="" class="bt-flag-img" width="20" height="20" />
+                  <span>Norway</span>
+                </td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-1-3-yes","league":"World Cup 2026 Winner","match":"Norway","market":"1-3rd Place","selection":"Yes","odds":2.1}'>2.1</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-1-3-no","league":"World Cup 2026 Winner","match":"Norway","market":"1-3rd Place","selection":"No","odds":1.7}'>1.7</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-sf-yes","league":"World Cup 2026 Winner","match":"Norway","market":"To reach semi-finals","selection":"Yes","odds":2.8}'>2.8</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-sf-no","league":"World Cup 2026 Winner","match":"Norway","market":"To reach semi-finals","selection":"No","odds":1.4}'>1.4</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-f-yes","league":"World Cup 2026 Winner","match":"Norway","market":"To reach final","selection":"Yes","odds":4.5}'>4.5</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-f-no","league":"World Cup 2026 Winner","match":"Norway","market":"To reach final","selection":"No","odds":1.18}'>1.18</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-3rd-yes","league":"World Cup 2026 Winner","match":"Norway","market":"3rd Place","selection":"Yes","odds":12}'>12</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-3rd-no","league":"World Cup 2026 Winner","match":"Norway","market":"3rd Place","selection":"No","odds":1.01}'>1.01</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-2nd-yes","league":"World Cup 2026 Winner","match":"Norway","market":"2nd Place","selection":"Yes","odds":15}'>15</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-2nd-no","league":"World Cup 2026 Winner","match":"Norway","market":"2nd Place","selection":"No","odds":1.02}'>1.02</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-win-yes","league":"World Cup 2026 Winner","match":"Norway","market":"Winner","selection":"Yes","odds":15}'>15</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-nor-win-no","league":"World Cup 2026 Winner","match":"Norway","market":"Winner","selection":"No","odds":1.02}'>1.02</button></td>
+              </tr>
+              <!-- Belgium -->
+              <tr class="bt-team-row">
+                <td class="bt-td-team">
+                  <img src="/sportsbook/assets/icons/bt-flag-bel.png" alt="" class="bt-flag-img" width="20" height="20" />
+                  <span>Belgium</span>
+                </td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-1-3-yes","league":"World Cup 2026 Winner","match":"Belgium","market":"1-3rd Place","selection":"Yes","odds":3.2}'>3.2</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-1-3-no","league":"World Cup 2026 Winner","match":"Belgium","market":"1-3rd Place","selection":"No","odds":1.32}'>1.32</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-sf-yes","league":"World Cup 2026 Winner","match":"Belgium","market":"To reach semi-finals","selection":"Yes","odds":4.5}'>4.5</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-sf-no","league":"World Cup 2026 Winner","match":"Belgium","market":"To reach semi-finals","selection":"No","odds":1.18}'>1.18</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-f-yes","league":"World Cup 2026 Winner","match":"Belgium","market":"To reach final","selection":"Yes","odds":8}'>8</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-f-no","league":"World Cup 2026 Winner","match":"Belgium","market":"To reach final","selection":"No","odds":1.06}'>1.06</button></td>
+                <td><span class="bt-dash">-</span></td>
+                <td><span class="bt-dash">-</span></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-2nd-yes","league":"World Cup 2026 Winner","match":"Belgium","market":"2nd Place","selection":"Yes","odds":35}'>35</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-2nd-no","league":"World Cup 2026 Winner","match":"Belgium","market":"2nd Place","selection":"No","odds":1.01}'>1.01</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-win-yes","league":"World Cup 2026 Winner","match":"Belgium","market":"Winner","selection":"Yes","odds":35}'>35</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-bel-win-no","league":"World Cup 2026 Winner","match":"Belgium","market":"Winner","selection":"No","odds":1.01}'>1.01</button></td>
+              </tr>
+              <!-- Switzerland -->
+              <tr class="bt-team-row">
+                <td class="bt-td-team">
+                  <img src="/sportsbook/assets/icons/bt-flag-sui.png" alt="" class="bt-flag-img" width="20" height="20" />
+                  <span>Switzerland</span>
+                </td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-1-3-yes","league":"World Cup 2026 Winner","match":"Switzerland","market":"1-3rd Place","selection":"Yes","odds":4}'>4</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-1-3-no","league":"World Cup 2026 Winner","match":"Switzerland","market":"1-3rd Place","selection":"No","odds":1.22}'>1.22</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-sf-yes","league":"World Cup 2026 Winner","match":"Switzerland","market":"To reach semi-finals","selection":"Yes","odds":6}'>6</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-sf-no","league":"World Cup 2026 Winner","match":"Switzerland","market":"To reach semi-finals","selection":"No","odds":1.12}'>1.12</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-f-yes","league":"World Cup 2026 Winner","match":"Switzerland","market":"To reach final","selection":"Yes","odds":11}'>11</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-f-no","league":"World Cup 2026 Winner","match":"Switzerland","market":"To reach final","selection":"No","odds":1.03}'>1.03</button></td>
+                <td><span class="bt-dash">-</span></td>
+                <td><span class="bt-dash">-</span></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-2nd-yes","league":"World Cup 2026 Winner","match":"Switzerland","market":"2nd Place","selection":"Yes","odds":41}'>41</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-2nd-no","league":"World Cup 2026 Winner","match":"Switzerland","market":"2nd Place","selection":"No","odds":1.01}'>1.01</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-win-yes","league":"World Cup 2026 Winner","match":"Switzerland","market":"Winner","selection":"Yes","odds":41}'>41</button></td>
+                <td><button type="button" class="odd-btn bt-odd" data-odd='{"id":"bt-sui-win-no","league":"World Cup 2026 Winner","match":"Switzerland","market":"Winner","selection":"No","odds":1.01}'>1.01</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+      <!-- RIGHT SIDEBAR (Figma 3:16034) — colors: modified-color tokens -->
+      <aside class="right-sidebar" id="right-sidebar" aria-label="Account tools">
+        <button type="button" class="right-collapse" id="right-collapse" aria-label="Collapse block">
+          <span>Collapse block</span>
+          <img src="/sportsbook/assets/icons/rb-collapse-chevron.svg" alt="" width="9" height="10" />
+        </button>
+        <button type="button" class="mobile-drawer-close" id="right-drawer-close" aria-label="Close bet slip">
+          <span class="mobile-drawer-handle" aria-hidden="true"></span>
+          <span class="mobile-drawer-close-title">Bet slip</span>
+          <span class="mobile-drawer-close-action">Close</span>
+        </button>
+
+        <div class="reg-panel">
+          <h2 class="reg-title">REGISTRATION</h2>
+          <form class="reg-form" id="reg-form" novalidate>
+            <div class="reg-tabs" role="tablist">
+              <button type="button" class="reg-tab active" role="tab" aria-selected="true" data-reg="oneclick">
+                <img src="/sportsbook/assets/icons/rb-bolt.svg" alt="" width="12" height="16" />
+                One-click
+              </button>
+              <button type="button" class="reg-tab" role="tab" aria-selected="false" data-reg="phone">
+                <img src="/sportsbook/assets/icons/rb-phone.svg" alt="" width="11" height="16" />
+                By phone
+              </button>
+            </div>
+
+            <div class="reg-fields" data-panel="oneclick">
+              <button type="button" class="reg-select" id="reg-country" aria-label="Country">
+                <img src="/sportsbook/assets/icons/rb-flag-my.svg" alt="" class="reg-flag" width="16" height="16" />
+                <span class="reg-select-label">Malaysia</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+              <button type="button" class="reg-select" id="reg-currency" aria-label="Currency">
+                <span class="reg-select-label">Malaysian ringgit (MYR)</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+              <input type="text" id="reg-promo" name="promo" class="reg-input" placeholder="Promo code (if you have one)" autocomplete="off" />
+            </div>
+
+            <div class="reg-fields" data-panel="phone" hidden>
+              <input type="tel" id="reg-phone" name="phone" class="reg-input" placeholder="Phone number" autocomplete="off" />
+              <button type="button" class="reg-select" aria-label="Currency">
+                <span class="reg-select-label">Malaysian ringgit (MYR)</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+            </div>
+
+            <button type="submit" class="btn-reg">Register</button>
+            <p class="reg-terms">
+              By clicking this button you confirm that you have read and agree to the
+              <a href="terms.html">Terms and Conditions</a> and
+              <a href="#">Privacy Policy</a> of the company and confirm that you are of legal age
+            </p>
+            <p class="demo-msg" id="reg-demo" hidden>Demo only — no account created.</p>
+          </form>
+          <a href="#reg-form" class="reg-bonus-bar">100% bonus on your 1st deposit</a>
+        </div>
+
+        <div class="bet-slip-panel">
+          <div class="bet-slip-tabs" role="tablist">
+            <button type="button" class="bet-tab active" role="tab" aria-selected="true" data-bet-tab="slip">Bet slip</button>
+            <button type="button" class="bet-tab" role="tab" aria-selected="false" data-bet-tab="mybets">My bets</button>
+          </div>
+          <div class="bet-slip-body" id="bet-slip-body">
+            <div class="bet-toolbar">
+              <span class="bet-toolbar-title">Your bets</span>
+              <button type="button" class="bet-icon-btn" aria-label="Share">
+                <img src="/sportsbook/assets/icons/rb-share.svg" alt="" width="12" height="12" />
+              </button>
+              <button type="button" class="bet-icon-btn" aria-label="Settings" title="Settings">
+                <img src="/sportsbook/assets/icons/rb-settings.svg" alt="" width="12" height="12" />
+              </button>
+            </div>
+            <div class="bet-empty" id="bet-empty">
+              <p class="bet-empty-text">Add events to the bet slip or<br />enter a code to load events</p>
+            </div>
+            <div class="bet-list" id="bet-list" hidden></div>
+            <div class="bet-footer" id="bet-footer" hidden>
+              <label class="stake-label">
+                Stake
+                <input type="number" id="stake-input" min="1" step="1" value="10" />
+              </label>
+              <div class="bet-totals">
+                <div><span>Total odds</span><strong id="total-odds">1.00</strong></div>
+                <div><span>Potential return</span><strong id="potential-return">0.00</strong></div>
+              </div>
+              <div class="bet-actions">
+                <button type="button" class="btn-clear" id="clear-bets">Clear All</button>
+                <button type="button" class="btn-place" id="place-bet">Place Bet</button>
+              </div>
+            </div>
+            <a href="#reg-form" class="btn-slip-reg" id="bet-reg-cta">Registration</a>
+            <button type="button" class="bet-save-link">Save/load events</button>
+          </div>
+          <div class="my-bets-body" id="my-bets-body" hidden>
+            <p class="bet-empty-text">No open bets. Place a bet to see it here.</p>
+          </div>
+        </div>
+
+        <div class="generator-panel">
+          <div class="gen-copy">
+            <h2 class="gen-title">Bet slip<br />generator</h2>
+            <p class="gen-text">Enter your parameters and we will generate a bet slip for you</p>
+          </div>
+          <img class="gen-art-img" src="/sportsbook/assets/images/rb-generator-art.png" alt="" width="163" height="162" />
+          <button type="button" class="btn-generate" id="generate-slip">Generate</button>
+        </div>
+
+        <div class="app-panel" id="app-panel">
+          <div class="app-tabs">
+            <button type="button" class="app-tab active" data-app="android">
+              <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" />
+              Android
+            </button>
+            <button type="button" class="app-tab" data-app="ios">
+              <img src="/sportsbook/assets/icons/rb-apple.svg" alt="" width="16" height="16" />
+              iOS
+            </button>
+            <button type="button" class="app-close" id="app-close" aria-label="Close">
+              <img src="/sportsbook/assets/icons/rb-close.svg" alt="" width="10" height="10" />
+            </button>
+          </div>
+          <div class="app-body">
+            <div class="app-phone">
+              <img src="/sportsbook/assets/images/rb-phone-qr.png" alt="QR code" width="118" height="125" />
+            </div>
+            <div class="app-meta">
+              <img src="/sportsbook/assets/icons/rb-logo.svg" alt="1xBet" class="app-logo" width="65" height="14" />
+              <p class="app-label">Mobile<br />application</p>
+              <a href="#" class="btn-app-download" id="app-download">
+                <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" class="app-dl-icon" />
+                Free&nbsp;download
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>

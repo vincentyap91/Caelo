@@ -17,15 +17,15 @@
         <span class="mobile-tab-label">Sports</span>
       </button>
       <div class="mobile-tab-flyout" id="mt-flyout-sports" role="menu" aria-label="Sports" hidden>
-        <a href="#live-events" class="mobile-tab-flyout__item" role="menuitem">
+        <a href="/sportsbook/national-team" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="sportsbook-national-team">
           <img class="mobile-tab-flyout__icon--flag" src="/sportsbook/assets/icons/flag-my.svg" alt="" width="22" height="22" />
           <span>Bet on Your National Team</span>
         </a>
-        <a href="#live-events" class="mobile-tab-flyout__item" role="menuitem">
+        <a href="/sportsbook/live-national-team" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="sportsbook-live-national-team">
           <img class="mobile-tab-flyout__icon--live" src="/sportsbook/mobile/assets/icons/tab-live.svg" alt="" width="22" height="22" />
           <span>Live</span>
         </a>
-        <a href="#line-events" class="mobile-tab-flyout__item" role="menuitem">
+        <a href="/sportsbook/sports" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="sportsbook-sports">
           <img src="/sportsbook/mobile/assets/icons/tab-menu.svg" alt="" width="22" height="22" />
           <span>Sports</span>
         </a>
@@ -35,36 +35,10 @@
       </div>
     </div>
 
-    <div class="mobile-tab-slot" data-mt-flyout-slot="casino">
-      <button
-        type="button"
-        class="mobile-tab"
-        data-mt-flyout-open="casino"
-        aria-expanded="false"
-        aria-controls="mt-flyout-casino"
-        aria-haspopup="menu"
-      >
-        <img src="/sportsbook/mobile/assets/icons/tab-casino.svg" alt="" width="20" height="20" />
-        <span class="mobile-tab-label">Casino</span>
-      </button>
-      <div class="mobile-tab-flyout" id="mt-flyout-casino" role="menu" aria-label="Casino" hidden>
-        <a href="/slots" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="slots">
-          <img src="/sportsbook/mobile/assets/icons/tab-cherries.svg" alt="" width="22" height="22" />
-          <span>Casino</span>
-        </a>
-        <a href="/casino" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="live-casino">
-          <img src="/sportsbook/mobile/assets/icons/tab-spade.svg" alt="" width="22" height="22" />
-          <span>Live Casino</span>
-        </a>
-        <a href="/hot-games" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="hot-games">
-          <img src="/sportsbook/mobile/assets/icons/tab-dice.svg" alt="" width="22" height="22" />
-          <span>12WIN Games</span>
-        </a>
-        <button type="button" class="mobile-tab-flyout__close" data-mt-flyout-close aria-label="Close">
-          <img src="/sportsbook/mobile/assets/icons/tab-close.svg" alt="" width="22" height="22" />
-        </button>
-      </div>
-    </div>
+    <a href="/casino" class="mobile-tab" id="mobile-casino-tab" data-caelo-nav="live-casino">
+      <img src="/sportsbook/mobile/assets/icons/tab-casino.svg" alt="" width="20" height="20" />
+      <span class="mobile-tab-label">Casino</span>
+    </a>
 
     <button type="button" class="mobile-tab mobile-tab--betslip" id="mobile-betslip-btn" aria-controls="right-sidebar" aria-expanded="false" aria-label="Bet slip">
       <span class="mobile-tab-betslip-wrap">

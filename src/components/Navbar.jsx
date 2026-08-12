@@ -105,7 +105,7 @@ const NAV_HREFS = {
 };
 
 function isDesktopSportsActive(activePage) {
-    return activePage === 'sports' || activePage === 'sportsbook' || activePage === 'sportsbook-event';
+    return activePage === 'sports' || (typeof activePage === 'string' && activePage.startsWith('sportsbook'));
 }
 
 function isDesktopMoreActive(activePage) {
@@ -870,7 +870,7 @@ export default function Navbar({
                                                     const targetId = NAV_TARGETS[subLink];
                                                     const itemActive =
                                                         activePage === targetId
-                                                        || (subLink === 'Sportsbook' && activePage === 'sportsbook-event');
+                                                        || (subLink === 'Sportsbook' && typeof activePage === 'string' && activePage.startsWith('sportsbook'));
                                                     return (
                                                         <a
                                                             key={subLink}

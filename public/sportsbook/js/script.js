@@ -26,7 +26,7 @@
     const slug = String(sportId || "").replace(/^marble-/, "");
     const fileSlug = slug === "fidget-spinners" ? "spinners" : slug;
     if (!fileSlug) return MARBLE_SPORT_ICON_FALLBACK;
-    return `assets/icons/marble/sport-${fileSlug}.svg`;
+    return `/sportsbook/assets/icons/marble/sport-${fileSlug}.svg`;
   }
 
   /* Circular country flags from https://1xlite-46272.pro/en (ui-champ-icon SVGs) */
@@ -1322,7 +1322,7 @@
     return {
       id: e.id,
       sport,
-      sportIcon: sportIconMap[sport] || `assets/icons/sport-${sport}.svg`,
+      sportIcon: sportIconMap[sport] || `/sportsbook/assets/icons/sport-${sport}.svg`,
       time:
         e.status === "live"
           ? e.elapsedTime || e.clock || e.time || "Event in progress"
@@ -1396,6 +1396,8 @@
     activeLineFilter: null,
     /** Main LIVE section tab: matches | recommended | favorites | upcoming | p1 | p2 */
     liveView: "matches",
+    /** Homepage mobile quicknav mode: live | sports | fav */
+    homeQuickMode: "live",
     /** National Team mode bar: "live" | "sports" — driven by page (links navigate) */
     ntMarketMode: isLiveNationalTeamPage ? "live" : "sports",
     streamOnly: false,
@@ -1513,6 +1515,10 @@
 
   function loadPersistedOpenBets() {
     try {
+      if (typeof window.SbBetSlipStore?.readOpenBets === "function") {
+        MOCK_RUNNING_BETS = window.SbBetSlipStore.readOpenBets();
+        return;
+      }
       const raw = localStorage.getItem(OPEN_BETS_STORAGE_KEY);
       if (!raw) return;
       const list = JSON.parse(raw);
@@ -1524,6 +1530,10 @@
 
   function persistOpenBets() {
     try {
+      if (typeof window.SbBetSlipStore?.writeOpenBets === "function") {
+        window.SbBetSlipStore.writeOpenBets(MOCK_RUNNING_BETS);
+        return;
+      }
       localStorage.setItem(OPEN_BETS_STORAGE_KEY, JSON.stringify(MOCK_RUNNING_BETS));
     } catch (_) {
       /* ignore */
@@ -1535,6 +1545,10 @@
 
   function loadPersistedSettledBets() {
     try {
+      if (typeof window.SbBetSlipStore?.readSettledBets === "function") {
+        MOCK_SETTLED_BETS = window.SbBetSlipStore.readSettledBets();
+        return;
+      }
       const raw = localStorage.getItem(SETTLED_BETS_STORAGE_KEY);
       if (!raw) return;
       const list = JSON.parse(raw);
@@ -1546,6 +1560,10 @@
 
   function persistSettledBets() {
     try {
+      if (typeof window.SbBetSlipStore?.writeSettledBets === "function") {
+        window.SbBetSlipStore.writeSettledBets(MOCK_SETTLED_BETS);
+        return;
+      }
       localStorage.setItem(SETTLED_BETS_STORAGE_KEY, JSON.stringify(MOCK_SETTLED_BETS));
     } catch (_) {
       /* ignore */
@@ -1554,6 +1572,9 @@
 
   loadPersistedOpenBets();
   loadPersistedSettledBets();
+  /* Seed storage so other sportsbook modes see the same Active bets */
+  persistOpenBets();
+  persistSettledBets();
 
   const BH_RANGE_LABELS = {
     today: "Today",
@@ -2172,7 +2193,7 @@
       isLive && e.hasLiveStream
         ? `<img class="event-stream-icon" src="/sportsbook/assets/icons/lnt/icon-stream.svg" alt="" width="14" height="13" title="Live stream" />`
         : "";
-    const sportSrc = sportHeaderIconMap[sport] || `assets/icons/sport-${sport}.svg`;
+    const sportSrc = sportHeaderIconMap[sport] || sportIconMap[sport] || `/sportsbook/assets/icons/sport-${sport}.svg`;
     const hasSubGames = Array.isArray(e.subGames) && e.subGames.length > 0;
     const expanded = hasSubGames && state.expandedEvents.has(e.id);
     const expandBtn = hasSubGames
@@ -2238,7 +2259,10 @@
       const src = marbleSportIcon(league.sport);
       return `<img class="league-sport-icon" src="${src}" alt="" width="16" height="16" />`;
     }
-    const sportSrc = sportHeaderIconMap[league.sport] || `assets/icons/sport-${league.sport}.svg`;
+    const sportSrc =
+      sportHeaderIconMap[league.sport] ||
+      sportIconMap[league.sport] ||
+      `/sportsbook/assets/icons/sport-${league.sport}.svg`;
     const flagSrc = flagIconMap[league.icon];
     const sport = `<img class="league-sport-icon" src="${sportSrc}" alt="" width="16" height="16" />`;
     const isTrophy = flagSrc && flagSrc.indexOf("crumb-trophy") !== -1;
@@ -3003,7 +3027,10 @@
 
   function syncMobileBetCount() {
     const badge = $("#mobile-bet-count");
-    const n = state.betSlip.length;
+    const n =
+      typeof window.SbBetSlipStore?.count === "function"
+        ? window.SbBetSlipStore.count()
+        : state.betSlip.length;
     if (badge) {
       if (n > 0) {
         badge.hidden = false;
@@ -4349,7 +4376,10 @@
         live: e.status === "live",
         score,
         match: source.match || `${e.home} - ${e.away}`,
-        sportIcon: sportHeaderIconMap[league.sport] || `assets/icons/sport-${league.sport}.svg`,
+        sportIcon:
+          sportHeaderIconMap[league.sport] ||
+          sportIconMap[league.sport] ||
+          `/sportsbook/assets/icons/sport-${league.sport}.svg`,
       };
     }
     return {
@@ -4401,6 +4431,12 @@
       .join("");
   }
 
+  function persistSharedBetSlip() {
+    if (typeof window.SbBetSlipStore?.write !== "function") return;
+    window.SbBetSlipStore.write(state.betSlip, { silent: true });
+    window.__betSlipCount = state.betSlip.length;
+  }
+
   function renderBetSlip(opts) {
     const options = opts || {};
     const empty = $("#bet-empty");
@@ -4412,6 +4448,7 @@
     const railCount = $("#rc-bet-count");
     if (railCount) railCount.textContent = String(state.betSlip.length);
     window.__betSlipCount = state.betSlip.length;
+    persistSharedBetSlip();
     if (body) body.classList.toggle("has-bets", state.betSlip.length > 0);
 
     if (!state.betSlip.length) {
@@ -4486,7 +4523,7 @@
     }
   }
 
-  function toggleOdd(data) {
+  function toggleOdd(data, opts = {}) {
     const idx = state.betSlip.findIndex((b) => b.id === data.id);
     if (idx >= 0) {
       state.betSlip.splice(idx, 1);
@@ -4505,7 +4542,9 @@
         layout?.classList.remove("right-collapsed");
       }
     }
-    openRightDrawer();
+    /* Search sheet stays open like 1xbet — badge updates; slip opens from tabbar */
+    if (opts.openDrawer === false) syncMobileBetCount();
+    else openRightDrawer();
   }
 
   /* Esports page: map .es-odd / .es-odd-dark → data-odd ticket payloads (live esports/real slip). */
@@ -4908,10 +4947,14 @@
           const mode = openBtn.getAttribute("data-sb-open");
           if (mode === "favorites") {
             if (isHomePage) {
-              setLiveView("favorites");
-              showToast("Favorite matches");
+              const favLink = document.querySelector('[data-caelo-nav="sportsbook-favourites"]');
+              if (favLink) {
+                favLink.click();
+              } else {
+                window.location.href = "/sportsbook/favourites";
+              }
             } else {
-              window.location.href = "favourites.html";
+              window.location.href = "/sportsbook/favourites";
             }
           } else if (mode === "recommended") {
             if (isHomePage) {
@@ -5064,6 +5107,426 @@
     syncRailCount();
   })();
 
+  function setHomeQuickActive(key) {
+    const nav = $(".home-quicknav");
+    if (!nav) return;
+    $$("[data-home-quick]", nav).forEach((btn) => {
+      const btnKey = btn.getAttribute("data-home-quick");
+      const on = btnKey === key;
+      if (btnKey === "live" || btnKey === "sports") {
+        btn.classList.toggle("is-active", on);
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+        if (on) btn.setAttribute("aria-current", "true");
+        else btn.removeAttribute("aria-current");
+      } else if (btnKey === "fav") {
+        btn.classList.toggle("is-active", key === "fav");
+      } else if (btnKey === "search") {
+        btn.classList.toggle("is-active", key === "search");
+        btn.setAttribute("aria-expanded", key === "search" ? "true" : "false");
+      }
+    });
+  }
+
+  function scrollHomeSection(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - 8;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  }
+
+  function collectSearchCatalog() {
+    const rows = [];
+    const pushLeague = (league, scope) => {
+      (league.events || []).forEach((ev) => {
+        const e = normalizeMatchEvent(ev);
+        const odds = [];
+        if (e.o1 != null) odds.push({ lab: "1", market: "1X2", selection: "1", val: e.o1 });
+        if (e.ox != null) odds.push({ lab: "X", market: "1X2", selection: "X", val: e.ox });
+        if (e.o2 != null) odds.push({ lab: "2", market: "1X2", selection: "2", val: e.o2 });
+        if (e.over != null) odds.push({ lab: "TOTAL", market: "Total", selection: "Over", val: e.over });
+        rows.push({
+          id: e.id,
+          sport: league.sport || "Football",
+          sportIcon: sportIconMap[league.sport] || "/sportsbook/assets/icons/sport-football.svg",
+          league: league.name || "",
+          scope: e.status === "live" || e.live ? "live" : scope,
+          home: e.home || "",
+          away: e.away || "",
+          homeLogo: e.homeLogo || "/sportsbook/assets/images/mobile-home/teams/team-01.webp",
+          awayLogo: e.awayLogo || "/sportsbook/assets/images/mobile-home/teams/team-02.webp",
+          meta: e.live || e.status === "live"
+            ? `LIVE · ${e.clock || e.elapsedTime || e.time || e.meta || ""}`
+            : String(e.meta || e.time || e.startTime || ""),
+          odds,
+        });
+      });
+    };
+    liveLeagues.forEach((l) => pushLeague(l, "live"));
+    lineLeagues.forEach((l) => pushLeague(l, "line"));
+
+    /* Demo matches so search behaves like 1xbet search.html (find + bet) */
+    const demo = [
+      {
+        id: "se-ucl-psg-dortmund",
+        sport: "Football",
+        sportIcon: "/sportsbook/assets/icons/sport-football.svg",
+        league: "UEFA Champions League",
+        scope: "line",
+        home: "Paris Saint-Germain",
+        away: "Borussia Dortmund",
+        homeLogo: "/sportsbook/assets/images/mobile-home/teams/team-01.webp",
+        awayLogo: "/sportsbook/assets/images/mobile-home/teams/team-02.webp",
+        meta: "League Stage · 22/07 21:00",
+        odds: [
+          { lab: "1", market: "1X2", selection: "1", val: 1.85 },
+          { lab: "X", market: "1X2", selection: "X", val: 3.4 },
+          { lab: "2", market: "1X2", selection: "2", val: 3.25 },
+          { lab: "TOTAL", market: "Total", selection: "Over", val: 1.95 },
+        ],
+      },
+      {
+        id: "se-ucl-copenhagen-city",
+        sport: "Football",
+        sportIcon: "/sportsbook/assets/icons/sport-football.svg",
+        league: "UEFA Champions League",
+        scope: "line",
+        home: "Copenhagen",
+        away: "Manchester City",
+        homeLogo: "/sportsbook/assets/images/mobile-home/teams/team-03.webp",
+        awayLogo: "/sportsbook/assets/images/mobile-home/teams/team-04.webp",
+        meta: "13.02, 21:00",
+        odds: [
+          { lab: "1", market: "1X2", selection: "1", val: 11.5 },
+          { lab: "X", market: "1X2", selection: "X", val: 7.1 },
+          { lab: "2", market: "1X2", selection: "2", val: 1.25 },
+          { lab: "TOTAL", market: "Total", selection: "Over", val: 1.88 },
+        ],
+      },
+      {
+        id: "se-laliga-rm-barca",
+        sport: "Football",
+        sportIcon: "/sportsbook/assets/icons/sport-football.svg",
+        league: "Spain. La Liga",
+        scope: "line",
+        home: "Real Madrid",
+        away: "Barcelona",
+        homeLogo: "/sportsbook/assets/images/mobile-home/teams/team-05.webp",
+        awayLogo: "/sportsbook/assets/images/mobile-home/teams/team-06.webp",
+        meta: "Round 1 · 23/07 20:00",
+        odds: [
+          { lab: "1", market: "1X2", selection: "1", val: 2.2 },
+          { lab: "X", market: "1X2", selection: "X", val: 3.5 },
+          { lab: "2", market: "1X2", selection: "2", val: 3.15 },
+          { lab: "TOTAL", market: "Total", selection: "Over", val: 1.9 },
+        ],
+      },
+      {
+        id: "se-cs2-navi-vitality",
+        sport: "Esports",
+        sportIcon: "/sportsbook/assets/icons/sport-esports.svg",
+        league: "CS2. ESL Pro League",
+        scope: "cyber",
+        home: "Natus Vincere",
+        away: "Vitality",
+        homeLogo: "/sportsbook/assets/images/mobile-home/teams/team-07.webp",
+        awayLogo: "/sportsbook/assets/images/mobile-home/teams/team-08.webp",
+        meta: "Bo3 · 21/07 19:00",
+        odds: [
+          { lab: "1", market: "1X2", selection: "1", val: 1.72 },
+          { lab: "2", market: "1X2", selection: "2", val: 2.05 },
+          { lab: "TOTAL", market: "Total", selection: "Over", val: 1.85 },
+          { lab: "HANDICAP", market: "Handicap", selection: "1", val: 1.9 },
+        ],
+      },
+      {
+        id: "se-epl-arsenal-chelsea",
+        sport: "Football",
+        sportIcon: "/sportsbook/assets/icons/sport-football.svg",
+        league: "England. Premier League",
+        scope: "live",
+        home: "Arsenal",
+        away: "Chelsea",
+        homeLogo: "/sportsbook/assets/images/mobile-home/teams/team-09.webp",
+        awayLogo: "/sportsbook/assets/images/mobile-home/teams/team-10.webp",
+        meta: "LIVE · 67′",
+        odds: [
+          { lab: "1", market: "1X2", selection: "1", val: 1.95 },
+          { lab: "X", market: "1X2", selection: "X", val: 3.2 },
+          { lab: "2", market: "1X2", selection: "2", val: 3.8 },
+          { lab: "TOTAL", market: "Total", selection: "Over", val: 1.7 },
+        ],
+      },
+    ];
+    demo.forEach((item) => {
+      if (!rows.some((r) => r.id === item.id)) rows.push(item);
+    });
+    return rows;
+  }
+
+  function searchOddButton(match, odd) {
+    if (odd == null || odd.val == null || !(Number(odd.val) > 0)) return "";
+    const id = `${match.id}-${odd.market}-${odd.selection}`;
+    const selected = state.betSlip.some((b) => b.id === id) ? " is-selected" : "";
+    const payload = JSON.stringify({
+      id,
+      eventId: match.id,
+      league: match.league,
+      match: `${match.home} - ${match.away}`,
+      market: odd.market,
+      selection: odd.selection,
+      odds: odd.val,
+      home: match.home,
+      away: match.away,
+      homeLogo: match.homeLogo,
+      awayLogo: match.awayLogo,
+      sportIcon: match.sportIcon,
+      live: match.scope === "live",
+    }).replace(/"/g, "&quot;");
+    return `<button type="button" class="sb-search-sheet__odd${selected}" data-odd="${payload}" aria-pressed="${selected ? "true" : "false"}"><span class="sb-search-sheet__odd-lab">${escapeHtml(odd.lab)}</span><span class="sb-search-sheet__odd-val">${escapeHtml(formatOdd(odd.val))}</span></button>`;
+  }
+
+  function renderHomeSearchList(items) {
+    const list = $("#sb-search-list");
+    if (!list) return;
+    if (!items.length) {
+      list.innerHTML = `<p class="sb-search-sheet__none">No events found</p>`;
+      return;
+    }
+    const groups = new Map();
+    items.forEach((item) => {
+      const key = `${item.sport}::${item.league}`;
+      if (!groups.has(key)) {
+        groups.set(key, { sport: item.sport, sportIcon: item.sportIcon, league: item.league, matches: [] });
+      }
+      groups.get(key).matches.push(item);
+    });
+    list.innerHTML = Array.from(groups.values())
+      .map((group) => {
+        const matchesHtml = group.matches
+          .map((m) => {
+            const oddsHtml = (m.odds || []).map((o) => searchOddButton(m, o)).join("");
+            return `<article class="sb-search-sheet__match" data-sb-search-event="${escapeHtml(m.id)}">
+              <div class="sb-search-sheet__teams">
+                <p class="sb-search-sheet__team"><img src="${escapeHtml(m.homeLogo)}" alt="" width="20" height="20" />${escapeHtml(m.home)}</p>
+                <p class="sb-search-sheet__team"><img src="${escapeHtml(m.awayLogo)}" alt="" width="20" height="20" />${escapeHtml(m.away)}</p>
+              </div>
+              <p class="sb-search-sheet__meta">${escapeHtml(m.meta)}</p>
+              <div class="sb-search-sheet__odds">${oddsHtml}</div>
+            </article>`;
+          })
+          .join("");
+        return `<section class="sb-search-sheet__group">
+          <p class="sb-search-sheet__group-sport"><img src="${escapeHtml(group.sportIcon)}" alt="" width="14" height="14" />${escapeHtml(group.sport)}</p>
+          <div class="sb-search-sheet__league-row">
+            <button type="button" class="sb-search-sheet__star" data-toast="Favourites" aria-label="Favourite">
+              <img src="/sportsbook/mobile/assets/icons/sp-star.svg" alt="" width="16" height="16" />
+            </button>
+            <span class="sb-search-sheet__league">${escapeHtml(group.league)}</span>
+          </div>
+          ${matchesHtml}
+        </section>`;
+      })
+      .join("");
+  }
+
+  function closeHomeSearchSheet() {
+    const sheet = $("#sb-search-sheet");
+    if (!sheet || sheet.hidden) return;
+    sheet.hidden = true;
+    document.body.classList.remove("sb-search-open");
+    setHomeQuickActive(state.homeQuickMode || "");
+  }
+
+  function openHomeSearchSheet(initialQuery) {
+    const sheet = $("#sb-search-sheet");
+    if (!sheet) return;
+    sheet.hidden = false;
+    document.body.classList.add("sb-search-open");
+    setHomeQuickActive("search");
+    const input = $("#sb-search-input");
+    if (input) {
+      if (initialQuery != null) input.value = initialQuery;
+      window.setTimeout(() => input.focus(), 80);
+    }
+    updateHomeSearchSheet();
+  }
+
+  function updateHomeSearchSheet() {
+    const input = $("#sb-search-input");
+    const clearBtn = $("#sb-search-clear");
+    const empty = $("#sb-search-empty");
+    const results = $("#sb-search-results");
+    const exactBtn = $("#sb-search-exact");
+    if (!input || !empty || !results) return;
+
+    const q = input.value.trim();
+    const exact = exactBtn?.getAttribute("aria-checked") === "true";
+    const tab =
+      document.querySelector(".sb-search-sheet__tab.is-active")?.getAttribute("data-sb-se-tab") ||
+      "all";
+
+    if (clearBtn) clearBtn.hidden = !q;
+    if (!q) {
+      empty.hidden = false;
+      results.hidden = true;
+      return;
+    }
+
+    empty.hidden = true;
+    results.hidden = false;
+    const needle = q.toLowerCase();
+    const items = collectSearchCatalog().filter((item) => {
+      if (tab === "live" && item.scope !== "live") return false;
+      if (tab === "line" && item.scope !== "line") return false;
+      if (tab === "cyber" && !/esport|cyber|cs2|dota|lol/i.test(`${item.sport} ${item.league}`)) {
+        return false;
+      }
+      const hay = `${item.league} ${item.home} ${item.away} ${item.sport}`.toLowerCase();
+      if (exact) {
+        return (
+          hay.split(/\s+/).includes(needle) ||
+          item.league.toLowerCase() === needle ||
+          item.home.toLowerCase() === needle ||
+          item.away.toLowerCase() === needle
+        );
+      }
+      return hay.includes(needle);
+    });
+    renderHomeSearchList(items);
+  }
+
+  function initHomeSearchSheet() {
+    const sheet = $("#sb-search-sheet");
+    if (!sheet || sheet.dataset.wired === "1") return;
+    sheet.dataset.wired = "1";
+
+    sheet.addEventListener("click", (e) => {
+      if (e.target.closest("[data-sb-search-close]")) {
+        e.preventDefault();
+        closeHomeSearchSheet();
+        return;
+      }
+      const toastBtn = e.target.closest("[data-toast]");
+      if (toastBtn && sheet.contains(toastBtn)) {
+        e.preventDefault();
+        const msg = toastBtn.getAttribute("data-toast");
+        if (msg) showToast(msg);
+        return;
+      }
+      const oddBtn = e.target.closest(".sb-search-sheet__odd[data-odd]");
+      if (oddBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        try {
+          const data = JSON.parse(oddBtn.getAttribute("data-odd").replace(/&quot;/g, '"'));
+          toggleOdd(data, { openDrawer: false });
+          /* Refresh selected state without leaving search */
+          updateHomeSearchSheet();
+        } catch (_) {
+          /* ignore */
+        }
+        return;
+      }
+      const tab = e.target.closest("[data-sb-se-tab]");
+      if (tab) {
+        $$("[data-sb-se-tab]", sheet).forEach((t) => {
+          const on = t === tab;
+          t.classList.toggle("is-active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        updateHomeSearchSheet();
+        return;
+      }
+      const match = e.target.closest("[data-sb-search-event]");
+      if (match && !e.target.closest("[data-odd], button, a")) {
+        const id = match.getAttribute("data-sb-search-event");
+        closeHomeSearchSheet();
+        setLiveView("matches", { scroll: false });
+        state.liveSearch = "";
+        state.lineSearch = "";
+        renderTables();
+        const row = document.querySelector(`[data-event-id="${CSS.escape(id)}"]`);
+        if (row) row.scrollIntoView({ behavior: "smooth", block: "center" });
+        else scrollHomeSection("live-events");
+      }
+    });
+
+    $("#sb-search-exact")?.addEventListener("click", () => {
+      const btn = $("#sb-search-exact");
+      const on = btn.getAttribute("aria-checked") !== "true";
+      btn.setAttribute("aria-checked", on ? "true" : "false");
+      updateHomeSearchSheet();
+    });
+
+    $("#sb-search-input")?.addEventListener("input", updateHomeSearchSheet);
+    $("#sb-search-clear")?.addEventListener("click", () => {
+      const input = $("#sb-search-input");
+      if (input) input.value = "";
+      updateHomeSearchSheet();
+      input?.focus();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeHomeSearchSheet();
+    });
+
+    window.openHomeSearchSheet = openHomeSearchSheet;
+    window.closeHomeSearchSheet = closeHomeSearchSheet;
+  }
+
+  function initHomeQuicknav() {
+    const nav = $(".home-quicknav");
+    if (!nav || nav.dataset.wired === "1") return;
+    nav.dataset.wired = "1";
+    /* Home: no Live/Sports selected by default; Live navigates to live-national-team */
+    state.homeQuickMode = "";
+    setHomeQuickActive("");
+
+    nav.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-home-quick]");
+      if (!btn || !nav.contains(btn)) return;
+      const key = btn.getAttribute("data-home-quick");
+
+      if (key === "search") {
+        /* Dedicated /sportsbook/search page when data-caelo-nav is set */
+        if (btn.hasAttribute("data-caelo-nav")) return;
+        e.preventDefault();
+        openHomeSearchSheet("");
+        return;
+      }
+
+      /* Live / Favourites / Sports → dedicated pages when data-caelo-nav is set */
+      if ((key === "live" || key === "fav" || key === "sports") && btn.hasAttribute("data-caelo-nav")) {
+        return;
+      }
+
+      e.preventDefault();
+      closeHomeSearchSheet();
+
+      if (key === "fav") {
+        state.homeQuickMode = "fav";
+        setHomeQuickActive("fav");
+        setLiveView("favorites");
+        showToast("Favorite matches");
+        return;
+      }
+
+      if (key === "sports") {
+        state.homeQuickMode = "sports";
+        setHomeQuickActive("sports");
+        setLiveView("matches", { scroll: false });
+        scrollHomeSection("line-events");
+        return;
+      }
+
+      /* live fallback (no data-caelo-nav) — scroll LIVE block */
+      state.homeQuickMode = "live";
+      setHomeQuickActive("live");
+      setLiveView("matches", { scroll: false });
+      scrollHomeSection("live-events");
+    });
+  }
+
   function initToolbar() {
     document.addEventListener("click", (e) => {
       const tab = e.target.closest(".section-tab");
@@ -5100,9 +5563,7 @@
       const goSearchPage = () => {
         if (window.matchMedia("(max-width: 900px)").matches) {
           const q = eventSearch.value.trim();
-          window.location.href = q
-            ? `search.html?q=${encodeURIComponent(q)}`
-            : "search.html";
+          openHomeSearchSheet(q);
           return true;
         }
         return false;
@@ -5126,9 +5587,7 @@
       const goLineSearchPage = () => {
         if (window.matchMedia("(max-width: 900px)").matches) {
           const q = lineSearch.value.trim();
-          window.location.href = q
-            ? `search.html?q=${encodeURIComponent(q)}`
-            : "search.html";
+          openHomeSearchSheet(q);
           return true;
         }
         return false;
@@ -5300,6 +5759,7 @@
       payload.sport = sport;
       payload.sportIcon =
         (typeof sportHeaderIconMap !== "undefined" && sportHeaderIconMap[sport]) ||
+        (typeof sportIconMap !== "undefined" && sportIconMap[sport]) ||
         `/sportsbook/assets/icons/sport-${sport}.svg`;
     }
     if (ev?.homeLogo) payload.homeLogo = ev.homeLogo;
@@ -7636,15 +8096,17 @@
   }
 
   /**
-   * @param {{ category?: 'all'|'sports'|'esports'|'casino' }} [opts]
+   * @param {{ category?: 'all'|'sports'|'esports' }} [opts]
    */
   function openBetHistoryPanel(opts) {
     ensureBetHistoryPanel();
     const backdrop = $("#bh-desktop-backdrop");
     if (!backdrop) return;
     const cat = opts && opts.category;
-    if (cat === "all" || cat === "sports" || cat === "esports" || cat === "casino") {
+    if (cat === "all" || cat === "sports" || cat === "esports") {
       state.betHistoryCategory = cat;
+    } else if (state.betHistoryCategory === "casino") {
+      state.betHistoryCategory = "all";
     }
     mountBetHistoryHost();
     backdrop.hidden = false;
@@ -7700,7 +8162,6 @@
             `<button type="button" class="bh-desktop-cat is-active" role="tab" aria-selected="true" data-bh-cat="all">All</button>` +
             `<button type="button" class="bh-desktop-cat" role="tab" aria-selected="false" data-bh-cat="sports">Sports</button>` +
             `<button type="button" class="bh-desktop-cat" role="tab" aria-selected="false" data-bh-cat="esports">Esports</button>` +
-            `<button type="button" class="bh-desktop-cat" role="tab" aria-selected="false" data-bh-cat="casino">Casino</button>` +
           `</div>` +
           `<div class="bh-desktop-filter-row">` +
             `<div class="bh-desktop-range" id="bh-desktop-range">` +
@@ -8272,6 +8733,28 @@
     setDrawerBackdrop(true);
   }
 
+  function selectBetSlipTab() {
+    $$("[data-bet-tab]").forEach((tab) => {
+      const on = tab.getAttribute("data-bet-tab") === "slip";
+      tab.classList.toggle("active", on);
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    const slipBody = $("#bet-slip-body");
+    const myBody = $("#my-bets-body");
+    if (slipBody) slipBody.hidden = false;
+    if (myBody) myBody.hidden = true;
+  }
+
+  function hydrateBetSlipFromStore() {
+    if (typeof window.SbBetSlipStore?.read === "function") {
+      state.betSlip = window.SbBetSlipStore.read();
+    }
+    selectBetSlipTab();
+    renderBetSlip();
+  }
+
+  window.sbHydrateBetSlip = hydrateBetSlipFromStore;
+
   function openRightDrawer() {
     if (!isMobileViewport()) return;
     const left = $("#left-sidebar");
@@ -8287,6 +8770,7 @@
     /* ≤900 sheet uses full slip chrome — clear desktop compact-rail collapse */
     right?.classList.remove("collapsed");
     layout?.classList.remove("right-collapsed");
+    hydrateBetSlipFromStore();
     right?.classList.add("is-open");
     $("#mobile-betslip-btn")?.setAttribute("aria-expanded", "true");
     setDrawerBackdrop(true);
@@ -8418,8 +8902,13 @@
   /* ---------- Init ---------- */
 
   function init() {
+    window.__sbBetSlipOwnedByScript = true;
+    window.__sbMyBetsOwnedByScript = true;
     if (window.SbFavourites?.ensureDemo) window.SbFavourites.ensureDemo();
     state.favorites = loadFavouriteIdSet();
+    if (typeof window.SbBetSlipStore?.read === "function") {
+      state.betSlip = window.SbBetSlipStore.read();
+    }
 
     if (!isEsportsPage) {
       renderSportsList();
@@ -8447,6 +8936,8 @@
       initHomeReferral();
       initHomePayoutMarquee();
       initSportsPageChrome();
+      initHomeSearchSheet();
+      initHomeQuicknav();
     } else {
       window.syncMobileBetCount = syncMobileBetCount;
     }
@@ -8627,7 +9118,9 @@
     if (!nav || !viewport || !track) return;
 
     track.innerHTML = SPORTS_COMPETITIONS.map((comp) => {
-      const sportIcon = `assets/icons/sport-${comp.sport || "football"}.svg`;
+      const sportIcon =
+        sportIconMap[comp.sport] ||
+        `/sportsbook/assets/icons/sport-${comp.sport || "football"}.svg`;
       return (
         `<button type="button" class="sp-competition-card" data-sp-competition="${escapeHtml(comp.id)}" data-group="${escapeHtml(comp.group)}" aria-pressed="false" title="${escapeHtml(comp.name)}">` +
           `<img class="sp-competition-card__sport" src="${escapeHtml(sportIcon)}" alt="" width="10" height="10" />` +

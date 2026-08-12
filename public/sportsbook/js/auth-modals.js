@@ -1302,35 +1302,22 @@
       '<img src="/sportsbook/mobile/assets/icons/tab-sports.svg" alt="" width="20" height="20" />' +
       '<span class="mobile-tab-label">Sports</span></button>' +
       '<div class="mobile-tab-flyout" id="mt-flyout-sports" role="menu" aria-label="Sports" hidden>' +
-      '<a href="#live-events" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="/sportsbook/national-team" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="sportsbook-national-team">' +
       '<img class="mobile-tab-flyout__icon--flag" src="/sportsbook/assets/icons/flag-my.svg" alt="" width="22" height="22" />' +
       "<span>Bet on Your National Team</span></a>" +
-      '<a href="#live-events" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="/sportsbook/live-national-team" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="sportsbook-live-national-team">' +
       '<img class="mobile-tab-flyout__icon--live" src="/sportsbook/mobile/assets/icons/tab-live.svg" alt="" width="22" height="22" />' +
       "<span>Live</span></a>" +
-      '<a href="#line-events" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="/sportsbook/sports" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="sportsbook-sports">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-menu.svg" alt="" width="22" height="22" />' +
       "<span>Sports</span></a>" +
       '<button type="button" class="mobile-tab-flyout__close" data-mt-flyout-close aria-label="Close">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-close.svg" alt="" width="22" height="22" /></button>' +
       "</div></div>" +
-      '<div class="mobile-tab-slot" data-mt-flyout-slot="casino">' +
-      '<button type="button" class="mobile-tab' + casinoOn + '" data-mt-flyout-open="casino" aria-expanded="false" aria-controls="mt-flyout-casino" aria-haspopup="menu">' +
+      '<a href="/casino" class="mobile-tab' + casinoOn + '" id="mobile-casino-tab" data-caelo-nav="live-casino"' +
+      (activeKey === "casino" ? ' aria-current="page"' : "") + ">" +
       '<img src="/sportsbook/mobile/assets/icons/tab-casino.svg" alt="" width="20" height="20" />' +
-      '<span class="mobile-tab-label">Casino</span></button>' +
-      '<div class="mobile-tab-flyout" id="mt-flyout-casino" role="menu" aria-label="Casino" hidden>' +
-      '<a href="/slots" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="slots">' +
-      '<img src="/sportsbook/mobile/assets/icons/tab-cherries.svg" alt="" width="22" height="22" />' +
-      "<span>Casino</span></a>" +
-      '<a href="/casino" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="live-casino">' +
-      '<img src="/sportsbook/mobile/assets/icons/tab-spade.svg" alt="" width="22" height="22" />' +
-      "<span>Live Casino</span></a>" +
-      '<a href="/hot-games" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="hot-games">' +
-      '<img src="/sportsbook/mobile/assets/icons/tab-dice.svg" alt="" width="22" height="22" />' +
-      "<span>12WIN Games</span></a>" +
-      '<button type="button" class="mobile-tab-flyout__close" data-mt-flyout-close aria-label="Close">' +
-      '<img src="/sportsbook/mobile/assets/icons/tab-close.svg" alt="" width="22" height="22" /></button>' +
-      "</div></div>" +
+      '<span class="mobile-tab-label">Casino</span></a>' +
       '<button type="button" class="mobile-tab mobile-tab--betslip" id="mobile-betslip-btn" aria-controls="right-sidebar" aria-expanded="false" aria-label="Bet slip">' +
       '<span class="mobile-tab-betslip-wrap"><span class="mobile-tab-betslip-icon" aria-hidden="true">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-coupon.svg" alt="" width="18" height="18" /></span>' +
@@ -1513,30 +1500,42 @@
     if (!isMobileViewport()) return;
     closeSportsTabFlyout();
 
-    const applyToggle = (right) => {
+    const applyToggle = (api, right) => {
       if (!right) return;
       const open = right.classList.contains("is-open");
       closeSportsMobileDrawers();
-      if (!open) {
-        /* ≤900 sheet uses full slip chrome — clear desktop compact-rail collapse */
-        right.classList.remove("collapsed");
-        document.querySelector(".sportsbook-layout")?.classList.remove("right-collapsed");
-        right.classList.add("is-open");
-        document.getElementById("mobile-betslip-btn")?.setAttribute("aria-expanded", "true");
-        setSportsDrawerBackdrop(true);
-        if (typeof window.syncMobileBetCount === "function") window.syncMobileBetCount();
+      if (open) {
+        if (api && typeof api.close === "function") api.close();
+        else {
+          right.classList.remove("is-open");
+          document.getElementById("mobile-betslip-btn")?.setAttribute("aria-expanded", "false");
+          setSportsDrawerBackdrop(false);
+        }
+        return;
       }
+      if (api && typeof api.open === "function") {
+        api.open();
+        return;
+      }
+      /* Fallback if SharedBetSlip API missing */
+      right.classList.remove("collapsed");
+      document.querySelector(".sportsbook-layout")?.classList.remove("right-collapsed");
+      right.classList.add("is-open");
+      document.getElementById("mobile-betslip-btn")?.setAttribute("aria-expanded", "true");
+      setSportsDrawerBackdrop(true);
+      if (typeof window.SbBetSlipStore?.paint === "function") {
+        window.SbBetSlipStore.paint({ force: true });
+      }
+      if (typeof window.syncMobileBetCount === "function") window.syncMobileBetCount();
     };
 
-    const existing = document.getElementById("right-sidebar");
-    if (existing) {
-      applyToggle(existing);
-      return;
-    }
-
-    ensureSharedBetSlipScript()
-      .then((api) => (api && api.ensure ? api.ensure() : Promise.resolve(null)))
-      .then(applyToggle);
+    ensureSharedBetSlipScript().then((api) => {
+      const run = (right) => applyToggle(api, right);
+      if (api && typeof api.ensure === "function") {
+        return api.ensure().then(run);
+      }
+      run(document.getElementById("right-sidebar"));
+    });
   }
 
   function initSportsTabFlyouts() {
@@ -1667,34 +1666,38 @@
       items: [
         {
           key: "sports",
-          href: "sports.html",
+          href: "/sportsbook/sports",
           label: "Sports",
           icon: "/sportsbook/mobile/assets/icons/tab-menu.svg",
           tint: true,
           pages: ["sports"],
+          nav: "sportsbook-sports",
         },
         {
           key: "national-team",
-          href: "national-team.html",
+          href: "/sportsbook/national-team",
           label: "Bet on Your National Team",
           icon: "/sportsbook/assets/icons/flag-my.svg",
           pages: ["national-team"],
+          nav: "sportsbook-national-team",
         },
         {
           key: "big-tournaments",
-          href: "big-tournaments.html",
+          href: "/sportsbook/big-tournaments",
           label: "Bet on Big Tournaments",
           icon: "/sportsbook/assets/icons/icon-trophy.svg",
           tint: true,
           pages: ["big-tournaments"],
+          nav: "sportsbook-big-tournaments",
         },
         {
           key: "long-term-bets",
-          href: "long-term-bets.html",
+          href: "/sportsbook/long-term-bets",
           label: "Long-term bets",
           icon: "/sportsbook/assets/icons/icon-clock.svg",
           tint: true,
           pages: ["long-term-bets"],
+          nav: "sportsbook-long-term-bets",
         },
       ],
     },
@@ -1704,25 +1707,28 @@
       items: [
         {
           key: "live-national-team",
-          href: "live-national-team.html",
+          href: "/sportsbook/live-national-team",
           label: "Bet on Your National Team",
           icon: "/sportsbook/assets/icons/flag-my.svg",
           pages: ["live-national-team"],
+          nav: "sportsbook-live-national-team",
         },
         {
           key: "marble-live",
-          href: "marble-live.html",
+          href: "/sportsbook/marble-live",
           label: "Marble-Live",
           icon: "/sportsbook/assets/icons/marble/sport-football.svg",
           tint: true,
           pages: ["marble-live"],
+          nav: "sportsbook-marble-live",
         },
         {
           key: "fast-bet",
-          href: "fast-bet.html",
+          href: "/sportsbook/fast-bet",
           label: "Fast bet",
           icon: "/sportsbook/assets/icons/account-subnav/dice.svg",
           pages: ["fast-bet"],
+          nav: "sportsbook-fast-bet",
         },
       ],
     },
@@ -1771,6 +1777,7 @@
         var active = item.pages && item.pages.indexOf(page) !== -1;
         var cls = "sb-subnav-card" + (active ? " is-active" : "");
         var current = active ? ' aria-current="page"' : "";
+        var navAttr = item.nav ? ' data-caelo-nav="' + item.nav + '"' : "";
         return (
           '<a href="' +
           item.href +
@@ -1778,6 +1785,7 @@
           cls +
           '"' +
           current +
+          navAttr +
           ">" +
           sbSubnavIconHtml(item) +
           "<span>" +

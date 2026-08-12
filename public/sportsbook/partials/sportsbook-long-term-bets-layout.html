@@ -1,0 +1,612 @@
+<div class="sportsbook-layout">
+      <!-- LEFT SIDEBAR � Long-term bets (Figma 20:169) -->
+      <aside class="left-sidebar lt-sidebar" id="left-sidebar" aria-label="Long-term sports navigation">
+        <button type="button" class="sidebar-collapse" id="sidebar-collapse" aria-label="Collapse block">
+          <img src="/sportsbook/assets/icons/nav-collapse.svg" alt="" width="9" height="10" />
+          <span>Collapse block</span>
+        </button>
+        <button type="button" class="mobile-drawer-close" id="left-drawer-close" aria-label="Close sports navigation">Close</button>
+
+        <div class="sidebar-row-wrap">
+          <a href="/sportsbook" data-caelo-nav="sportsbook" class="sidebar-row">
+            <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="16" height="16" />
+            <span class="row-label">Favorite matches</span>
+          </a>
+          <button type="button" class="sidebar-row-chevron" aria-label="Expand favorite matches">
+            <img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" />
+          </button>
+        </div>
+
+        <div class="lt-side-card">
+          <div class="lt-side-title">Long-term bets</div>
+          <div class="lt-side-filter">
+            <button type="button" class="lt-filter-btn" id="lt-time-filter" aria-haspopup="listbox" aria-expanded="false">
+              <img src="/sportsbook/assets/icons/icon-settings.svg" alt="" width="16" height="16" />
+              <span>All time</span>
+              <img src="/sportsbook/assets/icons/icon-chevron.svg" alt="" width="10" height="6" />
+            </button>
+          </div>
+          <div class="lt-side-count">
+            <span class="lt-count-num">651</span>
+            <span>Events</span>
+            <button type="button" class="lt-group-btn" aria-label="Group events by country" title="Group events by country">
+              <img src="/sportsbook/assets/icons/nav-collapse.svg" alt="" width="14" height="14" />
+            </button>
+          </div>
+
+          <nav class="lt-sport-list" aria-label="Sports with long-term markets" id="lt-sport-list">
+            <button type="button" class="lt-sport-item active" data-sport="football">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-football.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Football <span class="lt-sport-count">(158)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="cricket">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-cricket.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Cricket <span class="lt-sport-count">(13)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="basketball">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-basketball.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Basketball <span class="lt-sport-count">(54)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="tennis">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-tennis.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Tennis <span class="lt-sport-count">(11)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="hockey">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-hockey.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Ice Hockey <span class="lt-sport-count">(34)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="volleyball">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-volleyball.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Volleyball <span class="lt-sport-count">(3)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="baseball">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-baseball.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Baseball <span class="lt-sport-count">(8)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="handball">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-handball.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Handball <span class="lt-sport-count">(6)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="americanfootball">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-americanfootball.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">American Football <span class="lt-sport-count">(12)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            <button type="button" class="lt-sport-item" data-sport="esports">
+              <span class="lt-sport-main">
+                <img src="/sportsbook/assets/icons/sport-esports.svg" alt="" width="16" height="16" />
+                <span class="lt-sport-label">Esports <span class="lt-sport-count">(22)</span></span>
+              </span>
+              <span class="lt-sport-chevron"><img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="10" height="6" /></span>
+            </button>
+            </nav>
+        </div>
+      </aside>
+
+      <!-- CENTER � Long-term markets feed -->
+      <main class="main-content lt-main" id="main-content">
+        <!-- =900: page title + search / fav / filter -->
+        <div class="nt-mobile-subbar" aria-label="Long-term bets">
+          <a href="/sportsbook/sports" data-caelo-nav="sportsbook-sports" class="nt-mobile-subbar__back" aria-label="Back">
+            <img src="/sportsbook/mobile/assets/icons/sp-back.svg" alt="" width="10" height="16" />
+          </a>
+          <h1 class="nt-mobile-subbar__title">Long-term bets</h1>
+          <div class="nt-mobile-subbar__actions">
+            <a href="/sportsbook" data-caelo-nav="sportsbook" class="nt-mobile-subbar__btn" aria-label="Search">
+              <img src="/sportsbook/mobile/assets/icons/sp-search.svg" alt="" width="16" height="16" />
+            </a>
+            <a href="/sportsbook" data-caelo-nav="sportsbook" class="nt-mobile-subbar__btn" aria-label="Favourites">
+              <img src="/sportsbook/mobile/assets/icons/sp-star.svg" alt="" width="16" height="16" />
+            </a>
+            <button type="button" class="nt-mobile-subbar__btn" aria-label="Filter" data-mh-mf-open aria-haspopup="dialog" aria-controls="mh-mf" title="Filter">
+              <img src="/sportsbook/mobile/assets/icons/sp-filter.svg" alt="" width="16" height="16" />
+            </button>
+          </div>
+        </div>
+
+        <div class="lt-toolbar">
+          <nav class="lt-crumbs" aria-label="Breadcrumb">
+            <a href="/sportsbook#line-events" data-caelo-nav="sportsbook" class="lt-crumb" aria-label="LINE">
+              <img src="/sportsbook/assets/icons/te-home.svg" alt="" width="16" height="16" />
+            </a>
+            <img src="/sportsbook/assets/icons/te-chevron.svg" alt="" class="lt-crumb-sep" width="6" height="10" />
+            <span class="lt-crumb" aria-current="page">
+              <img src="/sportsbook/assets/icons/te-football.svg" alt="" width="16" height="16" />
+            </span>
+          </nav>
+          <div class="lt-toolbar-main">
+            <form class="lt-search" role="search" action="#" onsubmit="return false;">
+              <input type="search" id="lt-search" placeholder="Search by match" autocomplete="off" />
+              <button type="submit" aria-label="Search">
+                <img src="/sportsbook/assets/icons/te-search.svg" alt="" width="12" height="12" />
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="lt-filters" role="tablist" aria-label="Filter by sport">
+          <button type="button" class="lt-chip active" role="tab" aria-selected="true" data-filter="football">
+            <img src="/sportsbook/assets/icons/sport-football.svg" alt="" width="16" height="16" />
+            Football
+          </button>
+          <button type="button" class="lt-chip" role="tab" aria-selected="false" data-filter="cricket">
+            <img src="/sportsbook/assets/icons/sport-cricket.svg" alt="" width="16" height="16" />
+            Cricket
+          </button>
+          <button type="button" class="lt-chip" role="tab" aria-selected="false" data-filter="basketball">
+            <img src="/sportsbook/assets/icons/sport-basketball.svg" alt="" width="16" height="16" />
+            Basketball
+          </button>
+          <button type="button" class="lt-chip" role="tab" aria-selected="false" data-filter="tennis">
+            <img src="/sportsbook/assets/icons/sport-tennis.svg" alt="" width="16" height="16" />
+            Tennis
+          </button>
+          <button type="button" class="lt-chip" role="tab" aria-selected="false" data-filter="hockey">
+            <img src="/sportsbook/assets/icons/sport-hockey.svg" alt="" width="16" height="16" />
+            Ice Hockey
+          </button>
+          <button type="button" class="lt-chip" role="tab" aria-selected="false" data-filter="volleyball">
+            <img src="/sportsbook/assets/icons/sport-volleyball.svg" alt="" width="16" height="16" />
+            Volleyball
+          </button>
+          <button type="button" class="lt-chip" role="tab" aria-selected="false" data-filter="baseball">
+            <img src="/sportsbook/assets/icons/sport-baseball.svg" alt="" width="16" height="16" />
+            Baseball
+          </button>
+          <button type="button" class="lt-chip" role="tab" aria-selected="false" data-filter="handball">
+            <img src="/sportsbook/assets/icons/sport-handball.svg" alt="" width="16" height="16" />
+            Handball
+          </button>
+          <button type="button" class="lt-chip-more" aria-label="Other sports">
+            <img src="/sportsbook/assets/icons/sport-list-chevron.svg" alt="" width="16" height="16" style="transform:rotate(-90deg);filter:brightness(0) invert(1)" />
+            <img src="/sportsbook/assets/icons/icon-chevron.svg" alt="" width="10" height="6" />
+          </button>
+        </div>
+
+        <div class="lt-feed" id="lt-feed">
+          <!-- Football / UEFA Nations League -->
+          <article class="lt-block" data-sport="football">
+            <header class="lt-league-bar">
+              <div class="lt-league-title">
+                <img src="/sportsbook/assets/icons/lt-uefa.png" alt="" width="16" height="16" />
+                <span>UEFA Nations League. Winner</span>
+              </div>
+              <div class="lt-col-heads" aria-hidden="true">
+                <span>Germany</span><span>Netherlands</span><span>Serbia</span><span>Greece</span>
+                <span>-</span><span>-</span><span>-</span><span>-</span><span>-</span>
+              </div>
+              <div class="lt-league-more"></div>
+            </header>
+            <div class="lt-date">13 July</div>
+            <div class="lt-event">
+              <div class="lt-event-meta">
+                <div class="lt-event-tools">
+                  <button type="button" class="lt-icon-btn" aria-label="Pin">
+                    <img src="/sportsbook/assets/icons/te-menu.svg" alt="" width="12" height="12" />
+                  </button>
+                  <button type="button" class="lt-icon-btn fav" aria-label="Add to favorites">
+                    <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="12" height="12" />
+                  </button>
+                </div>
+                <div class="lt-event-body">
+                  <h3 class="lt-event-name">
+                    <img src="/sportsbook/assets/icons/lt-uefa.png" alt="" width="16" height="16" />
+                    UEFA Nations League. 2026/27. League A. Group 2. Winner
+                  </h3>
+                  <div class="lt-event-sub"><span>25/09 / 02:45</span></div>
+                </div>
+              </div>
+              <div class="lt-odds-row">
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-g2-ger","league":"UEFA Nations League Winner","match":"League A Group 2","market":"Winner","selection":"Germany","odds":1.533}'>1.533</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-g2-ned","league":"UEFA Nations League Winner","match":"League A Group 2","market":"Winner","selection":"Netherlands","odds":2.75}'>2.75</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-g2-srb","league":"UEFA Nations League Winner","match":"League A Group 2","market":"Winner","selection":"Serbia","odds":17}'>17</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-g2-gre","league":"UEFA Nations League Winner","match":"League A Group 2","market":"Winner","selection":"Greece","odds":26}'>26</button>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+              </div>
+              <button type="button" class="lt-more">+4</button>
+            </div>
+          </article>
+
+          <article class="lt-block" data-sport="football">
+            <header class="lt-league-bar">
+              <div class="lt-league-title">
+                <img src="/sportsbook/assets/icons/lt-uefa.png" alt="" width="16" height="16" />
+                <span>UEFA Nations League. Winner</span>
+              </div>
+              <div class="lt-col-heads" aria-hidden="true">
+                <span>France</span><span>Spain</span><span>Italy</span><span>Germany</span>
+                <span>Portugal</span><span>England</span><span>-</span><span>-</span><span>-</span>
+              </div>
+              <div class="lt-league-more"></div>
+            </header>
+            <div class="lt-date">13 July</div>
+            <div class="lt-event">
+              <div class="lt-event-meta">
+                <div class="lt-event-tools">
+                  <button type="button" class="lt-icon-btn" aria-label="Pin">
+                    <img src="/sportsbook/assets/icons/te-menu.svg" alt="" width="12" height="12" />
+                  </button>
+                  <button type="button" class="lt-icon-btn fav" aria-label="Add to favorites">
+                    <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="12" height="12" />
+                  </button>
+                </div>
+                <div class="lt-event-body">
+                  <h3 class="lt-event-name">
+                    <img src="/sportsbook/assets/icons/lt-uefa.png" alt="" width="16" height="16" />
+                    UEFA Nations League. 2026/27. League A. Winner
+                  </h3>
+                  <div class="lt-event-sub"><span>25/09 / 02:45</span></div>
+                </div>
+              </div>
+              <div class="lt-odds-row">
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-a-fra","league":"UEFA Nations League Winner","match":"League A","market":"Winner","selection":"France","odds":4.2}'>4.2</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-a-esp","league":"UEFA Nations League Winner","match":"League A","market":"Winner","selection":"Spain","odds":4.5}'>4.5</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-a-ita","league":"UEFA Nations League Winner","match":"League A","market":"Winner","selection":"Italy","odds":6.5}'>6.5</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-a-ger","league":"UEFA Nations League Winner","match":"League A","market":"Winner","selection":"Germany","odds":7}'>7</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-a-por","league":"UEFA Nations League Winner","match":"League A","market":"Winner","selection":"Portugal","odds":8}'>8</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-a-eng","league":"UEFA Nations League Winner","match":"League A","market":"Winner","selection":"England","odds":9}'>9</button>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+              </div>
+              <button type="button" class="lt-more">+12</button>
+            </div>
+          </article>
+
+          <article class="lt-block" data-sport="football">
+            <header class="lt-league-bar">
+              <div class="lt-league-title">
+                <img src="/sportsbook/assets/icons/lt-uefa.png" alt="" width="16" height="16" />
+                <span>UEFA Nations League. Winner</span>
+              </div>
+              <div class="lt-col-heads" aria-hidden="true">
+                <span>Wales</span><span>Iceland</span><span>Turkey</span><span>Kosovo</span>
+                <span>-</span><span>-</span><span>-</span><span>-</span><span>-</span>
+              </div>
+              <div class="lt-league-more"></div>
+            </header>
+            <div class="lt-date">13 July</div>
+            <div class="lt-event">
+              <div class="lt-event-meta">
+                <div class="lt-event-tools">
+                  <button type="button" class="lt-icon-btn" aria-label="Pin">
+                    <img src="/sportsbook/assets/icons/te-menu.svg" alt="" width="12" height="12" />
+                  </button>
+                  <button type="button" class="lt-icon-btn fav" aria-label="Add to favorites">
+                    <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="12" height="12" />
+                  </button>
+                </div>
+                <div class="lt-event-body">
+                  <h3 class="lt-event-name">
+                    <img src="/sportsbook/assets/icons/lt-uefa.png" alt="" width="16" height="16" />
+                    UEFA Nations League. 2026/27. League A. Group 4. Winner
+                  </h3>
+                  <div class="lt-event-sub"><span>25/09 / 02:45</span></div>
+                </div>
+              </div>
+              <div class="lt-odds-row">
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-g4-wal","league":"UEFA Nations League Winner","match":"League A Group 4","market":"Winner","selection":"Wales","odds":1.833}'>1.833</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-g4-ice","league":"UEFA Nations League Winner","match":"League A Group 4","market":"Winner","selection":"Iceland","odds":3.4}'>3.4</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-g4-tur","league":"UEFA Nations League Winner","match":"League A Group 4","market":"Winner","selection":"Turkey","odds":4.1}'>4.1</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-unl-g4-kos","league":"UEFA Nations League Winner","match":"League A Group 4","market":"Winner","selection":"Kosovo","odds":12}'>12</button>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+              </div>
+              <button type="button" class="lt-more">+4</button>
+            </div>
+          </article>
+
+          <!-- Volleyball -->
+          <article class="lt-block" data-sport="volleyball">
+            <header class="lt-league-bar">
+              <div class="lt-league-title">
+                <img src="/sportsbook/assets/icons/lt-fivb.png" alt="" width="16" height="16" />
+                <span>FIVB Nations League. 2026. Winner</span>
+              </div>
+              <div class="lt-col-heads" aria-hidden="true">
+                <span>France</span><span>Poland</span><span>USA</span><span>Italy</span>
+                <span>Brazil</span><span>Japan</span><span>-</span><span>-</span><span>-</span>
+              </div>
+              <div class="lt-league-more"></div>
+            </header>
+            <div class="lt-date">13 July</div>
+            <div class="lt-event">
+              <div class="lt-event-meta">
+                <div class="lt-event-tools">
+                  <button type="button" class="lt-icon-btn" aria-label="Pin">
+                    <img src="/sportsbook/assets/icons/te-menu.svg" alt="" width="12" height="12" />
+                  </button>
+                  <button type="button" class="lt-icon-btn fav" aria-label="Add to favorites">
+                    <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="12" height="12" />
+                  </button>
+                </div>
+                <div class="lt-event-body">
+                  <h3 class="lt-event-name">
+                    <img src="/sportsbook/assets/icons/lt-fivb.png" alt="" width="16" height="16" />
+                    FIVB Nations League. 2026. Winner
+                  </h3>
+                  <div class="lt-event-sub"><span>01/06 / 00:00</span></div>
+                </div>
+              </div>
+              <div class="lt-odds-row">
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-fivb-fra","league":"FIVB Nations League 2026","match":"Tournament","market":"Winner","selection":"France","odds":4.5}'>4.5</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-fivb-pol","league":"FIVB Nations League 2026","match":"Tournament","market":"Winner","selection":"Poland","odds":5}'>5</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-fivb-usa","league":"FIVB Nations League 2026","match":"Tournament","market":"Winner","selection":"USA","odds":6}'>6</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-fivb-ita","league":"FIVB Nations League 2026","match":"Tournament","market":"Winner","selection":"Italy","odds":7}'>7</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-fivb-bra","league":"FIVB Nations League 2026","match":"Tournament","market":"Winner","selection":"Brazil","odds":8}'>8</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-fivb-jpn","league":"FIVB Nations League 2026","match":"Tournament","market":"Winner","selection":"Japan","odds":11}'>11</button>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+              </div>
+              <button type="button" class="lt-more">+10</button>
+            </div>
+          </article>
+
+          <!-- Ice Hockey / NHL -->
+          <article class="lt-block" data-sport="hockey">
+            <header class="lt-league-bar">
+              <div class="lt-league-title">
+                <img src="/sportsbook/assets/icons/sport-hockey.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)" />
+                <span>NHL. Results of the championship</span>
+              </div>
+              <div class="lt-col-heads" aria-hidden="true">
+                <span>Panthers</span><span>Oilers</span><span>Hurricanes</span><span>Stars</span>
+                <span>Rangers</span><span>Leafs</span><span>-</span><span>-</span><span>-</span>
+              </div>
+              <div class="lt-league-more"></div>
+            </header>
+            <div class="lt-date">13 July</div>
+            <div class="lt-event">
+              <div class="lt-event-meta">
+                <div class="lt-event-tools">
+                  <button type="button" class="lt-icon-btn" aria-label="Pin">
+                    <img src="/sportsbook/assets/icons/te-menu.svg" alt="" width="12" height="12" />
+                  </button>
+                  <button type="button" class="lt-icon-btn fav" aria-label="Add to favorites">
+                    <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="12" height="12" />
+                  </button>
+                </div>
+                <div class="lt-event-body">
+                  <h3 class="lt-event-name">
+                    <img src="/sportsbook/assets/icons/sport-hockey.svg" alt="" width="16" height="16" />
+                    NHL. Stanley Cup. 2027. Winner
+                  </h3>
+                  <div class="lt-event-sub"><span>01/10 / 00:00</span></div>
+                </div>
+              </div>
+              <div class="lt-odds-row">
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nhl-fla","league":"NHL Stanley Cup 2027","match":"Tournament","market":"Winner","selection":"Panthers","odds":8}'>8</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nhl-edm","league":"NHL Stanley Cup 2027","match":"Tournament","market":"Winner","selection":"Oilers","odds":9}'>9</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nhl-car","league":"NHL Stanley Cup 2027","match":"Tournament","market":"Winner","selection":"Hurricanes","odds":10}'>10</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nhl-dal","league":"NHL Stanley Cup 2027","match":"Tournament","market":"Winner","selection":"Stars","odds":11}'>11</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nhl-nyr","league":"NHL Stanley Cup 2027","match":"Tournament","market":"Winner","selection":"Rangers","odds":12}'>12</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nhl-tor","league":"NHL Stanley Cup 2027","match":"Tournament","market":"Winner","selection":"Leafs","odds":14}'>14</button>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+              </div>
+              <button type="button" class="lt-more">+26</button>
+            </div>
+          </article>
+
+          <!-- Basketball / NBA -->
+          <article class="lt-block" data-sport="basketball">
+            <header class="lt-league-bar">
+              <div class="lt-league-title">
+                <img src="/sportsbook/assets/icons/sport-basketball.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)" />
+                <span>NBA. 2026/27. Winner</span>
+              </div>
+              <div class="lt-col-heads" aria-hidden="true">
+                <span>Celtics</span><span>Thunder</span><span>Nuggets</span><span>Knicks</span>
+                <span>Lakers</span><span>Bucks</span><span>-</span><span>-</span><span>-</span>
+              </div>
+              <div class="lt-league-more"></div>
+            </header>
+            <div class="lt-date">13 July</div>
+            <div class="lt-event">
+              <div class="lt-event-meta">
+                <div class="lt-event-tools">
+                  <button type="button" class="lt-icon-btn" aria-label="Pin">
+                    <img src="/sportsbook/assets/icons/te-menu.svg" alt="" width="12" height="12" />
+                  </button>
+                  <button type="button" class="lt-icon-btn fav" aria-label="Add to favorites">
+                    <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="12" height="12" />
+                  </button>
+                </div>
+                <div class="lt-event-body">
+                  <h3 class="lt-event-name">
+                    <img src="/sportsbook/assets/icons/sport-basketball.svg" alt="" width="16" height="16" />
+                    NBA. 2026/27. Winner
+                  </h3>
+                  <div class="lt-event-sub"><span>01/10 / 00:00</span></div>
+                </div>
+              </div>
+              <div class="lt-odds-row">
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nba-bos","league":"NBA 2026/27","match":"Tournament","market":"Winner","selection":"Celtics","odds":4.5}'>4.5</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nba-okc","league":"NBA 2026/27","match":"Tournament","market":"Winner","selection":"Thunder","odds":5}'>5</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nba-den","league":"NBA 2026/27","match":"Tournament","market":"Winner","selection":"Nuggets","odds":7}'>7</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nba-nyk","league":"NBA 2026/27","match":"Tournament","market":"Winner","selection":"Knicks","odds":9}'>9</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nba-lal","league":"NBA 2026/27","match":"Tournament","market":"Winner","selection":"Lakers","odds":12}'>12</button>
+                <button type="button" class="odd-btn lt-odd" data-odd='{"id":"lt-nba-mil","league":"NBA 2026/27","match":"Tournament","market":"Winner","selection":"Bucks","odds":14}'>14</button>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+                <span class="lt-odd is-empty">-</span>
+              </div>
+              <button type="button" class="lt-more">+24</button>
+            </div>
+          </article>
+        </div>
+      </main>
+
+      <!-- RIGHT SIDEBAR (Figma 3:16034) � colors: modified-color tokens -->
+      <aside class="right-sidebar" id="right-sidebar" aria-label="Account tools">
+        <button type="button" class="right-collapse" id="right-collapse" aria-label="Collapse block">
+          <span>Collapse block</span>
+          <img src="/sportsbook/assets/icons/rb-collapse-chevron.svg" alt="" width="9" height="10" />
+        </button>
+        <button type="button" class="mobile-drawer-close" id="right-drawer-close" aria-label="Close bet slip">
+          <span class="mobile-drawer-handle" aria-hidden="true"></span>
+          <span class="mobile-drawer-close-title">Bet slip</span>
+          <span class="mobile-drawer-close-action">Close</span>
+        </button>
+
+        <div class="reg-panel">
+          <h2 class="reg-title">REGISTRATION</h2>
+          <form class="reg-form" id="reg-form" novalidate>
+            <div class="reg-tabs" role="tablist">
+              <button type="button" class="reg-tab active" role="tab" aria-selected="true" data-reg="oneclick">
+                <img src="/sportsbook/assets/icons/rb-bolt.svg" alt="" width="12" height="16" />
+                One-click
+              </button>
+              <button type="button" class="reg-tab" role="tab" aria-selected="false" data-reg="phone">
+                <img src="/sportsbook/assets/icons/rb-phone.svg" alt="" width="11" height="16" />
+                By phone
+              </button>
+            </div>
+
+            <div class="reg-fields" data-panel="oneclick">
+              <button type="button" class="reg-select" id="reg-country" aria-label="Country">
+                <img src="/sportsbook/assets/icons/rb-flag-my.svg" alt="" class="reg-flag" width="16" height="16" />
+                <span class="reg-select-label">Malaysia</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+              <button type="button" class="reg-select" id="reg-currency" aria-label="Currency">
+                <span class="reg-select-label">Malaysian ringgit (MYR)</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+              <input type="text" id="reg-promo" name="promo" class="reg-input" placeholder="Promo code (if you have one)" autocomplete="off" />
+            </div>
+
+            <div class="reg-fields" data-panel="phone" hidden>
+              <input type="tel" id="reg-phone" name="phone" class="reg-input" placeholder="Phone number" autocomplete="off" />
+              <button type="button" class="reg-select" aria-label="Currency">
+                <span class="reg-select-label">Malaysian ringgit (MYR)</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+            </div>
+
+            <button type="submit" class="btn-reg">Register</button>
+            <p class="reg-terms">
+              By clicking this button you confirm that you have read and agree to the
+              <a href="terms.html">Terms and Conditions</a> and
+              <a href="#">Privacy Policy</a> of the company and confirm that you are of legal age
+            </p>
+            <p class="demo-msg" id="reg-demo" hidden>Demo only � no account created.</p>
+          </form>
+          <a href="#reg-form" class="reg-bonus-bar">100% bonus on your 1st deposit</a>
+        </div>
+
+        <div class="bet-slip-panel">
+          <div class="bet-slip-tabs" role="tablist">
+            <button type="button" class="bet-tab active" role="tab" aria-selected="true" data-bet-tab="slip">Bet slip</button>
+            <button type="button" class="bet-tab" role="tab" aria-selected="false" data-bet-tab="mybets">My bets</button>
+          </div>
+          <div class="bet-slip-body" id="bet-slip-body">
+            <div class="bet-toolbar">
+              <span class="bet-toolbar-title">Your bets</span>
+              <button type="button" class="bet-icon-btn" aria-label="Share">
+                <img src="/sportsbook/assets/icons/rb-share.svg" alt="" width="12" height="12" />
+              </button>
+              <button type="button" class="bet-icon-btn" aria-label="Settings" title="Settings">
+                <img src="/sportsbook/assets/icons/rb-settings.svg" alt="" width="12" height="12" />
+              </button>
+            </div>
+            <div class="bet-empty" id="bet-empty">
+              <p class="bet-empty-text">Add events to the bet slip or<br />enter a code to load events</p>
+            </div>
+            <div class="bet-list" id="bet-list" hidden></div>
+            <div class="bet-footer" id="bet-footer" hidden>
+              <label class="stake-label">
+                Stake
+                <input type="number" id="stake-input" min="1" step="1" value="10" />
+              </label>
+              <div class="bet-totals">
+                <div><span>Total odds</span><strong id="total-odds">1.00</strong></div>
+                <div><span>Potential return</span><strong id="potential-return">0.00</strong></div>
+              </div>
+              <div class="bet-actions">
+                <button type="button" class="btn-clear" id="clear-bets">Clear All</button>
+                <button type="button" class="btn-place" id="place-bet">Place Bet</button>
+              </div>
+            </div>
+            <a href="#reg-form" class="btn-slip-reg" id="bet-reg-cta">Registration</a>
+            <button type="button" class="bet-save-link">Save/load events</button>
+          </div>
+          <div class="my-bets-body" id="my-bets-body" hidden>
+            <p class="bet-empty-text">No open bets. Place a bet to see it here.</p>
+          </div>
+        </div>
+
+        <div class="generator-panel">
+          <div class="gen-copy">
+            <h2 class="gen-title">Bet slip<br />generator</h2>
+            <p class="gen-text">Enter your parameters and we will generate a bet slip for you</p>
+          </div>
+          <img class="gen-art-img" src="/sportsbook/assets/images/rb-generator-art.png" alt="" width="163" height="162" />
+          <button type="button" class="btn-generate" id="generate-slip">Generate</button>
+        </div>
+
+        <div class="app-panel" id="app-panel">
+          <div class="app-tabs">
+            <button type="button" class="app-tab active" data-app="android">
+              <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" />
+              Android
+            </button>
+            <button type="button" class="app-tab" data-app="ios">
+              <img src="/sportsbook/assets/icons/rb-apple.svg" alt="" width="16" height="16" />
+              iOS
+            </button>
+            <button type="button" class="app-close" id="app-close" aria-label="Close">
+              <img src="/sportsbook/assets/icons/rb-close.svg" alt="" width="10" height="10" />
+            </button>
+          </div>
+          <div class="app-body">
+            <div class="app-phone">
+              <img src="/sportsbook/assets/images/rb-phone-qr.png" alt="QR code" width="118" height="125" />
+            </div>
+            <div class="app-meta">
+              <img src="/sportsbook/assets/icons/rb-logo.svg" alt="1xBet" class="app-logo" width="65" height="14" />
+              <p class="app-label">Mobile<br />application</p>
+              <a href="#" class="btn-app-download" id="app-download">
+                <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" class="app-dl-icon" />
+                Free&nbsp;download
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>

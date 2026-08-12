@@ -1,0 +1,45 @@
+<div class="fv-mobile-subbar" aria-label="Favorites">
+      <a href="/sportsbook" data-caelo-nav="sportsbook" class="fv-mobile-subbar__back" aria-label="Back">
+        <img src="/sportsbook/mobile/assets/icons/sp-back.svg" alt="" width="10" height="16" />
+      </a>
+      <h1 class="fv-mobile-subbar__title">Favorites</h1>
+    </div>
+
+    <div class="sportsbook-layout fv-layout">
+      <main class="main-content fv-main" id="main-content">
+        <div class="fv-toolbar">
+          <nav class="fv-crumbs" aria-label="Breadcrumb">
+            <a href="/sportsbook" data-caelo-nav="sportsbook" class="fv-crumb" aria-label="Home">
+              <img src="/sportsbook/assets/icons/te-home.svg" alt="" width="16" height="16" />
+            </a>
+            <span class="fv-crumb-sep" aria-hidden="true">/</span>
+            <span class="fv-crumb" aria-current="page">Favorites</span>
+          </nav>
+        </div>
+
+        <h1 class="fv-title">Favorites</h1>
+
+        <section class="fv-panel" aria-label="Favourite games">
+          <button type="button" class="fv-panel__head" data-fv-acc aria-expanded="true" aria-controls="fv-games">
+            <span>Games</span>
+            <img class="fv-panel__chev" src="/sportsbook/assets/icons/icon-chevron.svg" alt="" width="14" height="14" />
+          </button>
+          <div class="fv-panel__body" id="fv-games">
+            <div class="fv-tabs" role="tablist" aria-label="Favourites filter">
+              <button type="button" class="fv-tab is-active" role="tab" aria-selected="true" data-fv-tab="live">Live</button>
+              <button type="button" class="fv-tab" role="tab" aria-selected="false" data-fv-tab="sports">Sports</button>
+              <button type="button" class="fv-tabs__clock" data-fv-bet-history aria-label="Bet history">
+                <img src="/sportsbook/assets/icons/icon-clock.svg" alt="" width="16" height="16" />
+              </button>
+            </div>
+            <div class="fv-empty" id="fv-empty" hidden>
+              <p class="fv-empty__title">You have no favorite games</p>
+              <p class="fv-empty__hint">You haven't added any games to your favourites yet</p>
+            </div>
+            <div class="fv-list" id="fv-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="fv-toast" id="fv-toast" role="status" aria-live="polite" hidden></div>

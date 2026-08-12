@@ -25,8 +25,28 @@
   background: #0b1d33;
 }
 
+/* Light pages (search / favourites): fill viewport, hide sportsbook navy */
+.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='search']),
+.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='favourites']) {
+  background: #eef2f6;
+}
+
+.sportsbook-root[data-sportsbook-mode='search'],
+.sportsbook-root[data-sportsbook-mode='favourites'] {
+  background: #eef2f6;
+  min-height: calc(100vh - var(--header-h, 100px));
+}
+
 body.sportsbook-port-active {
   background: #0b1d33;
+  /* Prevent browser scroll-anchoring from pinning the Caelo footer in view
+     while sportsbook HTML is injected above it (looks like a jump to bottom). */
+  overflow-anchor: none;
+}
+
+body.sportsbook-port-active[data-page='search'],
+body.sportsbook-port-active[data-page='favourites'] {
+  background: #eef2f6;
 }
 
 /*
@@ -96,6 +116,7 @@ body.sportsbook-port-active .site-footer,
   --color-text-light: var(--mono-0);
   --color-surface-base: var(--raw-app-surface-base);
   --color-tertiery: var(--mono-0);
+  overflow-anchor: none;
   background-color: var(--color-surface-low) !important;
   background-image: none !important;
   color: var(--color-tertiery);

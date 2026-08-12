@@ -28,6 +28,7 @@ body.sportsbook-port-active {
   /* ---- Cyan → Caelo orange / gold ---- */
   --cyan-accent: #ffb22d;
   --odds-selected: #e89a12;
+  --popular-sport-selected: #b57300;
 
   /* Conversion CTAs were lime green → Caelo gold family.
      Fill is deep enough for white labels; gold buttons also get CTA-text overrides below. */
@@ -37,6 +38,7 @@ body.sportsbook-port-active {
   --success: #65a30d; /* keep wins/success readable — not orange */
 
   /* Extra Caelo hooks for overrides */
+  --section-blue: #123b94;
   --sb-cta-text: #0c4a8e;
   --sb-cta-start: #ffcf4a;
   --sb-cta-end: #ffb22d;
@@ -47,19 +49,35 @@ body.sportsbook-port-active {
    Contrast fixes (designer pass)
    ------------------------------------------------------------------ */
 
-/* Selected odds: amber fill + dark blue type (Caelo CTA pairing) */
+/* Selected odds: Caelo orange fill + white type (matches click state) */
 .sportsbook-root .odd-btn.selected,
 .sportsbook-root .tg-odd.selected,
+.sportsbook-root .sb-match-card__odd.selected,
 .sportsbook-root [data-odd].selected,
-body.sportsbook-port-active .odd-btn.selected {
+body.sportsbook-port-active .odd-btn.selected,
+body.sportsbook-port-active .tg-odd.selected,
+body.sportsbook-port-active .sb-match-card__odd.selected,
+body.sportsbook-port-active [data-odd].selected {
   background: var(--odds-selected) !important;
   border-color: var(--action-green-active) !important;
-  color: var(--sb-cta-text) !important;
+  color: #fff !important;
+}
+
+.sportsbook-root .odd-btn.selected .odd-btn-lab,
+.sportsbook-root .odd-btn.selected .odd-btn-val,
+.sportsbook-root .odd-btn.selected span,
+.sportsbook-root .tg-odd.selected span,
+.sportsbook-root .sb-match-card__odd.selected span,
+body.sportsbook-port-active .odd-btn.selected .odd-btn-lab,
+body.sportsbook-port-active .odd-btn.selected .odd-btn-val,
+body.sportsbook-port-active .odd-btn.selected span,
+body.sportsbook-port-active .tg-odd.selected span {
+  color: #fff !important;
 }
 
 .sportsbook-root .odd-btn.selected::after,
 body.sportsbook-port-active .odd-btn.selected::after {
-  background: var(--sb-cta-text) !important;
+  background: #fff !important;
 }
 
 /* Primary conversion buttons: gold fill + dark blue type (easier to read) */
@@ -134,11 +152,109 @@ body.sportsbook-port-active .promo-live-pill__dot::after {
   box-shadow: 0 0 8px rgba(255, 178, 45, 0.55);
 }
 
-/* Mobile bottom nav: active Sports icon was lime filter → 12WIN orange */
-body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab.is-active img,
-.sportsbook-root .mobile-tabbar--sports .mobile-tab.is-active img {
-  filter: invert(72%) sepia(92%) saturate(1350%) hue-rotate(358deg) brightness(104%) contrast(103%);
+/* ------------------------------------------------------------------
+   Mobile bottom tabbar → Caelo sticky-nav (screenshot parity)
+   Deep brand bar · white outline icons · gold center FAB + navy icon
+   ------------------------------------------------------------------ */
+body.sportsbook-port-active .mobile-tabbar,
+.sportsbook-root .mobile-tabbar,
+body.sportsbook-port-active .mobile-tabbar--sports,
+.sportsbook-root .mobile-tabbar--sports {
+  background: #123b94;
+  border-top: none;
+  box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.28);
 }
+
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding-bottom: 10px;
+}
+
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab img,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab img {
+  width: 20px;
+  height: 20px;
+  filter: none;
+  opacity: 1;
+  color: #fff;
+}
+
+/* SVGs use currentColor — force white via CSS filter-free color on img won't work.
+   Keep stroke icons as white by inverting only if needed; outline SVGs use currentColor
+   but <img> can't pass currentColor. Use brightness invert for filled→white OR embed as inline.
+   Our outline SVGs use stroke="currentColor" which defaults black in <img>. Invert to white. */
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab:not(.mobile-tab--betslip) img,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab:not(.mobile-tab--betslip) img {
+  filter: brightness(0) invert(1);
+}
+
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab.is-active,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab.is-active {
+  color: #ffd84d;
+  font-weight: 700;
+}
+
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab.is-active:not(.mobile-tab--betslip) img,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab.is-active:not(.mobile-tab--betslip) img {
+  /* white → gold #ffd84d */
+  filter: invert(86%) sepia(48%) saturate(700%) hue-rotate(359deg) brightness(104%) contrast(103%);
+}
+
+/* Center Bet slip FAB — gold circle + navy icon (matches Deposit CTA) */
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab--betslip,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab--betslip {
+  color: #fff;
+}
+
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab--betslip .mobile-tab-label,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab--betslip .mobile-tab-label {
+  color: #fff;
+  font-weight: 500;
+}
+
+body.sportsbook-port-active .mobile-tab-betslip-wrap,
+.sportsbook-root .mobile-tab-betslip-wrap {
+  width: 56px;
+  height: 56px;
+  margin-top: -28px;
+}
+
+body.sportsbook-port-active .mobile-tab-betslip-icon,
+.sportsbook-root .mobile-tab-betslip-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 4px solid #123b94;
+  background: linear-gradient(180deg, #ffcf4a 0%, #ffb22d 100%);
+  box-shadow: 0 4px 14px rgba(255, 178, 45, 0.45);
+  color: #0c4a8e;
+}
+
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab--betslip .mobile-tab-betslip-icon img,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab--betslip .mobile-tab-betslip-icon img {
+  width: 26px;
+  height: 26px;
+  /* black stroke → navy CTA text #0c4a8e */
+  filter: invert(18%) sepia(72%) saturate(1800%) hue-rotate(196deg) brightness(90%) contrast(95%);
+}
+
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab--betslip .mobile-tab-badge,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab--betslip .mobile-tab-badge {
+  background: #ef4444;
+  color: #fff;
+  box-shadow: 0 0 0 2px #123b94;
+}
+
+/* Badge ring on account-style tabs */
+body.sportsbook-port-active .mobile-tabbar .mobile-tab-badge,
+.sportsbook-root .mobile-tabbar .mobile-tab-badge {
+  box-shadow: 0 0 0 2px #123b94;
+}
+
 
 /* ------------------------------------------------------------------
    Bet slip amounts → #224f78
@@ -262,4 +378,113 @@ body.sportsbook-port-active #auth-backdrop .auth-btn--register {
 body.sportsbook-port-active #auth-backdrop .auth-btn--login {
   background: var(--brand-blue) !important;
   color: #fff !important;
+}
+
+/* Big-tournaments / long-term selected odds — gold fill + white type */
+.sportsbook-root .mh-bt-odd.is-selected,
+.sportsbook-root .mh-bt-odd.selected,
+body.sportsbook-port-active .mh-bt-odd.is-selected,
+body.sportsbook-port-active .mh-bt-odd.selected,
+.sportsbook-root .lt-odd.selected,
+.sportsbook-root .lt-odd[aria-pressed="true"],
+body.sportsbook-port-active .lt-odd.selected,
+body.sportsbook-port-active .lt-odd[aria-pressed="true"] {
+  background: var(--odds-selected) !important;
+  border-color: var(--action-green-active) !important;
+  color: #fff !important;
+}
+
+/* ------------------------------------------------------------------
+   Events search sheet → 1xbet light panel + Caelo gold accents
+   ------------------------------------------------------------------ */
+body.sportsbook-port-active .sb-search-sheet,
+.sportsbook-root .sb-search-sheet {
+  background: #eef2f6;
+  color: #0f172a;
+}
+
+body.sportsbook-port-active .sb-search-sheet__head,
+.sportsbook-root .sb-search-sheet__head {
+  background: #123b94;
+}
+
+body.sportsbook-port-active .sb-search-sheet__title,
+.sportsbook-root .sb-search-sheet__title {
+  color: #fff;
+}
+
+body.sportsbook-port-active .sb-search-sheet__panel,
+.sportsbook-root .sb-search-sheet__panel {
+  background: #fff;
+}
+
+body.sportsbook-port-active .sb-search-sheet__field,
+.sportsbook-root .sb-search-sheet__field {
+  border-color: #cfe0f9;
+  background: #fff;
+}
+
+body.sportsbook-port-active .sb-search-sheet__field:focus-within,
+.sportsbook-root .sb-search-sheet__field:focus-within {
+  border-color: #ffb22d;
+  box-shadow: 0 0 0 1px #ffb22d;
+}
+
+body.sportsbook-port-active .sb-search-sheet__field input,
+.sportsbook-root .sb-search-sheet__field input,
+body.sportsbook-port-active .sb-search-sheet__input,
+.sportsbook-root .sb-search-sheet__input {
+  color: #0f172a;
+  box-shadow: none !important;
+}
+
+body.sportsbook-port-active .sb-search-sheet__exact-label,
+.sportsbook-root .sb-search-sheet__exact-label {
+  color: #123b94;
+}
+
+body.sportsbook-port-active .sb-search-sheet__switch[aria-checked="true"],
+.sportsbook-root .sb-search-sheet__switch[aria-checked="true"] {
+  background: #ffb22d;
+}
+
+body.sportsbook-port-active .sb-search-sheet__empty-title,
+.sportsbook-root .sb-search-sheet__empty-title {
+  color: #0f172a;
+}
+
+body.sportsbook-port-active .sb-search-sheet__empty-hint,
+.sportsbook-root .sb-search-sheet__empty-hint {
+  color: #123b94;
+}
+
+body.sportsbook-port-active .sb-search-sheet__tab.is-active,
+.sportsbook-root .sb-search-sheet__tab.is-active {
+  color: #0f172a;
+  background: transparent;
+  border-bottom-color: #ffb22d;
+}
+
+body.sportsbook-port-active .sb-search-sheet__league,
+.sportsbook-root .sb-search-sheet__league {
+  color: #123b94;
+}
+
+body.sportsbook-port-active .sb-search-sheet__match,
+.sportsbook-root .sb-search-sheet__match {
+  background: transparent;
+  border: none;
+  border-top: 1px solid #e8eef5;
+}
+
+body.sportsbook-port-active .sb-search-sheet__odd,
+.sportsbook-root .sb-search-sheet__odd {
+  background: #e8eef5;
+  color: #0f172a;
+}
+
+body.sportsbook-port-active .sb-search-sheet__odd.is-selected,
+.sportsbook-root .sb-search-sheet__odd.is-selected {
+  background: #ffb22d;
+  color: #0c4a8e;
 }

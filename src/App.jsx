@@ -92,6 +92,33 @@ function resolvePageFromPath() {
     if (pathname === '/sportsbook/event' || pathname.startsWith('/sportsbook/event/')) {
       return 'sportsbook-event';
     }
+    if (pathname === '/sportsbook/national-team') {
+      return 'sportsbook-national-team';
+    }
+    if (pathname === '/sportsbook/live-national-team') {
+      return 'sportsbook-live-national-team';
+    }
+    if (pathname === '/sportsbook/sports') {
+      return 'sportsbook-sports';
+    }
+    if (pathname === '/sportsbook/long-term-bets') {
+      return 'sportsbook-long-term-bets';
+    }
+    if (pathname === '/sportsbook/big-tournaments') {
+      return 'sportsbook-big-tournaments';
+    }
+    if (pathname === '/sportsbook/marble-live') {
+      return 'sportsbook-marble-live';
+    }
+    if (pathname === '/sportsbook/fast-bet') {
+      return 'sportsbook-fast-bet';
+    }
+    if (pathname === '/sportsbook/favourites') {
+      return 'sportsbook-favourites';
+    }
+    if (pathname === '/sportsbook/search') {
+      return 'sportsbook-search';
+    }
     if (pathname === '/sportsbook') {
       return 'sportsbook';
     }
@@ -208,11 +235,27 @@ function isProtectedPage(pageId) {
   return PROTECTED_PAGE_IDS.has(pageId);
 }
 
+function isSportsbookPageId(pageId) {
+  return (
+    pageId === 'sportsbook'
+    || pageId === 'sportsbook-event'
+    || pageId === 'sportsbook-national-team'
+    || pageId === 'sportsbook-live-national-team'
+    || pageId === 'sportsbook-sports'
+    || pageId === 'sportsbook-long-term-bets'
+    || pageId === 'sportsbook-big-tournaments'
+    || pageId === 'sportsbook-marble-live'
+    || pageId === 'sportsbook-fast-bet'
+    || pageId === 'sportsbook-favourites'
+    || pageId === 'sportsbook-search'
+  );
+}
+
 /** Cam88 shell background role → Caelo page tint (see styles/theme.css `.app-shell[data-app-shell-bg]`). */
 function resolveAppShellBg(pageId, authUser) {
   if (pageId === 'home') return 'home';
   if (pageId === 'register') return 'register';
-  if (pageId === 'sportsbook' || pageId === 'sportsbook-event') return 'sportsbook';
+  if (isSportsbookPageId(pageId)) return 'sportsbook';
   if (pageId === 'rebate' && !authUser) return 'default';
   if (
     pageId === 'profile'
@@ -465,6 +508,15 @@ function AppInner() {
       sports: '/sports',
       sportsbook: '/sportsbook',
       'sportsbook-event': '/sportsbook/event',
+      'sportsbook-national-team': '/sportsbook/national-team',
+      'sportsbook-live-national-team': '/sportsbook/live-national-team',
+      'sportsbook-sports': '/sportsbook/sports',
+      'sportsbook-long-term-bets': '/sportsbook/long-term-bets',
+      'sportsbook-big-tournaments': '/sportsbook/big-tournaments',
+      'sportsbook-marble-live': '/sportsbook/marble-live',
+      'sportsbook-fast-bet': '/sportsbook/fast-bet',
+      'sportsbook-favourites': '/sportsbook/favourites',
+      'sportsbook-search': '/sportsbook/search',
       'e-sports': '/e-sports',
       lottery: '/lottery',
       fishing: '/fishing',
@@ -510,6 +562,9 @@ function AppInner() {
 
     const currentPath = window.location.pathname;
     let fullUrl = nextPath;
+    if (options?.path && typeof options.path === 'string' && options.path.startsWith('/')) {
+      fullUrl = options.path;
+    }
     if (resolvedPage === 'game-detail') {
       const slug = options?.gameSlug ?? options?.gameId;
       fullUrl = slug ? `/game/${encodeURIComponent(String(slug))}` : '/game';
@@ -651,6 +706,96 @@ function AppInner() {
             setLoginModalOpen(true);
           }}
         />
+      ) : page === 'sportsbook-national-team' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="national-team"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-live-national-team' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="live-national-team"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-sports' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="sports"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-long-term-bets' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="long-term-bets"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-big-tournaments' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="big-tournaments"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-marble-live' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="marble-live"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-fast-bet' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="fast-bet"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-favourites' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="favourites"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-search' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="search"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
       ) : page === 'e-sports' ? (
         <EsportsPage onNavigate={handleNavigate} />
       ) : page === 'lottery' ? (
@@ -771,7 +916,7 @@ function AppInner() {
       )}
       </div>
 
-      {page !== 'live-chat' && page !== 'sportsbook' && page !== 'sportsbook-event' && (
+      {page !== 'live-chat' && !isSportsbookPageId(page) && (
         <MobileHomeBottomNav
           activePage={page}
           authUser={authUser}

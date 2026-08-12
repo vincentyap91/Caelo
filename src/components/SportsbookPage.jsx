@@ -6,6 +6,7 @@ const BASE_STYLESHEETS = [
   '/sportsbook/css/auth-modals.css',
   '/sportsbook/css/account.css',
   '/sportsbook/mobile/css/mobile-sports-filter.css',
+  '/sportsbook/mobile/css/mobile-markets-filter.css',
 ];
 
 const EVENT_STYLESHEETS = [
@@ -13,18 +14,78 @@ const EVENT_STYLESHEETS = [
   '/sportsbook/css/event.css',
 ];
 
+const MODE_STYLESHEETS = {
+  'big-tournaments': [
+    '/sportsbook/css/big-tournaments.css',
+    '/sportsbook/mobile/css/mobile-big-tournaments.css',
+  ],
+  'long-term-bets': [
+    '/sportsbook/css/long-term-bets.css',
+    '/sportsbook/mobile/css/mobile-long-term.css',
+  ],
+  'fast-bet': ['/sportsbook/css/fast-bet.css'],
+  favourites: ['/sportsbook/css/favourites.css'],
+  search: ['/sportsbook/css/search.css'],
+};
+
 /** Caelo orange+blue remap — must load LAST so it wins over 1xbet tokens */
 const PALETTE_STYLESHEET = '/sportsbook/css/caelo-palette.css';
 
 const BASE_SCRIPTS = [
   '/sportsbook/js/favourites-store.js',
+  '/sportsbook/js/bet-slip-store.js',
   '/sportsbook/js/accumulators.js',
   '/sportsbook/js/bet-save-load.js',
   '/sportsbook/js/bet-slip-generator.js',
+  '/sportsbook/js/shared-bet-slip.js',
   '/sportsbook/js/script.js',
   '/sportsbook/js/auth-modals.js',
   '/sportsbook/mobile/js/mobile-sports-filter.js',
+  '/sportsbook/mobile/js/mobile-markets-filter.js',
 ];
+
+/** Modes that use dedicated page JS instead of (or after) the live-events table shell */
+const MODE_EXTRA_SCRIPTS = {
+  event: ['/sportsbook/js/event.js'],
+  'big-tournaments': ['/sportsbook/js/big-tournaments.js'],
+  'long-term-bets': ['/sportsbook/js/long-term-bets.js'],
+  'fast-bet': ['/sportsbook/js/fast-bet.js'],
+  favourites: ['/sportsbook/js/favourites-page.js'],
+  search: ['/sportsbook/js/search-page.js'],
+};
+
+/** Skip heavy live-table script.js on pages that own their own demo board */
+const SKIP_SCRIPT_JS = new Set(['big-tournaments', 'long-term-bets', 'fast-bet', 'favourites', 'search']);
+
+const MODE_LAYOUT = {
+  home: '/sportsbook/partials/sportsbook-layout.html',
+  event: '/sportsbook/partials/sportsbook-event-layout.html',
+  'national-team': '/sportsbook/partials/sportsbook-national-team-layout.html',
+  'live-national-team': '/sportsbook/partials/sportsbook-live-national-team-layout.html',
+  sports: '/sportsbook/partials/sportsbook-sports-layout.html',
+  'long-term-bets': '/sportsbook/partials/sportsbook-long-term-bets-layout.html',
+  'big-tournaments': '/sportsbook/partials/sportsbook-big-tournaments-layout.html',
+  'marble-live': '/sportsbook/partials/sportsbook-marble-live-layout.html',
+  'fast-bet': '/sportsbook/partials/sportsbook-fast-bet-layout.html',
+  favourites: '/sportsbook/partials/sportsbook-favourites-layout.html',
+  search: '/sportsbook/partials/sportsbook-search-layout.html',
+};
+
+const MODE_DATA_PAGE = {
+  home: 'home',
+  event: 'event',
+  'national-team': 'national-team',
+  'live-national-team': 'live-national-team',
+  sports: 'sports',
+  'long-term-bets': 'long-term-bets',
+  'big-tournaments': 'big-tournaments',
+  'marble-live': 'marble-live',
+  'fast-bet': 'fast-bet',
+  favourites: 'favourites',
+  search: 'search',
+};
+
+export const SPORTSBOOK_MODES = Object.keys(MODE_LAYOUT);
 
 const MARKER = 'data-sportsbook-port';
 /** Must match public/sportsbook/js/auth-modals.js AUTH_KEY */
@@ -62,7 +123,7 @@ function removePortAssets() {
   // Auth / bet-slip JS injects backdrops onto document.body — remove on leave
   document
     .querySelectorAll(
-      '#auth-backdrop, .bss-backdrop, #ds-event-info, .ba-backdrop, .sbs-backdrop, .tsp-backdrop, .bh-desktop-backdrop'
+      '#auth-backdrop, .bss-backdrop, #ds-event-info, .ba-backdrop, .sbs-backdrop, .tsp-backdrop, .bh-desktop-backdrop, #mh-mf, #right-sidebar[data-shared-bet-slip="1"], #bsg-overlay'
     )
     .forEach((el) => el.remove());
 }
@@ -87,9 +148,16 @@ function syncSportsbookAuth(loggedIn) {
   }
 }
 
+function scriptsForMode(mode) {
+  const base = SKIP_SCRIPT_JS.has(mode)
+    ? BASE_SCRIPTS.filter((src) => !src.endsWith('/script.js') && !src.endsWith('/accumulators.js'))
+    : BASE_SCRIPTS;
+  return [...base, ...(MODE_EXTRA_SCRIPTS[mode] || [])];
+}
+
 /**
  * 1xBet sportsbook middle shell + chrome (Canon): layout, colors, buttons, modals.
- * mode="event" → event.html match details (board / tabs / markets / stats / event-info modal).
+ * mode maps to body[data-page] + partial layout (home / event / national-team / …).
  * Caelo Navbar/Footer stay in App.jsx. No 1xbet header/footer/home-social.
  */
 export default function SportsbookPage({
@@ -102,7 +170,9 @@ export default function SportsbookPage({
   const [booted, setBooted] = useState(false);
   const [error, setError] = useState(null);
   const loggedIn = !!authUser;
-  const isEvent = mode === 'event';
+  const resolvedMode = MODE_LAYOUT[mode] ? mode : 'home';
+  const dataPage = MODE_DATA_PAGE[resolvedMode] || 'home';
+  const isEvent = resolvedMode === 'event';
   const onNavigateRef = useRef(onNavigate);
   const onLoginClickRef = useRef(onLoginClick);
   onNavigateRef.current = onNavigate;
@@ -113,8 +183,16 @@ export default function SportsbookPage({
     const prevPage = document.body.dataset.page;
     const hadLoggedInClass = document.body.classList.contains('is-logged-in');
     const hadEventPageClass = document.body.classList.contains('ds-event-page');
+    const prevScrollRestoration = history.scrollRestoration;
 
-    document.body.dataset.page = isEvent ? 'event' : 'home';
+    try {
+      history.scrollRestoration = 'manual';
+    } catch {
+      /* ignore */
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
+    document.body.dataset.page = dataPage;
     document.body.classList.add('sportsbook-port-active');
     if (isEvent) document.body.classList.add('ds-event-page');
     else document.body.classList.remove('ds-event-page', 'is-ev-stats');
@@ -125,13 +203,12 @@ export default function SportsbookPage({
         const sheets = [
           ...BASE_STYLESHEETS,
           ...(isEvent ? EVENT_STYLESHEETS : []),
+          ...(MODE_STYLESHEETS[resolvedMode] || []),
           PALETTE_STYLESHEET,
         ];
         await Promise.all(sheets.map(loadStylesheet));
 
-        const layoutUrl = isEvent
-          ? '/sportsbook/partials/sportsbook-event-layout.html'
-          : '/sportsbook/partials/sportsbook-layout.html';
+        const layoutUrl = MODE_LAYOUT[resolvedMode];
         const [layoutRes, chromeRes] = await Promise.all([
           fetch(layoutUrl),
           fetch('/sportsbook/partials/sportsbook-chrome.html'),
@@ -144,18 +221,45 @@ export default function SportsbookPage({
 
         // Imperative inject — script.js / auth-modals / event.js own DOM after this
         shellRef.current.innerHTML = `${layout}\n${chrome}`;
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 
-        const scripts = isEvent
-          ? [...BASE_SCRIPTS, '/sportsbook/js/event.js']
-          : BASE_SCRIPTS;
-
+        const scripts = scriptsForMode(resolvedMode);
         for (const src of scripts) {
           if (cancelled) return;
           await loadScript(src);
         }
         if (cancelled) return;
 
+        /* script.js may have set these on a prior home visit — clear on SKIP modes */
+        if (SKIP_SCRIPT_JS.has(resolvedMode)) {
+          window.__sbBetSlipOwnedByScript = false;
+          window.__sbMyBetsOwnedByScript = false;
+        }
+
         syncSportsbookAuth(loggedIn);
+        window.__caeloSportsbookNavigate = (action, path) => {
+          onNavigateRef.current?.(action, path ? { path } : undefined);
+        };
+        if (typeof window.SharedBetSlip?.ensure === 'function') {
+          await window.SharedBetSlip.ensure();
+        }
+        if (typeof window.DsBetSlipGenerator?.ensureEmptyCta === 'function') {
+          window.DsBetSlipGenerator.ensureEmptyCta();
+        }
+        /* Slip may inject after AuthModals.setLoggedIn — re-sync guest/logged UI */
+        if (typeof window.syncBetSlipAuthUi === 'function') {
+          window.syncBetSlipAuthUi();
+        }
+        if (typeof window.SbBetSlipStore?.paint === 'function') {
+          window.SbBetSlipStore.paint();
+        }
+        if (typeof window.SbBetSlipStore?.paintMyBets === 'function') {
+          window.SbBetSlipStore.paintMyBets({ force: SKIP_SCRIPT_JS.has(resolvedMode) });
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        requestAnimationFrame(() => {
+          if (!cancelled) window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        });
         setBooted(true);
       } catch (err) {
         if (!cancelled) setError(err instanceof Error ? err.message : String(err));
@@ -166,19 +270,27 @@ export default function SportsbookPage({
       cancelled = true;
       removePortAssets();
       if (shellRef.current) shellRef.current.innerHTML = '';
+      try {
+        delete window.__caeloSportsbookNavigate;
+      } catch {
+        /* ignore */
+      }
       document.body.classList.remove(
         'sportsbook-port-active',
         'ds-event-page',
         'is-ev-stats',
         'drawer-open',
         'mh-sf-open',
+        'mh-mf-open',
+        'sb-search-open',
         'bss-open',
         'ds-event-info-open',
         'ba-open',
         'sbs-open',
         'tsp-open',
         'bh-desktop-open',
-        'hide-mobile-tabbar'
+        'hide-mobile-tabbar',
+        'bt-mobile-board-ready'
       );
       if (!hadEventPageClass) document.body.classList.remove('ds-event-page');
       if (!hadLoggedInClass) document.body.classList.remove('is-logged-in');
@@ -187,18 +299,26 @@ export default function SportsbookPage({
       } catch {
         /* ignore */
       }
+      try {
+        history.scrollRestoration = prevScrollRestoration || 'auto';
+      } catch {
+        /* ignore */
+      }
       if (prevPage == null) delete document.body.dataset.page;
       else document.body.dataset.page = prevPage;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isEvent]);
+  }, [resolvedMode]);
 
   useEffect(() => {
     if (!booted) return;
     syncSportsbookAuth(loggedIn);
+    if (typeof window.syncBetSlipAuthUi === 'function') {
+      window.syncBetSlipAuthUi();
+    }
   }, [booted, loggedIn]);
 
-  /* Bridge mobile tabbar Casino / Deposit / Log in → Caelo app routes */
+  /* Bridge mobile tabbar Casino / Deposit / Log in / sportsbook subpages → Caelo app routes */
   useEffect(() => {
     const shell = shellRef.current;
     if (!shell || !booted) return;
@@ -230,6 +350,13 @@ export default function SportsbookPage({
         else onNavigateRef.current?.('profile');
         return;
       }
+      if (typeof action === 'string' && action.startsWith('sportsbook')) {
+        const href = el.getAttribute('href');
+        if (href && href.startsWith('/sportsbook')) {
+          onNavigateRef.current?.(action, { path: href });
+          return;
+        }
+      }
       onNavigateRef.current?.(action);
     };
 
@@ -250,7 +377,7 @@ export default function SportsbookPage({
       ref={shellRef}
       className="sportsbook-root"
       data-sportsbook-shell="1"
-      data-sportsbook-mode={isEvent ? 'event' : 'home'}
+      data-sportsbook-mode={resolvedMode}
       aria-busy={!booted}
     />
   );

@@ -1,0 +1,73 @@
+<div class="se-mobile-subbar" aria-label="Events">
+  <a href="/sportsbook" data-caelo-nav="sportsbook" class="se-mobile-subbar__back" aria-label="Back" id="se-back">
+    <img src="/sportsbook/mobile/assets/icons/sp-back.svg" alt="" width="10" height="16" />
+  </a>
+  <h1 class="se-mobile-subbar__title">Events</h1>
+</div>
+
+<div class="sportsbook-layout se-layout">
+  <main class="main-content se-main" id="main-content">
+    <div class="se-toolbar">
+      <nav class="se-crumbs" aria-label="Breadcrumb">
+        <a href="/sportsbook" data-caelo-nav="sportsbook" class="se-crumb" aria-label="Home">
+          <img src="/sportsbook/assets/icons/te-home.svg" alt="" width="16" height="16" />
+        </a>
+        <span class="se-crumb-sep" aria-hidden="true">/</span>
+        <span class="se-crumb" aria-current="page">Events</span>
+      </nav>
+    </div>
+
+    <h1 class="se-title">Events</h1>
+
+    <section class="se-panel" aria-label="Search events">
+      <div class="se-field">
+        <img class="se-field__ico" src="/sportsbook/mobile/assets/icons/sp-search.svg" alt="" width="18" height="18" />
+        <input
+          id="se-input"
+          class="se-field__input"
+          type="search"
+          name="q"
+          placeholder="Search championships"
+          autocomplete="off"
+          enterkeyhint="search"
+          aria-label="Search championships"
+        />
+        <button type="button" class="se-field__clear" id="se-clear" hidden aria-label="Clear search">
+          <img src="/sportsbook/mobile/assets/icons/icon-close.svg" alt="" width="14" height="14" />
+        </button>
+      </div>
+
+      <div class="se-exact">
+        <span class="se-exact__label" id="se-exact-label">Exact match</span>
+        <button
+          type="button"
+          class="se-switch"
+          id="se-exact"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="se-exact-label"
+        ></button>
+      </div>
+
+      <div class="se-empty" id="se-empty">
+        <p class="se-empty__title">Search events</p>
+        <p class="se-empty__hint">Enter the name of a tournament, team or player</p>
+      </div>
+
+      <div class="se-results" id="se-results" hidden>
+        <div class="se-tabs" role="tablist" aria-label="Search scope">
+          <button type="button" class="se-tab is-active" role="tab" aria-selected="true" data-se-tab="all">ALL</button>
+          <button type="button" class="se-tab" role="tab" aria-selected="false" data-se-tab="live">LIVE</button>
+          <button type="button" class="se-tab" role="tab" aria-selected="false" data-se-tab="line">LINE</button>
+          <button type="button" class="se-tab" role="tab" aria-selected="false" data-se-tab="cyber">CYBER</button>
+          <button type="button" class="se-tabs__filter" data-toast="Filter coming soon" aria-label="Filter">
+            <img src="/sportsbook/mobile/assets/icons/sp-filter.svg" alt="" width="16" height="16" />
+          </button>
+        </div>
+        <div id="se-list"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="se-toast" id="se-toast" role="status" aria-live="polite" hidden></div>

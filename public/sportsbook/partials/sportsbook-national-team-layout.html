@@ -1,0 +1,384 @@
+<div class="sportsbook-layout">
+      <!-- LEFT SIDEBAR (Figma 3:16279) -->
+      <aside class="left-sidebar" id="left-sidebar" aria-label="Sports navigation">
+        <button type="button" class="sidebar-collapse" id="sidebar-collapse" aria-label="Collapse block">
+          <img src="/sportsbook/assets/icons/nav-collapse.svg" alt="" width="9" height="10" />
+          <span>Collapse block</span>
+        </button>
+        <button type="button" class="mobile-drawer-close" id="left-drawer-close" aria-label="Close sports navigation">Close</button>
+
+        <div class="sidebar-quick">
+          <div class="sidebar-row-wrap">
+            <a href="/sportsbook" data-caelo-nav="sportsbook" class="sidebar-row">
+              <img src="/sportsbook/assets/icons/nav-star.svg" alt="" class="row-icon" width="16" height="16" />
+              <span class="row-label">Favorite matches</span>
+            </a>
+            <button type="button" class="sidebar-row-chevron" aria-label="Expand favorite matches">
+              <img src="/sportsbook/assets/icons/nav-chevron-down.svg" alt="" width="10" height="6" />
+            </button>
+          </div>
+          <div class="sidebar-row-wrap">
+            <a href="/sportsbook#live-events" data-caelo-nav="sportsbook" class="sidebar-row">
+              <img src="/sportsbook/assets/icons/nav-thumbs.svg" alt="" class="row-icon" width="16" height="16" />
+              <span class="row-label">Recommended</span>
+            </a>
+            <button type="button" class="sidebar-row-chevron" aria-label="Expand recommended">
+              <img src="/sportsbook/assets/icons/nav-chevron-down.svg" alt="" width="10" height="6" />
+            </button>
+          </div>
+
+          <div class="top-games" id="top-games">
+            <div class="top-games-head">
+              <a href="/sportsbook#live-events" data-caelo-nav="sportsbook" class="top-games-title">
+                <img src="/sportsbook/assets/icons/nav-medal.svg" alt="" width="13" height="16" />
+                <span>Top Games</span>
+              </a>
+              <div class="top-games-pager">
+                <button type="button" class="pager-btn" id="tg-prev" aria-label="Previous">
+                  <img src="/sportsbook/assets/icons/nav-page-prev.svg" alt="" width="6" height="10" />
+                </button>
+                <span class="pager-label"><span id="tg-page">1</span><span class="pager-muted"> / 5</span></span>
+                <button type="button" class="pager-btn" id="tg-next" aria-label="Next">
+                  <img src="/sportsbook/assets/icons/nav-page-next.svg" alt="" width="6" height="10" />
+                </button>
+              </div>
+            </div>
+            <div class="top-games-card">
+              <div class="tg-meta">
+                <div class="tg-league">
+                  <img src="/sportsbook/assets/icons/nav-football-sm.svg" alt="" width="16" height="16" />
+                  <span>Club Friendlies</span>
+                </div>
+                <button type="button" class="tg-fav" aria-label="Add to favorites">
+                  <img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" />
+                </button>
+              </div>
+              <div class="tg-status">2nd half, 73 minutes</div>
+              <div class="tg-teams">
+                <div class="tg-team-col">
+                  <div class="tg-team">
+                    <img src="/sportsbook/assets/images/team-santos.webp" alt="" width="16" height="16" />
+                    <span>Santos Laguna</span>
+                  </div>
+                  <div class="tg-team">
+                    <img src="/sportsbook/assets/images/team-america.webp" alt="" width="16" height="16" />
+                    <span>America de Cali</span>
+                  </div>
+                </div>
+                <div class="tg-score">
+                  <span>0</span>
+                  <span>0</span>
+                </div>
+              </div>
+              <button type="button" class="tg-detail">
+                Detailed score
+                <img src="/sportsbook/assets/icons/nav-detail-chevron.svg" alt="" width="10" height="6" />
+              </button>
+              <div class="tg-odds">
+                <button type="button" class="tg-odd" data-odd='{"id":"tg-w1","league":"Club Friendlies","match":"Santos Laguna vs America de Cali","market":"1X2","selection":"W1","odds":3.63}'>W1 <span>3.63</span></button>
+                <button type="button" class="tg-odd" data-odd='{"id":"tg-x","league":"Club Friendlies","match":"Santos Laguna vs America de Cali","market":"1X2","selection":"X","odds":1.68}'>X <span>1.68</span></button>
+                <button type="button" class="tg-odd" data-odd='{"id":"tg-w2","league":"Club Friendlies","match":"Santos Laguna vs America de Cali","market":"1X2","selection":"W2","odds":5.04}'>W2 <span>5.04</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-line">
+          <div class="sidebar-tabs" role="tablist" aria-label="Line type">
+            <button type="button" class="sidebar-tab active" role="tab" aria-selected="true" data-line="live">
+              <img src="/sportsbook/assets/icons/nav-live.svg" alt="" width="14" height="14" />
+              Live
+            </button>
+            <button type="button" class="sidebar-tab" role="tab" aria-selected="false" data-line="sports">
+              Sports
+            </button>
+          </div>
+          <div class="sidebar-filter-bar">
+            <button type="button" class="sf-all active">All <span>18</span></button>
+            <button type="button" class="sf-stream" aria-label="Events with live stream" title="Show only events with a live stream">
+              <img src="/sportsbook/assets/icons/nav-stream.svg" alt="" width="12" height="12" />
+              <span>6</span>
+            </button>
+            <button type="button" class="sf-globe" aria-label="Group events by country" title="Group events by country">
+              <img src="/sportsbook/assets/icons/nav-globe.svg" alt="" width="14" height="14" />
+            </button>
+          </div>
+          <div class="sidebar-sports-panel">
+            <div class="sports-section-label">Top</div>
+            <ul class="sports-list" id="sports-list-top" aria-label="Top sports"></ul>
+            <div class="sports-section-label az">Categories from A to Z</div>
+            <ul class="sports-list" id="sports-list-az" aria-label="Categories from A to Z"></ul>
+          </div>
+          <div class="sidebar-page-actions">
+            <a href="#" class="sidebar-page-btn">STATISTICS</a>
+            <a href="results.html" class="sidebar-page-btn">RESULTS</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER CONTENT -->
+      <main class="main-content" id="main-content">
+        <!-- =900: page title (matches mobile/national-team-line.html) -->
+        <div class="nt-mobile-subbar" aria-label="Bet on Your National Team">
+          <a href="/sportsbook" data-caelo-nav="sportsbook" class="nt-mobile-subbar__back" aria-label="Back">
+            <img src="/sportsbook/mobile/assets/icons/sp-back.svg" alt="" width="10" height="16" />
+          </a>
+          <h1 class="nt-mobile-subbar__title">Bet on Your National Team</h1>
+          <div class="nt-mobile-subbar__actions">
+            <a href="/sportsbook" data-caelo-nav="sportsbook" class="nt-mobile-subbar__btn" aria-label="Search">
+              <img src="/sportsbook/mobile/assets/icons/sp-search.svg" alt="" width="16" height="16" />
+            </a>
+            <a href="/sportsbook" data-caelo-nav="sportsbook" class="nt-mobile-subbar__btn" aria-label="Favourites">
+              <img src="/sportsbook/mobile/assets/icons/sp-star.svg" alt="" width="16" height="16" />
+            </a>
+            <button type="button" class="nt-mobile-subbar__btn" aria-label="Filter" data-mh-mf-open aria-haspopup="dialog" aria-controls="mh-mf" title="Filter">
+              <img src="/sportsbook/mobile/assets/icons/sp-filter.svg" alt="" width="16" height="16" />
+            </button>
+          </div>
+        </div>
+
+        <!-- National team events (same odds-table / toolbar components as homepage) -->
+        <section class="events-section live-events-block" id="live-events" aria-labelledby="nt-title">
+          <div class="te-stack">
+            <div class="te-toolbar">
+              <nav class="te-crumbs" aria-label="Breadcrumb">
+                <a href="/sportsbook" data-caelo-nav="sportsbook" class="te-crumb" aria-label="Home">
+                  <img src="/sportsbook/assets/icons/te-home.svg" alt="" width="16" height="16" />
+                </a>
+                <img src="/sportsbook/assets/icons/te-chevron.svg" alt="" class="te-crumb-sep" width="6" height="10" />
+                <span class="te-crumb muted" aria-current="page">
+                  <img src="/sportsbook/assets/icons/flag-my.svg" alt="" width="16" height="16" />
+                </span>
+              </nav>
+              <div class="te-toolbar-main">
+                <div class="section-tabs" role="tablist" aria-label="National team views">
+                  <button type="button" class="section-tab active" role="tab" aria-selected="true" data-tab="matches" id="nt-title">Matches</button>
+                  <button type="button" class="section-tab" role="tab" aria-selected="false" data-tab="recommended">Recommended</button>
+                  <button type="button" class="section-tab" role="tab" aria-selected="false" data-tab="upcoming">Upcoming events</button>
+                  <button type="button" class="section-tab" role="tab" aria-selected="false" data-tab="p1">1st period</button>
+                  <button type="button" class="section-tab" role="tab" aria-selected="false" data-tab="p2">2nd period</button>
+                </div>
+                <label class="te-search">
+                  <span class="visually-hidden">Search by match</span>
+                  <input type="search" id="event-search" placeholder="Search by match" autocomplete="off" />
+                  <button type="button" class="te-search-btn" aria-label="Search">
+                    <img src="/sportsbook/assets/icons/te-search.svg" alt="" width="12" height="12" />
+                  </button>
+                </label>
+              </div>
+            </div>
+
+            <div class="te-filters" id="live-filters" role="toolbar" aria-label="Sport filters">
+              <label class="te-stream-toggle">
+                <input type="checkbox" id="live-stream-toggle" />
+                <span class="te-switch" aria-hidden="true"></span>
+                <span>With live streams</span>
+              </label>
+              <div class="te-filter-list" id="live-filter-list"></div>
+              <div class="te-filter-more">
+                <div class="te-more-wrap">
+                  <button type="button" class="te-more-btn" id="te-more-btn" aria-label="Other sports" title="Other" aria-expanded="false" aria-controls="te-more-menu">
+                    <img src="/sportsbook/assets/icons/te-menu.svg" alt="" width="16" height="16" />
+                    <img src="/sportsbook/assets/icons/te-chevron-down.svg" alt="" width="10" height="6" />
+                  </button>
+                  <div class="te-more-menu" id="te-more-menu" hidden>
+                    <label class="te-more-search">
+                      <span class="visually-hidden">Search sports</span>
+                      <input type="search" id="te-more-search" placeholder="Search" autocomplete="off" />
+                      <img src="/sportsbook/assets/icons/te-search.svg" alt="" width="12" height="12" />
+                    </label>
+                    <div class="te-more-scroll" id="te-more-scroll"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="odds-table-wrap" id="live-table"></div>
+        </section>
+
+        <!-- ACCUMULATORS (same component as homepage) -->
+        <section class="accumulators" aria-label="Accumulators of the day">
+          <article class="acc-block" data-acc="1x2">
+            <header class="acc-header">
+              <h3 class="acc-title">1X2 â€“ Live accumulator of the day</h3>
+              <span class="acc-bonus">Bonus from ticket +10%</span>
+            </header>
+            <div class="acc-table">
+              <ul class="acc-list" id="acc-list-1"></ul>
+              <div class="acc-footer">
+                <div class="acc-odds">
+                  <span>Overall odds</span>
+                  <strong id="acc-odds-1">12.45</strong>
+                </div>
+                <button type="button" class="btn-acc" data-acc-add="1">ADD TO BET SLIP</button>
+              </div>
+            </div>
+          </article>
+          <article class="acc-block" data-acc="live">
+            <header class="acc-header">
+              <h3 class="acc-title">LIVE accumulator of the day</h3>
+              <span class="acc-bonus">Bonus from ticket +8%</span>
+            </header>
+            <div class="acc-table">
+              <ul class="acc-list" id="acc-list-2"></ul>
+              <div class="acc-footer">
+                <div class="acc-odds">
+                  <span>Overall odds</span>
+                  <strong id="acc-odds-2">9.80</strong>
+                </div>
+                <button type="button" class="btn-acc" data-acc-add="2">ADD TO BET SLIP</button>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <!-- RIGHT SIDEBAR (Figma 3:16034) â€” colors: modified-color tokens -->
+      <aside class="right-sidebar" id="right-sidebar" aria-label="Account tools">
+        <button type="button" class="right-collapse" id="right-collapse" aria-label="Collapse block">
+          <span>Collapse block</span>
+          <img src="/sportsbook/assets/icons/rb-collapse-chevron.svg" alt="" width="9" height="10" />
+        </button>
+        <button type="button" class="mobile-drawer-close" id="right-drawer-close" aria-label="Close bet slip">
+          <span class="mobile-drawer-handle" aria-hidden="true"></span>
+          <span class="mobile-drawer-close-title">Bet slip</span>
+          <span class="mobile-drawer-close-action">Close</span>
+        </button>
+
+        <div class="reg-panel">
+          <h2 class="reg-title">REGISTRATION</h2>
+          <form class="reg-form" id="reg-form" novalidate>
+            <div class="reg-tabs" role="tablist">
+              <button type="button" class="reg-tab active" role="tab" aria-selected="true" data-reg="oneclick">
+                <img src="/sportsbook/assets/icons/rb-bolt.svg" alt="" width="12" height="16" />
+                One-click
+              </button>
+              <button type="button" class="reg-tab" role="tab" aria-selected="false" data-reg="phone">
+                <img src="/sportsbook/assets/icons/rb-phone.svg" alt="" width="11" height="16" />
+                By phone
+              </button>
+            </div>
+
+            <div class="reg-fields" data-panel="oneclick">
+              <button type="button" class="reg-select" id="reg-country" aria-label="Country">
+                <img src="/sportsbook/assets/icons/rb-flag-my.svg" alt="" class="reg-flag" width="16" height="16" />
+                <span class="reg-select-label">Malaysia</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+              <button type="button" class="reg-select" id="reg-currency" aria-label="Currency">
+                <span class="reg-select-label">Malaysian ringgit (MYR)</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+              <input type="text" id="reg-promo" name="promo" class="reg-input" placeholder="Promo code (if you have one)" autocomplete="off" />
+            </div>
+
+            <div class="reg-fields" data-panel="phone" hidden>
+              <input type="tel" id="reg-phone" name="phone" class="reg-input" placeholder="Phone number" autocomplete="off" />
+              <button type="button" class="reg-select" aria-label="Currency">
+                <span class="reg-select-label">Malaysian ringgit (MYR)</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+            </div>
+
+            <button type="submit" class="btn-reg">Register</button>
+            <p class="reg-terms">
+              By clicking this button you confirm that you have read and agree to the
+              <a href="terms.html">Terms and Conditions</a> and
+              <a href="#">Privacy Policy</a> of the company and confirm that you are of legal age
+            </p>
+            <p class="demo-msg" id="reg-demo" hidden>Demo only â€” no account created.</p>
+          </form>
+          <a href="#reg-form" class="reg-bonus-bar">100% bonus on your 1st deposit</a>
+        </div>
+
+        <div class="bet-slip-panel">
+          <div class="bet-slip-tabs" role="tablist">
+            <button type="button" class="bet-tab active" role="tab" aria-selected="true" data-bet-tab="slip">Bet slip</button>
+            <button type="button" class="bet-tab" role="tab" aria-selected="false" data-bet-tab="mybets">My bets</button>
+          </div>
+          <div class="bet-slip-body" id="bet-slip-body">
+            <div class="bet-toolbar">
+              <span class="bet-toolbar-title">Your bets</span>
+              <button type="button" class="bet-icon-btn" aria-label="Share">
+                <img src="/sportsbook/assets/icons/rb-share.svg" alt="" width="12" height="12" />
+              </button>
+              <button type="button" class="bet-icon-btn" aria-label="Settings" title="Settings">
+                <img src="/sportsbook/assets/icons/rb-settings.svg" alt="" width="12" height="12" />
+              </button>
+            </div>
+            <div class="bet-empty" id="bet-empty">
+              <p class="bet-empty-text">Add events to the bet slip or<br />enter a code to load events</p>
+            </div>
+            <div class="bet-list" id="bet-list" hidden></div>
+            <div class="bet-footer" id="bet-footer" hidden>
+              <label class="stake-label">
+                Stake
+                <input type="number" id="stake-input" min="1" step="1" value="10" />
+              </label>
+              <div class="bet-totals">
+                <div><span>Total odds</span><strong id="total-odds">1.00</strong></div>
+                <div><span>Potential return</span><strong id="potential-return">0.00</strong></div>
+              </div>
+              <div class="bet-actions">
+                <button type="button" class="btn-clear" id="clear-bets">Clear All</button>
+                <button type="button" class="btn-place" id="place-bet">Place Bet</button>
+              </div>
+            </div>
+            <a href="#reg-form" class="btn-slip-reg" id="bet-reg-cta">Registration</a>
+            <button type="button" class="bet-save-link">Save/load events</button>
+          </div>
+          <div class="my-bets-body" id="my-bets-body" hidden>
+            <p class="bet-empty-text">No open bets. Place a bet to see it here.</p>
+          </div>
+        </div>
+
+        <div class="generator-panel">
+          <div class="gen-copy">
+            <h2 class="gen-title">Bet slip<br />generator</h2>
+            <p class="gen-text">Enter your parameters and we will generate a bet slip for you</p>
+          </div>
+          <img class="gen-art-img" src="/sportsbook/assets/images/rb-generator-art.png" alt="" width="163" height="162" />
+          <button type="button" class="btn-generate" id="generate-slip">Generate</button>
+        </div>
+
+        <div class="app-panel" id="app-panel">
+          <div class="app-tabs">
+            <button type="button" class="app-tab active" data-app="android">
+              <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" />
+              Android
+            </button>
+            <button type="button" class="app-tab" data-app="ios">
+              <img src="/sportsbook/assets/icons/rb-apple.svg" alt="" width="16" height="16" />
+              iOS
+            </button>
+            <button type="button" class="app-close" id="app-close" aria-label="Close">
+              <img src="/sportsbook/assets/icons/rb-close.svg" alt="" width="10" height="10" />
+            </button>
+          </div>
+          <div class="app-body">
+            <div class="app-phone">
+              <img src="/sportsbook/assets/images/rb-phone-qr.png" alt="QR code" width="118" height="125" />
+            </div>
+            <div class="app-meta">
+              <img src="/sportsbook/assets/icons/rb-logo.svg" alt="1xBet" class="app-logo" width="65" height="14" />
+              <p class="app-label">Mobile<br />application</p>
+              <a href="#" class="btn-app-download" id="app-download">
+                <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" class="app-dl-icon" />
+                Free&nbsp;download
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+<nav class="nt-mobile-mode" aria-label="Market type">
+    <div class="nt-mobile-mode__tabs">
+      <a href="/sportsbook/live-national-team" data-caelo-nav="sportsbook-live-national-team" class="nt-mobile-mode__tab">Live</a>
+      <a href="/sportsbook/national-team" data-caelo-nav="sportsbook-national-team" class="nt-mobile-mode__tab is-active" aria-current="page">Sports</a>
+    </div>
+    <button type="button" class="nt-mobile-mode__flag" aria-label="Country: Malaysia" data-toast="Country filter">
+      <img class="nt-mobile-mode__flag-img" src="/sportsbook/assets/icons/flag-my.svg" alt="" width="18" height="18" />
+      <img class="nt-mobile-mode__flag-chev" src="/sportsbook/mobile/assets/icons/icon-chevron-right.svg" alt="" width="12" height="12" />
+    </button>
+  </nav>
+
