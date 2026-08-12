@@ -30,6 +30,51 @@ body.sportsbook-port-active {
 }
 
 /*
+ * Sticky left/right rails (match 1xbet-pksoft collapse-block scroll):
+ * `.app-shell` normally uses overflow-x:hidden, which makes overflow-y compute
+ * to auto and breaks position:sticky — rails scroll away with the page.
+ * Use clip on sportsbook so page scroll stays on the document and
+ * .left-sidebar / .right-sidebar can stick + self-scroll.
+ */
+body.sportsbook-port-active .app-shell,
+.app-shell[data-app-shell-bg='sportsbook'] {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+/* Pin rails under Caelo fixed navbar; self-scroll long Collapse content */
+@media (min-width: 901px) {
+  body.sportsbook-port-active .sportsbook-root .left-sidebar,
+  body.sportsbook-port-active .sportsbook-root .right-sidebar,
+  .app-shell[data-app-shell-bg='sportsbook'] .sportsbook-root .left-sidebar,
+  .app-shell[data-app-shell-bg='sportsbook'] .sportsbook-root .right-sidebar {
+    position: sticky;
+    top: calc(var(--header-h, 100px) + 8px);
+    align-self: start;
+    max-height: calc(100vh - var(--header-h, 100px) - 16px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  body.sportsbook-port-active .sportsbook-root .left-sidebar.collapsed,
+  body.sportsbook-port-active .sportsbook-root .right-sidebar.collapsed,
+  .app-shell[data-app-shell-bg='sportsbook'] .sportsbook-root .left-sidebar.collapsed,
+  .app-shell[data-app-shell-bg='sportsbook'] .sportsbook-root .right-sidebar.collapsed {
+    scrollbar-width: none;
+  }
+
+  body.sportsbook-port-active .sportsbook-root .left-sidebar.collapsed::-webkit-scrollbar,
+  body.sportsbook-port-active .sportsbook-root .right-sidebar.collapsed::-webkit-scrollbar,
+  .app-shell[data-app-shell-bg='sportsbook'] .sportsbook-root .left-sidebar.collapsed::-webkit-scrollbar,
+  .app-shell[data-app-shell-bg='sportsbook'] .sportsbook-root .right-sidebar.collapsed::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+/*
  * Body-level sportsbook chrome (tabbar / mh-sf / toast / JS modals) sits outside
  * .sportsbook-layout but inside the port host — keep 1xbet font stack on host.
  */

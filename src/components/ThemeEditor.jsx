@@ -870,7 +870,7 @@ function ThemeEditorInner() {
 
             {/* Passcode Modal */}
             {showPasscodeModal && (
-                <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] backdrop-blur-sm">
+                <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] backdrop-blur-sm max-md:hidden">
                     <form onSubmit={handleUnlock} className="w-64 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] p-6 shadow-[var(--shadow-modal)]">
                         <div className="mb-4 flex flex-col items-center gap-2">
                             <Lock className="text-[var(--color-primary)]" size={24} />
@@ -895,7 +895,7 @@ function ThemeEditorInner() {
             <div
                 id="theme-editor-panel"
                 style={{ fontFamily: "'Poppins', sans-serif", zIndex: 99999 }}
-                className="fixed bottom-4 left-4 flex flex-col items-start gap-2"
+                className="fixed bottom-4 left-4 hidden flex-col items-start gap-2 md:flex"
             >
                 {open && isUnlocked && (
                     <div

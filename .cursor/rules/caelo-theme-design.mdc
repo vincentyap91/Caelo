@@ -1,0 +1,59 @@
+---
+description: Caelo theme design — brand, tokens, sportsbook remap, UI rules for all design work
+alwaysApply: true
+---
+
+# Caelo Theme Design
+
+Any UI / visual / Figma / CSS / component / sportsbook styling must follow this file. Do not invent a parallel palette.
+
+**Detailed snapshot:** [docs/CAELO_THEME_REFERENCE.md](docs/CAELO_THEME_REFERENCE.md)  
+**Runtime CSS:** `src/theme.css` + `src/styles/theme.css`  
+**Sportsbook remap:** `public/sportsbook/css/caelo-palette.css` (load last)  
+**Token naming:** `VARIABLE-RULES.md`
+
+## Brand look
+
+- **Skin:** Caelo blue / white light UI + **gold CTA** — never CAM88 or Riocity green/gray as product skin
+- **Font:** Poppins → `--font-family-primary` / `--font-family-sans`
+
+| Role | Hex | Token |
+|------|-----|--------|
+| Primary / nav | `#123B94` | `--color-primary` / `--color-brand-primary` |
+| Secondary / deep | `#0d2a6a` / `#01206C` | `--color-brand-secondary` / `--color-brand-deep` |
+| Soft panels | `#E5F6FF` / `#eff6ff` / `#dbeafe` | `--color-brand-soft` / `--color-accent-50` / `--color-accent-100` |
+| Accent fill | `#60a5fa` → `#2563eb` | `--color-accent-400` / `--color-accent-600` |
+| CTA gold | `#ffcf4a` → `#ffb22d` | `--color-cta-start` / `--color-cta-end` / `--color-button-cta` |
+| CTA text | `#0c4a8e` | `--color-cta-text` / `--color-text-cta-inverse` |
+| Nav accent | `#ffd84d` | `--color-nav-accent` / `--color-accent` |
+| Surface / ink | `#ffffff` / `#0f172a` | `--color-surface-base` / `--color-text-strong` |
+| Muted text | `#64748b` | `--color-text-muted` |
+| Border | `#e2e8f0` / `#cfe0f9` | `--color-border-default` / `--color-border-brand` |
+
+## App (light UI) rules
+
+- Use semantic `var(--color-*)` only — no hardcoded hex, no `--mono-*` in UI
+- Light promo/VIP progress track: **`--color-accent-100` (`#dbeafe`)** — not `--color-surface-muted`
+- Prefer theme classes (`.soft-blue-panel`, `.btn-theme-cta-soft`, promo/balance) over one-off styles
+- Preserve brand tokens on pull/merge; spot-check nav `#123B94`, promo track `#dbeafe`, CTA gold
+
+## Sportsbook (`/sportsbook`)
+
+Keep 1xbet **dark chrome structure**; retint via `caelo-palette.css` only:
+
+| 1xbet role | Remap to |
+|------------|----------|
+| Sky / header blues | Caelo brand `#123B94` / accent `#2563eb` |
+| Cyan accents / selected odds | Gold / amber `#ffb22d` / `#e89a12` + CTA text `#0c4a8e` |
+| Lime conversion CTAs | Gold gradient `#ffcf4a` → `#ffb22d` + text `#0c4a8e` |
+| Soft cyan links | Nav accent gold `#ffd84d` |
+
+Do **not** ship raw 1xbet/Figma chrome hex (`#1d4268`, `#205583`, `#276aa5`, `#7eac2f`, etc.) as the product palette. Structure/icons OK; fills/borders/text must hit Caelo tokens above. Success/win green may stay readable (`#65a30d`) — do not force orange onto win states.
+
+```text
+✅ var(--color-primary), var(--color-accent-100), var(--color-button-cta)
+✅ sportsbook accents via caelo-palette.css tokens
+❌ Hardcoded fighting hex / purple-indigo AI defaults / Riocity green skin
+```
+
+After intentional theme changes, update this rule and `docs/CAELO_THEME_REFERENCE.md`.

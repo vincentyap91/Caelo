@@ -2001,6 +2001,10 @@ body[data-page="marble-live"] .sports-section-label:not(.az) {
   z-index: 1;
 }
 
+.promo-slide-photo[data-slide="0"]::before {
+  content: none;
+}
+
 .promo-slide-photo[data-slide="3"]::before {
   background: linear-gradient(90deg, rgba(8, 24, 40, 0.55) 0%, rgba(8, 24, 40, 0.2) 40%, transparent 70%);
 }
@@ -2230,6 +2234,15 @@ body[data-page="marble-live"] .sports-section-label:not(.az) {
   display: none;
 }
 
+/* Desktop: players online pinned to promo banner top-right */
+.promo-live-pill--banner {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  display: inline-flex;
+}
+
 @keyframes promo-live-pill-pulse {
   0% {
     opacity: 0.8;
@@ -2250,6 +2263,11 @@ body[data-page="marble-live"] .sports-section-label:not(.az) {
 @media (max-width: 900px) {
   /* Hide nav-tools (containing the header pill) from the hamburger menu */
   .nav-tools {
+    display: none;
+  }
+
+  /* Banner pill moves off; use compact floating pill instead */
+  .promo-live-pill--banner {
     display: none;
   }
 
@@ -11382,6 +11400,18 @@ body.sportsbook-port-active {
 
   /* Stronger left scrim so title / CTA stay readable on busy art */
   .promo-slide-photo::before {
+    background: linear-gradient(
+      105deg,
+      rgba(8, 24, 40, 0.9) 0%,
+      rgba(8, 24, 40, 0.62) 40%,
+      rgba(8, 24, 40, 0.22) 68%,
+      rgba(8, 24, 40, 0.04) 100%
+    );
+  }
+
+  /* First banner: restore dark overlay on mobile only (desktop keeps none) */
+  .promo-slide-photo[data-slide="0"]::before {
+    content: "";
     background: linear-gradient(
       105deg,
       rgba(8, 24, 40, 0.9) 0%,
