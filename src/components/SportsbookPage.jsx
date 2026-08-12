@@ -92,12 +92,21 @@ function syncSportsbookAuth(loggedIn) {
  * mode="event" → event.html match details (board / tabs / markets / stats / event-info modal).
  * Caelo Navbar/Footer stay in App.jsx. No 1xbet header/footer/home-social.
  */
-export default function SportsbookPage({ authUser = null, mode = 'home' }) {
+export default function SportsbookPage({
+  authUser = null,
+  mode = 'home',
+  onNavigate,
+  onLoginClick,
+}) {
   const shellRef = useRef(null);
   const [booted, setBooted] = useState(false);
   const [error, setError] = useState(null);
   const loggedIn = !!authUser;
   const isEvent = mode === 'event';
+  const onNavigateRef = useRef(onNavigate);
+  const onLoginClickRef = useRef(onLoginClick);
+  onNavigateRef.current = onNavigate;
+  onLoginClickRef.current = onLoginClick;
 
   useEffect(() => {
     let cancelled = false;
@@ -187,6 +196,45 @@ export default function SportsbookPage({ authUser = null, mode = 'home' }) {
   useEffect(() => {
     if (!booted) return;
     syncSportsbookAuth(loggedIn);
+  }, [booted, loggedIn]);
+
+  /* Bridge mobile tabbar Casino / Deposit / Log in → Caelo app routes */
+  useEffect(() => {
+    const shell = shellRef.current;
+    if (!shell || !booted) return;
+
+    const onClick = (e) => {
+      const el = e.target.closest('[data-caelo-nav]');
+      if (!el || !shell.contains(el)) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      const action = el.getAttribute('data-caelo-nav');
+      if (!action) return;
+
+      if (typeof window.closeSportsTabFlyout === 'function') {
+        window.closeSportsTabFlyout();
+      }
+
+      if (action === 'login') {
+        onLoginClickRef.current?.();
+        return;
+      }
+      if (action === 'deposit') {
+        if (!loggedIn) onLoginClickRef.current?.();
+        else onNavigateRef.current?.('deposit');
+        return;
+      }
+      if (action === 'profile') {
+        if (!loggedIn) onLoginClickRef.current?.();
+        else onNavigateRef.current?.('profile');
+        return;
+      }
+      onNavigateRef.current?.(action);
+    };
+
+    shell.addEventListener('click', onClick);
+    return () => shell.removeEventListener('click', onClick);
   }, [booted, loggedIn]);
 
   if (error) {

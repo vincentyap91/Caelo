@@ -134,6 +134,12 @@ body.sportsbook-port-active .promo-live-pill__dot::after {
   box-shadow: 0 0 8px rgba(255, 178, 45, 0.55);
 }
 
+/* Mobile bottom nav: active Sports icon was lime filter → 12WIN orange */
+body.sportsbook-port-active .mobile-tabbar--sports .mobile-tab.is-active img,
+.sportsbook-root .mobile-tabbar--sports .mobile-tab.is-active img {
+  filter: invert(72%) sepia(92%) saturate(1350%) hue-rotate(358deg) brightness(104%) contrast(103%);
+}
+
 /* ------------------------------------------------------------------
    Bet slip amounts → #224f78
    Potential winnings · stake / Single bet amount

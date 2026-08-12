@@ -632,9 +632,25 @@ function AppInner() {
       ) : page === 'sports' ? (
         <SportsPage onNavigate={handleNavigate} />
       ) : page === 'sportsbook' ? (
-        <SportsbookPage authUser={authUser} mode="home" />
+        <SportsbookPage
+          authUser={authUser}
+          mode="home"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
       ) : page === 'sportsbook-event' ? (
-        <SportsbookPage authUser={authUser} mode="event" />
+        <SportsbookPage
+          authUser={authUser}
+          mode="event"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
       ) : page === 'e-sports' ? (
         <EsportsPage onNavigate={handleNavigate} />
       ) : page === 'lottery' ? (

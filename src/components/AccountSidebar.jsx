@@ -176,7 +176,7 @@ export default function AccountSidebar({
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-coloful-deep)] text-[var(--color-surface-accent)] lg:h-10 lg:w-10">
                                     <Wallet className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">Cashier</span>
@@ -218,7 +218,7 @@ export default function AccountSidebar({
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-coloful-deep)] text-[var(--color-surface-accent)] lg:h-10 lg:w-10">
                                     <UserRound className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">My Account</span>
@@ -260,7 +260,7 @@ export default function AccountSidebar({
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-coloful-deep)] text-[var(--color-surface-accent)] lg:h-10 lg:w-10">
                                     <Trophy className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">Rewards</span>
@@ -282,15 +282,15 @@ export default function AccountSidebar({
                                             onClick={() => onNavigate?.('loyalty-rewards', { rewardsTab: id })}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
                                                 isActive
-                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
+                                                    ? 'border-l-[var(--color-surface-accent)] bg-[var(--color-accent-pale)] text-[var(--color-surface-accent)] shadow-sm'
+                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-surface-accent)]'
                                             }`}
                                         >
                                             <NavIcon
                                                 className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${
                                                     isActive
-                                                        ? 'text-[var(--color-secondary)]'
-                                                        : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'
+                                                        ? 'text-[var(--color-surface-accent)]'
+                                                        : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-surface-accent)]'
                                                 }`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
@@ -308,7 +308,7 @@ export default function AccountSidebar({
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-coloful-deep)] text-[var(--color-surface-accent)] lg:h-10 lg:w-10">
                                     <History className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">History Record</span>
@@ -350,7 +350,7 @@ export default function AccountSidebar({
                             className="flex min-h-[44px] w-full items-center justify-between gap-2.5 text-left lg:min-h-0 lg:gap-3"
                         >
                             <span className="flex min-w-0 items-center gap-2.5 lg:gap-3">
-                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-cool-light)] text-[var(--color-secondary)] lg:h-10 lg:w-10">
+                                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-surface-coloful-deep)] text-[var(--color-surface-accent)] lg:h-10 lg:w-10">
                                     <Settings className="h-4 w-4 lg:h-[18px] lg:w-[18px]" />
                                 </span>
                                 <span className="text-base font-bold text-[var(--color-text-primary-card-title)] lg:text-lg">Settings</span>

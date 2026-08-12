@@ -1302,13 +1302,13 @@
       '<img src="/sportsbook/mobile/assets/icons/tab-sports.svg" alt="" width="20" height="20" />' +
       '<span class="mobile-tab-label">Sports</span></button>' +
       '<div class="mobile-tab-flyout" id="mt-flyout-sports" role="menu" aria-label="Sports" hidden>' +
-      '<a href="national-team.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="#live-events" class="mobile-tab-flyout__item" role="menuitem">' +
       '<img class="mobile-tab-flyout__icon--flag" src="/sportsbook/assets/icons/flag-my.svg" alt="" width="22" height="22" />' +
       "<span>Bet on Your National Team</span></a>" +
-      '<a href="live-national-team.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="#live-events" class="mobile-tab-flyout__item" role="menuitem">' +
       '<img class="mobile-tab-flyout__icon--live" src="/sportsbook/mobile/assets/icons/tab-live.svg" alt="" width="22" height="22" />' +
       "<span>Live</span></a>" +
-      '<a href="sports.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="#line-events" class="mobile-tab-flyout__item" role="menuitem">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-menu.svg" alt="" width="22" height="22" />' +
       "<span>Sports</span></a>" +
       '<button type="button" class="mobile-tab-flyout__close" data-mt-flyout-close aria-label="Close">' +
@@ -1319,13 +1319,13 @@
       '<img src="/sportsbook/mobile/assets/icons/tab-casino.svg" alt="" width="20" height="20" />' +
       '<span class="mobile-tab-label">Casino</span></button>' +
       '<div class="mobile-tab-flyout" id="mt-flyout-casino" role="menu" aria-label="Casino" hidden>' +
-      '<a href="casino.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="/slots" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="slots">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-cherries.svg" alt="" width="22" height="22" />' +
       "<span>Casino</span></a>" +
-      '<a href="live-casino.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="/casino" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="live-casino">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-spade.svg" alt="" width="22" height="22" />' +
       "<span>Live Casino</span></a>" +
-      '<a href="world-flight-26.html" class="mobile-tab-flyout__item" role="menuitem">' +
+      '<a href="/hot-games" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="hot-games">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-dice.svg" alt="" width="22" height="22" />' +
       "<span>12WIN Games</span></a>" +
       '<button type="button" class="mobile-tab-flyout__close" data-mt-flyout-close aria-label="Close">' +
@@ -1336,10 +1336,11 @@
       '<img src="/sportsbook/mobile/assets/icons/tab-coupon.svg" alt="" width="18" height="18" /></span>' +
       '<span class="mobile-tab-badge" id="mobile-bet-count" hidden>0</span></span>' +
       '<span class="mobile-tab-label">Bet slip</span></button>' +
-      '<a href="deposit.html" class="mobile-tab' + depositOn + '" id="mobile-deposit-tab" data-auth-open="login">' +
+      '<a href="/deposit" class="mobile-tab' + depositOn + '" id="mobile-deposit-tab" data-caelo-nav="deposit">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-deposit.svg" alt="" width="20" height="20" />' +
       '<span class="mobile-tab-label">Deposit</span></a>' +
-      '<button type="button" class="mobile-tab' + accountOn + '" id="mobile-account-tab" data-auth-open="login"' +
+      '<button type="button" class="mobile-tab' + accountOn + '" id="mobile-account-tab" data-caelo-nav="' +
+      (activeKey === "account" ? "profile" : "login") + '"' +
       (activeKey === "account" ? ' aria-current="page"' : "") + ">" +
       '<img src="/sportsbook/mobile/assets/icons/tab-user.svg" alt="" width="20" height="20" />' +
       '<span class="mobile-tab-label" id="mobile-account-label">Log in</span></button>'
@@ -1569,6 +1570,12 @@
           return;
         }
 
+        /* Menu destinations: close panel but allow hash / Caelo navigation */
+        if (e.target.closest(".mobile-tab-flyout__item")) {
+          closeSportsTabFlyout();
+          return;
+        }
+
         if (e.target.closest("#mt-tab-flyout-backdrop")) {
           e.stopPropagation();
           closeSportsTabFlyout();
@@ -1612,26 +1619,13 @@
     const depositTab = document.getElementById("mobile-deposit-tab");
     if (label) label.textContent = loggedIn ? "Account" : "Log in";
     if (accountTab) {
-      if (loggedIn) {
-        accountTab.removeAttribute("data-auth-open");
-      } else {
-        accountTab.setAttribute("data-auth-open", "login");
-      }
-      if (!accountTab.dataset.sportsWired) {
-        accountTab.dataset.sportsWired = "1";
-        accountTab.addEventListener("click", (e) => {
-          if (!isLoggedIn()) return;
-          e.preventDefault();
-          window.location.href = "personal-profile.html";
-        });
-      }
+      accountTab.removeAttribute("data-auth-open");
+      accountTab.setAttribute("data-caelo-nav", loggedIn ? "profile" : "login");
     }
     if (depositTab) {
-      if (loggedIn) {
-        depositTab.removeAttribute("data-auth-open");
-      } else {
-        depositTab.setAttribute("data-auth-open", "login");
-      }
+      depositTab.removeAttribute("data-auth-open");
+      depositTab.setAttribute("data-caelo-nav", "deposit");
+      depositTab.setAttribute("href", "/deposit");
     }
     tabbar.dataset.mainTabbar = "1";
   }

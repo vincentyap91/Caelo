@@ -1054,29 +1054,31 @@
   }
 
   .daily-check-in-panel .btn-theme-primary {
-    background: var(--color-button-cta-primary);
+    background: var(--color-secondary);
     color: var(--color-tertiery);
   }
 
   .daily-check-in-panel .btn-theme-primary:hover {
-    background: var(--color-button-hover);
+    background: var(--color-primary);
+    color: var(--color-tertiery);
   }
 
   /**
    * Rewards page inner content — blue CTA pills (Open daily claim, Record, Login, spin CTAs).
-   * color/button/cta/primary → brand-630 shell; color/text/light → label.
+   * Figma 500:10355 / 500:10923 → color/secondary (#0d2a6a) + white label.
    */
   #loyalty-rewards {
     --color-text-light: var(--mono-0);
   }
 
   #loyalty-rewards .btn-theme-primary {
-    background: var(--color-button-cta-primary);
+    background: var(--color-secondary);
     color: var(--color-tertiery);
   }
 
   #loyalty-rewards .btn-theme-primary:hover {
-    background: var(--color-button-hover);
+    background: var(--color-primary);
+    color: var(--color-tertiery);
   }
 
   /**
