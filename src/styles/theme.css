@@ -1281,16 +1281,19 @@
   }
 
   /* Ticket glyph — active / claimed / inactive (color/icon/check-in/* + color/text/check-in/day/inactive) */
-  .daily-bonus-claim-modal__day-ticket--active {
-    color: var(--color-icon-check-in-active);
+  .daily-bonus-claim-modal__day-ticket--active,
+  .daily-bonus-claim-modal__day-card.is-active .daily-bonus-claim-modal__day-ticket {
+    color: var(--color-tertiery);
   }
 
-  .daily-bonus-claim-modal__day-ticket--finished {
-    color: var(--color-icon-check-in-claimed);
+  .daily-bonus-claim-modal__day-ticket--finished,
+  .daily-bonus-claim-modal__day-card.is-finished .daily-bonus-claim-modal__day-ticket {
+    color: var(--color-text-check-in-day-inactive); /* #9BABC3 */
   }
 
-  .daily-bonus-claim-modal__day-ticket--upcoming {
-    color: var(--color-text-check-in-day-inactive);
+  .daily-bonus-claim-modal__day-ticket--upcoming,
+  .daily-bonus-claim-modal__day-card.is-upcoming .daily-bonus-claim-modal__day-ticket {
+    color: var(--color-text-check-in-day-inactive); /* #9BABC3 */
   }
 
   .daily-bonus-claim-modal__day-reward {
