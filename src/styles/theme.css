@@ -4133,7 +4133,7 @@
   }
 
   .profile-menu-dropdown .profile-menu-section-icon {
-    color: var(--color-border-accent);
+    color: var(--color-accent); /* #ffd84d — Cashier / My Account / Rewards / History / Settings */
   }
 
   .profile-menu-dropdown .profile-menu-section-label,
@@ -4146,7 +4146,7 @@
   }
 
   .profile-menu-dropdown .profile-menu-tile-icon {
-    color: var(-color-icon-action);
+    color: var(--color-icon-action);
   }
 
   .profile-menu-dropdown .dark-nav-tile:hover .profile-menu-tile-icon {
