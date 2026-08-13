@@ -54,7 +54,15 @@
   }
 
   function buildModal() {
-    if (overlay) return overlay;
+    var existing = document.getElementById("bsg-overlay");
+    if (existing) {
+      overlay = existing;
+      if (overlay.dataset.bsgWired !== "1") bindOverlay();
+      return overlay;
+    }
+    document.querySelectorAll(".bsg-backdrop").forEach(function (el) {
+      el.remove();
+    });
     overlay = document.createElement("div");
     overlay.className = "bsg-backdrop";
     overlay.id = "bsg-overlay";
@@ -233,11 +241,21 @@
   }
 
   function bindOverlay() {
-    overlay.addEventListener("click", function (e) {
-      if (e.target === overlay) close();
-      var closeBtn = e.target.closest("[data-bsg-close]");
-      if (closeBtn) {
+    if (!overlay || overlay.dataset.bsgWired === "1") return;
+    overlay.dataset.bsgWired = "1";
+
+    overlay.addEventListener("pointerdown", function (e) {
+      if (e.target === overlay || e.target.closest("[data-bsg-close]")) {
         e.preventDefault();
+        e.stopPropagation();
+        close();
+      }
+    });
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay || e.target.closest("[data-bsg-close]")) {
+        e.preventDefault();
+        e.stopPropagation();
         close();
         return;
       }
@@ -366,6 +384,10 @@
   function open() {
     buildModal();
     ensureEmptyCta();
+    document.querySelectorAll(".bsg-backdrop").forEach(function (el) {
+      if (el !== overlay) el.remove();
+    });
+    if (overlay && !overlay.isConnected) document.body.appendChild(overlay);
     overlay.hidden = false;
     document.body.classList.add("bsg-open");
     overlay.classList.toggle("is-mobile", isMobileViewport());
@@ -380,9 +402,15 @@
   }
 
   function close() {
-    if (!overlay) return;
+    var node = overlay || document.getElementById("bsg-overlay");
+    if (!node) return;
+    overlay = node;
     overlay.hidden = true;
     document.body.classList.remove("bsg-open");
+    document.querySelectorAll(".bsg-backdrop").forEach(function (el) {
+      if (el !== overlay) el.remove();
+      else el.hidden = true;
+    });
   }
 
   function isOpen() {
@@ -400,15 +428,27 @@
 
   function init() {
     ensureEmptyCta();
-    document.addEventListener("click", onDocClick, true);
+    overlay = document.getElementById("bsg-overlay");
+    if (document.documentElement.dataset.dsBsgDocBound === "1") return;
+    document.documentElement.dataset.dsBsgDocBound = "1";
+    document.addEventListener(
+      "click",
+      function (e) {
+        if (typeof window.DsBetSlipGenerator?.onTriggerClick === "function") {
+          window.DsBetSlipGenerator.onTriggerClick(e);
+        }
+      },
+      true
+    );
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && isOpen()) {
+      if (e.key === "Escape" && window.DsBetSlipGenerator?.isOpen?.()) {
         e.preventDefault();
-        close();
+        window.DsBetSlipGenerator.close();
       }
     });
     window.addEventListener("resize", function () {
-      if (overlay && !overlay.hidden) overlay.classList.toggle("is-mobile", isMobileViewport());
+      var node = document.getElementById("bsg-overlay");
+      if (node && !node.hidden) node.classList.toggle("is-mobile", isMobileViewport());
     });
   }
 
@@ -417,6 +457,7 @@
     close: close,
     ensureEmptyCta: ensureEmptyCta,
     isOpen: isOpen,
+    onTriggerClick: onDocClick,
   };
 
   if (document.readyState === "loading") {
