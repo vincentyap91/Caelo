@@ -639,7 +639,7 @@ function AppInner() {
         balanceRefreshing={balanceRefreshing}
       />
 
-      <div className={page === 'home' ? 'max-md:pt-14 md:pt-[100px]' : 'pt-14 md:pt-[100px]'}>
+      <div className={page === 'home' ? 'max-lg:pt-14 lg:pt-[100px]' : 'pt-14 lg:pt-[100px]'}>
       <ErrorBoundary>
       <Suspense fallback={<LoadingPage fullPage="overlay" minDelay={300} />}>
       {page === 'home' ? (

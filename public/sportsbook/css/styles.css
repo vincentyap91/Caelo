@@ -11699,6 +11699,16 @@ body.sportsbook-port-active {
     overflow: hidden;
   }
 
+  .home-sports-filter.mh-sf,
+  .mh-sf.is-open {
+    z-index: 320;
+  }
+
+  body.mh-sf-open .mobile-tabbar,
+  body.mh-mf-open .mobile-tabbar {
+    z-index: 200;
+  }
+
   .home-sports-filter__body {
     min-height: 0;
     padding: 0 0 calc(16px + env(safe-area-inset-bottom, 0px));

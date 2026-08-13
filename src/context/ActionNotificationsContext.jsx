@@ -220,7 +220,7 @@ export function ActionNotificationsProvider({ children }) {
         >
             {children}
             {toasts.length > 0 ? (
-                <div className="pointer-events-none fixed left-4 right-4 top-[64px] md:top-[100px] z-[320] flex flex-col gap-3 sm:left-auto sm:right-4 sm:w-[min(100vw-2rem,20rem)]">
+                <div className="pointer-events-none fixed left-4 right-4 top-14 lg:top-[100px] z-[320] flex flex-col gap-3 sm:left-auto sm:right-4 sm:w-[min(100vw-2rem,20rem)]">
                     {toasts.map((t) => (
                         <div key={t.id} className="pointer-events-auto w-full">
                             <PushNotificationToast

@@ -2,11 +2,17 @@
 
 .sportsbook-root {
   /* Override 1xbet default 96px after styles.css loads */
-  --header-h: 100px !important;
+  --header-h: 3.5rem !important; /* mobile/tablet MobileSiteHeader */
   width: 100%;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - var(--header-h, 3.5rem));
   background: var(--page-bg-secondary, #0e243d);
   color: var(--text-inverse, #fff);
+}
+
+@media (min-width: 1024px) {
+  .sportsbook-root {
+    --header-h: 100px !important;
+  }
 }
 
 .sportsbook-root .sportsbook-layout {

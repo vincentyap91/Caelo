@@ -55,7 +55,7 @@ export default function MobileSiteHeader({
     }, [balanceDropdownOpen]);
 
     return (
-        <div className="mobile-site-header relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-[var(--color-border)] bg-[var(--color-tertiery)] px-3 py-1.5 text-[var(--color-primary)] md:hidden">
+        <div className="mobile-site-header relative z-[300] flex min-h-[56px] w-full items-center justify-between gap-2 border-b border-[var(--color-border)] bg-[var(--color-tertiery)] px-3 py-1.5 text-[var(--color-primary)] lg:hidden">
             <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
                 <button
                     type="button"

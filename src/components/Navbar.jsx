@@ -5,7 +5,6 @@ import {
     ChevronDown,
     ChevronRight,
     ChevronUp,
-    CircleDollarSign,
     Clock,
     RefreshCw,
     Crown,
@@ -58,6 +57,8 @@ const DESKTOP_MAIN_LINKS = [
     'Home',
     'All',
     'Sports',
+    'Live',
+    'Esports',
     'Live Casino',
     'Slots',
     'Fish Hunt',
@@ -66,8 +67,53 @@ const DESKTOP_MAIN_LINKS = [
     'Membership',
 ];
 
-/** Sports dropdown — existing lobby + new sportsbook. */
-const DESKTOP_SPORTS_LINKS = ['Sports', 'Sportsbook'];
+const DESKTOP_SPORTS_MENU = [
+    { label: 'Sports', page: 'sports', href: '/sports' },
+    { label: 'Sportsbook', page: 'sportsbook', href: '/sportsbook' },
+    { label: 'Bet on Your National Team', page: 'sportsbook-national-team', href: '/sportsbook/national-team' },
+    { label: 'Bet on Big Tournaments', page: 'sportsbook-big-tournaments', href: '/sportsbook/big-tournaments' },
+    { label: 'Long-term bets', page: 'sportsbook-long-term-bets', href: '/sportsbook/long-term-bets' },
+];
+
+const DESKTOP_LIVE_MENU = [
+    { label: 'Multi-LIVE', page: 'sportsbook', href: '/sportsbook' },
+    { label: 'Bet on Your National Team', page: 'sportsbook-live-national-team', href: '/sportsbook/live-national-team' },
+    { label: 'Marble-Live', page: 'sportsbook-marble-live', href: '/sportsbook/marble-live' },
+    { label: 'Fast bet', page: 'sportsbook-fast-bet', href: '/sportsbook/fast-bet' },
+];
+
+const DESKTOP_ESPORTS_MENU = [
+    { label: 'All Esports', page: 'e-sports', href: '/e-sports' },
+    { label: 'CS2', page: 'sportsbook', href: '/sportsbook' },
+    { label: 'Dota 2', page: 'sportsbook', href: '/sportsbook' },
+    { label: 'LoL', page: 'sportsbook', href: '/sportsbook' },
+];
+
+const DESKTOP_SPORTS_PAGES = new Set([
+    'sports',
+    'sportsbook',
+    'sportsbook-event',
+    'sportsbook-sports',
+    'sportsbook-national-team',
+    'sportsbook-big-tournaments',
+    'sportsbook-long-term-bets',
+    'sportsbook-favourites',
+    'sportsbook-search',
+]);
+
+const DESKTOP_LIVE_PAGES = new Set([
+    'sportsbook-live-national-team',
+    'sportsbook-marble-live',
+    'sportsbook-fast-bet',
+]);
+
+const DESKTOP_SPORTSBOOK_HOME_PAGES = new Set([
+    'sportsbook',
+    'sportsbook-event',
+    'sportsbook-sports',
+    'sportsbook-favourites',
+    'sportsbook-search',
+]);
 
 /** More dropdown — Recent Game, Rebate, E-Sports. */
 const DESKTOP_MORE_LINKS = ['Recent Game', 'Rebate', 'E-Sports'];
@@ -105,7 +151,31 @@ const NAV_HREFS = {
 };
 
 function isDesktopSportsActive(activePage) {
-    return activePage === 'sports' || (typeof activePage === 'string' && activePage.startsWith('sportsbook'));
+    return DESKTOP_SPORTS_PAGES.has(activePage);
+}
+
+function isDesktopLiveActive(activePage) {
+    return DESKTOP_LIVE_PAGES.has(activePage);
+}
+
+function isDesktopEsportsActive(activePage) {
+    return activePage === 'e-sports';
+}
+
+function isDesktopSportsItemActive(item, activePage) {
+    if (item.page === 'sportsbook') {
+        return DESKTOP_SPORTSBOOK_HOME_PAGES.has(activePage);
+    }
+    return activePage === item.page;
+}
+
+function isDesktopLiveItemActive(item, activePage) {
+    if (item.page === 'sportsbook') return false;
+    return activePage === item.page;
+}
+
+function isDesktopEsportsItemActive(item, activePage) {
+    return item.page === 'e-sports' && activePage === 'e-sports';
 }
 
 function isDesktopMoreActive(activePage) {
@@ -330,6 +400,15 @@ export default function Navbar({
         };
     }, [mobileMenuOpen]);
 
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const closeIfDesktop = (event) => {
+            if (event.matches) setMobileMenuOpen(false);
+        };
+        mq.addEventListener('change', closeIfDesktop);
+        return () => mq.removeEventListener('change', closeIfDesktop);
+    }, []);
+
     const toggleProfileSection = (sectionKey) => {
         setOpenProfileSection((current) => (current === sectionKey ? null : sectionKey));
     };
@@ -431,7 +510,7 @@ export default function Navbar({
             />
 
 
-            <div className="top-sticky-nav-bar relative z-[110] hidden h-9 w-full items-center border-b bg-[var(--color-sticky-nav)] px-4 text-xs text-[var(--color-tertiery)] md:flex md:px-10">
+            <div className="top-sticky-nav-bar relative z-[110] hidden h-9 w-full items-center border-b bg-[var(--color-sticky-nav)] px-4 text-xs text-[var(--color-tertiery)] lg:flex lg:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between">
                     <div className="flex gap-4 items-center h-full">
                         <button
@@ -832,7 +911,7 @@ export default function Navbar({
             </div>
 
             {/* TWO-TONE HEADER: Main Navigation Row (Lower) */}
-            <div className="top-nav-shell relative z-[100] hidden h-16 w-full items-center px-4 shadow-sm md:flex md:px-10">
+            <div className="top-nav-shell relative z-[100] hidden h-16 w-full items-center px-4 shadow-sm lg:flex lg:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between gap-6">
                     <div className="flex items-center gap-2 shrink-0">
                         <button
@@ -846,7 +925,25 @@ export default function Navbar({
 
                     <div className="hidden lg:flex flex-1 justify-end items-center gap-x-1">
                         {DESKTOP_MAIN_LINKS.map((link) => {
-                            if (link === 'Sports') {
+                            if (link === 'Sports' || link === 'Live' || link === 'Esports') {
+                                const items =
+                                    link === 'Sports'
+                                        ? DESKTOP_SPORTS_MENU
+                                        : link === 'Live'
+                                          ? DESKTOP_LIVE_MENU
+                                          : DESKTOP_ESPORTS_MENU;
+                                const parentActive =
+                                    link === 'Sports'
+                                        ? isDesktopSportsActive(activePage)
+                                        : link === 'Live'
+                                          ? isDesktopLiveActive(activePage)
+                                          : isDesktopEsportsActive(activePage);
+                                const itemActiveFn =
+                                    link === 'Sports'
+                                        ? isDesktopSportsItemActive
+                                        : link === 'Live'
+                                          ? isDesktopLiveItemActive
+                                          : isDesktopEsportsItemActive;
                                 return (
                                     <div
                                         key={link}
@@ -857,37 +954,31 @@ export default function Navbar({
                                         <button
                                             type="button"
                                             className={`top-nav-more-trigger relative flex items-center gap-1 rounded-lg border border-transparent px-4 py-2 text-sm font-bold whitespace-nowrap transition-all ${
-                                                isDesktopSportsActive(activePage) ? 'nav-desktop-link-active' : ''
+                                                parentActive ? 'nav-desktop-link-active' : ''
                                             }`}
                                             aria-haspopup="menu"
                                         >
-                                            Sports <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
+                                            {link} <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
                                         </button>
 
-                                        <div className="absolute left-0 top-full pt-1 z-[130] w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                        <div className="absolute left-0 top-full pt-1 z-[130] min-w-[13.75rem] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                             <div className="top-nav-more-menu rounded-xl py-2 shadow-[var(--shadow-nav-dropdown)]">
-                                                {DESKTOP_SPORTS_LINKS.map((subLink) => {
-                                                    const targetId = NAV_TARGETS[subLink];
-                                                    const itemActive =
-                                                        activePage === targetId
-                                                        || (subLink === 'Sportsbook' && typeof activePage === 'string' && activePage.startsWith('sportsbook'));
-                                                    return (
-                                                        <a
-                                                            key={subLink}
-                                                            href={NAV_HREFS[subLink]}
-                                                            role="menuitem"
-                                                            onClick={(event) => {
-                                                                event.preventDefault();
-                                                                if (targetId) onNavigate?.(targetId);
-                                                            }}
-                                                            className={`top-nav-more-item block px-5 py-2.5 text-sm font-bold transition-colors ${
-                                                                itemActive ? 'top-nav-more-item--active' : ''
-                                                            }`}
-                                                        >
-                                                            {subLink}
-                                                        </a>
-                                                    );
-                                                })}
+                                                {items.map((item) => (
+                                                    <a
+                                                        key={`${link}-${item.page}-${item.label}`}
+                                                        href={item.href}
+                                                        role="menuitem"
+                                                        onClick={(event) => {
+                                                            event.preventDefault();
+                                                            if (item.page) onNavigate?.(item.page);
+                                                        }}
+                                                        className={`top-nav-more-item block px-5 py-2.5 text-sm font-bold transition-colors ${
+                                                            itemActiveFn(item, activePage) ? 'top-nav-more-item--active' : ''
+                                                        }`}
+                                                    >
+                                                        {item.label}
+                                                    </a>
+                                                ))}
                                             </div>
                                         </div>
                                     </div>
@@ -966,50 +1057,6 @@ export default function Navbar({
                         </div>
 
                     </div>
-
-                    <div className="flex items-center gap-2 lg:hidden">
-                        {authUser ? (
-                            <>
-                                <div className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] px-3 text-sm font-bold text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)]">
-                                    <span className="truncate">{authUser.balance}</span>
-                                    <CircleDollarSign size={14} className="shrink-0 text-[var(--color-accent)]" />
-                                </div>
-                                <button
-                                    type="button"
-                                    onClick={() => onNavigate?.('deposit')}
-                                    className="btn-theme-cta-soft inline-flex min-h-10 shrink-0 items-center justify-center rounded-xl px-3.5 text-sm font-bold"
-                                >
-                                    Deposit
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => onNavigate?.('profile')}
-                                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] text-[var(--color-text-primary-card-title)] transition hover:bg-[var(--color-surface-cool-light)]"
-                                    aria-label="My profile"
-                                >
-                                    <UserCircle2 size={20} className="text-[var(--color-text-primary-card-title)]" />
-                                </button>
-                            </>
-                        ) : (
-                            <div className="flex items-center gap-2">
-                                <button
-                                    type="button"
-                                    onClick={() => onLoginClick?.()}
-                                    className="inline-flex min-h-10 items-center justify-center rounded-xl border border-[var(--color-border-brand)] bg-[var(--color-tertiery)] px-3.5 text-sm font-semibold text-[var(--color-text-primary-card-title)] transition hover:bg-[var(--color-surface-cool-light)] hover:border-[var(--color-border-brand)]"
-                                >
-                                    Login
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => onRegisterClick?.()}
-                                    className="btn-theme-cta-soft inline-flex min-h-10 items-center justify-center rounded-xl px-3.5 text-sm font-bold"
-                                >
-                                    Join Now
-                                </button>
-
-                            </div>
-                        )}
-                    </div>
                 </div>
 
                 {/* Provider mega menus: anchor directly under the white nav row */}
@@ -1033,7 +1080,7 @@ export default function Navbar({
 
             <button
                 type="button"
-                className={`fixed inset-x-0 bottom-0 top-0 z-[380] bg-[var(--color-overlay-strong)] backdrop-blur-[1px] transition-opacity duration-300 md:hidden ${mobileMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+                className={`fixed inset-x-0 bottom-0 top-0 z-[380] bg-[var(--color-overlay-strong)] backdrop-blur-[1px] transition-opacity duration-300 lg:hidden ${mobileMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
                     }`}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close mobile menu"
@@ -1041,7 +1088,7 @@ export default function Navbar({
                 tabIndex={mobileMenuOpen ? 0 : -1}
             />
             <aside
-                className={`sidenav-shell fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out md:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
+                className={`sidenav-shell fixed inset-y-0 left-0 z-[390] flex w-full max-w-[360px] min-h-0 flex-col overflow-hidden border-r shadow-[var(--shadow-sidebar)] transition-transform duration-300 ease-out lg:hidden ${mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none -translate-x-full'
                     }`}
                 aria-hidden={!mobileMenuOpen}
             >
