@@ -18,6 +18,7 @@ import {
     Info,
     LayoutGrid,
     Megaphone,
+    Radio,
     Smartphone,
     Star,
     Ticket,
@@ -73,6 +74,8 @@ const DESKTOP_SPORTS_MENU = [
     { label: 'Bet on Your National Team', page: 'sportsbook-national-team', href: '/sportsbook/national-team' },
     { label: 'Bet on Big Tournaments', page: 'sportsbook-big-tournaments', href: '/sportsbook/big-tournaments' },
     { label: 'Long-term bets', page: 'sportsbook-long-term-bets', href: '/sportsbook/long-term-bets' },
+    { label: 'WC2026', page: 'sportsbook-wc2026', href: '/sportsbook/wc2026' },
+    { label: 'MSI', page: 'sportsbook-msi', href: '/sportsbook/msi' },
 ];
 
 const DESKTOP_LIVE_MENU = [
@@ -99,6 +102,8 @@ const DESKTOP_SPORTS_PAGES = new Set([
     'sportsbook-long-term-bets',
     'sportsbook-favourites',
     'sportsbook-search',
+    'sportsbook-wc2026',
+    'sportsbook-msi',
 ]);
 
 const DESKTOP_LIVE_PAGES = new Set([
@@ -176,7 +181,8 @@ function isDesktopLiveItemActive(item, activePage) {
 }
 
 function isDesktopEsportsItemActive(item, activePage) {
-    return item.page === 'e-sports' && activePage === 'e-sports';
+    if (item.page === 'sportsbook') return false;
+    return activePage === item.page;
 }
 
 function isDesktopMoreActive(activePage) {
@@ -189,17 +195,36 @@ const MOBILE_PRIMARY_ITEMS = [
     { id: 'referral', label: 'Referral', page: 'referral', icon: Users },
     { id: 'more', label: 'More', icon: LayoutGrid },
 ];
+const MOBILE_SPORTS_MENU = DESKTOP_SPORTS_MENU;
+const MOBILE_LIVE_MENU = DESKTOP_LIVE_MENU;
+
 const MOBILE_GAMES_SUB_ITEMS = [
     { id: 'all-games', label: 'All Games', page: 'all-games', icon: Grid3x3 },
     { id: 'hot-games', label: 'Hot Games', page: 'hot-games', icon: Star },
     { id: 'recent-games', label: 'Recent Games', page: 'recent-games', icon: Clock },
     { id: 'casino', label: 'Casino', page: 'live-casino', icon: CasinoChipIcon },
     { id: 'slots', label: 'Slots', page: 'slots', icon: Dices },
-    { id: 'sports', label: 'Sports', page: 'sports', icon: Trophy },
-    { id: 'sportsbook', label: 'Sportsbook', page: 'sportsbook', icon: Trophy },
+    { id: 'sports', label: 'Sports', icon: Trophy, children: MOBILE_SPORTS_MENU },
+    { id: 'live', label: 'Live', icon: Radio, children: MOBILE_LIVE_MENU },
     { id: 'e-sports', label: 'E-Sports', page: 'e-sports', icon: Gamepad2 },
     { id: 'lottery', label: 'Lottery', page: 'lottery', icon: Ticket },
 ];
+
+function isMobileGamesGroupActive(item, activePage) {
+    if (item.id === 'sports') return isDesktopSportsActive(activePage);
+    if (item.id === 'live') return isDesktopLiveActive(activePage);
+    return false;
+}
+
+function isMobileGamesSubItemActive(item, activePage) {
+    if (item.children) return isMobileGamesGroupActive(item, activePage);
+    return item.page === activePage;
+}
+
+function getMobileGamesGroupForPage(activePage) {
+    if (isDesktopLiveActive(activePage)) return 'live';
+    return null;
+}
 
 const MOBILE_MORE_SECTIONS = [
     {
@@ -325,6 +350,7 @@ export default function Navbar({
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
     const [mobileGamesOpen, setMobileGamesOpen] = useState(false);
+    const [openMobileGamesGroup, setOpenMobileGamesGroup] = useState(null);
     const [openMobileMoreSection, setOpenMobileMoreSection] = useState(null);
     const [language, setLanguage] = useState('en-us');
     const [openProfileSection, setOpenProfileSection] = useState('account');
@@ -388,6 +414,8 @@ export default function Navbar({
             setMobileMoreOpen(false);
             // eslint-disable-next-line react-hooks/set-state-in-effect
             setMobileGamesOpen(false);
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            setOpenMobileGamesGroup(null);
             // eslint-disable-next-line react-hooks/set-state-in-effect
             setOpenMobileMoreSection(null);
         }
@@ -1211,7 +1239,7 @@ export default function Navbar({
                             const isActive = isMoreRow
                                 ? MOBILE_MORE_ACTIVE_PAGES.has(activePage)
                                 : isGamesRow
-                                    ? MOBILE_GAMES_SUB_ITEMS.some((item) => item.page === activePage)
+                                    ? MOBILE_GAMES_SUB_ITEMS.some((item) => isMobileGamesSubItemActive(item, activePage))
                                     : activePage === page;
 
                             const isOpen = isMoreRow ? mobileMoreOpen : isGamesRow ? mobileGamesOpen : false;
@@ -1236,7 +1264,13 @@ export default function Navbar({
                                                 return;
                                             }
                                             if (isGamesRow) {
-                                                setMobileGamesOpen((open) => !open);
+                                                if (mobileGamesOpen) {
+                                                    setMobileGamesOpen(false);
+                                                    setOpenMobileGamesGroup(null);
+                                                } else {
+                                                    setMobileGamesOpen(true);
+                                                    setOpenMobileGamesGroup(getMobileGamesGroupForPage(activePage));
+                                                }
                                                 return;
                                             }
 
@@ -1266,8 +1300,62 @@ export default function Navbar({
                                                 </p>
                                             </div>
                                             {MOBILE_GAMES_SUB_ITEMS.map((item) => {
-                                                const itemActive = activePage === item.page;
+                                                const itemActive = isMobileGamesSubItemActive(item, activePage);
                                                 const ItemIcon = item.icon;
+                                                const hasChildren = Boolean(item.children?.length);
+                                                const groupOpen = hasChildren && openMobileGamesGroup === item.id;
+                                                const childActiveFn = item.id === 'live'
+                                                    ? isDesktopLiveItemActive
+                                                    : isDesktopSportsItemActive;
+
+                                                if (hasChildren) {
+                                                    return (
+                                                        <div key={item.id} className="overflow-hidden rounded-xl">
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => setOpenMobileGamesGroup((current) => (current === item.id ? null : item.id))}
+                                                                className={`sidenav-subitem flex min-h-[42px] w-full items-center gap-2.5 rounded-xl pl-3 pr-3 py-2 text-left ${itemActive
+                                                                    ? 'sidenav-subitem--active'
+                                                                    : ''
+                                                                    }`}
+                                                                style={{ fontFamily: 'var(--base-font-family)' }}
+                                                                aria-expanded={groupOpen}
+                                                            >
+                                                                <span className="sidenav-subitem__icon inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl">
+                                                                    <ItemIcon size={14} />
+                                                                </span>
+                                                                <span className="min-w-0 flex-1 text-sm font-semibold">{item.label}</span>
+                                                                <ChevronRight
+                                                                    size={14}
+                                                                    className={`shrink-0 opacity-70 transition-transform ${groupOpen ? 'rotate-90' : ''}`}
+                                                                />
+                                                            </button>
+                                                            {groupOpen && (
+                                                                <div className="space-y-1 pb-1 pl-4 pr-1">
+                                                                    {item.children.map((child) => {
+                                                                        const childActive = childActiveFn(child, activePage);
+
+                                                                        return (
+                                                                            <button
+                                                                                key={`${item.id}-${child.page}-${child.label}`}
+                                                                                type="button"
+                                                                                onClick={() => handleMobileNavigate(child.page)}
+                                                                                className={`sidenav-subitem flex min-h-[40px] w-full items-center gap-2.5 rounded-xl pl-3 pr-3 py-2 text-left ${childActive
+                                                                                    ? 'sidenav-subitem--active'
+                                                                                    : ''
+                                                                                    }`}
+                                                                                style={{ fontFamily: 'var(--base-font-family)' }}
+                                                                            >
+                                                                                <span className="min-w-0 flex-1 text-sm font-semibold">{child.label}</span>
+                                                                                <ChevronRight size={14} className="shrink-0 opacity-70" />
+                                                                            </button>
+                                                                        );
+                                                                    })}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    );
+                                                }
 
                                                 return (
                                                     <button

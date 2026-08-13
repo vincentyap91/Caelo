@@ -3305,6 +3305,22 @@
     return label === "settings";
   }
 
+  function wireBetSlipToolbarClicks() {
+    if (document.documentElement.dataset.sbSlipToolbarWired === "1") return;
+    document.documentElement.dataset.sbSlipToolbarWired = "1";
+    document.addEventListener("click", (e) => {
+      if (isBetSlipShareTrigger(e.target)) {
+        e.preventDefault();
+        openBetSlipShare();
+        return;
+      }
+      if (isBetSlipSettingsTrigger(e.target)) {
+        e.preventDefault();
+        openBetSlipSettings();
+      }
+    });
+  }
+
   /* ---------- Bet Slip Share (coupon + URL) ---------- */
 
   const COUPON_STORE_KEY = "1xbet-shared-coupons";
@@ -4335,6 +4351,8 @@
   }
 
   window.syncBetSlipAuthUi = syncBetSlipAuthUi;
+  window.applyBetSlipSettings = applyBetSlipSettings;
+  window.openBetSlipSettings = openBetSlipSettings;
 
   if (typeof window.matchMedia === "function") {
     const emptyCopyMq = window.matchMedia("(max-width: 900px)");
@@ -6468,6 +6486,7 @@
     state.stakePrefs = loadStakePrefs();
     state.oddsChangeMode = loadOddsChangeMode();
     state.promoCode = loadPromoCode();
+    wireBetSlipToolbarClicks();
     ensureBetSlipSettingsModal();
     ensureBaselineOddsModal();
     ensureStakeSettingsModal();
@@ -6573,16 +6592,6 @@
       const ticketPopover = e.target.closest("[data-ticket-popover]");
       if (ticketPopover) {
         openTicketPopover(ticketPopover.getAttribute("data-ticket-popover"));
-        return;
-      }
-
-      if (isBetSlipShareTrigger(e.target)) {
-        openBetSlipShare();
-        return;
-      }
-
-      if (isBetSlipSettingsTrigger(e.target)) {
-        openBetSlipSettings();
         return;
       }
 

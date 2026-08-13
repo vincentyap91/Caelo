@@ -8157,7 +8157,6 @@ body.bh-desktop-open {
   gap: 8px;
   padding-top: 8px;
   border-top: 1px solid rgba(27, 91, 143, 0.16);
-  background: var(--surface-tertiary);
 }
 
 .stake-label {
@@ -10230,6 +10229,14 @@ body.sportsbook-port-active {
 body.sportsbook-port-active {
     --header-h: 56px;
     --mobile-tabbar-h: 64px;
+  }
+
+  /* Sit above the fixed bottom tabbar (not behind it) */
+  .toast,
+  .se-toast,
+  .fv-toast {
+    bottom: calc(var(--mobile-tabbar-h, 64px) + env(safe-area-inset-bottom, 0px) + 16px);
+    z-index: 320;
   }
 
   /* Stop wide children from expanding layout viewport (causes “zoomed in” mobile view) */
@@ -12434,7 +12441,7 @@ body.sportsbook-port-active {
     border-bottom: 1px solid var(--border-dark);
     color: var(--text-inverse);
     flex-shrink: 0;
-    background: var(--header-nav-bg);
+    background: var(--section-blue, #123b94);
     position: sticky;
     top: 0;
     z-index: 2;
@@ -12922,13 +12929,12 @@ body.sportsbook-port-active {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     min-height: 44px;
-    padding: 6px 10px;
-    padding-top: calc(6px + env(safe-area-inset-top, 0px));
-    background: var(--header-nav-bg);
-    color: var(--text-inverse);
-    border-bottom: 1px solid var(--border-dark);
+    padding: 8px 12px;
+    padding-top: calc(8px + env(safe-area-inset-top, 0px));
+    background: var(--section-blue, #123b94);
+    color: #fff;
     box-sizing: border-box;
   }
 
@@ -12942,8 +12948,8 @@ body.sportsbook-port-active {
     padding: 0;
     border: none;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.14);
-    color: var(--text-inverse);
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
     cursor: pointer;
   }
 
@@ -12962,11 +12968,11 @@ body.sportsbook-port-active {
     margin: 0;
     flex: 1;
     font-family: var(--font);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-inverse);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #fff;
   }
 
   .ds-menu__lang-search {
@@ -14168,14 +14174,14 @@ body.ds-event-info-open {
   .nt-mobile-subbar {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
     min-height: 44px;
     margin: 0;
-    padding: 6px 10px;
+    padding: 8px 12px;
     box-sizing: border-box;
-    background: var(--header-nav-bg);
-    color: var(--text-inverse);
+    background: var(--section-blue, #123b94);
+    color: #fff;
     position: sticky;
     top: var(--header-h, 56px);
     z-index: 40;
@@ -14190,7 +14196,7 @@ body.ds-event-info-open {
     width: 32px;
     height: 32px;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.16);
     text-decoration: none;
   }
 
@@ -14206,10 +14212,10 @@ body.ds-event-info-open {
     flex: 1 1 auto;
     min-width: 0;
     font-family: var(--font);
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
     color: #fff;
     white-space: nowrap;
     overflow: hidden;
@@ -14233,7 +14239,7 @@ body.ds-event-info-open {
     padding: 0;
     border: none;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.16);
     color: #fff;
     text-decoration: none;
     cursor: pointer;
@@ -14282,20 +14288,7 @@ body.ds-event-info-open {
 
   /* Full title; no action chips (matches mobile/big-tournaments.html) */
   body[data-page="big-tournaments"] .nt-mobile-subbar {
-    gap: 8px;
-    padding: 6px 10px;
-    min-height: 44px;
     align-items: center;
-  }
-
-  body[data-page="big-tournaments"] .nt-mobile-subbar__title {
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   /* Live | Sports mode bar above tabbar (national-team + live-national-team) */

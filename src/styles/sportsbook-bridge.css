@@ -31,16 +31,25 @@
   background: #0b1d33;
 }
 
-/* Light pages (search / favourites): fill viewport, hide sportsbook navy */
+/* Light pages (search / favourites / Top Events): fill viewport, hide sportsbook navy */
 .app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='search']),
-.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='favourites']) {
+.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='favourites']),
+.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='wc2026']),
+.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='msi']) {
   background: #eef2f6;
 }
 
 .sportsbook-root[data-sportsbook-mode='search'],
-.sportsbook-root[data-sportsbook-mode='favourites'] {
+.sportsbook-root[data-sportsbook-mode='favourites'],
+.sportsbook-root[data-sportsbook-mode='wc2026'],
+.sportsbook-root[data-sportsbook-mode='msi'] {
   background: #eef2f6;
   min-height: calc(100vh - var(--header-h, 100px));
+}
+
+.sportsbook-root[data-sportsbook-mode='wc2026'],
+.sportsbook-root[data-sportsbook-mode='msi'] {
+  color: inherit;
 }
 
 body.sportsbook-port-active {
@@ -51,7 +60,9 @@ body.sportsbook-port-active {
 }
 
 body.sportsbook-port-active[data-page='search'],
-body.sportsbook-port-active[data-page='favourites'] {
+body.sportsbook-port-active[data-page='favourites'],
+body.sportsbook-port-active[data-page='wc2026'],
+body.sportsbook-port-active[data-page='msi'] {
   background: #eef2f6;
 }
 

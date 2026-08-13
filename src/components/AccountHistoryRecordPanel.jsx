@@ -53,7 +53,8 @@ function getStatusTone(value) {
         normalized.includes('completed') ||
         normalized.includes('approved') ||
         normalized.includes('claimed') ||
-        normalized.includes('cleared')
+        normalized.includes('cleared') ||
+        normalized === 'won'
     ) {
         return 'success';
     }
@@ -62,7 +63,10 @@ function getStatusTone(value) {
         normalized.includes('pending') ||
         normalized.includes('processing') ||
         normalized.includes('in progress') ||
-        normalized.includes('ongoing')
+        normalized.includes('ongoing') ||
+        normalized === 'open' ||
+        normalized === 'running' ||
+        normalized === 'unsettled'
     ) {
         return 'warning';
     }
@@ -72,7 +76,9 @@ function getStatusTone(value) {
         normalized.includes('rejected') ||
         normalized.includes('cancelled') ||
         normalized.includes('canceled') ||
-        normalized.includes('declined')
+        normalized.includes('declined') ||
+        normalized === 'lost' ||
+        normalized === 'loss'
     ) {
         return 'danger';
     }
@@ -106,18 +112,26 @@ const HISTORY_QUICK_RANGES = [
     { id: 'month', label: 'In a month' },
 ];
 
+function rangeFromQuick(id) {
+    const end = new Date();
+    const start = new Date();
+    if (id === 'today') {
+        start.setTime(end.getTime());
+    } else if (id === '3days') {
+        start.setDate(start.getDate() - 2);
+    } else if (id === 'week') {
+        start.setDate(start.getDate() - 6);
+    } else if (id === 'month') {
+        start.setDate(start.getDate() - 29);
+    }
+    return {
+        start: formatDateForInput(start),
+        end: formatDateForInput(end),
+    };
+}
+
 /**
  * Shared filter + table shell for history/record pages.
- * @param {Object} props
- * @param {string} props.startDateLabel
- * @param {string} props.endDateLabel
- * @param {{ key: string, label: string, align?: 'left'|'right' }[]} props.columns
- * @param {Array<Record<string, any>>} [props.rows]
- * @param {string} [props.rowDateKey]
- * @param {import('react').ReactNode} [props.filterSlot]
- * @param {boolean} [props.pillQuickRanges]
- * @param {string} [props.emptyMessage]
- * @param {number} [props.pageSize]
  */
 export default function AccountHistoryRecordPanel({
     startDateLabel,
@@ -129,35 +143,35 @@ export default function AccountHistoryRecordPanel({
     pillQuickRanges = false,
     emptyMessage = null,
     pageSize = DEFAULT_PAGE_SIZE,
+    defaultQuickRange = 'today',
+    resetPageKey = '',
+    tableClassName = '',
+    resultsHeader = null,
+    transformRows = null,
+    renderCell = null,
+    renderTableFooter = null,
+    renderMobileList = null,
+    dateGridClassName = 'grid-cols-1 sm:grid-cols-2',
+    submitClassName = '',
 }) {
     const quickTabRefs = useRef({});
-    const today = new Date();
-    const [historyStart, setHistoryStart] = useState(formatDateForInput(today));
-    const [historyEnd, setHistoryEnd] = useState(formatDateForInput(new Date(today.getTime() + 86400000)));
-    const [historyQuickRange, setHistoryQuickRange] = useState('today');
+    const initialRange = rangeFromQuick(defaultQuickRange);
+    const [historyStart, setHistoryStart] = useState(initialRange.start);
+    const [historyEnd, setHistoryEnd] = useState(initialRange.end);
+    const [historyQuickRange, setHistoryQuickRange] = useState(defaultQuickRange);
     const [currentPage, setCurrentPage] = useState(1);
 
     const setHistoryRangeFromQuick = (id) => {
         setHistoryQuickRange(id);
-        const end = new Date();
-        let start = new Date();
-        if (id === 'today') {
-            start = new Date(end);
-        } else if (id === '3days') {
-            start.setDate(start.getDate() - 2);
-        } else if (id === 'week') {
-            start.setDate(start.getDate() - 6);
-        } else if (id === 'month') {
-            start.setDate(start.getDate() - 29);
-        }
-        setHistoryStart(formatDateForInput(start));
-        setHistoryEnd(formatDateForInput(end));
+        const next = rangeFromQuick(id);
+        setHistoryStart(next.start);
+        setHistoryEnd(next.end);
     };
 
     const colCount = columns.length;
     const startDate = parseHistoryDate(historyStart);
     const endDate = parseHistoryDate(historyEnd);
-    const filteredRows = rows.filter((row) => {
+    const dateFilteredRows = rows.filter((row) => {
         const rowDate = parseHistoryDate(row?.[rowDateKey]);
         if (!rowDate || !startDate || !endDate) {
             return true;
@@ -166,12 +180,13 @@ export default function AccountHistoryRecordPanel({
         const rowTime = rowDate.getTime();
         return rowTime >= startDate.getTime() && rowTime <= endDate.getTime();
     });
-
-    const totalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize));
+    const tableRows = transformRows ? transformRows(dateFilteredRows) : dateFilteredRows;
+    const totalPages = Math.max(1, Math.ceil(tableRows.length / pageSize));
+    const resultsCtx = { filteredRows: dateFilteredRows, tableRows };
 
     useEffect(() => {
         setCurrentPage(1);
-    }, [historyStart, historyEnd, rows, pageSize]);
+    }, [historyStart, historyEnd, rows, pageSize, resetPageKey]);
 
     useEffect(() => {
         if (currentPage > totalPages) {
@@ -181,8 +196,8 @@ export default function AccountHistoryRecordPanel({
 
     const paginatedRows = useMemo(() => {
         const startIndex = (currentPage - 1) * pageSize;
-        return filteredRows.slice(startIndex, startIndex + pageSize);
-    }, [filteredRows, currentPage, pageSize]);
+        return tableRows.slice(startIndex, startIndex + pageSize);
+    }, [tableRows, currentPage, pageSize]);
 
     const quickRangeButtonClass = (selected) =>
         filterPillClassName(selected, { shape: pillQuickRanges ? 'rounded-full' : 'rounded-xl' });
@@ -191,7 +206,7 @@ export default function AccountHistoryRecordPanel({
         <div className="history-record-panel space-y-6">
             <div className="history-record-filter-card surface-card rounded-2xl p-5 shadow-[var(--shadow-card-soft)] md:p-6">
                 {filterSlot ? <div className="mb-5">{filterSlot}</div> : null}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className={`grid gap-4 ${dateGridClassName}`}>
                     <CalendarDateInput
                         label={startDateLabel}
                         value={historyStart}
@@ -225,7 +240,7 @@ export default function AccountHistoryRecordPanel({
                 <div className="mt-4">
                     <button
                         type="button"
-                        className="history-record-submit btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-[var(--color-button-cta-primary)] shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02]"
+                        className={`history-record-submit btn-theme-cta inline-flex h-11 min-w-[120px] items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-bold text-[var(--color-button-cta-primary)] shadow-[var(--shadow-cta)] transition hover:scale-[1.02] hover:brightness-[1.02] ${submitClassName}`.trim()}
                     >
                         Submit
                     </button>
@@ -233,8 +248,26 @@ export default function AccountHistoryRecordPanel({
             </div>
 
             <div className="history-record-table-card surface-card overflow-hidden rounded-2xl shadow-[var(--shadow-card-soft)]">
-                <div className="overflow-x-auto">
-                    <table className="history-record-table w-full min-w-[320px] border-collapse text-sm">
+                {typeof resultsHeader === 'function' ? resultsHeader(resultsCtx) : resultsHeader}
+                {renderMobileList ? (
+                    <div className="history-record-mobile-list">
+                        {tableRows.length > 0 ? (
+                            renderMobileList({ ...resultsCtx, paginatedRows })
+                        ) : (
+                            <div className="history-record-empty-state mx-4 my-5 px-4 py-12 text-center text-sm font-medium text-[var(--color-text-primary)]">
+                                {emptyMessage ?? 'No data found'}
+                            </div>
+                        )}
+                    </div>
+                ) : null}
+                <div
+                    className={`history-record-desktop-table overflow-x-auto${
+                        renderMobileList ? ' history-record-desktop-table--paired' : ''
+                    }`}
+                >
+                    <table
+                        className={`history-record-table w-full min-w-[320px] border-collapse text-sm ${tableClassName}`.trim()}
+                    >
                         <thead>
                             <tr className="border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-table)]">
                                 {columns.map((col) => (
@@ -250,7 +283,7 @@ export default function AccountHistoryRecordPanel({
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredRows.length > 0 ? (
+                            {tableRows.length > 0 ? (
                                 paginatedRows.map((row, rowIndex) => (
                                     <tr
                                         key={row.id ?? `${rowIndex}-${rowDateKey}`}
@@ -263,7 +296,9 @@ export default function AccountHistoryRecordPanel({
                                                     col.align === 'right' ? 'text-right' : 'text-left'
                                                 }`}
                                             >
-                                                {col.key === 'status' ? (
+                                                {renderCell ? (
+                                                    renderCell(col, row)
+                                                ) : col.key === 'status' ? (
                                                     <span className={getStatusPillClassName(row?.[col.key])}>
                                                         {row?.[col.key] ?? '—'}
                                                     </span>
@@ -284,6 +319,9 @@ export default function AccountHistoryRecordPanel({
                                 </tr>
                             )}
                         </tbody>
+                        {tableRows.length > 0 && renderTableFooter ? (
+                            <tfoot>{renderTableFooter(resultsCtx)}</tfoot>
+                        ) : null}
                     </table>
                 </div>
                 <div className="history-record-table-footer">

@@ -115,14 +115,17 @@
       <!-- CENTER CONTENT -->
       <main class="main-content ev-main" id="main-content">
         <div class="ev-mobile-subbar" aria-label="Event navigation">
-          <a href="/sportsbook" class="ev-mobile-subbar__back" aria-label="Back">
+          <a href="/sportsbook" data-caelo-nav="sportsbook" class="ev-mobile-subbar__back" aria-label="Back">
             <img src="/sportsbook/mobile/assets/icons/sp-back.svg" alt="" width="10" height="16" />
           </a>
           <h1 class="ev-mobile-subbar__title">Event</h1>
           <div class="ev-mobile-subbar__actions">
-            <button type="button" class="ev-mobile-subbar__btn" aria-label="Favourite" data-toast="Favourites">
+            <a href="/sportsbook/search" data-caelo-nav="sportsbook-search" class="ev-mobile-subbar__btn" aria-label="Search">
+              <img src="/sportsbook/mobile/assets/icons/sp-search.svg" alt="" width="16" height="16" />
+            </a>
+            <a href="/sportsbook/favourites" data-caelo-nav="sportsbook-favourites" class="ev-mobile-subbar__btn" aria-label="Favourites">
               <img src="/sportsbook/mobile/assets/icons/ei-star.svg" alt="" width="16" height="16" />
-            </button>
+            </a>
             <button type="button" class="ev-mobile-subbar__btn" aria-label="Notifications" data-toast="Notifications">
               <img src="/sportsbook/mobile/assets/icons/ei-bell.svg" alt="" width="16" height="16" />
             </button>

@@ -18,8 +18,10 @@ body.mh-page.mh-page--long-term .mh-main {
 }
 
 body.mh-page.mh-page--long-term .mh-sp-subbar__title {
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 /* Sport / league blocks with side gutter like screenshot cards */

@@ -38,12 +38,12 @@
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   min-height: 44px;
-  padding: 6px 10px;
-  padding-top: calc(6px + env(safe-area-inset-top, 0px));
-  background: var(--header-nav-bg);
-  color: var(--text-inverse);
+  padding: 8px 12px;
+  padding-top: calc(8px + env(safe-area-inset-top, 0px));
+  background: var(--section-blue, #123b94);
+  color: #fff;
   box-sizing: border-box;
 }
 
@@ -59,7 +59,7 @@
   padding: 0;
   border: none;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.16);
   cursor: pointer;
   line-height: 0;
 }
@@ -76,11 +76,11 @@
   margin: 0;
   min-width: 0;
   font-family: var(--font);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-inverse);
+  letter-spacing: 0;
+  text-transform: none;
+  color: #fff;
 }
 
 .mh-mf__body {

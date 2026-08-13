@@ -533,7 +533,7 @@ body.sportsbook-port-active[data-page="search"],
     gap: 10px;
     min-height: 44px;
     padding: 8px 12px;
-    background: #123b94;
+    background: var(--section-blue, #123b94);
     color: #fff;
     box-sizing: border-box;
   }
@@ -557,10 +557,41 @@ body.sportsbook-port-active[data-page="search"],
 
   .se-mobile-subbar__title {
     margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
     font-family: var(--font);
     font-size: 16px;
     font-weight: 700;
     color: #fff;
+  }
+
+  .se-mobile-subbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .se-mobile-subbar__btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.16);
+    text-decoration: none;
+  }
+
+  .se-mobile-subbar__btn img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+    display: block;
   }
 
   .sportsbook-layout.se-layout {

@@ -913,10 +913,10 @@
   .ev-mobile-subbar {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     min-height: 44px;
-    padding: 6px 10px;
-    background: var(--header-bg);
+    padding: 8px 12px;
+    background: var(--section-blue, #123b94);
     color: #fff;
     border-radius: 0;
     margin: -8px -8px 0;
@@ -947,8 +947,9 @@
   .ev-mobile-subbar__title {
     margin: 0;
     flex: 1;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
+    color: #fff;
   }
 
   .ev-mobile-subbar__actions {

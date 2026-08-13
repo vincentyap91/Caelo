@@ -69,8 +69,10 @@ body.sportsbook-port-active .odd-btn.selected::after {
 .sportsbook-root .btn-acc,
 .sportsbook-root .btn-generate,
 .sportsbook-root .btn-app-download,
+.sportsbook-root .bss-save,
 .sportsbook-root .home-sports-filter__apply,
 body.sportsbook-port-active .btn-place,
+body.sportsbook-port-active .bss-save,
 body.sportsbook-port-active [data-cta='place'],
 body.sportsbook-port-active [data-cta='register'] {
   background: linear-gradient(180deg, var(--sb-cta-start) 0%, var(--sb-cta-end) 100%) !important;
@@ -84,7 +86,9 @@ body.sportsbook-port-active [data-cta='register'] {
 .sportsbook-root .btn-acc:hover,
 .sportsbook-root .btn-generate:hover,
 .sportsbook-root .btn-app-download:hover,
-body.sportsbook-port-active .btn-place:hover {
+.sportsbook-root .bss-save:hover,
+body.sportsbook-port-active .btn-place:hover,
+body.sportsbook-port-active .bss-save:hover {
   background: linear-gradient(180deg, #ffe08a 0%, var(--sb-cta-start) 100%) !important;
   color: var(--sb-cta-text) !important;
 }

@@ -122,6 +122,12 @@ function resolvePageFromPath() {
     if (pathname === '/sportsbook/search') {
       return 'sportsbook-search';
     }
+    if (pathname === '/sportsbook/wc2026') {
+      return 'sportsbook-wc2026';
+    }
+    if (pathname === '/sportsbook/msi') {
+      return 'sportsbook-msi';
+    }
     if (pathname === '/sportsbook') {
       return 'sportsbook';
     }
@@ -252,6 +258,8 @@ function isSportsbookPageId(pageId) {
     || pageId === 'sportsbook-fast-bet'
     || pageId === 'sportsbook-favourites'
     || pageId === 'sportsbook-search'
+    || pageId === 'sportsbook-wc2026'
+    || pageId === 'sportsbook-msi'
   );
 }
 
@@ -522,6 +530,8 @@ function AppInner() {
       'sportsbook-fast-bet': '/sportsbook/fast-bet',
       'sportsbook-favourites': '/sportsbook/favourites',
       'sportsbook-search': '/sportsbook/search',
+      'sportsbook-wc2026': '/sportsbook/wc2026',
+      'sportsbook-msi': '/sportsbook/msi',
       'e-sports': '/e-sports',
       lottery: '/lottery',
       fishing: '/fishing',
@@ -805,6 +815,26 @@ function AppInner() {
         <SportsbookPage
           authUser={authUser}
           mode="search"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-wc2026' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="wc2026"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-msi' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="msi"
           onNavigate={handleNavigate}
           onLoginClick={() => {
             setAuthModalView('login');

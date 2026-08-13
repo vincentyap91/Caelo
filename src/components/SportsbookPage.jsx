@@ -25,6 +25,8 @@ const MODE_STYLESHEETS = {
   ],
   'fast-bet': ['/sportsbook/css/fast-bet.css'],
   'multi-live': ['/sportsbook/css/multi-live.css'],
+  wc2026: ['/sportsbook/css/wc2026.css', '/sportsbook/css/top-events-theme.css'],
+  msi: ['/sportsbook/css/msi.css', '/sportsbook/css/top-events-theme.css'],
   favourites: ['/sportsbook/css/favourites.css'],
   search: ['/sportsbook/css/search.css'],
 };
@@ -52,6 +54,8 @@ const MODE_EXTRA_SCRIPTS = {
   'long-term-bets': ['/sportsbook/js/long-term-bets.js'],
   'fast-bet': ['/sportsbook/js/fast-bet.js'],
   'multi-live': ['/sportsbook/js/multi-live.js'],
+  wc2026: ['/sportsbook/js/top-events.js'],
+  msi: ['/sportsbook/js/top-events.js'],
   favourites: ['/sportsbook/js/favourites-page.js'],
   search: ['/sportsbook/js/search-page.js'],
 };
@@ -70,6 +74,8 @@ const MODE_LAYOUT = {
   'marble-live': '/sportsbook/partials/sportsbook-marble-live-layout.html',
   'fast-bet': '/sportsbook/partials/sportsbook-fast-bet-layout.html',
   'multi-live': '/sportsbook/partials/sportsbook-multi-live-layout.html',
+  wc2026: '/sportsbook/partials/sportsbook-wc2026-layout.html',
+  msi: '/sportsbook/partials/sportsbook-msi-layout.html',
   favourites: '/sportsbook/partials/sportsbook-favourites-layout.html',
   search: '/sportsbook/partials/sportsbook-search-layout.html',
 };
@@ -85,6 +91,8 @@ const MODE_DATA_PAGE = {
   'marble-live': 'marble-live',
   'fast-bet': 'fast-bet',
   'multi-live': 'multi-live',
+  wc2026: 'wc2026',
+  msi: 'msi',
   favourites: 'favourites',
   search: 'search',
 };
@@ -265,6 +273,9 @@ export default function SportsbookPage({
         }
         if (typeof window.SbBetSlipStore?.paintMyBets === 'function') {
           window.SbBetSlipStore.paintMyBets({ force: SKIP_SCRIPT_JS.has(resolvedMode) });
+        }
+        if (typeof window.applyBetSlipSettings === 'function') {
+          window.applyBetSlipSettings();
         }
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         requestAnimationFrame(() => {

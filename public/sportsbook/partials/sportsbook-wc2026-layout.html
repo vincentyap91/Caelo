@@ -1,0 +1,681 @@
+<div class="sportsbook-layout wc-layout wc-page">
+      <aside class="left-sidebar wc-left-sidebar" id="left-sidebar" aria-label="WC2026 navigation">
+        <button type="button" class="sidebar-collapse" id="sidebar-collapse" aria-label="Collapse block">
+          <img src="/sportsbook/assets/icons/nav-collapse.svg" alt="" width="9" height="10" />
+          <span>Collapse block</span>
+        </button>
+        <button type="button" class="mobile-drawer-close" id="left-drawer-close" aria-label="Close sports navigation">Close</button>
+
+        <div class="wc-side-card">
+          <div class="wc-side-title">
+            <img src="/sportsbook/assets/icons/te-trophy.svg" alt="" width="16" height="16" />
+            <span>WC2026</span>
+          </div>
+
+          <div class="wc-side-bydate">
+            <span class="wc-side-label">By date</span>
+            <div class="wc-side-bydate-btns">
+              <button type="button" class="wc-side-icon-btn" aria-label="List view">
+                <img src="/sportsbook/assets/icons/te-menu.svg" alt="" width="14" height="14" />
+              </button>
+              <button type="button" class="wc-side-icon-btn" aria-label="Calendar view">
+                <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
+          </div>
+
+          <div class="wc-side-sports-label">Sports</div>
+
+          <details class="wc-date-group" open>
+            <summary class="wc-date-summary">
+              <span class="wc-ds-text">Tomorrow</span>
+              <span class="wc-date-count">1</span>
+              <img src="/sportsbook/assets/icons/te-chevron.svg" alt="" class="wc-exp-chevron" width="10" height="6" />
+            </summary>
+            <div class="wc-date-sub">
+              <a href="#wc-match" class="wc-date-match">
+                <span class="wc-dm-time">03:00</span>
+                <span class="wc-dm-teams">Spain — Belgium</span>
+              </a>
+            </div>
+          </details>
+
+          <details class="wc-date-group">
+            <summary class="wc-date-summary">
+              <span class="wc-ds-text">12/07</span>
+              <span class="wc-date-count">3</span>
+              <img src="/sportsbook/assets/icons/te-chevron.svg" alt="" class="wc-exp-chevron" width="10" height="6" />
+            </summary>
+            <div class="wc-date-sub">
+              <a href="#wc-match" class="wc-date-match">England — Brazil</a>
+              <a href="#wc-match" class="wc-date-match">Portugal — Morocco</a>
+              <a href="#wc-match" class="wc-date-match">Argentina — USA</a>
+            </div>
+          </details>
+
+          <div class="wc-side-actions-v">
+            <a href="#wc-statistics" class="wc-side-btn-full">Statistics</a>
+            <a href="#wc-results" class="wc-side-btn-full">Results</a>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content wc-main" id="main-content">
+        <div class="nt-mobile-subbar" aria-label="WC2026">
+          <a href="/sportsbook" data-caelo-nav="sportsbook" class="nt-mobile-subbar__back" aria-label="Back">
+            <img src="/sportsbook/mobile/assets/icons/sp-back.svg" alt="" width="10" height="16" />
+          </a>
+          <h1 class="nt-mobile-subbar__title">WC2026</h1>
+          <div class="nt-mobile-subbar__actions">
+            <a href="/sportsbook/search" data-caelo-nav="sportsbook-search" class="nt-mobile-subbar__btn" aria-label="Search">
+              <img src="/sportsbook/mobile/assets/icons/sp-search.svg" alt="" width="16" height="16" />
+            </a>
+            <a href="/sportsbook/favourites" data-caelo-nav="sportsbook-favourites" class="nt-mobile-subbar__btn" aria-label="Favourites">
+              <img src="/sportsbook/mobile/assets/icons/sp-star.svg" alt="" width="16" height="16" />
+            </a>
+          </div>
+        </div>
+
+
+        <!-- SUBNAV -->
+        <section class="wc-subnav" aria-label="Top events">
+          <div class="wc-subnav-tabs">
+            <a href="/sportsbook/wc2026" data-caelo-nav="sportsbook-wc2026" class="wc-subnav-tab active" aria-current="page">
+              <span class="wc-subnav-icon wc-subnav-icon-wc" aria-hidden="true"></span>
+              WC2026
+            </a>
+            <a href="/sportsbook/msi" data-caelo-nav="sportsbook-msi" class="wc-subnav-tab">
+              <span class="wc-subnav-icon wc-subnav-icon-msi" aria-hidden="true"></span>
+              MSI
+            </a>
+          </div>
+        </section>
+
+        <!-- 1. HERO -->
+        <section class="wc-hero" id="wc-match" aria-labelledby="wc-match-title">
+          <div class="wc-hero-bg" aria-hidden="true"></div>
+          <img src="/sportsbook/assets/images/wc2026/hero-spain.png" alt="" class="wc-hero-art wc-hero-art-left" aria-hidden="true" onerror="this.hidden=true" />
+          <img src="/sportsbook/assets/images/wc2026/hero-belgium.png" alt="" class="wc-hero-art wc-hero-art-right" aria-hidden="true" onerror="this.hidden=true" />
+          <div class="wc-hero-center">
+            <h1 class="wc-hero-title" id="wc-match-title">WC2026</h1>
+            <div class="wc-hero-card">
+              <div class="wc-hero-scoreboard">
+                <div class="wc-hero-team wc-hero-team-home">
+                  <span>Spain</span>
+                  <img src="/sportsbook/assets/images/wc2026/flag-spain.png" alt="" class="wc-flag-circle" onerror="this.hidden=true" />
+                </div>
+                <div class="wc-hero-score">- : -</div>
+                <div class="wc-hero-team wc-hero-team-away">
+                  <span class="wc-flag-circle wc-flag-be" aria-hidden="true"></span>
+                  <span>Belgium</span>
+                </div>
+              </div>
+              <div class="wc-hero-date">11/07 / 03:00</div>
+              <div class="wc-hero-odds" aria-label="Main 1X2 odds">
+                <button type="button" class="odd-btn wc-odd-btn" data-odd='{"id":"wc-main-w1","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"W1","odds":1.667}'>
+                  <span>W1</span><strong>1.667</strong>
+                </button>
+                <button type="button" class="odd-btn wc-odd-btn" data-odd='{"id":"wc-main-x","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"X","odds":4.125}'>
+                  <span>X</span><strong>4.125</strong>
+                </button>
+                <button type="button" class="odd-btn wc-odd-btn" data-odd='{"id":"wc-main-w2","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"W2","odds":5.77}'>
+                  <span>W2</span><strong>5.77</strong>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. MATCH BOARD (summary + markets side by side) -->
+        <div class="wc-match-board">
+
+          <!-- LEFT: Summary Card -->
+          <article class="wc-summary-card">
+            <div class="wc-tabs" role="tablist">
+              <button type="button" class="wc-tab active" role="tab" aria-selected="true" data-tab-target="wc-sum-panel">Summary</button>
+              <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="wc-info-panel">Information</button>
+            </div>
+            <div class="wc-tab-panel" id="wc-sum-panel" data-tab-panel>
+              <div class="wc-sum-scoreboard">
+                <div class="wc-sum-team">
+                  <img src="/sportsbook/assets/images/wc2026/flag-spain.png" alt="Spain" class="wc-flag-lg" onerror="this.hidden=true" />
+                  <span>Spain</span>
+                </div>
+                <div class="wc-sum-score">-:-</div>
+                <div class="wc-sum-team">
+                  <span class="wc-flag-lg wc-flag-be" aria-hidden="true"></span>
+                  <span>Belgium</span>
+                </div>
+              </div>
+              <div class="wc-prob-section" id="wc-statistics">
+                <div class="wc-prob-header">
+                  <span class="wc-prob-title">Probability of winning</span>
+                  <span class="wc-prob-model">Market model</span>
+                </div>
+                <div class="wc-prob-grid">
+                  <div class="wc-prob-item">
+                    <span class="wc-prob-label">Spain</span>
+                    <div class="wc-prob-track"><span style="width:59%"></span></div>
+                    <strong class="wc-prob-val">59%</strong>
+                  </div>
+                  <div class="wc-prob-item wc-prob-draw">
+                    <span class="wc-prob-label">Draw</span>
+                    <div class="wc-prob-track wc-prob-track-draw"><span style="width:24%"></span></div>
+                    <strong class="wc-prob-val">24%</strong>
+                  </div>
+                  <div class="wc-prob-item wc-prob-away">
+                    <span class="wc-prob-label">Belgium</span>
+                    <div class="wc-prob-track wc-prob-track-away"><span style="width:17%"></span></div>
+                    <strong class="wc-prob-val">17%</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="wc-countdown-row" aria-label="Time until match">
+                <div class="wc-countdown-unit"><strong>15</strong><span>Hours</span></div>
+                <div class="wc-countdown-sep">:</div>
+                <div class="wc-countdown-unit"><strong>14</strong><span>Minutes</span></div>
+                <div class="wc-countdown-sep">:</div>
+                <div class="wc-countdown-unit"><strong>01</strong><span>Seconds</span></div>
+              </div>
+              <div class="wc-sum-footer">
+                <span class="wc-sum-date">11/07 / 03:00</span>
+                <button type="button" class="wc-fav-btn" aria-label="Add to favourites">
+                  <img src="/sportsbook/assets/icons/nav-star.svg" alt="" width="14" height="14" />
+                </button>
+              </div>
+            </div>
+            <div class="wc-tab-panel" id="wc-info-panel" data-tab-panel hidden>
+              <p class="wc-info-copy">Quarter-final preview – Spain vs Belgium, 11 July 03:00 UTC. Venue: SoFi Stadium, Inglewood. This is a demo page; all betting interactions are simulated.</p>
+            </div>
+          </article>
+
+          <!-- RIGHT: Markets Card -->
+          <article class="wc-markets-card">
+            <div class="wc-markets-toolbar">
+              <button type="button" class="wc-mkt-chip active">All markets <span>(1444)</span></button>
+              <button type="button" class="wc-mkt-chip">Total <span>(106)</span></button>
+              <div class="wc-mkt-search">
+                <img src="/sportsbook/assets/icons/te-search.svg" alt="" width="12" height="12" />
+                <input type="search" placeholder="Search by market" class="wc-mkt-input" aria-label="Search by market" />
+              </div>
+              <button type="button" class="wc-mkt-collapse">Collapse all</button>
+            </div>
+            <div class="wc-markets-list">
+              <article class="wc-market open">
+                <button type="button" class="wc-market-head" aria-expanded="true">
+                  <span>1X2</span>
+                  <strong>3</strong>
+                </button>
+                <div class="wc-market-body">
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-1x2-1","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"W1","odds":1.667}'><span>W1</span><span>1.667</span></button>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-1x2-x","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"X","odds":4.125}'><span>X</span><span>4.125</span></button>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-1x2-2","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"W2","odds":5.77}'><span>W2</span><span>5.77</span></button>
+                </div>
+              </article>
+              <article class="wc-market">
+                <button type="button" class="wc-market-head" aria-expanded="false">
+                  <span>1X2 (1st Half)</span>
+                  <strong>3</strong>
+                </button>
+                <div class="wc-market-body" hidden>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-h1-1","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2 (1st Half)","selection":"Spain","odds":2.245}'><span>Spain</span><span>2.245</span></button>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-h1-x","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2 (1st Half)","selection":"Draw","odds":2.315}'><span>Draw</span><span>2.315</span></button>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-h1-2","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2 (1st Half)","selection":"Belgium","odds":2.245}'><span>Belgium</span><span>2.245</span></button>
+                </div>
+              </article>
+              <article class="wc-market">
+                <button type="button" class="wc-market-head" aria-expanded="false">
+                  <span>Double Chance</span>
+                  <strong>3</strong>
+                </button>
+                <div class="wc-market-body" hidden>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-dc-1x","league":"World Cup 2026","match":"Spain vs Belgium","market":"Double Chance","selection":"1X","odds":1.305}'><span>1X</span><span>1.305</span></button>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-dc-12","league":"World Cup 2026","match":"Spain vs Belgium","market":"Double Chance","selection":"12","odds":1.235}'><span>12</span><span>1.235</span></button>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-dc-x2","league":"World Cup 2026","match":"Spain vs Belgium","market":"Double Chance","selection":"X2","odds":1.305}'><span>X2</span><span>1.305</span></button>
+                </div>
+              </article>
+              <article class="wc-market">
+                <button type="button" class="wc-market-head" aria-expanded="false">
+                  <span>Team to Qualify for the next stage</span>
+                  <strong>2</strong>
+                </button>
+                <div class="wc-market-body wc-market-body-2col" hidden>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-qual-spain","league":"World Cup 2026","match":"Spain vs Belgium","market":"Team to Qualify","selection":"Spain","odds":1.884}'><span>Spain</span><span>1.884</span></button>
+                  <button type="button" class="odd-btn" data-odd='{"id":"wc-qual-belgium","league":"World Cup 2026","match":"Spain vs Belgium","market":"Team to Qualify","selection":"Belgium","odds":1.884}'><span>Belgium</span><span>1.884</span></button>
+                </div>
+              </article>
+            </div>
+          </article>
+        </div>
+
+        <!-- 3. SCHEDULE -->
+        <section class="wc-schedule" aria-label="Match schedule" id="wc-results">
+          <div class="wc-tabs wc-schedule-tabs" role="tablist">
+            <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="sched-08">08/07</button>
+            <button type="button" class="wc-tab active" role="tab" aria-selected="true" data-tab-target="sched-today">Today</button>
+            <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="sched-tmrw">Tomorrow</button>
+            <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="sched-12">12/07</button>
+            <a href="#" class="wc-my-teams-link">My teams</a>
+          </div>
+          <div class="wc-tab-panel" id="sched-08" data-tab-panel hidden>
+            <p class="wc-info-copy wc-sched-empty">No matches on 08/07.</p>
+          </div>
+          <div class="wc-tab-panel" id="sched-today" data-tab-panel>
+            <div class="wc-result-card">
+              <div class="wc-result-teams">
+                <div class="wc-result-team">
+                  <span class="wc-flag-circle wc-flag-fr" aria-hidden="true"></span>
+                  <span class="wc-result-name">France</span>
+                  <strong class="wc-result-score">2</strong>
+                </div>
+                <div class="wc-result-divider">:</div>
+                <div class="wc-result-team wc-result-team-away">
+                  <strong class="wc-result-score">0</strong>
+                  <span class="wc-result-name">Morocco</span>
+                  <span class="wc-flag-circle wc-flag-ma" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="wc-result-meta">
+                <span class="wc-result-date">10/07 / Match finished</span>
+                <a href="#" class="wc-result-stats-btn">Match statistics</a>
+              </div>
+            </div>
+          </div>
+          <div class="wc-tab-panel" id="sched-tmrw" data-tab-panel hidden>
+            <p class="wc-info-copy wc-sched-empty">Tomorrow's matches loading...</p>
+          </div>
+          <div class="wc-tab-panel" id="sched-12" data-tab-panel hidden>
+            <p class="wc-info-copy wc-sched-empty">12/07 fixtures loading...</p>
+          </div>
+        </section>
+
+        <!-- 4. CHAMPION -->
+        <section class="wc-champion" aria-label="Tournament winner">
+          <div class="wc-champion-header">
+            <span class="wc-champion-label">Champion</span>
+          </div>
+          <div class="wc-champion-inner">
+            <h2 class="wc-champion-who">Who Will Win</h2>
+            <div class="wc-champion-grid">
+              <div class="wc-champ-card">
+                <span class="wc-flag-lg wc-flag-fr" aria-hidden="true"></span>
+                <span class="wc-champ-name">France</span>
+                <button type="button" class="odd-btn wc-champ-odd" data-odd='{"id":"winner-france","league":"World Cup 2026","match":"Tournament Winner","market":"Who Will Win","selection":"France","odds":2.38}'><span>Yes</span><span>2.38</span></button>
+              </div>
+              <div class="wc-champ-card">
+                <span class="wc-flag-lg wc-flag-arg" aria-hidden="true"></span>
+                <span class="wc-champ-name">Argentina</span>
+                <button type="button" class="odd-btn wc-champ-odd" data-odd='{"id":"winner-argentina","league":"World Cup 2026","match":"Tournament Winner","market":"Who Will Win","selection":"Argentina","odds":5}'><span>Yes</span><span>5.00</span></button>
+              </div>
+              <div class="wc-champ-card">
+                <span class="wc-flag-lg wc-flag-esp" aria-hidden="true">
+                  <img src="/sportsbook/assets/images/wc2026/flag-spain.png" alt="" onerror="this.hidden=true" />
+                </span>
+                <span class="wc-champ-name">Spain</span>
+                <button type="button" class="odd-btn wc-champ-odd" data-odd='{"id":"winner-spain","league":"World Cup 2026","match":"Tournament Winner","market":"Who Will Win","selection":"Spain","odds":5}'><span>Yes</span><span>5.00</span></button>
+              </div>
+              <div class="wc-champ-card">
+                <span class="wc-flag-lg wc-flag-eng" aria-hidden="true"></span>
+                <span class="wc-champ-name">England</span>
+                <button type="button" class="odd-btn wc-champ-odd" data-odd='{"id":"winner-england","league":"World Cup 2026","match":"Tournament Winner","market":"Who Will Win","selection":"England","odds":5.7}'><span>Yes</span><span>5.70</span></button>
+              </div>
+              <div class="wc-champ-card">
+                <span class="wc-flag-lg wc-flag-nor" aria-hidden="true"></span>
+                <span class="wc-champ-name">Norway</span>
+                <button type="button" class="odd-btn wc-champ-odd" data-odd='{"id":"winner-norway","league":"World Cup 2026","match":"Tournament Winner","market":"Who Will Win","selection":"Norway","odds":15}'><span>Yes</span><span>15.00</span></button>
+              </div>
+              <div class="wc-champ-card">
+                <span class="wc-flag-lg wc-flag-bel" aria-hidden="true"></span>
+                <span class="wc-champ-name">Belgium</span>
+                <button type="button" class="odd-btn wc-champ-odd" data-odd='{"id":"winner-belgium","league":"World Cup 2026","match":"Tournament Winner","market":"Who Will Win","selection":"Belgium","odds":35}'><span>Yes</span><span>35.00</span></button>
+              </div>
+              <div class="wc-champ-card">
+                <span class="wc-flag-lg wc-flag-sui" aria-hidden="true"></span>
+                <span class="wc-champ-name">Switzerland</span>
+                <button type="button" class="odd-btn wc-champ-odd" data-odd='{"id":"winner-swiss","league":"World Cup 2026","match":"Tournament Winner","market":"Who Will Win","selection":"Switzerland","odds":41}'><span>Yes</span><span>41.00</span></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. BRACKET -->
+        <section class="wc-bracket-panel" aria-label="Tournament bracket">
+          <div class="wc-bracket-panel-head">
+            <h2>Tournament Progress</h2>
+          </div>
+          <div class="wc-tabs" role="tablist">
+            <button type="button" class="wc-tab active" role="tab" aria-selected="true" data-tab-target="knockout">Knockout stages</button>
+            <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="standings">Standings</button>
+            <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="calendar">Event calendar</button>
+          </div>
+          <div class="wc-tab-panel wc-bracket-view" id="knockout" data-tab-panel>
+            <div class="wc-bracket-col">
+              <div class="wc-bracket-round-label">1/4</div>
+              <article class="wc-bracket-match wc-bracket-active">
+                <div class="wc-bm-team">
+                  <img src="/sportsbook/assets/images/wc2026/flag-spain.png" alt="" class="wc-flag-sm" onerror="this.hidden=true" />
+                  <span>Spain</span><strong>-</strong>
+                </div>
+                <div class="wc-bm-team">
+                  <span class="wc-flag-sm wc-flag-be" aria-hidden="true"></span>
+                  <span>Belgium</span><strong>-</strong>
+                </div>
+                <small class="wc-bm-date">11/07 / 03:00</small>
+              </article>
+              <article class="wc-bracket-match">
+                <div class="wc-bm-team"><span>Team 1</span><strong>-</strong></div>
+                <div class="wc-bm-team"><span>Team 2</span><strong>-</strong></div>
+                <small class="wc-bm-date">12/07 / 03:00</small>
+              </article>
+            </div>
+            <div class="wc-bracket-connector" aria-hidden="true">
+              <svg viewBox="0 0 40 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,55 H20 V165 H0" stroke="var(--border-light)" stroke-width="1.5" fill="none"/>
+                <path d="M20,110 H40" stroke="var(--border-light)" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+            <div class="wc-bracket-col wc-bracket-col-mid">
+              <div class="wc-bracket-round-label">1/2</div>
+              <article class="wc-bracket-match wc-bracket-muted">
+                <div class="wc-bm-team"><span>Winner QF1</span><strong>-</strong></div>
+                <div class="wc-bm-team"><span>France</span><strong>-</strong></div>
+                <small class="wc-bm-date">15/07 / 03:00</small>
+              </article>
+            </div>
+            <div class="wc-bracket-connector" aria-hidden="true">
+              <svg viewBox="0 0 40 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,110 H20 V110 H40" stroke="var(--border-light)" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+            <div class="wc-bracket-col wc-bracket-col-final">
+              <div class="wc-bracket-round-label">Final</div>
+              <article class="wc-bracket-match wc-bracket-muted">
+                <div class="wc-bm-team"><span>TBD</span><strong>-</strong></div>
+                <div class="wc-bm-team"><span>TBD</span><strong>-</strong></div>
+                <small class="wc-bm-date">19/07 / 03:00</small>
+              </article>
+            </div>
+          </div>
+          <div class="wc-tab-panel" id="standings" data-tab-panel hidden>
+            <div class="wc-standings">
+              <div><span>Spain</span><strong>QF</strong></div>
+              <div><span>Belgium</span><strong>QF</strong></div>
+              <div><span>France</span><strong>SF path</strong></div>
+            </div>
+          </div>
+          <div class="wc-tab-panel" id="calendar" data-tab-panel hidden>
+            <div class="wc-calendar">
+              <div><span>11/07</span><strong>Spain vs Belgium</strong></div>
+              <div><span>12/07</span><strong>England vs Brazil</strong></div>
+              <div><span>15/07</span><strong>Semi-final</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. VENUE -->
+        <section class="wc-venue-panel" aria-label="Match venue">
+          <div class="wc-venue-left">
+            <h2 class="wc-venue-heading">Venue</h2>
+            <div class="wc-venue-facts-list">
+              <div class="wc-venue-fact"><span>Venue</span><strong>SoFi Stadium</strong></div>
+              <div class="wc-venue-fact"><span>Location</span><strong>Inglewood</strong></div>
+              <div class="wc-venue-fact"><span>Built in</span><strong>2020</strong></div>
+              <div class="wc-venue-fact"><span>Capacity</span><strong>70,000</strong></div>
+            </div>
+            <div class="wc-venue-match-widget">
+              <div class="wc-vm-teams">
+                <img src="/sportsbook/assets/images/wc2026/flag-spain.png" alt="Spain" class="wc-flag-sm" onerror="this.hidden=true" />
+                <span>Spain</span>
+                <span class="wc-vm-vs">vs</span>
+                <span>Belgium</span>
+                <span class="wc-flag-sm wc-flag-be" aria-hidden="true"></span>
+              </div>
+              <div class="wc-vm-odds">
+                <button type="button" class="odd-btn" data-odd='{"id":"wc-venue-w1","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"W1","odds":1.667}'><span>W1</span><span>1.667</span></button>
+                <button type="button" class="odd-btn" data-odd='{"id":"wc-venue-x","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"X","odds":4.125}'><span>X</span><span>4.125</span></button>
+                <button type="button" class="odd-btn" data-odd='{"id":"wc-venue-w2","league":"World Cup 2026","match":"Spain vs Belgium","market":"1X2","selection":"W2","odds":5.77}'><span>W2</span><span>5.77</span></button>
+              </div>
+              <div class="wc-vm-pager">
+                <button type="button" class="wc-vm-page-btn" aria-label="Previous match">&#8249;</button>
+                <span>1 / 3</span>
+                <button type="button" class="wc-vm-page-btn" aria-label="Next match">&#8250;</button>
+              </div>
+            </div>
+          </div>
+          <div class="wc-venue-right">
+            <img src="/sportsbook/assets/images/wc2026/section-venue.png" alt="Venue map" class="wc-venue-img" onerror="this.style.display='none'" />
+          </div>
+        </section>
+
+        <!-- 7. TOP 10 PLAYERS -->
+        <section class="wc-players" aria-label="Top 10 players" id="wc-scorers">
+          <div class="wc-players-header">
+            <h2>Top 10 players</h2>
+          </div>
+          <div class="wc-tabs" role="tablist">
+            <button type="button" class="wc-tab active" role="tab" aria-selected="true" data-tab-target="tab-scorers">Top scorers</button>
+            <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="tab-assists">Assists</button>
+            <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="tab-booked">Booked/sent off</button>
+            <button type="button" class="wc-tab" role="tab" aria-selected="false" data-tab-target="tab-cards">Cards</button>
+          </div>
+          <div class="wc-tab-panel" id="tab-scorers" data-tab-panel>
+            <table class="wc-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Player</th>
+                  <th>Games</th>
+                  <th>Penalties</th>
+                  <th>Goals</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><span class="wc-player"><img src="/sportsbook/assets/images/wc2026/raw-02.png" alt="" width="28" height="28" onerror="this.hidden=true" />Messi <span class="wc-player-nat">ARG</span></span></td>
+                  <td>5</td><td>0</td><td>8</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><span class="wc-player"><img src="/sportsbook/assets/images/wc2026/raw-14.png" alt="" width="28" height="28" onerror="this.hidden=true" />Mbappe <span class="wc-player-nat">FRA</span></span></td>
+                  <td>6</td><td>1</td><td>8</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><span class="wc-player"><img src="/sportsbook/assets/images/wc2026/raw-08.png" alt="" width="28" height="28" onerror="this.hidden=true" />Haaland <span class="wc-player-nat">NOR</span></span></td>
+                  <td>4</td><td>0</td><td>7</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><span class="wc-player"><img src="/sportsbook/assets/images/wc2026/raw-16.png" alt="" width="28" height="28" onerror="this.hidden=true" />Kane <span class="wc-player-nat">ENG</span></span></td>
+                  <td>5</td><td>2</td><td>6</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><span class="wc-player"><span class="wc-player-initials">OD</span>Dembele <span class="wc-player-nat">FRA</span></span></td>
+                  <td>6</td><td>0</td><td>5</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><span class="wc-player"><span class="wc-player-initials">IS</span>Sarr <span class="wc-player-nat">SEN</span></span></td>
+                  <td>4</td><td>0</td><td>4</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><span class="wc-player"><span class="wc-player-initials">MO</span>Oyarzabal <span class="wc-player-nat">ESP</span></span></td>
+                  <td>5</td><td>0</td><td>4</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><span class="wc-player"><span class="wc-player-initials">JB</span>Bellingham <span class="wc-player-nat">ENG</span></span></td>
+                  <td>5</td><td>0</td><td>4</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><span class="wc-player"><span class="wc-player-initials">JQ</span>Quinones <span class="wc-player-nat">MEX</span></span></td>
+                  <td>5</td><td>0</td><td>4</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><span class="wc-player"><span class="wc-player-initials">VJ</span>Vinicius <span class="wc-player-nat">BRA</span></span></td>
+                  <td>5</td><td>0</td><td>4</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="wc-tab-panel" id="tab-assists" data-tab-panel hidden>
+            <p class="wc-info-copy" style="padding:14px">Assists data loading...</p>
+          </div>
+          <div class="wc-tab-panel" id="tab-booked" data-tab-panel hidden>
+            <p class="wc-info-copy" style="padding:14px">Booked / sent off data loading...</p>
+          </div>
+          <div class="wc-tab-panel" id="tab-cards" data-tab-panel hidden>
+            <p class="wc-info-copy" style="padding:14px">Cards data loading...</p>
+          </div>
+        </section>
+
+        <!-- 8. CTA -->
+        <section class="wc-live-cta" aria-label="More live events">
+          <strong class="wc-live-cta-title">More football events in LIVE</strong>
+          <a href="/sportsbook/live-national-team" data-caelo-nav="sportsbook-live-national-team" class="wc-live-btn">Go to LIVE</a>
+        </section>
+
+      </main>
+
+      <aside class="right-sidebar" id="right-sidebar" aria-label="Account tools">
+        <button type="button" class="right-collapse" id="right-collapse" aria-label="Collapse block">
+          <span>Collapse block</span>
+          <img src="/sportsbook/assets/icons/rb-collapse-chevron.svg" alt="" width="9" height="10" />
+        </button>
+        <button type="button" class="mobile-drawer-close" id="right-drawer-close" aria-label="Close bet slip">
+          <span class="mobile-drawer-handle" aria-hidden="true"></span>
+          <span class="mobile-drawer-close-title">Bet slip</span>
+          <span class="mobile-drawer-close-action">Close</span>
+        </button>
+
+        <div class="reg-panel">
+          <h2 class="reg-title">REGISTRATION</h2>
+          <form class="reg-form" id="reg-form" novalidate>
+            <div class="reg-tabs" role="tablist">
+              <button type="button" class="reg-tab active" role="tab" aria-selected="true" data-reg="oneclick">
+                <img src="/sportsbook/assets/icons/rb-bolt.svg" alt="" width="12" height="16" />
+                One-click
+              </button>
+              <button type="button" class="reg-tab" role="tab" aria-selected="false" data-reg="phone">
+                <img src="/sportsbook/assets/icons/rb-phone.svg" alt="" width="11" height="16" />
+                By phone
+              </button>
+            </div>
+
+            <div class="reg-fields" data-panel="oneclick">
+              <button type="button" class="reg-select" id="reg-country" aria-label="Country">
+                <img src="/sportsbook/assets/icons/rb-flag-my.svg" alt="" class="reg-flag" width="16" height="16" />
+                <span class="reg-select-label">Malaysia</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+              <button type="button" class="reg-select" id="reg-currency" aria-label="Currency">
+                <span class="reg-select-label">Malaysian ringgit (MYR)</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+              <input type="text" id="reg-promo" name="promo" class="reg-input" placeholder="Promo code (if you have one)" autocomplete="off" />
+            </div>
+
+            <div class="reg-fields" data-panel="phone" hidden>
+              <input type="tel" id="reg-phone" name="phone" class="reg-input" placeholder="Phone number" autocomplete="off" />
+              <button type="button" class="reg-select" aria-label="Currency">
+                <span class="reg-select-label">Malaysian ringgit (MYR)</span>
+                <img src="/sportsbook/assets/icons/rb-chevron.svg" alt="" class="reg-select-chevron" width="10" height="6" />
+              </button>
+            </div>
+
+            <button type="submit" class="btn-reg">Register</button>
+            <p class="reg-terms">
+              By clicking this button you confirm that you have read and agree to the
+              <a href="terms.html">Terms and Conditions</a> and
+              <a href="#">Privacy Policy</a> of the company and confirm that you are of legal age
+            </p>
+            <p class="demo-msg" id="reg-demo" hidden>Demo only â€” no account created.</p>
+          </form>
+          <a href="#reg-form" class="reg-bonus-bar">100% bonus on your 1st deposit</a>
+        </div>
+
+        <div class="bet-slip-panel">
+          <div class="bet-slip-tabs" role="tablist">
+            <button type="button" class="bet-tab active" role="tab" aria-selected="true" data-bet-tab="slip">Bet slip</button>
+            <button type="button" class="bet-tab" role="tab" aria-selected="false" data-bet-tab="mybets">My bets</button>
+          </div>
+          <div class="bet-slip-body" id="bet-slip-body">
+            <div class="bet-toolbar">
+              <span class="bet-toolbar-title">Your bets</span>
+              <button type="button" class="bet-icon-btn" aria-label="Share">
+                <img src="/sportsbook/assets/icons/rb-share.svg" alt="" width="12" height="12" />
+              </button>
+              <button type="button" class="bet-icon-btn" aria-label="Settings" title="Settings">
+                <img src="/sportsbook/assets/icons/rb-settings.svg" alt="" width="12" height="12" />
+              </button>
+            </div>
+            <div class="bet-empty" id="bet-empty">
+              <p class="bet-empty-text">Add events to the bet slip or<br />enter a code to load events</p>
+            </div>
+            <div class="bet-list" id="bet-list" hidden></div>
+            <div class="bet-footer" id="bet-footer" hidden>
+              <label class="stake-label">
+                Stake
+                <input type="number" id="stake-input" min="1" step="1" value="10" />
+              </label>
+              <div class="bet-totals">
+                <div><span>Total odds</span><strong id="total-odds">1.00</strong></div>
+                <div><span>Potential return</span><strong id="potential-return">0.00</strong></div>
+              </div>
+              <div class="bet-actions">
+                <button type="button" class="btn-clear" id="clear-bets">Clear All</button>
+                <button type="button" class="btn-place" id="place-bet">Place Bet</button>
+              </div>
+            </div>
+            <a href="#reg-form" class="btn-slip-reg" id="bet-reg-cta">Registration</a>
+            <button type="button" class="bet-save-link">Save/load events</button>
+          </div>
+          <div class="my-bets-body" id="my-bets-body" hidden>
+            <p class="bet-empty-text">No open bets. Place a bet to see it here.</p>
+          </div>
+        </div>
+
+        <div class="generator-panel">
+          <div class="gen-copy">
+            <h2 class="gen-title">Bet slip<br />generator</h2>
+            <p class="gen-text">Enter your parameters and we will generate a bet slip for you</p>
+          </div>
+          <img class="gen-art-img" src="/sportsbook/assets/images/rb-generator-art.png" alt="" width="163" height="162" />
+          <button type="button" class="btn-generate" id="generate-slip">Generate</button>
+        </div>
+
+        <div class="app-panel" id="app-panel">
+          <div class="app-tabs">
+            <button type="button" class="app-tab active" data-app="android">
+              <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" />
+              Android
+            </button>
+            <button type="button" class="app-tab" data-app="ios">
+              <img src="/sportsbook/assets/icons/rb-apple.svg" alt="" width="16" height="16" />
+              iOS
+            </button>
+            <button type="button" class="app-close" id="app-close" aria-label="Close">
+              <img src="/sportsbook/assets/icons/rb-close.svg" alt="" width="10" height="10" />
+            </button>
+          </div>
+          <div class="app-body">
+            <div class="app-phone">
+              <img src="/sportsbook/assets/images/rb-phone-qr.png" alt="QR code" width="118" height="125" />
+            </div>
+            <div class="app-meta">
+              <img src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp" alt="12WIN" class="app-logo" width="96" height="22" />
+              <p class="app-label">Mobile<br />application</p>
+              <a href="#" class="btn-app-download" id="app-download">
+                <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" class="app-dl-icon" />
+                Free&nbsp;download
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>

@@ -27,6 +27,45 @@ export const TRANSACTION_RECORD_TABS = [
     { id: 'withdrawal', label: 'Withdrawals' },
 ];
 
+export const BET_RECORD_TYPE_OPTIONS = [
+    { value: 'all', label: 'All' },
+    { value: 'sports', label: 'Sports' },
+    { value: 'casino', label: 'Casino' },
+    { value: 'live', label: 'Live' },
+];
+
+export const BET_RECORD_STATUS_OPTIONS = [
+    { value: 'all', label: 'All' },
+    { value: 'open', label: 'Open' },
+    { value: 'won', label: 'Won' },
+    { value: 'lost', label: 'Loss' },
+    { value: 'sold', label: 'Sold' },
+    { value: 'void', label: 'Void' },
+    { value: 'cancelled', label: 'Cancelled' },
+];
+
+export const BET_RECORD_VIEW_TABS = [
+    { id: 'details', label: 'Details' },
+    { id: 'summary', label: 'Summary' },
+];
+
+export const BET_RECORD_DETAIL_COLUMNS = [
+    { key: 'event', label: 'Event', align: 'left' },
+    { key: 'slip', label: 'Bet Slip', align: 'left' },
+    { key: 'date', label: 'Date', align: 'left' },
+    { key: 'betType', label: 'Bet Type', align: 'left' },
+    { key: 'stake', label: 'Bet', align: 'right' },
+    { key: 'odds', label: 'Odds', align: 'right' },
+    { key: 'status', label: 'Status', align: 'left' },
+    { key: 'payout', label: 'Payout', align: 'right' },
+];
+
+export const BET_RECORD_SUMMARY_COLUMNS = [
+    { key: 'provider', label: 'Provider', align: 'left' },
+    { key: 'turnover', label: 'Settled Stake', align: 'right' },
+    { key: 'winLoss', label: 'Win/Loss', align: 'right' },
+];
+
 export const TRANSACTION_RECORD_ROWS = [
     {
         id: 'dep-0',
@@ -157,13 +196,9 @@ export const HISTORY_RECORD_PANEL_CONFIG = {
     },
     'bet-record': {
         title: 'Bet Record',
-        startDateLabel: CLAIMDATE_LABELS.start,
-        endDateLabel: CLAIMDATE_LABELS.end,
-        columns: [
-            { key: 'time', label: 'Bet Time', align: 'left' },
-            { key: 'game', label: 'Game', align: 'left' },
-            { key: 'stake', label: 'Stake', align: 'right' },
-        ],
+        startDateLabel: 'Start Date',
+        endDateLabel: 'End Date',
+        columns: BET_RECORD_DETAIL_COLUMNS,
     },
     'commission-record': {
         title: 'Commission Record',

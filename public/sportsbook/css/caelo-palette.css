@@ -87,8 +87,11 @@ body.sportsbook-port-active .odd-btn.selected::after {
 .sportsbook-root .btn-acc,
 .sportsbook-root .btn-generate,
 .sportsbook-root .btn-app-download,
+.sportsbook-root .bss-save,
 .sportsbook-root .home-sports-filter__apply,
+.sportsbook-root .wc-live-btn,
 body.sportsbook-port-active .btn-place,
+body.sportsbook-port-active .bss-save,
 body.sportsbook-port-active [data-cta='place'],
 body.sportsbook-port-active [data-cta='register'] {
   background: linear-gradient(180deg, var(--sb-cta-start) 0%, var(--sb-cta-end) 100%) !important;
@@ -102,7 +105,10 @@ body.sportsbook-port-active [data-cta='register'] {
 .sportsbook-root .btn-acc:hover,
 .sportsbook-root .btn-generate:hover,
 .sportsbook-root .btn-app-download:hover,
-body.sportsbook-port-active .btn-place:hover {
+.sportsbook-root .bss-save:hover,
+.sportsbook-root .wc-live-btn:hover,
+body.sportsbook-port-active .btn-place:hover,
+body.sportsbook-port-active .bss-save:hover {
   background: linear-gradient(180deg, #ffe08a 0%, var(--sb-cta-start) 100%) !important;
   color: var(--sb-cta-text) !important;
 }
@@ -487,4 +493,175 @@ body.sportsbook-port-active .sb-search-sheet__odd.is-selected,
 .sportsbook-root .sb-search-sheet__odd.is-selected {
   background: #ffb22d;
   color: #0c4a8e;
+}
+
+/* ------------------------------------------------------------------
+   Inner-page + modal title bars — match /sportsbook/search Events bar
+   Caelo brand #123B94, white title, frosted 32×32 icon chips
+   ------------------------------------------------------------------ */
+.sportsbook-root .nt-mobile-subbar,
+.sportsbook-root .se-mobile-subbar,
+.sportsbook-root .fv-mobile-subbar,
+.sportsbook-root .ev-mobile-subbar,
+.sportsbook-root .mh-sf__head,
+.sportsbook-root .mh-mf__head,
+.sportsbook-root .sb-search-sheet__head,
+.sportsbook-root .ds-event-info__subbar,
+.sportsbook-root .ds-settings__subbar,
+.sportsbook-root .ds-tz__subbar,
+.sportsbook-root .ds-menu__lang-subbar,
+.sportsbook-root .ds-menu__top,
+body.sportsbook-port-active .nt-mobile-subbar,
+body.sportsbook-port-active .se-mobile-subbar,
+body.sportsbook-port-active .fv-mobile-subbar,
+body.sportsbook-port-active .ev-mobile-subbar,
+body.sportsbook-port-active .mh-sf__head,
+body.sportsbook-port-active .mh-mf__head,
+body.sportsbook-port-active .sb-search-sheet__head,
+body.sportsbook-port-active .ds-event-info__subbar,
+body.sportsbook-port-active .ds-settings__subbar,
+body.sportsbook-port-active .ds-tz__subbar,
+body.sportsbook-port-active .ds-menu__lang-subbar,
+body.sportsbook-port-active .ds-menu__top {
+  background: var(--sb-brand, #123b94) !important;
+  color: #fff;
+}
+
+.sportsbook-root .nt-mobile-subbar__title,
+.sportsbook-root .se-mobile-subbar__title,
+.sportsbook-root .fv-mobile-subbar__title,
+.sportsbook-root .ev-mobile-subbar__title,
+.sportsbook-root .mh-sf__title,
+.sportsbook-root .mh-mf__title,
+.sportsbook-root .sb-search-sheet__title,
+.sportsbook-root .ds-event-info__title,
+.sportsbook-root .ds-settings__title,
+.sportsbook-root .ds-tz__title,
+.sportsbook-root .ds-menu__lang-title,
+body.sportsbook-port-active .nt-mobile-subbar__title,
+body.sportsbook-port-active .se-mobile-subbar__title,
+body.sportsbook-port-active .fv-mobile-subbar__title,
+body.sportsbook-port-active .ev-mobile-subbar__title,
+body.sportsbook-port-active .mh-sf__title,
+body.sportsbook-port-active .mh-mf__title,
+body.sportsbook-port-active .sb-search-sheet__title,
+body.sportsbook-port-active .ds-event-info__title,
+body.sportsbook-port-active .ds-settings__title,
+body.sportsbook-port-active .ds-tz__title,
+body.sportsbook-port-active .ds-menu__lang-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: #fff !important;
+}
+
+.sportsbook-root .nt-mobile-subbar__back,
+.sportsbook-root .nt-mobile-subbar__btn,
+.sportsbook-root .se-mobile-subbar__back,
+.sportsbook-root .se-mobile-subbar__btn,
+.sportsbook-root .fv-mobile-subbar__back,
+.sportsbook-root .fv-mobile-subbar__btn,
+.sportsbook-root .ev-mobile-subbar__back,
+.sportsbook-root .ev-mobile-subbar__btn,
+.sportsbook-root .mh-sf__back,
+.sportsbook-root .mh-mf__back,
+.sportsbook-root .sb-search-sheet__back,
+.sportsbook-root .ds-event-info__back,
+.sportsbook-root .ds-settings__back,
+.sportsbook-root .ds-tz__back,
+.sportsbook-root .ds-menu__lang-back,
+body.sportsbook-port-active .nt-mobile-subbar__back,
+body.sportsbook-port-active .nt-mobile-subbar__btn,
+body.sportsbook-port-active .se-mobile-subbar__back,
+body.sportsbook-port-active .se-mobile-subbar__btn,
+body.sportsbook-port-active .fv-mobile-subbar__back,
+body.sportsbook-port-active .fv-mobile-subbar__btn,
+body.sportsbook-port-active .ev-mobile-subbar__back,
+body.sportsbook-port-active .ev-mobile-subbar__btn,
+body.sportsbook-port-active .mh-sf__back,
+body.sportsbook-port-active .mh-mf__back,
+body.sportsbook-port-active .sb-search-sheet__back,
+body.sportsbook-port-active .ds-event-info__back,
+body.sportsbook-port-active .ds-settings__back,
+body.sportsbook-port-active .ds-tz__back,
+body.sportsbook-port-active .ds-menu__lang-back {
+  background: rgba(255, 255, 255, 0.16) !important;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.sportsbook-root .nt-mobile-subbar__back img,
+.sportsbook-root .nt-mobile-subbar__btn img,
+.sportsbook-root .se-mobile-subbar__back img,
+.sportsbook-root .se-mobile-subbar__btn img,
+.sportsbook-root .fv-mobile-subbar__back img,
+.sportsbook-root .fv-mobile-subbar__btn img,
+.sportsbook-root .ev-mobile-subbar__back img,
+.sportsbook-root .ev-mobile-subbar__btn img,
+.sportsbook-root .mh-sf__back img,
+.sportsbook-root .mh-mf__back img,
+.sportsbook-root .sb-search-sheet__back img,
+.sportsbook-root .ds-event-info__back img,
+.sportsbook-root .ds-settings__back img,
+.sportsbook-root .ds-tz__back img,
+.sportsbook-root .ds-menu__lang-back img,
+body.sportsbook-port-active .nt-mobile-subbar__back img,
+body.sportsbook-port-active .nt-mobile-subbar__btn img,
+body.sportsbook-port-active .se-mobile-subbar__back img,
+body.sportsbook-port-active .se-mobile-subbar__btn img,
+body.sportsbook-port-active .fv-mobile-subbar__back img,
+body.sportsbook-port-active .fv-mobile-subbar__btn img,
+body.sportsbook-port-active .ev-mobile-subbar__back img,
+body.sportsbook-port-active .ev-mobile-subbar__btn img,
+body.sportsbook-port-active .mh-sf__back img,
+body.sportsbook-port-active .mh-mf__back img,
+body.sportsbook-port-active .sb-search-sheet__back img,
+body.sportsbook-port-active .ds-event-info__back img,
+body.sportsbook-port-active .ds-settings__back img,
+body.sportsbook-port-active .ds-tz__back img,
+body.sportsbook-port-active .ds-menu__lang-back img {
+  filter: brightness(0) invert(1);
+}
+
+/* ------------------------------------------------------------------
+   WC2026 / MSI light right rail — fields must not blend into white panels
+   ------------------------------------------------------------------ */
+.sportsbook-root[data-sportsbook-mode='wc2026'] .reg-select,
+.sportsbook-root[data-sportsbook-mode='wc2026'] .reg-input,
+.sportsbook-root[data-sportsbook-mode='wc2026'] .stake-label input,
+.sportsbook-root[data-sportsbook-mode='wc2026'] .ticket-select,
+.sportsbook-root[data-sportsbook-mode='wc2026'] .promo-code-input,
+.sportsbook-root[data-sportsbook-mode='wc2026'] .stake-control input,
+.sportsbook-root[data-sportsbook-mode='wc2026'] .stake-step,
+.sportsbook-root[data-sportsbook-mode='msi'] .reg-select,
+.sportsbook-root[data-sportsbook-mode='msi'] .reg-input,
+.sportsbook-root[data-sportsbook-mode='msi'] .stake-label input,
+.sportsbook-root[data-sportsbook-mode='msi'] .ticket-select,
+.sportsbook-root[data-sportsbook-mode='msi'] .promo-code-input,
+.sportsbook-root[data-sportsbook-mode='msi'] .stake-control input,
+.sportsbook-root[data-sportsbook-mode='msi'] .stake-step {
+  background: var(--odds-bg, #e8eef5);
+  border: 1px solid var(--border-light, #c9d7e4);
+  color: var(--text-primary, #0f172a);
+}
+
+.sportsbook-root[data-sportsbook-mode='wc2026'] .reg-input::placeholder,
+.sportsbook-root[data-sportsbook-mode='wc2026'] .promo-code-input::placeholder,
+.sportsbook-root[data-sportsbook-mode='msi'] .reg-input::placeholder,
+.sportsbook-root[data-sportsbook-mode='msi'] .promo-code-input::placeholder {
+  color: var(--text-secondary, #64748b);
+  opacity: 1;
+}
+
+.sportsbook-root[data-sportsbook-mode='wc2026'] .stake-control input,
+.sportsbook-root[data-sportsbook-mode='msi'] .stake-control input {
+  border-left: 0;
+  border-right: 0;
+}
+
+.sportsbook-root[data-sportsbook-mode='wc2026'] .quick-stakes button,
+.sportsbook-root[data-sportsbook-mode='msi'] .quick-stakes button {
+  background: var(--odds-bg, #e8eef5);
+  border: 1px solid var(--border-light, #c9d7e4);
 }
