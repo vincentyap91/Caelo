@@ -76,7 +76,7 @@ const DESKTOP_SPORTS_MENU = [
 ];
 
 const DESKTOP_LIVE_MENU = [
-    { label: 'Multi-LIVE', page: 'sportsbook', href: '/sportsbook' },
+    { label: 'Multi-LIVE', page: 'sportsbook-multi-live', href: '/sportsbook/multi-live' },
     { label: 'Bet on Your National Team', page: 'sportsbook-live-national-team', href: '/sportsbook/live-national-team' },
     { label: 'Marble-Live', page: 'sportsbook-marble-live', href: '/sportsbook/marble-live' },
     { label: 'Fast bet', page: 'sportsbook-fast-bet', href: '/sportsbook/fast-bet' },
@@ -103,6 +103,7 @@ const DESKTOP_SPORTS_PAGES = new Set([
 
 const DESKTOP_LIVE_PAGES = new Set([
     'sportsbook-live-national-team',
+    'sportsbook-multi-live',
     'sportsbook-marble-live',
     'sportsbook-fast-bet',
 ]);

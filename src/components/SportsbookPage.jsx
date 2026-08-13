@@ -24,6 +24,7 @@ const MODE_STYLESHEETS = {
     '/sportsbook/mobile/css/mobile-long-term.css',
   ],
   'fast-bet': ['/sportsbook/css/fast-bet.css'],
+  'multi-live': ['/sportsbook/css/multi-live.css'],
   favourites: ['/sportsbook/css/favourites.css'],
   search: ['/sportsbook/css/search.css'],
 };
@@ -50,6 +51,7 @@ const MODE_EXTRA_SCRIPTS = {
   'big-tournaments': ['/sportsbook/js/big-tournaments.js'],
   'long-term-bets': ['/sportsbook/js/long-term-bets.js'],
   'fast-bet': ['/sportsbook/js/fast-bet.js'],
+  'multi-live': ['/sportsbook/js/multi-live.js'],
   favourites: ['/sportsbook/js/favourites-page.js'],
   search: ['/sportsbook/js/search-page.js'],
 };
@@ -67,6 +69,7 @@ const MODE_LAYOUT = {
   'big-tournaments': '/sportsbook/partials/sportsbook-big-tournaments-layout.html',
   'marble-live': '/sportsbook/partials/sportsbook-marble-live-layout.html',
   'fast-bet': '/sportsbook/partials/sportsbook-fast-bet-layout.html',
+  'multi-live': '/sportsbook/partials/sportsbook-multi-live-layout.html',
   favourites: '/sportsbook/partials/sportsbook-favourites-layout.html',
   search: '/sportsbook/partials/sportsbook-search-layout.html',
 };
@@ -81,6 +84,7 @@ const MODE_DATA_PAGE = {
   'big-tournaments': 'big-tournaments',
   'marble-live': 'marble-live',
   'fast-bet': 'fast-bet',
+  'multi-live': 'multi-live',
   favourites: 'favourites',
   search: 'search',
 };
@@ -179,6 +183,12 @@ export default function SportsbookPage({
   onLoginClickRef.current = onLoginClick;
 
   useEffect(() => {
+    /* Multi-LIVE is desktop-only — 1xbet sends ≤900 to Live National Team */
+    if (resolvedMode === 'multi-live' && window.matchMedia('(max-width: 900px)').matches) {
+      onNavigateRef.current?.('sportsbook-live-national-team', { path: '/sportsbook/live-national-team' });
+      return undefined;
+    }
+
     let cancelled = false;
     const prevPage = document.body.dataset.page;
     const hadLoggedInClass = document.body.classList.contains('is-logged-in');

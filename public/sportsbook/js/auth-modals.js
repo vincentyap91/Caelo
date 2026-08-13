@@ -1706,6 +1706,15 @@
       pages: ["live-national-team", "marble-live", "fast-bet"],
       items: [
         {
+          key: "multi-live",
+          href: "/sportsbook/multi-live",
+          label: "Multi-LIVE",
+          icon: "/sportsbook/assets/icons/esports/icon-live.svg",
+          tint: true,
+          pages: ["multi-live"],
+          nav: "sportsbook-multi-live",
+        },
+        {
           key: "live-national-team",
           href: "/sportsbook/live-national-team",
           label: "Bet on Your National Team",

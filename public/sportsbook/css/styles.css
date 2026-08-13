@@ -9502,8 +9502,9 @@ body.bsg-open {
 }
 
 .app-logo {
-  width: 65px;
-  height: 14px;
+  width: auto;
+  height: 22px;
+  max-width: 96px;
   object-fit: contain;
 }
 
@@ -14996,7 +14997,8 @@ body.sportsbook-port-active {
 
   /* Multi-LIVE is desktop-only — hide nav/footer/menu links on ≤900 */
   a[href="multi-live.html"],
-  a[href="./multi-live.html"] {
+  a[href="./multi-live.html"],
+  a[href="/sportsbook/multi-live"] {
     display: none !important;
   }
 }

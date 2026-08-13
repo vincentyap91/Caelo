@@ -1,11 +1,15 @@
 /* =========================================================
    multi-live.css — Multi-LIVE (Figma 21:2 + filled board)
    Colors: sportsbook tokens — section-blue chrome, light board / odds.
-   No left sidebar; main + right rail only.
+   No left sidebar; main + right rail (Collapse block).
    ========================================================= */
 
 .sportsbook-layout.ml-layout {
   grid-template-columns: minmax(720px, 1fr) 260px;
+}
+
+.sportsbook-layout.ml-layout.right-collapsed {
+  grid-template-columns: minmax(720px, 1fr) var(--sidebar-collapsed-w);
 }
 
 .ml-main {
@@ -189,7 +193,8 @@
   filter: brightness(0) invert(1);
 }
 
-/* Cascade menu: league list + match preview (live multi parity) */
+/* Cascade menu: league list + match preview (live multi parity).
+   left is set in JS so the panel sits under the hovered/selected chip. */
 .ml-flyout {
   position: absolute;
   top: 100%;
@@ -205,6 +210,7 @@
   border-radius: 0;
   box-shadow: none;
   overflow: visible;
+  will-change: left;
 }
 
 .ml-flyout[hidden] {
@@ -264,8 +270,9 @@
   height: 18px;
   flex-shrink: 0;
   border-radius: 50%;
-  object-fit: cover;
-  background: var(--odds-bg);
+  object-fit: contain;
+  /* te-* / esports icons are white; remap to sport-basketball #1D4268 on white flyout */
+  filter: brightness(0) saturate(100%) invert(18%) sepia(32%) saturate(1486%) hue-rotate(186deg) brightness(0.92) contrast(0.91);
 }
 
 .ml-flyout-item:hover,
@@ -334,8 +341,8 @@
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  /* te-* icons are light; remap to section-blue on white flyout */
-  filter: brightness(0) saturate(100%) invert(27%) sepia(42%) saturate(1200%) hue-rotate(182deg) brightness(0.95);
+  /* te-* icons are white; remap to sport-basketball #1D4268 on white flyout */
+  filter: brightness(0) saturate(100%) invert(18%) sepia(32%) saturate(1486%) hue-rotate(186deg) brightness(0.92) contrast(0.91);
   opacity: 1;
 }
 
@@ -408,7 +415,7 @@
 .ml-match-card-serve {
   width: 10px;
   height: 10px;
-  filter: brightness(0) saturate(100%) invert(27%) sepia(42%) saturate(1200%) hue-rotate(182deg) brightness(0.95);
+  filter: brightness(0) saturate(100%) invert(18%) sepia(32%) saturate(1486%) hue-rotate(186deg) brightness(0.92) contrast(0.91);
   opacity: 0.9;
 }
 
@@ -886,6 +893,10 @@
 @media (max-width: 1200px) {
   .sportsbook-layout.ml-layout {
     grid-template-columns: 1fr;
+  }
+
+  .sportsbook-layout.ml-layout.right-collapsed {
+    grid-template-columns: minmax(0, 1fr) var(--sidebar-collapsed-w);
   }
 
   /* Keep 3-slot track so 1–2 panels stay left-aligned, not stretched */

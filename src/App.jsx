@@ -110,6 +110,9 @@ function resolvePageFromPath() {
     if (pathname === '/sportsbook/marble-live') {
       return 'sportsbook-marble-live';
     }
+    if (pathname === '/sportsbook/multi-live') {
+      return 'sportsbook-multi-live';
+    }
     if (pathname === '/sportsbook/fast-bet') {
       return 'sportsbook-fast-bet';
     }
@@ -245,6 +248,7 @@ function isSportsbookPageId(pageId) {
     || pageId === 'sportsbook-long-term-bets'
     || pageId === 'sportsbook-big-tournaments'
     || pageId === 'sportsbook-marble-live'
+    || pageId === 'sportsbook-multi-live'
     || pageId === 'sportsbook-fast-bet'
     || pageId === 'sportsbook-favourites'
     || pageId === 'sportsbook-search'
@@ -514,6 +518,7 @@ function AppInner() {
       'sportsbook-long-term-bets': '/sportsbook/long-term-bets',
       'sportsbook-big-tournaments': '/sportsbook/big-tournaments',
       'sportsbook-marble-live': '/sportsbook/marble-live',
+      'sportsbook-multi-live': '/sportsbook/multi-live',
       'sportsbook-fast-bet': '/sportsbook/fast-bet',
       'sportsbook-favourites': '/sportsbook/favourites',
       'sportsbook-search': '/sportsbook/search',
@@ -760,6 +765,16 @@ function AppInner() {
         <SportsbookPage
           authUser={authUser}
           mode="marble-live"
+          onNavigate={handleNavigate}
+          onLoginClick={() => {
+            setAuthModalView('login');
+            setLoginModalOpen(true);
+          }}
+        />
+      ) : page === 'sportsbook-multi-live' ? (
+        <SportsbookPage
+          authUser={authUser}
+          mode="multi-live"
           onNavigate={handleNavigate}
           onLoginClick={() => {
             setAuthModalView('login');
