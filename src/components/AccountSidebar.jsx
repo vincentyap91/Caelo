@@ -49,6 +49,13 @@ const MENU_BY_PAGE = {
     ...Object.fromEntries(HISTORY_RECORD_NAV.map(({ id }) => [id, 'historyRecord'])),
 };
 
+const SIDEBAR_ITEM_ACTIVE =
+    'border-l-[var(--color-surface-accent)] bg-[var(--color-accent-pale)] text-[var(--color-surface-accent)] shadow-sm';
+const SIDEBAR_ITEM_IDLE =
+    'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-surface-accent)]';
+const SIDEBAR_ICON_ACTIVE = 'text-[var(--color-surface-accent)]';
+const SIDEBAR_ICON_IDLE = 'text-[var(--color-text-muted)] group-hover:text-[var(--color-surface-accent)]';
+
 export default function AccountSidebar({
     activePage = 'profile',
     authUser,
@@ -195,13 +202,11 @@ export default function AccountSidebar({
                                             type="button"
                                             onClick={() => handleCashierClick(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
-                                                isActive
-                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
+                                                isActive ? SIDEBAR_ITEM_ACTIVE : SIDEBAR_ITEM_IDLE
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? SIDEBAR_ICON_ACTIVE : SIDEBAR_ICON_IDLE}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -237,13 +242,11 @@ export default function AccountSidebar({
                                             type="button"
                                             onClick={() => handleNavClick(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
-                                                isActive
-                                                    ? 'border-l-[var(--color-border-selected)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
+                                                isActive ? SIDEBAR_ITEM_ACTIVE : SIDEBAR_ITEM_IDLE
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? SIDEBAR_ICON_ACTIVE : SIDEBAR_ICON_IDLE}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -281,16 +284,12 @@ export default function AccountSidebar({
                                             type="button"
                                             onClick={() => onNavigate?.('loyalty-rewards', { rewardsTab: id })}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
-                                                isActive
-                                                    ? 'border-l-[var(--color-surface-accent)] bg-[var(--color-accent-pale)] text-[var(--color-surface-accent)] shadow-sm'
-                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-muted)] hover:scale-[1.02] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-surface-accent)]'
+                                                isActive ? SIDEBAR_ITEM_ACTIVE : SIDEBAR_ITEM_IDLE
                                             }`}
                                         >
                                             <NavIcon
                                                 className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${
-                                                    isActive
-                                                        ? 'text-[var(--color-surface-accent)]'
-                                                        : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-surface-accent)]'
+                                                    isActive ? SIDEBAR_ICON_ACTIVE : SIDEBAR_ICON_IDLE
                                                 }`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
@@ -327,13 +326,11 @@ export default function AccountSidebar({
                                             type="button"
                                             onClick={() => onNavigate?.(id)}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all hover:scale-[1.02] lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
-                                                isActive
-                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)]'
-                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:border-l-[var(--color-border-brand)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
+                                                isActive ? SIDEBAR_ITEM_ACTIVE : SIDEBAR_ITEM_IDLE
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? 'text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive ? SIDEBAR_ICON_ACTIVE : SIDEBAR_ICON_IDLE}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
@@ -376,13 +373,11 @@ export default function AccountSidebar({
                                                 onNavigate?.(id);
                                             }}
                                             className={`group flex min-h-[44px] w-full items-center gap-2.5 rounded-xl border-l-4 px-3 py-2.5 text-left transition-all hover:scale-[1.02] lg:min-h-[48px] lg:gap-3 lg:px-4 lg:py-3.5 ${
-                                                isActive && !isLiveChat
-                                                    ? 'border-l-[var(--color-border-brand)] bg-[var(--color-accent-pale)] text-[var(--color-secondary)]'
-                                                    : 'border-l-transparent bg-[var(--color-tertiery)] text-[var(--color-text-small)] hover:border-l-[var(--color-border-brand)] hover:bg-[var(--color-accent-pale)] hover:text-[var(--color-secondary)]'
+                                                isActive && !isLiveChat ? SIDEBAR_ITEM_ACTIVE : SIDEBAR_ITEM_IDLE
                                             }`}
                                         >
                                             <Icon
-                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive && !isLiveChat ? 'text-[var(--color-secondary)]' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-border-brand)]'}`}
+                                                className={`h-4 w-4 shrink-0 lg:h-[18px] lg:w-[18px] ${isActive && !isLiveChat ? SIDEBAR_ICON_ACTIVE : SIDEBAR_ICON_IDLE}`}
                                             />
                                             <span className="text-sm font-normal lg:text-base">{label}</span>
                                         </button>
