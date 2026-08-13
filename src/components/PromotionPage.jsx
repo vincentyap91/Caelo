@@ -27,7 +27,7 @@ const promotions = [
         description: 'Kickstart your first deposit with a boosted welcome package made for casino players.',
         image: welcomeBonusImage,
         imageTag: 'conditions-required',
-        endDate: '2026-06-15T23:59:59',
+        endDate: '2026-10-15T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 50',
             bonus: '288%',
@@ -51,7 +51,7 @@ const promotions = [
         description: 'Spin into your first slot session with a high-value new member bonus and extra credits.',
         image: welcome500Image,
         imageTag: 'conditions-required',
-        endDate: '2026-05-31T23:59:59',
+        endDate: '2026-09-30T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 30',
             bonus: '500%',
@@ -75,7 +75,7 @@ const promotions = [
         description: 'Reload daily and keep the momentum going with extra value on every qualifying top up.',
         image: dailyReloadImage,
         imageTag: 'conditions-required',
-        endDate: '2026-05-12T23:59:59',
+        endDate: '2026-09-12T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 20',
             bonus: '10%',
@@ -99,7 +99,7 @@ const promotions = [
         description: 'Unlock weekend rewards with bonus spins and more chances to land standout wins.',
         image: freeSpinImage,
         imageTag: 'conditions-required',
-        endDate: '2026-05-18T23:59:59',
+        endDate: '2026-09-18T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 30',
             bonus: '50 Free Spins',
@@ -123,7 +123,7 @@ const promotions = [
         description: 'Back the big fixtures with exclusive odds support and limited-time sports rewards.',
         image: exclusiveOfferImage,
         imageTag: 'available',
-        endDate: '2026-05-20T23:59:59',
+        endDate: '2026-09-20T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 50',
             bonus: '15%',
@@ -147,7 +147,7 @@ const promotions = [
         description: 'Enjoy instant rebate returns across selected RNG games to keep every session moving.',
         image: instantCashRebateImage,
         imageTag: 'available',
-        endDate: '2026-07-01T23:59:59',
+        endDate: '2026-11-01T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 20',
             bonus: '1.2% Rebate',
@@ -171,7 +171,7 @@ const promotions = [
         description: 'Get more value on eligible daily picks with a simple lottery-focused extra reward.',
         image: welcomeBonusImage,
         imageTag: 'conditions-required',
-        endDate: '2026-05-14T23:59:59',
+        endDate: '2026-09-14T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 10',
             bonus: '12%',
@@ -195,7 +195,7 @@ const promotions = [
         description: 'A flexible all-round promotion crafted for members looking for extra value beyond core games.',
         image: exclusiveOfferImage,
         imageTag: 'available',
-        endDate: '2026-05-25T23:59:59',
+        endDate: '2026-09-25T23:59:59',
         eventDetails: {
             minDeposit: 'MYR 50',
             bonus: '18%',
