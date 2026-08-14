@@ -1,0 +1,1011 @@
+    <!-- ========== ESPORTS SUB-NAV ========== -->
+    <div class="es-subnav">
+      <div class="es-subnav-inner">
+        <div class="es-subnav-tabs" role="tablist">
+          <button type="button" class="es-tab active" role="tab" aria-selected="true">Real</button>
+          <button type="button" class="es-tab" role="tab" aria-selected="false">Virtual</button>
+          <button type="button" class="es-tab" role="tab" aria-selected="false">Cyber</button>
+        </div>
+        <span class="es-subnav-label">Esports</span>
+        <form class="es-search-form" role="search">
+          <input class="es-search" type="search" placeholder="Search by match" aria-label="Search by match" />
+          <button type="submit" class="es-search-btn" aria-label="Search">
+            <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="6" cy="6" r="4.5" stroke="white" stroke-width="1.5" fill="none"/>
+              <line x1="9.5" y1="9.5" x2="13" y2="13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ========== SPORTSBOOK 3-COL LAYOUT ========== -->
+    <div class="sportsbook-layout es-layout">
+
+      <!-- -- Left sidebar (Figma 39:58) ----------------------- -->
+      <aside class="left-sidebar es-sidebar" id="left-sidebar" aria-label="Esports disciplines">
+        <button type="button" class="sidebar-collapse es-collapse-btn" id="sidebar-collapse" aria-label="Collapse block" aria-expanded="true">
+          <img src="/sportsbook/assets/icons/esports/icon-collapse.svg" alt="" width="9" height="10" />
+          <span>Collapse block</span>
+        </button>
+        <button type="button" class="mobile-drawer-close" id="left-drawer-close" aria-label="Close sports navigation">Close</button>
+
+        <div class="es-side-panel">
+          <div class="es-mode-tabs" role="tablist">
+            <button type="button" class="es-mode-tab is-active" role="tab" aria-selected="true" data-mode="live">
+              <img src="/sportsbook/assets/icons/esports/icon-live.svg" alt="" width="16" height="16" />
+              Live
+            </button>
+            <button type="button" class="es-mode-tab" role="tab" aria-selected="false" data-mode="sports">
+              <img src="/sportsbook/assets/icons/esports/icon-prematch.svg" alt="" width="16" height="16" />
+              Sports
+            </button>
+          </div>
+
+          <div class="es-side-links">
+            <a href="#" class="es-side-link">
+              <img src="/sportsbook/assets/icons/esports/icon-all-disciplines.svg" alt="" width="16" height="16" />
+              <span>All disciplines</span>
+            </a>
+            <a href="#" class="es-side-link">
+              <img src="/sportsbook/assets/icons/esports/icon-all-leagues.svg" alt="" width="16" height="16" />
+              <span>All leagues</span>
+            </a>
+            <a href="#" class="es-side-link">
+              <img src="/sportsbook/assets/icons/esports/icon-all-games.svg" alt="" width="16" height="16" />
+              <span>All Games</span>
+            </a>
+          </div>
+
+          <div class="es-side-section">
+            <div class="es-side-section-title">All disciplines</div>
+            <ul class="es-discipline-list" role="list">
+              <li class="es-discipline-item active" data-disc="cs2">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">CS 2 <span class="es-disc-count">(7)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand CS 2">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+              <li class="es-discipline-item" data-disc="dota2">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-dota2.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">Dota 2 <span class="es-disc-count">(5)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand Dota 2">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+              <li class="es-discipline-item" data-disc="lol">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-lol.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">League of Legends <span class="es-disc-count">(1)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand League of Legends">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+              <li class="es-discipline-item" data-disc="valorant">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-valorant.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">Valorant <span class="es-disc-count">(2)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand Valorant">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+              <li class="es-discipline-item" data-disc="r6">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-r6.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">Rainbow Six <span class="es-disc-count">(1)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand Rainbow Six">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+              <li class="es-discipline-item" data-disc="hok">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-hok.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">Honor of Kings <span class="es-disc-count">(1)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand Honor of Kings">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+              <li class="es-discipline-item" data-disc="ow">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-ow.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">Overwatch <span class="es-disc-count">(1)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand Overwatch">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+              <li class="es-discipline-item" data-disc="mlbb">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-mlbb.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">Mobile Legends <span class="es-disc-count">(1)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand Mobile Legends">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+              <li class="es-discipline-item" data-disc="aov">
+                <a href="#" class="es-disc-main">
+                  <span class="es-disc-icon"><img src="/sportsbook/assets/icons/esports/icon-aov.svg" alt="" width="16" height="16" /></span>
+                  <span class="es-disc-name">Arena of Valor <span class="es-disc-count">(1)</span></span>
+                </a>
+                <button type="button" class="es-disc-chevron" aria-label="Expand Arena of Valor">
+                  <img src="/sportsbook/assets/icons/esports/icon-chevron.svg" alt="" width="10" height="6" />
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <!-- -- Main content ------------------------------------ -->
+      <main class="main-content es-main" id="main-content">
+        <div class="nt-mobile-subbar" aria-label="Esports">
+          <a href="/sportsbook" data-caelo-nav="sportsbook" class="nt-mobile-subbar__back" aria-label="Back">
+            <img src="/sportsbook/mobile/assets/icons/sp-back.svg" alt="" width="10" height="16" />
+          </a>
+          <h1 class="nt-mobile-subbar__title">Esports</h1>
+          <div class="nt-mobile-subbar__actions">
+            <a href="/sportsbook/search" data-caelo-nav="sportsbook-search" class="nt-mobile-subbar__btn" aria-label="Search">
+              <img src="/sportsbook/mobile/assets/icons/sp-search.svg" alt="" width="16" height="16" />
+            </a>
+            <a href="/sportsbook/favourites" data-caelo-nav="sportsbook-favourites" class="nt-mobile-subbar__btn" aria-label="Favourites">
+              <img src="/sportsbook/mobile/assets/icons/sp-star.svg" alt="" width="16" height="16" />
+            </a>
+          </div>
+        </div>
+
+        <!-- 1. Hero banner carousel (Figma 39:215 / 39:225) -->
+        <section class="es-hero-banner" aria-label="Esports promotions">
+          <div class="es-hero-track">
+            <article class="es-hero-slide is-active">
+              <img class="es-hero-banner-img" src="/sportsbook/assets/images/esports/hero-esports-era.png" alt="" />
+              <div class="es-hero-banner-copy">
+                <h1 class="es-hero-banner-title">ESPORTS ERA</h1>
+                <p class="es-hero-banner-sub">Bet on your favorites risk-free in our win-win ESPORTS ERA promo!</p>
+                <a href="#es-matches" class="es-hero-banner-cta es-hero-banner-cta--blue">Take part</a>
+              </div>
+            </article>
+            <article class="es-hero-slide">
+              <img class="es-hero-banner-img" src="/sportsbook/assets/images/esports/hero-become-legend.png" alt="" />
+              <div class="es-hero-banner-copy">
+                <h2 class="es-hero-banner-title">Become a legend</h2>
+                <p class="es-hero-banner-sub">Your favourite offer, fresh design, top gadgets!</p>
+                <a href="#es-matches" class="es-hero-banner-cta">Take part</a>
+              </div>
+            </article>
+          </div>
+          <div class="es-hero-dots" aria-hidden="true">
+            <button type="button" class="es-hero-dot is-active" data-slide="0"></button>
+            <button type="button" class="es-hero-dot" data-slide="1"></button>
+          </div>
+        </section>
+
+        <!-- 2. Popular in Live -->
+        <section class="es-pop-section" aria-label="Popular in Live">
+          <div class="es-section-head">
+            <h2 class="es-section-title">
+              <span class="live-dot" aria-hidden="true"></span>
+              Popular in Live
+            </h2>
+            <a href="#es-matches" class="es-see-all">All events</a>
+          </div>
+          <div class="es-pop-row">
+            <div class="es-pop-card">
+              <div class="es-pop-card-league"><img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="12" height="12" />CS 2. XSE Pro League</div>
+              <div class="es-pop-card-teams">
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-parivision.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">PARIVISION</span>
+                  <span class="es-pop-score">0</span>
+                </div>
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-big.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">BIG</span>
+                  <span class="es-pop-score">3</span>
+                </div>
+              </div>
+              <div class="es-pop-card-meta">1 map / Best of 3 maps</div>
+              <div class="es-pop-card-odds">
+                <button type="button" class="odd-btn es-odd-dark" data-market="W1" data-val="1.82"><span>W1</span><span>1.82</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="W2" data-val="1.99"><span>W2</span><span>1.99</span></button>
+              </div>
+            </div>
+            <div class="es-pop-card">
+              <div class="es-pop-card-league"><img src="/sportsbook/assets/icons/esports/icon-lol.svg" alt="" width="12" height="12" />League of Legends. Mid-Season Invitational</div>
+              <div class="es-pop-card-teams">
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-g2.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">G2 Esports</span>
+                  <span class="es-pop-score">0</span>
+                </div>
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-lyon.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">Lyon Gaming</span>
+                  <span class="es-pop-score">0</span>
+                </div>
+              </div>
+              <div class="es-pop-card-meta">Event in progress<br>Play-off. Lower Bracket. 3rd Round / Best of 5 maps</div>
+              <div class="es-pop-card-odds">
+                <button type="button" class="odd-btn es-odd-dark" data-market="W1" data-val="1.29"><span>W1</span><span>1.29</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="W2" data-val="3.6"><span>W2</span><span>3.6</span></button>
+              </div>
+            </div>
+            <div class="es-pop-card">
+              <div class="es-pop-card-league"><img src="/sportsbook/assets/icons/esports/icon-valorant.svg" alt="" width="12" height="12" />Valorant. Champions Tour China</div>
+              <div class="es-pop-card-teams">
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-funplus.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">FunPlus Phoenix</span>
+                  <span class="es-pop-score">0</span>
+                </div>
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-trace.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">Trace Esports</span>
+                  <span class="es-pop-score">0</span>
+                </div>
+              </div>
+              <div class="es-pop-card-meta">1 map / Group stage. Group Alpha / Best of 3 maps</div>
+              <div class="es-pop-card-odds">
+                <button type="button" class="odd-btn es-odd-dark" data-market="W1" data-val="2.05"><span>W1</span><span>2.05</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="W2" data-val="1.72"><span>W2</span><span>1.72</span></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Popular in Pre-match -->
+        <section class="es-pop-section" aria-label="Popular in Pre-match">
+          <div class="es-section-head">
+            <h2 class="es-section-title">
+              <img class="es-section-icon" src="/sportsbook/assets/icons/esports/icon-prematch.svg" alt="" width="16" height="16" />
+              Popular in Pre-match
+            </h2>
+            <a href="#es-matches" class="es-see-all">All events</a>
+          </div>
+          <div class="es-pop-row">
+            <div class="es-pop-card">
+              <div class="es-pop-card-league"><img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="12" height="12" />CS 2. XSE Pro League</div>
+              <div class="es-pop-card-teams">
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-faze.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">FaZe Clan</span>
+                </div>
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-bb.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">BB Team</span>
+                </div>
+              </div>
+              <div class="es-pop-card-meta">10/07/2026 / 19:00<br>Play-off. Round of 8</div>
+              <div class="es-pop-card-odds">
+                <button type="button" class="odd-btn es-odd-dark" data-market="W1" data-val="2.321"><span>W1</span><span>2.321</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="W2" data-val="1.63"><span>W2</span><span>1.63</span></button>
+              </div>
+            </div>
+            <div class="es-pop-card">
+              <div class="es-pop-card-league"><img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="12" height="12" />CS 2. XSE Pro League</div>
+              <div class="es-pop-card-teams">
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-9z.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">9z</span>
+                </div>
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-alliance.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">Alliance</span>
+                </div>
+              </div>
+              <div class="es-pop-card-meta">11/07/2026 / 16:00<br>Play-Off. Round of 4</div>
+              <div class="es-pop-card-odds">
+                <button type="button" class="odd-btn es-odd-dark" data-market="W1" data-val="1.56"><span>W1</span><span>1.56</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="W2" data-val="2.491"><span>W2</span><span>2.491</span></button>
+              </div>
+            </div>
+            <div class="es-pop-card">
+              <div class="es-pop-card-league"><img src="/sportsbook/assets/icons/esports/icon-dota2.svg" alt="" width="12" height="12" />Dota 2. Esports World Cup</div>
+              <div class="es-pop-card-teams">
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-poor-rangers.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">Poor Rangers</span>
+                </div>
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-falcons.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">Team Falcons</span>
+                </div>
+              </div>
+              <div class="es-pop-card-meta">11/07/2026 / 18:00<br>Group stage</div>
+              <div class="es-pop-card-odds">
+                <button type="button" class="odd-btn es-odd-dark" data-market="W1" data-val="16"><span>W1</span><span>16</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="X" data-val="3.97"><span>X</span><span>3.97</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="W2" data-val="1.374"><span>W2</span><span>1.374</span></button>
+              </div>
+            </div>
+            <div class="es-pop-card">
+              <div class="es-pop-card-league"><img src="/sportsbook/assets/icons/esports/icon-dota2.svg" alt="" width="12" height="12" />Dota 2. Esports World Cup</div>
+              <div class="es-pop-card-teams">
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-rune-eaters.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">Rune Eaters Esports</span>
+                </div>
+                <div class="es-pop-card-team">
+                  <div class="es-pop-team-logo">
+                    <img src="/sportsbook/assets/images/esports/team-gamerlegion.png" alt="" />
+                  </div>
+                  <span class="es-pop-team-name">GamerLegion</span>
+                </div>
+              </div>
+              <div class="es-pop-card-meta">11/07/2026 / 20:00<br>Group stage</div>
+              <div class="es-pop-card-odds">
+                <button type="button" class="odd-btn es-odd-dark" data-market="W1" data-val="4.995"><span>W1</span><span>4.995</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="X" data-val="2.284"><span>X</span><span>2.284</span></button>
+                <button type="button" class="odd-btn es-odd-dark" data-market="W2" data-val="2.477"><span>W2</span><span>2.477</span></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Top competitions -->
+        <section class="es-comp-section" aria-label="Top competitions">
+          <div class="es-section-head">
+            <h2 class="es-section-title">Top competitions</h2>
+            <a href="#" class="es-see-all">All leagues</a>
+          </div>
+          <div class="es-comp-row">
+            <a href="#es-matches" class="es-comp-card" data-disc="cs2">
+              <img class="es-comp-card-img" src="/sportsbook/assets/images/esports/comp-cs2.png" alt="" />
+              <div class="es-comp-card-overlay">
+                <span class="es-comp-card-game">CS 2</span>
+                <div class="es-comp-card-body">
+                  <span class="es-comp-live">Live</span>
+                  <span class="es-comp-card-league">CS 2. XSE Pro League</span>
+                  <span class="es-comp-card-btn">3 events</span>
+                </div>
+              </div>
+            </a>
+            <a href="#es-matches" class="es-comp-card" data-disc="lol">
+              <img class="es-comp-card-img" src="/sportsbook/assets/images/esports/comp-lol.png" alt="" />
+              <div class="es-comp-card-overlay">
+                <span class="es-comp-card-game">League of Legends</span>
+                <div class="es-comp-card-body">
+                  <span class="es-comp-live">Live</span>
+                  <span class="es-comp-card-league">LoL. Mid-Season Invitational</span>
+                  <span class="es-comp-card-btn">5 events</span>
+                </div>
+              </div>
+            </a>
+            <a href="#es-matches" class="es-comp-card" data-disc="valorant">
+              <img class="es-comp-card-img" src="/sportsbook/assets/images/esports/comp-valorant.png" alt="" />
+              <div class="es-comp-card-overlay">
+                <span class="es-comp-card-game">Valorant</span>
+                <div class="es-comp-card-body">
+                  <span class="es-comp-live">Live</span>
+                  <span class="es-comp-card-league">Valorant. VCT Champions</span>
+                  <span class="es-comp-card-btn">4 events</span>
+                </div>
+              </div>
+            </a>
+            <a href="#es-matches" class="es-comp-card" data-disc="dota2">
+              <img class="es-comp-card-img" src="/sportsbook/assets/images/esports/comp-dota2.png" alt="" />
+              <div class="es-comp-card-overlay">
+                <span class="es-comp-card-game">Dota 2</span>
+                <div class="es-comp-card-body">
+                  <span class="es-comp-live">Live</span>
+                  <span class="es-comp-card-league">Dota 2. Esports World Cup</span>
+                  <span class="es-comp-card-btn">6 events</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- 5. Popular disciplines -->
+        <section class="es-disc-section" aria-label="Popular disciplines">
+          <div class="es-section-head">
+            <h2 class="es-section-title">Popular disciplines</h2>
+            <a href="#" class="es-see-all">All disciplines</a>
+          </div>
+          <div class="es-disc-row">
+            <a href="#" class="es-disc-tile" data-disc="cs2">
+              <img class="es-disc-tile-img" src="/sportsbook/assets/images/esports/disc-cs2.png" alt="" />
+              <span class="es-disc-tile-name">CS 2</span>
+              <span class="es-disc-tile-btn">35 events</span>
+            </a>
+            <a href="#" class="es-disc-tile" data-disc="dota2">
+              <img class="es-disc-tile-img" src="/sportsbook/assets/images/esports/disc-dota2.png" alt="" />
+              <span class="es-disc-tile-name">Dota 2</span>
+              <span class="es-disc-tile-btn">26 events</span>
+            </a>
+            <a href="#" class="es-disc-tile" data-disc="lol">
+              <img class="es-disc-tile-img" src="/sportsbook/assets/images/esports/disc-lol.png" alt="" />
+              <span class="es-disc-tile-name">League of Legends</span>
+              <span class="es-disc-tile-btn">23 events</span>
+            </a>
+            <a href="#" class="es-disc-tile" data-disc="mlbb">
+              <img class="es-disc-tile-img" src="/sportsbook/assets/images/esports/disc-mlbb.png" alt="" />
+              <span class="es-disc-tile-name">Mobile Legends</span>
+              <span class="es-disc-tile-btn">2 events</span>
+            </a>
+            <a href="#" class="es-disc-tile" data-disc="valorant">
+              <img class="es-disc-tile-img" src="/sportsbook/assets/images/esports/disc-valorant.png" alt="" />
+              <span class="es-disc-tile-name">Valorant</span>
+              <span class="es-disc-tile-btn">53 events</span>
+            </a>
+            <a href="#" class="es-disc-tile" data-disc="r6">
+              <img class="es-disc-tile-img" src="/sportsbook/assets/images/esports/disc-r6.png" alt="" />
+              <span class="es-disc-tile-name">Rainbow Six</span>
+              <span class="es-disc-tile-btn">4 events</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 6. Live matches (layout: live esports/real) -->
+        <section class="es-match-section es-live-section" id="es-matches" aria-label="Live Matches">
+          <div class="es-section-bar es-section-bar--live">
+            <img class="es-section-bar-icon" src="/sportsbook/assets/icons/esports/icon-live-section.svg" alt="" width="16" height="16" />
+            <h2 class="es-section-bar-title">Live</h2>
+          </div>
+          <div class="es-game-filters" role="toolbar" aria-label="Live game filters">
+            <button type="button" class="es-game-chip active" data-filter="all">
+              <img src="/sportsbook/assets/icons/esports/icon-all-games.svg" alt="" width="16" height="16" />
+              <span>All</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="cs2">
+              <img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="16" height="16" />
+              <span>CS 2</span>
+              <span class="es-chip-live">LIVE</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="dota2">
+              <img src="/sportsbook/assets/icons/esports/icon-dota2.svg" alt="" width="16" height="16" />
+              <span>Dota 2</span>
+              <span class="es-chip-live">LIVE</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="lol">
+              <img src="/sportsbook/assets/icons/esports/icon-lol.svg" alt="" width="16" height="16" />
+              <span>LoL</span>
+              <span class="es-chip-live">LIVE</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="mlbb">
+              <img src="/sportsbook/assets/icons/esports/icon-mlbb.svg" alt="" width="16" height="16" />
+              <span>MLBB</span>
+              <span class="es-chip-live">LIVE</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="valorant">
+              <img src="/sportsbook/assets/icons/esports/icon-valorant.svg" alt="" width="16" height="16" />
+              <span>Valorant</span>
+            </button>
+          </div>
+
+          <div class="es-table">
+            <div class="es-league" data-disc="cs2">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">CS 2. Eternity League</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Team Havoc</span><span class="es-score">10</span></div>
+                      <div class="es-team"><span class="es-team-name">Team Crypt</span><span class="es-score">9</span></div>
+                    </div>
+                    <div class="es-meta">2 map / Best of 3 maps</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.85"><span>W1</span><strong>1.85</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="2.10"><span>W2</span><strong>2.10</strong></button>
+                    <a href="#" class="es-more">+10</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="es-league" data-disc="cs2">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">CS 2. Berserk League</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">MysT</span><span class="es-score">0</span></div>
+                      <div class="es-team"><span class="es-team-name">Havoc</span><span class="es-score">0</span></div>
+                    </div>
+                    <div class="es-meta">Best of 1 map</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.82"><span>W1</span><strong>1.82</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.99"><span>W2</span><strong>1.99</strong></button>
+                    <a href="#" class="es-more">+2</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="es-league" data-disc="dota2">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-dota2.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">Dota 2. Berserk League</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Pir4te</span><span class="es-score">0</span></div>
+                      <div class="es-team"><span class="es-team-name">HeliX0</span><span class="es-score">0</span></div>
+                    </div>
+                    <div class="es-meta">Best of 3 maps</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.55"><span>W1</span><strong>1.55</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="2.60"><span>W2</span><strong>2.60</strong></button>
+                    <a href="#" class="es-more">+8</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="es-league" data-disc="lol">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-lol.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">League of Legends. European Circuit</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Luxe Gaming</span><span class="es-score">6</span></div>
+                      <div class="es-team"><span class="es-team-name">Poro Protectors</span><span class="es-score">7</span></div>
+                    </div>
+                    <div class="es-meta">3 map / Best of 3 maps</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.78"><span>W1</span><strong>1.78</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="2.05"><span>W2</span><strong>2.05</strong></button>
+                    <a href="#" class="es-more">+12</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="es-league" data-disc="mlbb">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-mlbb.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">Mobile Legends. Epic Clash Series</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Team Orcas</span><span class="es-score">2</span></div>
+                      <div class="es-team"><span class="es-team-name">Hexstorm Crew</span><span class="es-score">6</span></div>
+                    </div>
+                    <div class="es-meta">2 map / Best of 5 maps</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="2.40"><span>W1</span><strong>2.40</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.62"><span>W2</span><strong>1.62</strong></button>
+                    <a href="#" class="es-more">+6</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Sports (pre-match) � enhanced -->
+        <section class="es-match-section es-line-section" id="es-sports" aria-label="Sports Matches">
+          <div class="es-section-bar es-section-bar--sports">
+            <img class="es-section-bar-icon" src="/sportsbook/assets/icons/esports/icon-prematch.svg" alt="" width="16" height="16" />
+            <h2 class="es-section-bar-title">Sports</h2>
+          </div>
+          <div class="es-game-filters" role="toolbar" aria-label="Sports game filters">
+            <button type="button" class="es-game-chip active" data-filter="all">
+              <img src="/sportsbook/assets/icons/esports/icon-all-games.svg" alt="" width="16" height="16" />
+              <span>All</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="cs2">
+              <img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="16" height="16" />
+              <span>CS 2</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="dota2">
+              <img src="/sportsbook/assets/icons/esports/icon-dota2.svg" alt="" width="16" height="16" />
+              <span>Dota 2</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="valorant">
+              <img src="/sportsbook/assets/icons/esports/icon-valorant.svg" alt="" width="16" height="16" />
+              <span>Valorant</span>
+            </button>
+            <button type="button" class="es-game-chip" data-filter="lol">
+              <img src="/sportsbook/assets/icons/esports/icon-lol.svg" alt="" width="16" height="16" />
+              <span>LoL</span>
+            </button>
+          </div>
+
+          <div class="es-table">
+            <div class="es-league" data-disc="cs2">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">CS 2. XSE Pro League</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">11/07/2026</span>
+                    <span class="es-clock">01:00</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">9z</span></div>
+                      <div class="es-team"><span class="es-team-name">Alliance</span></div>
+                    </div>
+                    <div class="es-meta">Play-Off. Round of 4</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.90"><span>W1</span><strong>1.90</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.98"><span>W2</span><strong>1.98</strong></button>
+                    <a href="#" class="es-more">+650</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">11/07/2026</span>
+                    <span class="es-clock">04:00</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">PARIVISION</span></div>
+                      <div class="es-team"><span class="es-team-name">FaZe Clan</span></div>
+                    </div>
+                    <div class="es-meta">Play-Off. Round of 4</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="2.25"><span>W1</span><strong>2.25</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.68"><span>W2</span><strong>1.68</strong></button>
+                    <a href="#" class="es-more">+505</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="es-league" data-disc="cs2">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-cs2.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">CS 2. European Pro League</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">11/07/2026</span>
+                    <span class="es-clock">03:30</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">BASEMENT BOYS</span></div>
+                      <div class="es-team"><span class="es-team-name">ENJOY</span></div>
+                    </div>
+                    <div class="es-meta">Group Stage. Group B</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.72"><span>W1</span><strong>1.72</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="2.20"><span>W2</span><strong>2.20</strong></button>
+                    <a href="#" class="es-more">+76</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">12/07/2026</span>
+                    <span class="es-clock">01:00</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Eternal Premium</span></div>
+                      <div class="es-team"><span class="es-team-name">ENCE</span></div>
+                    </div>
+                    <div class="es-meta">Group Stage. Group C</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.95"><span>W1</span><strong>1.95</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.88"><span>W2</span><strong>1.88</strong></button>
+                    <a href="#" class="es-more">+17</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">12/07/2026</span>
+                    <span class="es-clock">03:30</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Atreides</span></div>
+                      <div class="es-team"><span class="es-team-name">Sparta</span></div>
+                    </div>
+                    <div class="es-meta">Group Stage. Group C</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="2.05"><span>W1</span><strong>2.05</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.80"><span>W2</span><strong>1.80</strong></button>
+                    <a href="#" class="es-more">+17</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="es-league" data-disc="dota2">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-dota2.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">Dota 2. Esports World Cup</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">11/07/2026</span>
+                    <span class="es-clock">02:00</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">BB Team</span></div>
+                      <div class="es-team"><span class="es-team-name">GamerLegion</span></div>
+                    </div>
+                    <div class="es-meta">Group Stage. Group A</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.65"><span>W1</span><strong>1.65</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="2.30"><span>W2</span><strong>2.30</strong></button>
+                    <a href="#" class="es-more">+120</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">11/07/2026</span>
+                    <span class="es-clock">04:30</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Aurora Gaming</span></div>
+                      <div class="es-team"><span class="es-team-name">Team Liquid</span></div>
+                    </div>
+                    <div class="es-meta">Group Stage. Group B</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="2.15"><span>W1</span><strong>2.15</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.75"><span>W2</span><strong>1.75</strong></button>
+                    <a href="#" class="es-more">+98</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">12/07/2026</span>
+                    <span class="es-clock">02:00</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">PARIVISION</span></div>
+                      <div class="es-team"><span class="es-team-name">Team Spirit</span></div>
+                    </div>
+                    <div class="es-meta">Group Stage. Group C</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="2.80"><span>W1</span><strong>2.80</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.48"><span>W2</span><strong>1.48</strong></button>
+                    <a href="#" class="es-more">+110</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="es-league" data-disc="valorant">
+              <div class="es-league-head">
+                <span class="es-league-icon"><img src="/sportsbook/assets/icons/esports/icon-valorant.svg" alt="" width="16" height="16" /></span>
+                <span class="es-league-name">Valorant. Esports World Cup</span>
+                <span class="es-market-label">1x2</span>
+              </div>
+              <div class="es-league-body">
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">11/07/2026</span>
+                    <span class="es-clock">18:00</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Sentinels</span></div>
+                      <div class="es-team"><span class="es-team-name">LOUD</span></div>
+                    </div>
+                    <div class="es-meta">Group Stage</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="1.90"><span>W1</span><strong>1.90</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.98"><span>W2</span><strong>1.98</strong></button>
+                    <a href="#" class="es-more">+42</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+                <div class="es-row">
+                  <div class="es-row-when">
+                    <span class="es-date">11/07/2026</span>
+                    <span class="es-clock">20:00</span>
+                  </div>
+                  <div class="es-row-main">
+                    <div class="es-teams">
+                      <div class="es-team"><span class="es-team-name">Team Liquid</span></div>
+                      <div class="es-team"><span class="es-team-name">Paper Rex</span></div>
+                    </div>
+                    <div class="es-meta">Group Stage</div>
+                  </div>
+                  <div class="es-odds">
+                    <button type="button" class="es-odd" data-market="W1" data-val="2.25"><span>W1</span><strong>2.25</strong></button>
+                    <button type="button" class="es-odd" data-market="W2" data-val="1.68"><span>W2</span><strong>1.68</strong></button>
+                    <a href="#" class="es-more">+38</a>
+                    <button type="button" class="es-fav" aria-label="Add to favorites"><img src="/sportsbook/assets/icons/nav-fav-outline.svg" alt="" width="12" height="12" /></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- -- Right sidebar (live esports/real collapse block) - -->
+      <aside class="right-sidebar es-right" id="right-sidebar" aria-label="Bet slip">
+        <div class="right-compact-rail" aria-label="Collapsed account tools">
+          <button type="button" class="rc-expand" id="right-expand" aria-label="Expand block">
+            <img src="/sportsbook/assets/icons/collapse/chevron-double-left.svg" alt="" width="10" height="12" />
+          </button>
+          <div class="rc-stack">
+            <a href="#reg-form" data-auth-open="register" class="rc-reg" id="rc-reg">Registration</a>
+            <button type="button" class="rc-bet" id="rc-bet" aria-label="Bet slip">
+              <span class="rc-bet-count" id="rc-bet-count">0</span>
+              <span class="rc-bet-label">Bet slip</span>
+            </button>
+            <div class="rc-widgets">
+              <button type="button" class="rc-widget" id="rc-save" aria-label="Save/load events" title="Save/load events">
+                <img src="/sportsbook/assets/icons/collapse/widget-tickets.svg" alt="" width="16" height="16" />
+              </button>
+              <button type="button" class="rc-widget" id="rc-app" aria-label="Mobile application" title="Mobile application">
+                <img src="/sportsbook/assets/icons/collapse/widget-phone.svg" alt="" width="16" height="16" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="right-collapse es-right-collapse" id="right-collapse" aria-label="Collapse block" aria-expanded="true">
+          <span>Collapse block</span>
+          <img src="/sportsbook/assets/icons/rb-collapse-chevron.svg" alt="" width="9" height="10" />
+        </button>
+        <button type="button" class="mobile-drawer-close" id="right-drawer-close" aria-label="Close bet slip">
+          <span class="mobile-drawer-handle" aria-hidden="true"></span>
+          <span class="mobile-drawer-close-title">Bet slip</span>
+          <span class="mobile-drawer-close-action">Close</span>
+        </button>
+
+        <!-- Desktop: dark .es-bet-slip chrome. =900: global homepage light sheet (styles.css). -->
+        <div class="bet-slip-panel es-bet-slip">
+          <div class="bet-slip-tabs" role="tablist">
+            <button type="button" class="bet-tab active" role="tab" aria-selected="true" data-bet-tab="slip">Bet slip</button>
+            <button type="button" class="bet-tab" role="tab" aria-selected="false" data-bet-tab="mybets">My bets</button>
+          </div>
+          <div class="bet-slip-body" id="bet-slip-body">
+            <div class="bet-toolbar">
+              <span class="bet-toolbar-title">Your bets</span>
+              <button type="button" class="bet-icon-btn" aria-label="Share">
+                <img src="/sportsbook/assets/icons/rb-share.svg" alt="" width="12" height="12" />
+              </button>
+              <button type="button" class="bet-icon-btn" aria-label="Settings" title="Settings">
+                <img src="/sportsbook/assets/icons/rb-settings.svg" alt="" width="12" height="12" />
+              </button>
+            </div>
+            <div class="bet-empty" id="bet-empty">
+              <p class="bet-empty-text">Add events to the bet slip or<br />enter a code to load events</p>
+            </div>
+            <div class="bet-list" id="bet-list" hidden></div>
+            <!-- Ticket footer (Single / stake / Deposit) injected by js/script.js ensureTicketFooter -->
+            <div class="bet-footer" id="bet-footer" hidden></div>
+            <a href="#reg-form" data-auth-open="register" class="btn-slip-reg" id="bet-reg-cta">Registration</a>
+            <button type="button" class="bet-save-link">Save/load events</button>
+          </div>
+          <div class="my-bets-body" id="my-bets-body" hidden>
+            <div class="mybets-guest" id="mybets-guest">
+              <div class="mybets-guest-card">
+                <p class="bet-empty-text">Please log in to your account or register</p>
+              </div>
+              <button type="button" class="btn-slip-reg mybets-guest-cta" data-auth-open="register">Registration</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="app-panel es-app-panel" id="es-app-panel">
+          <div class="app-tabs">
+            <button type="button" class="app-tab active" data-app="android">
+              <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" />
+              Android
+            </button>
+            <button type="button" class="app-tab" data-app="ios">
+              <img src="/sportsbook/assets/icons/rb-apple.svg" alt="" width="16" height="16" />
+              iOS
+            </button>
+            <button type="button" class="app-close" id="es-app-close" aria-label="Close">
+              <img src="/sportsbook/assets/icons/rb-close.svg" alt="" width="10" height="10" />
+            </button>
+          </div>
+          <div class="app-body">
+            <div class="app-phone">
+              <img src="/sportsbook/assets/images/rb-phone-qr.png" alt="QR code" width="118" height="125" />
+            </div>
+            <div class="app-meta">
+              <img src="https://vj9.s3.ap-southeast-1.amazonaws.com/uploads/12W/website_logo/12winkh-Logo-d39.webp" alt="Caelo" class="app-logo" width="65" height="14" />
+              <p class="app-label">Mobile<br />application</p>
+              <a href="#" class="btn-app-download" id="es-app-download">
+                <img src="/sportsbook/assets/icons/rb-android.svg" alt="" width="16" height="16" class="app-dl-icon" data-app-icon />
+                Free&nbsp;download
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="es-subscribe" aria-label="Subscribe">
+          <span class="es-subscribe-label">Subscribe</span>
+          <a href="#" class="es-subscribe-x" aria-label="Follow on X">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.99 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+            </svg>
+          </a>
+          <div class="es-subscribe-art" aria-hidden="true"></div>
+        </div>
+      </aside>
+
+    </div><!-- /sportsbook-layout -->

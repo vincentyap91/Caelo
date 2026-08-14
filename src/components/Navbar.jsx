@@ -86,10 +86,10 @@ const DESKTOP_LIVE_MENU = [
 ];
 
 const DESKTOP_ESPORTS_MENU = [
-    { label: 'All Esports', page: 'e-sports', href: '/e-sports' },
-    { label: 'CS2', page: 'sportsbook', href: '/sportsbook' },
-    { label: 'Dota 2', page: 'sportsbook', href: '/sportsbook' },
-    { label: 'LoL', page: 'sportsbook', href: '/sportsbook' },
+    { label: 'All Esports', page: 'sportsbook-esports', href: '/sportsbook/esports' },
+    { label: 'CS2', page: 'sportsbook-esports', href: '/sportsbook/esports' },
+    { label: 'Dota 2', page: 'sportsbook-esports', href: '/sportsbook/esports' },
+    { label: 'LoL', page: 'sportsbook-esports', href: '/sportsbook/esports' },
 ];
 
 const DESKTOP_SPORTS_PAGES = new Set([
@@ -165,7 +165,7 @@ function isDesktopLiveActive(activePage) {
 }
 
 function isDesktopEsportsActive(activePage) {
-    return activePage === 'e-sports';
+    return activePage === 'sportsbook-esports';
 }
 
 function isDesktopSportsItemActive(item, activePage) {

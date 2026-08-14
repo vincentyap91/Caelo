@@ -8,6 +8,50 @@
 
   /* desktop-menu auto-load disabled for React port */
 
+  /**
+   * SportsbookPage reloads this file on every mount (cache-bust URL) and React
+   * Strict Mode mounts twice in dev. Previous IIFEs keep running, so untracked
+   * setInterval calls stack and the promo banner/dots jump too fast.
+   */
+  function sbDestroyRuntime() {
+    const abort = window.__sbRuntimeAbort;
+    if (abort) {
+      try {
+        abort.abort();
+      } catch (_) {
+        /* ignore */
+      }
+      window.__sbRuntimeAbort = null;
+    }
+    const timers = window.__sbRuntimeTimers;
+    if (timers && typeof timers.forEach === "function") {
+      timers.forEach((id) => {
+        clearInterval(id);
+        clearTimeout(id);
+      });
+    }
+    window.__sbRuntimeTimers = new Set();
+  }
+
+  function sbTrackTimer(id) {
+    if (!window.__sbRuntimeTimers) window.__sbRuntimeTimers = new Set();
+    window.__sbRuntimeTimers.add(id);
+    return id;
+  }
+
+  function sbClearTimer(id) {
+    if (id == null) return;
+    clearInterval(id);
+    clearTimeout(id);
+    if (window.__sbRuntimeTimers && typeof window.__sbRuntimeTimers.delete === "function") {
+      window.__sbRuntimeTimers.delete(id);
+    }
+  }
+
+  sbDestroyRuntime();
+  window.__sbRuntimeAbort = new AbortController();
+  window.__sbDestroyRuntime = sbDestroyRuntime;
+
   /* ---------- Mock data (live snapshot) ---------- */
 
   const isMarbleLivePage = document.body?.dataset?.page === "marble-live";
@@ -4642,6 +4686,9 @@
 
   /* ---------- Promo slider ---------- */
 
+  const PROMO_AUTOPLAY_MS = 8000;
+  let promoTimerId = null;
+
   function setPromoSlide(index) {
     const slides = $$(".promo-slide");
     if (!slides.length) return;
@@ -4650,31 +4697,60 @@
     $$(".promo-dot").forEach((d, i) => d.classList.toggle("active", i === state.promoIndex));
   }
 
+  function stopPromoAutoplay() {
+    sbClearTimer(promoTimerId);
+    promoTimerId = null;
+  }
+
+  function startPromoAutoplay() {
+    stopPromoAutoplay();
+    const slider = $("#promo-slider");
+    if (!slider || document.hidden) return;
+    promoTimerId = sbTrackTimer(
+      setInterval(() => setPromoSlide(state.promoIndex + 1), PROMO_AUTOPLAY_MS)
+    );
+  }
+
+  function goPromoSlide(index) {
+    setPromoSlide(index);
+    startPromoAutoplay();
+  }
+
   function initPromoSlider() {
     const slides = $$(".promo-slide");
     const dots = $("#promo-dots");
-    if (!slides.length || !dots) return;
+    const slider = $("#promo-slider");
+    if (!slides.length || !dots || !slider) return;
+
+    const signal = window.__sbRuntimeAbort?.signal;
 
     dots.innerHTML = slides
       .map((_, i) => `<button type="button" class="promo-dot${i === 0 ? " active" : ""}" data-promo-dot="${i}" aria-label="Slide ${i + 1}"></button>`)
       .join("");
 
-    $("#promo-prev").addEventListener("click", () => setPromoSlide(state.promoIndex - 1));
-    $("#promo-next").addEventListener("click", () => setPromoSlide(state.promoIndex + 1));
+    $("#promo-prev").addEventListener("click", () => goPromoSlide(state.promoIndex - 1), { signal });
+    $("#promo-next").addEventListener("click", () => goPromoSlide(state.promoIndex + 1), { signal });
     dots.addEventListener("click", (e) => {
       const dot = e.target.closest("[data-promo-dot]");
-      if (dot) setPromoSlide(Number(dot.getAttribute("data-promo-dot")));
-    });
+      if (dot) goPromoSlide(Number(dot.getAttribute("data-promo-dot")));
+    }, { signal });
 
     $$(".btn-promo").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         if (btn.tagName === "A" && btn.getAttribute("href") && btn.getAttribute("href") !== "#") return;
         e.preventDefault();
         showToast("Demo only — promotion not opened");
-      });
+      }, { signal });
     });
 
-    setInterval(() => setPromoSlide(state.promoIndex + 1), 6000);
+    slider.addEventListener("mouseenter", stopPromoAutoplay, { signal });
+    slider.addEventListener("mouseleave", startPromoAutoplay, { signal });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopPromoAutoplay();
+      else startPromoAutoplay();
+    }, { signal });
+
+    startPromoAutoplay();
   }
 
   function initPlayersOnlineCounter() {
@@ -4705,11 +4781,13 @@
 
       render();
 
-      window.setInterval(() => {
-        const delta = Math.round((Math.random() - 0.5) * swing);
-        current = Math.max(base - swing, Math.min(base + swing, current + delta));
-        render();
-      }, 4200 + index * 600);
+      sbTrackTimer(
+        window.setInterval(() => {
+          const delta = Math.round((Math.random() - 0.5) * swing);
+          current = Math.max(base - swing, Math.min(base + swing, current + delta));
+          render();
+        }, 5200 + index * 700)
+      );
     });
   }
 
@@ -8525,7 +8603,7 @@
       });
     }
 
-    $$(".app-tab").forEach((tab) => {
+    $$("#app-panel .app-tab").forEach((tab) => {
       tab.addEventListener("click", () => {
         $$(".app-tab").forEach((t) => t.classList.remove("active"));
         tab.classList.add("active");
@@ -8687,10 +8765,11 @@
       el.textContent = `${h}:${m}`;
     };
     tick();
-    setInterval(tick, 30000);
+    sbTrackTimer(setInterval(tick, 30000));
   }
 
   function isMobileViewport() {
+    if (document.documentElement.classList.contains("figma-capture-mobile")) return true;
     return window.matchMedia("(max-width: 900px)").matches;
   }
 
@@ -8941,7 +9020,6 @@
       initCarousel();
       initPromoSlider();
       initPlayersOnlineCounter();
-      initMobileChrome();
       initHomeReferral();
       initHomePayoutMarquee();
       initSportsPageChrome();
@@ -8950,6 +9028,7 @@
     } else {
       window.syncMobileBetCount = syncMobileBetCount;
     }
+    initMobileChrome();
     syncBetSlipAuthUi();
     if (!isEsportsPage) {
       requestAnimationFrame(() => {
@@ -8958,6 +9037,115 @@
       });
     }
     importCouponFromQuery();
+    applyFigmaCapturePreview();
+  }
+
+  function applyFigmaCapturePreview() {
+    const mode = new URLSearchParams(location.search).get("figmaCapture");
+    if (!mode) return;
+
+    function forceLogin() {
+      try {
+        sessionStorage.setItem("1xbet_logged_in", "1");
+      } catch (_) {}
+      document.body.classList.add("is-logged-in");
+      if (window.AuthModals && typeof window.AuthModals.setLoggedIn === "function") {
+        window.AuthModals.setLoggedIn(true);
+      }
+    }
+
+    document.documentElement.classList.add("figma-capture-mobile");
+    forceLogin();
+
+    const demoSlip = {
+      id: "lv-id1",
+      eventId: "lv-id1",
+      match: "Persib Bandung - Persija Jakarta",
+      league: "Indonesia. Piala Presiden",
+      market: "1X2",
+      pick: "X",
+      odds: 3.1,
+      live: true,
+      score: "[ 0:0 ]",
+    };
+
+    function waitForSlip(attempt) {
+      const ready = $("#right-sidebar") && $("#bet-slip-body");
+      if (!ready) {
+        if (attempt < 40) setTimeout(() => waitForSlip(attempt + 1), 150);
+        return;
+      }
+      forceLogin();
+      if (MOCK_RUNNING_BETS[0]) {
+        MOCK_RUNNING_BETS[0].cashOut = true;
+        MOCK_RUNNING_BETS[0].sellEligible = true;
+        MOCK_RUNNING_BETS[0].sellValue = 9;
+      }
+      initMyBetsPanel();
+      syncBetSlipAuthUi();
+      syncMyBetsAuthUi();
+
+      if (mode === "bet-slip") {
+        if (!state.betSlip.length) {
+          state.betSlip.push(hydrateTicketData(demoSlip));
+          renderBetSlip();
+        }
+        $$(".bet-tab").forEach((t) => {
+          const on = t.getAttribute("data-bet-tab") === "slip";
+          t.classList.toggle("active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        const slipBody = $("#bet-slip-body");
+        const myBetsBody = $("#my-bets-body");
+        if (slipBody) slipBody.hidden = false;
+        if (myBetsBody) myBetsBody.hidden = true;
+        openRightDrawer();
+        return;
+      }
+
+      if (mode === "active-bets") {
+        openRightDrawer();
+        showMyBetsOpenPanel();
+        setMyBetsTab("open");
+        return;
+      }
+
+      if (mode === "history-empty") {
+        MOCK_SETTLED_BETS = [];
+        openRightDrawer();
+        showMyBetsOpenPanel();
+        setMyBetsTab("history");
+        return;
+      }
+
+      if (mode === "bet-history") {
+        openRightDrawer();
+        showMyBetsOpenPanel();
+        setMyBetsTab("history");
+        openBetHistoryPanel({ category: "all" });
+        return;
+      }
+
+      if (mode === "bet-accepted") {
+        const bet = MOCK_RUNNING_BETS[0] || {
+          id: "66889338943",
+          match: "Persib Bandung -vs- Persija Jakarta",
+          eventName: "Indonesia. Piala Presiden",
+          selection: "X",
+          pick: "X",
+          odds: "3.1",
+          betType: "Single bet",
+          stake: "50",
+          potentialWinnings: "155",
+        };
+        openRightDrawer();
+        openBetAcceptedModal(bet);
+      }
+    }
+
+    waitForSlip(0);
+    setTimeout(() => waitForSlip(0), 1600);
+    setTimeout(() => waitForSlip(0), 3600);
   }
 
   function bindSpHScroll(viewport, root) {

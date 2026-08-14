@@ -29,6 +29,7 @@ const MODE_STYLESHEETS = {
   msi: ['/sportsbook/css/msi.css', '/sportsbook/css/top-events-theme.css'],
   favourites: ['/sportsbook/css/favourites.css'],
   search: ['/sportsbook/css/search.css'],
+  esports: ['/sportsbook/css/esports.css'],
 };
 
 /** Caelo orange+blue remap — must load LAST so it wins over 1xbet tokens */
@@ -58,6 +59,7 @@ const MODE_EXTRA_SCRIPTS = {
   msi: ['/sportsbook/js/top-events.js'],
   favourites: ['/sportsbook/js/favourites-page.js'],
   search: ['/sportsbook/js/search-page.js'],
+  esports: ['/sportsbook/js/esports.js'],
 };
 
 /** Skip heavy live-table script.js on pages that own their own demo board */
@@ -78,6 +80,7 @@ const MODE_LAYOUT = {
   msi: '/sportsbook/partials/sportsbook-msi-layout.html',
   favourites: '/sportsbook/partials/sportsbook-favourites-layout.html',
   search: '/sportsbook/partials/sportsbook-search-layout.html',
+  esports: '/sportsbook/partials/sportsbook-esports-layout.html',
 };
 
 const MODE_DATA_PAGE = {
@@ -95,6 +98,7 @@ const MODE_DATA_PAGE = {
   msi: 'msi',
   favourites: 'favourites',
   search: 'search',
+  esports: 'esports',
 };
 
 export const SPORTSBOOK_MODES = Object.keys(MODE_LAYOUT);
@@ -140,6 +144,14 @@ function removePortAssets() {
     .forEach((el) => el.remove());
 }
 
+function isFigmaCapturePreview() {
+  try {
+    return Boolean(new URLSearchParams(window.location.search).get("figmaCapture"));
+  } catch {
+    return false;
+  }
+}
+
 function syncSportsbookAuth(loggedIn) {
   const on = !!loggedIn;
   try {
@@ -181,7 +193,7 @@ export default function SportsbookPage({
   const shellRef = useRef(null);
   const [booted, setBooted] = useState(false);
   const [error, setError] = useState(null);
-  const loggedIn = !!authUser;
+  const loggedIn = !!authUser || isFigmaCapturePreview();
   const resolvedMode = MODE_LAYOUT[mode] ? mode : 'home';
   const dataPage = MODE_DATA_PAGE[resolvedMode] || 'home';
   const isEvent = resolvedMode === 'event';
@@ -289,6 +301,9 @@ export default function SportsbookPage({
 
     return () => {
       cancelled = true;
+      if (typeof window.__sbDestroyRuntime === 'function') {
+        window.__sbDestroyRuntime();
+      }
       removePortAssets();
       if (shellRef.current) shellRef.current.innerHTML = '';
       try {
