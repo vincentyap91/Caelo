@@ -50,6 +50,11 @@ import VipStatusPill from './VipStatusPill';
 import MobileSiteHeader from './MobileSiteHeader';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 import { NAV_STICKY_SUBHEADER_TOP_CLASS } from '../constants/navStickyOffsets';
+import SportsbookSkinToggle from './SportsbookSkinToggle';
+import {
+    sportsbookMenuItemIsActive,
+    toCanonicalSportsbookPage,
+} from '../utils/sportsbookSkin';
 
 const slotsNavDropdownProviders = slotProvidersForNavDropdown();
 
@@ -71,7 +76,6 @@ const DESKTOP_MAIN_LINKS = [
 const DESKTOP_SPORTS_MENU = [
     { label: 'Sports', page: 'sports', href: '/sports' },
     { label: 'Sportsbook', page: 'sportsbook', href: '/sportsbook' },
-    { label: 'Sportsbook Light', page: 'sportsbook-light', href: '/sportsbook/light' },
     { label: 'Bet on Your National Team', page: 'sportsbook-national-team', href: '/sportsbook/national-team' },
     { label: 'Bet on Big Tournaments', page: 'sportsbook-big-tournaments', href: '/sportsbook/big-tournaments' },
     { label: 'Long-term bets', page: 'sportsbook-long-term-bets', href: '/sportsbook/long-term-bets' },
@@ -97,6 +101,9 @@ const DESKTOP_SPORTS_PAGES = new Set([
     'sports',
     'sportsbook',
     'sportsbook-light',
+    'sportsbook-light-national-team',
+    'sportsbook-light-big-tournaments',
+    'sportsbook-light-long-term-bets',
     'sportsbook-event',
     'sportsbook-sports',
     'sportsbook-national-team',
@@ -113,10 +120,15 @@ const DESKTOP_LIVE_PAGES = new Set([
     'sportsbook-multi-live',
     'sportsbook-marble-live',
     'sportsbook-fast-bet',
+    'sportsbook-light-live-national-team',
+    'sportsbook-light-multi-live',
+    'sportsbook-light-marble-live',
+    'sportsbook-light-fast-bet',
 ]);
 
 const DESKTOP_SPORTSBOOK_HOME_PAGES = new Set([
     'sportsbook',
+    'sportsbook-light',
     'sportsbook-event',
     'sportsbook-sports',
     'sportsbook-favourites',
@@ -167,24 +179,24 @@ function isDesktopLiveActive(activePage) {
 }
 
 function isDesktopEsportsActive(activePage) {
-    return activePage === 'sportsbook-esports';
+    return activePage === 'sportsbook-esports' || activePage === 'sportsbook-light-esports';
 }
 
 function isDesktopSportsItemActive(item, activePage) {
     if (item.page === 'sportsbook') {
-        return DESKTOP_SPORTSBOOK_HOME_PAGES.has(activePage);
+        return DESKTOP_SPORTSBOOK_HOME_PAGES.has(toCanonicalSportsbookPage(activePage));
     }
-    return activePage === item.page;
+    return sportsbookMenuItemIsActive(item.page, activePage);
 }
 
 function isDesktopLiveItemActive(item, activePage) {
     if (item.page === 'sportsbook') return false;
-    return activePage === item.page;
+    return sportsbookMenuItemIsActive(item.page, activePage);
 }
 
 function isDesktopEsportsItemActive(item, activePage) {
     if (item.page === 'sportsbook') return false;
-    return activePage === item.page;
+    return sportsbookMenuItemIsActive(item.page, activePage);
 }
 
 function isDesktopMoreActive(activePage) {
@@ -330,6 +342,8 @@ const MOBILE_MORE_SECTION_BY_PAGE = MOBILE_MORE_SECTIONS.reduce((accumulator, se
 export default function Navbar({
     onNavigate,
     onDownloadAppClick,
+    sportsbookSkin = 'light',
+    onSportsbookSkinToggle,
     activePage = 'home',
     onLoginClick,
     onRegisterClick,
@@ -538,12 +552,14 @@ export default function Navbar({
                 onLoginClick={() => onLoginClick?.()}
                 onRegisterClick={() => onRegisterClick?.()}
                 onLiveChatClick={onLiveChatClick}
+                sportsbookSkin={sportsbookSkin}
+                onSportsbookSkinToggle={onSportsbookSkinToggle}
             />
 
 
             <div className="top-sticky-nav-bar relative z-[110] hidden h-9 w-full items-center border-b bg-[var(--color-sticky-nav)] px-4 text-xs text-[var(--color-tertiery)] lg:flex lg:px-10">
                 <div className="w-full max-w-screen-2xl mx-auto flex items-center justify-between">
-                    <div className="flex gap-4 items-center h-full">
+                    <div className="flex gap-2 items-center h-full">
                         <button
                             type="button"
                             onClick={() => onDownloadAppClick?.()}
@@ -552,6 +568,10 @@ export default function Navbar({
                             <Smartphone size={14} className="shrink-0 text-[var(--color-tertiery)]" />
                             <span>Download App</span>
                         </button>
+                        <SportsbookSkinToggle
+                            skin={sportsbookSkin}
+                            onToggle={onSportsbookSkinToggle}
+                        />
                     </div>
 
                     <div className="flex items-center gap-1 h-full">

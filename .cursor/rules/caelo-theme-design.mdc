@@ -39,7 +39,7 @@ Any UI / visual / Figma / CSS / component / sportsbook styling must follow this 
 
 ## Sportsbook (`/sportsbook`)
 
-Keep 1xbet **dark chrome structure**; retint via `caelo-palette.css` only:
+Keep 1xbet **dark chrome structure** for the night skin; retint via `caelo-palette.css` only:
 
 | 1xbet role | Remap to |
 |------------|----------|
@@ -50,7 +50,21 @@ Keep 1xbet **dark chrome structure**; retint via `caelo-palette.css` only:
 
 Do **not** ship raw 1xbet/Figma chrome hex (`#1d4268`, `#205583`, `#276aa5`, `#7eac2f`, etc.) as the product palette. Structure/icons OK; fills/borders/text must hit Caelo tokens above. Success/win green may stay readable (`#65a30d`) — do not force orange onto win states.
 
-**Light preview:** `/sportsbook/light` is a separate white-chrome sportsbook (same layout HTML, `caelo-light.css` last). Default `/sportsbook` stays dark. Do not fold the light skin into `caelo-palette.css`.
+**Default is white.** Use the sun/moon toggle beside **Download App** to compare white vs dark. Do not add `(Light)` routes to Sports / Live / Esports menus.
+
+**White / light sportsbook:** `/sportsbook/light` is the default white-chrome sportsbook (`caelo-light.css` last). Additional white routes reuse the same dark-page layouts with `light` + `body.sportsbook-light` + `.sportsbook-light-chrome` + `caelo-light.css`:
+
+- `/sportsbook/light`
+- `/sportsbook/light/national-team`
+- `/sportsbook/light/live-national-team`
+- `/sportsbook/light/big-tournaments`
+- `/sportsbook/light/long-term-bets`
+- `/sportsbook/light/multi-live`
+- `/sportsbook/light/marble-live`
+- `/sportsbook/light/fast-bet`
+- `/sportsbook/light/esports`
+
+Night skin stays on `/sportsbook` and `/sportsbook/<slug>`. Do **not** fold the light skin into `caelo-palette.css`. Table heads / toolbars: white/soft panels, navy text, gold CTA; inactive tabs must stay readable on white (`--text-muted`).
 
 ```text
 ✅ var(--color-primary), var(--color-accent-100), var(--color-button-cta)

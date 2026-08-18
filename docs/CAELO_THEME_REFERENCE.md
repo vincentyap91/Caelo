@@ -212,12 +212,37 @@ After pull, spot-check:
 
 ## Sportsbook skins
 
+White is the **default** sportsbook chrome. Switch day/night with the sun/moon toggle next to **Download App** (desktop top bar; also in the mobile header). Preference is stored as `caelo-sportsbook-skin` (`light` | `dark`). Sports / Live / Esports menus list each page once — they follow the toggle instead of duplicate “(Light)” links.
+
 | Route | Skin | CSS |
 |-------|------|-----|
-| `/sportsbook` | Dark 1xbet chrome, Caelo retint | `caelo-palette.css` |
-| `/sportsbook/light` | White Caelo chrome (preview) | `caelo-palette.css` + `caelo-light.css` |
+| `/sportsbook/light` and `/sportsbook/light/<slug>` | **Default** white Caelo chrome | `caelo-palette.css` + `caelo-light.css` last |
+| `/sportsbook` and `/sportsbook/<slug>` | Dark 1xbet chrome, Caelo retint | `caelo-palette.css` last |
 
-Light preview keeps the same sportsbook structure. Do not replace the dark home page.
+White routes: `/sportsbook/light`, `/sportsbook/light/national-team`, `/sportsbook/light/live-national-team`, `/sportsbook/light/big-tournaments`, `/sportsbook/light/long-term-bets`, `/sportsbook/light/multi-live`, `/sportsbook/light/marble-live`, `/sportsbook/light/fast-bet`, `/sportsbook/light/esports`.
+
+Dark originals stay on `/sportsbook/<slug>` (national-team, big-tournaments, long-term-bets, multi-live, live-national-team, marble-live, fast-bet, esports). Do not fold the light skin into `caelo-palette.css`.
+
+Load order for **white** routes: page CSS → `caelo-palette.css` → **`caelo-light.css` last**.
+
+Hook: pathname `/sportsbook/light` or `/sportsbook/light/<slug>` sets `light` on `SportsbookPage`, which adds `body.sportsbook-light` and `.sportsbook-root.sportsbook-light-chrome`. Dark `/sportsbook` does **not** load `caelo-light.css`.
+
+### Light sportsbook tokens (`caelo-light.css`)
+
+| Role | Token | Hex |
+|------|-------|-----|
+| Page / cards | `--page-bg` / `--surface-primary` | `#f8fafc` / `#ffffff` |
+| Soft panels | `--page-bg-secondary` / `--surface-tertiary` / `--league-header` | `#eff6ff` / `#eff6ff` / `#dbeafe` |
+| Ink / muted | `--text-primary` / `--text-muted` | `#0f172a` / `#64748b` |
+| Brand / headers | `--sb-brand` / `--section-blue` | `#123B94` |
+| Borders | `--border-light` / `--border-dark` | `#e2e8f0` / `#cfe0f9` |
+| CTA | `--sb-cta-start` → `--sb-cta-end` + `--sb-cta-text` | `#ffcf4a` → `#ffb22d` + `#0c4a8e` |
+| Selected odds | `--odds-selected` | `#e89a12` |
+| Win / success | `--success` | `#65a30d` |
+
+Table heads, toolbars, and tabs use white/soft panels with navy text and a gold CTA. Inactive tabs stay muted (`--text-muted`) so they remain readable on white — not navy-on-navy and not white type on a white bar. Page-specific prefixes (`.nt-*`, `.bt-*`, `.lt-*`, `.ml-*`, `.fb-*`, `.es-*`) are retinted in the same stylesheet.
+
+Esports exception: photo hero / competition overlays keep light type on the image. The rest of the lobby and the shared bet slip use white chrome like `/sportsbook/light`.
 
 ---
 

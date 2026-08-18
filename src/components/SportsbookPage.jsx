@@ -34,21 +34,16 @@ const MODE_STYLESHEETS = {
 
 /** Caelo orange+blue remap — must load LAST so it wins over 1xbet tokens */
 const PALETTE_STYLESHEET = '/sportsbook/css/caelo-palette.css';
-/** White Caelo chrome — after palette; /sportsbook/light + LIGHT_MODES */
+/** White Caelo chrome — after palette; /sportsbook/light and /sportsbook/light/<page> only */
 const LIGHT_PALETTE_STYLESHEET = '/sportsbook/css/caelo-light.css';
 
-/** White sportsbook skin (same as /sportsbook/light). Default home stays dark. */
-const LIGHT_MODES = new Set([
-  'light',
-  'national-team',
-  'live-national-team',
-  'big-tournaments',
-  'long-term-bets',
-  'multi-live',
-  'marble-live',
-  'fast-bet',
-  'esports',
-]);
+function isSportsbookLightPath() {
+  try {
+    return window.location.pathname.toLowerCase().startsWith('/sportsbook/light');
+  } catch {
+    return false;
+  }
+}
 
 const BASE_SCRIPTS = [
   '/sportsbook/js/favourites-store.js',
@@ -199,11 +194,13 @@ function scriptsForMode(mode) {
 /**
  * 1xBet sportsbook middle shell + chrome (Canon): layout, colors, buttons, modals.
  * mode maps to body[data-page] + partial layout (home / event / national-team / …).
+ * light wraps that same layout with white Caelo chrome (`caelo-light.css` last).
  * Caelo Navbar/Footer stay in App.jsx. No 1xbet header/footer/home-social.
  */
 export default function SportsbookPage({
   authUser = null,
   mode = 'home',
+  light = false,
   onNavigate,
   onLoginClick,
 }) {
@@ -214,7 +211,7 @@ export default function SportsbookPage({
   const resolvedMode = MODE_LAYOUT[mode] ? mode : 'home';
   const dataPage = MODE_DATA_PAGE[resolvedMode] || 'home';
   const isEvent = resolvedMode === 'event';
-  const isLightChrome = LIGHT_MODES.has(resolvedMode);
+  const isLightChrome = Boolean(light) || resolvedMode === 'light' || isSportsbookLightPath();
   const onNavigateRef = useRef(onNavigate);
   const onLoginClickRef = useRef(onLoginClick);
   onNavigateRef.current = onNavigate;
@@ -223,7 +220,9 @@ export default function SportsbookPage({
   useEffect(() => {
     /* Multi-LIVE is desktop-only — 1xbet sends ≤900 to Live National Team */
     if (resolvedMode === 'multi-live' && window.matchMedia('(max-width: 900px)').matches) {
-      onNavigateRef.current?.('sportsbook-live-national-team', { path: '/sportsbook/live-national-team' });
+      onNavigateRef.current?.('sportsbook-live-national-team', {
+        path: '/sportsbook/live-national-team',
+      });
       return undefined;
     }
 
@@ -366,7 +365,7 @@ export default function SportsbookPage({
       else document.body.dataset.page = prevPage;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resolvedMode]);
+  }, [resolvedMode, isLightChrome]);
 
   useEffect(() => {
     if (!booted) return;
@@ -436,6 +435,7 @@ export default function SportsbookPage({
       className={isLightChrome ? 'sportsbook-root sportsbook-light-chrome' : 'sportsbook-root'}
       data-sportsbook-shell="1"
       data-sportsbook-mode={resolvedMode}
+      data-sportsbook-theme={isLightChrome ? 'light' : undefined}
       aria-busy={!booted}
     />
   );

@@ -67,9 +67,26 @@ import { PUSH_EVENT } from './constants/pushNotificationCopy';
 import { REWARDS_PROGRAM_IDS } from './constants/rewardsPrograms';
 import { HISTORY_RECORD_PAGE_IDS } from './constants/historyRecordPages';
 import { parseGameDetailSlugFromPathname } from './utils/gameDetailRoutes';
+import {
+  SPORTSBOOK_LIGHT_SLUGS,
+  applySportsbookSkinToPage,
+  applySportsbookSkinToPath,
+  getSportsbookSkin,
+  setSportsbookSkin,
+  sportsbookSkinFromPage,
+} from './utils/sportsbookSkin';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ui/ScrollToTop';
 import ThemeEditor from './components/ThemeEditor';
+
+/** White-chrome sportsbook previews — dark /sportsbook/<slug> originals stay unchanged. */
+function sportsbookLightModeFromPage(pageId) {
+  if (pageId === 'sportsbook-light') return 'light';
+  if (typeof pageId === 'string' && pageId.startsWith('sportsbook-light-')) {
+    return pageId.slice('sportsbook-light-'.length);
+  }
+  return null;
+}
 
 function resolvePageFromPath() {
   try {
@@ -133,6 +150,10 @@ function resolvePageFromPath() {
     }
     if (pathname === '/sportsbook/light') {
       return 'sportsbook-light';
+    }
+    if (pathname.startsWith('/sportsbook/light/')) {
+      const slug = pathname.slice('/sportsbook/light/'.length);
+      if (SPORTSBOOK_LIGHT_SLUGS[slug]) return SPORTSBOOK_LIGHT_SLUGS[slug];
     }
     if (pathname === '/sportsbook') {
       return 'sportsbook';
@@ -268,6 +289,7 @@ function isSportsbookPageId(pageId) {
     || pageId === 'sportsbook-msi'
     || pageId === 'sportsbook-esports'
     || pageId === 'sportsbook-light'
+    || pageId.startsWith('sportsbook-light-')
   );
 }
 
@@ -313,12 +335,15 @@ function AppInner() {
   const [dailyBonusModalOpen, setDailyBonusModalOpen] = useState(false);
   const [page, setPage] = useState(() => {
     const nextPage = resolvePageFromPath();
-    return !initialAuthUser && isProtectedPage(nextPage) ? 'home' : nextPage;
+    if (!initialAuthUser && isProtectedPage(nextPage)) return 'home';
+    return applySportsbookSkinToPage(nextPage, getSportsbookSkin());
   });
   const [routePath, setRoutePath] = useState(() => {
     const nextPage = resolvePageFromPath();
-    return !initialAuthUser && isProtectedPage(nextPage) ? '/' : window.location.pathname;
+    if (!initialAuthUser && isProtectedPage(nextPage)) return '/';
+    return applySportsbookSkinToPath(window.location.pathname, getSportsbookSkin());
   });
+  const [sportsbookSkin, setSportsbookSkinState] = useState(getSportsbookSkin);
   const [selectedCasinoProviderIdFromMenu, setSelectedCasinoProviderIdFromMenu] = useState(null);
   const [selectedSlotsProviderIdFromMenu, setSelectedSlotsProviderIdFromMenu] = useState(null);
   const [pageNavigationState, setPageNavigationState] = useState(null);
@@ -447,6 +472,11 @@ function AppInner() {
         redirectToPublicHome({ openLogin: true, replace: true });
         return;
       }
+      const fromUrl = sportsbookSkinFromPage(nextPage);
+      if (fromUrl) {
+        setSportsbookSkin(fromUrl);
+        setSportsbookSkinState(fromUrl);
+      }
       setPage(nextPage);
       setPageNavigationState(null);
       setRoutePath(window.location.pathname);
@@ -470,6 +500,15 @@ function AppInner() {
     if (p === '/terms' || p === '/terms-and-conditions') {
       window.history.replaceState({}, '', '/help#tc');
       window.dispatchEvent(new Event('hashchange'));
+    }
+  }, []);
+
+  useEffect(() => {
+    const preferredPath = applySportsbookSkinToPath(window.location.pathname, getSportsbookSkin());
+    if (preferredPath !== window.location.pathname) {
+      window.history.replaceState({}, '', preferredPath);
+      setRoutePath(preferredPath);
+      setPage(resolvePageFromPath());
     }
   }, []);
 
@@ -518,7 +557,10 @@ function AppInner() {
 
     const handleNavigate = (targetPage, options) => {
       const settingsToProfile = { security: 'security', notifications: 'notifications' };
-      const resolvedPage = settingsToProfile[targetPage] ?? targetPage;
+      let resolvedPage = settingsToProfile[targetPage] ?? targetPage;
+      if (isSportsbookPageId(resolvedPage)) {
+        resolvedPage = applySportsbookSkinToPage(resolvedPage, getSportsbookSkin());
+      }
     const pathByPage = {
       home: '/',
       'live-casino': '/casino',
@@ -542,6 +584,14 @@ function AppInner() {
       'sportsbook-msi': '/sportsbook/msi',
       'sportsbook-esports': '/sportsbook/esports',
       'sportsbook-light': '/sportsbook/light',
+      'sportsbook-light-national-team': '/sportsbook/light/national-team',
+      'sportsbook-light-big-tournaments': '/sportsbook/light/big-tournaments',
+      'sportsbook-light-long-term-bets': '/sportsbook/light/long-term-bets',
+      'sportsbook-light-multi-live': '/sportsbook/light/multi-live',
+      'sportsbook-light-live-national-team': '/sportsbook/light/live-national-team',
+      'sportsbook-light-marble-live': '/sportsbook/light/marble-live',
+      'sportsbook-light-fast-bet': '/sportsbook/light/fast-bet',
+      'sportsbook-light-esports': '/sportsbook/light/esports',
       'e-sports': '/e-sports',
       lottery: '/lottery',
       fishing: '/fishing',
@@ -588,7 +638,9 @@ function AppInner() {
     const currentPath = window.location.pathname;
     let fullUrl = nextPath;
     if (options?.path && typeof options.path === 'string' && options.path.startsWith('/')) {
-      fullUrl = options.path;
+      fullUrl = isSportsbookPageId(resolvedPage)
+        ? applySportsbookSkinToPath(options.path, getSportsbookSkin())
+        : options.path;
     }
     if (resolvedPage === 'game-detail') {
       const slug = options?.gameSlug ?? options?.gameId;
@@ -623,6 +675,15 @@ function AppInner() {
     setRoutePath(window.location.pathname);
   };
 
+  const handleSportsbookSkinToggle = () => {
+    const nextSkin = getSportsbookSkin() === 'dark' ? 'light' : 'dark';
+    setSportsbookSkin(nextSkin);
+    setSportsbookSkinState(nextSkin);
+    if (isSportsbookPageId(page)) {
+      handleNavigate(page);
+    }
+  };
+
   return (
     <div
       data-app-shell-bg={resolveAppShellBg(page, authUser)}
@@ -638,6 +699,8 @@ function AppInner() {
       <Navbar
         onNavigate={handleNavigate}
         onDownloadAppClick={handleDownloadAppClick}
+        sportsbookSkin={sportsbookSkin}
+        onSportsbookSkinToggle={handleSportsbookSkinToggle}
         activePage={page}
         onLoginClick={() => {
           setAuthModalView('login');
@@ -861,10 +924,11 @@ function AppInner() {
             setLoginModalOpen(true);
           }}
         />
-      ) : page === 'sportsbook-light' ? (
+      ) : sportsbookLightModeFromPage(page) ? (
         <SportsbookPage
           authUser={authUser}
-          mode="light"
+          mode={sportsbookLightModeFromPage(page)}
+          light
           onNavigate={handleNavigate}
           onLoginClick={() => {
             setAuthModalView('login');

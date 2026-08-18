@@ -35,9 +35,14 @@
 .app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='search']),
 .app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='favourites']),
 .app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='wc2026']),
-.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='msi']),
-.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='light']) {
+.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='msi']) {
   background: #eef2f6;
+}
+
+.app-shell[data-app-shell-bg='sportsbook']:has(.sportsbook-light-chrome),
+.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-theme='light']),
+.app-shell[data-app-shell-bg='sportsbook']:has([data-sportsbook-mode='light']) {
+  background: #f8fafc;
 }
 
 .sportsbook-root[data-sportsbook-mode='search'],
@@ -48,7 +53,9 @@
   min-height: calc(100vh - var(--header-h, 100px));
 }
 
-.sportsbook-root[data-sportsbook-mode='light'] {
+.sportsbook-root[data-sportsbook-mode='light'],
+.sportsbook-root.sportsbook-light-chrome,
+.sportsbook-root[data-sportsbook-theme='light'] {
   background: #f8fafc;
   color: #0f172a;
   min-height: calc(100vh - var(--header-h, 100px));
@@ -69,9 +76,12 @@ body.sportsbook-port-active {
 body.sportsbook-port-active[data-page='search'],
 body.sportsbook-port-active[data-page='favourites'],
 body.sportsbook-port-active[data-page='wc2026'],
-body.sportsbook-port-active[data-page='msi'],
-body.sportsbook-port-active.sportsbook-light {
+body.sportsbook-port-active[data-page='msi'] {
   background: #eef2f6;
+}
+
+body.sportsbook-port-active.sportsbook-light {
+  background: #f8fafc;
 }
 
 /*
