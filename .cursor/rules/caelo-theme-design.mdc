@@ -50,6 +50,8 @@ Keep 1xbet **dark chrome structure**; retint via `caelo-palette.css` only:
 
 Do **not** ship raw 1xbet/Figma chrome hex (`#1d4268`, `#205583`, `#276aa5`, `#7eac2f`, etc.) as the product palette. Structure/icons OK; fills/borders/text must hit Caelo tokens above. Success/win green may stay readable (`#65a30d`) — do not force orange onto win states.
 
+**Light preview:** `/sportsbook/light` is a separate white-chrome sportsbook (same layout HTML, `caelo-light.css` last). Default `/sportsbook` stays dark. Do not fold the light skin into `caelo-palette.css`.
+
 ```text
 ✅ var(--color-primary), var(--color-accent-100), var(--color-button-cta)
 ✅ sportsbook accents via caelo-palette.css tokens

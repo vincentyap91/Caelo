@@ -210,4 +210,15 @@ After pull, spot-check:
 
 ---
 
+## Sportsbook skins
+
+| Route | Skin | CSS |
+|-------|------|-----|
+| `/sportsbook` | Dark 1xbet chrome, Caelo retint | `caelo-palette.css` |
+| `/sportsbook/light` | White Caelo chrome (preview) | `caelo-palette.css` + `caelo-light.css` |
+
+Light preview keeps the same sportsbook structure. Do not replace the dark home page.
+
+---
+
 *Last updated from local working tree. Regenerate or amend this file after intentional theme changes.*
