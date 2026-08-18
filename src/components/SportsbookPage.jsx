@@ -30,6 +30,7 @@ const MODE_STYLESHEETS = {
   favourites: ['/sportsbook/css/favourites.css'],
   search: ['/sportsbook/css/search.css'],
   esports: ['/sportsbook/css/esports.css'],
+  light: ['/sportsbook/css/top-events-theme.css'],
 };
 
 /** Caelo orange+blue remap — must load LAST so it wins over 1xbet tokens */
@@ -419,7 +420,7 @@ export default function SportsbookPage({
   return (
     <div
       ref={shellRef}
-      className="sportsbook-root"
+      className={`sportsbook-root${resolvedMode === 'light' ? ' wc-page' : ''}`}
       data-sportsbook-shell="1"
       data-sportsbook-mode={resolvedMode}
       aria-busy={!booted}

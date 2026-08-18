@@ -43,15 +43,14 @@
 .sportsbook-root[data-sportsbook-mode='search'],
 .sportsbook-root[data-sportsbook-mode='favourites'],
 .sportsbook-root[data-sportsbook-mode='wc2026'],
-.sportsbook-root[data-sportsbook-mode='msi'] {
+.sportsbook-root[data-sportsbook-mode='msi'],
+.sportsbook-root[data-sportsbook-mode='light'] {
   background: #eef2f6;
   min-height: calc(100vh - var(--header-h, 100px));
 }
 
 .sportsbook-root[data-sportsbook-mode='light'] {
-  background: #f8fafc;
   color: #0f172a;
-  min-height: calc(100vh - var(--header-h, 100px));
 }
 
 .sportsbook-root[data-sportsbook-mode='wc2026'],
