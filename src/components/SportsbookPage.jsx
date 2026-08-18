@@ -36,7 +36,7 @@ const MODE_STYLESHEETS = {
 /** Caelo orange+blue remap — must load LAST so it wins over 1xbet tokens */
 const PALETTE_STYLESHEET = '/sportsbook/css/caelo-palette.css';
 /** White Caelo chrome — after palette, /sportsbook/light only */
-const LIGHT_PALETTE_STYLESHEET = '/sportsbook/css/caelo-light.css';
+const LIGHT_PALETTE_STYLESHEET = '/sportsbook/css/caelo-light.css?v=te-white-2';
 
 const BASE_SCRIPTS = [
   '/sportsbook/js/favourites-store.js',
@@ -259,6 +259,11 @@ export default function SportsbookPage({
 
         // Imperative inject — script.js / auth-modals / event.js own DOM after this
         shellRef.current.innerHTML = `${layout}\n${chrome}`;
+        if (resolvedMode === 'light') {
+          shellRef.current.querySelectorAll(
+            '.top-events-banner, .top-event-card, .te-toolbar, .te-crumbs, .te-toolbar-main, .te-filters'
+          ).forEach((el) => el.classList.add('sb-light-chrome'));
+        }
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 
         const scripts = scriptsForMode(resolvedMode);

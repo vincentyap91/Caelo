@@ -594,3 +594,49 @@ body.sportsbook-port-active.sportsbook-light .mobile-tabbar,
 .sportsbook-root[data-sportsbook-mode="light"] .mobile-tabbar {
   background: #123b94;
 }
+
+/* ------------------------------------------------------------------
+   TOP-EVENTS lock — last in file so localhost / cached styles.css cannot keep
+   the navy or #dbeafe bar. Matches the MSI white strip in the walkthrough.
+   ------------------------------------------------------------------ */
+.sportsbook-root.wc-page .top-events-banner,
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner,
+body.sportsbook-light .top-events-banner,
+.sb-light-chrome.top-events-banner {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: #123b94 !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 4px rgba(11, 29, 51, 0.08);
+}
+
+.sportsbook-root.wc-page .top-events-banner::before,
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner::before,
+body.sportsbook-light .top-events-banner::before {
+  display: none !important;
+}
+
+.sportsbook-root.wc-page .top-events-label,
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-label,
+body.sportsbook-light .top-events-label,
+.sb-light-chrome .top-events-label {
+  color: #123b94 !important;
+  opacity: 1 !important;
+}
+
+.sportsbook-root.wc-page .top-event-card,
+.sportsbook-root[data-sportsbook-mode="light"] .top-event-card,
+body.sportsbook-light .top-event-card,
+.sb-light-chrome.top-event-card {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: #123b94 !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 4px rgba(11, 29, 51, 0.08);
+}
+
+.sportsbook-root.wc-page .top-event-name,
+.sportsbook-root[data-sportsbook-mode="light"] .top-event-name,
+body.sportsbook-light .top-event-name {
+  color: #123b94 !important;
+}
