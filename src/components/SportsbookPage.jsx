@@ -30,10 +30,13 @@ const MODE_STYLESHEETS = {
   favourites: ['/sportsbook/css/favourites.css'],
   search: ['/sportsbook/css/search.css'],
   esports: ['/sportsbook/css/esports.css'],
+  light: ['/sportsbook/css/top-events-theme.css'],
 };
 
 /** Caelo orange+blue remap — must load LAST so it wins over 1xbet tokens */
 const PALETTE_STYLESHEET = '/sportsbook/css/caelo-palette.css';
+/** White Caelo chrome — after palette, /sportsbook/light only */
+const LIGHT_PALETTE_STYLESHEET = '/sportsbook/css/caelo-light.css?v=te-white-2';
 
 const BASE_SCRIPTS = [
   '/sportsbook/js/favourites-store.js',
@@ -81,6 +84,7 @@ const MODE_LAYOUT = {
   favourites: '/sportsbook/partials/sportsbook-favourites-layout.html',
   search: '/sportsbook/partials/sportsbook-search-layout.html',
   esports: '/sportsbook/partials/sportsbook-esports-layout.html',
+  light: '/sportsbook/partials/sportsbook-layout.html',
 };
 
 const MODE_DATA_PAGE = {
@@ -99,6 +103,7 @@ const MODE_DATA_PAGE = {
   favourites: 'favourites',
   search: 'search',
   esports: 'esports',
+  light: 'home',
 };
 
 export const SPORTSBOOK_MODES = Object.keys(MODE_LAYOUT);
@@ -224,6 +229,8 @@ export default function SportsbookPage({
 
     document.body.dataset.page = dataPage;
     document.body.classList.add('sportsbook-port-active');
+    if (resolvedMode === 'light') document.body.classList.add('sportsbook-light');
+    else document.body.classList.remove('sportsbook-light');
     if (isEvent) document.body.classList.add('ds-event-page');
     else document.body.classList.remove('ds-event-page', 'is-ev-stats');
     syncSportsbookAuth(loggedIn);
@@ -235,6 +242,7 @@ export default function SportsbookPage({
           ...(isEvent ? EVENT_STYLESHEETS : []),
           ...(MODE_STYLESHEETS[resolvedMode] || []),
           PALETTE_STYLESHEET,
+          ...(resolvedMode === 'light' ? [LIGHT_PALETTE_STYLESHEET] : []),
         ];
         await Promise.all(sheets.map(loadStylesheet));
 
@@ -251,6 +259,11 @@ export default function SportsbookPage({
 
         // Imperative inject — script.js / auth-modals / event.js own DOM after this
         shellRef.current.innerHTML = `${layout}\n${chrome}`;
+        if (resolvedMode === 'light') {
+          shellRef.current.querySelectorAll(
+            '.top-events-banner, .top-event-card, .te-toolbar, .te-crumbs, .te-toolbar-main, .te-filters'
+          ).forEach((el) => el.classList.add('sb-light-chrome'));
+        }
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 
         const scripts = scriptsForMode(resolvedMode);
@@ -313,6 +326,7 @@ export default function SportsbookPage({
       }
       document.body.classList.remove(
         'sportsbook-port-active',
+        'sportsbook-light',
         'ds-event-page',
         'is-ev-stats',
         'drawer-open',
@@ -411,7 +425,7 @@ export default function SportsbookPage({
   return (
     <div
       ref={shellRef}
-      className="sportsbook-root"
+      className={`sportsbook-root${resolvedMode === 'light' ? ' wc-page' : ''}`}
       data-sportsbook-shell="1"
       data-sportsbook-mode={resolvedMode}
       aria-busy={!booted}
