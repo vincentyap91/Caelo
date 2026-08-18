@@ -71,6 +71,7 @@ const DESKTOP_MAIN_LINKS = [
 const DESKTOP_SPORTS_MENU = [
     { label: 'Sports', page: 'sports', href: '/sports' },
     { label: 'Sportsbook', page: 'sportsbook', href: '/sportsbook' },
+    { label: 'Sportsbook Light', page: 'sportsbook-light', href: '/sportsbook/light' },
     { label: 'Bet on Your National Team', page: 'sportsbook-national-team', href: '/sportsbook/national-team' },
     { label: 'Bet on Big Tournaments', page: 'sportsbook-big-tournaments', href: '/sportsbook/big-tournaments' },
     { label: 'Long-term bets', page: 'sportsbook-long-term-bets', href: '/sportsbook/long-term-bets' },
@@ -95,6 +96,7 @@ const DESKTOP_ESPORTS_MENU = [
 const DESKTOP_SPORTS_PAGES = new Set([
     'sports',
     'sportsbook',
+    'sportsbook-light',
     'sportsbook-event',
     'sportsbook-sports',
     'sportsbook-national-team',
