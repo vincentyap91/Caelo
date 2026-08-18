@@ -34,8 +34,21 @@ const MODE_STYLESHEETS = {
 
 /** Caelo orange+blue remap — must load LAST so it wins over 1xbet tokens */
 const PALETTE_STYLESHEET = '/sportsbook/css/caelo-palette.css';
-/** White Caelo chrome — after palette, /sportsbook/light only */
+/** White Caelo chrome — after palette; /sportsbook/light + LIGHT_MODES */
 const LIGHT_PALETTE_STYLESHEET = '/sportsbook/css/caelo-light.css';
+
+/** White sportsbook skin (same as /sportsbook/light). Default home stays dark. */
+const LIGHT_MODES = new Set([
+  'light',
+  'national-team',
+  'live-national-team',
+  'big-tournaments',
+  'long-term-bets',
+  'multi-live',
+  'marble-live',
+  'fast-bet',
+  'esports',
+]);
 
 const BASE_SCRIPTS = [
   '/sportsbook/js/favourites-store.js',
@@ -201,6 +214,7 @@ export default function SportsbookPage({
   const resolvedMode = MODE_LAYOUT[mode] ? mode : 'home';
   const dataPage = MODE_DATA_PAGE[resolvedMode] || 'home';
   const isEvent = resolvedMode === 'event';
+  const isLightChrome = LIGHT_MODES.has(resolvedMode);
   const onNavigateRef = useRef(onNavigate);
   const onLoginClickRef = useRef(onLoginClick);
   onNavigateRef.current = onNavigate;
@@ -228,7 +242,7 @@ export default function SportsbookPage({
 
     document.body.dataset.page = dataPage;
     document.body.classList.add('sportsbook-port-active');
-    if (resolvedMode === 'light') document.body.classList.add('sportsbook-light');
+    if (isLightChrome) document.body.classList.add('sportsbook-light');
     else document.body.classList.remove('sportsbook-light');
     if (isEvent) document.body.classList.add('ds-event-page');
     else document.body.classList.remove('ds-event-page', 'is-ev-stats');
@@ -241,7 +255,7 @@ export default function SportsbookPage({
           ...(isEvent ? EVENT_STYLESHEETS : []),
           ...(MODE_STYLESHEETS[resolvedMode] || []),
           PALETTE_STYLESHEET,
-          ...(resolvedMode === 'light' ? [LIGHT_PALETTE_STYLESHEET] : []),
+          ...(isLightChrome ? [LIGHT_PALETTE_STYLESHEET] : []),
         ];
         await Promise.all(sheets.map(loadStylesheet));
 
@@ -419,7 +433,7 @@ export default function SportsbookPage({
   return (
     <div
       ref={shellRef}
-      className="sportsbook-root"
+      className={isLightChrome ? 'sportsbook-root sportsbook-light-chrome' : 'sportsbook-root'}
       data-sportsbook-shell="1"
       data-sportsbook-mode={resolvedMode}
       aria-busy={!booted}

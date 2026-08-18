@@ -1,8 +1,14 @@
 /**
- * Sportsbook light preview — Caelo design system
+ * Sportsbook light (white) chrome — Caelo design system
  *
- * Scope: /sportsbook/light only.
+ * Scope: /sportsbook/light (reference) plus LIGHT_MODES in SportsbookPage.jsx:
+ *   national-team, live-national-team, big-tournaments, long-term-bets,
+ *   multi-live, marble-live, fast-bet, esports
+ *
  * Default /sportsbook stays dark chrome (caelo-palette.css).
+ * Do not fold this skin into caelo-palette.css.
+ *
+ * Hook: body.sportsbook-light + .sportsbook-root.sportsbook-light-chrome
  *
  * Tokens match docs/CAELO_THEME_REFERENCE.md:
  *   brand #123B94 · soft #E5F6FF / #eff6ff / #dbeafe
@@ -11,7 +17,7 @@
  * Load LAST (after styles.css + caelo-palette.css).
  */
 
-.sportsbook-root[data-sportsbook-mode="light"],
+.sportsbook-root.sportsbook-light-chrome,
 body.sportsbook-port-active.sportsbook-light {
   --page-bg: #f8fafc;
   --page-bg-secondary: #eff6ff;
@@ -64,7 +70,7 @@ body.sportsbook-port-active.sportsbook-light {
   --sb-icon-muted: brightness(0) saturate(100%) invert(46%) sepia(12%) saturate(700%) hue-rotate(176deg) brightness(92%) contrast(88%);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] {
+.sportsbook-root.sportsbook-light-chrome {
   color: var(--text-primary);
   background: var(--page-bg);
   font-family: var(--font);
@@ -74,26 +80,27 @@ body.sportsbook-port-active.sportsbook-light {
   background: var(--page-bg);
 }
 
-.app-shell[data-app-shell-bg="sportsbook"]:has([data-sportsbook-mode="light"]) {
+.app-shell[data-app-shell-bg="sportsbook"]:has(.sportsbook-light-chrome),
+body.sportsbook-light .app-shell[data-app-shell-bg="sportsbook"] {
   background: #f8fafc;
 }
 
 /* ------------------------------------------------------------------
    Layout + cards
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .sportsbook-layout {
+.sportsbook-root.sportsbook-light-chrome .sportsbook-layout {
   background: var(--page-bg-secondary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .events-section,
-.sportsbook-root[data-sportsbook-mode="light"] .live-events-block .odds-table-wrap {
+.sportsbook-root.sportsbook-light-chrome .events-section,
+.sportsbook-root.sportsbook-light-chrome .live-events-block .odds-table-wrap {
   background: var(--surface-primary);
   border-color: var(--border-dark);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
   color: var(--text-primary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .promo-slider {
+.sportsbook-root.sportsbook-light-chrome .promo-slider {
   border-color: var(--border-dark);
   background: var(--surface-primary);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
@@ -102,79 +109,79 @@ body.sportsbook-port-active.sportsbook-light {
 /* ------------------------------------------------------------------
    Left / right collapse chrome
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-collapse,
-.sportsbook-root[data-sportsbook-mode="light"] .right-collapse {
+.sportsbook-root.sportsbook-light-chrome .sidebar-collapse,
+.sportsbook-root.sportsbook-light-chrome .right-collapse {
   color: var(--text-secondary);
   background: var(--surface-primary);
   border: 1px solid var(--border-dark);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-collapse:hover,
-.sportsbook-root[data-sportsbook-mode="light"] .right-collapse:hover {
+.sportsbook-root.sportsbook-light-chrome .sidebar-collapse:hover,
+.sportsbook-root.sportsbook-light-chrome .right-collapse:hover {
   background: var(--surface-tertiary);
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-collapse img,
-.sportsbook-root[data-sportsbook-mode="light"] .right-collapse img {
+.sportsbook-root.sportsbook-light-chrome .sidebar-collapse img,
+.sportsbook-root.sportsbook-light-chrome .right-collapse img {
   filter: var(--sb-icon-navy);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-row-wrap {
+.sportsbook-root.sportsbook-light-chrome .sidebar-row-wrap {
   background: var(--surface-primary);
   border: 1px solid var(--border-dark);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-row {
+.sportsbook-root.sportsbook-light-chrome .sidebar-row {
   color: var(--text-primary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-row:hover {
+.sportsbook-root.sportsbook-light-chrome .sidebar-row:hover {
   background: var(--surface-tertiary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .row-icon,
-.sportsbook-root[data-sportsbook-mode="light"] .top-games-title img,
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-row-chevron img,
-.sportsbook-root[data-sportsbook-mode="light"] .pager-btn img {
+.sportsbook-root.sportsbook-light-chrome .row-icon,
+.sportsbook-root.sportsbook-light-chrome .top-games-title img,
+.sportsbook-root.sportsbook-light-chrome .sidebar-row-chevron img,
+.sportsbook-root.sportsbook-light-chrome .pager-btn img {
   filter: var(--sb-icon-navy);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-games {
+.sportsbook-root.sportsbook-light-chrome .top-games {
   background: var(--surface-primary);
   border: 1px solid var(--border-dark);
   border-radius: 8px;
   overflow: hidden;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-games-head {
+.sportsbook-root.sportsbook-light-chrome .top-games-head {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border-bottom: 1px solid var(--border-dark);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-games-title,
-.sportsbook-root[data-sportsbook-mode="light"] .top-games-title span {
+.sportsbook-root.sportsbook-light-chrome .top-games-title,
+.sportsbook-root.sportsbook-light-chrome .top-games-title span {
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .pager-label,
-.sportsbook-root[data-sportsbook-mode="light"] .pager-muted,
-.sportsbook-root[data-sportsbook-mode="light"] .top-games-pager {
+.sportsbook-root.sportsbook-light-chrome .pager-label,
+.sportsbook-root.sportsbook-light-chrome .pager-muted,
+.sportsbook-root.sportsbook-light-chrome .top-games-pager {
   color: var(--text-muted);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .tg-status,
-.sportsbook-root[data-sportsbook-mode="light"] .tg-league span,
-.sportsbook-root[data-sportsbook-mode="light"] .tg-team span {
+.sportsbook-root.sportsbook-light-chrome .tg-status,
+.sportsbook-root.sportsbook-light-chrome .tg-league span,
+.sportsbook-root.sportsbook-light-chrome .tg-team span {
   color: var(--text-primary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .tg-detail {
+.sportsbook-root.sportsbook-light-chrome .tg-detail {
   color: var(--accent-blue);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .tg-odd:hover,
-.sportsbook-root[data-sportsbook-mode="light"] .tg-odd.selected {
+.sportsbook-root.sportsbook-light-chrome .tg-odd:hover,
+.sportsbook-root.sportsbook-light-chrome .tg-odd.selected {
   background: var(--odds-selected);
   color: #fff;
 }
@@ -182,264 +189,320 @@ body.sportsbook-port-active.sportsbook-light {
 /* ------------------------------------------------------------------
    LIVE / SPORTS list
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-line {
+.sportsbook-root.sportsbook-light-chrome .sidebar-line {
   background: var(--surface-primary);
   border-color: var(--border-dark);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-tabs {
+.sportsbook-root.sportsbook-light-chrome .sidebar-tabs {
   background: var(--league-header);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-tab {
+.sportsbook-root.sportsbook-light-chrome .sidebar-tab {
   color: var(--text-muted);
   background: transparent;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-tab:hover {
+.sportsbook-root.sportsbook-light-chrome .sidebar-tab:hover {
   background: var(--surface-primary);
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-tab.active {
+.sportsbook-root.sportsbook-light-chrome .sidebar-tab.active {
   background: var(--surface-primary);
   color: var(--sb-brand);
   box-shadow: inset 0 -2px 0 var(--action-green);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-tab img {
+.sportsbook-root.sportsbook-light-chrome .sidebar-tab img {
   filter: var(--sb-icon-muted);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-tab.active img,
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-tab:hover img {
+.sportsbook-root.sportsbook-light-chrome .sidebar-tab.active img,
+.sportsbook-root.sportsbook-light-chrome .sidebar-tab:hover img {
   filter: var(--sb-icon-navy);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-filter-bar,
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-sports-panel {
+.sportsbook-root.sportsbook-light-chrome .sidebar-filter-bar,
+.sportsbook-root.sportsbook-light-chrome .sidebar-sports-panel {
   background: var(--surface-primary);
   border-bottom-color: var(--border-dark);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sf-all,
-.sportsbook-root[data-sportsbook-mode="light"] .sf-stream {
+.sportsbook-root.sportsbook-light-chrome .sf-all,
+.sportsbook-root.sportsbook-light-chrome .sf-stream {
   color: var(--text-muted);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sf-all.active,
-.sportsbook-root[data-sportsbook-mode="light"] .sf-all:hover,
-.sportsbook-root[data-sportsbook-mode="light"] .sf-stream:hover {
+.sportsbook-root.sportsbook-light-chrome .sf-all.active,
+.sportsbook-root.sportsbook-light-chrome .sf-all:hover,
+.sportsbook-root.sportsbook-light-chrome .sf-stream:hover {
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sf-globe img {
+.sportsbook-root.sportsbook-light-chrome .sf-globe img {
   filter: var(--sb-icon-navy);
   opacity: 0.85;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sports-section-label,
-.sportsbook-root[data-sportsbook-mode="light"] .sports-section-label.az {
+.sportsbook-root.sportsbook-light-chrome .sports-section-label,
+.sportsbook-root.sportsbook-light-chrome .sports-section-label.az {
   color: var(--sb-brand);
   background: var(--league-header);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sport-item {
+.sportsbook-root.sportsbook-light-chrome .sport-item {
   background: var(--surface-primary);
   color: var(--text-primary);
   border-bottom: 1px solid var(--border-light);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sport-item:hover,
-.sportsbook-root[data-sportsbook-mode="light"] .sport-item.active {
+.sportsbook-root.sportsbook-light-chrome .sport-item:hover,
+.sportsbook-root.sportsbook-light-chrome .sport-item.active {
   background: var(--surface-tertiary);
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sport-item .row-label {
+.sportsbook-root.sportsbook-light-chrome .sport-item .row-label {
   color: inherit;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sport-item .count {
+.sportsbook-root.sportsbook-light-chrome .sport-item .count {
   color: var(--text-muted);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sport-icon-img,
-.sportsbook-root[data-sportsbook-mode="light"] .sport-item-chevron img {
+.sportsbook-root.sportsbook-light-chrome .sport-icon-img,
+.sportsbook-root.sportsbook-light-chrome .sport-item-chevron img {
   filter: var(--sb-icon-navy);
   opacity: 0.9;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sport-item-chevron {
+.sportsbook-root.sportsbook-light-chrome .sport-item-chevron {
   border-left-color: var(--border-light);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sport-item-chevron:hover {
+.sportsbook-root.sportsbook-light-chrome .sport-item-chevron:hover {
   background: var(--odds-hover);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-page-btn {
+.sportsbook-root.sportsbook-light-chrome .sidebar-page-btn {
   background: var(--surface-tertiary);
   color: var(--sb-brand);
   border: 1px solid var(--border-dark);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-page-btn:hover {
+.sportsbook-root.sportsbook-light-chrome .sidebar-page-btn:hover {
   background: var(--league-header);
 }
 
 /* ------------------------------------------------------------------
    Toolbar / Matches tabs (was navy + white type)
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .te-toolbar {
+.sportsbook-root.sportsbook-light-chrome .section-toolbar {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+
+.sportsbook-root.sportsbook-light-chrome .section-title,
+.sportsbook-root.sportsbook-light-chrome .section-title.live-title,
+.sportsbook-root.sportsbook-light-chrome #live-events .section-title,
+.sportsbook-root.sportsbook-light-chrome #line-events .section-title {
+  color: var(--sb-brand);
+}
+
+.sportsbook-root.sportsbook-light-chrome .te-toolbar {
   color: var(--text-primary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-crumbs,
-.sportsbook-root[data-sportsbook-mode="light"] .te-toolbar-main {
+.sportsbook-root.sportsbook-light-chrome .te-crumbs,
+.sportsbook-root.sportsbook-light-chrome .te-toolbar-main {
   background: var(--surface-primary);
   border: 1px solid var(--border-dark);
   border-bottom: none;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-crumb {
+.sportsbook-root.sportsbook-light-chrome .te-crumb {
   color: var(--text-secondary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-crumb img,
-.sportsbook-root[data-sportsbook-mode="light"] .te-crumb-sep {
+.sportsbook-root.sportsbook-light-chrome .te-crumb img,
+.sportsbook-root.sportsbook-light-chrome .te-crumb-sep {
   filter: var(--sb-icon-muted);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .section-title.live-title,
-.sportsbook-root[data-sportsbook-mode="light"] #live-events .section-title,
-.sportsbook-root[data-sportsbook-mode="light"] #live-events .section-tab.active {
+.sportsbook-root.sportsbook-light-chrome .section-title.live-title,
+.sportsbook-root.sportsbook-light-chrome #live-events .section-title,
+.sportsbook-root.sportsbook-light-chrome #live-events .section-tab.active {
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-toolbar .section-tab,
-.sportsbook-root[data-sportsbook-mode="light"] .section-tab,
-.sportsbook-root[data-sportsbook-mode="light"] .te-filter-list .filter-chip {
+.sportsbook-root.sportsbook-light-chrome .te-toolbar .section-tab,
+.sportsbook-root.sportsbook-light-chrome .section-tab,
+.sportsbook-root.sportsbook-light-chrome .te-filter-list .filter-chip {
   color: var(--text-muted);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-toolbar .section-tab:hover,
-.sportsbook-root[data-sportsbook-mode="light"] .section-tab:hover,
-.sportsbook-root[data-sportsbook-mode="light"] .te-filter-list .filter-chip:hover {
-  color: var(--sb-brand);
-  background: transparent;
+.sportsbook-root.sportsbook-light-chrome .section-tabs {
+  gap: 0;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-toolbar .section-tab.active,
-.sportsbook-root[data-sportsbook-mode="light"] .section-tab.active,
-.sportsbook-root[data-sportsbook-mode="light"] .section-tab.is-active,
-.sportsbook-root[data-sportsbook-mode="light"] .te-filter-list .filter-chip.active {
-  color: var(--sb-brand);
+.sportsbook-root.sportsbook-light-chrome .section-tab {
+  color: var(--text-muted);
+  border-bottom-color: transparent;
   background: transparent;
   text-shadow: none;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-toolbar .section-tab.active::after,
-.sportsbook-root[data-sportsbook-mode="light"] .te-filter-list .filter-chip.active::after {
+.sportsbook-root.sportsbook-light-chrome .te-toolbar .section-tab:hover,
+.sportsbook-root.sportsbook-light-chrome .section-tab:hover {
+  color: var(--sb-brand);
+  background: rgba(219, 234, 254, 0.6);
+}
+
+.sportsbook-root.sportsbook-light-chrome .te-toolbar .section-tab.active,
+.sportsbook-root.sportsbook-light-chrome .section-tab.active,
+.sportsbook-root.sportsbook-light-chrome .section-tab.is-active {
+  color: var(--sb-brand);
+  background: rgba(219, 234, 254, 0.7);
+  text-shadow: none;
+}
+
+.sportsbook-root.sportsbook-light-chrome .te-filter-list .filter-chip:hover,
+.sportsbook-root.sportsbook-light-chrome .te-filter-list .filter-chip.active {
+  color: var(--sb-brand);
+  background: rgba(255, 255, 255, 0.7);
+  text-shadow: none;
+}
+
+
+.sportsbook-root.sportsbook-light-chrome .te-toolbar .section-tab.active::after,
+.sportsbook-root.sportsbook-light-chrome .te-filter-list .filter-chip.active::after {
   background: var(--action-green);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .section-tab.active {
+.sportsbook-root.sportsbook-light-chrome .section-tab.active {
   border-bottom-color: var(--action-green);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-filters {
+.sportsbook-root.sportsbook-light-chrome .te-filters {
   background: var(--surface-primary);
   color: var(--text-primary);
   border: 1px solid var(--border-dark);
   border-top: none;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-stream-toggle,
-.sportsbook-root[data-sportsbook-mode="light"] .te-country-filter {
+.sportsbook-root.sportsbook-light-chrome .te-stream-toggle,
+.sportsbook-root.sportsbook-light-chrome .te-country-filter {
   color: var(--text-secondary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-search {
+.sportsbook-root.sportsbook-light-chrome .te-search {
   background: var(--odds-bg);
   border: 1px solid var(--border-dark);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-search input,
-.sportsbook-root[data-sportsbook-mode="light"] .event-search-wrap input {
+.sportsbook-root.sportsbook-light-chrome .te-search input,
+.sportsbook-root.sportsbook-light-chrome .event-search-wrap input {
   background: transparent;
   border: 0;
   color: var(--text-primary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-search input::placeholder,
-.sportsbook-root[data-sportsbook-mode="light"] .event-search-wrap input::placeholder {
-  color: var(--text-muted);
-}
-
-.sportsbook-root[data-sportsbook-mode="light"] .te-search-btn {
+.sportsbook-root.sportsbook-light-chrome .event-search-wrap {
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-search-btn img,
-.sportsbook-root[data-sportsbook-mode="light"] .te-filter-more img,
-.sportsbook-root[data-sportsbook-mode="light"] .te-country-filter img {
+.sportsbook-root.sportsbook-light-chrome .te-search input::placeholder,
+.sportsbook-root.sportsbook-light-chrome .event-search-wrap input::placeholder {
+  color: var(--text-muted);
+}
+
+.sportsbook-root.sportsbook-light-chrome .event-search-wrap svg {
+  color: var(--sb-icon-navy);
+  opacity: 0.75;
+}
+
+.sportsbook-root.sportsbook-light-chrome .te-search-btn {
+  color: var(--sb-brand);
+}
+
+.sportsbook-root.sportsbook-light-chrome .te-search-btn img,
+.sportsbook-root.sportsbook-light-chrome .te-filter-more img,
+.sportsbook-root.sportsbook-light-chrome .te-country-filter img {
   filter: var(--sb-icon-navy);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .tool-btn {
+.sportsbook-root.sportsbook-light-chrome .tool-btn {
   color: var(--text-muted);
   border-color: var(--border-dark);
   background: var(--surface-primary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .tool-btn:hover {
+.sportsbook-root.sportsbook-light-chrome .tool-btn:hover {
   background: var(--surface-tertiary);
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .tool-btn img {
+.sportsbook-root.sportsbook-light-chrome .tool-btn img {
   filter: var(--sb-icon-navy);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-filter-list .filter-chip img.chip-icon {
+.sportsbook-root.sportsbook-light-chrome .te-filter-list .filter-chip img.chip-icon {
   filter: var(--sb-icon-muted);
   opacity: 1;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .te-filter-list .filter-chip.active img.chip-icon,
-.sportsbook-root[data-sportsbook-mode="light"] .te-filter-list .filter-chip:hover img.chip-icon {
+.sportsbook-root.sportsbook-light-chrome .te-filter-list .filter-chip.active img.chip-icon,
+.sportsbook-root.sportsbook-light-chrome .te-filter-list .filter-chip:hover img.chip-icon {
   filter: var(--sb-icon-navy);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sport-filters {
+.sportsbook-root.sportsbook-light-chrome .sport-filters {
   background: var(--surface-secondary);
   border-bottom-color: var(--border-light);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .filter-chip {
+.sportsbook-root.sportsbook-light-chrome .filter-chip {
   background: var(--surface-primary);
   border-color: var(--border-dark);
   color: var(--text-secondary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .filter-chip:hover {
+.sportsbook-root.sportsbook-light-chrome .filter-chip:hover {
   border-color: var(--accent-blue);
   color: var(--accent-blue);
   background: var(--surface-tertiary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .filter-chip.active {
+.sportsbook-root.sportsbook-light-chrome .filter-chip.active {
   background: var(--sb-brand);
   border-color: var(--sb-brand);
   color: var(--text-inverse);
 }
 
 /* ------------------------------------------------------------------
+   LINE / Accumulator headers
+   ------------------------------------------------------------------ */
+.sportsbook-root.sportsbook-light-chrome .acc-header {
+  background: linear-gradient(180deg, #123b94 0%, #0d2a6a 100%);
+  color: var(--text-inverse);
+}
+
+.sportsbook-root.sportsbook-light-chrome .acc-title {
+  color: var(--text-inverse);
+}
+
+.sportsbook-root.sportsbook-light-chrome .acc-bonus {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ------------------------------------------------------------------
    TOP-EVENTS — original banner layout, white MSI-style chrome
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner,
+.sportsbook-root.sportsbook-light-chrome .top-events-banner,
 body.sportsbook-light .top-events-banner {
   background: var(--surface-primary);
   color: var(--sb-brand);
@@ -447,19 +510,19 @@ body.sportsbook-light .top-events-banner {
   box-shadow: 0 4px 4px rgba(15, 23, 42, 0.08);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner::before,
+.sportsbook-root.sportsbook-light-chrome .top-events-banner::before,
 body.sportsbook-light .top-events-banner::before {
   display: none;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-label,
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-label:hover,
+.sportsbook-root.sportsbook-light-chrome .top-events-label,
+.sportsbook-root.sportsbook-light-chrome .top-events-label:hover,
 body.sportsbook-light .top-events-label {
   color: var(--sb-brand);
   opacity: 1;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-event-card,
+.sportsbook-root.sportsbook-light-chrome .top-event-card,
 body.sportsbook-light .top-event-card {
   background: var(--surface-primary);
   color: var(--sb-brand);
@@ -467,12 +530,12 @@ body.sportsbook-light .top-event-card {
   box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-event-name,
+.sportsbook-root.sportsbook-light-chrome .top-event-name,
 body.sportsbook-light .top-event-name {
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-event-hot {
+.sportsbook-root.sportsbook-light-chrome .top-event-hot {
   color: var(--sb-cta-text);
   background: var(--sb-cta-end);
 }
@@ -480,81 +543,81 @@ body.sportsbook-light .top-event-name {
 /* ------------------------------------------------------------------
    Right rail
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .reg-panel,
-.sportsbook-root[data-sportsbook-mode="light"] .bet-slip-panel,
-.sportsbook-root[data-sportsbook-mode="light"] .generator-panel,
-.sportsbook-root[data-sportsbook-mode="light"] .app-panel {
+.sportsbook-root.sportsbook-light-chrome .reg-panel,
+.sportsbook-root.sportsbook-light-chrome .bet-slip-panel,
+.sportsbook-root.sportsbook-light-chrome .generator-panel,
+.sportsbook-root.sportsbook-light-chrome .app-panel {
   background: var(--surface-primary);
   border: 1px solid var(--border-dark);
   color: var(--text-primary);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .bet-slip-tabs {
+.sportsbook-root.sportsbook-light-chrome .bet-slip-tabs {
   background: var(--league-header);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .bet-tab {
+.sportsbook-root.sportsbook-light-chrome .bet-tab {
   color: var(--text-muted);
   background: transparent;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .bet-tab.active,
-.sportsbook-root[data-sportsbook-mode="light"] .bet-tab.is-active {
+.sportsbook-root.sportsbook-light-chrome .bet-tab.active,
+.sportsbook-root.sportsbook-light-chrome .bet-tab.is-active {
   color: var(--sb-brand);
   background: var(--surface-primary);
   box-shadow: inset 0 -2px 0 var(--action-green);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .bet-slip-body,
-.sportsbook-root[data-sportsbook-mode="light"] .my-bets-body {
+.sportsbook-root.sportsbook-light-chrome .bet-slip-body,
+.sportsbook-root.sportsbook-light-chrome .my-bets-body {
   background: var(--surface-primary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .reg-select,
-.sportsbook-root[data-sportsbook-mode="light"] .reg-input,
-.sportsbook-root[data-sportsbook-mode="light"] .stake-label input,
-.sportsbook-root[data-sportsbook-mode="light"] .ticket-select,
-.sportsbook-root[data-sportsbook-mode="light"] .promo-code-input,
-.sportsbook-root[data-sportsbook-mode="light"] .stake-control input,
-.sportsbook-root[data-sportsbook-mode="light"] .stake-step {
+.sportsbook-root.sportsbook-light-chrome .reg-select,
+.sportsbook-root.sportsbook-light-chrome .reg-input,
+.sportsbook-root.sportsbook-light-chrome .stake-label input,
+.sportsbook-root.sportsbook-light-chrome .ticket-select,
+.sportsbook-root.sportsbook-light-chrome .promo-code-input,
+.sportsbook-root.sportsbook-light-chrome .stake-control input,
+.sportsbook-root.sportsbook-light-chrome .stake-step {
   background: var(--odds-bg);
   border: 1px solid var(--border-dark);
   color: var(--text-primary);
   box-shadow: none;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .quick-stakes button {
+.sportsbook-root.sportsbook-light-chrome .quick-stakes button {
   background: var(--odds-bg);
   border: 1px solid var(--border-dark);
   color: var(--text-primary);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .rc-bet,
-.sportsbook-root[data-sportsbook-mode="light"] .rc-widget {
+.sportsbook-root.sportsbook-light-chrome .rc-bet,
+.sportsbook-root.sportsbook-light-chrome .rc-widget {
   background: var(--sb-brand);
   color: #fff;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .rc-widget img {
+.sportsbook-root.sportsbook-light-chrome .rc-widget img {
   filter: brightness(0) invert(1);
 }
 
 /* ------------------------------------------------------------------
    Odds (Caelo gold selected, already remapped in palette)
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .odd-btn {
+.sportsbook-root.sportsbook-light-chrome .odd-btn {
   background: var(--odds-bg);
   border-color: var(--border-dark);
   color: var(--text-primary);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .odd-btn:hover {
+.sportsbook-root.sportsbook-light-chrome .odd-btn:hover {
   background: var(--odds-hover);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .odd-btn.selected {
+.sportsbook-root.sportsbook-light-chrome .odd-btn.selected {
   background: var(--odds-selected);
   color: #fff;
   border-color: var(--action-green-active);
@@ -563,38 +626,38 @@ body.sportsbook-light .top-event-name {
 /* ------------------------------------------------------------------
    Collapsed rails
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .left-sidebar.collapsed .sidebar-collapse,
-.sportsbook-root[data-sportsbook-mode="light"] .left-sidebar.collapsed .sidebar-row,
-.sportsbook-root[data-sportsbook-mode="light"] .left-sidebar.collapsed .top-games-title,
-.sportsbook-root[data-sportsbook-mode="light"] .left-sidebar.collapsed .sidebar-tab.active {
+.sportsbook-root.sportsbook-light-chrome .left-sidebar.collapsed .sidebar-collapse,
+.sportsbook-root.sportsbook-light-chrome .left-sidebar.collapsed .sidebar-row,
+.sportsbook-root.sportsbook-light-chrome .left-sidebar.collapsed .top-games-title,
+.sportsbook-root.sportsbook-light-chrome .left-sidebar.collapsed .sidebar-tab.active {
   background: var(--surface-primary);
   border: 1px solid var(--border-dark);
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .left-sidebar.collapsed .sidebar-tab.active img,
-.sportsbook-root[data-sportsbook-mode="light"] .left-sidebar.collapsed .row-icon,
-.sportsbook-root[data-sportsbook-mode="light"] .left-sidebar.collapsed .top-games-title img {
+.sportsbook-root.sportsbook-light-chrome .left-sidebar.collapsed .sidebar-tab.active img,
+.sportsbook-root.sportsbook-light-chrome .left-sidebar.collapsed .row-icon,
+.sportsbook-root.sportsbook-light-chrome .left-sidebar.collapsed .top-games-title img {
   filter: var(--sb-icon-navy);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-footer-btn {
+.sportsbook-root.sportsbook-light-chrome .sidebar-footer-btn {
   color: var(--sb-brand);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .sidebar-footer-btn:hover {
+.sportsbook-root.sportsbook-light-chrome .sidebar-footer-btn:hover {
   background: var(--surface-tertiary);
   color: var(--sb-brand);
 }
 body.sportsbook-port-active.sportsbook-light .mobile-tabbar,
-.sportsbook-root[data-sportsbook-mode="light"] .mobile-tabbar {
+.sportsbook-root.sportsbook-light-chrome .mobile-tabbar {
   background: var(--sb-brand);
 }
 
 /* ------------------------------------------------------------------
    TOP-EVENTS lock — last so styles.css / caelo-palette cannot keep navy fills
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner,
+.sportsbook-root.sportsbook-light-chrome .top-events-banner,
 body.sportsbook-light .top-events-banner {
   background: var(--surface-primary) !important;
   background-image: none !important;
@@ -603,19 +666,19 @@ body.sportsbook-light .top-events-banner {
   box-shadow: 0 4px 4px rgba(15, 23, 42, 0.08);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner::before,
+.sportsbook-root.sportsbook-light-chrome .top-events-banner::before,
 body.sportsbook-light .top-events-banner::before {
   display: none !important;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-label,
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-label:hover,
+.sportsbook-root.sportsbook-light-chrome .top-events-label,
+.sportsbook-root.sportsbook-light-chrome .top-events-label:hover,
 body.sportsbook-light .top-events-label {
   color: var(--sb-brand) !important;
   opacity: 1 !important;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-event-card,
+.sportsbook-root.sportsbook-light-chrome .top-event-card,
 body.sportsbook-light .top-event-card {
   background: var(--surface-primary) !important;
   background-image: none !important;
@@ -623,7 +686,7 @@ body.sportsbook-light .top-event-card {
   border: 1px solid var(--border-light) !important;
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-event-name,
+.sportsbook-root.sportsbook-light-chrome .top-event-name,
 body.sportsbook-light .top-event-name {
   color: var(--sb-brand) !important;
 }
