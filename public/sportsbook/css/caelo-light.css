@@ -437,16 +437,44 @@ body.sportsbook-port-active.sportsbook-light {
 }
 
 /* ------------------------------------------------------------------
-   Top-event chips — keep brand navy as accent cards
+   TOP-EVENTS — original banner layout, white MSI-style chrome
    ------------------------------------------------------------------ */
-.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner {
-  background: linear-gradient(90deg, #123b94 0%, #2563eb 100%);
-  color: #fff;
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner,
+body.sportsbook-light .top-events-banner {
+  background: var(--surface-primary);
+  color: var(--sb-brand);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 4px rgba(15, 23, 42, 0.08);
 }
 
-.sportsbook-root[data-sportsbook-mode="light"] .top-event-card {
-  background: linear-gradient(90deg, #123b94 0%, #2563eb 72%, #60a5fa 100%);
-  color: #fff;
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner::before,
+body.sportsbook-light .top-events-banner::before {
+  display: none;
+}
+
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-label,
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-label:hover,
+body.sportsbook-light .top-events-label {
+  color: var(--sb-brand);
+  opacity: 1;
+}
+
+.sportsbook-root[data-sportsbook-mode="light"] .top-event-card,
+body.sportsbook-light .top-event-card {
+  background: var(--surface-primary);
+  color: var(--sb-brand);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+.sportsbook-root[data-sportsbook-mode="light"] .top-event-name,
+body.sportsbook-light .top-event-name {
+  color: var(--sb-brand);
+}
+
+.sportsbook-root[data-sportsbook-mode="light"] .top-event-hot {
+  color: var(--sb-cta-text);
+  background: var(--sb-cta-end);
 }
 
 /* ------------------------------------------------------------------
@@ -560,5 +588,42 @@ body.sportsbook-port-active.sportsbook-light {
 }
 body.sportsbook-port-active.sportsbook-light .mobile-tabbar,
 .sportsbook-root[data-sportsbook-mode="light"] .mobile-tabbar {
-  background: #123b94;
+  background: var(--sb-brand);
+}
+
+/* ------------------------------------------------------------------
+   TOP-EVENTS lock — last so styles.css / caelo-palette cannot keep navy fills
+   ------------------------------------------------------------------ */
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner,
+body.sportsbook-light .top-events-banner {
+  background: var(--surface-primary) !important;
+  background-image: none !important;
+  color: var(--sb-brand) !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: 0 4px 4px rgba(15, 23, 42, 0.08);
+}
+
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-banner::before,
+body.sportsbook-light .top-events-banner::before {
+  display: none !important;
+}
+
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-label,
+.sportsbook-root[data-sportsbook-mode="light"] .top-events-label:hover,
+body.sportsbook-light .top-events-label {
+  color: var(--sb-brand) !important;
+  opacity: 1 !important;
+}
+
+.sportsbook-root[data-sportsbook-mode="light"] .top-event-card,
+body.sportsbook-light .top-event-card {
+  background: var(--surface-primary) !important;
+  background-image: none !important;
+  color: var(--sb-brand) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+.sportsbook-root[data-sportsbook-mode="light"] .top-event-name,
+body.sportsbook-light .top-event-name {
+  color: var(--sb-brand) !important;
 }
