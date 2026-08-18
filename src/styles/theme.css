@@ -4119,20 +4119,31 @@
     padding-right: 0.75rem;
   }
 
-  /** Sportsbook day (white) / night (dark) switch — beside Download App */
+  /** Compact Caelo day/night sportsbook switch — beside Download App */
   .sb-skin-toggle {
-    display: inline-flex;
-    height: 2rem;
-    width: 3.55rem;
+    --sb-toggle-h: 1.5rem;
+    --sb-toggle-w: 2.625rem;
+    --sb-toggle-pad: 0.125rem;
+    --sb-toggle-knob: calc(var(--sb-toggle-h) - var(--sb-toggle-pad) * 2);
+    position: relative;
+    display: inline-block;
+    height: var(--sb-toggle-h);
+    width: var(--sb-toggle-w);
     flex-shrink: 0;
     padding: 0;
+    overflow: hidden;
+    isolation: isolate;
     border: 1px solid var(--color-nav-top-pill-border);
     border-radius: 999px;
-    background: transparent;
+    background-color: var(--color-cta-end);
     box-shadow: var(--color-nav-top-pill-shadow);
     cursor: pointer;
     vertical-align: middle;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: background-color 0.42s ease, border-color 0.2s ease;
+  }
+
+  .sb-skin-toggle.is-night {
+    background-color: var(--color-brand-deep);
   }
 
   .sb-skin-toggle:hover {
@@ -4144,84 +4155,92 @@
     outline-offset: 2px;
   }
 
-  .sb-skin-toggle__track {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 0.2rem;
+  .sb-skin-toggle__sky {
+    position: absolute;
+    inset: 0;
     border-radius: inherit;
-    overflow: hidden;
-    background-image: var(--color-gradient-sticky-nav-pill);
-    transition: background-image 0.28s ease;
+    pointer-events: none;
+    transition: opacity 0.42s ease;
   }
 
-  .sb-skin-toggle.is-day .sb-skin-toggle__track {
+  .sb-skin-toggle__sky--day {
     background-image: linear-gradient(180deg, var(--color-cta-start), var(--color-cta-end));
+    opacity: 1;
+  }
+
+  .sb-skin-toggle__sky--night {
+    background-image: linear-gradient(180deg, var(--color-brand-deep), var(--color-primary));
+    opacity: 0;
+  }
+
+  .sb-skin-toggle.is-night .sb-skin-toggle__sky--day {
+    opacity: 0;
+  }
+
+  .sb-skin-toggle.is-night .sb-skin-toggle__sky--night {
+    opacity: 1;
   }
 
   .sb-skin-toggle__thumb {
     position: absolute;
-    top: 0.2rem;
-    left: 0.2rem;
-    z-index: 0;
-    width: calc(50% - 0.2rem);
-    height: calc(100% - 0.4rem);
+    top: var(--sb-toggle-pad);
+    left: var(--sb-toggle-pad);
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    width: var(--sb-toggle-knob);
+    height: var(--sb-toggle-knob);
     border-radius: 999px;
     background-color: var(--color-surface-base);
-    box-shadow: 0 1px 3px color-mix(in srgb, var(--color-text-strong) 18%, transparent);
-    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--color-text-strong) 22%, transparent);
+    transition: left 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .sb-skin-toggle.is-night .sb-skin-toggle__thumb {
-    transform: translateX(100%);
-    background-color: var(--color-brand-deep);
+    left: calc(100% - var(--sb-toggle-knob) - var(--sb-toggle-pad));
   }
 
   .sb-skin-toggle__icon {
-    position: relative;
-    z-index: 1;
-    justify-self: center;
-    pointer-events: none;
-    transition: color 0.2s, opacity 0.2s;
+    display: block;
+    animation: sb-skin-icon-rise 0.48s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .sb-skin-toggle.is-day .sb-skin-toggle__icon--sun {
+  .sb-skin-toggle__icon--sun {
     color: var(--color-cta-text);
   }
 
-  .sb-skin-toggle.is-day .sb-skin-toggle__icon--moon {
-    color: var(--color-cta-text);
-    opacity: 0.42;
-  }
-
-  .sb-skin-toggle.is-night .sb-skin-toggle__icon--sun {
-    color: var(--color-tertiery);
-    opacity: 0.45;
-  }
-
-  .sb-skin-toggle.is-night .sb-skin-toggle__icon--moon {
+  .sb-skin-toggle__icon--moon {
     color: var(--color-nav-accent);
   }
 
-  .mobile-site-header .sb-skin-toggle {
-    height: 2.25rem;
-    width: 3.75rem;
-    border-color: var(--color-border);
+  .sidenav-header .sb-skin-toggle {
+    --sb-toggle-h: 1.5rem;
+    --sb-toggle-w: 2.625rem;
+    border-color: var(--color-border-brand);
     box-shadow: none;
   }
 
-  .mobile-site-header .sb-skin-toggle.is-night .sb-skin-toggle__track {
-    background-image: var(--color-gradient-menu-brand);
+  @keyframes sb-skin-icon-rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .sb-skin-toggle__thumb,
-    .sb-skin-toggle__track,
+    .sb-skin-toggle,
+    .sb-skin-toggle__sky,
+    .sb-skin-toggle__thumb {
+      transition-duration: 0.2s;
+    }
+
     .sb-skin-toggle__icon {
-      transition: none;
+      animation-duration: 0.2s;
     }
   }
 

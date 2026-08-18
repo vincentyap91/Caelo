@@ -1311,9 +1311,10 @@
       '<a href="/sportsbook/sports" class="mobile-tab-flyout__item" role="menuitem" data-caelo-nav="sportsbook-sports">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-menu.svg" alt="" width="22" height="22" />' +
       "<span>Sports</span></a>" +
+      '<div class="mobile-tab-flyout__foot">' +
       '<button type="button" class="mobile-tab-flyout__close" data-mt-flyout-close aria-label="Close">' +
       '<img src="/sportsbook/mobile/assets/icons/tab-close.svg" alt="" width="22" height="22" /></button>' +
-      "</div></div>" +
+      "</div></div></div>" +
       '<a href="/casino" class="mobile-tab' + casinoOn + '" id="mobile-casino-tab" data-caelo-nav="live-casino"' +
       (activeKey === "casino" ? ' aria-current="page"' : "") + ">" +
       '<img src="/sportsbook/mobile/assets/icons/tab-casino.svg" alt="" width="20" height="20" />' +

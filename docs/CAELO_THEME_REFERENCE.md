@@ -212,7 +212,7 @@ After pull, spot-check:
 
 ## Sportsbook skins
 
-White is the **default** sportsbook chrome. Switch day/night with the sun/moon toggle next to **Download App** (desktop top bar; also in the mobile header). Preference is stored as `caelo-sportsbook-skin` (`light` | `dark`). Sports / Live / Esports menus list each page once — they follow the toggle instead of duplicate “(Light)” links.
+White is the **default** sportsbook chrome. Switch day/night with the sun/moon toggle: desktop next to **Download App**; mobile next to the Sports tab flyout **close** control. Preference is stored as `caelo-sportsbook-skin` (`light` | `dark`). Sports / Live / Esports menus list each page once — they follow the toggle instead of duplicate “(Light)” links.
 
 | Route | Skin | CSS |
 |-------|------|-----|
@@ -240,7 +240,7 @@ Hook: pathname `/sportsbook/light` or `/sportsbook/light/<slug>` sets `light` on
 | Selected odds | `--odds-selected` | `#e89a12` |
 | Win / success | `--success` | `#65a30d` |
 
-Table heads, toolbars, and tabs use white/soft panels with navy text and a gold CTA. Inactive tabs stay muted (`--text-muted`) so they remain readable on white — not navy-on-navy and not white type on a white bar. Page-specific prefixes (`.nt-*`, `.bt-*`, `.lt-*`, `.ml-*`, `.fb-*`, `.es-*`) are retinted in the same stylesheet.
+Table heads, toolbars, and tabs use white/soft panels with navy text and a gold CTA. Inactive tabs stay muted (`--text-muted`) so they remain readable on white — not navy-on-navy and not white type on a white bar. On mobile, Live / Sports / star / search pills and popular-sport cards follow the same contract: white/soft inactive, gold CTA selected, muted labels. Page-specific prefixes (`.nt-*`, `.bt-*`, `.lt-*`, `.ml-*`, `.fb-*`, `.es-*`) are retinted in the same stylesheet.
 
 Esports exception: photo hero / competition overlays keep light type on the image. The rest of the lobby and the shared bet slip use white chrome like `/sportsbook/light`.
 

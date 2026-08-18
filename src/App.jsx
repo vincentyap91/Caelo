@@ -74,6 +74,7 @@ import {
   getSportsbookSkin,
   setSportsbookSkin,
   sportsbookSkinFromPage,
+  hasSportsbookDualSkin,
 } from './utils/sportsbookSkin';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ui/ScrollToTop';
@@ -684,6 +685,15 @@ function AppInner() {
     }
   };
 
+  const sportsbookPageProps = {
+    authUser,
+    onNavigate: handleNavigate,
+    onLoginClick: () => {
+      setAuthModalView('login');
+      setLoginModalOpen(true);
+    },
+  };
+
   return (
     <div
       data-app-shell-bg={resolveAppShellBg(page, authUser)}
@@ -701,6 +711,7 @@ function AppInner() {
         onDownloadAppClick={handleDownloadAppClick}
         sportsbookSkin={sportsbookSkin}
         onSportsbookSkinToggle={handleSportsbookSkinToggle}
+        showSportsbookSkinToggle={hasSportsbookDualSkin(page)}
         activePage={page}
         onLoginClick={() => {
           setAuthModalView('login');
@@ -776,6 +787,7 @@ function AppInner() {
         <SportsPage onNavigate={handleNavigate} />
       ) : page === 'sportsbook' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="home"
           onNavigate={handleNavigate}
@@ -786,6 +798,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-event' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="event"
           onNavigate={handleNavigate}
@@ -796,6 +809,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-national-team' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="national-team"
           onNavigate={handleNavigate}
@@ -806,6 +820,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-live-national-team' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="live-national-team"
           onNavigate={handleNavigate}
@@ -816,6 +831,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-sports' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="sports"
           onNavigate={handleNavigate}
@@ -826,6 +842,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-long-term-bets' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="long-term-bets"
           onNavigate={handleNavigate}
@@ -836,6 +853,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-big-tournaments' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="big-tournaments"
           onNavigate={handleNavigate}
@@ -846,6 +864,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-marble-live' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="marble-live"
           onNavigate={handleNavigate}
@@ -856,6 +875,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-multi-live' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="multi-live"
           onNavigate={handleNavigate}
@@ -866,6 +886,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-fast-bet' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="fast-bet"
           onNavigate={handleNavigate}
@@ -876,6 +897,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-favourites' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="favourites"
           onNavigate={handleNavigate}
@@ -886,6 +908,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-search' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="search"
           onNavigate={handleNavigate}
@@ -896,6 +919,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-wc2026' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="wc2026"
           onNavigate={handleNavigate}
@@ -906,6 +930,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-msi' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="msi"
           onNavigate={handleNavigate}
@@ -916,6 +941,7 @@ function AppInner() {
         />
       ) : page === 'sportsbook-esports' ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode="esports"
           onNavigate={handleNavigate}
@@ -926,6 +952,7 @@ function AppInner() {
         />
       ) : sportsbookLightModeFromPage(page) ? (
         <SportsbookPage
+          {...sportsbookPageProps}
           authUser={authUser}
           mode={sportsbookLightModeFromPage(page)}
           light

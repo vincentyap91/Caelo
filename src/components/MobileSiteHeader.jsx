@@ -2,7 +2,6 @@ import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { Menu, RefreshCw, ChevronDown, Headset } from 'lucide-react';
 import BalanceDetailDropdown from './BalanceDetailDropdown';
 import LanguageSwitcher from './LanguageSwitcher';
-import SportsbookSkinToggle from './SportsbookSkinToggle';
 
 /** When balance is long, show currency on line 1 and amount on line 2 (same string if no space). */
 function getMobileBalanceLayout(balance) {
@@ -33,8 +32,6 @@ export default function MobileSiteHeader({
     onLoginClick,
     onRegisterClick,
     onLiveChatClick,
-    sportsbookSkin = 'light',
-    onSportsbookSkinToggle,
 }) {
     const [balanceDropdownOpen, setBalanceDropdownOpen] = useState(false);
     const containerRef = useRef(null);
@@ -82,10 +79,6 @@ export default function MobileSiteHeader({
             </div>
 
             <div className="flex shrink-0 items-center justify-end gap-1.5">
-                <SportsbookSkinToggle
-                    skin={sportsbookSkin}
-                    onToggle={onSportsbookSkinToggle}
-                />
                 {authUser ? (
                     <>
                         <div

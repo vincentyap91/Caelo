@@ -102,3 +102,7 @@ export function applySportsbookSkinToPath(path, skin = getSportsbookSkin()) {
 export function sportsbookMenuItemIsActive(itemPage, activePage) {
   return toCanonicalSportsbookPage(itemPage) === toCanonicalSportsbookPage(activePage);
 }
+
+export function hasSportsbookDualSkin(pageId) {
+  return Boolean(DARK_PAGE_TO_LIGHT[pageId] || LIGHT_PAGE_TO_DARK[pageId]);
+}

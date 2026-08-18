@@ -50,7 +50,7 @@ Keep 1xbet **dark chrome structure** for the night skin; retint via `caelo-palet
 
 Do **not** ship raw 1xbet/Figma chrome hex (`#1d4268`, `#205583`, `#276aa5`, `#7eac2f`, etc.) as the product palette. Structure/icons OK; fills/borders/text must hit Caelo tokens above. Success/win green may stay readable (`#65a30d`) — do not force orange onto win states.
 
-**Default is white.** Use the sun/moon toggle beside **Download App** to compare white vs dark. Do not add `(Light)` routes to Sports / Live / Esports menus.
+**Default is white.** Use the sun/moon toggle beside **Download App** (desktop) or the Sports flyout **close** control (mobile) to compare white vs dark. Do not add `(Light)` routes to Sports / Live / Esports menus.
 
 **White / light sportsbook:** `/sportsbook/light` is the default white-chrome sportsbook (`caelo-light.css` last). Additional white routes reuse the same dark-page layouts with `light` + `body.sportsbook-light` + `.sportsbook-light-chrome` + `caelo-light.css`:
 
@@ -64,7 +64,7 @@ Do **not** ship raw 1xbet/Figma chrome hex (`#1d4268`, `#205583`, `#276aa5`, `#7
 - `/sportsbook/light/fast-bet`
 - `/sportsbook/light/esports`
 
-Night skin stays on `/sportsbook` and `/sportsbook/<slug>`. Do **not** fold the light skin into `caelo-palette.css`. Table heads / toolbars: white/soft panels, navy text, gold CTA; inactive tabs must stay readable on white (`--text-muted`).
+Night skin stays on `/sportsbook` and `/sportsbook/<slug>`. Do **not** fold the light skin into `caelo-palette.css`. Table heads / toolbars: white/soft panels, navy text, gold CTA; inactive tabs must stay readable on white (`--text-muted`). On mobile light chrome, Live / Sports / star / search pills and category cards use the same selected-gold / muted-inactive contract — not navy fills with inverse type.
 
 ```text
 ✅ var(--color-primary), var(--color-accent-100), var(--color-button-cta)

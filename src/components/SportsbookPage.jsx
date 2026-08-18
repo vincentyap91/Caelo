@@ -227,6 +227,7 @@ export default function SportsbookPage({
     }
 
     let cancelled = false;
+    setBooted(false);
     const prevPage = document.body.dataset.page;
     const hadLoggedInClass = document.body.classList.contains('is-logged-in');
     const hadEventPageClass = document.body.classList.contains('ds-event-page');
@@ -313,7 +314,7 @@ export default function SportsbookPage({
         requestAnimationFrame(() => {
           if (!cancelled) window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         });
-        setBooted(true);
+        if (!cancelled) setBooted(true);
       } catch (err) {
         if (!cancelled) setError(err instanceof Error ? err.message : String(err));
       }

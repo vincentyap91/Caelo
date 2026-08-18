@@ -344,6 +344,7 @@ export default function Navbar({
     onDownloadAppClick,
     sportsbookSkin = 'light',
     onSportsbookSkinToggle,
+    showSportsbookSkinToggle = false,
     activePage = 'home',
     onLoginClick,
     onRegisterClick,
@@ -552,8 +553,6 @@ export default function Navbar({
                 onLoginClick={() => onLoginClick?.()}
                 onRegisterClick={() => onRegisterClick?.()}
                 onLiveChatClick={onLiveChatClick}
-                sportsbookSkin={sportsbookSkin}
-                onSportsbookSkinToggle={onSportsbookSkinToggle}
             />
 
 
@@ -568,10 +567,12 @@ export default function Navbar({
                             <Smartphone size={14} className="shrink-0 text-[var(--color-tertiery)]" />
                             <span>Download App</span>
                         </button>
-                        <SportsbookSkinToggle
-                            skin={sportsbookSkin}
-                            onToggle={onSportsbookSkinToggle}
-                        />
+                        {showSportsbookSkinToggle ? (
+                            <SportsbookSkinToggle
+                                skin={sportsbookSkin}
+                                onToggle={onSportsbookSkinToggle}
+                            />
+                        ) : null}
                     </div>
 
                     <div className="flex items-center gap-1 h-full">
@@ -1149,12 +1150,12 @@ export default function Navbar({
                             <button
                                 type="button"
                                 onClick={() => handleMobileNavigate('profile')}
-                                className="w-full pr-12 text-left text-2xl font-bold leading-tight text-[var(--color-text-primary-card-title)] transition hover:opacity-90"
+                                className="w-full pr-28 text-left text-2xl font-bold leading-tight text-[var(--color-text-primary-card-title)] transition hover:opacity-90"
                             >
                                 Hi, {authUser.name}
                             </button>
                         ) : (
-                            <div className="pr-12">
+                            <div className="pr-28">
                                 <h2 className="text-xl font-bold leading-tight text-[var(--color-text-primary-card-title)]">Play Anywhere</h2>
                                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Your essentials stay up top. Everything else is tucked into More.</p>
                             </div>
@@ -1241,14 +1242,22 @@ export default function Navbar({
                         )}
                     </div>
 
-                    <button
-                        type="button"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="absolute right-3.5 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)] transition hover:bg-[var(--color-surface-subtle)]"
-                        aria-label="Close mobile menu"
-                    >
-                        <X size={16} />
-                    </button>
+                    <div className="absolute right-3.5 top-3 flex items-center gap-1.5">
+                        {showSportsbookSkinToggle ? (
+                            <SportsbookSkinToggle
+                                skin={sportsbookSkin}
+                                onToggle={onSportsbookSkinToggle}
+                            />
+                        ) : null}
+                        <button
+                            type="button"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-tertiery)] text-[var(--color-text-primary-card-title)] shadow-[var(--shadow-card-soft)] transition hover:bg-[var(--color-surface-subtle)]"
+                            aria-label="Close mobile menu"
+                        >
+                            <X size={16} />
+                        </button>
+                    </div>
 
                 </div>
 
