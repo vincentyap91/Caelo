@@ -1986,8 +1986,8 @@ body[data-page="marble-live"] .sports-section-label:not(.az) {
   grid-template-columns: minmax(280px, 1.05fr) 1.2fr;
   opacity: 0;
   pointer-events: none;
-  transform: translateX(28px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  z-index: 0;
+  transition: opacity 0.4s ease;
   background:
     radial-gradient(ellipse 70% 90% at 78% 55%, rgba(43, 120, 214, 0.45), transparent 58%),
     linear-gradient(105deg, #081828 0%, #0f2f52 38%, #1a5a9e 72%, #2b78d6 100%);
@@ -2060,7 +2060,6 @@ body[data-page="marble-live"] .sports-section-label:not(.az) {
 .promo-slide.active {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(0);
   z-index: 1;
 }
 

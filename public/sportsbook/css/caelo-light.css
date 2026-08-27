@@ -66,6 +66,9 @@ body.sportsbook-port-active.sportsbook-light {
   --font-display: "Poppins", "SF Pro Display", "Segoe UI", sans-serif;
   --sb-icon-navy: brightness(0) saturate(100%) invert(16%) sepia(72%) saturate(2500%) hue-rotate(213deg) brightness(88%) contrast(105%);
   --sb-icon-muted: brightness(0) saturate(100%) invert(46%) sepia(12%) saturate(700%) hue-rotate(176deg) brightness(92%) contrast(88%);
+  /* Same lime Live glyph as dark `.home-quicknav__ico--live` */
+  --sb-icon-live: brightness(0) saturate(100%) invert(62%) sepia(52%) saturate(520%) hue-rotate(42deg) brightness(96%) contrast(88%);
+  --sb-icon-star: #f1b630;
 }
 
 .sportsbook-root.sportsbook-light-chrome {
@@ -1520,24 +1523,25 @@ body.sportsbook-light[data-page="marble-live"] .sports-section-label:not(.az) {
     display: none;
   }
 
-  .sportsbook-root.sportsbook-light-chrome .home-quicknav__ico--live,
+  .sportsbook-root.sportsbook-light-chrome .home-quicknav__ico--live {
+    filter: var(--sb-icon-live);
+  }
+
   .sportsbook-root.sportsbook-light-chrome .home-quicknav__ico--search {
     filter: var(--sb-icon-muted);
   }
 
   .sportsbook-root.sportsbook-light-chrome .home-quicknav__btn.is-active .home-quicknav__ico--live,
   .sportsbook-root.sportsbook-light-chrome .home-quicknav__btn.is-active .home-quicknav__ico--search,
-  .sportsbook-root.sportsbook-light-chrome .home-quicknav__btn:hover .home-quicknav__ico--live,
   .sportsbook-root.sportsbook-light-chrome .home-quicknav__btn:hover .home-quicknav__ico--search {
     filter: var(--sb-icon-navy);
   }
 
   .sportsbook-root.sportsbook-light-chrome .home-quicknav__ico--fav {
-    color: var(--text-muted);
+    color: var(--sb-icon-star);
   }
 
-  .sportsbook-root.sportsbook-light-chrome .home-quicknav__btn.is-active .home-quicknav__ico--fav,
-  .sportsbook-root.sportsbook-light-chrome .home-quicknav__btn:hover .home-quicknav__ico--fav {
+  .sportsbook-root.sportsbook-light-chrome .home-quicknav__btn.is-active .home-quicknav__ico--fav {
     color: var(--sb-cta-text);
   }
 

@@ -79,6 +79,7 @@ import {
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ui/ScrollToTop';
 import ThemeEditor from './components/ThemeEditor';
+import FigmaPageCapture from './components/FigmaPageCapture';
 
 /** White-chrome sportsbook previews — dark /sportsbook/<slug> originals stay unchanged. */
 function sportsbookLightModeFromPage(pageId) {
@@ -1135,6 +1136,7 @@ function AppInner() {
       />
 
       <ThemeEditor />
+      <FigmaPageCapture />
     </div>
   );
 }

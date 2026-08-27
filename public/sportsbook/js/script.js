@@ -4689,6 +4689,11 @@
   const PROMO_AUTOPLAY_MS = 8000;
   let promoTimerId = null;
 
+  function currentPromoIndex(slides) {
+    const shown = slides.findIndex((s) => s.classList.contains("active"));
+    return shown >= 0 ? shown : state.promoIndex;
+  }
+
   function setPromoSlide(index) {
     const slides = $$(".promo-slide");
     if (!slides.length) return;
@@ -4707,7 +4712,10 @@
     const slider = $("#promo-slider");
     if (!slider || document.hidden) return;
     promoTimerId = sbTrackTimer(
-      setInterval(() => setPromoSlide(state.promoIndex + 1), PROMO_AUTOPLAY_MS)
+      setInterval(() => {
+        const slides = $$(".promo-slide");
+        setPromoSlide(currentPromoIndex(slides) + 1);
+      }, PROMO_AUTOPLAY_MS)
     );
   }
 
@@ -4728,8 +4736,16 @@
       .map((_, i) => `<button type="button" class="promo-dot${i === 0 ? " active" : ""}" data-promo-dot="${i}" aria-label="Slide ${i + 1}"></button>`)
       .join("");
 
-    $("#promo-prev").addEventListener("click", () => goPromoSlide(state.promoIndex - 1), { signal });
-    $("#promo-next").addEventListener("click", () => goPromoSlide(state.promoIndex + 1), { signal });
+    state.promoIndex = Math.max(0, currentPromoIndex(slides));
+    slides.forEach((s, i) => s.classList.toggle("active", i === state.promoIndex));
+    $$(".promo-dot").forEach((d, i) => d.classList.toggle("active", i === state.promoIndex));
+
+    $("#promo-prev")?.addEventListener("click", () => {
+      goPromoSlide(currentPromoIndex($$(".promo-slide")) - 1);
+    }, { signal });
+    $("#promo-next")?.addEventListener("click", () => {
+      goPromoSlide(currentPromoIndex($$(".promo-slide")) + 1);
+    }, { signal });
     dots.addEventListener("click", (e) => {
       const dot = e.target.closest("[data-promo-dot]");
       if (dot) goPromoSlide(Number(dot.getAttribute("data-promo-dot")));
